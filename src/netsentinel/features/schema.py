@@ -66,7 +66,12 @@ def add_derived(df: pl.DataFrame | pl.LazyFrame):
     )  # fmt: skip
 
 
-FEATURE_SETS = ("flow", "flow_noshortcut", "flow_port", "flow_ctx5", "flow_ctx", "ctx_only")
+FEATURE_SETS = ("flow", "flow_noshortcut", "flow_port", "flow_ctx5", "flow_ctx", "ctx_only",
+                "flow_ctx_inv", "flow_ctx_abs")  # fmt: skip
+# Context subsets for the scale ablation (audit V3): fractions/shares/surge ratios are invariant
+# to uniform thinning of the flow stream (e.g. truncated source files); absolute rates and
+# distinct-port counts are not.
+SCALE_INVARIANT_MARKERS = ("_frac_", "_share_", "_surge_")
 
 
 def feature_set(name: str, windows: tuple[int, ...] = DEFAULT_WINDOWS) -> list[str]:
@@ -84,6 +89,10 @@ def feature_set(name: str, windows: tuple[int, ...] = DEFAULT_WINDOWS) -> list[s
         return flow + ctx
     if name == "ctx_only":
         return ctx
+    if name == "flow_ctx_inv":
+        return flow + [c for c in ctx if any(m in c for m in SCALE_INVARIANT_MARKERS)]
+    if name == "flow_ctx_abs":
+        return flow + [c for c in ctx if not any(m in c for m in SCALE_INVARIANT_MARKERS)]
     raise ValueError(f"unknown feature set {name!r}; choose from {FEATURE_SETS}")
 
 

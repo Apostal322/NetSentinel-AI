@@ -1,0 +1,74 @@
+[
+  {
+    "label": "ftp_bruteforce",
+    "other": "dos_slowhttptest",
+    "shared_vectors": 52,
+    "share_of_label_rows": 0.9999637980968142
+  },
+  {
+    "label": "dos_slowhttptest",
+    "other": "ftp_bruteforce",
+    "shared_vectors": 52,
+    "share_of_label_rows": 0.9999571091571949
+  },
+  {
+    "label": "ftp_bruteforce",
+    "other": "ssh_bruteforce",
+    "shared_vectors": 7,
+    "share_of_label_rows": 0.8778702937525859
+  },
+  {
+    "label": "dos_slowhttptest",
+    "other": "ssh_bruteforce",
+    "shared_vectors": 7,
+    "share_of_label_rows": 0.8281506898277218
+  },
+  {
+    "label": "web_sql_injection",
+    "other": "web_bruteforce",
+    "shared_vectors": 5,
+    "share_of_label_rows": 0.08045977011494253
+  },
+  {
+    "label": "web_bruteforce",
+    "other": "web_sql_injection",
+    "shared_vectors": 5,
+    "share_of_label_rows": 0.027823240589198037
+  },
+  {
+    "label": "web_sql_injection",
+    "other": "web_xss",
+    "shared_vectors": 1,
+    "share_of_label_rows": 0.011494252873563218
+  },
+  {
+    "label": "web_xss",
+    "other": "web_sql_injection",
+    "shared_vectors": 1,
+    "share_of_label_rows": 0.004347826086956522
+  },
+  {
+    "label": "web_bruteforce",
+    "other": "infiltration",
+    "shared_vectors": 1,
+    "share_of_label_rows": 0.0016366612111292963
+  },
+  {
+    "label": "ssh_bruteforce",
+    "other": "dos_slowhttptest",
+    "shared_vectors": 7,
+    "share_of_label_rows": 0.00015992408936558113
+  },
+  {
+    "label": "ssh_bruteforce",
+    "other": "ftp_bruteforce",
+    "shared_vectors": 7,
+    "share_of_label_rows": 0.00015992408936558113
+  },
+  {
+    "label": "infiltration",
+    "other": "web_bruteforce",
+    "shared_vectors": 1,
+    "share_of_label_rows": 6.175355391702792e-06
+  }
+]

@@ -65,13 +65,23 @@ def run_openset(cfg: dict[str, Any]) -> list[str]:
     w_bv = benign_val["sample_weight"].to_numpy()
     a_bv, _ = anomaly.score(_x(benign_val, feats), benign_val["service"].to_numpy())
 
+    # Hold-out groups: explicit label lists (`holdout_groups`, required when classes have twins
+    # in other families - see docs/audit) or, legacy, whole families (`holdout_families`).
+    if cfg.get("holdout_groups"):
+        groups = {k: list(v) for k, v in cfg["holdout_groups"].items()}
+    else:
+        fam_labels = frame.group_by("family").agg(pl.col("label").unique())
+        lookup = {r["family"]: r["label"] for r in fam_labels.iter_rows(named=True)}
+        groups = {f: lookup.get(f, []) for f in cfg["holdout_families"]}
     run_ids = []
-    for fam in cfg["holdout_families"]:
+    for fam, labels in groups.items():
         run = Run(cfg, name=f"{cfg['experiment']}_without_{fam}")
-        seen = frame.filter(pl.col("family") != fam)
-        unseen = frame.filter(pl.col("family") == fam)
+        held = pl.col("label").is_in(labels)
+        seen = frame.filter(~held)
+        unseen = frame.filter(held)
         if unseen.height == 0:
-            raise ValueError(f"no rows for family {fam!r}")
+            raise ValueError(f"no rows for hold-out group {fam!r} ({labels})")
+        run.save_json("holdout_group.json", {"name": fam, "labels": labels})
         tr = seen.filter(pl.col("split") == "train")
         va = seen.filter(pl.col("split") == "val")
         cap = cfg.get("max_train_rows")

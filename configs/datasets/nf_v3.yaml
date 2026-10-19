@@ -1,0 +1,16 @@
+# Dataset manifest: NetFlow v3 datasets (nProbe, 53 features incl. flow start/end timestamps).
+# Source page: https://staff.itee.uq.edu.au/marius/NIDS_datasets/ (UQ Research Data Manager,
+# Open Access). License: "Permitted Re-Use with Commercial Use Restriction".
+# Cite: M. Luay et al., Temporal Analysis of NetFlow Datasets for Network Intrusion Detection
+#       Systems, arXiv:2503.04404 (2025).
+# Files are fetched through the RDM API, which returns a 1-hour pre-signed S3 URL.
+# etag = S3 multipart ETag (5 MiB parts), checked by `netsentinel data verify --manifest ...`.
+# Sizes/ETags read from the S3 objects on 2026-10-19.
+name: nf-v3
+version: "uq-rdm-2025-02-28"
+base_url: "https://api.rdm.uq.edu.au/datasets/"
+local_dir: data/raw/nf_v3
+part_size_bytes: 5242880
+files:
+  - {name: NF-UNSW-NB15-v3.zip, day: "nf-unsw-nb15-v3", size: 110825147, etag: "a31aba4ac86f9fe4b2a557eaed86090a-22", rdm_uuid: abd2f5d8-e268-4ff0-84fb-f2f7b3ca3e8f}
+  - {name: NF-CICIDS2018-v3.zip, day: "nf-cicids2018-v3", size: 780113687, etag: "efa3df193f7928b549515650171919ed-149", rdm_uuid: 4ac221b1-6bd6-42b1-bdf7-03f4fc7efb22}

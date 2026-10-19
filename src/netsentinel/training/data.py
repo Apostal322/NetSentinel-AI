@@ -49,10 +49,21 @@ HTTP_ATTACKS = ("web_bruteforce", "web_xss", "web_sql_injection", "ddos_loic_htt
 MERGED_LABELS = {"ftp_bruteforce": "port21_failed_conn", "dos_slowhttptest": "port21_failed_conn"}
 
 
-def clean_labels(df: pl.DataFrame) -> tuple[pl.DataFrame, dict[str, int]]:
+# Label cleaning v2 (audit 2026-10-19, reports/audit/twins.json): ~30 flows labelled
+# SSH-Bruteforce are port-21 failed connections whose 7 distinct vectors cover 87.8 % of all
+# FTP-BruteForce rows - enough to leak the port-21 group into training when it is held out.
+# v2 additionally requires SSH brute force to be TCP/22.
+PORT_RULES = {"ssh_bruteforce": 22}
+
+
+def clean_labels(df: pl.DataFrame, version: int = 1) -> tuple[pl.DataFrame, dict[str, int]]:
     bad = pl.col("label").is_in(list(HTTP_ATTACKS)) & ~(
         (pl.col("protocol") == 6) & (pl.col("dst_port") == 80)
     )
+    if version >= 2:
+        for lab, port in PORT_RULES.items():
+            bad = bad | ((pl.col("label") == lab) & ~((pl.col("protocol") == 6)
+                                                      & (pl.col("dst_port") == port)))  # fmt: skip
     dropped = df.filter(bad).group_by("label").agg(pl.len()).to_dicts()
     return df.filter(~bad), {r["label"]: int(r["len"]) for r in dropped}
 
@@ -80,9 +91,10 @@ def prepare(cfg: dict[str, Any]) -> Prepared:
     if labels:
         df = df.filter(~pl.col("label").is_in(list(labels)))
     cleaning: dict[str, int] = {}
-    if cfg["data"].get("clean_labels", True):
-        df, cleaning = clean_labels(df)
-        log.info("label cleaning v1 dropped (sampled rows): %s", cleaning)
+    version = int(cfg["data"].get("clean_labels", True))  # true/1 = v1, 2 = v2, 0/false = off
+    if version:
+        df, cleaning = clean_labels(df, version)
+        log.info("label cleaning v%d dropped (sampled rows): %s", version, cleaning)
     if cfg.get("task") in ("label", "attack_type"):
         df = df.with_columns(pl.col("label").replace(MERGED_LABELS))
     df = add_derived(df)
