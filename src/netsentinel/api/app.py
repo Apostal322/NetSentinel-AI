@@ -1,0 +1,168 @@
+"""FastAPI service over the inference engine, event store and offline replay.
+
+Security posture (see docs/security/threat_model.md):
+* binds to 127.0.0.1 by default (`netsentinel serve`); not intended for internet exposure;
+* request bodies are bounded (batch <= MAX_BATCH flows, unknown fields rejected);
+* replay only reads `.parquet` files inside the configured replay directory (no arbitrary
+  paths, no uploads); starting/cancelling a replay requires the admin token
+  (env NETSENTINEL_ADMIN_TOKEN; if unset, admin endpoints are disabled);
+* detection only: no endpoint blocks traffic or changes network state.
+"""
+
+from __future__ import annotations
+
+import hmac
+import logging
+import os
+from datetime import datetime
+from pathlib import Path
+from typing import Annotated
+
+import polars as pl
+from fastapi import Depends, FastAPI, Header, HTTPException, Query
+from pydantic import BaseModel, ConfigDict, Field
+
+from netsentinel import __version__
+from netsentinel.inference.schema import FlowRecord, Prediction
+
+log = logging.getLogger(__name__)
+MAX_BATCH = 1000
+
+
+class Settings(BaseModel):
+    bundle_dir: Path
+    events_db: Path = Path("artifacts/events.sqlite")
+    replay_dir: Path = Path("data/interim/ids2018")
+
+
+class BatchRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    flows: list[FlowRecord] = Field(min_length=1, max_length=MAX_BATCH)
+
+
+class ReplayRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    day: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$", description="ingested capture day")
+    start: datetime | None = None
+    end: datetime | None = None
+    max_events: int = Field(default=20_000, ge=1, le=200_000)
+    speed: float = Field(default=0.0, ge=0, le=10_000)
+
+
+def _flows_to_frame(flows: list[FlowRecord]) -> pl.DataFrame:
+    rows = []
+    for f in flows:
+        row = {k: v for k, v in f.features.items()}
+        row.update(timestamp=f.timestamp.replace(tzinfo=None), dst_port=f.dst_port,
+                   protocol=f.protocol, flow_duration=f.flow_duration)  # fmt: skip
+        rows.append(row)
+    return pl.DataFrame(rows, infer_schema_length=None)
+
+
+def create_app(settings: Settings) -> FastAPI:
+    from netsentinel.inference.engine import Engine
+    from netsentinel.storage.events import EventStore
+    from netsentinel.streaming.replay import ReplayConfig, Replayer
+
+    app = FastAPI(title="NetSentinel AI", version=__version__,
+                  description="Detection-only network flow intelligence API (offline replay "
+                              "and on-demand scoring). Not a blocking/IPS system.")  # fmt: skip
+    state: dict = {"engine": None, "error": None}
+    try:
+        state["engine"] = Engine(settings.bundle_dir)
+    except Exception as exc:  # noqa: BLE001 - reported by /ready instead of crashing
+        log.exception("failed to load bundle")
+        state["error"] = f"{type(exc).__name__}: {exc}"
+    store = EventStore(settings.events_db)
+    replayer = Replayer(state["engine"], store) if state["engine"] else None
+
+    def engine() -> Engine:
+        if state["engine"] is None:
+            raise HTTPException(503, f"model bundle not loaded: {state['error']}")
+        return state["engine"]
+
+    def admin(x_admin_token: Annotated[str | None, Header()] = None) -> None:
+        expected = os.environ.get("NETSENTINEL_ADMIN_TOKEN")
+        if not expected:
+            raise HTTPException(403, "admin endpoints disabled (NETSENTINEL_ADMIN_TOKEN unset)")
+        if not x_admin_token or not hmac.compare_digest(x_admin_token, expected):
+            raise HTTPException(401, "invalid admin token")
+
+    @app.get("/health")
+    def health() -> dict:
+        return {"status": "ok", "version": __version__}
+
+    @app.get("/ready")
+    def ready() -> dict:
+        if state["engine"] is None:
+            raise HTTPException(503, state["error"] or "not ready")
+        return {"status": "ready", "bundle": state["engine"].bundle_id}
+
+    @app.get("/models")
+    def models() -> dict:
+        return engine().manifest
+
+    @app.post("/predict/flow", response_model=Prediction)
+    def predict_flow(flow: FlowRecord) -> Prediction:
+        # Single flows carry no traffic history -> context features are reported as missing.
+        return engine().predict(_flows_to_frame([flow]), source=flow.source, context="none")[0]
+
+    @app.post("/predict/batch", response_model=list[Prediction])
+    def predict_batch(req: BatchRequest, compute_context: bool = False) -> list[Prediction]:
+        """`compute_context=true` treats the batch as one contiguous stream (causal context)."""
+        frame = _flows_to_frame(req.flows)
+        return engine().predict(frame, source=req.flows[0].source,
+                                context="compute" if compute_context else "none")  # fmt: skip
+
+    @app.get("/events")
+    def events(
+        verdict: Annotated[list[str] | None, Query()] = None,
+        since: datetime | None = None,
+        until: datetime | None = None,
+        source: str | None = None,
+        limit: int = Query(100, ge=1, le=1000),
+        offset: int = Query(0, ge=0),
+    ) -> list[dict]:
+        try:
+            return store.query(verdict, since, until, source, limit, offset)
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from exc
+
+    @app.get("/events/{observation_id}")
+    def event(observation_id: str) -> dict:
+        found = store.get(observation_id)
+        if not found:
+            raise HTTPException(404, "event not found")
+        return found
+
+    @app.get("/metrics/summary")
+    def summary(source: str | None = None) -> dict:
+        return store.summary(source)
+
+    @app.post("/replay/start", dependencies=[Depends(admin)])
+    def replay_start(req: ReplayRequest) -> dict:
+        if replayer is None:
+            raise HTTPException(503, "model bundle not loaded")
+        path = (settings.replay_dir / f"{req.day}.parquet").resolve()
+        if settings.replay_dir.resolve() not in path.parents or not path.is_file():
+            raise HTTPException(404, f"no ingested day {req.day}")
+        try:
+            st = replayer.start_background(ReplayConfig(
+                path=str(path), start=req.start, end=req.end, max_events=req.max_events,
+                speed=req.speed,
+            ))  # fmt: skip
+        except RuntimeError as exc:
+            raise HTTPException(409, str(exc)) from exc
+        return st.as_dict()
+
+    @app.post("/replay/cancel", dependencies=[Depends(admin)])
+    def replay_cancel() -> dict:
+        if replayer:
+            replayer.cancel()
+        return {"status": "cancel requested"}
+
+    @app.get("/replay/status")
+    def replay_status() -> dict:
+        return replayer.status.as_dict() if replayer else {"state": "unavailable"}
+
+    return app

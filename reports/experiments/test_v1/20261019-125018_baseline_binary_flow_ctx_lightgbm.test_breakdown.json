@@ -1,0 +1,103 @@
+{
+  "run": "20261019-125018_baseline_binary_flow_ctx_lightgbm",
+  "threshold": 4.174675813277978e-05,
+  "per_label_recall": [
+    {
+      "label": "bot",
+      "rows": 6443,
+      "recall": 0.9427285426043769
+    },
+    {
+      "label": "ddos_hoic",
+      "rows": 1518,
+      "recall": 1.0
+    },
+    {
+      "label": "ddos_loic_http",
+      "rows": 3079,
+      "recall": 1.0
+    },
+    {
+      "label": "ddos_loic_udp",
+      "rows": 57,
+      "recall": 1.0
+    },
+    {
+      "label": "dos_slowhttptest",
+      "rows": 1517,
+      "recall": 1.0
+    },
+    {
+      "label": "dos_slowloris",
+      "rows": 832,
+      "recall": 1.0
+    },
+    {
+      "label": "ftp_bruteforce",
+      "rows": 3773,
+      "recall": 1.0
+    },
+    {
+      "label": "ssh_bruteforce",
+      "rows": 3618,
+      "recall": 1.0
+    },
+    {
+      "label": "web_sql_injection",
+      "rows": 60,
+      "recall": 1.0
+    }
+  ],
+  "benign_fpr_by_day": [
+    {
+      "day": "2018-02-14",
+      "rows": 7707,
+      "fpr": 0.0001297521812375635
+    },
+    {
+      "day": "2018-02-15",
+      "rows": 9315,
+      "fpr": 0.0010735372779890895
+    },
+    {
+      "day": "2018-02-16",
+      "rows": 4,
+      "fpr": 0.5
+    },
+    {
+      "day": "2018-02-20",
+      "rows": 8026,
+      "fpr": 0.0009967604419216514
+    },
+    {
+      "day": "2018-02-21",
+      "rows": 5696,
+      "fpr": 0.0
+    },
+    {
+      "day": "2018-02-22",
+      "rows": 6936,
+      "fpr": 0.0
+    },
+    {
+      "day": "2018-02-23",
+      "rows": 7154,
+      "fpr": 0.0004193458298686892
+    },
+    {
+      "day": "2018-02-28",
+      "rows": 8702,
+      "fpr": 0.0005745805683545768
+    },
+    {
+      "day": "2018-03-01",
+      "rows": 10662,
+      "fpr": 0.000375164148863405
+    },
+    {
+      "day": "2018-03-02",
+      "rows": 8220,
+      "fpr": 0.0014598540728911757
+    }
+  ]
+}

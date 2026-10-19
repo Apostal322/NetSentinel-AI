@@ -68,7 +68,18 @@ def error_analysis(prep: Prepared, score: np.ndarray, threshold: float, k: int =
     }  # fmt: skip
 
 
+def model_input_names(model, features: list[str]) -> list[str]:
+    """Names of the columns the final estimator sees (imputers may append missing indicators)."""
+    names = list(features)
+    for _, step in getattr(model, "steps", [])[:-1]:
+        indicator = getattr(step, "indicator_", None)
+        if indicator is not None:
+            names += [f"missing::{features[i]}" for i in indicator.features_]
+    return names
+
+
 def feature_importance(model, features: list[str]) -> list[dict[str, Any]]:
+    features = model_input_names(model, features)
     clf = model.steps[-1][1] if hasattr(model, "steps") else model
     if hasattr(clf, "booster_"):
         gain = clf.booster_.feature_importance(importance_type="gain")

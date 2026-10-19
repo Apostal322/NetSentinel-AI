@@ -61,7 +61,7 @@ class AnomalyOut(BaseModel):
 
 class ThreatOut(BaseModel):
     probability: float | None = Field(default=None, ge=0, le=1)
-    threshold: float | None = None
+    decision_rule: str = Field(description="how is_suspicious is decided (raw score threshold)")
     is_suspicious: bool
     attack_category: str | None = None
     classification_confidence: float | None = Field(default=None, ge=0, le=1)

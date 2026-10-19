@@ -1,0 +1,298 @@
+{
+  "macro_f1": 0.8889182157939496,
+  "weighted_f1": 0.9980555800886277,
+  "balanced_accuracy": 0.8840066646601865,
+  "per_class": {
+    "benign": {
+      "precision": 0.9979062661242403,
+      "recall": 0.9999602548122827,
+      "f1": 0.9989322046245687,
+      "support_rows": 72422
+    },
+    "bot": {
+      "precision": 0.9994268426336275,
+      "recall": 0.941952506596306,
+      "f1": 0.9698389137102932,
+      "support_rows": 6443
+    },
+    "ddos_hoic": {
+      "precision": 1.0,
+      "recall": 0.9986824769433466,
+      "f1": 0.999340804218853,
+      "support_rows": 1518
+    },
+    "ddos_loic_http": {
+      "precision": 0.9999329167628228,
+      "recall": 1.0,
+      "f1": 0.9999664572563335,
+      "support_rows": 3079
+    },
+    "ddos_loic_udp": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support_rows": 57
+    },
+    "dos_goldeneye": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support_rows": 0
+    },
+    "dos_hulk": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support_rows": 0
+    },
+    "dos_slowloris": {
+      "precision": 1.0,
+      "recall": 0.9987980769230769,
+      "f1": 0.9993986770895971,
+      "support_rows": 832
+    },
+    "port21_failed_conn": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support_rows": 5290
+    },
+    "ssh_bruteforce": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support_rows": 3618
+    },
+    "web_bruteforce": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support_rows": 0
+    },
+    "web_sql_injection": {
+      "precision": 1.0,
+      "recall": 0.016666666666666666,
+      "f1": 0.03278688524590164,
+      "support_rows": 60
+    },
+    "web_xss": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support_rows": 0
+    }
+  },
+  "labels": [
+    "benign",
+    "bot",
+    "ddos_hoic",
+    "ddos_loic_http",
+    "ddos_loic_udp",
+    "dos_goldeneye",
+    "dos_hulk",
+    "dos_slowloris",
+    "port21_failed_conn",
+    "ssh_bruteforce",
+    "web_bruteforce",
+    "web_sql_injection",
+    "web_xss"
+  ],
+  "confusion_matrix": [
+    [
+      72416,
+      2,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      0
+    ],
+    [
+      374,
+      6069,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      2,
+      0,
+      1516,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      3079,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      57,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      831,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      5290,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      3618,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      25,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      23,
+      1,
+      11
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "test_rows": 93319
+}

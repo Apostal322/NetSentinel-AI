@@ -107,6 +107,53 @@ def _cmd_train_openset(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_train_temporal(args: argparse.Namespace) -> int:
+    from netsentinel.training.temporal import run_temporal
+
+    for run_id in run_temporal(_experiment_config(args)):
+        print(run_id)
+    return 0
+
+
+def _cmd_bundle_build(args: argparse.Namespace) -> int:
+    from netsentinel.inference.bundle import build_bundle
+
+    out = build_bundle(args.out, args.threat_run, args.anomaly_run, args.type_run,
+                       attack_type_threshold=args.attack_type_threshold)  # fmt: skip
+    print(out)
+    return 0
+
+
+def _cmd_replay(args: argparse.Namespace) -> int:
+    from datetime import datetime
+
+    from netsentinel.inference.engine import Engine
+    from netsentinel.storage.events import EventStore
+    from netsentinel.streaming.replay import ReplayConfig, Replayer
+
+    cfg = ReplayConfig(
+        path=args.path,
+        start=datetime.fromisoformat(args.start) if args.start else None,
+        end=datetime.fromisoformat(args.end) if args.end else None,
+        max_events=args.max_events,
+        speed=args.speed,
+    )
+    status = Replayer(Engine(args.bundle), EventStore(args.events_db)).run(cfg)
+    print(json.dumps(status.as_dict(), indent=2))
+    return 0 if status.state == "finished" else 1
+
+
+def _cmd_serve(args: argparse.Namespace) -> int:
+    import uvicorn
+
+    from netsentinel.api.app import Settings, create_app
+
+    app = create_app(Settings(bundle_dir=args.bundle, events_db=args.events_db,
+                              replay_dir=args.replay_dir))  # fmt: skip
+    uvicorn.run(app, host=args.host, port=args.port, log_level="info")
+    return 0
+
+
 def _cmd_evaluate(args: argparse.Namespace) -> int:
     if not args.final:
         log.error("validation metrics are produced at training time; pass --final for test")
@@ -173,6 +220,37 @@ def build_parser() -> argparse.ArgumentParser:
     p = train_sub.add_parser("openset", help="leave-one-family-out unseen-attack evaluation")
     _add_config_args(p, "configs/experiments/openset.yaml")
     p.set_defaults(func=_cmd_train_openset)
+    p = train_sub.add_parser("temporal", help="GRU over causal flow sequences vs MLP control")
+    _add_config_args(p, "configs/experiments/temporal.yaml")
+    p.set_defaults(func=_cmd_train_temporal)
+
+    bundle = sub.add_parser("bundle", help="deployable model bundles")
+    bundle_sub = bundle.add_subparsers(dest="command", required=True)
+    p = bundle_sub.add_parser("build", help="package threat + anomaly (+ type) runs")
+    p.add_argument("--threat-run", required=True)
+    p.add_argument("--anomaly-run", required=True)
+    p.add_argument("--type-run", default=None)
+    p.add_argument("--attack-type-threshold", type=float, default=0.6)
+    p.add_argument("--out", default="models")
+    p.set_defaults(func=_cmd_bundle_build)
+
+    p = sub.add_parser("replay", help="offline replay of an ingested day into the event store")
+    p.add_argument("--bundle", required=True)
+    p.add_argument("--path", required=True, help="data/interim/ids2018/<day>.parquet")
+    p.add_argument("--start", default=None, help="ISO time, e.g. 2018-02-21T14:00:00")
+    p.add_argument("--end", default=None)
+    p.add_argument("--max-events", type=int, default=50_000)
+    p.add_argument("--speed", type=float, default=0.0)
+    p.add_argument("--events-db", default="artifacts/events.sqlite")
+    p.set_defaults(func=_cmd_replay)
+
+    p = sub.add_parser("serve", help="run the API (localhost only by default)")
+    p.add_argument("--bundle", required=True)
+    p.add_argument("--host", default="127.0.0.1")
+    p.add_argument("--port", type=int, default=8000)
+    p.add_argument("--events-db", default="artifacts/events.sqlite")
+    p.add_argument("--replay-dir", default="data/interim/ids2018")
+    p.set_defaults(func=_cmd_serve)
 
     p = sub.add_parser("evaluate", help="one-shot test evaluation of a run")
     p.add_argument("--run", required=True, help="runs/<run_id>")

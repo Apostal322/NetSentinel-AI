@@ -1,0 +1,27 @@
+# Experiment 2: compact temporal DL (GRU over causal per-port flow sequences) vs MLP control.
+experiment: temporal
+seed: 42
+feature_set: flow
+target_fpr: 0.001
+max_train_rows: 300000
+temporal:
+  architectures: [mlp, gru]
+  length: 16
+  hidden: 64
+  batch_size: 512
+  lr: 0.001
+  max_epochs: 15
+  patience: 3
+  gpu: true
+data:
+  processed_dir: data/processed/ids2018_v1
+  interim_dir: data/interim/ids2018
+  days: null
+  drop_labels: [infiltration]
+  clean_labels: true
+split:
+  protocol: episode
+  block_minutes: 30
+  purge_seconds: 150
+  fractions: [0.6, 0.2, 0.2]
+runs_dir: runs
