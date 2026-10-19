@@ -55,6 +55,59 @@ def _cmd_data_ingest(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_data_eda(args: argparse.Namespace) -> int:
+    from netsentinel.data.eda import run_eda
+
+    result = run_eda(args.interim, args.out, auc_per_day=args.auc_per_day, seed=args.seed)
+    print(f"profiled {len(result['days'])} days -> {args.out}/eda.json")
+    return 0
+
+
+def _cmd_features_build(args: argparse.Namespace) -> int:
+    from netsentinel.features.build import BuildConfig, build_dataset
+
+    cfg = BuildConfig(
+        benign_per_day=args.benign_per_day,
+        attack_cap_per_label_day=args.attack_cap,
+        seed=args.seed,
+    )
+    meta = build_dataset(args.interim, args.out, cfg)
+    total = sum(d["rows_sampled"] for d in meta["days"])
+    print(f"built {len(meta['days'])} days, {total:,} sampled rows -> {args.out}")
+    return 0
+
+
+def _experiment_config(args: argparse.Namespace) -> dict:
+    from netsentinel.config import load_config
+
+    return load_config(args.config, args.override, args.sets)
+
+
+def _cmd_train_baseline(args: argparse.Namespace) -> int:
+    from netsentinel.training.baseline import run_baselines
+
+    for run_id in run_baselines(_experiment_config(args)):
+        print(run_id)
+    return 0
+
+
+def _cmd_evaluate(args: argparse.Namespace) -> int:
+    if not args.final:
+        log.error("validation metrics are produced at training time; pass --final for test")
+        return 2
+    from netsentinel.evaluation.final import evaluate_final
+
+    result = evaluate_final(args.run)
+    print(json.dumps({k: v for k, v in result.items() if not isinstance(v, dict)}, indent=2))
+    return 0
+
+
+def _add_config_args(p: argparse.ArgumentParser, default: str) -> None:
+    p.add_argument("--config", default=default)
+    p.add_argument("--override", default=None, help="YAML merged on top of --config")
+    p.add_argument("--set", dest="sets", action="append", default=[], metavar="KEY=VALUE")
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="netsentinel", description=__doc__)
     parser.add_argument("--log-level", default="INFO")
@@ -75,6 +128,34 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--day", action="append", help="limit to these days (YYYY-MM-DD)")
     p.add_argument("--force", action="store_true")
     p.set_defaults(func=_cmd_data_ingest)
+
+    p = data_sub.add_parser("eda", help="profile ingested days: labels, quality, leakage")
+    p.add_argument("--interim", default="data/interim/ids2018")
+    p.add_argument("--out", default="reports/eda")
+    p.add_argument("--auc-per-day", type=int, default=50_000)
+    p.add_argument("--seed", type=int, default=42)
+    p.set_defaults(func=_cmd_data_eda)
+
+    feats = sub.add_parser("features", help="feature computation")
+    feats_sub = feats.add_subparsers(dest="command", required=True)
+    p = feats_sub.add_parser("build", help="causal context features + stratified sample")
+    p.add_argument("--interim", default="data/interim/ids2018")
+    p.add_argument("--out", default="data/processed/ids2018_v1")
+    p.add_argument("--benign-per-day", type=int, default=50_000)
+    p.add_argument("--attack-cap", type=int, default=25_000)
+    p.add_argument("--seed", type=int, default=42)
+    p.set_defaults(func=_cmd_features_build)
+
+    train = sub.add_parser("train", help="model training")
+    train_sub = train.add_subparsers(dest="command", required=True)
+    p = train_sub.add_parser("baseline", help="classical baselines (validation metrics)")
+    _add_config_args(p, "configs/experiments/baseline_binary.yaml")
+    p.set_defaults(func=_cmd_train_baseline)
+
+    p = sub.add_parser("evaluate", help="one-shot test evaluation of a run")
+    p.add_argument("--run", required=True, help="runs/<run_id>")
+    p.add_argument("--final", action="store_true", help="touch the test split (once per run)")
+    p.set_defaults(func=_cmd_evaluate)
     return parser
 
 
@@ -83,7 +164,7 @@ def main(argv: list[str] | None = None) -> int:
     setup_logging(args.log_level, args.json_logs)
     try:
         return int(args.func(args) or 0)
-    except (FileNotFoundError, ValueError) as exc:
+    except (FileNotFoundError, ValueError, RuntimeError) as exc:
         log.error("%s", exc)
         return 2
 

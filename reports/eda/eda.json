@@ -1,0 +1,874 @@
+{
+  "days": [
+    {
+      "day": "2018-02-14",
+      "rows": 1048575,
+      "excel_truncated": true,
+      "ts_min": "1970-01-05 03:01:17",
+      "ts_max": "2018-02-14 12:59:59",
+      "rows_off_day": 5,
+      "negative_duration": 5,
+      "has_ips": false,
+      "nonfinite": {
+        "nan::flow_byts_per_s": 2277,
+        "inf::flow_byts_per_s": 1547,
+        "inf::flow_pkts_per_s": 3824,
+        "neg::flow_duration": 5,
+        "neg::flow_pkts_per_s": 5,
+        "neg::flow_iat_mean": 5,
+        "neg::flow_iat_max": 2,
+        "neg::flow_iat_min": 5,
+        "neg::fwd_iat_tot": 5,
+        "neg::fwd_iat_mean": 5,
+        "neg::fwd_iat_max": 2,
+        "neg::fwd_iat_min": 5,
+        "neg::init_fwd_win_byts": 219266,
+        "neg::init_bwd_win_byts": 347370
+      },
+      "labels": [
+        {
+          "label": "benign",
+          "rows": 667626,
+          "first": "1970-01-05 03:01:17",
+          "last": "2018-02-14 12:59:59",
+          "top_dst_port": 53,
+          "top_port_share": 0.2968158819458799,
+          "top_protocol": 6
+        },
+        {
+          "label": "ftp_bruteforce",
+          "rows": 193360,
+          "first": "2018-02-14 10:33:26",
+          "last": "2018-02-14 12:10:31",
+          "top_dst_port": 21,
+          "top_port_share": 1.0,
+          "top_protocol": 6
+        },
+        {
+          "label": "ssh_bruteforce",
+          "rows": 187589,
+          "first": "2018-02-14 02:01:21",
+          "last": "2018-02-14 03:32:30",
+          "top_dst_port": 22,
+          "top_port_share": 0.9998400759106344,
+          "top_protocol": 6
+        }
+      ],
+      "duplicates": {
+        "duplicate_rows": 373767,
+        "conflicting_groups": 7
+      }
+    },
+    {
+      "day": "2018-02-15",
+      "rows": 1048575,
+      "excel_truncated": true,
+      "ts_min": "2018-02-15 01:00:00",
+      "ts_max": "2018-02-15 12:59:59",
+      "rows_off_day": 0,
+      "negative_duration": 0,
+      "has_ips": false,
+      "nonfinite": {
+        "nan::flow_byts_per_s": 4921,
+        "inf::flow_byts_per_s": 3106,
+        "inf::flow_pkts_per_s": 8027,
+        "neg::init_fwd_win_byts": 364089,
+        "neg::init_bwd_win_byts": 587584
+      },
+      "labels": [
+        {
+          "label": "benign",
+          "rows": 996077,
+          "first": "2018-02-15 01:00:00",
+          "last": "2018-02-15 12:59:59",
+          "top_dst_port": 53,
+          "top_port_share": 0.3344018584908596,
+          "top_protocol": 6
+        },
+        {
+          "label": "dos_goldeneye",
+          "rows": 41508,
+          "first": "2018-02-15 09:27:42",
+          "last": "2018-02-15 10:02:59",
+          "top_dst_port": 80,
+          "top_port_share": 1.0,
+          "top_protocol": 6
+        },
+        {
+          "label": "dos_slowloris",
+          "rows": 10990,
+          "first": "2018-02-15 11:00:12",
+          "last": "2018-02-15 11:42:01",
+          "top_dst_port": 80,
+          "top_port_share": 1.0,
+          "top_protocol": 6
+        }
+      ],
+      "duplicates": {
+        "duplicate_rows": 163962,
+        "conflicting_groups": 0
+      }
+    },
+    {
+      "day": "2018-02-16",
+      "rows": 1048574,
+      "excel_truncated": false,
+      "ts_min": "2018-02-16 01:00:32",
+      "ts_max": "2018-02-16 12:58:24",
+      "rows_off_day": 0,
+      "negative_duration": 0,
+      "has_ips": false,
+      "nonfinite": {
+        "neg::init_fwd_win_byts": 177,
+        "neg::init_bwd_win_byts": 438345
+      },
+      "labels": [
+        {
+          "label": "dos_hulk",
+          "rows": 461912,
+          "first": "2018-02-16 01:45:27",
+          "last": "2018-02-16 01:48:44",
+          "top_dst_port": 80,
+          "top_port_share": 1.0,
+          "top_protocol": 6
+        },
+        {
+          "label": "benign",
+          "rows": 446772,
+          "first": "2018-02-16 01:00:32",
+          "last": "2018-02-16 12:58:24",
+          "top_dst_port": 0,
+          "top_port_share": 0.0003626010582579034,
+          "top_protocol": 6
+        },
+        {
+          "label": "dos_slowhttptest",
+          "rows": 139890,
+          "first": "2018-02-16 10:12:14",
+          "last": "2018-02-16 10:58:08",
+          "top_dst_port": 21,
+          "top_port_share": 1.0,
+          "top_protocol": 6
+        }
+      ],
+      "duplicates": {
+        "duplicate_rows": 456673,
+        "conflicting_groups": 0
+      }
+    },
+    {
+      "day": "2018-02-20",
+      "rows": 7948748,
+      "excel_truncated": false,
+      "ts_min": "2018-02-20 01:00:00",
+      "ts_max": "2018-02-20 12:59:59",
+      "rows_off_day": 0,
+      "negative_duration": 0,
+      "has_ips": true,
+      "nonfinite": {
+        "nan::flow_byts_per_s": 36767,
+        "inf::flow_byts_per_s": 22686,
+        "inf::flow_pkts_per_s": 59453,
+        "neg::init_fwd_win_byts": 2653104,
+        "neg::init_bwd_win_byts": 4209795
+      },
+      "labels": [
+        {
+          "label": "benign",
+          "rows": 7372557,
+          "first": "2018-02-20 01:00:00",
+          "last": "2018-02-20 12:59:59",
+          "top_dst_port": 53,
+          "top_port_share": 0.33330539187421676,
+          "top_protocol": 6
+        },
+        {
+          "label": "ddos_loic_http",
+          "rows": 576191,
+          "first": "2018-02-20 01:14:17",
+          "last": "2018-02-20 11:16:48",
+          "top_dst_port": 80,
+          "top_port_share": 1.0,
+          "top_protocol": 6
+        }
+      ],
+      "duplicates": {
+        "duplicate_rows": 1828265,
+        "conflicting_groups": 0
+      }
+    },
+    {
+      "day": "2018-02-21",
+      "rows": 1048575,
+      "excel_truncated": true,
+      "ts_min": "2018-02-21 01:55:46",
+      "ts_max": "2018-02-21 10:43:21",
+      "rows_off_day": 0,
+      "negative_duration": 0,
+      "has_ips": false,
+      "nonfinite": {
+        "neg::init_fwd_win_byts": 3712,
+        "neg::init_bwd_win_byts": 525993
+      },
+      "labels": [
+        {
+          "label": "ddos_hoic",
+          "rows": 686012,
+          "first": "2018-02-21 02:11:08",
+          "last": "2018-02-21 02:33:29",
+          "top_dst_port": 80,
+          "top_port_share": 1.0,
+          "top_protocol": 6
+        },
+        {
+          "label": "benign",
+          "rows": 360833,
+          "first": "2018-02-21 01:55:46",
+          "last": "2018-02-21 10:43:21",
+          "top_dst_port": 80,
+          "top_port_share": 0.004459126521133045,
+          "top_protocol": 6
+        },
+        {
+          "label": "ddos_loic_udp",
+          "rows": 1730,
+          "first": "2018-02-21 10:08:51",
+          "last": "2018-02-21 10:43:16",
+          "top_dst_port": 80,
+          "top_port_share": 1.0,
+          "top_protocol": 17
+        }
+      ],
+      "duplicates": {
+        "duplicate_rows": 487170,
+        "conflicting_groups": 0
+      }
+    },
+    {
+      "day": "2018-02-22",
+      "rows": 1048575,
+      "excel_truncated": true,
+      "ts_min": "1970-01-10 03:04:26",
+      "ts_max": "2018-02-22 12:59:59",
+      "rows_off_day": 9,
+      "negative_duration": 9,
+      "has_ips": false,
+      "nonfinite": {
+        "nan::flow_byts_per_s": 3569,
+        "inf::flow_byts_per_s": 2041,
+        "inf::flow_pkts_per_s": 5610,
+        "neg::flow_duration": 9,
+        "neg::flow_pkts_per_s": 9,
+        "neg::flow_iat_mean": 9,
+        "neg::flow_iat_max": 1,
+        "neg::flow_iat_min": 9,
+        "neg::fwd_iat_tot": 9,
+        "neg::fwd_iat_mean": 9,
+        "neg::fwd_iat_max": 1,
+        "neg::fwd_iat_min": 9,
+        "neg::init_fwd_win_byts": 322153,
+        "neg::init_bwd_win_byts": 577969
+      },
+      "labels": [
+        {
+          "label": "benign",
+          "rows": 1048213,
+          "first": "1970-01-10 03:04:26",
+          "last": "2018-02-22 12:59:59",
+          "top_dst_port": 53,
+          "top_port_share": 0.27920756563789995,
+          "top_protocol": 6
+        },
+        {
+          "label": "web_bruteforce",
+          "rows": 249,
+          "first": "2018-02-22 10:13:44",
+          "last": "2018-02-22 11:23:11",
+          "top_dst_port": 80,
+          "top_port_share": 1.0,
+          "top_protocol": 6
+        },
+        {
+          "label": "web_xss",
+          "rows": 79,
+          "first": "2018-02-22 01:51:39",
+          "last": "2018-02-22 02:28:40",
+          "top_dst_port": 80,
+          "top_port_share": 1.0,
+          "top_protocol": 6
+        },
+        {
+          "label": "web_sql_injection",
+          "rows": 34,
+          "first": "2018-02-22 01:52:33",
+          "last": "2018-02-22 11:09:45",
+          "top_dst_port": 80,
+          "top_port_share": 1.0,
+          "top_protocol": 6
+        }
+      ],
+      "duplicates": {
+        "duplicate_rows": 141654,
+        "conflicting_groups": 3
+      }
+    },
+    {
+      "day": "2018-02-23",
+      "rows": 1048575,
+      "excel_truncated": true,
+      "ts_min": "2018-02-23 01:00:00",
+      "ts_max": "2018-02-23 12:59:59",
+      "rows_off_day": 0,
+      "negative_duration": 0,
+      "has_ips": false,
+      "nonfinite": {
+        "nan::flow_byts_per_s": 3754,
+        "inf::flow_byts_per_s": 1954,
+        "inf::flow_pkts_per_s": 5708,
+        "neg::flow_iat_min": 1,
+        "neg::fwd_iat_min": 1,
+        "neg::init_fwd_win_byts": 308468,
+        "neg::init_bwd_win_byts": 573165
+      },
+      "labels": [
+        {
+          "label": "benign",
+          "rows": 1048009,
+          "first": "2018-02-23 01:00:00",
+          "last": "2018-02-23 12:59:59",
+          "top_dst_port": 53,
+          "top_port_share": 0.26515421146192447,
+          "top_protocol": 6
+        },
+        {
+          "label": "web_bruteforce",
+          "rows": 362,
+          "first": "2018-02-23 09:17:04",
+          "last": "2018-02-23 11:02:58",
+          "top_dst_port": 80,
+          "top_port_share": 0.5828729281767956,
+          "top_protocol": 6
+        },
+        {
+          "label": "web_xss",
+          "rows": 151,
+          "first": "2018-02-23 01:01:04",
+          "last": "2018-02-23 02:10:05",
+          "top_dst_port": 80,
+          "top_port_share": 0.9668874172185431,
+          "top_protocol": 6
+        },
+        {
+          "label": "web_sql_injection",
+          "rows": 53,
+          "first": "2018-02-23 03:05:22",
+          "last": "2018-02-23 10:53:21",
+          "top_dst_port": 80,
+          "top_port_share": 1.0,
+          "top_protocol": 6
+        }
+      ],
+      "duplicates": {
+        "duplicate_rows": 137922,
+        "conflicting_groups": 4
+      }
+    },
+    {
+      "day": "2018-02-28",
+      "rows": 613071,
+      "excel_truncated": false,
+      "ts_min": "2018-02-28 01:00:00",
+      "ts_max": "2018-02-28 12:59:59",
+      "rows_off_day": 0,
+      "negative_duration": 0,
+      "has_ips": false,
+      "nonfinite": {
+        "nan::flow_byts_per_s": 4041,
+        "inf::flow_byts_per_s": 2128,
+        "inf::flow_pkts_per_s": 6169,
+        "neg::init_fwd_win_byts": 227355,
+        "neg::init_bwd_win_byts": 321490
+      },
+      "labels": [
+        {
+          "label": "benign",
+          "rows": 544200,
+          "first": "2018-02-28 01:00:00",
+          "last": "2018-02-28 12:59:59",
+          "top_dst_port": 53,
+          "top_port_share": 0.34458838662256525,
+          "top_protocol": 6
+        },
+        {
+          "label": "infiltration",
+          "rows": 68871,
+          "first": "2018-02-28 01:42:00",
+          "last": "2018-02-28 12:04:59",
+          "top_dst_port": 53,
+          "top_port_share": 0.3560569760857255,
+          "top_protocol": 6
+        }
+      ],
+      "duplicates": {
+        "duplicate_rows": 262696,
+        "conflicting_groups": 51384
+      }
+    },
+    {
+      "day": "2018-03-01",
+      "rows": 331100,
+      "excel_truncated": false,
+      "ts_min": "2018-03-01 01:00:00",
+      "ts_max": "2018-03-01 12:59:59",
+      "rows_off_day": 0,
+      "negative_duration": 0,
+      "has_ips": false,
+      "nonfinite": {
+        "nan::flow_byts_per_s": 1834,
+        "inf::flow_byts_per_s": 1085,
+        "inf::flow_pkts_per_s": 2919,
+        "neg::init_fwd_win_byts": 118201,
+        "neg::init_bwd_win_byts": 159458
+      },
+      "labels": [
+        {
+          "label": "benign",
+          "rows": 238037,
+          "first": "2018-03-01 01:00:00",
+          "last": "2018-03-01 12:59:59",
+          "top_dst_port": 53,
+          "top_port_share": 0.34312312791708854,
+          "top_protocol": 6
+        },
+        {
+          "label": "infiltration",
+          "rows": 93063,
+          "first": "2018-03-01 02:00:00",
+          "last": "2018-03-01 10:54:59",
+          "top_dst_port": 53,
+          "top_port_share": 0.27721006200101006,
+          "top_protocol": 6
+        }
+      ],
+      "duplicates": {
+        "duplicate_rows": 48444,
+        "conflicting_groups": 8227
+      }
+    },
+    {
+      "day": "2018-03-02",
+      "rows": 1048575,
+      "excel_truncated": true,
+      "ts_min": "2018-03-02 01:00:00",
+      "ts_max": "2018-03-02 12:59:59",
+      "rows_off_day": 0,
+      "negative_duration": 0,
+      "has_ips": false,
+      "nonfinite": {
+        "nan::flow_byts_per_s": 2558,
+        "inf::flow_byts_per_s": 1492,
+        "inf::flow_pkts_per_s": 4050,
+        "neg::init_fwd_win_byts": 216083,
+        "neg::init_bwd_win_byts": 514380
+      },
+      "labels": [
+        {
+          "label": "benign",
+          "rows": 762384,
+          "first": "2018-03-02 01:00:00",
+          "last": "2018-03-02 12:59:59",
+          "top_dst_port": 53,
+          "top_port_share": 0.2530286574744486,
+          "top_protocol": 6
+        },
+        {
+          "label": "bot",
+          "rows": 286191,
+          "first": "2018-03-02 01:00:00",
+          "last": "2018-03-02 12:59:59",
+          "top_dst_port": 8080,
+          "top_port_share": 0.9840770674130214,
+          "top_protocol": 6
+        }
+      ],
+      "duplicates": {
+        "duplicate_rows": 224843,
+        "conflicting_groups": 0
+      }
+    }
+  ],
+  "constant_columns": [
+    "bwd_blk_rate_avg",
+    "bwd_byts_per_b_avg",
+    "bwd_pkts_per_b_avg",
+    "bwd_psh_flags",
+    "bwd_urg_flags",
+    "fwd_blk_rate_avg",
+    "fwd_byts_per_b_avg",
+    "fwd_pkts_per_b_avg"
+  ],
+  "univariate_auc": [
+    {
+      "feature": "fwd_seg_size_min",
+      "auc": 0.7499103031187363,
+      "separation": 0.4998206062374726
+    },
+    {
+      "feature": "pkt_size_avg",
+      "auc": 0.27463538112848024,
+      "separation": 0.4507292377430395
+    },
+    {
+      "feature": "fwd_pkt_len_max",
+      "auc": 0.27570000909590414,
+      "separation": 0.4485999818081917
+    },
+    {
+      "feature": "totlen_fwd_pkts",
+      "auc": 0.2784335443089301,
+      "separation": 0.44313291138213984
+    },
+    {
+      "feature": "subflow_fwd_byts",
+      "auc": 0.2784335443089301,
+      "separation": 0.44313291138213984
+    },
+    {
+      "feature": "pkt_len_mean",
+      "auc": 0.27955094179214246,
+      "separation": 0.4408981164157151
+    },
+    {
+      "feature": "fwd_pkt_len_mean",
+      "auc": 0.28480259539725156,
+      "separation": 0.4303948092054969
+    },
+    {
+      "feature": "fwd_seg_size_avg",
+      "auc": 0.28480259539725156,
+      "separation": 0.4303948092054969
+    },
+    {
+      "feature": "flow_byts_per_s",
+      "auc": 0.28643803522508676,
+      "separation": 0.4271239295498265
+    },
+    {
+      "feature": "pkt_len_max",
+      "auc": 0.2875715254423549,
+      "separation": 0.42485694911529015
+    },
+    {
+      "feature": "pkt_len_std",
+      "auc": 0.29946953744326515,
+      "separation": 0.4010609251134697
+    },
+    {
+      "feature": "pkt_len_var",
+      "auc": 0.29946953996674514,
+      "separation": 0.40106092006650973
+    },
+    {
+      "feature": "bwd_pkt_len_mean",
+      "auc": 0.3031312600946504,
+      "separation": 0.3937374798106992
+    },
+    {
+      "feature": "bwd_seg_size_avg",
+      "auc": 0.3031312600946504,
+      "separation": 0.3937374798106992
+    },
+    {
+      "feature": "bwd_pkt_len_max",
+      "auc": 0.30547177016819144,
+      "separation": 0.3890564596636171
+    },
+    {
+      "feature": "totlen_bwd_pkts",
+      "auc": 0.3086980063504301,
+      "separation": 0.3826039872991398
+    },
+    {
+      "feature": "subflow_bwd_byts",
+      "auc": 0.3086980063504301,
+      "separation": 0.3826039872991398
+    },
+    {
+      "feature": "init_fwd_win_byts",
+      "auc": 0.6855260983398739,
+      "separation": 0.37105219667974776
+    },
+    {
+      "feature": "tot_bwd_pkts",
+      "auc": 0.33645364041517223,
+      "separation": 0.32709271916965554
+    },
+    {
+      "feature": "subflow_bwd_pkts",
+      "auc": 0.33645364041517223,
+      "separation": 0.32709271916965554
+    },
+    {
+      "feature": "flow_iat_std",
+      "auc": 0.34076306164637127,
+      "separation": 0.31847387670725746
+    },
+    {
+      "feature": "dst_port",
+      "auc": 0.3515089750267939,
+      "separation": 0.2969820499464122
+    },
+    {
+      "feature": "fwd_pkts_per_s",
+      "auc": 0.6456526268355149,
+      "separation": 0.2913052536710299
+    },
+    {
+      "feature": "fwd_act_data_pkts",
+      "auc": 0.3623060838068094,
+      "separation": 0.2753878323863812
+    },
+    {
+      "feature": "fwd_iat_std",
+      "auc": 0.3627150002279973,
+      "separation": 0.2745699995440054
+    },
+    {
+      "feature": "bwd_header_len",
+      "auc": 0.3640198523644296,
+      "separation": 0.27196029527114085
+    },
+    {
+      "feature": "flow_duration",
+      "auc": 0.3678850794602349,
+      "separation": 0.2642298410795302
+    },
+    {
+      "feature": "flow_iat_max",
+      "auc": 0.37317806115588026,
+      "separation": 0.2536438776882395
+    },
+    {
+      "feature": "bwd_iat_mean",
+      "auc": 0.37388899551014015,
+      "separation": 0.2522220089797197
+    },
+    {
+      "feature": "bwd_iat_tot",
+      "auc": 0.3762516516872862,
+      "separation": 0.24749669662542761
+    },
+    {
+      "feature": "flow_pkts_per_s",
+      "auc": 0.6232798791087344,
+      "separation": 0.24655975821746878
+    },
+    {
+      "feature": "bwd_iat_max",
+      "auc": 0.37759236876590635,
+      "separation": 0.2448152624681873
+    },
+    {
+      "feature": "flow_iat_mean",
+      "auc": 0.3790940156430192,
+      "separation": 0.2418119687139616
+    },
+    {
+      "feature": "fwd_pkt_len_std",
+      "auc": 0.37955234019548073,
+      "separation": 0.24089531960903854
+    },
+    {
+      "feature": "fwd_pkt_len_min",
+      "auc": 0.3827142511044666,
+      "separation": 0.23457149779106679
+    },
+    {
+      "feature": "ack_flag_cnt",
+      "auc": 0.6171819101541489,
+      "separation": 0.23436382030829783
+    },
+    {
+      "feature": "pkt_len_min",
+      "auc": 0.3830434981288783,
+      "separation": 0.23391300374224344
+    },
+    {
+      "feature": "bwd_pkt_len_min",
+      "auc": 0.38471771046122183,
+      "separation": 0.23056457907755634
+    },
+    {
+      "feature": "bwd_iat_min",
+      "auc": 0.3847832352941486,
+      "separation": 0.2304335294117028
+    },
+    {
+      "feature": "protocol",
+      "auc": 0.39024100576808723,
+      "separation": 0.21951798846382553
+    },
+    {
+      "feature": "fwd_iat_min",
+      "auc": 0.6090711336386998,
+      "separation": 0.2181422672773996
+    },
+    {
+      "feature": "tot_fwd_pkts",
+      "auc": 0.40557532938446833,
+      "separation": 0.18884934123106334
+    },
+    {
+      "feature": "subflow_fwd_pkts",
+      "auc": 0.40557532938446833,
+      "separation": 0.18884934123106334
+    },
+    {
+      "feature": "bwd_pkt_len_std",
+      "auc": 0.4151317386996464,
+      "separation": 0.16973652260070715
+    },
+    {
+      "feature": "fwd_iat_tot",
+      "auc": 0.41787912857128146,
+      "separation": 0.1642417428574371
+    },
+    {
+      "feature": "bwd_iat_std",
+      "auc": 0.4180446776817261,
+      "separation": 0.1639106446365478
+    },
+    {
+      "feature": "fwd_iat_max",
+      "auc": 0.41875147859770084,
+      "separation": 0.1624970428045983
+    },
+    {
+      "feature": "init_bwd_win_byts",
+      "auc": 0.420608736004175,
+      "separation": 0.15878252799165005
+    },
+    {
+      "feature": "fwd_iat_mean",
+      "auc": 0.42576752433509996,
+      "separation": 0.1484649513298001
+    },
+    {
+      "feature": "flow_iat_min",
+      "auc": 0.5598139497466058,
+      "separation": 0.11962789949321162
+    },
+    {
+      "feature": "bwd_pkts_per_s",
+      "auc": 0.4438746446560664,
+      "separation": 0.11225071068786718
+    },
+    {
+      "feature": "idle_mean",
+      "auc": 0.44776305906951586,
+      "separation": 0.10447388186096829
+    },
+    {
+      "feature": "idle_max",
+      "auc": 0.447785846672308,
+      "separation": 0.10442830665538405
+    },
+    {
+      "feature": "idle_min",
+      "auc": 0.44779661034110074,
+      "separation": 0.10440677931779851
+    },
+    {
+      "feature": "active_max",
+      "auc": 0.46146594523925244,
+      "separation": 0.07706810952149512
+    },
+    {
+      "feature": "active_mean",
+      "auc": 0.4615197333233054,
+      "separation": 0.07696053335338915
+    },
+    {
+      "feature": "active_min",
+      "auc": 0.4615618010447183,
+      "separation": 0.07687639791056344
+    },
+    {
+      "feature": "idle_std",
+      "auc": 0.4648767074287704,
+      "separation": 0.07024658514245918
+    },
+    {
+      "feature": "active_std",
+      "auc": 0.46909509289781376,
+      "separation": 0.06180981420437248
+    },
+    {
+      "feature": "fwd_psh_flags",
+      "auc": 0.48335571558768636,
+      "separation": 0.033288568824627274
+    },
+    {
+      "feature": "syn_flag_cnt",
+      "auc": 0.48335571558768636,
+      "separation": 0.033288568824627274
+    },
+    {
+      "feature": "down_per_up_ratio",
+      "auc": 0.48969210188872264,
+      "separation": 0.020615796222554716
+    },
+    {
+      "feature": "psh_flag_cnt",
+      "auc": 0.5068263495676235,
+      "separation": 0.013652699135247026
+    },
+    {
+      "feature": "fwd_header_len",
+      "auc": 0.5035399542354907,
+      "separation": 0.007079908470981389
+    },
+    {
+      "feature": "urg_flag_cnt",
+      "auc": 0.502816733691029,
+      "separation": 0.005633467382057944
+    },
+    {
+      "feature": "rst_flag_cnt",
+      "auc": 0.49731348827340593,
+      "separation": 0.0053730234531881305
+    },
+    {
+      "feature": "ece_flag_cnt",
+      "auc": 0.4973176576849353,
+      "separation": 0.0053646846301294016
+    },
+    {
+      "feature": "fin_flag_cnt",
+      "auc": 0.49818413421895086,
+      "separation": 0.0036317315620982837
+    },
+    {
+      "feature": "fwd_urg_flags",
+      "auc": 0.5004715454352617,
+      "separation": 0.0009430908705234664
+    },
+    {
+      "feature": "cwe_flag_count",
+      "auc": 0.5004715454352617,
+      "separation": 0.0009430908705234664
+    }
+  ],
+  "ip_leakage": [
+    {
+      "day": "2018-02-20",
+      "distinct_src_ips": 31291,
+      "src_ips_with_attacks": 10,
+      "src_ips_99pct_attack": 10,
+      "attack_rows_from_99pct_ips": 576191,
+      "attack_rows_total": 576191
+    }
+  ],
+  "auc_sample_per_day": 50000,
+  "seed": 42
+}

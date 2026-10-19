@@ -1,0 +1,20 @@
+# Experiment 1: classical binary baselines (benign vs any attack) on CSE-CIC-IDS2018.
+experiment: baseline_binary
+seed: 42
+task: binary                 # binary | label | family
+feature_set: flow            # see netsentinel.features.schema.FEATURE_SETS
+models: [dummy, logreg, lightgbm]
+target_fpr: 0.001            # threshold chosen on validation at this weighted FPR
+max_train_rows: 300000       # RAM guard (8 GB machine); subset is recorded in the run config
+train_with_prevalence_weights: false   # class_weight=balanced is used for training instead
+data:
+  processed_dir: data/processed/ids2018_v1
+  days: null                 # null = all ingested days
+  drop_labels: []
+split:
+  protocol: blocked          # random | blocked | chronological | leave_day_out
+  block_minutes: 15
+  purge_seconds: 300         # >= the longest context window
+  fractions: [0.6, 0.2, 0.2]
+model_params: {}
+runs_dir: runs

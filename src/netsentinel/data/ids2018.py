@@ -8,10 +8,18 @@ Known quirks handled here (observed in the files, see docs/datasets/cse_cic_ids2
   for leakage analysis only and are never model features.
 * `Init Fwd Win Byts` / `Init Bwd Win Byts` use -1 as "not observed".
 * Timestamps are naive local capture time at 1 s resolution and mark the flow *start*.
+* Timestamps use a 12-hour clock with the AM/PM marker missing: every day spans clock hours
+  01-12, hours 06-07 are (almost) absent, and afternoon attacks match the UNB schedule only after
+  +12 h (e.g. SSH brute force 2018-02-14 appears at 02:01-03:32, published 14:01-15:31), while
+  morning attacks match as-is (FTP brute force 10:33). Capture ran ~08:00-19:59, so clock hours
+  < PM_HOUR_BELOW are shifted by +12 h and flagged in `clock_corrected`. See
+  scripts/check_clock.py and docs/datasets/cse_cic_ids2018.md.
+* A handful of rows carry 1970 timestamps with negative durations; they are dropped and counted.
 """
 
 from __future__ import annotations
 
+import csv
 import logging
 import re
 from dataclasses import asdict, dataclass
@@ -41,6 +49,7 @@ RAW_COLUMNS: tuple[str, ...] = (
 )  # fmt: skip
 IDENTIFIER_COLUMNS: tuple[str, ...] = ("Flow ID", "Src IP", "Src Port", "Dst IP")
 TIMESTAMP_FORMAT = "%d/%m/%Y %H:%M:%S"
+PM_HOUR_BELOW = 8  # clock hours 1..7 are afternoon (13..19 h)
 
 # Raw label -> (canonical attack label, attack family). Unknown raw labels fail ingestion.
 LABELS: dict[str, tuple[str, str]] = {
@@ -81,6 +90,8 @@ class IngestReport:
     repeated_header_rows: int
     has_identifiers: bool
     label_counts: dict[str, int]
+    invalid_timestamp_rows: int = 0
+    clock_corrected_rows: int = 0
 
     def as_dict(self) -> dict:
         return asdict(self)
@@ -108,34 +119,89 @@ def _typed_frame(lf: pl.LazyFrame, columns: list[str], day: str) -> pl.LazyFrame
             exprs.append(pl.col(col).alias(canonical(col)))
         else:
             exprs.append(pl.lit(None, dtype=pl.Utf8).alias(canonical(col)))
-    return lf.select(exprs).with_row_index("row_id")
+    hour = pl.col("timestamp").dt.hour()
+    return (
+        lf.select(exprs)
+        .with_row_index("row_id")
+        .with_columns((hour < PM_HOUR_BELOW).alias("clock_corrected"))
+        .with_columns(
+            pl.when(pl.col("clock_corrected"))
+            .then(pl.col("timestamp") + pl.duration(hours=12))
+            .otherwise(pl.col("timestamp"))
+            .alias("timestamp")
+        )
+    )
 
 
-def ingest_csv(src: str | Path, dst: str | Path, day: str) -> IngestReport:
+def ingest_csv(
+    src: str | Path, dst: str | Path, day: str, block_bytes: int = 64 << 20
+) -> IngestReport:
+    """Stream the CSV in ~`block_bytes` blocks (pyarrow reader), type each block with Polars and
+    append it to one Parquet file. Peak memory is a few blocks, independent of file size
+    (a single lazy Polars plan over the 4 GB 2018-02-20 file used >7 GB RAM)."""
+    import pyarrow as pa
+    import pyarrow.csv as pacsv
+    import pyarrow.parquet as pq
+
     src, dst = Path(src), Path(dst)
     if not src.is_file():
         raise FileNotFoundError(src)
-    lf = pl.scan_csv(src, infer_schema=False)
-    columns = lf.collect_schema().names()
+    with src.open(encoding="utf-8", newline="") as fh:
+        columns = next(csv.reader(fh))
     missing = [c for c in RAW_COLUMNS if c not in columns]
     unexpected = [c for c in columns if c not in RAW_COLUMNS and c not in IDENTIFIER_COLUMNS]
     if missing or unexpected:
         raise ValueError(f"{src.name}: missing columns {missing}, unexpected {unexpected}")
 
-    repeated = lf.filter(pl.col("Label") == "Label").select(pl.len()).collect().item()
-    raw_labels = lf.filter(pl.col("Label") != "Label").group_by("Label").agg(pl.len()).collect()
-    unknown = sorted(set(raw_labels["Label"]) - LABELS.keys())
-    if unknown:
-        raise ValueError(f"{src.name}: unknown labels {unknown}; extend LABELS deliberately")
-
+    reader = pacsv.open_csv(
+        src,
+        read_options=pacsv.ReadOptions(block_size=block_bytes),
+        convert_options=pacsv.ConvertOptions(column_types={c: pa.string() for c in columns}),
+    )
     dst.parent.mkdir(parents=True, exist_ok=True)
-    typed = _typed_frame(lf.filter(pl.col("Label") != "Label"), columns, day)
-    typed.sink_parquet(dst, compression="zstd")
+    tmp = dst.with_suffix(".parquet.partial")
+    writer = None
+    repeated = offset = invalid = 0
+    try:
+        for batch in reader:
+            chunk = pl.from_arrow(pa.Table.from_batches([batch]))
+            is_header = chunk["Label"] == "Label"
+            repeated += int(is_header.sum())
+            chunk = chunk.filter(~is_header)
+            unknown = sorted(set(chunk["Label"].unique()) - LABELS.keys())
+            if unknown:
+                raise ValueError(
+                    f"{src.name}: unknown labels {unknown}; extend LABELS deliberately"
+                )
+            typed = (
+                _typed_frame(chunk.lazy(), columns, day)
+                .with_columns(pl.col("row_id") + offset)
+                .collect()
+            )
+            offset += typed.height  # row_id = position among data rows, before any drop
+            valid = typed["timestamp"].dt.date().cast(pl.Utf8) == day
+            invalid += int((~valid).sum())
+            table = typed.filter(valid).to_arrow()
+            if writer is None:
+                writer = pq.ParquetWriter(tmp, table.schema, compression="zstd")
+            writer.write_table(table)
+    finally:
+        if writer is not None:
+            writer.close()
+    if writer is None:
+        raise ValueError(f"{src.name}: no data rows")
+    tmp.replace(dst)  # only complete files get the final name
 
     out = pl.scan_parquet(dst)
     rows = out.select(pl.len()).collect().item()
     counts = out.group_by("label").agg(pl.len()).collect()
+    if rows == 0:
+        dst.unlink()
+        raise ValueError(f"{src.name}: no rows dated {day}; is the manifest day correct?")
+    corrected = out.select(pl.col("clock_corrected").sum()).collect().item()
     report = IngestReport(
+        invalid_timestamp_rows=invalid,
+        clock_corrected_rows=int(corrected),
         source=str(src),
         output=str(dst),
         day=day,
@@ -144,5 +210,8 @@ def ingest_csv(src: str | Path, dst: str | Path, day: str) -> IngestReport:
         has_identifiers="Src IP" in columns,
         label_counts={r["label"]: int(r["len"]) for r in counts.iter_rows(named=True)},
     )
-    log.info("ingested %s: %d rows, %d repeated headers", src.name, rows, repeated)
+    log.info(
+        "ingested %s: %d rows, %d repeated headers, %d invalid timestamps, %d clock-corrected",
+        src.name, rows, repeated, invalid, corrected,
+    )  # fmt: skip
     return report
