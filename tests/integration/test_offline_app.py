@@ -70,8 +70,9 @@ def app_ws(tmp_path, monkeypatch):
 
 def test_offline_app_end_to_end(app_ws, capsys, monkeypatch):
     assert main(["data", "ingest-nf", "syn", "--config", "ingest.yaml"]) == 0
-    assert main(["features", "build", "--interim", "interim", "--out", "processed",
-                 "--schema", "nf", "--benign-per-day", "1000", "--attack-cap", "400"]) == 0  # fmt: skip
+    build = ["features", "build", "--interim", "interim", "--out", "processed", "--schema", "nf",
+             "--benign-per-day", "1000", "--attack-cap", "400"]  # fmt: skip
+    assert main(build) == 0
     capsys.readouterr()
     assert main(["train", "baseline", "--config", "b.yaml"]) == 0
     threat = capsys.readouterr().out.split()[-1]
