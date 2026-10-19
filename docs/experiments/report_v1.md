@@ -112,14 +112,43 @@ attacks seen in training; all three saturate.** The informative test, unseen fam
 the GRU, was not run. These two runs were not pre-registered, so their test splits were not
 evaluated.
 
-## 4. Hypotheses: verdicts (validation unless stated; single seed)
+### 3.7 Seed variance and temporal open-set (batch v2, approved; `reports/experiments/results_v2.md`)
+
+Seeds {42, 1, 2, 3, 4}; each seed changes the model seed **and** the split seed (benign-block
+phase of the episode split). Validation only. Cost: 29 processes, 49.7 min, max peak working
+set 3.4 GB (measured).
+
+| Comparison | Result (mean +- std, n=5) |
+|---|---|
+| LightGBM binary, recall @ FPR 1e-3: flow / no-shortcut / flow+ctx | 0.9999 +- 0.0001 / **0.876 +- 0.002** / 1.000 +- 0.000 |
+| Unseen-family recall, LightGBM flow vs flow+ctx: bruteforce | 0.65 +- 0.15 vs **0.999 +- 0.001** |
+| ... dos | 0.34 +- 0.14 vs **0.967 +- 0.008** |
+| ... ddos | 0.22 +- 0.13 vs **0.66 +- 0.10** |
+| ... botnet | 0.18 +- 0.24 vs **0.68 +- 0.04** |
+| ... web_attack | 0.09 +- 0.03 vs 0.01 +- 0.01 |
+| Anomaly-only unseen-family recall (all families, all seeds) | 0.000 |
+| GRU vs MLP on seen attacks, recall @ FPR 1e-3 | 0.9993 +- 0.0003 vs 0.9986 +- 0.0007 |
+| GRU vs MLP, web XSS recall | 0.72 +- 0.11 vs 0.55 +- 0.05 |
+
+Unseen family with the temporal networks (seed 42 only, n=1): recall @ FPR 1e-3 for MLP / GRU /
+LightGBM flow+ctx = bruteforce 0.51 / 0.85 / 1.00, dos 0.20 / 0.41 / 0.97, ddos 0.006 / 0.06 /
+0.72, botnet 0.00 / 0.00 / 0.61, web 0.01 / 0.01 / 0.03. GRU ranking quality on the unseen
+family is high for brute force, DoS and DDoS (PR-AUC 0.98 / 0.91 / 0.94) but the threshold fixed
+on seen attacks is too strict for them.
+
+Reading: flow-only open-set results are **seed-sensitive** (std up to 0.24), so the single-seed
+values in 3.4 should be read with that spread. The context-feature gains are stable across
+seeds. Learned per-port sequences (GRU) add some unseen-family signal over flow-only models but
+far less than explicit network-wide multi-scale context features.
+
+## 4. Hypotheses: verdicts (validation unless stated; 5 seeds where noted in 3.7)
 
 | | Verdict | Evidence |
 |---|---|---|
 | H1 temporal context reduces false positives | **Not testable in-distribution** (both saturate; test FPR 0.0008 vs 0.0009 within CI); **supported for robustness**: context lifts recall on unseen families at equal FPR | 3.1, 3.4 |
 | H2 service-conditioned anomaly detection helps | **Not supported in a useful sense**: small PR-AUC gain for Isolation Forest, loss for robust-z, absolute recall stays near 0 at operational FPR | 3.3 |
-| H3 multi-scale context captures what single flows miss | **Partially supported**: within known attacks single flows already suffice; under family hold-out, 5/30/300 s context raises recall from 0.00-0.51 to 0.61-1.00 for volumetric/brute-force families, but not for web attacks | 3.4 |
-| H4 supervised + anomaly improves unseen-attack detection | **Refuted here**: anomaly recall ~0; OR-fusion lowers recall because it halves each FPR budget | 3.4 |
+| H3 multi-scale context captures what single flows miss | **Supported for unseen volumetric/brute-force/bot families, stable over 5 seeds** (e.g. dos 0.34 +- 0.14 -> 0.967 +- 0.008); not for web attacks; no effect on seen attacks (saturated). A learned per-port GRU sequence helps less than explicit context features | 3.4, 3.7 |
+| H4 supervised + anomaly improves unseen-attack detection | **Refuted here (5 seeds)**: anomaly recall 0.000 for every family and seed; OR-fusion never beats context alone | 3.4, 3.7 |
 | H5 random vs leakage-aware splits differ | **Supported, with a refinement**: random rows and within-episode splits are equally saturated; performance drops only when whole attack episodes are unseen. The inflation comes from evaluating on attack sessions seen in training, not from row adjacency alone | 3.5 |
 
 ## 5. Error analysis
@@ -145,8 +174,9 @@ evaluated.
 
 ## 6. Threats to validity
 
-* One dataset, one seed, one sample. CIs come from a block bootstrap of the test rows only;
-  no repeated-training variance was measured.
+* One dataset, one sample. Seed variance (5 seeds, model + split) was measured for the main
+  validation comparisons (3.7) but not for the test evaluation, the anomaly variants or the GRU
+  open-set runs (n=1).
 * Labels are the original IDS2018 labels with documented errors; corrected relabellings
   (DistriNet 2023, LycoS 2024) were not used.
 * Sampling (50 k benign/day, capped attacks) is reweighted, but rare-pattern coverage of the
@@ -173,8 +203,7 @@ evaluated.
 
 ## 8. Next steps
 
-* Run the GRU in the leave-one-family-out protocol (where context features mattered).
-* Repeat key comparisons over 5 seeds; report variance.
+* GRU with the explicit context features as additional input, in the open-set protocol.
 * Cross-dataset check (e.g. CICIoT2023 or the corrected DistriNet IDS2018) for the shortcut and
   context findings.
 * Calibrated fusion with a learned (out-of-fold) combiner instead of the OR rule.

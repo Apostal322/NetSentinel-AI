@@ -23,9 +23,9 @@ Discussion: [`docs/experiments/report_v1.md`](docs/experiments/report_v1.md).
 | Tree ensembles reach **PR-AUC 1.000 on attacks seen in training**, under random *and* episode-chronological splits | validation, E1 / H5 |
 | On the pre-registered **test split** (used once): LightGBM recall **0.983** [0.93, 1.00] at FPR 0.0009, i.e. ~91 false-alert flows/hour | `runs/.../test_metrics.json` |
 | Removing 4 known collection-artefact fields drops test recall to **0.735**; HOIC detection falls from 1.00 to **0.07** | shortcut ablation |
-| With an attack family **held out of training**, adding causal 5/30/300 s context raises recall at FPR 1e-3 from 0.23 to **0.97** (DoS), 0.51 to **0.998** (brute force), 0.004 to **0.61** (botnet); web attacks stay undetected | E6 |
-| Label-free anomaly detectors (Isolation Forest, robust z), global or service-conditioned, have recall ~0 at FPR 1e-3; OR-fusing them with the classifier **lowers** recall | E3, E6 |
-| A GRU over causal per-port flow sequences does **not** beat a same-setup MLP or LightGBM on seen attacks (validation PR-AUC 0.9999 vs 0.9997 vs 1.000) | E2 (report 3.6) |
+| With an attack family **held out of training**, adding causal 5/30/300 s context raises recall at FPR 1e-3 (5 seeds, mean +- std) from 0.34 +- 0.14 to **0.967 +- 0.008** (DoS), 0.65 +- 0.15 to **0.999 +- 0.001** (brute force), 0.18 +- 0.24 to **0.68 +- 0.04** (botnet); web attacks stay undetected | E6, results_v2 |
+| Label-free anomaly detectors (Isolation Forest, robust z), global or service-conditioned, have recall 0.000 on every unseen family in all 5 seeds; OR-fusing them with the classifier never helps | E3, E6 |
+| A GRU over causal per-port flow sequences is only marginally better than a same-setup MLP on seen attacks (recall 0.9993 +- 0.0003 vs 0.9986 +- 0.0007) and much weaker than LightGBM with explicit context on unseen families | E2, report 3.6-3.7 |
 
 ## Architecture
 
@@ -159,18 +159,17 @@ an evaluation, and not live traffic.
   host addresses (except one day) and no application labels. "Service" is a port heuristic.
 * No live capture, Zeek or Suricata integration; Docker is not set up (neither tool was
   available in the development environment).
-* Single seed; no repeated-training variance. The temporal deep-learning models were compared
-  only on seen attacks (validation), not on unseen families.
+* Seed variance (5 seeds) covers the main validation comparisons only; the test evaluation,
+  anomaly variants and GRU open-set runs are single-seed.
 * The API has no TLS, accounts or rate limiting; it binds to localhost and is detection-only.
   See [`docs/security/threat_model.md`](docs/security/threat_model.md).
 
 ## Roadmap
 
-1. Evaluate the GRU in the leave-one-family-out protocol, where context features mattered.
-2. Run 5 seeds for the main comparisons.
-3. Cross-dataset validation (corrected IDS2018 relabelling or CICIoT2023).
-4. Learned, out-of-fold fusion instead of the OR rule.
-5. Dockerfile, plus Zeek `conn.log` ingestion for real deployments.
+1. GRU with explicit context features as input, evaluated leave-one-family-out.
+2. Cross-dataset validation (corrected IDS2018 relabelling or CICIoT2023).
+3. Learned, out-of-fold fusion instead of the OR rule.
+4. Dockerfile, plus Zeek `conn.log` ingestion for real deployments.
 
 ## References
 

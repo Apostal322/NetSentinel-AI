@@ -13,7 +13,7 @@ claim), **High** (materially misleading or a missing core capability), **Medium*
 | Are the datasets appropriate? | IDS2018 is standard but flawed (truncated files, label errors, 12-h clock); all flaws we found are documented and handled. A second dataset is needed for external validity. |
 | Are the labels reliable? | No, not fully. Measured: 84.5 % of 02-28 Infiltration rows duplicate benign rows; 41.7 % of 02-23 web brute force is non-HTTP; FTP-BF and SlowHTTPTest are the same traffic. Mitigated by exclusion, cleaning and merging, not by relabelling. |
 | Is the evaluation leakage-resistant? | Yes for the protocol (episode split, purge >= longest window, train-only preprocessing, test used once after pre-registration, automated checks). The report states that within-episode evaluation remains "seen attack" evaluation. |
-| Do temporal models outperform baselines? | Context features: no gain on seen attacks (saturated), large gain on unseen families. Temporal DL (GRU over per-port sequences): no gain over an MLP control or LightGBM on seen attacks (all saturate, report 3.6); not yet tested on unseen families. |
+| Do temporal models outperform baselines? | Context features: no gain on seen attacks (saturated), large gain on unseen families. Temporal DL (GRU over per-port sequences): marginal gain over an MLP control on seen attacks (5 seeds), below LightGBM; on unseen families better than flow-only models but far below LightGBM with explicit context (report 3.6-3.7, n=1). |
 | Are results reproducible? | Configs, seeds, git SHA, package versions and split indices are recorded per run; the data pipeline is scripted and checksum-verified. Single seed only. |
 | Are false positives adequately assessed? | FPR at fixed thresholds, per-day benign FPR, prevalence-weighted false-alert flows/hour on test. Incident-level alert counting exists in the dashboard but is not evaluated. |
 | Are unknown threats honestly represented? | Yes: leave-one-family-out results are reported as development estimates; anomaly detection is reported as failing; verdict `unusual` is never presented as an attack. |
@@ -35,7 +35,7 @@ claim), **High** (materially misleading or a missing core capability), **Medium*
 | A2 | Critical (fixed) | First split design (random 15-min blocks) put whole attacks in one partition; validation contained no HOIC-in-train | Replaced by episode split; kept as H5 comparison |
 | A3 | High (fixed) | Initial ingest used >7 GB RAM on the 4 GB CSV | Rewritten as a streaming block reader |
 | A4 | High (fixed) | Anomaly score saturated at 100 under drift, making thresholds ties | Continuous tail extension, tested |
-| A5 | High (open) | Single seed; no repeated-training variance; CIs only from test-row bootstrap | Roadmap item |
+| A5 | High (partly fixed) | Single seed in v1 | 5 seeds (model + split) for the main validation comparisons in batch v2: context and shortcut findings stable, flow-only open-set results seed-sensitive (std up to 0.24). Test, anomaly variants and GRU open-set remain n=1 |
 | A6 | High (open) | No external dataset; shortcut and context findings may be IDS2018-specific | Roadmap item |
 | A7 | Medium (fixed) | Calibrated-threshold field displayed `0` because isotonic is flat near the raw threshold | Replaced by explicit `decision_rule` |
 | A8 | Medium (fixed) | Dashboard merged two capture days into one 385 h span; chart axis used a 12-h clock | One source at a time; 24-h labels |
