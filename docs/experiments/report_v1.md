@@ -73,6 +73,12 @@ Service conditioning (port-derived categories) changes Isolation Forest PR-AUC 0
 
 ### 3.4 Unseen attack families (H4), validation-time estimate
 
+> **Audit correction (2026-10-19, `docs/audit/validity_audit_2026-10-19.md`, finding V1):**
+> the `bruteforce` and `dos` rows here and in 3.7 are inflated by a twin-class leak
+> (FTP-BruteForce and DoS-SlowHTTPTest are identical traffic in different families).
+> SSH-only and GoldenEye/Hulk/Slowloris-only recalls are listed in the audit. The robust-z
+> anomaly variants in 3.3 were affected by a saturation defect (finding V5, fixed in v2).
+
 Recall on all rows of a held-out family at benign FPR <= 1e-3 (supervised model trained
 without that family):
 

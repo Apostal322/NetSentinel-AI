@@ -13,6 +13,14 @@ and which parts survive a leakage-aware protocol.
 
 ## Key findings (measured)
 
+> **Correction (validity audit, 2026-10-19):** the leave-one-family-out numbers for
+> **brute force and DoS below are inflated**. FTP-BruteForce and DoS-SlowHTTPTest are
+> byte-identical traffic in different families, so holding out one family left its twin in
+> training. Uncontaminated per-label results and further caveats (single-feature rules,
+> capture-specific rate scales, flood-day false positives, a fixed robust-z defect) are in
+> [`docs/audit/validity_audit_2026-10-19.md`](docs/audit/validity_audit_2026-10-19.md).
+> Corrected re-runs are pending.
+
 Full tables with run ids: [`reports/experiments/results_v1.md`](reports/experiments/results_v1.md).
 Discussion: [`docs/experiments/report_v1.md`](docs/experiments/report_v1.md).
 
