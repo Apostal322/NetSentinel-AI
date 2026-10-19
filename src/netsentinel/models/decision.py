@@ -7,7 +7,9 @@
     insufficient_data  required inputs missing (no threat model output and no anomaly score)
 
 An anomaly alone never yields `attack` or `suspicious`: unusual is not malicious.
-All thresholds are chosen on validation data and stored with the models.
+The threat and anomaly thresholds are chosen on validation data and stored with the models.
+The attack-type confidence threshold is a fixed default (0.6), NOT tuned on data; the
+portable PCAP/Zeek bundle has no attack-type model, so it never emits `attack`.
 """
 
 from __future__ import annotations
