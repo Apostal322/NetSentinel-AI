@@ -57,14 +57,24 @@ class EmpiricalScorer:
 
 
 class RobustZ:
-    """Interpretable baseline: max over features of |x - median| / (1.4826 * MAD) after a
-    signed-log transform. Also returns the per-feature z for evidence strings."""
+    """Interpretable baseline: max over features of |x - median| / scale after a signed-log
+    transform, scale = max(1.4826 * MAD, scale_floor). Also returns per-feature z for evidence.
+
+    v2 (audit 2026-10-19): v1 used scale = MAD (nan if < 1e-9) and clipped z at 50. Within one
+    service context many features are nearly constant, so MAD ~ 0, z explodes, and 15-19 % of
+    benign validation flows tied at the cap - the conditioned variant had zero recall at every
+    FPR and could not flag injected outliers. The floor (in signed-log units; 0.25 ~ a factor
+    of 1.28) bounds z for near-constant features while keeping them informative, and no cap is
+    applied, so larger deviations always score higher."""
+
+    def __init__(self, scale_floor: float = 0.25):
+        self.scale_floor = scale_floor
 
     def fit(self, X: np.ndarray) -> RobustZ:  # noqa: N803
         Z = FiniteSignedLog().transform(X)  # noqa: N806
-        self.median_ = np.nanmedian(Z, axis=0)
-        mad = np.nanmedian(np.abs(Z - self.median_), axis=0) * 1.4826
-        self.scale_ = np.where(mad > 1e-9, mad, np.nan)  # constant-in-benign features skipped
+        self.median_ = np.nan_to_num(np.nanmedian(Z, axis=0), nan=0.0)
+        mad = np.nan_to_num(np.nanmedian(np.abs(Z - self.median_), axis=0) * 1.4826, nan=0.0)
+        self.scale_ = np.maximum(mad, self.scale_floor)
         return self
 
     def feature_z(self, X: np.ndarray) -> np.ndarray:  # noqa: N803
@@ -73,7 +83,7 @@ class RobustZ:
         return np.nan_to_num(z, nan=0.0)
 
     def score(self, X: np.ndarray) -> np.ndarray:  # noqa: N803
-        return np.clip(self.feature_z(X), 0, 50).max(axis=1)
+        return self.feature_z(X).max(axis=1)
 
 
 class IForest:

@@ -1,0 +1,30 @@
+{
+  "robust_z_global": {
+    "threshold": 99.05631964662183,
+    "clean": 0.035,
+    "beyond_range_1_features": 0.2385,
+    "beyond_range_3_features": 0.538,
+    "beyond_range_10_features": 0.9195
+  },
+  "robust_z_cond": {
+    "threshold": 99.98600223964166,
+    "clean": 0.0,
+    "beyond_range_1_features": 0.035,
+    "beyond_range_3_features": 0.093,
+    "beyond_range_10_features": 0.2225
+  },
+  "iforest_global": {
+    "threshold": 99.17176990262021,
+    "clean": 0.0055,
+    "beyond_range_1_features": 0.0065,
+    "beyond_range_3_features": 0.0085,
+    "beyond_range_10_features": 0.0285
+  },
+  "iforest_cond": {
+    "threshold": 99.38309685379396,
+    "clean": 0.005,
+    "beyond_range_1_features": 0.006,
+    "beyond_range_3_features": 0.008,
+    "beyond_range_10_features": 0.0315
+  }
+}

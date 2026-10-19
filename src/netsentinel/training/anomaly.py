@@ -70,7 +70,8 @@ def run_anomaly(cfg: dict[str, Any]) -> list[str]:
         score, used = model.score(X_val, val["service"].to_numpy())
         pred_s = time.perf_counter() - t0
         thr = threshold_at_fpr(y_val, score, cfg.get("target_fpr", 1e-2), w_val)
-        metrics = binary_metrics(y_val, score, thr, w_val, is_probability=False)
+        metrics = binary_metrics(y_val, score, thr, w_val, is_probability=False,
+                                 fpr_targets=(1e-3, 1e-2, 5e-2, 1e-1))  # fmt: skip
         scored = val.with_columns(pl.Series("score", score), pl.Series("used_context", used))
         per_label = (
             scored.filter(pl.col("label") != "benign")

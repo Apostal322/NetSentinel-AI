@@ -1,0 +1,198 @@
+{
+  "run": "20261019-124619_baseline_binary_lightgbm",
+  "split_recreated_equals_saved": true,
+  "integrity": {
+    "rows_by_split": {
+      "val": 84403,
+      "test": 93319,
+      "train": 424585
+    },
+    "ids_in_more_than_one_partition": 0
+  },
+  "min_gap_seconds_between_partitions": {
+    "2018-02-28": 300.0,
+    "2018-03-01": 300.0,
+    "2018-02-14": 300.0,
+    "2018-02-23": 300.0,
+    "2018-03-02": 300.0,
+    "2018-02-15": 300.0,
+    "2018-02-21": 302.0,
+    "2018-02-16": 300.0,
+    "2018-02-22": 300.0,
+    "2018-02-20": 300.0
+  },
+  "duplicates_flow_features": {
+    "val_attack_share_exact_copy_of_train": 0.4318686624818928,
+    "val_benign_share_exact_copy_of_train": 0.21702541880583423,
+    "recall_novel_attack_rows": 1.0,
+    "recall_copied_attack_rows": 1.0,
+    "per_label": [
+      {
+        "label": "bot",
+        "rows": 3768,
+        "share_exact_copy_of_train": 0.4891188959660297,
+        "recall_copies": 1.0,
+        "recall_novel": 1.0,
+        "novel_rows": 1925
+      },
+      {
+        "label": "ddos_loic_http",
+        "rows": 3071,
+        "share_exact_copy_of_train": 0.0006512536633018561,
+        "recall_copies": 1.0,
+        "recall_novel": 1.0,
+        "novel_rows": 3069
+      },
+      {
+        "label": "ddos_loic_udp",
+        "rows": 84,
+        "share_exact_copy_of_train": 0.0,
+        "recall_copies": null,
+        "recall_novel": 1.0,
+        "novel_rows": 84
+      },
+      {
+        "label": "dos_goldeneye",
+        "rows": 3903,
+        "share_exact_copy_of_train": 0.0010248526774276198,
+        "recall_copies": 1.0,
+        "recall_novel": 1.0,
+        "novel_rows": 3899
+      },
+      {
+        "label": "dos_slowhttptest",
+        "rows": 1491,
+        "share_exact_copy_of_train": 1.0,
+        "recall_copies": 1.0,
+        "recall_novel": null,
+        "novel_rows": 0
+      },
+      {
+        "label": "dos_slowloris",
+        "rows": 860,
+        "share_exact_copy_of_train": 0.06279069767441861,
+        "recall_copies": 1.0,
+        "recall_novel": 1.0,
+        "novel_rows": 806
+      },
+      {
+        "label": "ftp_bruteforce",
+        "rows": 3687,
+        "share_exact_copy_of_train": 1.0,
+        "recall_copies": 1.0,
+        "recall_novel": null,
+        "novel_rows": 0
+      },
+      {
+        "label": "ssh_bruteforce",
+        "rows": 3672,
+        "share_exact_copy_of_train": 0.5073529411764706,
+        "recall_copies": 1.0,
+        "recall_novel": 1.0,
+        "novel_rows": 1809
+      },
+      {
+        "label": "web_xss",
+        "rows": 174,
+        "share_exact_copy_of_train": 0.0,
+        "recall_copies": null,
+        "recall_novel": 1.0,
+        "novel_rows": 174
+      }
+    ]
+  },
+  "context_bruteforce_real_rows": {
+    "rows_checked": 450,
+    "max_relative_error": {
+      "ctx_flow_rate_5s": 4.753516846327369e-08,
+      "ctx_port_flow_rate_5s": 4.709502801453968e-08,
+      "ctx_uniq_ports_5s": 0.0,
+      "ctx_flow_rate_30s": 5.3352409323637215e-08,
+      "ctx_port_flow_rate_30s": 5.3352409323637215e-08,
+      "ctx_uniq_ports_30s": 0.0,
+      "ctx_flow_rate_300s": 5.5511056112636844e-08,
+      "ctx_port_flow_rate_300s": 5.6247645591743104e-08,
+      "ctx_uniq_ports_300s": 0.0
+    }
+  },
+  "duplicates_flow_ctx_features": {
+    "val_attack_share_exact_copy_of_train": 0.0,
+    "val_benign_share_exact_copy_of_train": 0.0,
+    "recall_novel_attack_rows": 1.0,
+    "recall_copied_attack_rows": null,
+    "per_label": [
+      {
+        "label": "bot",
+        "rows": 3768,
+        "share_exact_copy_of_train": 0.0,
+        "recall_copies": null,
+        "recall_novel": 1.0,
+        "novel_rows": 3768
+      },
+      {
+        "label": "ddos_loic_http",
+        "rows": 3071,
+        "share_exact_copy_of_train": 0.0,
+        "recall_copies": null,
+        "recall_novel": 1.0,
+        "novel_rows": 3071
+      },
+      {
+        "label": "ddos_loic_udp",
+        "rows": 84,
+        "share_exact_copy_of_train": 0.0,
+        "recall_copies": null,
+        "recall_novel": 1.0,
+        "novel_rows": 84
+      },
+      {
+        "label": "dos_goldeneye",
+        "rows": 3903,
+        "share_exact_copy_of_train": 0.0,
+        "recall_copies": null,
+        "recall_novel": 1.0,
+        "novel_rows": 3903
+      },
+      {
+        "label": "dos_slowhttptest",
+        "rows": 1491,
+        "share_exact_copy_of_train": 0.0,
+        "recall_copies": null,
+        "recall_novel": 1.0,
+        "novel_rows": 1491
+      },
+      {
+        "label": "dos_slowloris",
+        "rows": 860,
+        "share_exact_copy_of_train": 0.0,
+        "recall_copies": null,
+        "recall_novel": 1.0,
+        "novel_rows": 860
+      },
+      {
+        "label": "ftp_bruteforce",
+        "rows": 3687,
+        "share_exact_copy_of_train": 0.0,
+        "recall_copies": null,
+        "recall_novel": 1.0,
+        "novel_rows": 3687
+      },
+      {
+        "label": "ssh_bruteforce",
+        "rows": 3672,
+        "share_exact_copy_of_train": 0.0,
+        "recall_copies": null,
+        "recall_novel": 1.0,
+        "novel_rows": 3672
+      },
+      {
+        "label": "web_xss",
+        "rows": 174,
+        "share_exact_copy_of_train": 0.0,
+        "recall_copies": null,
+        "recall_novel": 1.0,
+        "novel_rows": 174
+      }
+    ]
+  }
+}

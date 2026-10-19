@@ -27,13 +27,34 @@ def test_reference_rate_maps_to_benign_tail():
     assert np.mean(s(fresh) >= 99) == pytest.approx(0.01, abs=0.003)
 
 
-def test_robust_z_flags_outliers_and_ignores_constant_features():
+def test_robust_z_flags_outliers_and_bounds_constant_features():
     rng = np.random.default_rng(1)
     X = np.c_[rng.normal(100, 5, 2000), np.zeros(2000)]  # noqa: N806
     rz = RobustZ().fit(X)
     s = rz.score(np.array([[100.0, 0.0], [10_000.0, 0.0], [100.0, 5.0]]))
     assert s[1] > 10 * s[0]
-    assert s[2] == pytest.approx(s[0], abs=1e-6)  # constant-in-benign column contributes 0
+    # A constant-in-benign column is informative but bounded by the scale floor.
+    assert s[0] < s[2] < 10
+
+
+def test_robust_z_regression_near_constant_features_do_not_saturate():
+    """Audit regression: near-constant features (MAD ~ 0) made v1 saturate, so benign flows
+    tied with real outliers. With the floor, injected beyond-range rows must rank above all
+    benign rows, and benign scores must not pile up at a single maximum."""
+    from netsentinel.models.anomaly import EmpiricalScorer
+
+    rng = np.random.default_rng(7)
+    n = 5000
+    benign = np.c_[rng.lognormal(5, 1, n), np.where(rng.random(n) < 0.98, 0.0, 1.0),
+                   np.full(n, 3.0) + rng.normal(0, 1e-6, n)]  # fmt: skip
+    rz = RobustZ().fit(benign[:4000])
+    ref = EmpiricalScorer(rz.score(benign[4000:4500]))
+    benign_scores = ref(rz.score(benign[4500:]))
+    inj = benign[4500:].copy()
+    inj[:, 0] = benign[:, 0].max() * 10
+    inj_scores = ref(rz.score(inj))
+    assert (benign_scores >= 99.9).mean() < 0.02
+    assert inj_scores.min() > np.quantile(benign_scores, 0.99)
 
 
 @pytest.mark.parametrize("kind", ["robust_z", "iforest"])

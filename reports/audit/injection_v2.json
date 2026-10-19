@@ -1,0 +1,30 @@
+{
+  "v2_flow_robust_z_global": {
+    "threshold": 99.15671117357695,
+    "clean": 0.0135,
+    "beyond_range_1_features": 0.1875,
+    "beyond_range_3_features": 0.4435,
+    "beyond_range_10_features": 0.876
+  },
+  "v2_flow_robust_z_cond": {
+    "threshold": 99.40711462450592,
+    "clean": 0.008,
+    "beyond_range_1_features": 0.2195,
+    "beyond_range_3_features": 0.509,
+    "beyond_range_10_features": 0.8795
+  },
+  "v2_flow_iforest_global": {
+    "threshold": 99.17176990262021,
+    "clean": 0.0055,
+    "beyond_range_1_features": 0.0065,
+    "beyond_range_3_features": 0.0085,
+    "beyond_range_10_features": 0.0285
+  },
+  "v2_flow_iforest_cond": {
+    "threshold": 99.38309685379396,
+    "clean": 0.005,
+    "beyond_range_1_features": 0.006,
+    "beyond_range_3_features": 0.008,
+    "beyond_range_10_features": 0.0315
+  }
+}
