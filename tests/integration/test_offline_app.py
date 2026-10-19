@@ -26,7 +26,7 @@ def _nf_rows(day: datetime, n: int, seed: int) -> list[str]:
     rows = []
     for i in range(n):
         t = int((day + timedelta(seconds=i * 7200 / n)).timestamp() * 1000)
-        attack = (i // 120) % 4 == 1
+        attack = (i // 40) % 3 == 1  # bursts every ~10 min so every time segment has attacks
         if attack:  # SSH brute force: many short flows, client SYN+ACK+PSH, small replies
             vals = (t, t + 50, "10.9.9.9", 40000 + i % 1000, "10.0.0.5", 22, 6, 92,
                     int(rng.integers(300, 600)), int(rng.integers(8, 14)), 200, 6, 27, 26, 25,
@@ -66,6 +66,38 @@ def app_ws(tmp_path, monkeypatch):
     (tmp_path / "a.yaml").write_text(yaml.safe_dump(an))
     monkeypatch.chdir(tmp_path)
     return tmp_path
+
+
+def test_transfer_between_two_nf_datasets(app_ws, capsys):
+    """Source and target are two independently generated synthetic NF datasets."""
+    for name, seed0 in (("src", 0), ("tgt", 7)):
+        rows = _nf_rows(datetime(2018, 2, 14, 13), 1500, seed0) + _nf_rows(
+            datetime(2018, 2, 15, 13), 1500, seed0 + 1)  # fmt: skip
+        csv = (NF_HEADER + "\n" + "\n".join(rows) + "\n").encode()
+        with zipfile.ZipFile(app_ws / f"{name}.zip", "w") as z:
+            z.writestr("bag/data/NF-x.csv", csv)
+        cfg = {"datasets": {name: {"archive": str(app_ws / f"{name}.zip"),
+                                   "out_dir": str(app_ws / f"i_{name}"), "utc_offset_hours": 0,
+                                   "family_map": {"brute_force": "bruteforce"}}}}  # fmt: skip
+        (app_ws / f"{name}.yaml").write_text(yaml.safe_dump(cfg))
+        assert main(["data", "ingest-nf", name, "--config", f"{name}.yaml"]) == 0
+        build = ["features", "build", "--interim", f"i_{name}", "--out", f"p_{name}",
+                 "--schema", "nf", "--benign-per-day", "1000", "--attack-cap", "400"]  # fmt: skip
+        assert main(build) == 0
+    t = yaml.safe_load(open("b.yaml"))
+    t.update(experiment="syn_transfer", feature_set="nf_portable", target_fpr=0.01,
+             model_params={"n_estimators": 20, "num_leaves": 7},
+             source={"processed_dir": "p_src", "drop_labels": [], "clean_labels": 0},
+             target={"processed_dir": "p_tgt", "drop_labels": [], "clean_labels": 0})  # fmt: skip
+    (app_ws / "t.yaml").write_text(yaml.safe_dump(t))
+    capsys.readouterr()
+    assert main(["train", "transfer", "--config", "t.yaml"]) == 0
+    run = app_ws / "runs" / capsys.readouterr().out.split()[-1]
+    m = json.loads((run / "metrics.json").read_text())
+    for k in ("source_val/pr_auc", "target_val/pr_auc", "target_val/recall", "target_val/fpr",
+              "target_val_oracle/recall"):  # fmt: skip
+        assert k in m, sorted(m)
+        assert 0 <= m[k] <= 1, k
 
 
 def test_offline_app_end_to_end(app_ws, capsys, monkeypatch):

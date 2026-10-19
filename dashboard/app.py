@@ -57,13 +57,54 @@ def event_payload(db: str, oid: str) -> dict | None:
 
 st.title("NetSentinel AI")
 st.warning(
-    "**Offline replay demonstration.** Events below are model outputs on *recorded* "
-    "CSE-CIC-IDS2018 flows replayed through the inference engine, not live network traffic. "
-    "Anomaly scores are benign-tail percentiles, not attack probabilities."
+    "**Offline analysis.** Events are model outputs on *recorded* traffic (replayed benchmark "
+    "flows or captures you upload), not live network monitoring. Anomaly scores are "
+    "benign-tail percentiles, not attack probabilities."
 )
-events = load_events(args.events_db)
 page = st.sidebar.radio("Page", ["Overview", "Traffic explorer", "Anomalies", "Threats",
-                                 "Model performance"])  # fmt: skip
+                                 "Analyze capture", "Model performance"])  # fmt: skip
+
+if page == "Analyze capture":
+    import tempfile
+
+    sys.path.insert(0, str(ROOT / "src"))
+    from netsentinel.streaming.offline import analyze_capture
+
+    bundles = sorted(Path(args.models_dir).glob("bundle-*"))
+    st.subheader("Analyze a PCAP / pcapng file or Zeek conn.log")
+    st.caption("Parsed locally by NetSentinel's defensive readers; payloads are never stored. "
+               "Use a bundle trained on a feature set your source provides (nf_portable* for "
+               "Zeek). Fields the source lacks are listed as missing.")  # fmt: skip
+    if not bundles:
+        st.info(f"No bundles in {args.models_dir}.")
+        st.stop()
+    bundle = st.selectbox("Model bundle", [b.name for b in bundles], index=len(bundles) - 1)
+    offset = st.number_input("Capture UTC offset (hours)", -14.0, 14.0, 0.0, 0.5)
+    up = st.file_uploader("Capture file", type=None, accept_multiple_files=False)
+    if up is not None and st.button("Analyze"):
+        with tempfile.TemporaryDirectory(prefix="netsentinel-ui-") as tmp:
+            path = Path(tmp) / "capture.bin"
+            path.write_bytes(up.getbuffer())
+            try:
+                summary = analyze_capture(path, Path(args.models_dir) / bundle, args.events_db,
+                                          offset, source_name=Path(up.name).name[:128])  # fmt: skip
+            except ValueError as exc:
+                st.error(str(exc))
+                st.stop()
+        load_events.clear()
+        c = st.columns(4)
+        c[0].metric("flows", summary["flows"])
+        for col, v in zip(c[1:], ("attack", "suspicious", "unusual"), strict=True):
+            col.metric(v, summary.get("verdicts", {}).get(v, 0))
+        st.write("**Parsing**", summary["parse"])
+        if summary.get("missing_features"):
+            st.warning(f"{len(summary['missing_features'])} model features missing from this "
+                       f"source: {', '.join(summary['missing_features'][:12])}...")  # fmt: skip
+        st.write("**Top alerts**")
+        st.json(summary.get("top_alerts", [])[:5])
+    st.stop()
+
+events = load_events(args.events_db)
 if events.empty and page != "Model performance":
     st.info(f"No events in {args.events_db}. Run `netsentinel replay ...` first.")
     st.stop()

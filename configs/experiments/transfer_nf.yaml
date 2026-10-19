@@ -1,0 +1,24 @@
+# Cross-dataset transfer with identical NetFlow v3 features (nProbe).
+experiment: transfer_nf
+seed: 42
+feature_set: nf_flow
+model: lightgbm
+target_fpr: 0.001
+max_train_rows: 300000
+source:
+  processed_dir: data/processed/nf_cicids2018_v3
+  days: null
+  drop_labels: [infiltration]
+  clean_labels: 2
+target:
+  processed_dir: data/processed/nf_unsw_nb15_v3
+  days: null
+  drop_labels: []
+  clean_labels: 0
+split:
+  protocol: episode
+  block_minutes: 30
+  purge_seconds: 150
+  fractions: [0.6, 0.2, 0.2]
+model_params: {}
+runs_dir: runs
