@@ -14,6 +14,7 @@ Usage: uv run python scripts/audit/validate_pcap_vs_zeek.py PCAP CONN_LOG [--out
 import argparse
 import json
 import math
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -21,6 +22,9 @@ from netsentinel.telemetry.flows import assemble_flows
 from netsentinel.telemetry.frames import records_to_frame
 from netsentinel.telemetry.pcap import ReadStats, read_packets
 from netsentinel.telemetry.zeek import ZeekStats, read_conn_log
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from audit_transfer import semantics  # noqa: E402  (same NF-v3 identities as Mission 1)
 
 PROTO = {"tcp": 6, "udp": 17, "icmp": 1}
 CONFIGS = {
@@ -164,6 +168,7 @@ def evaluate(pcap: Path, zeek: list[dict], cfg: dict, tol: float) -> dict:
                     "negative_cells": int(sum((frame[c] < 0).sum() for c in num)),
                     "ts_min_ms": int(frame["flow_start_milliseconds"].min()),
                     "ts_max_ms": int(frame["flow_end_milliseconds"].max())}  # fmt: skip
+    res["nf_semantics"] = semantics(frame)
     return res
 
 

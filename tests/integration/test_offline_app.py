@@ -184,3 +184,42 @@ def test_offline_app_end_to_end(app_ws, capsys, monkeypatch):
     assert client.post("/analyze", files=junk, headers=hdr).status_code in (200, 422)
     srcs = {e["source"] for e in client.get("/events", params={"limit": 50}).json()}
     assert {"pcap:s.pcap", "zeek:conn.log"} <= srcs
+
+
+def test_appid_stage_on_synthetic_flows(app_ws, capsys):
+    """Application identification runs end to end on benign flows; test rows are excluded."""
+    l7 = {"443": "91", "53": "5", "80": "7"}
+    rows = []
+    for day, seed in ((datetime(2018, 2, 14, 13), 3), (datetime(2018, 2, 15, 13), 4)):
+        for r in _nf_rows(day, 1500, seed):
+            f = r.split(",")
+            f[7] = l7.get(f[5], f[7])
+            rows.append(",".join(f))
+    csv = (NF_HEADER + "\n" + "\n".join(rows) + "\n").encode()
+    with zipfile.ZipFile(app_ws / "ap.zip", "w") as z:
+        z.writestr("bag/data/NF-x.csv", csv)
+    cfg = {"datasets": {"ap": {"archive": str(app_ws / "ap.zip"), "out_dir": "i_ap",
+                               "utc_offset_hours": 0,
+                               "family_map": {"brute_force": "bruteforce"}}}}  # fmt: skip
+    (app_ws / "ap.yaml").write_text(yaml.safe_dump(cfg))
+    assert main(["data", "ingest-nf", "ap", "--config", "ap.yaml"]) == 0
+    assert main(["features", "build", "--interim", "i_ap", "--out", "p_ap", "--schema", "nf",
+                 "--benign-per-day", "1000", "--attack-cap", "400"]) == 0  # fmt: skip
+    repo = Path(__file__).resolve().parents[2]
+    cfg = yaml.safe_load((repo / "configs/experiments/appid_nf.yaml").read_text(encoding="utf-8"))
+    cfg.update(runs_dir=str(app_ws / "runs"), max_rows=5000,
+               lightgbm_params={"n_estimators": 20, "num_leaves": 7},
+               datasets={"ap": {"processed_dir": "p_ap", "interim_dir": "i_ap",
+                                "drop_labels": [], "clean_labels": 0}})  # fmt: skip
+    cfg["split"].update(block_minutes=10, purge_seconds=30)
+    (app_ws / "appid.yaml").write_text(yaml.safe_dump(cfg))
+    capsys.readouterr()
+    assert main(["train", "appid", "--config", "appid.yaml"]) == 0
+    run = app_ws / "runs" / capsys.readouterr().out.split()[-1]
+    res = json.loads((run / "appid_results.json").read_text())["datasets"]["ap"]
+    assert set(res["classes"]) == {"dns", "http", "tls"}
+    assert res["rows"]["val_a"] > 0 and res["rows"]["val_b"] > 0
+    assert res["models"]["port_lookup"]["accuracy"] == 1.0  # L7 is a function of the port here
+    for m in ("majority", "port_lookup", "lgbm_shape_noport", "lgbm_shape_portclass"):
+        assert 0 <= res["models"][m]["macro_f1"] <= 1
+    assert "selective" in res["models"]["lgbm_shape_noport"]

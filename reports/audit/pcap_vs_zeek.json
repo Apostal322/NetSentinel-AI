@@ -93,6 +93,22 @@
         "negative_cells": 0,
         "ts_min_ms": 50702,
         "ts_max_ms": 23365842
+      },
+      "nf_semantics": {
+        "iat_avg_x_pkts_matches_duration_in": 1.0,
+        "second_bytes_matches_bytes_per_s": 1.0,
+        "throughput_matches_8x_bytes_per_s": 1.0,
+        "max_pkt_ge_mean_pkt": 1.0,
+        "size_bins_sum_eq_pkts": 1.0,
+        "duration_in_le_duration": 1.0,
+        "zero_duration_share": 0.11779848633063893,
+        "single_packet_flow_share": 0.11573907223394944,
+        "duration_p99_ms": 115199.0,
+        "duration_max_ms": 120000.0,
+        "share_duration_ge_119s": 0.0024712969160273902,
+        "tcp_share": 0.31781908047160584,
+        "udp_share": 0.681254183184884,
+        "distinct_dst_ports": 972
       }
     },
     "nprobe_defaults": {
@@ -169,6 +185,22 @@
         "negative_cells": 0,
         "ts_min_ms": 50702,
         "ts_max_ms": 23365842
+      },
+      "nf_semantics": {
+        "iat_avg_x_pkts_matches_duration_in": 1.0,
+        "second_bytes_matches_bytes_per_s": 1.0,
+        "throughput_matches_8x_bytes_per_s": 1.0,
+        "max_pkt_ge_mean_pkt": 1.0,
+        "size_bins_sum_eq_pkts": 1.0,
+        "duration_in_le_duration": 1.0,
+        "zero_duration_share": 0.00990271021542738,
+        "single_packet_flow_share": 0.00990271021542738,
+        "duration_p99_ms": 115294.0,
+        "duration_max_ms": 120000.0,
+        "share_duration_ge_119s": 0.002779708130646282,
+        "tcp_share": 0.23268473476951587,
+        "udp_share": 0.7662728746814917,
+        "distinct_dst_ports": 117
       }
     },
     "zeek_defaults": {
@@ -238,6 +270,22 @@
         "negative_cells": 0,
         "ts_min_ms": 50702,
         "ts_max_ms": 23365842
+      },
+      "nf_semantics": {
+        "iat_avg_x_pkts_matches_duration_in": 1.0,
+        "second_bytes_matches_bytes_per_s": 1.0,
+        "throughput_matches_8x_bytes_per_s": 1.0,
+        "max_pkt_ge_mean_pkt": 1.0,
+        "size_bins_sum_eq_pkts": 1.0,
+        "duration_in_le_duration": 1.0,
+        "zero_duration_share": 0.008239750149511595,
+        "single_packet_flow_share": 0.008239750149511595,
+        "duration_p99_ms": 222425.0,
+        "duration_max_ms": 22880868.0,
+        "share_duration_ge_119s": 0.031497109442487875,
+        "tcp_share": 0.12406139942853346,
+        "udp_share": 0.8747425078078278,
+        "distinct_dst_ports": 9
       }
     }
   }

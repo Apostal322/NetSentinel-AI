@@ -1,0 +1,25 @@
+# Mission 4: application identification (nDPI master protocol) from flow statistics.
+# Benign flows only; chronological split; test region (last 20% of time) untouched.
+experiment: appid_nf
+seed: 42
+top_k: 10
+max_rows: 400000
+selective_targets: [0.95, 0.99]
+datasets:
+  nf_cicids2018:
+    processed_dir: data/processed/nf_cicids2018_v3
+    interim_dir: data/interim/nf_cicids2018_v3
+    drop_labels: [infiltration]
+    clean_labels: 2
+  nf_unsw_nb15:
+    processed_dir: data/processed/nf_unsw_nb15_v3
+    interim_dir: data/interim/nf_unsw_nb15_v3
+    drop_labels: []
+    clean_labels: 0
+split:
+  protocol: episode
+  block_minutes: 30
+  purge_seconds: 150
+  fractions: [0.6, 0.2, 0.2]
+lightgbm_params: {}
+runs_dir: runs
