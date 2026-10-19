@@ -1,0 +1,24 @@
+# Dataset manifest: CSE-CIC-IDS2018, "Processed Traffic Data for ML Algorithms" (CICFlowMeter-V3 CSVs).
+# Source page: https://www.unb.ca/cic/datasets/ids-2018.html (public AWS Open Data bucket, no login).
+# Terms: free to use; publications must cite Sharafaldin et al., ICISSP 2018 (below).
+# etag = S3 multipart ETag (16 MiB parts), checked by `netsentinel data verify`.
+# Sizes and ETags were read from the bucket listing on 2026-10-19.
+name: cse-cic-ids2018
+version: "processed-csv-v1"
+base_url: "https://cse-cic-ids2018.s3.ca-central-1.amazonaws.com/Processed%20Traffic%20Data%20for%20ML%20Algorithms/"
+local_dir: data/raw/cse-cic-ids2018
+part_size_bytes: 16777216
+citation: >
+  I. Sharafaldin, A. H. Lashkari, A. A. Ghorbani. Toward Generating a New Intrusion Detection
+  Dataset and Intrusion Traffic Characterization. ICISSP 2018.
+files:
+  - {name: Wednesday-14-02-2018_TrafficForML_CICFlowMeter.csv, day: "2018-02-14", size: 358223333, etag: "46c0f45f8e6fe1edf1f08487448c102f-22"}
+  - {name: Thursday-15-02-2018_TrafficForML_CICFlowMeter.csv, day: "2018-02-15", size: 375945899, etag: "eb1dc2ec76efe09c8995f28bfa4c8656-23"}
+  - {name: Friday-16-02-2018_TrafficForML_CICFlowMeter.csv, day: "2018-02-16", size: 333723605, etag: "e68ef27c09c98ba91fe3c6b1108a18b9-20"}
+  - {name: Thuesday-20-02-2018_TrafficForML_CICFlowMeter.csv, day: "2018-02-20", size: 4054925350, etag: "49075d3ee07bcd47e1aae3f059953799-242"}
+  - {name: Wednesday-21-02-2018_TrafficForML_CICFlowMeter.csv, day: "2018-02-21", size: 328893673, etag: "3a1d6b804ba9f6a3085973c2fa425883-20"}
+  - {name: Thursday-22-02-2018_TrafficForML_CICFlowMeter.csv, day: "2018-02-22", size: 382636202, etag: "2bfbfdc038eb59f60bb725d9f3ede5d7-23"}
+  - {name: Friday-23-02-2018_TrafficForML_CICFlowMeter.csv, day: "2018-02-23", size: 382840456, etag: "472d63fb3c1285ce2f1e25617ba8cba5-23"}
+  - {name: Wednesday-28-02-2018_TrafficForML_CICFlowMeter.csv, day: "2018-02-28", size: 209249758, etag: "af10d2362a17be6331cfc6d1ce2474f2-13"}
+  - {name: Thursday-01-03-2018_TrafficForML_CICFlowMeter.csv, day: "2018-03-01", size: 107842858, etag: "5889e4b7e0a421070747a2441a2772d7-7"}
+  - {name: Friday-02-03-2018_TrafficForML_CICFlowMeter.csv, day: "2018-03-02", size: 352368373, etag: "2cef2d9c87fc74df84d7424f6949f1b3-22"}

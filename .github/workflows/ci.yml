@@ -1,0 +1,32 @@
+name: ci
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync --locked          # base deps only: no torch, so CI stays fast
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run pytest             # gpu/slow/data tests are excluded by default
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v6
+      - name: Dependency vulnerability scan
+        run: uv export --locked --no-hashes --no-emit-project > requirements.txt && uvx pip-audit -r requirements.txt
+      - name: Secret scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

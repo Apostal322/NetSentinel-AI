@@ -1,0 +1,22 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.env
+
+# data and artifacts stay out of git (sources are documented in configs/datasets/)
+data/
+runs/
+models/
+artifacts/
+*.ckpt
+*.pt
+*.joblib
+*.parquet
+*.sqlite
+*.db
+.aris/
+
+*.log
