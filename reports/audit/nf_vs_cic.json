@@ -1,0 +1,509 @@
+{
+  "ids2018_label_times": [
+    {
+      "day": "2018-02-14",
+      "label": "benign",
+      "cic_rows": 667621,
+      "cic_first": "2018-02-14 08:28:20.000000",
+      "cic_last": "2018-02-14 17:30:48.000000",
+      "nf_rows": 1563826,
+      "nf_first": "2018-02-14 08:28:07.705000",
+      "nf_last": "2018-02-14 20:30:17.897000",
+      "first_diff_min": 0,
+      "last_diff_min": 179,
+      "cic_to_nf_row_ratio": 0.42691514273327086
+    },
+    {
+      "day": "2018-02-14",
+      "label": "ftp_bruteforce",
+      "cic_rows": 193360,
+      "cic_first": "2018-02-14 10:33:26.000000",
+      "cic_last": "2018-02-14 12:10:31.000000",
+      "nf_rows": 386720,
+      "nf_first": "2018-02-14 10:33:26.718000",
+      "nf_last": "2018-02-14 12:10:31.996000",
+      "first_diff_min": 0,
+      "last_diff_min": 0,
+      "cic_to_nf_row_ratio": 0.5
+    },
+    {
+      "day": "2018-02-14",
+      "label": "ssh_bruteforce",
+      "cic_rows": 187589,
+      "cic_first": "2018-02-14 14:01:21.000000",
+      "cic_last": "2018-02-14 15:32:30.000000",
+      "nf_rows": 188474,
+      "nf_first": "2018-02-14 14:01:21.199000",
+      "nf_last": "2018-02-14 15:32:30.288000",
+      "first_diff_min": 0,
+      "last_diff_min": 0,
+      "cic_to_nf_row_ratio": 0.9953043921177457
+    },
+    {
+      "day": "2018-02-15",
+      "label": "benign",
+      "cic_rows": 996077,
+      "cic_first": "2018-02-15 08:23:27.000000",
+      "cic_last": "2018-02-15 17:54:44.000000",
+      "nf_rows": 1567799,
+      "nf_first": "2018-02-15 08:23:18.204000",
+      "nf_last": "2018-02-15 19:59:06.573000",
+      "first_diff_min": 0,
+      "last_diff_min": 124,
+      "cic_to_nf_row_ratio": 0.6353346315439671
+    },
+    {
+      "day": "2018-02-15",
+      "label": "dos_goldeneye",
+      "cic_rows": 41508,
+      "cic_first": "2018-02-15 09:27:42.000000",
+      "cic_last": "2018-02-15 10:02:59.000000",
+      "nf_rows": 61300,
+      "nf_first": "2018-02-15 09:27:42.466000",
+      "nf_last": "2018-02-15 10:11:45.874000",
+      "first_diff_min": 0,
+      "last_diff_min": 8,
+      "cic_to_nf_row_ratio": 0.6771288743882545
+    },
+    {
+      "day": "2018-02-15",
+      "label": "dos_slowloris",
+      "cic_rows": 10990,
+      "cic_first": "2018-02-15 11:00:12.000000",
+      "cic_last": "2018-02-15 11:42:01.000000",
+      "nf_rows": 36040,
+      "nf_first": "2018-02-15 11:00:12.551000",
+      "nf_last": "2018-02-15 11:41:34.482000",
+      "first_diff_min": 0,
+      "last_diff_min": 0,
+      "cic_to_nf_row_ratio": 0.3049389567147614
+    },
+    {
+      "day": "2018-02-16",
+      "label": "benign",
+      "cic_rows": 446772,
+      "cic_first": "2018-02-16 08:26:55.000000",
+      "cic_last": "2018-02-16 13:48:43.000000",
+      "nf_rows": 1578503,
+      "nf_first": "2018-02-16 08:37:31.856000",
+      "nf_last": "2018-02-16 18:03:51.966000",
+      "first_diff_min": 10,
+      "last_diff_min": 255,
+      "cic_to_nf_row_ratio": 0.2830352555554218
+    },
+    {
+      "day": "2018-02-16",
+      "label": "dos_hulk",
+      "cic_rows": 461912,
+      "cic_first": "2018-02-16 13:45:27.000000",
+      "cic_last": "2018-02-16 13:48:44.000000",
+      "nf_rows": 100076,
+      "nf_first": "2018-02-16 13:45:27.826000",
+      "nf_last": "2018-02-16 13:58:22.098000",
+      "first_diff_min": 0,
+      "last_diff_min": 9,
+      "cic_to_nf_row_ratio": 4.615612134777569
+    },
+    {
+      "day": "2018-02-16",
+      "label": "dos_slowhttptest",
+      "cic_rows": 139890,
+      "cic_first": "2018-02-16 10:12:14.000000",
+      "cic_last": "2018-02-16 10:58:08.000000",
+      "nf_rows": 105550,
+      "nf_first": "2018-02-16 10:12:14.134000",
+      "nf_last": "2018-02-16 11:05:13.888000",
+      "first_diff_min": 0,
+      "last_diff_min": 7,
+      "cic_to_nf_row_ratio": 1.3253434391283752
+    },
+    {
+      "day": "2018-02-20",
+      "label": "benign",
+      "cic_rows": 7372557,
+      "cic_first": "2018-02-20 08:00:00.000000",
+      "cic_last": "2018-02-20 19:59:59.000000",
+      "nf_rows": 1541273,
+      "nf_first": "2018-02-20 08:28:05.595000",
+      "nf_last": "2018-02-20 20:07:15.478000",
+      "first_diff_min": 28,
+      "last_diff_min": 7,
+      "cic_to_nf_row_ratio": 4.783420588046375
+    },
+    {
+      "day": "2018-02-20",
+      "label": "ddos_loic_http",
+      "cic_rows": 576191,
+      "cic_first": "2018-02-20 10:13:54.000000",
+      "cic_last": "2018-02-20 13:29:15.000000",
+      "nf_rows": 288589,
+      "nf_first": "2018-02-20 10:13:54.662000",
+      "nf_last": "2018-02-20 13:29:16.047000",
+      "first_diff_min": 0,
+      "last_diff_min": 0,
+      "cic_to_nf_row_ratio": 1.9965799112232274
+    },
+    {
+      "day": "2018-02-21",
+      "label": "benign",
+      "cic_rows": 360833,
+      "cic_first": "2018-02-21 08:32:54.000000",
+      "cic_last": "2018-02-21 14:33:29.000000",
+      "nf_rows": 1677335,
+      "nf_first": "2018-02-21 08:28:24.722000",
+      "nf_last": "2018-02-21 20:37:01.571000",
+      "first_diff_min": -4,
+      "last_diff_min": 363,
+      "cic_to_nf_row_ratio": 0.21512279896383252
+    },
+    {
+      "day": "2018-02-21",
+      "label": "ddos_hoic",
+      "cic_rows": 686012,
+      "cic_first": "2018-02-21 14:11:08.000000",
+      "cic_last": "2018-02-21 14:33:29.000000",
+      "nf_rows": 1032311,
+      "nf_first": "2018-02-21 14:11:08.829000",
+      "nf_last": "2018-02-21 15:05:54.052000",
+      "first_diff_min": 0,
+      "last_diff_min": 32,
+      "cic_to_nf_row_ratio": 0.6645400465557376
+    },
+    {
+      "day": "2018-02-21",
+      "label": "ddos_loic_udp",
+      "cic_rows": 1730,
+      "cic_first": "2018-02-21 10:08:51.000000",
+      "cic_last": "2018-02-21 10:43:16.000000",
+      "nf_rows": 3450,
+      "nf_first": "2018-02-21 10:08:51.251000",
+      "nf_last": "2018-02-21 10:43:16.845000",
+      "first_diff_min": 0,
+      "last_diff_min": 0,
+      "cic_to_nf_row_ratio": 0.5014492753623189
+    },
+    {
+      "day": "2018-02-22",
+      "label": "benign",
+      "cic_rows": 1048204,
+      "cic_first": "2018-02-22 08:22:17.000000",
+      "cic_last": "2018-02-22 17:30:23.000000",
+      "nf_rows": 2037294,
+      "nf_first": "2018-02-22 08:22:07.152000",
+      "nf_last": "2018-02-22 19:41:25.755000",
+      "first_diff_min": 0,
+      "last_diff_min": 131,
+      "cic_to_nf_row_ratio": 0.5145079698855443
+    },
+    {
+      "day": "2018-02-22",
+      "label": "web_bruteforce",
+      "cic_rows": 249,
+      "cic_first": "2018-02-22 10:13:44.000000",
+      "cic_last": "2018-02-22 11:23:11.000000",
+      "nf_rows": 1618,
+      "nf_first": "2018-02-22 08:24:59.675000",
+      "nf_last": "2018-02-22 17:29:42.169000",
+      "first_diff_min": -108,
+      "last_diff_min": 366,
+      "cic_to_nf_row_ratio": 0.15389369592089
+    },
+    {
+      "day": "2018-02-22",
+      "label": "web_sql_injection",
+      "cic_rows": 34,
+      "cic_first": "2018-02-22 11:09:45.000000",
+      "cic_last": "2018-02-22 16:27:51.000000",
+      "nf_rows": 440,
+      "nf_first": "2018-02-22 11:09:40.675000",
+      "nf_last": "2018-02-22 16:27:51.010000",
+      "first_diff_min": 0,
+      "last_diff_min": 0,
+      "cic_to_nf_row_ratio": 0.07727272727272727
+    },
+    {
+      "day": "2018-02-22",
+      "label": "web_xss",
+      "cic_rows": 79,
+      "cic_first": "2018-02-22 13:51:39.000000",
+      "cic_last": "2018-02-22 14:28:40.000000",
+      "nf_rows": 480,
+      "nf_first": "2018-02-22 08:25:10.148000",
+      "nf_last": "2018-02-22 17:28:23.081000",
+      "first_diff_min": -326,
+      "last_diff_min": 179,
+      "cic_to_nf_row_ratio": 0.16458333333333333
+    },
+    {
+      "day": "2018-02-23",
+      "label": "benign",
+      "cic_rows": 1048009,
+      "cic_first": "2018-02-23 08:15:09.000000",
+      "cic_last": "2018-02-23 17:30:46.000000",
+      "nf_rows": 1933002,
+      "nf_first": "2018-02-23 08:15:07.819000",
+      "nf_last": "2018-02-23 18:54:09.878000",
+      "first_diff_min": 0,
+      "last_diff_min": 83,
+      "cic_to_nf_row_ratio": 0.5421665368168269
+    },
+    {
+      "day": "2018-02-23",
+      "label": "web_bruteforce",
+      "cic_rows": 362,
+      "cic_first": "2018-02-23 09:17:04.000000",
+      "cic_last": "2018-02-23 11:02:58.000000",
+      "nf_rows": null,
+      "nf_first": null,
+      "nf_last": null,
+      "first_diff_min": null,
+      "last_diff_min": null,
+      "cic_to_nf_row_ratio": null
+    },
+    {
+      "day": "2018-02-23",
+      "label": "web_sql_injection",
+      "cic_rows": 53,
+      "cic_first": "2018-02-23 10:22:41.000000",
+      "cic_last": "2018-02-23 15:17:24.000000",
+      "nf_rows": null,
+      "nf_first": null,
+      "nf_last": null,
+      "first_diff_min": null,
+      "last_diff_min": null,
+      "cic_to_nf_row_ratio": null
+    },
+    {
+      "day": "2018-02-23",
+      "label": "web_xss",
+      "cic_rows": 151,
+      "cic_first": "2018-02-23 13:01:04.000000",
+      "cic_last": "2018-02-23 14:10:05.000000",
+      "nf_rows": null,
+      "nf_first": null,
+      "nf_last": null,
+      "first_diff_min": null,
+      "last_diff_min": null,
+      "cic_to_nf_row_ratio": null
+    },
+    {
+      "day": "2018-02-27",
+      "label": "benign",
+      "cic_rows": null,
+      "cic_first": null,
+      "cic_last": null,
+      "nf_rows": 1210,
+      "nf_first": "2018-02-27 08:24:01.964000",
+      "nf_last": "2018-02-27 23:53:15.102000",
+      "first_diff_min": null,
+      "last_diff_min": null,
+      "cic_to_nf_row_ratio": null
+    },
+    {
+      "day": "2018-02-28",
+      "label": "benign",
+      "cic_rows": 544200,
+      "cic_first": "2018-02-28 08:21:58.000000",
+      "cic_last": "2018-02-28 17:50:14.000000",
+      "nf_rows": 1948414,
+      "nf_first": "2018-02-28 00:00:39.871000",
+      "nf_last": "2018-02-28 20:28:59.243000",
+      "first_diff_min": -501,
+      "last_diff_min": 158,
+      "cic_to_nf_row_ratio": 0.27930409040378484
+    },
+    {
+      "day": "2018-02-28",
+      "label": "infiltration",
+      "cic_rows": 68871,
+      "cic_first": "2018-02-28 10:50:00.000000",
+      "cic_last": "2018-02-28 14:39:59.000000",
+      "nf_rows": 84327,
+      "nf_first": "2018-02-28 08:22:05.767000",
+      "nf_last": "2018-02-28 17:49:50.254000",
+      "first_diff_min": -147,
+      "last_diff_min": 189,
+      "cic_to_nf_row_ratio": 0.816713508129069
+    },
+    {
+      "day": "2018-03-01",
+      "label": "benign",
+      "cic_rows": 238037,
+      "cic_first": "2018-03-01 08:16:28.000000",
+      "cic_last": "2018-03-01 17:45:28.000000",
+      "nf_rows": 2043312,
+      "nf_first": "2018-03-01 08:15:36.794000",
+      "nf_last": "2018-03-01 19:30:54.233000",
+      "first_diff_min": 0,
+      "last_diff_min": 105,
+      "cic_to_nf_row_ratio": 0.11649566977534513
+    },
+    {
+      "day": "2018-03-01",
+      "label": "infiltration",
+      "cic_rows": 93063,
+      "cic_first": "2018-03-01 09:57:00.000000",
+      "cic_last": "2018-03-01 15:36:59.000000",
+      "nf_rows": 103825,
+      "nf_first": "2018-03-01 08:16:36.888000",
+      "nf_last": "2018-03-01 17:40:18.782000",
+      "first_diff_min": -100,
+      "last_diff_min": 123,
+      "cic_to_nf_row_ratio": 0.8963448109800144
+    },
+    {
+      "day": "2018-03-02",
+      "label": "benign",
+      "cic_rows": 762384,
+      "cic_first": "2018-03-02 08:46:33.000000",
+      "cic_last": "2018-03-02 17:30:18.000000",
+      "nf_rows": 1622658,
+      "nf_first": "2018-03-02 08:46:27.775000",
+      "nf_last": "2018-03-02 16:04:25.524000",
+      "first_diff_min": 0,
+      "last_diff_min": -85,
+      "cic_to_nf_row_ratio": 0.46983652747529053
+    },
+    {
+      "day": "2018-03-02",
+      "label": "bot",
+      "cic_rows": 286191,
+      "cic_first": "2018-03-02 10:13:28.000000",
+      "cic_last": "2018-03-02 15:54:50.000000",
+      "nf_rows": 207703,
+      "nf_first": "2018-03-02 10:17:07.380000",
+      "nf_last": "2018-03-02 15:54:50.318000",
+      "first_diff_min": 3,
+      "last_diff_min": 0,
+      "cic_to_nf_row_ratio": 1.3778857310679191
+    }
+  ],
+  "attack_first_diff_minutes_abs_median": 0.0,
+  "unsw_hour_of_day_local": [
+    {
+      "h": 0,
+      "flows": 96430,
+      "attacks": 6977
+    },
+    {
+      "h": 1,
+      "flows": 90933,
+      "attacks": 0
+    },
+    {
+      "h": 2,
+      "flows": 84839,
+      "attacks": 0
+    },
+    {
+      "h": 3,
+      "flows": 90840,
+      "attacks": 0
+    },
+    {
+      "h": 4,
+      "flows": 90450,
+      "attacks": 0
+    },
+    {
+      "h": 5,
+      "flows": 89087,
+      "attacks": 0
+    },
+    {
+      "h": 6,
+      "flows": 71022,
+      "attacks": 0
+    },
+    {
+      "h": 7,
+      "flows": 91225,
+      "attacks": 0
+    },
+    {
+      "h": 8,
+      "flows": 93044,
+      "attacks": 0
+    },
+    {
+      "h": 9,
+      "flows": 88363,
+      "attacks": 0
+    },
+    {
+      "h": 10,
+      "flows": 94849,
+      "attacks": 0
+    },
+    {
+      "h": 11,
+      "flows": 80738,
+      "attacks": 3746
+    },
+    {
+      "h": 12,
+      "flows": 101873,
+      "attacks": 9528
+    },
+    {
+      "h": 13,
+      "flows": 103050,
+      "attacks": 9704
+    },
+    {
+      "h": 14,
+      "flows": 104789,
+      "attacks": 8763
+    },
+    {
+      "h": 15,
+      "flows": 102317,
+      "attacks": 10312
+    },
+    {
+      "h": 16,
+      "flows": 101589,
+      "attacks": 9047
+    },
+    {
+      "h": 17,
+      "flows": 100915,
+      "attacks": 9440
+    },
+    {
+      "h": 18,
+      "flows": 106304,
+      "attacks": 8636
+    },
+    {
+      "h": 19,
+      "flows": 101714,
+      "attacks": 9339
+    },
+    {
+      "h": 20,
+      "flows": 104947,
+      "attacks": 8787
+    },
+    {
+      "h": 21,
+      "flows": 106785,
+      "attacks": 9491
+    },
+    {
+      "h": 22,
+      "flows": 118749,
+      "attacks": 10106
+    },
+    {
+      "h": 23,
+      "flows": 150572,
+      "attacks": 13817
+    }
+  ],
+  "unsw_days": [
+    "2015-01-22",
+    "2015-01-23",
+    "2015-02-18"
+  ]
+}
