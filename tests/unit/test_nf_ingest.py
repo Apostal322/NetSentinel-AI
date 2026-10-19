@@ -53,6 +53,16 @@ def test_ingest_local_days_aliases_and_labels(tmp_path):
     assert df["row_id"].to_list() == [0, 1, 2]
 
 
+def test_empty_float_cells_become_null_but_garbage_fails(tmp_path):
+    rows = [ROWS[0].replace(",64,0,Benign", ",,0,Benign"), ROWS[1]]  # empty MIN_TTL
+    rep = ingest_nf_zip(_bag(tmp_path, rows), tmp_path / "o", utc_offset_hours=-4)
+    assert rep.empty_values == {"min_ttl": 1}
+    assert pl.read_parquet(tmp_path / "o/2018-02-14.parquet")["min_ttl"].null_count() == 1
+    bad = [ROWS[0].replace(",64,0,Benign", ",abc,0,Benign")]
+    with pytest.raises(Exception):  # noqa: B017 - polars InvalidOperationError
+        ingest_nf_zip(_bag(tmp_path, bad), tmp_path / "o2", utc_offset_hours=-4)
+
+
 def test_ingest_rejects_corrupted_member(tmp_path):
     with pytest.raises(ValueError, match="SHA-1"):
         ingest_nf_zip(_bag(tmp_path, corrupt=True), tmp_path / "out", utc_offset_hours=0)

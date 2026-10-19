@@ -53,6 +53,7 @@ class NFIngestReport:
     attack_counts: dict[str, int]
     utc_offset_hours: float
     absent_columns: list[str] = field(default_factory=list)
+    empty_values: dict[str, int] = field(default_factory=dict)  # empty cells read as null
     columns: list[str] = field(default_factory=list)
 
     def as_dict(self) -> dict:
@@ -124,7 +125,11 @@ def _typed(chunk: pl.DataFrame, columns: list[str], offset_h: float) -> pl.DataF
         elif c in INT_COLUMNS:
             exprs.append(pl.col(c).cast(pl.Float64, strict=True).cast(pl.Int64).alias(name))
         else:
-            exprs.append(pl.col(c).cast(pl.Float64, strict=True).cast(pl.Float32).alias(name))
+            # Non-core float fields may be empty in the source CSV (e.g. rate fields of
+            # zero-duration flows): empty -> null (counted in the report); anything else
+            # malformed still fails the strict cast.
+            col = pl.when(pl.col(c) == "").then(None).otherwise(pl.col(c))
+            exprs.append(col.cast(pl.Float64, strict=True).cast(pl.Float32).alias(name))
     df = chunk.select(exprs)
     # Feature columns absent from this source become explicit nulls (listed in the report).
     df = df.with_columns(
@@ -176,6 +181,7 @@ def ingest_nf_zip(
         writers: dict[str, pq.ParquetWriter] = {}
         offsets: dict[str, int] = {}
         attack_counts: dict[str, int] = {}
+        empty_values: dict[str, int] = {}
         unknown_families: set[str] = set()
         try:
             with z.open(member) as raw:
@@ -186,8 +192,13 @@ def ingest_nf_zip(
                         column_types={c: pa.string() for c in header}
                     ),
                 )
+                float_cols = [c for c in header if c not in STRING_COLUMNS and c not in INT_COLUMNS]
                 for batch in reader:
                     chunk = pl.from_arrow(pa.Table.from_batches([batch]))
+                    empties = chunk.select([(pl.col(c) == "").sum().alias(c) for c in float_cols])
+                    for c, n in empties.row(0, named=True).items():
+                        if n:
+                            empty_values[canonical(c)] = empty_values.get(canonical(c), 0) + int(n)
                     typed = _typed(chunk, header, utc_offset_hours)
                     typed = (
                         typed.with_columns(
@@ -227,7 +238,7 @@ def ingest_nf_zip(
         source=str(zip_path), member=member, sha1_ok=sha1_ok, rows_written=sum(offsets.values()),
         days=dict(sorted(offsets.items())), attack_counts=dict(sorted(attack_counts.items())),
         utc_offset_hours=utc_offset_hours, absent_columns=_absent_feature_columns(header),
-        columns=header,
+        empty_values=dict(sorted(empty_values.items())), columns=header,
     )  # fmt: skip
     if report.absent_columns:
         log.warning("feature columns absent from source (null): %s", report.absent_columns)

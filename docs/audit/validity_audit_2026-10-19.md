@@ -34,6 +34,36 @@ Per-label recall (supervised LightGBM, FPR 1e-3) on labels **without** a twin cl
 | dos | dos_goldeneye | 0.440 | 0.750, 0.978, 0.592, 0.786, 0.806 |
 | dos | dos_slowloris | 0.078 | 0.086, 0.154, 0.009, 0.024, 0.201 |
 
+## Corrected re-runs (batch v3, measured; `reports/experiments/results_v3.md`)
+
+Behaviour-defined hold-out groups (twins held out together), label cleaning v2, 5 seeds,
+benign-validation FPR <= 1e-3, recall mean +- std:
+
+| Held-out group | flow | flow + ctx | flow + scale-invariant ctx |
+|---|---|---|---|
+| port21_failed_conn (FTP-BF + SlowHTTPTest) | 0.32 +- 0.44 | 0.999 +- 0.002 | 0.999 +- 0.002 |
+| ssh_bruteforce | 0.60 +- 0.23 | 0.998 +- 0.003 | 0.999 +- 0.002 |
+| dos_http (GoldenEye, Hulk, Slowloris) | 0.05 +- 0.01 | 0.951 +- 0.017 | 0.943 +- 0.010 |
+| ddos | 0.11 +- 0.14 | 0.68 +- 0.09 | 0.68 +- 0.12 |
+| botnet | 0.25 +- 0.23 | 0.66 +- 0.06 | 0.705 +- 0.004 |
+| web_attack | 0.09 +- 0.03 | 0.015 +- 0.008 | 0.07 +- 0.02 |
+
+Per label (flow + ctx): Hulk 0.994, HOIC 1.000, LOIC-UDP 0.98, GoldenEye 0.73 +- 0.18,
+LOIC-HTTP 0.37 +- 0.17, Slowloris 0.09 +- 0.09, web attacks <= 0.02. Anomaly-only recall
+0.000 for every group and seed.
+
+**Revised conclusions.**
+* V1 is corrected: the context-feature gain on unseen groups **survives** the leak-free
+  protocol; it was not produced by the twin classes.
+* V3 is weakened: scale-invariant context (fractions, shares, surge ratios) performs as well
+  as full context, so the effect does not hinge on capture-specific absolute rates.
+* V2 stands: the effect concentrates on high-volume / failure-storm traffic (floods, brute
+  force, failed connections) and is largely reproducible with single context statistics; low-
+  volume application-layer attacks (Slowloris, LOIC-HTTP partly, web attacks) are not detected.
+  The accurate claim is "causal context detects anomalous traffic *situations* produced by
+  these tools", not "the model generalises to unseen attack semantics".
+* Whether this transfers to another network is tested on NetFlow v3 data (next section).
+
 ## Corrections planned (require approval for retraining)
 
 1. Open-set with behaviour-defined groups: `port21_failed_conn` (FTP-BF + SlowHTTPTest) held out as its own group; `bruteforce` = SSH only; `dos` = GoldenEye/Hulk/Slowloris; 5 seeds, flow and flow+ctx.
