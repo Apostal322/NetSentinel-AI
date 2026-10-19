@@ -5,12 +5,13 @@ __pycache__/
 .ruff_cache/
 .ipynb_checkpoints/
 .env
+*.log
 
 # data and artifacts stay out of git (sources are documented in configs/datasets/)
-data/
-runs/
-models/
-artifacts/
+/data/
+/runs/
+/models/
+/artifacts/
 *.ckpt
 *.pt
 *.joblib
@@ -18,5 +19,3 @@ artifacts/
 *.sqlite
 *.db
 .aris/
-
-*.log
