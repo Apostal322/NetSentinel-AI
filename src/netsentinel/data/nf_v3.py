@@ -52,6 +52,7 @@ class NFIngestReport:
     days: dict[str, int]
     attack_counts: dict[str, int]
     utc_offset_hours: float
+    absent_columns: list[str] = field(default_factory=list)
     columns: list[str] = field(default_factory=list)
 
     def as_dict(self) -> dict:
@@ -107,6 +108,13 @@ def add_nf_aliases(df: pl.DataFrame, offset_h: float) -> pl.DataFrame:
     )
 
 
+def _absent_feature_columns(columns: list[str]) -> list[str]:
+    from netsentinel.features.nf_schema import NF_FLOW_COLUMNS
+
+    have = {canonical(c) for c in columns}
+    return [c for c in NF_FLOW_COLUMNS if c not in have and not c.startswith(("cli_", "srv_"))]
+
+
 def _typed(chunk: pl.DataFrame, columns: list[str], offset_h: float) -> pl.DataFrame:
     exprs = []
     for c in columns:
@@ -117,7 +125,12 @@ def _typed(chunk: pl.DataFrame, columns: list[str], offset_h: float) -> pl.DataF
             exprs.append(pl.col(c).cast(pl.Float64, strict=True).cast(pl.Int64).alias(name))
         else:
             exprs.append(pl.col(c).cast(pl.Float64, strict=True).cast(pl.Float32).alias(name))
-    df = add_nf_aliases(chunk.select(exprs), offset_h)
+    df = chunk.select(exprs)
+    # Feature columns absent from this source become explicit nulls (listed in the report).
+    df = df.with_columns(
+        [pl.lit(None, pl.Float32).alias(c) for c in _absent_feature_columns(columns)]
+    )
+    df = add_nf_aliases(df, offset_h)
     return df.with_columns(
         pl.when(pl.col("label") == 0).then(pl.lit("benign"))
         .otherwise(pl.col("attack").replace_strict(
@@ -134,7 +147,10 @@ def ingest_nf_zip(
     family_map: dict[str, str] | None = None,
     block_bytes: int = 64 << 20,
     verify: bool = True,
+    label_map: dict[str, str] | None = None,
 ) -> NFIngestReport:
+    """`label_map` renames canonicalised attack names (e.g. `dos_attacks_hulk` -> `dos_hulk`,
+    aligning NF-IDS2018 with the CIC labels); `family_map` maps final labels to families."""
     import pyarrow as pa
     import pyarrow.csv as pacsv
     import pyarrow.parquet as pq
@@ -142,6 +158,7 @@ def ingest_nf_zip(
     zip_path, out_dir = Path(zip_path), Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     family_map = family_map or {}
+    label_map = label_map or {}
     with zipfile.ZipFile(zip_path) as z:
         member, expected_sha1, _ = _member(z)
         sha1_ok = True
@@ -172,13 +189,18 @@ def ingest_nf_zip(
                 for batch in reader:
                     chunk = pl.from_arrow(pa.Table.from_batches([batch]))
                     typed = _typed(chunk, header, utc_offset_hours)
-                    typed = typed.with_columns(
-                        pl.col("timestamp").dt.date().cast(pl.Utf8).alias("day"),
-                        pl.col("label_name").alias("label"),
-                        pl.col("label_name")
-                        .replace_strict({**family_map, "benign": "benign"}, default="unmapped")
-                        .alias("family"),
-                    ).drop("label_name")
+                    typed = (
+                        typed.with_columns(
+                            pl.col("timestamp").dt.date().cast(pl.Utf8).alias("day"),
+                            pl.col("label_name").replace(label_map).alias("label"),
+                        )
+                        .with_columns(
+                            pl.col("label")
+                            .replace_strict({**family_map, "benign": "benign"}, default="unmapped")
+                            .alias("family"),
+                        )
+                        .drop("label_name")
+                    )
                     unknown_families |= set(
                         typed.filter(pl.col("family") == "unmapped")["label"].unique()
                     )
@@ -204,8 +226,11 @@ def ingest_nf_zip(
     report = NFIngestReport(
         source=str(zip_path), member=member, sha1_ok=sha1_ok, rows_written=sum(offsets.values()),
         days=dict(sorted(offsets.items())), attack_counts=dict(sorted(attack_counts.items())),
-        utc_offset_hours=utc_offset_hours, columns=header,
+        utc_offset_hours=utc_offset_hours, absent_columns=_absent_feature_columns(header),
+        columns=header,
     )  # fmt: skip
+    if report.absent_columns:
+        log.warning("feature columns absent from source (null): %s", report.absent_columns)
     (out_dir / "ingest_report.json").write_text(json.dumps(report.as_dict(), indent=2), "utf-8")
     log.info("ingested %s: %d rows over %d days", zip_path.name, report.rows_written, len(offsets))
     return report

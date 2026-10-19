@@ -26,4 +26,32 @@ datasets:
     archive: data/raw/nf_v3/NF-CICIDS2018-v3.zip
     out_dir: data/interim/nf_cicids2018_v3
     utc_offset_hours: -4
-    family_map: {}   # filled after the label scan (scripts/nf_label_scan.py)
+    # Labels from scripts/nf_label_scan.py (14 attack types); renamed to the CIC canonical
+    # labels so CIC- and NF-based IDS2018 results are label-aligned.
+    label_map:
+      ddos_attack_hoic: ddos_hoic
+      ddos_attacks_loic_http: ddos_loic_http
+      ddos_attack_loic_udp: ddos_loic_udp
+      dos_attacks_slowhttptest: dos_slowhttptest
+      dos_attacks_hulk: dos_hulk
+      dos_attacks_goldeneye: dos_goldeneye
+      dos_attacks_slowloris: dos_slowloris
+      brute_force_web: web_bruteforce
+      brute_force_xss: web_xss
+      sql_injection: web_sql_injection
+      infilteration: infiltration
+    family_map:
+      ftp_bruteforce: bruteforce
+      ssh_bruteforce: bruteforce
+      dos_goldeneye: dos
+      dos_slowloris: dos
+      dos_slowhttptest: dos
+      dos_hulk: dos
+      ddos_loic_http: ddos
+      ddos_loic_udp: ddos
+      ddos_hoic: ddos
+      web_bruteforce: web_attack
+      web_xss: web_attack
+      web_sql_injection: web_attack
+      infiltration: infiltration
+      bot: botnet

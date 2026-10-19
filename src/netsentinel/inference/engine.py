@@ -69,7 +69,8 @@ class Engine:
             if context == "compute" and all(c in df.columns for c in need):
                 if "row_id" not in df.columns:
                     df = df.with_row_index("row_id")
-                ctx = compute_context(df.select("row_id", *[pl.col(c).fill_null(0) for c in need]))
+                numeric = [pl.col(c).fill_null(0) for c in need if c != "timestamp"]
+                ctx = compute_context(df.select("row_id", "timestamp", *numeric))
                 df = df.join(ctx.drop("event_sec"), on="row_id", how="left")
         missing = [f for f in self.required if f not in df.columns]
         if missing:

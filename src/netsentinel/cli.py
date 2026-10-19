@@ -65,7 +65,8 @@ def _cmd_data_ingest_nf(args: argparse.Namespace) -> int:
         return 2
     d = cfg[args.dataset]
     rep = ingest_nf_zip(d["archive"], d["out_dir"], float(d["utc_offset_hours"]),
-                        d.get("family_map") or {}, verify=not args.no_verify)  # fmt: skip
+                        d.get("family_map") or {}, verify=not args.no_verify,
+                        label_map=d.get("label_map") or {})  # fmt: skip
     print(json.dumps({k: v for k, v in rep.as_dict().items() if k != "columns"}, indent=2))
     return 0
 
