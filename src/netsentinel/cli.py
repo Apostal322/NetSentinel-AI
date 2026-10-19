@@ -140,6 +140,14 @@ def _cmd_train_transfer(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_train_adapt(args: argparse.Namespace) -> int:
+    from netsentinel.training.adapt import run_adapt
+
+    for run_id in run_adapt(_experiment_config(args)):
+        print(run_id)
+    return 0
+
+
 def _cmd_bundle_build(args: argparse.Namespace) -> int:
     from netsentinel.inference.bundle import build_bundle
 
@@ -265,6 +273,9 @@ def build_parser() -> argparse.ArgumentParser:
     p = train_sub.add_parser("openset", help="leave-one-family-out unseen-attack evaluation")
     _add_config_args(p, "configs/experiments/openset.yaml")
     p.set_defaults(func=_cmd_train_openset)
+    p = train_sub.add_parser("adapt", help="label-free adaptation + target normal modelling")
+    _add_config_args(p, "configs/experiments/adapt_nf.yaml")
+    p.set_defaults(func=_cmd_train_adapt)
     p = train_sub.add_parser("transfer", help="train on one dataset, evaluate on another")
     _add_config_args(p, "configs/experiments/transfer_nf.yaml")
     p.set_defaults(func=_cmd_train_transfer)

@@ -6,6 +6,7 @@ import hashlib
 import json
 import zipfile
 from datetime import datetime, timedelta
+from pathlib import Path
 
 import numpy as np
 import pytest
@@ -98,6 +99,44 @@ def test_transfer_between_two_nf_datasets(app_ws, capsys):
               "target_val_oracle/recall"):  # fmt: skip
         assert k in m, sorted(m)
         assert 0 <= m[k] <= 1, k
+
+
+def test_adapt_stage_on_synthetic_domains(app_ws, capsys):
+    """Label-free adaptation protocol runs end to end; outputs are well-formed."""
+    for name, seed0 in (("src", 0), ("tgt", 7)):
+        rows = _nf_rows(datetime(2018, 2, 14, 13), 1500, seed0) + _nf_rows(
+            datetime(2018, 2, 15, 13), 1500, seed0 + 1)  # fmt: skip
+        csv = (NF_HEADER + "\n" + "\n".join(rows) + "\n").encode()
+        with zipfile.ZipFile(app_ws / f"{name}.zip", "w") as z:
+            z.writestr("bag/data/NF-x.csv", csv)
+        cfg = {"datasets": {name: {"archive": str(app_ws / f"{name}.zip"),
+                                   "out_dir": str(app_ws / f"i_{name}"), "utc_offset_hours": 0,
+                                   "family_map": {"brute_force": "bruteforce"}}}}  # fmt: skip
+        (app_ws / f"{name}.yaml").write_text(yaml.safe_dump(cfg))
+        assert main(["data", "ingest-nf", name, "--config", f"{name}.yaml"]) == 0
+        build = ["features", "build", "--interim", f"i_{name}", "--out", f"p_{name}",
+                 "--schema", "nf", "--benign-per-day", "1000", "--attack-cap", "400"]  # fmt: skip
+        assert main(build) == 0
+    repo = Path(__file__).resolve().parents[2]
+    cfg = yaml.safe_load((repo / "configs/experiments/adapt_nf.yaml").read_text(encoding="utf-8"))
+    cfg.update(runs_dir=str(app_ws / "runs"), target_fpr=0.01, calibration_sizes=[100, 300],
+               detectors=["robust_z", "iforest"], feature_set="nf_portable_ctx",
+               model_params={"n_estimators": 20, "num_leaves": 7},
+               source={"processed_dir": "p_src", "drop_labels": [], "clean_labels": 0},
+               target={"processed_dir": "p_tgt", "drop_labels": [], "clean_labels": 0})  # fmt: skip
+    cfg["source_split"].update(block_minutes=10, purge_seconds=30)
+    cfg["target_split"].update(purge_seconds=30)
+    (app_ws / "ad.yaml").write_text(yaml.safe_dump(cfg))
+    capsys.readouterr()
+    assert main(["train", "adapt", "--config", "ad.yaml"]) == 0
+    run = app_ws / "runs" / capsys.readouterr().out.split()[-1]
+    res = json.loads((run / "adapt_results.json").read_text())
+    assert set(res["calibration"]) == {"clean_100", "clean_300", "unlabelled_100", "unlabelled_300"}
+    clean = res["calibration"]["clean_300"]
+    assert clean["contamination"] == 0.0  # clean pool contains benign rows only
+    for meth in ("source_model_target_threshold", "normalized_target_threshold",
+                 "target_iforest_all", "target_robust_z_ctx"):  # fmt: skip
+        assert 0 <= clean[meth]["fpr"] <= 1 and 0 <= clean[meth]["recall"] <= 1
 
 
 def test_offline_app_end_to_end(app_ws, capsys, monkeypatch):
