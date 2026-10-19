@@ -17,6 +17,23 @@ jobs:
       - run: uv run ruff format --check .
       - run: uv run pytest             # gpu/slow/data tests are excluded by default
 
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: docker build -t netsentinel:ci .
+      - name: CLI runs in the image
+        run: docker run --rm netsentinel:ci --help
+      - name: API starts without a bundle (health ok, ready 503)
+        run: |
+          docker run -d --name ns -p 127.0.0.1:8000:8000 netsentinel:ci
+          for i in $(seq 1 30); do curl -fs http://127.0.0.1:8000/health && break; sleep 2; done
+          curl -fs http://127.0.0.1:8000/health
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8000/ready)" = "503"
+          docker logs ns
+          docker rm -f ns
+
   security:
     runs-on: ubuntu-latest
     steps:

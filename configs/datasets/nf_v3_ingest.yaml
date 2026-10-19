@@ -1,0 +1,29 @@
+# Ingest settings for the NetFlow v3 archives (see nf_v3.yaml for provenance/integrity).
+# utc_offset_hours converts FLOW_START_MILLISECONDS (UTC epoch) to naive local capture time.
+#   CSE-CIC-IDS2018: UNB, Fredericton NB, February 2018 -> AST, UTC-4. Checked: the first
+#     flow (1518611287705 ms) is 08:28:07 local, the same minute the CIC CSV for 2018-02-14
+#     starts after our 12-hour-clock correction.
+#   UNSW-NB15: UNSW Canberra Cyber Range, Jan/Feb 2015 -> AEDT, UTC+11 (assumption, see
+#     docs/datasets/nf_v3.md for the hour-of-day check).
+# family_map: canonical attack label -> coarse family shared ACROSS datasets for transfer
+# analysis. Labels missing here get family "unmapped" (warned at ingest, never silently mixed).
+datasets:
+  nf-unsw-nb15-v3:
+    archive: data/raw/nf_v3/NF-UNSW-NB15-v3.zip
+    out_dir: data/interim/nf_unsw_nb15_v3
+    utc_offset_hours: 11
+    family_map:
+      exploits: exploit
+      fuzzers: fuzzing
+      generic: generic
+      reconnaissance: recon
+      dos: dos
+      analysis: recon
+      backdoor: exploit
+      shellcode: exploit
+      worms: exploit
+  nf-cicids2018-v3:
+    archive: data/raw/nf_v3/NF-CICIDS2018-v3.zip
+    out_dir: data/interim/nf_cicids2018_v3
+    utc_offset_hours: -4
+    family_map: {}   # filled after the label scan (scripts/nf_label_scan.py)

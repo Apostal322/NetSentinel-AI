@@ -17,10 +17,16 @@ from pathlib import Path
 import polars as pl
 
 from netsentinel.features.context import DEFAULT_WINDOWS, compute_context_chunked
+from netsentinel.features.nf_schema import NF_FEATURE_SCHEMA_VERSION, nf_flow_feature_columns
 from netsentinel.features.schema import FEATURE_SCHEMA_VERSION, flow_feature_columns
 
 log = logging.getLogger(__name__)
 HASH_MOD = 1_000_000
+DAY_GLOB = "[0-9][0-9][0-9][0-9]-*.parquet"
+SCHEMAS = {  # schema name -> (feature columns kept from the raw flow, schema version)
+    "cic": (flow_feature_columns, FEATURE_SCHEMA_VERSION),
+    "nf": (nf_flow_feature_columns, NF_FEATURE_SCHEMA_VERSION),
+}
 
 
 @dataclass(frozen=True)
@@ -30,6 +36,7 @@ class BuildConfig:
     windows: tuple[int, ...] = DEFAULT_WINDOWS
     chunk_seconds: int = 3600
     seed: int = 42
+    schema: str = "cic"
 
 
 def _sample_rates(lf: pl.LazyFrame, cfg: BuildConfig) -> pl.DataFrame:
@@ -53,7 +60,7 @@ def build_day(path: Path, cfg: BuildConfig) -> tuple[pl.DataFrame, dict]:
     lf = pl.scan_parquet(path)
     ctx = compute_context_chunked(lf, cfg.windows, cfg.chunk_seconds)
     rates = _sample_rates(lf, cfg)
-    feats = flow_feature_columns()
+    feats = SCHEMAS[cfg.schema][0]()
     keep_cols = ["day", "row_id", "timestamp", "label", "family", "dst_port", "protocol", *feats]
     keep_cols = list(dict.fromkeys(keep_cols))  # protocol/dst_port may also be features
     sampled = (
@@ -79,7 +86,9 @@ def build_day(path: Path, cfg: BuildConfig) -> tuple[pl.DataFrame, dict]:
 
 def build_dataset(interim_dir: str | Path, out_dir: str | Path, cfg: BuildConfig) -> dict:
     interim_dir, out_dir = Path(interim_dir), Path(out_dir)
-    paths = sorted(interim_dir.glob("2018-*.parquet"))
+    if cfg.schema not in SCHEMAS:
+        raise ValueError(f"unknown schema {cfg.schema!r}")
+    paths = sorted(interim_dir.glob(DAY_GLOB))
     if not paths:
         raise FileNotFoundError(f"no ingested days in {interim_dir}")
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -91,7 +100,7 @@ def build_dataset(interim_dir: str | Path, out_dir: str | Path, cfg: BuildConfig
         days.append(stats)
         del frame
     meta = {
-        "feature_schema_version": FEATURE_SCHEMA_VERSION,
+        "feature_schema_version": SCHEMAS[cfg.schema][1],
         "build_config": asdict(cfg),
         "days": days,
     }
@@ -99,18 +108,22 @@ def build_dataset(interim_dir: str | Path, out_dir: str | Path, cfg: BuildConfig
     return meta
 
 
-def load_dataset(processed_dir: str | Path, columns: list[str] | None = None) -> pl.DataFrame:
+def load_dataset(
+    processed_dir: str | Path,
+    columns: list[str] | None = None,
+    expected_version: str = FEATURE_SCHEMA_VERSION,
+) -> pl.DataFrame:
     processed_dir = Path(processed_dir)
     meta_path = processed_dir / "dataset_meta.json"
     if not meta_path.exists():
         raise FileNotFoundError(f"{meta_path} missing; run `netsentinel features build`")
     meta = json.loads(meta_path.read_text("utf-8"))
-    if meta["feature_schema_version"] != FEATURE_SCHEMA_VERSION:
+    if meta["feature_schema_version"] != expected_version:
         raise ValueError(
             f"dataset built with feature schema {meta['feature_schema_version']}, code expects "
-            f"{FEATURE_SCHEMA_VERSION}; rebuild the dataset"
+            f"{expected_version}; rebuild the dataset"
         )
     return pl.concat(
-        [pl.read_parquet(p, columns=columns) for p in sorted(processed_dir.glob("2018-*.parquet"))],
+        [pl.read_parquet(p, columns=columns) for p in sorted(processed_dir.glob(DAY_GLOB))],
         how="vertical",
     )

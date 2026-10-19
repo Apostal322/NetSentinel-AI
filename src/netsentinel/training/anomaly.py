@@ -16,7 +16,7 @@ import polars as pl
 
 from netsentinel import __version__
 from netsentinel.evaluation.metrics import binary_metrics, threshold_at_fpr
-from netsentinel.features.schema import FEATURE_SCHEMA_VERSION, schema_fingerprint
+from netsentinel.features.schema import schema_fingerprint, schema_version_for
 from netsentinel.ledger import Run
 from netsentinel.models.anomaly import ConditionedAnomalyModel
 from netsentinel.models.service import service_category_expr
@@ -101,8 +101,10 @@ def run_anomaly(cfg: dict[str, Any]) -> list[str]:
                 "model": model,
                 "task": "anomaly",
                 "features": prep.features,
-                "feature_schema_version": FEATURE_SCHEMA_VERSION,
-                "feature_fingerprint": schema_fingerprint(prep.features),
+                "feature_schema_version": schema_version_for(cfg["feature_set"]),
+                "feature_fingerprint": schema_fingerprint(
+                    prep.features, schema_version_for(cfg["feature_set"])
+                ),
                 "netsentinel_version": __version__,
                 "threshold": thr,
                 "threshold_rule": f"val weighted benign FPR <= {cfg.get('target_fpr', 1e-2)}",

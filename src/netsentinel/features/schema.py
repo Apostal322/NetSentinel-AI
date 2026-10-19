@@ -75,6 +75,10 @@ SCALE_INVARIANT_MARKERS = ("_frac_", "_share_", "_surge_")
 
 
 def feature_set(name: str, windows: tuple[int, ...] = DEFAULT_WINDOWS) -> list[str]:
+    if name.startswith("nf_"):  # NetFlow v3 datasets: separate, separately versioned schema
+        from netsentinel.features.nf_schema import nf_feature_set
+
+        return nf_feature_set(name, windows)
     flow = [*raw_flow_columns(), *DERIVED]
     ctx = context_feature_names(windows)
     if name == "flow":
@@ -96,7 +100,17 @@ def feature_set(name: str, windows: tuple[int, ...] = DEFAULT_WINDOWS) -> list[s
     raise ValueError(f"unknown feature set {name!r}; choose from {FEATURE_SETS}")
 
 
-def schema_fingerprint(columns: list[str]) -> str:
-    """Stable hash of an ordered feature list; stored with every model artifact."""
-    payload = json.dumps({"version": FEATURE_SCHEMA_VERSION, "columns": columns})
+def schema_version_for(feature_set_name: str) -> str:
+    """Schema version that governs a feature set (NetFlow sets have their own version)."""
+    if feature_set_name.startswith("nf_"):
+        from netsentinel.features.nf_schema import NF_FEATURE_SCHEMA_VERSION
+
+        return NF_FEATURE_SCHEMA_VERSION
+    return FEATURE_SCHEMA_VERSION
+
+
+def schema_fingerprint(columns: list[str], version: str | None = None) -> str:
+    """Stable hash of an ordered feature list; stored with every model artifact.
+    `version` defaults to the IDS2018 schema so pre-existing fingerprints stay valid."""
+    payload = json.dumps({"version": version or FEATURE_SCHEMA_VERSION, "columns": columns})
     return hashlib.sha256(payload.encode()).hexdigest()[:16]

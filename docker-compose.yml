@@ -1,0 +1,24 @@
+# Local, detection-only deployment. Ports are published on 127.0.0.1 only.
+# Provide a trained bundle:  export NETSENTINEL_BUNDLE=./models/bundle-<id>
+# Admin endpoints (/replay/*, /analyze) need NETSENTINEL_ADMIN_TOKEN (unset = disabled).
+services:
+  api:
+    build: .
+    image: netsentinel:dev
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      NETSENTINEL_ADMIN_TOKEN: ${NETSENTINEL_ADMIN_TOKEN:-}
+    volumes:
+      - ${NETSENTINEL_BUNDLE:-./models/bundle}:/models/bundle:ro
+      - netsentinel-artifacts:/app/artifacts
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    restart: unless-stopped
+
+volumes:
+  netsentinel-artifacts:

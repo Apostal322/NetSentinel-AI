@@ -1,0 +1,17 @@
+.git
+.venv
+data
+runs
+models
+artifacts
+reports
+notebooks
+docs
+tests
+dashboard
+**/__pycache__
+**/*.pyc
+.pytest_cache
+.ruff_cache
+*.log
+.env

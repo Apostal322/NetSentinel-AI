@@ -55,6 +55,21 @@ def _cmd_data_ingest(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_data_ingest_nf(args: argparse.Namespace) -> int:
+    from netsentinel.config import load_yaml
+    from netsentinel.data.nf_v3 import ingest_nf_zip
+
+    cfg = load_yaml(args.config)["datasets"]
+    if args.dataset not in cfg:
+        log.error("unknown dataset %s; choose from %s", args.dataset, sorted(cfg))
+        return 2
+    d = cfg[args.dataset]
+    rep = ingest_nf_zip(d["archive"], d["out_dir"], float(d["utc_offset_hours"]),
+                        d.get("family_map") or {}, verify=not args.no_verify)  # fmt: skip
+    print(json.dumps({k: v for k, v in rep.as_dict().items() if k != "columns"}, indent=2))
+    return 0
+
+
 def _cmd_data_eda(args: argparse.Namespace) -> int:
     from netsentinel.data.eda import run_eda
 
@@ -70,6 +85,7 @@ def _cmd_features_build(args: argparse.Namespace) -> int:
         benign_per_day=args.benign_per_day,
         attack_cap_per_label_day=args.attack_cap,
         seed=args.seed,
+        schema=args.schema,
     )
     meta = build_dataset(args.interim, args.out, cfg)
     total = sum(d["rows_sampled"] for d in meta["days"])
@@ -143,6 +159,19 @@ def _cmd_replay(args: argparse.Namespace) -> int:
     return 0 if status.state == "finished" else 1
 
 
+def _cmd_analyze(args: argparse.Namespace) -> int:
+    from netsentinel.streaming.offline import analyze_capture
+
+    summary = analyze_capture(args.capture, args.bundle, args.events_db, args.utc_offset,
+                              args.kind)  # fmt: skip
+    text = json.dumps(summary, indent=2, default=str)
+    if args.out:
+        Path(args.out).write_text(text, encoding="utf-8")
+    print(json.dumps({k: summary[k] for k in ("source", "kind", "flows", "verdicts", "parse")
+                      if k in summary}, indent=2, default=str))  # fmt: skip
+    return 0
+
+
 def _cmd_serve(args: argparse.Namespace) -> int:
     import uvicorn
 
@@ -192,6 +221,12 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--force", action="store_true")
     p.set_defaults(func=_cmd_data_ingest)
 
+    p = data_sub.add_parser("ingest-nf", help="NetFlow v3 zip -> typed per-day Parquet")
+    p.add_argument("dataset", help="key in the ingest config, e.g. nf-unsw-nb15-v3")
+    p.add_argument("--config", default="configs/datasets/nf_v3_ingest.yaml")
+    p.add_argument("--no-verify", action="store_true", help="skip the BagIt SHA-1 check")
+    p.set_defaults(func=_cmd_data_ingest_nf)
+
     p = data_sub.add_parser("eda", help="profile ingested days: labels, quality, leakage")
     p.add_argument("--interim", default="data/interim/ids2018")
     p.add_argument("--out", default="reports/eda")
@@ -207,6 +242,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--benign-per-day", type=int, default=50_000)
     p.add_argument("--attack-cap", type=int, default=25_000)
     p.add_argument("--seed", type=int, default=42)
+    p.add_argument("--schema", choices=("cic", "nf"), default="cic")
     p.set_defaults(func=_cmd_features_build)
 
     train = sub.add_parser("train", help="model training")
@@ -243,6 +279,15 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--speed", type=float, default=0.0)
     p.add_argument("--events-db", default="artifacts/events.sqlite")
     p.set_defaults(func=_cmd_replay)
+
+    p = sub.add_parser("analyze", help="offline analysis of a PCAP/pcapng file or Zeek conn.log")
+    p.add_argument("capture")
+    p.add_argument("--bundle", required=True)
+    p.add_argument("--kind", choices=("auto", "pcap", "zeek"), default="auto")
+    p.add_argument("--utc-offset", type=float, default=0.0, help="local time = UTC + offset h")
+    p.add_argument("--events-db", default="artifacts/events.sqlite")
+    p.add_argument("--out", default=None, help="write the full JSON summary here")
+    p.set_defaults(func=_cmd_analyze)
 
     p = sub.add_parser("serve", help="run the API (localhost only by default)")
     p.add_argument("--bundle", required=True)

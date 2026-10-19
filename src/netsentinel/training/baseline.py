@@ -15,7 +15,7 @@ import polars as pl
 
 from netsentinel import __version__
 from netsentinel.evaluation.metrics import binary_metrics, multiclass_metrics, threshold_at_fpr
-from netsentinel.features.schema import FEATURE_SCHEMA_VERSION, schema_fingerprint
+from netsentinel.features.schema import schema_fingerprint, schema_version_for
 from netsentinel.ledger import Run
 from netsentinel.models.baselines import fit_weighted, make_model
 from netsentinel.seed import set_seed
@@ -117,8 +117,10 @@ def run_baselines(cfg: dict[str, Any]) -> list[str]:
             "model": model,
             "task": task,
             "features": prep.features,
-            "feature_schema_version": FEATURE_SCHEMA_VERSION,
-            "feature_fingerprint": schema_fingerprint(prep.features),
+            "feature_schema_version": schema_version_for(cfg["feature_set"]),
+            "feature_fingerprint": schema_fingerprint(
+                prep.features, schema_version_for(cfg["feature_set"])
+            ),
             "netsentinel_version": __version__,
             "run_id": run.id,
             "config": cfg,

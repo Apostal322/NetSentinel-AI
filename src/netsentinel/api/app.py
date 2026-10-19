@@ -4,8 +4,11 @@ Security posture (see docs/security/threat_model.md):
 * binds to 127.0.0.1 by default (`netsentinel serve`); not intended for internet exposure;
 * request bodies are bounded (batch <= MAX_BATCH flows, unknown fields rejected);
 * replay only reads `.parquet` files inside the configured replay directory (no arbitrary
-  paths, no uploads); starting/cancelling a replay requires the admin token
+  paths); starting/cancelling a replay requires the admin token
   (env NETSENTINEL_ADMIN_TOKEN; if unset, admin endpoints are disabled);
+* `POST /analyze` (admin token) accepts one PCAP/pcapng/Zeek conn.log upload, size-capped
+  while streaming (MAX_UPLOAD_BYTES), stored under a random temp name, parsed only by the
+  defensive pure-Python readers (no external tools, no shell), and deleted afterwards;
 * detection only: no endpoint blocks traffic or changes network state.
 """
 
@@ -19,7 +22,7 @@ from pathlib import Path
 from typing import Annotated
 
 import polars as pl
-from fastapi import Depends, FastAPI, Header, HTTPException, Query
+from fastapi import Depends, FastAPI, Header, HTTPException, Query, UploadFile
 from pydantic import BaseModel, ConfigDict, Field
 
 from netsentinel import __version__
@@ -27,12 +30,14 @@ from netsentinel.inference.schema import FlowRecord, Prediction
 
 log = logging.getLogger(__name__)
 MAX_BATCH = 1000
+MAX_UPLOAD_BYTES = 50 * 1024 * 1024
 
 
 class Settings(BaseModel):
     bundle_dir: Path
     events_db: Path = Path("artifacts/events.sqlite")
     replay_dir: Path = Path("data/interim/ids2018")
+    max_upload_bytes: int = MAX_UPLOAD_BYTES
 
 
 class BatchRequest(BaseModel):
@@ -154,6 +159,36 @@ def create_app(settings: Settings) -> FastAPI:
         except RuntimeError as exc:
             raise HTTPException(409, str(exc)) from exc
         return st.as_dict()
+
+    @app.post("/analyze", dependencies=[Depends(admin)])
+    async def analyze(file: UploadFile, utc_offset: float = Query(0.0, ge=-14, le=14)) -> dict:
+        """Offline analysis of one uploaded capture (PCAP/pcapng or Zeek conn.log)."""
+        import tempfile
+
+        from netsentinel.streaming.offline import analyze_capture
+
+        if state["engine"] is None:
+            raise HTTPException(503, "model bundle not loaded")
+        tmp = Path(tempfile.mkdtemp(prefix="netsentinel-upload-")) / "capture.bin"
+        size = 0
+        try:
+            with tmp.open("wb") as fh:
+                while chunk := await file.read(1 << 20):
+                    size += len(chunk)
+                    if size > settings.max_upload_bytes:
+                        raise HTTPException(
+                            413, f"upload exceeds {settings.max_upload_bytes} bytes"
+                        )
+                    fh.write(chunk)
+            name = os.path.basename(file.filename or "upload")[:128]
+            try:
+                return analyze_capture(tmp, settings.bundle_dir, settings.events_db, utc_offset,
+                                       source_name=name)  # fmt: skip
+            except ValueError as exc:
+                raise HTTPException(422, str(exc)) from exc
+        finally:
+            tmp.unlink(missing_ok=True)
+            tmp.parent.rmdir()
 
     @app.post("/replay/cancel", dependencies=[Depends(admin)])
     def replay_cancel() -> dict:

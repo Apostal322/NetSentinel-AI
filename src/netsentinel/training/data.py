@@ -83,7 +83,11 @@ def prepare(cfg: dict[str, Any]) -> Prepared:
     cols = list(dict.fromkeys(META_COLS + [c for c in features if c not in
                                            ("proto_tcp", "proto_udp", "proto_other",
                                             "port_class")]))  # fmt: skip
-    df = load_dataset(cfg["data"]["processed_dir"], columns=cols)
+    if cfg["feature_set"].startswith("nf_"):
+        from netsentinel.features.nf_schema import NF_FEATURE_SCHEMA_VERSION as expected
+    else:
+        from netsentinel.features.schema import FEATURE_SCHEMA_VERSION as expected
+    df = load_dataset(cfg["data"]["processed_dir"], columns=cols, expected_version=expected)
     days = cfg["data"].get("days")
     if days:
         df = df.filter(pl.col("day").is_in(list(days)))

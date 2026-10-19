@@ -21,7 +21,7 @@ import numpy as np
 import polars as pl
 
 from netsentinel import __version__
-from netsentinel.features.schema import FEATURE_SCHEMA_VERSION
+from netsentinel.features.schema import schema_version_for
 from netsentinel.ledger import file_sha256, git_sha
 from netsentinel.models.anomaly import RobustZ
 from netsentinel.models.decision import DecisionThresholds
@@ -35,7 +35,7 @@ def _load_run(run_dir: str | Path, expect_task: set[str]) -> dict[str, Any]:
     art = joblib.load(run_dir / "model.joblib")
     if art["task"] not in expect_task:
         raise ValueError(f"{run_dir}: task {art['task']!r}, expected one of {sorted(expect_task)}")
-    if art["feature_schema_version"] != FEATURE_SCHEMA_VERSION:
+    if art["feature_schema_version"] != schema_version_for(art["config"]["feature_set"]):
         raise ValueError(f"{run_dir}: feature schema {art['feature_schema_version']} != code")
     art["source_run"] = run_dir.name
     return art
@@ -97,7 +97,7 @@ def build_bundle(
         "created_utc": datetime.now(UTC).isoformat(timespec="seconds"),
         "netsentinel_version": __version__,
         "git": git_sha(),
-        "feature_schema_version": FEATURE_SCHEMA_VERSION,
+        "feature_schema_version": threat["feature_schema_version"],
         "sha256": {"bundle.joblib": file_sha256(out / "bundle.joblib")},
         "components": {
             "threat": {
@@ -128,10 +128,11 @@ def load_bundle(path: str | Path) -> tuple[dict[str, Any], dict[str, Any]]:
     actual = file_sha256(path / "bundle.joblib")
     if actual != manifest["sha256"]["bundle.joblib"]:
         raise RuntimeError(f"{path}: bundle.joblib hash mismatch (tampered or corrupted)")
-    if manifest["feature_schema_version"] != FEATURE_SCHEMA_VERSION:
+    expected = schema_version_for(manifest["components"]["threat"]["features"])
+    if manifest["feature_schema_version"] != expected:
         raise RuntimeError(
             f"{path}: built for feature schema {manifest['feature_schema_version']}, "
-            f"code has {FEATURE_SCHEMA_VERSION}"
+            f"code has {expected}"
         )
     # joblib/pickle executes code on load: only bundles whose hash matched a manifest written
     # by `build_bundle` in a trusted location should ever be loaded (see docs/security).

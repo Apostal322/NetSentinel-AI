@@ -19,7 +19,7 @@ import numpy as np
 import polars as pl
 
 from netsentinel.evaluation.metrics import binary_metrics, threshold_at_fpr
-from netsentinel.features.schema import FEATURE_SCHEMA_VERSION, schema_fingerprint
+from netsentinel.features.schema import schema_fingerprint, schema_version_for
 from netsentinel.ledger import Run
 from netsentinel.models.baselines import FiniteSignedLog
 from netsentinel.seed import set_seed
@@ -167,8 +167,8 @@ def run_temporal(cfg: dict[str, Any]) -> list[str]:
         run.save_json("history.json", history)
         torch.save({"state_dict": model.state_dict(), "arch": arch, "scaler": scaler,
                     "features": prep.features, "threshold": thr,
-                    "feature_schema_version": FEATURE_SCHEMA_VERSION,
-                    "feature_fingerprint": schema_fingerprint(prep.features),
+                    "feature_schema_version": (sv := schema_version_for(cfg["feature_set"])),
+                    "feature_fingerprint": schema_fingerprint(prep.features, sv),
                     "sequence_length": tcfg["length"]}, run.dir / "model.pt")  # fmt: skip
         run.log_metrics(metrics, prefix="val/")
         if un is not None:

@@ -13,7 +13,7 @@ import numpy as np
 import polars as pl
 
 from netsentinel.evaluation.metrics import binary_metrics, grouped_bootstrap_ci, multiclass_metrics
-from netsentinel.features.schema import FEATURE_SCHEMA_VERSION, schema_fingerprint
+from netsentinel.features.schema import schema_fingerprint, schema_version_for
 from netsentinel.training.data import prepare
 
 log = logging.getLogger(__name__)
@@ -25,9 +25,10 @@ def evaluate_final(run_dir: str | Path, n_boot: int = 200) -> dict:
     if out_path.exists():
         raise RuntimeError(f"{out_path} exists: the test split of this run was already used")
     art = joblib.load(run_dir / "model.joblib")
-    if art["feature_schema_version"] != FEATURE_SCHEMA_VERSION:
+    version = schema_version_for(art["config"]["feature_set"])
+    if art["feature_schema_version"] != version:
         raise ValueError("model was trained with a different feature schema version")
-    if art["feature_fingerprint"] != schema_fingerprint(art["features"]):
+    if art["feature_fingerprint"] != schema_fingerprint(art["features"], version):
         raise ValueError("feature fingerprint mismatch; artifact may be corrupted")
     cfg = art["config"]
     prep = prepare(cfg)
