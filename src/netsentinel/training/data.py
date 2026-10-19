@@ -39,6 +39,24 @@ class Prepared:
         return X, y, df["sample_weight"].to_numpy()
 
 
+# Label cleaning v1 (see docs/datasets/cse_cic_ids2018.md, "Label quality"): attack labels that
+# by definition are HTTP over TCP/80 but sit on other protocols/ports are documented labelling
+# errors (e.g. 151/362 web brute-force flows on 2018-02-23 are UDP/500, DHCP, protocol 0).
+HTTP_ATTACKS = ("web_bruteforce", "web_xss", "web_sql_injection", "ddos_loic_http")
+# FTP-BruteForce (02-14) and DoS-SlowHTTPTest (02-16) share 52 distinct feature vectors covering
+# >99.99 % of both classes: both are failed connections to closed port 21. For attack-type tasks
+# they are one class.
+MERGED_LABELS = {"ftp_bruteforce": "port21_failed_conn", "dos_slowhttptest": "port21_failed_conn"}
+
+
+def clean_labels(df: pl.DataFrame) -> tuple[pl.DataFrame, dict[str, int]]:
+    bad = pl.col("label").is_in(list(HTTP_ATTACKS)) & ~(
+        (pl.col("protocol") == 6) & (pl.col("dst_port") == 80)
+    )
+    dropped = df.filter(bad).group_by("label").agg(pl.len()).to_dicts()
+    return df.filter(~bad), {r["label"]: int(r["len"]) for r in dropped}
+
+
 def split_config(cfg: dict[str, Any]) -> SplitConfig:
     s = dict(cfg.get("split", {}))
     if "fractions" in s:
@@ -61,13 +79,19 @@ def prepare(cfg: dict[str, Any]) -> Prepared:
     labels = cfg["data"].get("drop_labels") or []
     if labels:
         df = df.filter(~pl.col("label").is_in(list(labels)))
+    cleaning: dict[str, int] = {}
+    if cfg["data"].get("clean_labels", True):
+        df, cleaning = clean_labels(df)
+        log.info("label cleaning v1 dropped (sampled rows): %s", cleaning)
+    if cfg.get("task") in ("label", "attack_type"):
+        df = df.with_columns(pl.col("label").replace(MERGED_LABELS))
     df = add_derived(df)
     scfg = split_config(cfg)
     df = df.join(make_split(df, scfg), on=["day", "row_id"], how="left")
     rep = leakage_report(
         df, block_minutes=scfg.block_minutes if scfg.protocol == "blocked" else None
     )
-    if scfg.protocol in ("blocked", "chronological") and not rep.ok(scfg.purge_seconds):
+    if scfg.protocol in ("blocked", "chronological", "episode") and not rep.ok(scfg.purge_seconds):
         raise RuntimeError(f"leakage check failed: {rep}")
     coverage = split_coverage(df)
     kept = df.filter(pl.col("split") != "purged")
@@ -75,4 +99,5 @@ def prepare(cfg: dict[str, Any]) -> Prepared:
         "prepared %d rows (%d purged), %d features, protocol=%s",
         kept.height, df.height - kept.height, len(features), scfg.protocol,
     )  # fmt: skip
-    return Prepared(kept, features, scfg, asdict(rep), coverage)
+    leakage = {**asdict(rep), "label_cleaning_dropped_sampled_rows": cleaning}
+    return Prepared(kept, features, scfg, leakage, coverage)

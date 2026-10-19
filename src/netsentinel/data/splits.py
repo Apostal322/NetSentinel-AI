@@ -11,6 +11,16 @@ Protocols (all deterministic given a seed):
 * `chronological`: per day, the first `train` fraction of time is train, then val, then test,
                   with purge gaps. Strictest in time, but attacks confined to one part of a day
                   may end up entirely in one partition (reported by `split_coverage`).
+* `episode`     : DEFAULT. Attack episodes (per day: first..last second of each attack label,
+                  overlapping ones merged) are cut chronologically into train | val | test by
+                  `fractions`, so models must generalise forward in time within an attack.
+                  Episodes shorter than `min_episode_seconds` go wholly to train (they are known
+                  classes but only evaluated in leave-out protocols). Benign-only stretches are
+                  cut into `block_minutes` blocks with a cyclic train/val/test pattern. Rows
+                  within `purge_seconds` of any boundary between different partitions are
+                  dropped, so rows of different partitions are >= 2 * purge_seconds apart
+                  (300 s = the longest context window with the default purge of 150 s).
+                  Episode boundaries come from labels, i.e. the published attack schedule.
 * `leave_day_out`: whole capture days held out (used for open-set / unseen-scenario tests).
 
 Splits operate on (day, row_id, event_sec); they never look at features.
@@ -34,10 +44,11 @@ class SplitConfig:
     purge_seconds: int = 300
     test_days: tuple[str, ...] = ()
     val_days: tuple[str, ...] = ()
+    min_episode_seconds: int = 900
     seed: int = 42
 
     def __post_init__(self) -> None:
-        if self.protocol not in {"random", "blocked", "chronological", "leave_day_out"}:
+        if self.protocol not in {"random", "blocked", "chronological", "episode", "leave_day_out"}:
             raise ValueError(f"unknown split protocol {self.protocol!r}")
         if len(self.fractions) != 3 or abs(sum(self.fractions) - 1) > 1e-9:
             raise ValueError("fractions must be three numbers summing to 1")
@@ -110,6 +121,90 @@ def _time_partitioned(df: pl.DataFrame, cfg: SplitConfig, chronological: bool) -
     return pl.Series("split", out.astype(str))
 
 
+def attack_episodes(sec: np.ndarray, labels: np.ndarray) -> list[tuple[int, int]]:
+    """Per-day attack episodes: [first, last] event second of each attack label, with
+    overlapping intervals merged (e.g. concurrent web attacks form one episode)."""
+    spans = sorted(
+        (int(sec[labels == lab].min()), int(sec[labels == lab].max()))
+        for lab in np.unique(labels)
+        if lab != "benign"
+    )
+    merged: list[list[int]] = []
+    for a, b in spans:
+        if merged and a <= merged[-1][1]:
+            merged[-1][1] = max(merged[-1][1], b)
+        else:
+            merged.append([a, b])
+    return [(a, b) for a, b in merged]
+
+
+def _episode_segments(
+    s0: int, s1: int, episodes: list[tuple[int, int]], cfg: SplitConfig, phase: int
+) -> list[tuple[int, int, str]]:
+    """Cover [s0, s1) with (start, end, partition) segments."""
+    f_tr, f_va, _ = cfg.fractions
+    width = cfg.block_minutes * 60
+    pattern = _cyclic_pattern(cfg.fractions)
+    segs: list[tuple[int, int, str]] = []
+    k = phase
+
+    def benign_blocks(a: int, b: int) -> None:
+        nonlocal k
+        t = a
+        while t < b:
+            segs.append((t, min(t + width, b), pattern[k % len(pattern)]))
+            k += 1
+            t += width
+
+    cursor = s0
+    for a, b in episodes:
+        b = b + 1
+        benign_blocks(cursor, a)
+        if b - a >= cfg.min_episode_seconds:
+            c1, c2 = a + int((b - a) * f_tr), a + int((b - a) * (f_tr + f_va))
+            segs += [(a, c1, "train"), (c1, c2, "val"), (c2, b, "test")]
+        else:
+            segs.append((a, b, "train"))  # too short to split; evaluated only in leave-out tests
+        cursor = b
+    benign_blocks(cursor, s1)
+    return segs
+
+
+def _cyclic_pattern(fractions: tuple[float, float, float]) -> list[str]:
+    """Smallest train/val/test cycle (<= 10 blocks) matching the fractions, val and test apart."""
+    n = 10
+    counts = np.round(np.array(fractions) * n).astype(int)
+    counts[0] += n - counts.sum()
+    pattern = ["train"] * counts[0]
+    # Insert val and test spread out over the cycle.
+    for name, c in (("val", counts[1]), ("test", counts[2])):
+        for i in range(c):
+            pos = int((i + 0.5) * len(pattern) / c) + (1 if name == "test" else 0)
+            pattern.insert(min(pos, len(pattern)), name)
+    return pattern
+
+
+def _episodic(df: pl.DataFrame, cfg: SplitConfig) -> pl.Series:
+    rng = np.random.default_rng(cfg.seed)
+    out = np.empty(df.height, dtype=object)
+    days = df["day"].to_numpy()
+    secs = df["event_sec"].to_numpy()
+    labels = df["label"].to_numpy()
+    for day in sorted(np.unique(days)):
+        idx = np.flatnonzero(days == day)
+        sec = secs[idx]
+        s0, s1 = int(sec.min()), int(sec.max()) + 1
+        episodes = attack_episodes(sec, labels[idx])
+        segs = _episode_segments(s0, s1, episodes, cfg, phase=int(rng.integers(0, 10)))
+        starts = np.array([s for s, _, _ in segs])
+        names = np.array([p for _, _, p in segs], dtype=object)
+        part = names[np.searchsorted(starts, sec, side="right") - 1]
+        boundaries = [(segs[i][0], names[i - 1], names[i]) for i in range(1, len(segs))]
+        purged = _purge_mask(sec, part, boundaries, cfg.purge_seconds)
+        out[idx] = np.where(purged, "purged", part)
+    return pl.Series("split", out.astype(str))
+
+
 def _leave_day_out(df: pl.DataFrame, cfg: SplitConfig) -> pl.Series:
     if not cfg.test_days:
         raise ValueError("leave_day_out needs test_days")
@@ -137,6 +232,8 @@ def make_split(df: pl.DataFrame, cfg: SplitConfig) -> pl.DataFrame:
         split = _random(df, cfg)
     elif cfg.protocol == "leave_day_out":
         split = _leave_day_out(df, cfg)
+    elif cfg.protocol == "episode":
+        split = _episodic(df, cfg)
     else:
         split = _time_partitioned(df, cfg, chronological=cfg.protocol == "chronological")
     return df.select("day", "row_id").with_columns(split)

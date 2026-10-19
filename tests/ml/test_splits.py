@@ -84,6 +84,50 @@ def test_exact_duplicate_detection():
     assert rep.exact_feature_duplicates_train_test > 0  # rounded normals collide by design
 
 
+def _episode_frame() -> pl.DataFrame:
+    rng = np.random.default_rng(5)
+    t0 = 1_518_595_200
+    n_b = 6000
+    benign = rng.integers(0, 10 * 3600, size=n_b)
+    long_atk = rng.integers(2 * 3600, 3 * 3600, size=3000)  # 60-minute attack
+    short_atk = rng.integers(6 * 3600, 6 * 3600 + 200, size=500)  # 200-second attack
+    sec = np.r_[benign, long_atk, short_atk] + t0
+    labels = np.r_[["benign"] * n_b, ["ddos_hoic"] * 3000, ["dos_hulk"] * 500]
+    return pl.DataFrame(
+        {
+            "day": ["2018-02-21"] * len(sec),
+            "row_id": np.arange(len(sec), dtype=np.uint32),
+            "event_sec": sec,
+            "label": labels,
+        }
+    )
+
+
+def test_episode_protocol_covers_long_episodes_forward_in_time():
+    df = _episode_frame()
+    cfg = SplitConfig(protocol="episode", block_minutes=30, purge_seconds=150)
+    out = df.join(make_split(df, cfg), on=["day", "row_id"])
+    hoic = out.filter(pl.col("label") == "ddos_hoic")
+    t = {p: hoic.filter(pl.col("split") == p)["event_sec"] for p in ("train", "val", "test")}
+    assert all(len(v) > 0 for v in t.values())
+    assert t["train"].max() < t["val"].min() and t["val"].max() < t["test"].min()
+    hulk = out.filter(pl.col("label") == "dos_hulk")
+    assert set(hulk["split"]) <= {"train", "purged"}  # too short to split
+    rep = leakage_report(out)
+    assert rep.duplicate_ids_across_parts == 0
+    assert rep.min_boundary_gap_seconds >= 2 * 150 - 1
+    # benign appears in every partition
+    assert set(out.filter(pl.col("label") == "benign")["split"]) >= {"train", "val", "test"}
+
+
+def test_attack_episodes_merge_overlaps():
+    from netsentinel.data.splits import attack_episodes
+
+    sec = np.array([10, 20, 15, 40, 100, 120])
+    lab = np.array(["a", "a", "b", "b", "c", "benign"])
+    assert attack_episodes(sec, lab) == [(10, 40), (100, 100)]
+
+
 def test_config_validation():
     with pytest.raises(ValueError):
         SplitConfig(protocol="kfold")

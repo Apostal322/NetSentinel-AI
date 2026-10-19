@@ -1,0 +1,23 @@
+# Experiment 3 / H2: global vs service-conditioned normal-behaviour models.
+experiment: anomaly
+seed: 42
+feature_set: flow
+target_fpr: 0.01
+max_benign_train_rows: 100000
+reference_fraction: 0.2
+variants:
+  - {kind: robust_z, conditioned: false}
+  - {kind: robust_z, conditioned: true, min_rows: 2000}
+  - {kind: iforest, conditioned: false}
+  - {kind: iforest, conditioned: true, min_rows: 2000}
+data:
+  processed_dir: data/processed/ids2018_v1
+  days: null
+  drop_labels: [infiltration]
+  clean_labels: true
+split:
+  protocol: episode
+  block_minutes: 30         # benign-only stretches
+  purge_seconds: 150
+  fractions: [0.6, 0.2, 0.2]
+runs_dir: runs

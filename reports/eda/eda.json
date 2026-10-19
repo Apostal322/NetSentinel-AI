@@ -2,37 +2,28 @@
   "days": [
     {
       "day": "2018-02-14",
-      "rows": 1048575,
-      "excel_truncated": true,
-      "ts_min": "1970-01-05 03:01:17",
-      "ts_max": "2018-02-14 12:59:59",
-      "rows_off_day": 5,
-      "negative_duration": 5,
+      "rows": 1048570,
+      "excel_truncated": false,
+      "ts_min": "2018-02-14 08:28:20",
+      "ts_max": "2018-02-14 17:30:48",
+      "rows_off_day": 0,
+      "negative_duration": 0,
       "has_ips": false,
       "nonfinite": {
         "nan::flow_byts_per_s": 2277,
         "inf::flow_byts_per_s": 1547,
         "inf::flow_pkts_per_s": 3824,
-        "neg::flow_duration": 5,
-        "neg::flow_pkts_per_s": 5,
-        "neg::flow_iat_mean": 5,
-        "neg::flow_iat_max": 2,
-        "neg::flow_iat_min": 5,
-        "neg::fwd_iat_tot": 5,
-        "neg::fwd_iat_mean": 5,
-        "neg::fwd_iat_max": 2,
-        "neg::fwd_iat_min": 5,
-        "neg::init_fwd_win_byts": 219266,
-        "neg::init_bwd_win_byts": 347370
+        "neg::init_fwd_win_byts": 219261,
+        "neg::init_bwd_win_byts": 347365
       },
       "labels": [
         {
           "label": "benign",
-          "rows": 667626,
-          "first": "1970-01-05 03:01:17",
-          "last": "2018-02-14 12:59:59",
+          "rows": 667621,
+          "first": "2018-02-14 08:28:20",
+          "last": "2018-02-14 17:30:48",
           "top_dst_port": 53,
-          "top_port_share": 0.2968158819458799,
+          "top_port_share": 0.2968181048828602,
           "top_protocol": 6
         },
         {
@@ -47,8 +38,8 @@
         {
           "label": "ssh_bruteforce",
           "rows": 187589,
-          "first": "2018-02-14 02:01:21",
-          "last": "2018-02-14 03:32:30",
+          "first": "2018-02-14 14:01:21",
+          "last": "2018-02-14 15:32:30",
           "top_dst_port": 22,
           "top_port_share": 0.9998400759106344,
           "top_protocol": 6
@@ -63,8 +54,8 @@
       "day": "2018-02-15",
       "rows": 1048575,
       "excel_truncated": true,
-      "ts_min": "2018-02-15 01:00:00",
-      "ts_max": "2018-02-15 12:59:59",
+      "ts_min": "2018-02-15 08:23:27",
+      "ts_max": "2018-02-15 17:54:44",
       "rows_off_day": 0,
       "negative_duration": 0,
       "has_ips": false,
@@ -79,8 +70,8 @@
         {
           "label": "benign",
           "rows": 996077,
-          "first": "2018-02-15 01:00:00",
-          "last": "2018-02-15 12:59:59",
+          "first": "2018-02-15 08:23:27",
+          "last": "2018-02-15 17:54:44",
           "top_dst_port": 53,
           "top_port_share": 0.3344018584908596,
           "top_protocol": 6
@@ -113,8 +104,8 @@
       "day": "2018-02-16",
       "rows": 1048574,
       "excel_truncated": false,
-      "ts_min": "2018-02-16 01:00:32",
-      "ts_max": "2018-02-16 12:58:24",
+      "ts_min": "2018-02-16 08:26:55",
+      "ts_max": "2018-02-16 13:48:44",
       "rows_off_day": 0,
       "negative_duration": 0,
       "has_ips": false,
@@ -126,8 +117,8 @@
         {
           "label": "dos_hulk",
           "rows": 461912,
-          "first": "2018-02-16 01:45:27",
-          "last": "2018-02-16 01:48:44",
+          "first": "2018-02-16 13:45:27",
+          "last": "2018-02-16 13:48:44",
           "top_dst_port": 80,
           "top_port_share": 1.0,
           "top_protocol": 6
@@ -135,8 +126,8 @@
         {
           "label": "benign",
           "rows": 446772,
-          "first": "2018-02-16 01:00:32",
-          "last": "2018-02-16 12:58:24",
+          "first": "2018-02-16 08:26:55",
+          "last": "2018-02-16 13:48:43",
           "top_dst_port": 0,
           "top_port_share": 0.0003626010582579034,
           "top_protocol": 6
@@ -160,8 +151,8 @@
       "day": "2018-02-20",
       "rows": 7948748,
       "excel_truncated": false,
-      "ts_min": "2018-02-20 01:00:00",
-      "ts_max": "2018-02-20 12:59:59",
+      "ts_min": "2018-02-20 08:00:00",
+      "ts_max": "2018-02-20 19:59:59",
       "rows_off_day": 0,
       "negative_duration": 0,
       "has_ips": true,
@@ -176,8 +167,8 @@
         {
           "label": "benign",
           "rows": 7372557,
-          "first": "2018-02-20 01:00:00",
-          "last": "2018-02-20 12:59:59",
+          "first": "2018-02-20 08:00:00",
+          "last": "2018-02-20 19:59:59",
           "top_dst_port": 53,
           "top_port_share": 0.33330539187421676,
           "top_protocol": 6
@@ -185,8 +176,8 @@
         {
           "label": "ddos_loic_http",
           "rows": 576191,
-          "first": "2018-02-20 01:14:17",
-          "last": "2018-02-20 11:16:48",
+          "first": "2018-02-20 10:13:54",
+          "last": "2018-02-20 13:29:15",
           "top_dst_port": 80,
           "top_port_share": 1.0,
           "top_protocol": 6
@@ -201,8 +192,8 @@
       "day": "2018-02-21",
       "rows": 1048575,
       "excel_truncated": true,
-      "ts_min": "2018-02-21 01:55:46",
-      "ts_max": "2018-02-21 10:43:21",
+      "ts_min": "2018-02-21 08:32:54",
+      "ts_max": "2018-02-21 14:33:29",
       "rows_off_day": 0,
       "negative_duration": 0,
       "has_ips": false,
@@ -214,8 +205,8 @@
         {
           "label": "ddos_hoic",
           "rows": 686012,
-          "first": "2018-02-21 02:11:08",
-          "last": "2018-02-21 02:33:29",
+          "first": "2018-02-21 14:11:08",
+          "last": "2018-02-21 14:33:29",
           "top_dst_port": 80,
           "top_port_share": 1.0,
           "top_protocol": 6
@@ -223,8 +214,8 @@
         {
           "label": "benign",
           "rows": 360833,
-          "first": "2018-02-21 01:55:46",
-          "last": "2018-02-21 10:43:21",
+          "first": "2018-02-21 08:32:54",
+          "last": "2018-02-21 14:33:29",
           "top_dst_port": 80,
           "top_port_share": 0.004459126521133045,
           "top_protocol": 6
@@ -246,37 +237,28 @@
     },
     {
       "day": "2018-02-22",
-      "rows": 1048575,
-      "excel_truncated": true,
-      "ts_min": "1970-01-10 03:04:26",
-      "ts_max": "2018-02-22 12:59:59",
-      "rows_off_day": 9,
-      "negative_duration": 9,
+      "rows": 1048566,
+      "excel_truncated": false,
+      "ts_min": "2018-02-22 08:22:17",
+      "ts_max": "2018-02-22 17:30:23",
+      "rows_off_day": 0,
+      "negative_duration": 0,
       "has_ips": false,
       "nonfinite": {
         "nan::flow_byts_per_s": 3569,
         "inf::flow_byts_per_s": 2041,
         "inf::flow_pkts_per_s": 5610,
-        "neg::flow_duration": 9,
-        "neg::flow_pkts_per_s": 9,
-        "neg::flow_iat_mean": 9,
-        "neg::flow_iat_max": 1,
-        "neg::flow_iat_min": 9,
-        "neg::fwd_iat_tot": 9,
-        "neg::fwd_iat_mean": 9,
-        "neg::fwd_iat_max": 1,
-        "neg::fwd_iat_min": 9,
-        "neg::init_fwd_win_byts": 322153,
-        "neg::init_bwd_win_byts": 577969
+        "neg::init_fwd_win_byts": 322144,
+        "neg::init_bwd_win_byts": 577960
       },
       "labels": [
         {
           "label": "benign",
-          "rows": 1048213,
-          "first": "1970-01-10 03:04:26",
-          "last": "2018-02-22 12:59:59",
+          "rows": 1048204,
+          "first": "2018-02-22 08:22:17",
+          "last": "2018-02-22 17:30:23",
           "top_dst_port": 53,
-          "top_port_share": 0.27920756563789995,
+          "top_port_share": 0.2792099629461441,
           "top_protocol": 6
         },
         {
@@ -291,8 +273,8 @@
         {
           "label": "web_xss",
           "rows": 79,
-          "first": "2018-02-22 01:51:39",
-          "last": "2018-02-22 02:28:40",
+          "first": "2018-02-22 13:51:39",
+          "last": "2018-02-22 14:28:40",
           "top_dst_port": 80,
           "top_port_share": 1.0,
           "top_protocol": 6
@@ -300,8 +282,8 @@
         {
           "label": "web_sql_injection",
           "rows": 34,
-          "first": "2018-02-22 01:52:33",
-          "last": "2018-02-22 11:09:45",
+          "first": "2018-02-22 11:09:45",
+          "last": "2018-02-22 16:27:51",
           "top_dst_port": 80,
           "top_port_share": 1.0,
           "top_protocol": 6
@@ -316,8 +298,8 @@
       "day": "2018-02-23",
       "rows": 1048575,
       "excel_truncated": true,
-      "ts_min": "2018-02-23 01:00:00",
-      "ts_max": "2018-02-23 12:59:59",
+      "ts_min": "2018-02-23 08:15:09",
+      "ts_max": "2018-02-23 17:30:46",
       "rows_off_day": 0,
       "negative_duration": 0,
       "has_ips": false,
@@ -334,8 +316,8 @@
         {
           "label": "benign",
           "rows": 1048009,
-          "first": "2018-02-23 01:00:00",
-          "last": "2018-02-23 12:59:59",
+          "first": "2018-02-23 08:15:09",
+          "last": "2018-02-23 17:30:46",
           "top_dst_port": 53,
           "top_port_share": 0.26515421146192447,
           "top_protocol": 6
@@ -352,8 +334,8 @@
         {
           "label": "web_xss",
           "rows": 151,
-          "first": "2018-02-23 01:01:04",
-          "last": "2018-02-23 02:10:05",
+          "first": "2018-02-23 13:01:04",
+          "last": "2018-02-23 14:10:05",
           "top_dst_port": 80,
           "top_port_share": 0.9668874172185431,
           "top_protocol": 6
@@ -361,8 +343,8 @@
         {
           "label": "web_sql_injection",
           "rows": 53,
-          "first": "2018-02-23 03:05:22",
-          "last": "2018-02-23 10:53:21",
+          "first": "2018-02-23 10:22:41",
+          "last": "2018-02-23 15:17:24",
           "top_dst_port": 80,
           "top_port_share": 1.0,
           "top_protocol": 6
@@ -377,8 +359,8 @@
       "day": "2018-02-28",
       "rows": 613071,
       "excel_truncated": false,
-      "ts_min": "2018-02-28 01:00:00",
-      "ts_max": "2018-02-28 12:59:59",
+      "ts_min": "2018-02-28 08:21:58",
+      "ts_max": "2018-02-28 17:50:14",
       "rows_off_day": 0,
       "negative_duration": 0,
       "has_ips": false,
@@ -393,8 +375,8 @@
         {
           "label": "benign",
           "rows": 544200,
-          "first": "2018-02-28 01:00:00",
-          "last": "2018-02-28 12:59:59",
+          "first": "2018-02-28 08:21:58",
+          "last": "2018-02-28 17:50:14",
           "top_dst_port": 53,
           "top_port_share": 0.34458838662256525,
           "top_protocol": 6
@@ -402,8 +384,8 @@
         {
           "label": "infiltration",
           "rows": 68871,
-          "first": "2018-02-28 01:42:00",
-          "last": "2018-02-28 12:04:59",
+          "first": "2018-02-28 10:50:00",
+          "last": "2018-02-28 14:39:59",
           "top_dst_port": 53,
           "top_port_share": 0.3560569760857255,
           "top_protocol": 6
@@ -418,8 +400,8 @@
       "day": "2018-03-01",
       "rows": 331100,
       "excel_truncated": false,
-      "ts_min": "2018-03-01 01:00:00",
-      "ts_max": "2018-03-01 12:59:59",
+      "ts_min": "2018-03-01 08:16:28",
+      "ts_max": "2018-03-01 17:45:28",
       "rows_off_day": 0,
       "negative_duration": 0,
       "has_ips": false,
@@ -434,8 +416,8 @@
         {
           "label": "benign",
           "rows": 238037,
-          "first": "2018-03-01 01:00:00",
-          "last": "2018-03-01 12:59:59",
+          "first": "2018-03-01 08:16:28",
+          "last": "2018-03-01 17:45:28",
           "top_dst_port": 53,
           "top_port_share": 0.34312312791708854,
           "top_protocol": 6
@@ -443,8 +425,8 @@
         {
           "label": "infiltration",
           "rows": 93063,
-          "first": "2018-03-01 02:00:00",
-          "last": "2018-03-01 10:54:59",
+          "first": "2018-03-01 09:57:00",
+          "last": "2018-03-01 15:36:59",
           "top_dst_port": 53,
           "top_port_share": 0.27721006200101006,
           "top_protocol": 6
@@ -459,8 +441,8 @@
       "day": "2018-03-02",
       "rows": 1048575,
       "excel_truncated": true,
-      "ts_min": "2018-03-02 01:00:00",
-      "ts_max": "2018-03-02 12:59:59",
+      "ts_min": "2018-03-02 08:46:33",
+      "ts_max": "2018-03-02 17:30:18",
       "rows_off_day": 0,
       "negative_duration": 0,
       "has_ips": false,
@@ -475,8 +457,8 @@
         {
           "label": "benign",
           "rows": 762384,
-          "first": "2018-03-02 01:00:00",
-          "last": "2018-03-02 12:59:59",
+          "first": "2018-03-02 08:46:33",
+          "last": "2018-03-02 17:30:18",
           "top_dst_port": 53,
           "top_port_share": 0.2530286574744486,
           "top_protocol": 6
@@ -484,8 +466,8 @@
         {
           "label": "bot",
           "rows": 286191,
-          "first": "2018-03-02 01:00:00",
-          "last": "2018-03-02 12:59:59",
+          "first": "2018-03-02 10:13:28",
+          "last": "2018-03-02 15:54:50",
           "top_dst_port": 8080,
           "top_port_share": 0.9840770674130214,
           "top_protocol": 6
@@ -510,353 +492,353 @@
   "univariate_auc": [
     {
       "feature": "fwd_seg_size_min",
-      "auc": 0.7499103031187363,
-      "separation": 0.4998206062374726
+      "auc": 0.7499083469799405,
+      "separation": 0.49981669395988093
     },
     {
       "feature": "pkt_size_avg",
-      "auc": 0.27463538112848024,
-      "separation": 0.4507292377430395
+      "auc": 0.27463241739595196,
+      "separation": 0.4507351652080961
     },
     {
       "feature": "fwd_pkt_len_max",
-      "auc": 0.27570000909590414,
-      "separation": 0.4485999818081917
+      "auc": 0.27569705517364507,
+      "separation": 0.44860588965270987
     },
     {
       "feature": "totlen_fwd_pkts",
-      "auc": 0.2784335443089301,
-      "separation": 0.44313291138213984
+      "auc": 0.2784306118730116,
+      "separation": 0.4431387762539768
     },
     {
       "feature": "subflow_fwd_byts",
-      "auc": 0.2784335443089301,
-      "separation": 0.44313291138213984
+      "auc": 0.2784306118730116,
+      "separation": 0.4431387762539768
     },
     {
       "feature": "pkt_len_mean",
-      "auc": 0.27955094179214246,
-      "separation": 0.4408981164157151
+      "auc": 0.27954801669727636,
+      "separation": 0.4409039666054473
     },
     {
       "feature": "fwd_pkt_len_mean",
-      "auc": 0.28480259539725156,
-      "separation": 0.4303948092054969
+      "auc": 0.2847997130238308,
+      "separation": 0.43040057395233844
     },
     {
       "feature": "fwd_seg_size_avg",
-      "auc": 0.28480259539725156,
-      "separation": 0.4303948092054969
+      "auc": 0.2847997130238308,
+      "separation": 0.43040057395233844
     },
     {
       "feature": "flow_byts_per_s",
-      "auc": 0.28643803522508676,
-      "separation": 0.4271239295498265
+      "auc": 0.28643516426467414,
+      "separation": 0.42712967147065173
     },
     {
       "feature": "pkt_len_max",
-      "auc": 0.2875715254423549,
-      "separation": 0.42485694911529015
+      "auc": 0.28756866339148796,
+      "separation": 0.4248626732170241
     },
     {
       "feature": "pkt_len_std",
-      "auc": 0.29946953744326515,
-      "separation": 0.4010609251134697
+      "auc": 0.2994667768450524,
+      "separation": 0.4010664463098952
     },
     {
       "feature": "pkt_len_var",
-      "auc": 0.29946953996674514,
-      "separation": 0.40106092006650973
+      "auc": 0.29946677936855226,
+      "separation": 0.4010664412628955
     },
     {
       "feature": "bwd_pkt_len_mean",
-      "auc": 0.3031312600946504,
-      "separation": 0.3937374798106992
+      "auc": 0.30312858684344574,
+      "separation": 0.39374282631310853
     },
     {
       "feature": "bwd_seg_size_avg",
-      "auc": 0.3031312600946504,
-      "separation": 0.3937374798106992
+      "auc": 0.30312858684344574,
+      "separation": 0.39374282631310853
     },
     {
       "feature": "bwd_pkt_len_max",
-      "auc": 0.30547177016819144,
-      "separation": 0.3890564596636171
+      "auc": 0.3054691153140414,
+      "separation": 0.38906176937191717
     },
     {
       "feature": "totlen_bwd_pkts",
-      "auc": 0.3086980063504301,
-      "separation": 0.3826039872991398
+      "auc": 0.3086953768553859,
+      "separation": 0.3826092462892282
     },
     {
       "feature": "subflow_bwd_byts",
-      "auc": 0.3086980063504301,
-      "separation": 0.3826039872991398
+      "auc": 0.3086953768553859,
+      "separation": 0.3826092462892282
     },
     {
       "feature": "init_fwd_win_byts",
-      "auc": 0.6855260983398739,
-      "separation": 0.37105219667974776
+      "auc": 0.6855238412151837,
+      "separation": 0.37104768243036745
     },
     {
       "feature": "tot_bwd_pkts",
-      "auc": 0.33645364041517223,
-      "separation": 0.32709271916965554
+      "auc": 0.3364503460915548,
+      "separation": 0.32709930781689045
     },
     {
       "feature": "subflow_bwd_pkts",
-      "auc": 0.33645364041517223,
-      "separation": 0.32709271916965554
+      "auc": 0.3364503460915548,
+      "separation": 0.32709930781689045
     },
     {
       "feature": "flow_iat_std",
-      "auc": 0.34076306164637127,
-      "separation": 0.31847387670725746
+      "auc": 0.3407657401379974,
+      "separation": 0.31846851972400525
     },
     {
       "feature": "dst_port",
-      "auc": 0.3515089750267939,
-      "separation": 0.2969820499464122
+      "auc": 0.3515038873437047,
+      "separation": 0.2969922253125906
     },
     {
       "feature": "fwd_pkts_per_s",
-      "auc": 0.6456526268355149,
-      "separation": 0.2913052536710299
+      "auc": 0.6456498465161361,
+      "separation": 0.2912996930322722
     },
     {
       "feature": "fwd_act_data_pkts",
-      "auc": 0.3623060838068094,
-      "separation": 0.2753878323863812
+      "auc": 0.3623039905544345,
+      "separation": 0.27539201889113096
     },
     {
       "feature": "fwd_iat_std",
-      "auc": 0.3627150002279973,
-      "separation": 0.2745699995440054
+      "auc": 0.36271785126791356,
+      "separation": 0.2745642974641729
     },
     {
       "feature": "bwd_header_len",
-      "auc": 0.3640198523644296,
-      "separation": 0.27196029527114085
+      "auc": 0.364016775308748,
+      "separation": 0.271966449382504
     },
     {
       "feature": "flow_duration",
-      "auc": 0.3678850794602349,
-      "separation": 0.2642298410795302
+      "auc": 0.3678801108626611,
+      "separation": 0.2642397782746778
     },
     {
       "feature": "flow_iat_max",
-      "auc": 0.37317806115588026,
-      "separation": 0.2536438776882395
+      "auc": 0.37317837434642775,
+      "separation": 0.2536432513071445
     },
     {
       "feature": "bwd_iat_mean",
-      "auc": 0.37388899551014015,
-      "separation": 0.2522220089797197
+      "auc": 0.37388701739059754,
+      "separation": 0.2522259652188049
     },
     {
       "feature": "bwd_iat_tot",
-      "auc": 0.3762516516872862,
-      "separation": 0.24749669662542761
+      "auc": 0.37624969213887244,
+      "separation": 0.24750061572225512
     },
     {
       "feature": "flow_pkts_per_s",
-      "auc": 0.6232798791087344,
-      "separation": 0.24655975821746878
+      "auc": 0.623276917984708,
+      "separation": 0.24655383596941594
     },
     {
       "feature": "bwd_iat_max",
-      "auc": 0.37759236876590635,
-      "separation": 0.2448152624681873
+      "auc": 0.3775904197558987,
+      "separation": 0.24481916048820263
     },
     {
       "feature": "flow_iat_mean",
-      "auc": 0.3790940156430192,
-      "separation": 0.2418119687139616
+      "auc": 0.3790891351507745,
+      "separation": 0.24182172969845095
     },
     {
       "feature": "fwd_pkt_len_std",
-      "auc": 0.37955234019548073,
-      "separation": 0.24089531960903854
+      "auc": 0.37955041419466096,
+      "separation": 0.2408991716106781
     },
     {
       "feature": "fwd_pkt_len_min",
-      "auc": 0.3827142511044666,
-      "separation": 0.23457149779106679
+      "auc": 0.3827131165111594,
+      "separation": 0.23457376697768118
     },
     {
       "feature": "ack_flag_cnt",
-      "auc": 0.6171819101541489,
-      "separation": 0.23436382030829783
+      "auc": 0.617180717723285,
+      "separation": 0.23436143544656995
     },
     {
       "feature": "pkt_len_min",
-      "auc": 0.3830434981288783,
-      "separation": 0.23391300374224344
+      "auc": 0.3830423725469975,
+      "separation": 0.23391525490600495
     },
     {
       "feature": "bwd_pkt_len_min",
-      "auc": 0.38471771046122183,
-      "separation": 0.23056457907755634
+      "auc": 0.38471659921892964,
+      "separation": 0.2305668015621407
     },
     {
       "feature": "bwd_iat_min",
-      "auc": 0.3847832352941486,
-      "separation": 0.2304335294117028
+      "auc": 0.3847813751202407,
+      "separation": 0.23043724975951863
     },
     {
       "feature": "protocol",
-      "auc": 0.39024100576808723,
-      "separation": 0.21951798846382553
+      "auc": 0.3902362225294395,
+      "separation": 0.21952755494112097
     },
     {
       "feature": "fwd_iat_min",
-      "auc": 0.6090711336386998,
-      "separation": 0.2181422672773996
+      "auc": 0.6090680608300162,
+      "separation": 0.21813612166003238
     },
     {
       "feature": "tot_fwd_pkts",
-      "auc": 0.40557532938446833,
-      "separation": 0.18884934123106334
+      "auc": 0.4055780067630426,
+      "separation": 0.18884398647391476
     },
     {
       "feature": "subflow_fwd_pkts",
-      "auc": 0.40557532938446833,
-      "separation": 0.18884934123106334
+      "auc": 0.4055780067630426,
+      "separation": 0.18884398647391476
     },
     {
       "feature": "bwd_pkt_len_std",
-      "auc": 0.4151317386996464,
-      "separation": 0.16973652260070715
+      "auc": 0.4151301491578405,
+      "separation": 0.16973970168431896
     },
     {
       "feature": "fwd_iat_tot",
-      "auc": 0.41787912857128146,
-      "separation": 0.1642417428574371
+      "auc": 0.41787455294071896,
+      "separation": 0.16425089411856209
     },
     {
       "feature": "bwd_iat_std",
-      "auc": 0.4180446776817261,
-      "separation": 0.1639106446365478
+      "auc": 0.4180431008441067,
+      "separation": 0.16391379831178665
     },
     {
       "feature": "fwd_iat_max",
-      "auc": 0.41875147859770084,
-      "separation": 0.1624970428045983
+      "auc": 0.41875215000787575,
+      "separation": 0.1624956999842485
     },
     {
       "feature": "init_bwd_win_byts",
-      "auc": 0.420608736004175,
-      "separation": 0.15878252799165005
+      "auc": 0.42060630363356805,
+      "separation": 0.1587873927328639
     },
     {
       "feature": "fwd_iat_mean",
-      "auc": 0.42576752433509996,
-      "separation": 0.1484649513298001
+      "auc": 0.4257630107095032,
+      "separation": 0.14847397858099365
     },
     {
       "feature": "flow_iat_min",
-      "auc": 0.5598139497466058,
-      "separation": 0.11962789949321162
+      "auc": 0.5598104897628746,
+      "separation": 0.11962097952574924
     },
     {
       "feature": "bwd_pkts_per_s",
-      "auc": 0.4438746446560664,
-      "separation": 0.11225071068786718
+      "auc": 0.443872194723935,
+      "separation": 0.11225561055212996
     },
     {
       "feature": "idle_mean",
-      "auc": 0.44776305906951586,
-      "separation": 0.10447388186096829
+      "auc": 0.44776520401332665,
+      "separation": 0.10446959197334671
     },
     {
       "feature": "idle_max",
-      "auc": 0.447785846672308,
-      "separation": 0.10442830665538405
+      "auc": 0.44778799179523554,
+      "separation": 0.10442401640952892
     },
     {
       "feature": "idle_min",
-      "auc": 0.44779661034110074,
-      "separation": 0.10440677931779851
+      "auc": 0.44779875554863385,
+      "separation": 0.1044024889027323
     },
     {
       "feature": "active_max",
-      "auc": 0.46146594523925244,
-      "separation": 0.07706810952149512
+      "auc": 0.46146551755242265,
+      "separation": 0.07706896489515469
     },
     {
       "feature": "active_mean",
-      "auc": 0.4615197333233054,
-      "separation": 0.07696053335338915
+      "auc": 0.4615193060592649,
+      "separation": 0.07696138788147022
     },
     {
       "feature": "active_min",
-      "auc": 0.4615618010447183,
-      "separation": 0.07687639791056344
+      "auc": 0.4615613741113415,
+      "separation": 0.07687725177731697
     },
     {
       "feature": "idle_std",
-      "auc": 0.4648767074287704,
-      "separation": 0.07024658514245918
+      "auc": 0.46487902709178464,
+      "separation": 0.07024194581643073
     },
     {
       "feature": "active_std",
-      "auc": 0.46909509289781376,
-      "separation": 0.06180981420437248
+      "auc": 0.46909479059254594,
+      "separation": 0.06181041881490812
     },
     {
       "feature": "fwd_psh_flags",
-      "auc": 0.48335571558768636,
-      "separation": 0.033288568824627274
+      "auc": 0.4833555370747076,
+      "separation": 0.03328892585058485
     },
     {
       "feature": "syn_flag_cnt",
-      "auc": 0.48335571558768636,
-      "separation": 0.033288568824627274
+      "auc": 0.4833555370747076,
+      "separation": 0.03328892585058485
     },
     {
       "feature": "down_per_up_ratio",
-      "auc": 0.48969210188872264,
-      "separation": 0.020615796222554716
+      "auc": 0.48969024553455387,
+      "separation": 0.02061950893089226
     },
     {
       "feature": "psh_flag_cnt",
-      "auc": 0.5068263495676235,
-      "separation": 0.013652699135247026
+      "auc": 0.5068248090282133,
+      "separation": 0.013649618056426505
     },
     {
       "feature": "fwd_header_len",
-      "auc": 0.5035399542354907,
-      "separation": 0.007079908470981389
+      "auc": 0.5035360615578187,
+      "separation": 0.00707212311563743
     },
     {
       "feature": "urg_flag_cnt",
-      "auc": 0.502816733691029,
-      "separation": 0.005633467382057944
+      "auc": 0.5028165624067137,
+      "separation": 0.00563312481342737
     },
     {
       "feature": "rst_flag_cnt",
-      "auc": 0.49731348827340593,
-      "separation": 0.0053730234531881305
+      "auc": 0.4973128023947435,
+      "separation": 0.005374395210512972
     },
     {
       "feature": "ece_flag_cnt",
-      "auc": 0.4973176576849353,
-      "separation": 0.0053646846301294016
+      "auc": 0.4973169718062728,
+      "separation": 0.005366056387454354
     },
     {
       "feature": "fin_flag_cnt",
-      "auc": 0.49818413421895086,
-      "separation": 0.0036317315620982837
+      "auc": 0.49818411404665475,
+      "separation": 0.0036317719066905063
     },
     {
       "feature": "fwd_urg_flags",
-      "auc": 0.5004715454352617,
-      "separation": 0.0009430908705234664
+      "auc": 0.5004715441275119,
+      "separation": 0.0009430882550238717
     },
     {
       "feature": "cwe_flag_count",
-      "auc": 0.5004715454352617,
-      "separation": 0.0009430908705234664
+      "auc": 0.5004715441275119,
+      "separation": 0.0009430882550238717
     }
   ],
   "ip_leakage": [

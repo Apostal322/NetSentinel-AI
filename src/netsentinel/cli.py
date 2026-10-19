@@ -91,6 +91,22 @@ def _cmd_train_baseline(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_train_anomaly(args: argparse.Namespace) -> int:
+    from netsentinel.training.anomaly import run_anomaly
+
+    for run_id in run_anomaly(_experiment_config(args)):
+        print(run_id)
+    return 0
+
+
+def _cmd_train_openset(args: argparse.Namespace) -> int:
+    from netsentinel.training.openset import run_openset
+
+    for run_id in run_openset(_experiment_config(args)):
+        print(run_id)
+    return 0
+
+
 def _cmd_evaluate(args: argparse.Namespace) -> int:
     if not args.final:
         log.error("validation metrics are produced at training time; pass --final for test")
@@ -151,6 +167,12 @@ def build_parser() -> argparse.ArgumentParser:
     p = train_sub.add_parser("baseline", help="classical baselines (validation metrics)")
     _add_config_args(p, "configs/experiments/baseline_binary.yaml")
     p.set_defaults(func=_cmd_train_baseline)
+    p = train_sub.add_parser("anomaly", help="normal-behaviour models (validation metrics)")
+    _add_config_args(p, "configs/experiments/anomaly.yaml")
+    p.set_defaults(func=_cmd_train_anomaly)
+    p = train_sub.add_parser("openset", help="leave-one-family-out unseen-attack evaluation")
+    _add_config_args(p, "configs/experiments/openset.yaml")
+    p.set_defaults(func=_cmd_train_openset)
 
     p = sub.add_parser("evaluate", help="one-shot test evaluation of a run")
     p.add_argument("--run", required=True, help="runs/<run_id>")
@@ -167,6 +189,12 @@ def main(argv: list[str] | None = None) -> int:
     except (FileNotFoundError, ValueError, RuntimeError) as exc:
         log.error("%s", exc)
         return 2
+    finally:
+        from netsentinel.resources import peak_rss_mb
+
+        peak = peak_rss_mb()
+        if peak is not None:
+            log.info("peak_rss_mb=%.1f", peak)
 
 
 if __name__ == "__main__":

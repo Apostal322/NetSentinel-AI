@@ -10,11 +10,14 @@ train_with_prevalence_weights: false   # class_weight=balanced is used for train
 data:
   processed_dir: data/processed/ids2018_v1
   days: null                 # null = all ingested days
-  drop_labels: []
+  # Infiltration: 84.5 % (02-28) / 17.5 % (03-01) of its rows are identical to benign rows ->
+  # excluded from supervised training and headline metrics; evaluated as a separate slice.
+  drop_labels: [infiltration]
+  clean_labels: true         # label cleaning v1 (netsentinel.training.data.clean_labels)
 split:
-  protocol: blocked          # random | blocked | chronological | leave_day_out
-  block_minutes: 15
-  purge_seconds: 300         # >= the longest context window
+  protocol: episode          # random | blocked | chronological | episode | leave_day_out
+  block_minutes: 30         # benign-only stretches
+  purge_seconds: 150         # rows of different partitions >= 300 s apart (longest context window)
   fractions: [0.6, 0.2, 0.2]
 model_params: {}
 runs_dir: runs

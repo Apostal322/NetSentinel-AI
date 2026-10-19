@@ -1,0 +1,76 @@
+﻿2018-02-14 rows=1,048,570 excel_trunc=False ts=[2018-02-14 08:28:20 .. 2018-02-14 17:30:48] off_day=0 neg_dur=0 ips=False dups=373,767 conflicts=7
+    benign                 667,621  08:28:20-17:30:48 port=53(0.30) proto=6
+    ftp_bruteforce         193,360  10:33:26-12:10:31 port=21(1.00) proto=6
+    ssh_bruteforce         187,589  14:01:21-15:32:30 port=22(1.00) proto=6
+    nonfinite: {'nan::flow_byts_per_s': 2277, 'inf::flow_byts_per_s': 1547, 'inf::flow_pkts_per_s': 3824}
+    negative values: {'init_fwd_win_byts': 219261, 'init_bwd_win_byts': 347365}
+2018-02-15 rows=1,048,575 excel_trunc=True  ts=[2018-02-15 08:23:27 .. 2018-02-15 17:54:44] off_day=0 neg_dur=0 ips=False dups=163,962 conflicts=0
+    benign                 996,077  08:23:27-17:54:44 port=53(0.33) proto=6
+    dos_goldeneye           41,508  09:27:42-10:02:59 port=80(1.00) proto=6
+    dos_slowloris           10,990  11:00:12-11:42:01 port=80(1.00) proto=6
+    nonfinite: {'nan::flow_byts_per_s': 4921, 'inf::flow_byts_per_s': 3106, 'inf::flow_pkts_per_s': 8027}
+    negative values: {'init_fwd_win_byts': 364089, 'init_bwd_win_byts': 587584}
+2018-02-16 rows=1,048,574 excel_trunc=False ts=[2018-02-16 08:26:55 .. 2018-02-16 13:48:44] off_day=0 neg_dur=0 ips=False dups=456,673 conflicts=0
+    dos_hulk               461,912  13:45:27-13:48:44 port=80(1.00) proto=6
+    benign                 446,772  08:26:55-13:48:43 port=0(0.00) proto=6
+    dos_slowhttptest       139,890  10:12:14-10:58:08 port=21(1.00) proto=6
+    nonfinite: {}
+    negative values: {'init_fwd_win_byts': 177, 'init_bwd_win_byts': 438345}
+2018-02-20 rows=7,948,748 excel_trunc=False ts=[2018-02-20 08:00:00 .. 2018-02-20 19:59:59] off_day=0 neg_dur=0 ips=True dups=1,828,265 conflicts=0
+    benign               7,372,557  08:00:00-19:59:59 port=53(0.33) proto=6
+    ddos_loic_http         576,191  10:13:54-13:29:15 port=80(1.00) proto=6
+    nonfinite: {'nan::flow_byts_per_s': 36767, 'inf::flow_byts_per_s': 22686, 'inf::flow_pkts_per_s': 59453}
+    negative values: {'init_fwd_win_byts': 2653104, 'init_bwd_win_byts': 4209795}
+2018-02-21 rows=1,048,575 excel_trunc=True  ts=[2018-02-21 08:32:54 .. 2018-02-21 14:33:29] off_day=0 neg_dur=0 ips=False dups=487,170 conflicts=0
+    ddos_hoic              686,012  14:11:08-14:33:29 port=80(1.00) proto=6
+    benign                 360,833  08:32:54-14:33:29 port=80(0.00) proto=6
+    ddos_loic_udp            1,730  10:08:51-10:43:16 port=80(1.00) proto=17
+    nonfinite: {}
+    negative values: {'init_fwd_win_byts': 3712, 'init_bwd_win_byts': 525993}
+2018-02-22 rows=1,048,566 excel_trunc=False ts=[2018-02-22 08:22:17 .. 2018-02-22 17:30:23] off_day=0 neg_dur=0 ips=False dups=141,654 conflicts=3
+    benign               1,048,204  08:22:17-17:30:23 port=53(0.28) proto=6
+    web_bruteforce             249  10:13:44-11:23:11 port=80(1.00) proto=6
+    web_xss                     79  13:51:39-14:28:40 port=80(1.00) proto=6
+    web_sql_injection           34  11:09:45-16:27:51 port=80(1.00) proto=6
+    nonfinite: {'nan::flow_byts_per_s': 3569, 'inf::flow_byts_per_s': 2041, 'inf::flow_pkts_per_s': 5610}
+    negative values: {'init_fwd_win_byts': 322144, 'init_bwd_win_byts': 577960}
+2018-02-23 rows=1,048,575 excel_trunc=True  ts=[2018-02-23 08:15:09 .. 2018-02-23 17:30:46] off_day=0 neg_dur=0 ips=False dups=137,922 conflicts=4
+    benign               1,048,009  08:15:09-17:30:46 port=53(0.27) proto=6
+    web_bruteforce             362  09:17:04-11:02:58 port=80(0.58) proto=6
+    web_xss                    151  13:01:04-14:10:05 port=80(0.97) proto=6
+    web_sql_injection           53  10:22:41-15:17:24 port=80(1.00) proto=6
+    nonfinite: {'nan::flow_byts_per_s': 3754, 'inf::flow_byts_per_s': 1954, 'inf::flow_pkts_per_s': 5708}
+    negative values: {'flow_iat_min': 1, 'fwd_iat_min': 1, 'init_fwd_win_byts': 308468, 'init_bwd_win_byts': 573165}
+2018-02-28 rows=  613,071 excel_trunc=False ts=[2018-02-28 08:21:58 .. 2018-02-28 17:50:14] off_day=0 neg_dur=0 ips=False dups=262,696 conflicts=51,384
+    benign                 544,200  08:21:58-17:50:14 port=53(0.34) proto=6
+    infiltration            68,871  10:50:00-14:39:59 port=53(0.36) proto=6
+    nonfinite: {'nan::flow_byts_per_s': 4041, 'inf::flow_byts_per_s': 2128, 'inf::flow_pkts_per_s': 6169}
+    negative values: {'init_fwd_win_byts': 227355, 'init_bwd_win_byts': 321490}
+2018-03-01 rows=  331,100 excel_trunc=False ts=[2018-03-01 08:16:28 .. 2018-03-01 17:45:28] off_day=0 neg_dur=0 ips=False dups=48,444 conflicts=8,227
+    benign                 238,037  08:16:28-17:45:28 port=53(0.34) proto=6
+    infiltration            93,063  09:57:00-15:36:59 port=53(0.28) proto=6
+    nonfinite: {'nan::flow_byts_per_s': 1834, 'inf::flow_byts_per_s': 1085, 'inf::flow_pkts_per_s': 2919}
+    negative values: {'init_fwd_win_byts': 118201, 'init_bwd_win_byts': 159458}
+2018-03-02 rows=1,048,575 excel_trunc=True  ts=[2018-03-02 08:46:33 .. 2018-03-02 17:30:18] off_day=0 neg_dur=0 ips=False dups=224,843 conflicts=0
+    benign                 762,384  08:46:33-17:30:18 port=53(0.25) proto=6
+    bot                    286,191  10:13:28-15:54:50 port=8080(0.98) proto=6
+    nonfinite: {'nan::flow_byts_per_s': 2558, 'inf::flow_byts_per_s': 1492, 'inf::flow_pkts_per_s': 4050}
+    negative values: {'init_fwd_win_byts': 216083, 'init_bwd_win_byts': 514380}
+constant: ['bwd_blk_rate_avg', 'bwd_byts_per_b_avg', 'bwd_pkts_per_b_avg', 'bwd_psh_flags', 'bwd_urg_flags', 'fwd_blk_rate_avg', 'fwd_byts_per_b_avg', 'fwd_pkts_per_b_avg']
+ip_leakage: [{'day': '2018-02-20', 'distinct_src_ips': 31291, 'src_ips_with_attacks': 10, 'src_ips_99pct_attack': 10, 'attack_rows_from_99pct_ips': 576191, 'attack_rows_total': 576191}]
+top univariate AUC separation:
+    fwd_seg_size_min         auc=0.750 sep=0.500
+    pkt_size_avg             auc=0.275 sep=0.451
+    fwd_pkt_len_max          auc=0.276 sep=0.449
+    totlen_fwd_pkts          auc=0.278 sep=0.443
+    subflow_fwd_byts         auc=0.278 sep=0.443
+    pkt_len_mean             auc=0.280 sep=0.441
+    fwd_pkt_len_mean         auc=0.285 sep=0.430
+    fwd_seg_size_avg         auc=0.285 sep=0.430
+    flow_byts_per_s          auc=0.286 sep=0.427
+    pkt_len_max              auc=0.288 sep=0.425
+    pkt_len_std              auc=0.299 sep=0.401
+    pkt_len_var              auc=0.299 sep=0.401
+    bwd_pkt_len_mean         auc=0.303 sep=0.394
+    bwd_seg_size_avg         auc=0.303 sep=0.394
+    bwd_pkt_len_max          auc=0.305 sep=0.389

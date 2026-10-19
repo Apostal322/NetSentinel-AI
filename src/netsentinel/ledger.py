@@ -99,6 +99,11 @@ class Run:
         return path
 
     def finish(self, notes: str = "") -> Path:
+        from netsentinel.resources import peak_rss_mb
+
+        peak = peak_rss_mb()
+        if peak is not None:  # process peak so far (includes data loading)
+            self.metrics["cost/process_peak_rss_mb"] = round(peak, 1)
         self.save_json("metrics.json", self.metrics)
         row = {
             "run_id": self.id,
