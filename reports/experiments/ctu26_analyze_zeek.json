@@ -1,0 +1,740 @@
+{
+  "source": "conn.log",
+  "kind": "zeek",
+  "flows": 15081,
+  "parse": {
+    "lines": 15090,
+    "records": 15081,
+    "skipped": {}
+  },
+  "verdicts": {
+    "unusual": 14858,
+    "suspicious": 223
+  },
+  "attack_categories": {},
+  "missing_features": [],
+  "bundle": "bundle-20261019T202605Z",
+  "top_alerts": [
+    {
+      "observation_id": "001eec00f02b3515",
+      "timestamp": "1970-01-01T00:03:53.849000",
+      "source": "zeek:conn.log",
+      "verdict": "suspicious",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.78917779339423,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0005364991377720204,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-16.6)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-14.2)",
+        "ctx_flow_rate_30s below benign training baseline (robust z=-11.4)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+      }
+    },
+    {
+      "observation_id": "77b3d2cd44665f4c",
+      "timestamp": "1970-01-01T00:02:59.347000",
+      "source": "zeek:conn.log",
+      "verdict": "suspicious",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.76407991165546,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0005364991377720204,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-16.5)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-14.2)",
+        "ctx_flow_rate_30s below benign training baseline (robust z=-11.4)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+      }
+    },
+    {
+      "observation_id": "24129189f061d452",
+      "timestamp": "1970-01-01T00:29:59.628000",
+      "source": "zeek:conn.log",
+      "verdict": "suspicious",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.97490211826121,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0005364991377720204,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.9)",
+        "ctx_flow_rate_30s below benign training baseline (robust z=-11.6)",
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-11.5)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+      }
+    },
+    {
+      "observation_id": "4961d85d993ff887",
+      "timestamp": "1970-01-01T00:30:43.408000",
+      "source": "zeek:conn.log",
+      "verdict": "suspicious",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.69380584278687,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0005364991377720204,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.9)",
+        "ctx_flow_rate_30s below benign training baseline (robust z=-11.7)",
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-10.3)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+      }
+    },
+    {
+      "observation_id": "f4a1b10ee34bcfde",
+      "timestamp": "1970-01-01T01:11:14.153000",
+      "source": "zeek:conn.log",
+      "verdict": "suspicious",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.7138841481779,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0005364991377720204,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.4)",
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-9.6)",
+        "ctx_flow_rate_30s below benign training baseline (robust z=-7.1)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+      }
+    },
+    {
+      "observation_id": "e0dc6807de26d582",
+      "timestamp": "1970-01-01T01:11:46.493000",
+      "source": "zeek:conn.log",
+      "verdict": "suspicious",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.77913864069872,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0005364991377720204,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.3)",
+        "ctx_flow_rate_30s below benign training baseline (robust z=-10.5)",
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-9.5)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+      }
+    },
+    {
+      "observation_id": "a195c1868e0f31c6",
+      "timestamp": "1970-01-01T01:11:46.495000",
+      "source": "zeek:conn.log",
+      "verdict": "suspicious",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.77913864069872,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0005364991377720204,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.3)",
+        "ctx_flow_rate_30s below benign training baseline (robust z=-10.5)",
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-9.5)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+      }
+    },
+    {
+      "observation_id": "a00fc361c52f4045",
+      "timestamp": "1970-01-01T01:11:35.680000",
+      "source": "zeek:conn.log",
+      "verdict": "suspicious",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.5984338921795,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0005364991377720204,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.2)",
+        "ctx_flow_rate_30s below benign training baseline (robust z=-11.4)",
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-9.4)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+      }
+    },
+    {
+      "observation_id": "1ec1188bfb0c4dcf",
+      "timestamp": "1970-01-01T01:11:44.814000",
+      "source": "zeek:conn.log",
+      "verdict": "suspicious",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.72392330087341,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0005364991377720204,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.2)",
+        "ctx_flow_rate_30s below benign training baseline (robust z=-11.3)",
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-9.4)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+      }
+    },
+    {
+      "observation_id": "9b8e3a4950742807",
+      "timestamp": "1970-01-01T01:14:40.289000",
+      "source": "zeek:conn.log",
+      "verdict": "suspicious",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.62353177391829,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0005364991377720204,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.9)",
+        "ctx_flow_rate_30s below benign training baseline (robust z=-11.4)",
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-9.6)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+      }
+    },
+    {
+      "observation_id": "c93250d78b52eea8",
+      "timestamp": "1970-01-01T03:08:29.358000",
+      "source": "zeek:conn.log",
+      "verdict": "suspicious",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.77913864069872,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0005364991377720204,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-15.5)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-13.2)",
+        "ctx_byte_rate_300s below benign training baseline (robust z=-10.7)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+      }
+    },
+    {
+      "observation_id": "db0cbee982f1d22b",
+      "timestamp": "1970-01-01T03:08:53.105000",
+      "source": "zeek:conn.log",
+      "verdict": "suspicious",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.59341431583174,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0005364991377720204,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-14.1)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.4)",
+        "ctx_byte_rate_300s below benign training baseline (robust z=-9.1)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+      }
+    },
+    {
+      "observation_id": "fe84e957ed1ea276",
+      "timestamp": "1970-01-01T03:08:53.165000",
+      "source": "zeek:conn.log",
+      "verdict": "suspicious",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.58337516313622,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0005364991377720204,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-14.1)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.4)",
+        "ctx_byte_rate_300s below benign training baseline (robust z=-9.1)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+      }
+    },
+    {
+      "observation_id": "bbc876bb6ff5dca3",
+      "timestamp": "1970-01-01T03:08:32.942000",
+      "source": "zeek:conn.log",
+      "verdict": "suspicious",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.69380584278687,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0005364991377720204,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-13.7)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.7)",
+        "ctx_flow_rate_30s below benign training baseline (robust z=-10.9)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+      }
+    },
+    {
+      "observation_id": "9423b0d9f1355a02",
+      "timestamp": "1970-01-01T03:08:26.326000",
+      "source": "zeek:conn.log",
+      "verdict": "suspicious",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.74400160626443,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0005364991377720204,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-13.5)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.6)",
+        "ctx_flow_rate_30s below benign training baseline (robust z=-10.8)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+      }
+    },
+    {
+      "observation_id": "dba96112b25e407b",
+      "timestamp": "1970-01-01T03:08:53.100000",
+      "source": "zeek:conn.log",
+      "verdict": "suspicious",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.72392330087341,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0005364991377720204,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-13.4)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.6)",
+        "ctx_flow_rate_30s below benign training baseline (robust z=-11.2)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+      }
+    },
+    {
+      "observation_id": "05dbe757b7a8c8dd",
+      "timestamp": "1970-01-01T03:10:34.219000",
+      "source": "zeek:conn.log",
+      "verdict": "suspicious",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.72392330087341,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0005364991377720204,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.1)",
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-10.3)",
+        "ctx_flow_rate_30s below benign training baseline (robust z=-8.7)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+      }
+    },
+    {
+      "observation_id": "553e004cb2b7f441",
+      "timestamp": "1970-01-01T03:10:38.681000",
+      "source": "zeek:conn.log",
+      "verdict": "suspicious",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.72392330087341,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0005364991377720204,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.1)",
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-10.3)",
+        "ctx_pkt_rate_5s below benign training baseline (robust z=-9.8)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+      }
+    },
+    {
+      "observation_id": "0dced746a5a8172d",
+      "timestamp": "1970-01-01T03:10:38.676000",
+      "source": "zeek:conn.log",
+      "verdict": "suspicious",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.794197369742,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0005364991377720204,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.1)",
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-10.3)",
+        "ctx_pkt_rate_5s below benign training baseline (robust z=-9.8)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+      }
+    },
+    {
+      "observation_id": "fa40c43464270003",
+      "timestamp": "1970-01-01T03:10:38.686000",
+      "source": "zeek:conn.log",
+      "verdict": "suspicious",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.72392330087341,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0005364991377720204,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.1)",
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-10.3)",
+        "ctx_pkt_rate_5s below benign training baseline (robust z=-9.8)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+      }
+    }
+  ],
+  "note": "Detection-only offline analysis; verdict semantics in inference/schema.py."
+}

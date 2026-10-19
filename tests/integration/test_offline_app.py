@@ -223,3 +223,37 @@ def test_appid_stage_on_synthetic_flows(app_ws, capsys):
     for m in ("majority", "port_lookup", "lgbm_shape_noport", "lgbm_shape_portclass"):
         assert 0 <= res["models"][m]["macro_f1"] <= 1
     assert "selective" in res["models"]["lgbm_shape_noport"]
+
+
+def test_adapt_final_mode_is_one_shot(app_ws, capsys):
+    """Final-test mode evaluates chronological-test rows that are also episode-test rows, adds
+    block-bootstrap CIs, and refuses a second run of the same experiment."""
+    rows = _nf_rows(datetime(2018, 2, 14, 13), 1500, 11) + _nf_rows(datetime(2018, 2, 15, 13),
+                                                                   1500, 12)  # fmt: skip
+    csv = (NF_HEADER + "\n" + "\n".join(rows) + "\n").encode()
+    with zipfile.ZipFile(app_ws / "f.zip", "w") as z:
+        z.writestr("bag/data/NF-x.csv", csv)
+    (app_ws / "f.yaml").write_text(yaml.safe_dump({"datasets": {"f": {
+        "archive": str(app_ws / "f.zip"), "out_dir": "i_f", "utc_offset_hours": 0,
+        "family_map": {"brute_force": "bruteforce"}}}}))  # fmt: skip
+    assert main(["data", "ingest-nf", "f", "--config", "f.yaml"]) == 0
+    assert main(["features", "build", "--interim", "i_f", "--out", "p_f", "--schema", "nf",
+                 "--benign-per-day", "1000", "--attack-cap", "400"]) == 0  # fmt: skip
+    repo = Path(__file__).resolve().parents[2]
+    cfg = yaml.safe_load((repo / "configs/experiments/adapt_nf.yaml").read_text(encoding="utf-8"))
+    ds = {"processed_dir": "p_f", "drop_labels": [], "clean_labels": 0}
+    cfg.update(runs_dir=str(app_ws / "runs"), target_fpr=0.01, calibration_sizes=[300],
+               detectors=["robust_z"], feature_set="nf_portable_ctx", source=ds, target=ds,
+               model_params={"n_estimators": 20, "num_leaves": 7}, evaluation="final_test",
+               final_dir=str(app_ws / "final"), noshortcut_view=True, experiment="fin")  # fmt: skip
+    cfg["source_split"].update(block_minutes=10, purge_seconds=30)
+    cfg["target_split"].update(purge_seconds=30)
+    cfg["final_episode_split"] = dict(cfg["source_split"])
+    (app_ws / "fin.yaml").write_text(yaml.safe_dump(cfg))
+    assert main(["train", "adapt", "--config", "fin.yaml"]) == 0
+    res = json.loads((app_ws / "final" / "fin.json").read_text())
+    assert res["evaluation"] == "final_test" and res["eval_rows"] > 0
+    assert len(res["source_only"]["recall_ci95"]) == 2
+    before = (app_ws / "final" / "fin.json").read_bytes()
+    assert main(["train", "adapt", "--config", "fin.yaml"]) == 2  # refused: already run
+    assert (app_ws / "final" / "fin.json").read_bytes() == before

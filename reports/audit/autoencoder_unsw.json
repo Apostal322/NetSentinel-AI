@@ -1,0 +1,349 @@
+{
+  "dataset": "unsw",
+  "n_calibration": 50000,
+  "features": [
+    "in_bytes",
+    "in_pkts",
+    "out_bytes",
+    "out_pkts",
+    "flow_duration_milliseconds",
+    "duration_in",
+    "duration_out",
+    "min_ttl",
+    "max_ttl",
+    "longest_flow_pkt",
+    "shortest_flow_pkt",
+    "min_ip_pkt_len",
+    "max_ip_pkt_len",
+    "src_to_dst_second_bytes",
+    "dst_to_src_second_bytes",
+    "retransmitted_in_bytes",
+    "retransmitted_in_pkts",
+    "retransmitted_out_bytes",
+    "retransmitted_out_pkts",
+    "src_to_dst_avg_throughput",
+    "dst_to_src_avg_throughput",
+    "num_pkts_up_to_128_bytes",
+    "num_pkts_128_to_256_bytes",
+    "num_pkts_256_to_512_bytes",
+    "num_pkts_512_to_1024_bytes",
+    "num_pkts_1024_to_1514_bytes",
+    "tcp_win_max_in",
+    "tcp_win_max_out",
+    "icmp_type",
+    "src_to_dst_iat_min",
+    "src_to_dst_iat_max",
+    "src_to_dst_iat_avg",
+    "src_to_dst_iat_stddev",
+    "dst_to_src_iat_min",
+    "dst_to_src_iat_max",
+    "dst_to_src_iat_avg",
+    "dst_to_src_iat_stddev",
+    "cli_fin",
+    "cli_syn",
+    "cli_rst",
+    "cli_psh",
+    "cli_ack",
+    "cli_urg",
+    "srv_fin",
+    "srv_syn",
+    "srv_rst",
+    "srv_psh",
+    "srv_ack",
+    "srv_urg",
+    "proto_tcp",
+    "proto_udp",
+    "proto_other",
+    "port_class"
+  ],
+  "eval_rows": 45409,
+  "eval_attack_rows": 19330,
+  "ae_all_flow": {
+    "pr_auc": 0.9960810202977081,
+    "roc_auc": 0.9998533100177949,
+    "recall": 0.9998428893905554,
+    "fpr": 0.0004896109463639482,
+    "recall_at_fpr_0.001": 0.9998428893905554,
+    "recall_at_fpr_0.01": 1.0,
+    "false_alert_flows_per_hour": 39.28199351917613,
+    "iforest_same_inputs": {
+      "pr_auc": 0.27576370328098243,
+      "roc_auc": 0.9368346846814903,
+      "recall": 0.006829489827465111,
+      "fpr": 0.0008986437425486125,
+      "recall_at_fpr_0.001": 0.00771776687249439,
+      "recall_at_fpr_0.01": 0.03380934671430639,
+      "false_alert_flows_per_hour": 72.09912109375
+    },
+    "error_share_top": [
+      {
+        "feature": "min_ttl",
+        "attack": 0.3384,
+        "benign": 0.0821
+      },
+      {
+        "feature": "max_ttl",
+        "attack": 0.3118,
+        "benign": 0.0708
+      },
+      {
+        "feature": "min_ip_pkt_len",
+        "attack": 0.1623,
+        "benign": 0.0554
+      },
+      {
+        "feature": "shortest_flow_pkt",
+        "attack": 0.0554,
+        "benign": 0.0557
+      },
+      {
+        "feature": "dst_to_src_avg_throughput",
+        "attack": 0.0225,
+        "benign": 0.0115
+      },
+      {
+        "feature": "num_pkts_128_to_256_bytes",
+        "attack": 0.0215,
+        "benign": 0.0366
+      },
+      {
+        "feature": "num_pkts_256_to_512_bytes",
+        "attack": 0.0162,
+        "benign": 0.0388
+      },
+      {
+        "feature": "port_class",
+        "attack": 0.0087,
+        "benign": 0.0921
+      },
+      {
+        "feature": "src_to_dst_second_bytes",
+        "attack": 0.0056,
+        "benign": 0.0087
+      },
+      {
+        "feature": "out_bytes",
+        "attack": 0.0055,
+        "benign": 0.0061
+      },
+      {
+        "feature": "tcp_win_max_out",
+        "attack": 0.005,
+        "benign": 0.0328
+      },
+      {
+        "feature": "dst_to_src_iat_avg",
+        "attack": 0.004,
+        "benign": 0.0139
+      }
+    ],
+    "median_abs_z_top": {
+      "min_ttl": {
+        "attack": 20.755,
+        "benign": 0.0
+      },
+      "max_ttl": {
+        "attack": 20.448,
+        "benign": 0.0
+      },
+      "min_ip_pkt_len": {
+        "attack": 2.567,
+        "benign": 0.0
+      },
+      "shortest_flow_pkt": {
+        "attack": 2.567,
+        "benign": 0.0
+      },
+      "dst_to_src_avg_throughput": {
+        "attack": 1.479,
+        "benign": 0.461
+      },
+      "num_pkts_128_to_256_bytes": {
+        "attack": 0.0,
+        "benign": 0.0
+      }
+    },
+    "recall_by_label": {
+      "analysis": 1.0,
+      "backdoor": 1.0,
+      "dos": 0.9984,
+      "exploits": 0.9998,
+      "fuzzers": 1.0,
+      "generic": 1.0,
+      "reconnaissance": 1.0,
+      "shellcode": 1.0,
+      "worms": 1.0
+    }
+  },
+  "ae_no_shortcut": {
+    "pr_auc": 0.9664128760229149,
+    "roc_auc": 0.9988800115663777,
+    "recall": 0.9537630912144252,
+    "fpr": 0.0007019682701129322,
+    "recall_at_fpr_0.001": 0.9606010847281535,
+    "recall_at_fpr_0.01": 0.9737907437575017,
+    "false_alert_flows_per_hour": 56.31964111328125,
+    "iforest_same_inputs": {
+      "pr_auc": 0.34761533839105435,
+      "roc_auc": 0.9506754211253041,
+      "recall": 0.008735765855489781,
+      "fpr": 0.000828945356075532,
+      "recall_at_fpr_0.001": 0.011381565291679871,
+      "recall_at_fpr_0.01": 0.0956335072612471,
+      "false_alert_flows_per_hour": 66.50714666193181
+    },
+    "error_share_top": [
+      {
+        "feature": "shortest_flow_pkt",
+        "attack": 0.5197,
+        "benign": 0.0409
+      },
+      {
+        "feature": "min_ip_pkt_len",
+        "attack": 0.1577,
+        "benign": 0.02
+      },
+      {
+        "feature": "src_to_dst_iat_min",
+        "attack": 0.0259,
+        "benign": 0.0369
+      },
+      {
+        "feature": "srv_ack",
+        "attack": 0.0252,
+        "benign": 0.0113
+      },
+      {
+        "feature": "proto_udp",
+        "attack": 0.02,
+        "benign": 0.0199
+      },
+      {
+        "feature": "in_bytes",
+        "attack": 0.0164,
+        "benign": 0.0347
+      },
+      {
+        "feature": "proto_tcp",
+        "attack": 0.0158,
+        "benign": 0.0091
+      },
+      {
+        "feature": "num_pkts_128_to_256_bytes",
+        "attack": 0.0155,
+        "benign": 0.0368
+      },
+      {
+        "feature": "srv_syn",
+        "attack": 0.0145,
+        "benign": 0.0094
+      },
+      {
+        "feature": "cli_syn",
+        "attack": 0.0141,
+        "benign": 0.0105
+      },
+      {
+        "feature": "srv_fin",
+        "attack": 0.012,
+        "benign": 0.0188
+      },
+      {
+        "feature": "cli_fin",
+        "attack": 0.012,
+        "benign": 0.0201
+      }
+    ],
+    "median_abs_z_top": {
+      "shortest_flow_pkt": {
+        "attack": 2.567,
+        "benign": 0.0
+      },
+      "min_ip_pkt_len": {
+        "attack": 2.567,
+        "benign": 0.0
+      },
+      "src_to_dst_iat_min": {
+        "attack": 0.0,
+        "benign": 0.0
+      },
+      "srv_ack": {
+        "attack": 0.0,
+        "benign": 0.0
+      },
+      "proto_udp": {
+        "attack": 0.0,
+        "benign": 0.0
+      },
+      "in_bytes": {
+        "attack": 0.582,
+        "benign": 0.478
+      }
+    },
+    "recall_by_label": {
+      "analysis": 1.0,
+      "backdoor": 0.9861,
+      "dos": 0.9717,
+      "exploits": 0.9142,
+      "fuzzers": 0.9557,
+      "generic": 0.9955,
+      "reconnaissance": 0.9925,
+      "shellcode": 0.8342,
+      "worms": 1.0
+    }
+  },
+  "ae_drop_top1": {
+    "pr_auc": 0.992628834979993,
+    "roc_auc": 0.9997562424482901,
+    "recall": 0.9998428893905554,
+    "fpr": 0.0005497932692179466,
+    "recall_at_fpr_0.001": 0.9998428893905554,
+    "recall_at_fpr_0.01": 0.9999330522895281,
+    "false_alert_flows_per_hour": 44.11048195578835,
+    "iforest_same_inputs": {
+      "pr_auc": 0.28237716804751856,
+      "roc_auc": 0.9370319430870613,
+      "recall": 0.004868963894859277,
+      "fpr": 0.0008748976392984664,
+      "recall_at_fpr_0.001": 0.005138103664262065,
+      "recall_at_fpr_0.01": 0.06267976990423599,
+      "false_alert_flows_per_hour": 70.1939364346591
+    }
+  },
+  "ae_drop_top3": {
+    "pr_auc": 0.9653504993634731,
+    "roc_auc": 0.9990193866656636,
+    "recall": 0.7393468855085731,
+    "fpr": 0.0004943249223759301,
+    "recall_at_fpr_0.001": 0.7393468855085731,
+    "recall_at_fpr_0.01": 0.9972220648149513,
+    "false_alert_flows_per_hour": 39.66020063920455,
+    "iforest_same_inputs": {
+      "pr_auc": 0.30660507318175395,
+      "roc_auc": 0.9397709216424208,
+      "recall": 0.0066067804350640556,
+      "fpr": 0.000828945356075532,
+      "recall_at_fpr_0.001": 0.00831733500422185,
+      "recall_at_fpr_0.01": 0.06878831475776633,
+      "false_alert_flows_per_hour": 66.50714666193181
+    }
+  },
+  "ae_drop_top5": {
+    "pr_auc": 0.8271230280816654,
+    "roc_auc": 0.991410741252636,
+    "recall": 0.18316095285320072,
+    "fpr": 0.0009044570838623606,
+    "recall_at_fpr_0.001": 0.22699481588700013,
+    "recall_at_fpr_0.01": 0.643587857200388,
+    "false_alert_flows_per_hour": 72.56552956321023,
+    "iforest_same_inputs": {
+      "pr_auc": 0.2660792968757953,
+      "roc_auc": 0.9289820413908568,
+      "recall": 0.004563921137690459,
+      "fpr": 0.0008748976392984664,
+      "recall_at_fpr_0.001": 0.005693254491935927,
+      "recall_at_fpr_0.01": 0.0530667805845308,
+      "false_alert_flows_per_hour": 70.1939364346591
+    }
+  }
+}

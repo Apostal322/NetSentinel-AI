@@ -1,0 +1,150 @@
+{
+  "nf_cicids2018": {
+    "rows_non_purged_in_both": 615057,
+    "cross_tab": [
+      {
+        "split_episode": "val",
+        "split_chronological": "test",
+        "len": 4738
+      },
+      {
+        "split_episode": "train",
+        "split_chronological": "test",
+        "len": 12269
+      },
+      {
+        "split_episode": "test",
+        "split_chronological": "val",
+        "len": 18854
+      },
+      {
+        "split_episode": "test",
+        "split_chronological": "test",
+        "len": 21408
+      },
+      {
+        "split_episode": "val",
+        "split_chronological": "val",
+        "len": 32183
+      },
+      {
+        "split_episode": "train",
+        "split_chronological": "val",
+        "len": 55948
+      },
+      {
+        "split_episode": "test",
+        "split_chronological": "train",
+        "len": 56751
+      },
+      {
+        "split_episode": "val",
+        "split_chronological": "train",
+        "len": 69049
+      },
+      {
+        "split_episode": "train",
+        "split_chronological": "train",
+        "len": 343857
+      }
+    ],
+    "intersection_rows": 21408,
+    "intersection_families_sampled_rows": {
+      "benign": 15498,
+      "botnet": 5890,
+      "web_attack": 20
+    },
+    "episode_test_families_sampled_rows": {
+      "benign": 78417,
+      "bruteforce": 5911,
+      "botnet": 5890,
+      "dos": 4627,
+      "ddos": 2148,
+      "web_attack": 20
+    },
+    "intersection_days": [
+      "2018-02-14",
+      "2018-02-15",
+      "2018-02-16",
+      "2018-02-20",
+      "2018-02-21",
+      "2018-02-22",
+      "2018-02-23",
+      "2018-02-27",
+      "2018-02-28",
+      "2018-03-02"
+    ]
+  },
+  "nf_unsw_nb15": {
+    "rows_non_purged_in_both": 240013,
+    "cross_tab": [
+      {
+        "split_episode": "val",
+        "split_chronological": "test",
+        "len": 1918
+      },
+      {
+        "split_episode": "test",
+        "split_chronological": "val",
+        "len": 2071
+      },
+      {
+        "split_episode": "val",
+        "split_chronological": "train",
+        "len": 4488
+      },
+      {
+        "split_episode": "test",
+        "split_chronological": "train",
+        "len": 4520
+      },
+      {
+        "split_episode": "train",
+        "split_chronological": "val",
+        "len": 4643
+      },
+      {
+        "split_episode": "train",
+        "split_chronological": "test",
+        "len": 5374
+      },
+      {
+        "split_episode": "val",
+        "split_chronological": "val",
+        "len": 37181
+      },
+      {
+        "split_episode": "test",
+        "split_chronological": "test",
+        "len": 39151
+      },
+      {
+        "split_episode": "train",
+        "split_chronological": "train",
+        "len": 140667
+      }
+    ],
+    "intersection_rows": 39151,
+    "intersection_families_sampled_rows": {
+      "benign": 18530,
+      "exploit": 6983,
+      "fuzzing": 5738,
+      "generic": 3602,
+      "recon": 3441,
+      "dos": 857
+    },
+    "episode_test_families_sampled_rows": {
+      "benign": 24641,
+      "exploit": 7190,
+      "fuzzing": 5851,
+      "generic": 3638,
+      "recon": 3517,
+      "dos": 905
+    },
+    "intersection_days": [
+      "2015-01-22",
+      "2015-01-23",
+      "2015-02-18"
+    ]
+  }
+}

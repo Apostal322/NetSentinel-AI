@@ -24,8 +24,10 @@ Protocol (no target attack label influences fitting, normalisation or thresholds
 
 from __future__ import annotations
 
+import json
 import logging
 import time
+from pathlib import Path
 from typing import Any
 
 import numpy as np
@@ -114,13 +116,32 @@ def one_class_scores(kind: str, fit_x: np.ndarray, score_xs: list[np.ndarray],
 
 
 # ----------------------------------------------------------------------------- evaluation
-def _evaluate(y: np.ndarray, w: np.ndarray, score: np.ndarray, thr: float, hours: float) -> dict:
+def _boot_ci(y, w, alert, groups, n_boot: int = 200, seed: int = 0) -> dict:
+    """95% percentile CIs of weighted recall and FPR, resampling whole 15-min blocks."""
+    uniq, inv = np.unique(groups, return_inverse=True)
+    G = len(uniq)  # noqa: N806
+    tp = np.bincount(inv, weights=w * (alert & (y == 1)), minlength=G)
+    pos = np.bincount(inv, weights=w * (y == 1), minlength=G)
+    fp = np.bincount(inv, weights=w * (alert & (y == 0)), minlength=G)
+    neg = np.bincount(inv, weights=w * (y == 0), minlength=G)
+    cnt = np.random.default_rng(seed).multinomial(G, np.full(G, 1 / G), size=n_boot)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        rec, fpr = (cnt @ tp) / (cnt @ pos), (cnt @ fp) / (cnt @ neg)
+    q = lambda a: [float(np.nanpercentile(a, 2.5)), float(np.nanpercentile(a, 97.5))]  # noqa: E731
+    return {"recall_ci95": q(rec), "fpr_ci95": q(fpr), "blocks": G}
+
+
+def _evaluate(y: np.ndarray, w: np.ndarray, score: np.ndarray, thr: float, hours: float,
+              groups: np.ndarray | None = None) -> dict:  # fmt: skip
     m = binary_metrics(y, score, thr, w, is_probability=False, fpr_targets=(1e-3, 1e-2))
     fa = float((w * ((score > thr) & (y == 0))).sum())
     m["false_alert_flows_per_hour"] = fa / hours if hours else float("nan")
     keys = ("pr_auc", "roc_auc", "recall", "fpr", "recall_at_fpr_0.001", "recall_at_fpr_0.01",
             "false_alert_flows_per_hour")  # fmt: skip
-    return {k: m[k] for k in keys if k in m}
+    out = {k: m[k] for k in keys if k in m}
+    if groups is not None:
+        out.update(_boot_ci(y, w, score > thr, groups))
+    return out
 
 
 def _cal_threshold(cal_scores: np.ndarray, fpr: float) -> float:
@@ -140,6 +161,15 @@ def run_adapt(cfg: dict[str, Any]) -> list[str]:
     ctx_idx = [i for i, f in enumerate(feats) if f.startswith("ctx_")]
     flow_idx = [i for i, f in enumerate(feats) if not f.startswith("ctx_")]
     views = {"flow": flow_idx, "ctx": ctx_idx, "all": list(range(len(feats)))}
+    if cfg.get("noshortcut_view"):
+        from netsentinel.features.nf_schema import NF_SHORTCUT_SUSPECTS
+
+        views["flow_noshortcut"] = [i for i in flow_idx if feats[i] not in NF_SHORTCUT_SUSPECTS]
+    final = cfg.get("evaluation", "validation") == "final_test"
+    if final:
+        marker = Path(cfg.get("final_dir", "reports/final")) / f"{cfg['experiment']}.json"
+        if marker.exists():
+            raise RuntimeError(f"{marker} exists: this final evaluation was already run")
     s_tr, s_va = src.part("train"), src.part("val")
     if cfg.get("max_train_rows") and s_tr.height > cfg["max_train_rows"]:
         s_tr = s_tr.sample(n=cfg["max_train_rows"], seed=seed)
@@ -161,13 +191,26 @@ def run_adapt(cfg: dict[str, Any]) -> list[str]:
     del src, s_va, Xsv
 
     tgt = prepare({**cfg, "data": cfg["target"], "split": cfg["target_split"], "task": "binary"})
-    pool, ev = tgt.part("train"), tgt.part("val")
+    pool = tgt.part("train")
+    if final:
+        # Final test rows: chronological test AND test under the episode protocol used by every
+        # other NF experiment (pre-registration, docs/experiments/final_preregistration_nf.md).
+        epi = prepare({**cfg, "data": cfg["target"], "split": cfg["final_episode_split"],
+                       "feature_set": "nf_portable", "task": "binary"})  # fmt: skip
+        keep = epi.frame.filter(pl.col("split") == "test").select("day", "row_id")
+        ev = tgt.part("test").join(keep, on=["day", "row_id"], how="semi")
+        del epi, keep
+    else:
+        ev = tgt.part("val")
     Xe, ye, we = xy(ev)  # noqa: N806
-    blocks = (ev["day"] + "_" + (ev["event_sec"] // 900).cast(pl.Utf8)).n_unique()
+    groups = (ev["day"] + "_" + (ev["event_sec"] // 900).cast(pl.Utf8)).to_numpy()
+    blocks = len(np.unique(groups))
     hours = blocks * 0.25
+    g = groups if final else None
     raw_eval = raw_model.predict_proba(Xe)[:, 1]
     results: dict[str, Any] = {
-        "source_only": _evaluate(ye, we, raw_eval, src_thr_raw, hours),
+        "evaluation": "final_test" if final else "validation",
+        "source_only": _evaluate(ye, we, raw_eval, src_thr_raw, hours, g),
         "eval_rows": int(len(ye)), "eval_attack_rows": int(ye.sum()), "eval_hours": hours,
         "calibration": {},
     }  # fmt: skip
@@ -188,14 +231,15 @@ def run_adapt(cfg: dict[str, Any]) -> list[str]:
             r: dict[str, Any] = {"contamination": contamination}
             # 1) target threshold calibration of the unchanged source model
             r["source_model_target_threshold"] = _evaluate(
-                ye, we, raw_eval, _cal_threshold(raw_model.predict_proba(Xc)[:, 1], fpr), hours
+                ye, we, raw_eval, _cal_threshold(raw_model.predict_proba(Xc)[:, 1], fpr), hours, g
             )
             # 2) per-domain robust normalisation (target statistics from calibration only)
             tgt_scaler = RobustScaler().fit(Xc)
             ne = norm_model.predict_proba(tgt_scaler.transform(Xe))[:, 1]
             nc = norm_model.predict_proba(tgt_scaler.transform(Xc))[:, 1]
-            r["normalized_source_threshold"] = _evaluate(ye, we, ne, src_thr_norm, hours)
-            r["normalized_target_threshold"] = _evaluate(ye, we, ne, _cal_threshold(nc, fpr), hours)
+            r["normalized_source_threshold"] = _evaluate(ye, we, ne, src_thr_norm, hours, g)
+            r["normalized_target_threshold"] = _evaluate(ye, we, ne, _cal_threshold(nc, fpr),
+                                                         hours, g)  # fmt: skip
             # 3) shift-robust feature subset: features whose benign-source vs calibration KS < 0.3
             Zs, Zc = src_scaler.transform(Xs[ys == 0][:20000]), tgt_scaler.transform(Xc)  # noqa: N806
             keep = [i for i in range(len(feats)) if ks_stat(Zs[:, i], Zc[:, i]) < 0.3]
@@ -206,7 +250,7 @@ def run_adapt(cfg: dict[str, Any]) -> list[str]:
                 se = sub.predict_proba(tgt_scaler.transform(Xe)[:, keep])[:, 1]
                 sc = sub.predict_proba(Zc[:, keep])[:, 1]
                 r["robust_subset_target_threshold"] = _evaluate(
-                    ye, we, se, _cal_threshold(sc, fpr), hours
+                    ye, we, se, _cal_threshold(sc, fpr), hours, g
                 )
             # 4) target normal modelling: one-class detectors fit on one half of the
             #    calibration sample (scaling statistics from that half only), thresholds from
@@ -224,18 +268,32 @@ def run_adapt(cfg: dict[str, Any]) -> list[str]:
                             kind, fit_all[:, cols], [thr_all[:, cols], ev_all[:, cols]], seed
                         )
                         r[f"target_{kind}_{view}"] = _evaluate(
-                            ye, we, s_ev, _cal_threshold(s_thr, fpr), hours
+                            ye, we, s_ev, _cal_threshold(s_thr, fpr), hours, g
                         )
             results["calibration"][f"{variant}_{n}"] = r
             log.info("%s n=%d done (%.0fs)", variant, n, time.perf_counter() - t0)
+    if final:
+        results["eval_label_counts"] = {r["label"]: int(r["len"]) for r in
+                                        ev.group_by("label").len().to_dicts()}  # fmt: skip
     run = Run(cfg, name=cfg["experiment"])
     run.save_json("adapt_results.json", results)
-    flat = {"source_only/" + k: v for k, v in results["source_only"].items()}
+    if final:
+        marker.parent.mkdir(parents=True, exist_ok=True)
+        marker.write_text(json.dumps({"run": run.id, **results}, indent=1, default=str), "utf-8")
+    flat: dict[str, float] = {}
+
+    def put(prefix: str, m: dict) -> None:
+        for k, v in m.items():
+            if isinstance(v, list):  # bootstrap CI
+                flat[f"{prefix}/{k}_lo"], flat[f"{prefix}/{k}_hi"] = v
+            else:
+                flat[f"{prefix}/{k}"] = v
+
+    put("source_only", results["source_only"])
     for key, r in results["calibration"].items():
         for meth, m in r.items():
             if isinstance(m, dict):
-                for k, v in m.items():
-                    flat[f"{key}/{meth}/{k}"] = v
+                put(f"{key}/{meth}", m)
     run.log_metrics(flat)
     run.log_metrics({"seconds": time.perf_counter() - t0}, prefix="cost/")
     run.finish(notes=f"adapt {cfg['source']['processed_dir']} -> {cfg['target']['processed_dir']} "

@@ -1,0 +1,97 @@
+{
+ "pcap": {
+  "by_verdict_service": [
+   [
+    "unusual",
+    "dns",
+    13130
+   ],
+   [
+    "unusual",
+    "web",
+    3343
+   ],
+   [
+    "unusual",
+    "ephemeral",
+    538
+   ],
+   [
+    "suspicious",
+    "web",
+    138
+   ],
+   [
+    "unusual",
+    "other_wellknown",
+    97
+   ],
+   [
+    "unusual",
+    "no_port",
+    18
+   ],
+   [
+    "unusual",
+    "windows_directory",
+    3
+   ],
+   [
+    "suspicious",
+    "ephemeral",
+    1
+   ]
+  ],
+  "anomaly_score_p01_p10_p50_p90": [
+   99.40768999096477,
+   99.60345346852726,
+   99.81427567513302,
+   99.89458889669712
+  ]
+ },
+ "zeek": {
+  "by_verdict_service": [
+   [
+    "unusual",
+    "dns",
+    13141
+   ],
+   [
+    "unusual",
+    "web",
+    1644
+   ],
+   [
+    "suspicious",
+    "web",
+    223
+   ],
+   [
+    "unusual",
+    "other_wellknown",
+    67
+   ],
+   [
+    "unusual",
+    "windows_directory",
+    3
+   ],
+   [
+    "unusual",
+    "ephemeral",
+    2
+   ],
+   [
+    "unusual",
+    "no_port",
+    1
+   ]
+  ],
+  "anomaly_score_p01_p10_p50_p90": [
+   99.46290533079008,
+   99.72392330087341,
+   99.8845497440016,
+   99.97992169460898
+  ]
+ }
+}
