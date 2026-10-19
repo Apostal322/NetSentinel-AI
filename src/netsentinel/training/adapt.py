@@ -118,8 +118,9 @@ def _evaluate(y: np.ndarray, w: np.ndarray, score: np.ndarray, thr: float, hours
     m = binary_metrics(y, score, thr, w, is_probability=False, fpr_targets=(1e-3, 1e-2))
     fa = float((w * ((score > thr) & (y == 0))).sum())
     m["false_alert_flows_per_hour"] = fa / hours if hours else float("nan")
-    return {k: m[k] for k in ("pr_auc", "roc_auc", "recall", "fpr", "recall_at_fpr_0.001",
-                              "recall_at_fpr_0.01", "false_alert_flows_per_hour") if k in m}  # fmt: skip
+    keys = ("pr_auc", "roc_auc", "recall", "fpr", "recall_at_fpr_0.001", "recall_at_fpr_0.01",
+            "false_alert_flows_per_hour")  # fmt: skip
+    return {k: m[k] for k in keys if k in m}
 
 
 def _cal_threshold(cal_scores: np.ndarray, fpr: float) -> float:
@@ -144,8 +145,9 @@ def run_adapt(cfg: dict[str, Any]) -> list[str]:
         s_tr = s_tr.sample(n=cfg["max_train_rows"], seed=seed)
 
     def xy(df):
-        return (df.select(feats).to_numpy().astype(np.float32),
-                (df["label"] != "benign").to_numpy().astype(int), df["sample_weight"].to_numpy())  # fmt: skip
+        X = df.select(feats).to_numpy().astype(np.float32)  # noqa: N806
+        y = (df["label"] != "benign").to_numpy().astype(int)
+        return X, y, df["sample_weight"].to_numpy()
 
     Xs, ys, _ = xy(s_tr)  # noqa: N806
     Xsv, ysv, wsv = xy(s_va)  # noqa: N806
