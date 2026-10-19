@@ -49,14 +49,18 @@ BATCH: list[tuple[str, list[str]]] = [
 
 
 def main() -> int:
+    return run(BATCH, "v1")
+
+
+def run(batch: list[tuple[str, list[str]]], tag: str) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", nargs="*")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
-    log_dir = Path("runs/batch_v1_logs")
+    log_dir = Path(f"runs/batch_{tag}_logs")
     log_dir.mkdir(parents=True, exist_ok=True)
-    ledger = Path("runs/batch_v1.jsonl")
-    for name, cmd in BATCH:
+    ledger = Path(f"runs/batch_{tag}.jsonl")
+    for name, cmd in batch:
         if args.only and name not in args.only:
             continue
         print(f"[{time.strftime('%H:%M:%S')}] {name}: {' '.join(cmd)}", flush=True)

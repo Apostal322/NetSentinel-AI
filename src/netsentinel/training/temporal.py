@@ -66,16 +66,29 @@ def run_temporal(cfg: dict[str, Any]) -> list[str]:
     device = torch.device("cuda" if torch.cuda.is_available() and tcfg.get("gpu", True) else "cpu")
     prep = prepare({**cfg, "task": "binary"})
     frame = prep.frame
+    # Open-set mode (same protocol as training/openset.py): the held-out family is removed from
+    # train AND validation (early stopping and threshold never see it) and evaluated on all of
+    # its rows + benign validation.
+    holdout = tcfg.get("holdout_family")
+    unseen = None
+    if holdout:
+        unseen = frame.filter(pl.col("family") == holdout)
+        if unseen.height == 0:
+            raise ValueError(f"no rows for family {holdout!r}")
+        frame = frame.filter(pl.col("family") != holdout)
     train = frame.filter(pl.col("split") == "train")
     if cfg.get("max_train_rows") and train.height > cfg["max_train_rows"]:
         train = train.sample(n=cfg["max_train_rows"], seed=cfg["seed"])
     val = frame.filter(pl.col("split") == "val")
-    seqs = _sequences(pl.concat([train, val]).select("day", "row_id"),
+    parts = [train, val] + ([unseen] if unseen is not None else [])
+    seqs = _sequences(pl.concat([p.select("day", "row_id") for p in parts]).unique(),
                       Path(cfg["data"]["interim_dir"]), tcfg["length"])  # fmt: skip
     tr_flow = FiniteSignedLog().transform(train.select(prep.features).to_numpy())
     scaler = (np.nanmean(tr_flow, axis=0), np.nanstd(tr_flow, axis=0) + 1e-6)  # train only
     tr = _gather(train, seqs, prep.features, scaler)
     va = _gather(val, seqs, prep.features, scaler)
+    un = _gather(unseen, seqs, prep.features, scaler) if unseen is not None else None
+    del unseen
     # Keep only what later steps need; drop the wide frames before training (8 GB machine:
     # holding them made the first attempt page heavily).
     split_tbl = frame.select("day", "row_id", "split")
@@ -90,7 +103,8 @@ def run_temporal(cfg: dict[str, Any]) -> list[str]:
 
     run_ids = []
     for arch in tcfg["architectures"]:
-        run = Run(cfg, name=f"{cfg['experiment']}_{arch}")
+        suffix = f"_without_{holdout}" if holdout else ""
+        run = Run(cfg, name=f"{cfg['experiment']}_{arch}{suffix}")
         split_tbl.write_parquet(run.dir / "split.parquet")
         model = (SeqGRU(len(prep.features), N_STEP, tcfg.get("hidden", 64)) if arch == "gru"
                  else FlowMLP(len(prep.features))).to(device)  # fmt: skip
@@ -126,7 +140,7 @@ def run_temporal(cfg: dict[str, Any]) -> list[str]:
                 loss.backward()
                 torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
                 opt.step()
-                total += float(loss) * len(idx)
+                total += loss.item() * len(idx)
             score = predict(va)
             ap = float(average_precision_score(va[3], score, sample_weight=va[4]))
             sched.step(ap)
@@ -157,11 +171,25 @@ def run_temporal(cfg: dict[str, Any]) -> list[str]:
                     "feature_fingerprint": schema_fingerprint(prep.features),
                     "sequence_length": tcfg["length"]}, run.dir / "model.pt")  # fmt: skip
         run.log_metrics(metrics, prefix="val/")
+        if un is not None:
+            s_un = predict(un)
+            benign = va[3] == 0
+            s_bv, w_bv = score[benign], va[4][benign]
+            y_os = np.r_[np.ones(len(s_un)), np.zeros(len(s_bv))].astype(int)
+            s_os = np.r_[s_un, s_bv]
+            w_os = np.r_[un[4], w_bv]
+            run.log_metrics({
+                "unseen_rows": len(s_un),
+                "supervised_recall": float((un[4] * (s_un > thr)).sum() / un[4].sum()),
+                "supervised_benign_val_fpr": float((w_bv * (s_bv > thr)).sum() / w_bv.sum()),
+                "unseen_pr_auc": float(average_precision_score(y_os, s_os, sample_weight=w_os)),
+            })  # fmt: skip
         run.log_metrics({"fit_seconds": fit_s, "val_predict_us_per_row": pred_us,
                          "train_rows": len(tr[3]), "val_rows": len(va[3]),
                          "parameters": count_parameters(model), "epochs": len(history),
                          "gpu": float(device.type == "cuda")}, prefix="cost/")  # fmt: skip
-        run.finish(notes=f"temporal {arch} len={tcfg['length']} split={prep.split_cfg.protocol}")
+        run.finish(notes=f"temporal {arch} len={tcfg['length']} split={prep.split_cfg.protocol}"
+                   + (f" holdout={holdout}" if holdout else ""))  # fmt: skip
         log.info("%s val %s", run.id, {k: round(v, 4) for k, v in metrics.items()})
         run_ids.append(run.id)
     return run_ids
