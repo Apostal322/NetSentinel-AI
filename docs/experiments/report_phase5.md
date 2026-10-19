@@ -53,7 +53,133 @@ Threshold calibration is a separate, smaller failure. Source thresholds flagged 
 target benign flows (v4). Calibrating on target benign data controls the FPR, but cannot
 restore ranking quality the model does not have (section 2).
 
-## 4. PCAP / Zeek pipeline on a real capture (Mission 6)
+## 2. Label-free domain adaptation (Mission 2), validation
+
+Evidence: batch v5 (`scripts/run_batch_v5.py`) -> `reports/experiments/results_v5.{md,json}`,
+`reports/figures/adaptation_calibration.png`. Setup:
+- 3 seeds; the target is the chronological split of the other dataset.
+- Calibration data comes from the target's earlier 60% of time; evaluation is the following
+  20%.
+- No target attack label sets anything. "Clean" calibration contains benign flows only;
+  "unlabelled" is a random sample of all traffic with its true attack share.
+- The FPR target is 1e-3 throughout. Each cell gives mean recall / FPR across seeds.
+
+Domain adaptation (DA) here means changing a *source-trained* detector using unlabelled or
+benign target data. Domain generalisation (DG) means using only features expected to be
+stable. Supervised retraining uses target labels and is reported only as the in-domain upper
+bound. Importance-weighting DA was **not run**: with domain-classifier AUC of about 1 there
+is no common support to reweight (section 1).
+
+| Method (clean calibration, 50k flows) | IDS -> UNSW, nf_flow_ctx | IDS -> UNSW, nf_portable_ctx | UNSW -> IDS, nf_flow_ctx |
+|---|---|---|---|
+| source model, source threshold (no adaptation) | 0.264 / 0.339 (ROC 0.44) | 0.074 / 0.354 (ROC 0.37) | 1.000 / 0.994 (ROC 0.68) |
+| DA: source model, target-calibrated threshold | 0.002 / 0.0018 | 0.005 / 0.0003 | 0.000 / 0.0009 |
+| DA: robust per-domain normalisation + target threshold | 0.000 / 0.015 | 0.002 / 0.010 | 0.000 / 0.0025 |
+| DG: KS < 0.3 shift-robust feature subset + target threshold | 0.000 / 0.0043 (ROC 0.41) | 0.000 / 0.0011 (ROC 0.41) | 0.000 / 0.0009 (ROC 0.15) |
+| supervised in-domain retraining, target labels (upper bound) | 1.000 / 0.0007 | 1.000 / 0.0007 (nf_flow_ctx) | 1.000 / 0.0008 |
+
+1. **No source-based method recovered detection.** Threshold calibration did its job: it cut
+   the FPR from 34–99% to about 1e-3. But the source model ranks target attacks no better
+   than chance (ROC 0.37–0.68), so a calibrated threshold leaves recall about 0. Robust
+   normalisation lowered ROC further (0.26–0.41 into UNSW), because it maps the
+   direction-conflicting features onto the source scale.
+2. **Calibration size.** For the source-based methods, 1,000 clean flows already gave a
+   stable FPR (0.0012 ± 0.0008), and more data did not help, since there was nothing left to
+   recover. Target-benign normal models (section 3) are where size matters.
+3. **Unlabelled calibration is harmful.** The calibration samples carried their true attack
+   share: 9.1% (UNSW), 16.5% (NF-IDS) and 13.1% (CIC). Then even the *in-domain* supervised
+   model's calibrated recall fell from 1.000 to 0.011 (UNSW) and to 0.000 (NF-IDS and CIC).
+   The attack mass in the calibration quantile pushes the threshold above most attacks. Every
+   target-normal model degraded the same way. Real networks have lower attack shares, but
+   the result shows calibration needs vetted benign data or a robust (trimmed) quantile.
+
+## 3. Normal-behaviour modelling (Mission 3), validation
+
+Same protocol, with one-class detectors fit on half of the clean target calibration sample
+and thresholded on the other half (FPR 1e-3). Feature views: per-flow ("flow"), multi-scale
+context ("ctx"), both ("all").
+
+| Target, detector (clean 50k) | NF-UNSW | NF-IDS2018 | CIC-IDS2018 |
+|---|---|---|---|
+| robust-z, flow | 0.001 / 0.0008 (ROC 0.88) | 0.000 / 0.0008 (ROC 0.45) | 0.000 / 0.0015 (ROC 0.56) |
+| Isolation Forest, flow | 0.007 / 0.0009 (ROC 0.94) | 0.000 / 0.0009 (ROC 0.92) | 0.000 / 0.0010 (ROC 0.80) |
+| Isolation Forest, ctx | 0.000 / 0.0000 (ROC 0.61) | 0.000 / 0.0000 (ROC 0.40) | 0.000 / 0.0000 (ROC 0.95) |
+| autoencoder, flow | **1.000** / 0.0006 (ROC 1.00) | 0.000 / 0.0010 (ROC 0.91) | 0.000 / 0.0014 (ROC 0.76) |
+| autoencoder, all | 0.745 / 0.0007 | 0.000 / 0.0009 (ROC 0.87) | 0.000 / 0.0009 (ROC 0.93) |
+
+(In-domain runs B; the UNSW column agrees with the target-side detectors of the IDS -> UNSW
+runs, e.g. autoencoder flow 0.979.)
+
+- **On both IDS2018 variants, no detector reaches non-zero recall at FPR 1e-3.** This holds
+  even where ranking is good (Isolation Forest on ctx, ROC 0.95 on CIC). The attacks score
+  higher than typical benign flows but not higher than the benign tail, so an operational
+  threshold removes them. This replicates v1–v3 (audit V5–V7) with three detector families
+  and two feature schemas.
+- **NF-UNSW is the exception, and the reason is an artefact.** The flow autoencoder's recall
+  rises with calibration size: 0.14 (1k), 0.83 (10k), 0.98–1.00 (50k).
+  `scripts/audit/audit_autoencoder.py` (`reports/audit/autoencoder_unsw.json`, seed 42)
+  shows why. UNSW benign flows have essentially constant TTL and minimum packet length
+  (median |z| = 0); attacks sit at |z| ≈ 20 on TTL. `min_ttl`/`max_ttl` carry 65% of the
+  attacks' reconstruction error. Without TTL and window fields, recall is 0.95, now carried
+  by `shortest_flow_pkt`/`min_ip_pkt_len`. Dropping the top 5 error features leaves 0.18.
+  The detector flags "a host stack other than the testbed's", which works on a 40-host IXIA
+  testbed whose 4 attacking hosts differ in OS stack. It is not evidence of behavioural
+  unknown-attack detection.
+- **Isolation Forest misses the same signal.** With 512-sample trees over 49 features it
+  rarely splits on near-constant features, so robust-z and Isolation Forest stay at about
+  0.01 recall.
+- **No unknown-attack detection claim is made.** The same "unusual" verdict is kept separate
+  from "suspicious" in the product. Section 6 shows what that means on a real benign capture.
+
+## 5. Multi-task objectives audit (Mission 4)
+
+| Objective | Training data / label | Model | Evidence (best, honest number) | Integrated in product? | Limitation |
+|---|---|---|---|---|---|
+| Application / service identification | (a) IANA port category (deterministic); (b) **new**: nDPI master protocol from NF-v3 `L7_PROTO`, benign flows | (a) lookup; (b) LightGBM on flow shape, with abstention | (b) validation macro-F1: NF-IDS 0.941 without port vs 0.840 port lookup; NF-UNSW 0.730 vs 0.634 | (a) yes, labelled "port heuristic"; (b) no (needs nDPI-compatible fields at inference) | the label is DPI output, not ground truth; TLS is one class (no app-in-TLS claim) |
+| Normal-behaviour modelling | benign flows (global or per service) | EmpiricalScorer reference, robust-z, IForest, autoencoder | recall about 0 at FPR 1e-3 on IDS2018 (both schemas); UNSW success is a host-stack artefact (section 3) | yes: anomaly score 0–100, "unusual" verdict | does not transfer to a new network without target calibration (section 6) |
+| Anomaly score | percentile of the benign reference | EmpiricalScorer with tail extension | on real benign CTU-26 traffic, p01 = 99.4 against a threshold of 97.5 | yes | uncalibrated on new networks: almost everything is "unusual" |
+| Binary attack detection | labelled flows, episode split | LightGBM (v1–v5) | in-domain recall about 1.0 at FPR 1e-3 (validation); CIC test 0.983 at FPR 0.0009 | yes ("suspicious") | saturated in-domain; fails across networks (sections 1–2) |
+| Attack-type classification | labelled attacks (label / family) | LightGBM multiclass | CIC test macro-F1 0.889; SQLi recall 0.017 | CIC replay bundle only; not in the portable bundle | fixed confidence threshold 0.6 (not tuned; docstring corrected) |
+| Unknown-attack handling | held-out behaviour groups | supervised flow+ctx; anomaly fusion | v3 open-set: context lifts port-21/SSH/HTTP-DoS to 0.95–0.999, web attacks stay at 0.015; anomaly-only 0 | partly: "unusual" vs "suspicious" verdicts | no claim of unknown-attack detection |
+
+**Application identification details.** Evidence: run `20261020-022406_appid_nf`
+(`appid_results.json`); validation B rows, 10 most frequent classes plus "other"; benign only;
+episode-split train/validation; test excluded. Accuracy / macro-F1:
+
+| Model | NF-IDS2018 | NF-UNSW |
+|---|---|---|
+| majority class | 0.394 / 0.051 | 0.340 / 0.046 |
+| port lookup (protocol, dst_port) | 0.906 / 0.840 | 0.691 / 0.634 |
+| LightGBM, flow shape, no port information | 0.989 / 0.941 | 0.834 / 0.730 |
+| LightGBM, flow shape + port class | 0.991 / 0.952 | 0.837 / 0.734 |
+| abstention (threshold from val A): coverage at 99% accepted accuracy on val B | 0.996 (accepted acc. 0.990) | 0.654 (accepted acc. 0.991) |
+
+- Flow shape adds to the port where port and DPI label disagree. On NF-IDS, SMB2/3 recall is
+  0.979 from shape vs 0.003 from the port, and RDP 1.000 vs 0.794. On NF-UNSW, NFS is
+  1.000 vs 0.352 and eDonkey 1.000 vs 0.238.
+- The port alone is better for SMTP/IMAP/telnet/HTTP-proxy, and adding the port class gives
+  only +0.01 macro-F1.
+- **Caveats.**
+  1. The target is nDPI's guess. On NF-UNSW, 52% of benign flows are labelled
+     eDonkey/BitTorrent. That is more plausibly nDPI guessing P2P on the IXIA generator's
+     random ports than real P2P.
+  2. The shape features include TTL and TCP window, which identify *hosts*. In networks with
+     few servers the model can learn "which server" rather than "which application". A
+     no-shortcut ablation was not run.
+  3. The nDPI version, and so the ID-to-name mapping, is assumed (nDPI 4.8).
+  4. Encrypted traffic: TLS is a single class, recovered with 0.984 recall on NF-IDS. We
+     make no claim about identifying applications inside TLS or QUIC.
+- **Integration.** Not added to the PCAP/Zeek bundle. The model uses per-direction IAT,
+  TTL and size-bin fields, and our PCAP extractor matches nProbe on these only in aggregate
+  identities (section 6), not field by field.
+
+**Did application-aware modelling reduce false positives?** The only application-aware
+mechanism evaluated end to end is the service-conditioned anomaly reference (v1 H2). It
+changed Isolation Forest PR-AUC by +0.05 and robust-z by −0.14, with recall about 0 either
+way. No evidence that it reduced false positives at an operating point. The learned
+application label (above) was not used for conditioning; that remains future work.
+
+## 6. PCAP / Zeek pipeline on a real capture (Mission 6)
 
 Evidence: `scripts/audit/validate_pcap_vs_zeek.py` -> `reports/audit/pcap_vs_zeek.json`.
 Capture: CTU-Normal-26 (Stratosphere Lab; `docs/datasets/ctu_normal_26.md`): 199,279
@@ -110,8 +236,50 @@ not in nProbe's (<= 0.02%). nProbe's definition is not documented in the dataset
 file. Models using these two fields (`nf_flow*` feature sets) must not be applied to
 PCAP-derived flows. The deployed portable bundle (`nf_portable_ctx`) does not use them.
 
+**End to end on real traffic.** `netsentinel analyze` with the deployed portable bundle
+(`models/bundle-20261019T202605Z`: threat model and anomaly reference trained on NF-IDS2018)
+ran on the whole capture. Outputs: `reports/experiments/ctu26_analyze_{pcap,zeek}.json` and
+`ctu26_verdict_breakdown.json`; 38 s for both inputs.
+
+| Input | Flows | benign | unusual | suspicious | attack | suspicious per hour (6.5 h) |
+|---|---|---|---|---|---|---|
+| PCAP (our assembler) | 17,268 | 0 | 17,129 (99.2%) | 139 (0.8%) | 0 | 21.4 |
+| Zeek conn.log | 15,081 | 0 | 14,858 (98.5%) | 223 (1.5%) | 0 | 34.3 |
+
+- The capture is benign, so every "suspicious" verdict is a false alert. All but one are on
+  web ports.
+- The anomaly score has p01 = 99.4 against an "unusual" threshold of 97.5, so the anomaly
+  output carries no information on this network.
+- This is the transfer failure of sections 1–3, reproduced on real telemetry with both
+  extractors. The bundle **must not be used on a new network without target calibration**
+  on vetted benign traffic. The product exposes no calibration step for that yet
+  (`analyze` has no calibrate mode); this is listed as unsolved.
+
 **Not validated.** We have no paired capture with nProbe NF-v3 output, so the field-level
 agreement with the training features is still unverified. That includes the per-direction
 IAT, TTL, window and retransmission fields, nProbe's own flow-cut rules, and nDPI labels.
 Agreement with Zeek covers flow boundaries, packet and byte accounting, direction and TCP
 state only.
+
+## 7. End-to-end system audit (Mission 7), 2026-10-20
+
+"Verified" means exercised in this phase, by an automated test or by a run on real data whose
+output is in `reports/`. Anything else is labelled.
+
+| Component | Status | Evidence |
+|---|---|---|
+| CLI (`netsentinel data/features/train/bundle/replay/analyze/serve/evaluate`) | verified | 74 default tests pass (`uv run pytest`); every stage used in v5, app ID and the final runs ran via the CLI |
+| PCAP / pcapng reader | verified on real data | CTU-26: 199,279 packets, 0 IP packets lost (section 6); malformed paths covered by unit tests only |
+| Flow assembler | verified against Zeek; **defect fixed** | close-linger fix; TCP flow count equals Zeek's; 99.8% packet/byte agreement under Zeek timeouts |
+| Zeek conn.log reader | verified on real data | 15,081 / 15,081 records parsed, 0 skipped |
+| Field compatibility with NF-v3 (nProbe) | **not verified field by field** | aggregate identities match NF-IDS; `*_SECOND_BYTES` semantics differ; no paired nProbe capture |
+| Context features / windowing on PCAP-derived flows | verified to run, no nulls | `analyze` frame: 0 null / non-finite cells; correctness vs training-time context only by shared code |
+| Inference engine + bundle integrity (SHA-256) | verified | integration tests incl. tampered-bundle refusal; real-capture run |
+| Decision layer | verified (unit) | `test_decision.py`; docstring corrected (attack-type threshold is a fixed 0.6) |
+| Model quality on a new network | **fails without calibration** | CTU-26: 99% "unusual", 21–34 false "suspicious" flows/h (section 6) |
+| SQLite event store | verified | written by `analyze` (CTU-26) and replay tests; idempotent ids (tests) |
+| FastAPI (`/predict/flow`, `/analyze`, `/events`, auth, size limits) | verified by tests only | `test_serving.py`, `test_offline_app.py` (TestClient); not load-tested; not exposed on a network |
+| Streamlit dashboard | **not re-verified in Phase 5** | no automated test; last manual check in Phase 2 (README screenshots) |
+| Docker image / compose | **unverified** | Docker is not installed on this machine; the Dockerfile has never been built |
+| GitHub Actions CI | **unverified** | the workflow exists but has never run: no remote repository (pushing needs your authorisation) |
+| Pre-registered final test (NF) | see section 4 | one-shot markers in `reports/final/` |
