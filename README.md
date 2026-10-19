@@ -25,6 +25,7 @@ Discussion: [`docs/experiments/report_v1.md`](docs/experiments/report_v1.md).
 | Removing 4 known collection-artefact fields drops test recall to **0.735**; HOIC detection falls from 1.00 to **0.07** | shortcut ablation |
 | With an attack family **held out of training**, adding causal 5/30/300 s context raises recall at FPR 1e-3 from 0.23 to **0.97** (DoS), 0.51 to **0.998** (brute force), 0.004 to **0.61** (botnet); web attacks stay undetected | E6 |
 | Label-free anomaly detectors (Isolation Forest, robust z), global or service-conditioned, have recall ~0 at FPR 1e-3; OR-fusing them with the classifier **lowers** recall | E3, E6 |
+| A GRU over causal per-port flow sequences does **not** beat a same-setup MLP or LightGBM on seen attacks (validation PR-AUC 0.9999 vs 0.9997 vs 1.000) | E2 (report 3.6) |
 
 ## Architecture
 
@@ -45,8 +46,8 @@ Details: [`docs/architecture/overview.md`](docs/architecture/overview.md).
   automated leakage checks on every run.
 * Models: dummy, logistic regression, random forest, HistGB, LightGBM (binary, attack type,
   family); robust-z and Isolation Forest anomaly models (global / service-conditioned);
-  leave-one-family-out evaluation; GRU / MLP temporal models (code and tests; **not yet
-  trained**, see roadmap).
+  leave-one-family-out evaluation; GRU / MLP temporal models (PyTorch, GPU, early stopping,
+  checkpointing; trained and validated, not test-evaluated).
 * Inference: one prediction contract that separates calibrated P(malicious), attack-type
   confidence with `unknown` abstention, a 0-100 anomaly score (benign-tail percentile, not a
   probability), verdicts `benign | unusual | suspicious | attack`, evidence derived from
@@ -158,14 +159,14 @@ an evaluation, and not live traffic.
   host addresses (except one day) and no application labels. "Service" is a port heuristic.
 * No live capture, Zeek or Suricata integration; Docker is not set up (neither tool was
   available in the development environment).
-* Single seed; no repeated-training variance. The temporal deep-learning experiment is
-  implemented but has not been run.
+* Single seed; no repeated-training variance. The temporal deep-learning models were compared
+  only on seen attacks (validation), not on unseen families.
 * The API has no TLS, accounts or rate limiting; it binds to localhost and is detection-only.
   See [`docs/security/threat_model.md`](docs/security/threat_model.md).
 
 ## Roadmap
 
-1. Train and evaluate the GRU-vs-MLP temporal experiment on the same split.
+1. Evaluate the GRU in the leave-one-family-out protocol, where context features mattered.
 2. Run 5 seeds for the main comparisons.
 3. Cross-dataset validation (corrected IDS2018 relabelling or CICIoT2023).
 4. Learned, out-of-fold fusion instead of the OR rule.

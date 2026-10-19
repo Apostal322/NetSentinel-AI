@@ -76,12 +76,22 @@ def run_temporal(cfg: dict[str, Any]) -> list[str]:
     scaler = (np.nanmean(tr_flow, axis=0), np.nanstd(tr_flow, axis=0) + 1e-6)  # train only
     tr = _gather(train, seqs, prep.features, scaler)
     va = _gather(val, seqs, prep.features, scaler)
+    # Keep only what later steps need; drop the wide frames before training (8 GB machine:
+    # holding them made the first attempt page heavily).
+    split_tbl = frame.select("day", "row_id", "split")
+    val_meta = val.select("day", "row_id", "split", "label", "dst_port", "protocol",
+                          "sample_weight")  # fmt: skip
+    prep = type(prep)(val_meta, prep.features, prep.split_cfg, prep.leakage, prep.coverage)
+    del frame, train, val, seqs, tr_flow
+    import gc
+
+    gc.collect()
     pos_weight = torch.tensor((tr[3] == 0).sum() / max((tr[3] == 1).sum(), 1), device=device)
 
     run_ids = []
     for arch in tcfg["architectures"]:
         run = Run(cfg, name=f"{cfg['experiment']}_{arch}")
-        prep.frame.select("day", "row_id", "split").write_parquet(run.dir / "split.parquet")
+        split_tbl.write_parquet(run.dir / "split.parquet")
         model = (SeqGRU(len(prep.features), N_STEP, tcfg.get("hidden", 64)) if arch == "gru"
                  else FlowMLP(len(prep.features))).to(device)  # fmt: skip
         opt = torch.optim.AdamW(model.parameters(), lr=tcfg.get("lr", 1e-3), weight_decay=1e-4)
@@ -139,8 +149,7 @@ def run_temporal(cfg: dict[str, Any]) -> list[str]:
         pred_us = 1e6 * (time.perf_counter() - t1) / len(score)
         thr = threshold_at_fpr(va[3].astype(int), score, cfg.get("target_fpr", 1e-3), va[4])
         metrics = binary_metrics(va[3].astype(int), score, thr, va[4])
-        prep_val = type(prep)(val, prep.features, prep.split_cfg, prep.leakage, prep.coverage)
-        run.save_json("error_analysis_val.json", error_analysis(prep_val, score, thr))
+        run.save_json("error_analysis_val.json", error_analysis(prep, score, thr))
         run.save_json("history.json", history)
         torch.save({"state_dict": model.state_dict(), "arch": arch, "scaler": scaler,
                     "features": prep.features, "threshold": thr,

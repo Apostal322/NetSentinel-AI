@@ -92,6 +92,26 @@ without that family):
 | episode (default) | 1.000 / 1.000 | 1.000 / 1.000 |
 | random 15-min blocks | 0.789 / 0.335 | 0.991 / 0.950 |
 
+### 3.6 Temporal deep learning (validation; approved run 2026-10-19 17:38-17:41)
+
+Same split, label rules and 300 k training cap as the baselines; GTX 1050 Ti; early stopping
+on validation PR-AUC. GRU input: the previous 16 flows to the same destination port that
+ended in strictly earlier seconds (from the full day stream), plus the target flow features.
+
+| Model | Run | PR-AUC | Recall @ FPR 1e-3 | Params | Epochs | Fit s | Inference us/row |
+|---|---|---|---|---|---|---|---|
+| MLP (flow only, control) | `20261019-173929_temporal_mlp` | 0.9997 | 0.9990 | 17,665 | 11 | 44.9 | 0.7 |
+| GRU (flow + per-port sequence) | `20261019-174049_temporal_gru` | 0.9999 | 0.9989 | 41,281 | 8 | 42.1 | 2.3 |
+| LightGBM flow (batch v1, reference) | `20261019-124619_baseline_binary_lightgbm` | 1.000 | 1.000 | - | - | 15.7 | - |
+
+Per-label validation recall is >= 0.998 for every label for both networks except web XSS
+(MLP 0.546, GRU 0.632, LightGBM 1.000; 174 rows from a single episode segment). Process peak
+working set 2.7 GB (measured); private memory reached ~3.8 GB while building sequences.
+**Conclusion: no measurable benefit of temporal deep learning over gradient boosting on
+attacks seen in training; all three saturate.** The informative test, unseen families with
+the GRU, was not run. These two runs were not pre-registered, so their test splits were not
+evaluated.
+
 ## 4. Hypotheses: verdicts (validation unless stated; single seed)
 
 | | Verdict | Evidence |
@@ -153,8 +173,7 @@ without that family):
 
 ## 8. Next steps
 
-* Temporal deep learning (GRU over causal per-port sequences vs MLP control) - implemented,
-  awaiting approval to train.
+* Run the GRU in the leave-one-family-out protocol (where context features mattered).
 * Repeat key comparisons over 5 seeds; report variance.
 * Cross-dataset check (e.g. CICIoT2023 or the corrected DistriNet IDS2018) for the shortcut and
   context findings.

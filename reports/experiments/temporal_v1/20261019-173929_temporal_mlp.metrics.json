@@ -1,0 +1,21 @@
+{
+  "val/precision": 0.9899021037443918,
+  "val/recall": 0.9989577434920626,
+  "val/fpr": 0.0009314134120738656,
+  "val/threshold": 0.9541825652122498,
+  "val/f1": 0.9944093076328038,
+  "val/pr_auc": 0.9996867484678097,
+  "val/roc_auc": 0.9999723878889242,
+  "val/recall_at_fpr_0.001": 0.9989577434920626,
+  "val/recall_at_fpr_0.01": 0.9996305723450997,
+  "val/brier": 0.0017579164491965463,
+  "val/ece": 0.003396034087434759,
+  "cost/fit_seconds": 44.94325209999806,
+  "cost/val_predict_us_per_row": 0.6584457898057574,
+  "cost/train_rows": 300000.0,
+  "cost/val_rows": 84403.0,
+  "cost/parameters": 17665.0,
+  "cost/epochs": 11.0,
+  "cost/gpu": 1.0,
+  "cost/process_peak_rss_mb": 2717.2
+}

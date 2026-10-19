@@ -1,0 +1,571 @@
+{
+  "false_positives_by_day_port": [
+    {
+      "day": "2018-02-20",
+      "dst_port": 80,
+      "rows": 11,
+      "weighted": 1621.9404296875
+    },
+    {
+      "day": "2018-02-20",
+      "dst_port": 22,
+      "rows": 1,
+      "weighted": 147.44912719726562
+    },
+    {
+      "day": "2018-02-15",
+      "dst_port": 80,
+      "rows": 6,
+      "weighted": 119.529052734375
+    },
+    {
+      "day": "2018-03-01",
+      "dst_port": 22,
+      "rows": 6,
+      "weighted": 28.564355850219727
+    },
+    {
+      "day": "2018-02-23",
+      "dst_port": 80,
+      "rows": 1,
+      "weighted": 20.9599666595459
+    },
+    {
+      "day": "2018-03-02",
+      "dst_port": 80,
+      "rows": 1,
+      "weighted": 15.247621536254883
+    },
+    {
+      "day": "2018-02-28",
+      "dst_port": 80,
+      "rows": 1,
+      "weighted": 10.883997917175293
+    },
+    {
+      "day": "2018-02-28",
+      "dst_port": 22,
+      "rows": 1,
+      "weighted": 10.883997917175293
+    },
+    {
+      "day": "2018-02-28",
+      "dst_port": 135,
+      "rows": 1,
+      "weighted": 10.883997917175293
+    },
+    {
+      "day": "2018-03-01",
+      "dst_port": 1,
+      "rows": 1,
+      "weighted": 4.760725975036621
+    }
+  ],
+  "false_negatives_by_label": [
+    {
+      "label": "web_xss",
+      "rows": 64
+    },
+    {
+      "label": "ddos_loic_http",
+      "rows": 3
+    },
+    {
+      "label": "bot",
+      "rows": 6
+    }
+  ],
+  "recall_by_label": [
+    {
+      "label": "bot",
+      "recall": 0.9984076433121019,
+      "rows": 3768
+    },
+    {
+      "label": "ddos_loic_http",
+      "recall": 0.9990231195050472,
+      "rows": 3071
+    },
+    {
+      "label": "ddos_loic_udp",
+      "recall": 1.0,
+      "rows": 84
+    },
+    {
+      "label": "dos_goldeneye",
+      "recall": 1.0,
+      "rows": 3903
+    },
+    {
+      "label": "dos_slowhttptest",
+      "recall": 1.0,
+      "rows": 1491
+    },
+    {
+      "label": "dos_slowloris",
+      "recall": 1.0,
+      "rows": 860
+    },
+    {
+      "label": "ftp_bruteforce",
+      "recall": 1.0,
+      "rows": 3687
+    },
+    {
+      "label": "ssh_bruteforce",
+      "recall": 1.0,
+      "rows": 3672
+    },
+    {
+      "label": "web_xss",
+      "recall": 0.632183908045977,
+      "rows": 174
+    }
+  ],
+  "fpr_by_day": [
+    {
+      "day": "2018-02-14",
+      "fpr": 0.0
+    },
+    {
+      "day": "2018-02-15",
+      "fpr": 0.0007889546104706824
+    },
+    {
+      "day": "2018-02-16",
+      "fpr": 0.0
+    },
+    {
+      "day": "2018-02-20",
+      "fpr": 0.0015009380877017975
+    },
+    {
+      "day": "2018-02-21",
+      "fpr": 0.0
+    },
+    {
+      "day": "2018-02-22",
+      "fpr": 0.0
+    },
+    {
+      "day": "2018-02-23",
+      "fpr": 0.00011168192577315494
+    },
+    {
+      "day": "2018-02-28",
+      "fpr": 0.00028253908385522664
+    },
+    {
+      "day": "2018-03-01",
+      "fpr": 0.001377681503072381
+    },
+    {
+      "day": "2018-03-02",
+      "fpr": 0.00012134449934819713
+    }
+  ],
+  "worst_false_positives": [
+    {
+      "day": "2018-03-01",
+      "row_id": 89863,
+      "label": "benign",
+      "dst_port": 22,
+      "protocol": 6,
+      "score": 0.9999994039535522
+    },
+    {
+      "day": "2018-02-20",
+      "row_id": 7427352,
+      "label": "benign",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.9999055862426758
+    },
+    {
+      "day": "2018-03-01",
+      "row_id": 81413,
+      "label": "benign",
+      "dst_port": 22,
+      "protocol": 6,
+      "score": 0.9934945702552795
+    },
+    {
+      "day": "2018-02-15",
+      "row_id": 995990,
+      "label": "benign",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.9914804697036743
+    },
+    {
+      "day": "2018-02-20",
+      "row_id": 2738715,
+      "label": "benign",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.9832867383956909
+    },
+    {
+      "day": "2018-02-23",
+      "row_id": 802658,
+      "label": "benign",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.9781506061553955
+    },
+    {
+      "day": "2018-03-01",
+      "row_id": 81143,
+      "label": "benign",
+      "dst_port": 22,
+      "protocol": 6,
+      "score": 0.9660201668739319
+    },
+    {
+      "day": "2018-03-01",
+      "row_id": 81145,
+      "label": "benign",
+      "dst_port": 22,
+      "protocol": 6,
+      "score": 0.9642307758331299
+    },
+    {
+      "day": "2018-02-20",
+      "row_id": 5703424,
+      "label": "benign",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.959423840045929
+    },
+    {
+      "day": "2018-02-15",
+      "row_id": 992897,
+      "label": "benign",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.9446059465408325
+    },
+    {
+      "day": "2018-02-20",
+      "row_id": 2753353,
+      "label": "benign",
+      "dst_port": 22,
+      "protocol": 6,
+      "score": 0.9380903244018555
+    },
+    {
+      "day": "2018-03-01",
+      "row_id": 85528,
+      "label": "benign",
+      "dst_port": 22,
+      "protocol": 6,
+      "score": 0.8931471109390259
+    },
+    {
+      "day": "2018-02-15",
+      "row_id": 952930,
+      "label": "benign",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.8926999568939209
+    },
+    {
+      "day": "2018-03-01",
+      "row_id": 88807,
+      "label": "benign",
+      "dst_port": 1,
+      "protocol": 6,
+      "score": 0.891983687877655
+    },
+    {
+      "day": "2018-02-28",
+      "row_id": 161159,
+      "label": "benign",
+      "dst_port": 22,
+      "protocol": 6,
+      "score": 0.8898242115974426
+    },
+    {
+      "day": "2018-03-01",
+      "row_id": 174564,
+      "label": "benign",
+      "dst_port": 22,
+      "protocol": 6,
+      "score": 0.883115828037262
+    },
+    {
+      "day": "2018-02-15",
+      "row_id": 292368,
+      "label": "benign",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.861416757106781
+    },
+    {
+      "day": "2018-03-02",
+      "row_id": 56510,
+      "label": "benign",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.8297708034515381
+    },
+    {
+      "day": "2018-02-20",
+      "row_id": 2227650,
+      "label": "benign",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.8121967911720276
+    },
+    {
+      "day": "2018-02-15",
+      "row_id": 1037991,
+      "label": "benign",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.7948904633522034
+    },
+    {
+      "day": "2018-02-28",
+      "row_id": 334688,
+      "label": "benign",
+      "dst_port": 135,
+      "protocol": 6,
+      "score": 0.7873704433441162
+    },
+    {
+      "day": "2018-02-20",
+      "row_id": 2162887,
+      "label": "benign",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.7560535669326782
+    },
+    {
+      "day": "2018-02-28",
+      "row_id": 275387,
+      "label": "benign",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.7401366829872131
+    },
+    {
+      "day": "2018-02-20",
+      "row_id": 7378686,
+      "label": "benign",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.7388510704040527
+    },
+    {
+      "day": "2018-02-20",
+      "row_id": 2433384,
+      "label": "benign",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.7283705472946167
+    }
+  ],
+  "worst_false_negatives": [
+    {
+      "day": "2018-02-23",
+      "row_id": 1274,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.09226752072572708
+    },
+    {
+      "day": "2018-02-22",
+      "row_id": 1179,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.0984308272600174
+    },
+    {
+      "day": "2018-02-23",
+      "row_id": 1189,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.10325447469949722
+    },
+    {
+      "day": "2018-02-22",
+      "row_id": 1252,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.12032685428857803
+    },
+    {
+      "day": "2018-02-23",
+      "row_id": 1202,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.13763976097106934
+    },
+    {
+      "day": "2018-02-23",
+      "row_id": 1284,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.1505514532327652
+    },
+    {
+      "day": "2018-03-02",
+      "row_id": 347928,
+      "label": "bot",
+      "dst_port": 0,
+      "protocol": 0,
+      "score": 0.15412230789661407
+    },
+    {
+      "day": "2018-02-22",
+      "row_id": 1244,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.1678442656993866
+    },
+    {
+      "day": "2018-03-02",
+      "row_id": 28229,
+      "label": "bot",
+      "dst_port": 0,
+      "protocol": 0,
+      "score": 0.1715535819530487
+    },
+    {
+      "day": "2018-02-23",
+      "row_id": 1165,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.174518883228302
+    },
+    {
+      "day": "2018-02-23",
+      "row_id": 1351,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.1768873631954193
+    },
+    {
+      "day": "2018-02-23",
+      "row_id": 1095,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.18028658628463745
+    },
+    {
+      "day": "2018-02-23",
+      "row_id": 1132,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.18376508355140686
+    },
+    {
+      "day": "2018-02-23",
+      "row_id": 1271,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.19043312966823578
+    },
+    {
+      "day": "2018-02-23",
+      "row_id": 1193,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.2068828046321869
+    },
+    {
+      "day": "2018-02-23",
+      "row_id": 1168,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.20815300941467285
+    },
+    {
+      "day": "2018-02-23",
+      "row_id": 1247,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.21975736320018768
+    },
+    {
+      "day": "2018-02-23",
+      "row_id": 1136,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.23175382614135742
+    },
+    {
+      "day": "2018-02-23",
+      "row_id": 1280,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.25191161036491394
+    },
+    {
+      "day": "2018-03-02",
+      "row_id": 307954,
+      "label": "bot",
+      "dst_port": 0,
+      "protocol": 0,
+      "score": 0.26366233825683594
+    },
+    {
+      "day": "2018-02-22",
+      "row_id": 1235,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.28980907797813416
+    },
+    {
+      "day": "2018-02-23",
+      "row_id": 1152,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.2979769706726074
+    },
+    {
+      "day": "2018-02-23",
+      "row_id": 1349,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.313850998878479
+    },
+    {
+      "day": "2018-02-23",
+      "row_id": 1315,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.32535985112190247
+    },
+    {
+      "day": "2018-02-23",
+      "row_id": 1287,
+      "label": "web_xss",
+      "dst_port": 80,
+      "protocol": 6,
+      "score": 0.3319101333618164
+    }
+  ]
+}
