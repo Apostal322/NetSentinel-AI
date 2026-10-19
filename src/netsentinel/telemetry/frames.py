@@ -34,8 +34,8 @@ def records_to_frame(records: Iterable[dict], utc_offset_hours: float = 0.0) -> 
         else:
             casts.append(pl.col(c).cast(pl.Float32))
     df = df.with_columns(casts)
-    missing = [c for c in NF_FLOW_COLUMNS if c not in df.columns and not c.startswith(("cli_",
-                                                                                      "srv_"))]  # fmt: skip
+    derived_bits = ("cli_", "srv_")  # computed from the flag fields by add_nf_aliases
+    missing = [c for c in NF_FLOW_COLUMNS if c not in df.columns and not c.startswith(derived_bits)]
     df = df.with_columns([pl.lit(None, dtype=pl.Float32).alias(c) for c in missing])
     df = add_nf_aliases(df, utc_offset_hours)
     return df.sort("flow_end_milliseconds").with_row_index("row_id")
