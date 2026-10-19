@@ -1,39 +1,35 @@
 # NetSentinel AI
 
-Leakage-aware machine learning for network-flow intrusion detection on CSE-CIC-IDS2018:
-causal temporal context, normal-behaviour (anomaly) modelling, abstaining attack-type
-classification, an offline replay pipeline, a local API and a dashboard.
+Leakage-aware machine learning for network-flow intrusion detection, validated on two
+benchmarks (CSE-CIC-IDS2018 via CICFlowMeter and NetFlow v3, UNSW-NB15 via NetFlow v3), plus
+an offline analysis application for PCAP / Zeek captures with a local API and dashboard.
 
-The project's main contribution is **evaluation honesty** rather than a new model. It shows,
-with measured numbers, where the near-perfect scores commonly reported on IDS2018 come from,
-and which parts survive a leakage-aware protocol.
+The project's main contribution is **evaluation honesty** rather than a new model: measured
+evidence of where near-perfect benchmark scores come from, what survives a leakage-aware and
+independently audited protocol, and what does **not** transfer to another network.
 
-> Status (2026-10-19): research prototype, v0.1. Detection only. All results come from one
-> public benchmark, one seed and a stratified sample; see [Limitations](#limitations).
+> Status (2026-10-19): research prototype, detection only. In-domain scores are near-perfect
+> and cross-network transfer fails; the shipped model is a **demonstration that must be
+> retrained and calibrated on your own network**. See [Limitations](#limitations).
 
-## Key findings (measured)
+## Key findings (measured; validation splits unless marked "test")
 
-> **Correction (validity audit, 2026-10-19):** the leave-one-family-out numbers for
-> **brute force and DoS below are inflated**. FTP-BruteForce and DoS-SlowHTTPTest are
-> byte-identical traffic in different families, so holding out one family left its twin in
-> training. Uncontaminated per-label results and further caveats (single-feature rules,
-> capture-specific rate scales, flood-day false positives, a fixed robust-z defect) are in
-> [`docs/audit/validity_audit_2026-10-19.md`](docs/audit/validity_audit_2026-10-19.md).
-> Corrected re-runs are pending.
-
-Full tables with run ids: [`reports/experiments/results_v1.md`](reports/experiments/results_v1.md).
-Discussion: [`docs/experiments/report_v1.md`](docs/experiments/report_v1.md).
+Tables with run ids: [`results_v1`](reports/experiments/results_v1.md) (IDS2018 baselines),
+[`results_v3`](reports/experiments/results_v3.md) (corrected open-set),
+[`results_v4`](reports/experiments/results_v4.md) (NetFlow, transfer).
+Discussion: [`report_v1.md`](docs/experiments/report_v1.md); audit:
+[`validity_audit_2026-10-19.md`](docs/audit/validity_audit_2026-10-19.md).
 
 | Finding | Evidence |
 |---|---|
-| The IDS2018 CSV timestamps use a **12-hour clock without AM/PM**. Without correction, afternoon traffic is sorted before the morning and every temporal feature is wrong | Attack windows match the UNB schedule only after +12 h for clock hours 01-07 ([dataset card](docs/datasets/cse_cic_ids2018.md)) |
-| 7 of 10 CSVs are truncated at Excel's 1,048,575-row limit; 84.5 % of Infiltration rows on 02-28 are byte-identical to benign rows; FTP-BruteForce and DoS-SlowHTTPTest are the same failed port-21 traffic | `reports/eda/label_quality.json` |
-| Tree ensembles reach **PR-AUC 1.000 on attacks seen in training**, under random *and* episode-chronological splits | validation, E1 / H5 |
-| On the pre-registered **test split** (used once): LightGBM recall **0.983** [0.93, 1.00] at FPR 0.0009, i.e. ~91 false-alert flows/hour | `runs/.../test_metrics.json` |
-| Removing 4 known collection-artefact fields drops test recall to **0.735**; HOIC detection falls from 1.00 to **0.07** | shortcut ablation |
-| With an attack family **held out of training**, adding causal 5/30/300 s context raises recall at FPR 1e-3 (5 seeds, mean +- std) from 0.34 +- 0.14 to **0.967 +- 0.008** (DoS), 0.65 +- 0.15 to **0.999 +- 0.001** (brute force), 0.18 +- 0.24 to **0.68 +- 0.04** (botnet); web attacks stay undetected | E6, results_v2 |
-| Label-free anomaly detectors (Isolation Forest, robust z), global or service-conditioned, have recall 0.000 on every unseen family in all 5 seeds; OR-fusing them with the classifier never helps | E3, E6 |
-| A GRU over causal per-port flow sequences is only marginally better than a same-setup MLP on seen attacks (recall 0.9993 +- 0.0003 vs 0.9986 +- 0.0007) and much weaker than LightGBM with explicit context on unseen families | E2, report 3.6-3.7 |
+| **No cross-network transfer.** LightGBM trained on NF-IDS2018 scores ROC-AUC **0.24-0.44** on NF-UNSW-NB15 (identical nProbe features, 3 seeds; recall <= 0.01 even with a target-chosen threshold); the reverse direction flags 59-99.9 % of benign traffic at the source threshold | results_v4, report 3.9 |
+| In-domain detection saturates on **both** datasets (PR-AUC 1.000, 5 seeds), even without TTL / window fields and with only 15 Zeek-compatible fields | results_v4 |
+| **Within one network**, causal 5/30/300 s context detects *unseen* flood / brute-force / failed-connection groups at FPR 1e-3 (leak-free protocol, 5 seeds): e.g. DoS-HTTP 0.05 -> **0.95**, SSH brute force 0.60 -> **0.998**; it replicates with the nProbe extractor, but not for the botnet, nor for low-volume web/Slowloris attacks; single context statistics reproduce much of it | results_v3/v4, audit V2 |
+| A **twin-class leak** inflated our first open-set results: FTP-BruteForce and DoS-SlowHTTPTest are identical traffic in different families (and ~30 mislabelled SSH flows share their vectors). Found by our audit, corrected, and still reported | audit V1 |
+| The IDS2018 CSV timestamps use a **12-hour clock without AM/PM**; our correction is confirmed **to the second** by the independent epoch timestamps of NF-IDS2018 | dataset cards, `reports/audit/nf_vs_cic.json` |
+| Test split (pre-registered, used once): LightGBM recall **0.983** [0.93, 1.00] at FPR 0.0009; removing 4 CICFlowMeter artefact fields drops it to **0.735** (HOIC 1.00 -> 0.07) | results_v1, test_v1 |
+| Label-free anomaly detection (Isolation Forest, robust z) gives recall **0.000** at FPR 1e-3 for every unseen group and seed; a robust-z saturation defect was found and fixed, without improving detection | audit V5-V7 |
+| A GRU over per-port flow sequences is marginally better than an MLP on seen attacks and far below LightGBM with explicit context on unseen groups | report 3.6-3.7 |
 
 ## Architecture
 
@@ -60,12 +56,21 @@ Details: [`docs/architecture/overview.md`](docs/architecture/overview.md).
   confidence with `unknown` abstention, a 0-100 anomaly score (benign-tail percentile, not a
   probability), verdicts `benign | unusual | suspicious | attack`, evidence derived from
   measured feature deviations, and model versions.
+* Second dataset: NetFlow v3 ingestion (BagIt SHA-1, local time, label alignment), versioned
+  NF feature schema incl. a 15-field "portable" set, transfer stage (source train/val ->
+  target val, oracle threshold reported separately).
+* Offline application: pure-Python PCAP/pcapng reader (Ethernet/VLAN/SLL/raw IP, IPv4/IPv6,
+  bounds-checked), bidirectional flow assembler emitting NetFlow-v3-style records, Zeek
+  `conn.log` reader (TSV/JSON); `netsentinel analyze <capture>`; `POST /analyze` (admin token,
+  50 MB cap) and a dashboard upload page.
 * Serving: offline replay in event-time order, SQLite event store with retention, FastAPI
-  (`/health /ready /models /predict/flow /predict/batch /events /metrics/summary /replay/*`),
-  Streamlit dashboard.
-* Engineering: uv lockfile, 52 CPU tests (unit, ML, integration), ruff, a GitHub Actions
-  workflow with dependency and secret scanning (written but **not yet executed**: the repo has
-  no remote yet), run ledger with git SHA, versions and peak memory.
+  (`/health /ready /models /predict/* /events /metrics/summary /replay/* /analyze`), Streamlit
+  dashboard.
+* Engineering: uv lockfile, 70+ CPU tests (unit, ML, integration incl. the full
+  capture -> verdict path on synthetic data), ruff, Dockerfile + docker-compose (non-root,
+  read-only, localhost-only), GitHub Actions workflow with tests, Docker build/smoke test,
+  dependency and secret scanning. **Docker and CI have not been executed**: Docker is not
+  installed locally and the repository has no remote yet.
 
 ## Quick start
 
@@ -139,6 +144,44 @@ curl -s -X POST http://127.0.0.1:8000/predict/flow -H "content-type: application
 A single flow carries no traffic history, so context features are listed in
 `missing_features`. Batch scoring with `compute_context=true` treats the batch as a stream.
 
+### Offline capture analysis (PCAP / pcapng / Zeek conn.log)
+
+NetFlow v3 data for the portable model (UQ, open access, 0.9 GB):
+
+```bash
+uv run python scripts/download_nf_v3.py
+```
+
+```bash
+uv run netsentinel data ingest-nf nf-cicids2018-v3
+```
+
+```bash
+uv run netsentinel features build --schema nf --interim data/interim/nf_cicids2018_v3 --out data/processed/nf_cicids2018_v3
+```
+
+Train the portable model and anomaly detector, then bundle them (commands in
+`scripts/run_batch_v4.py`, items `N5_*`). Analyze a capture:
+
+```bash
+uv run netsentinel analyze capture.pcap --bundle models/<bundle-id> --utc-offset 0 --out summary.json
+```
+
+A synthetic demo capture: `uv run python scripts/make_demo_pcap.py artifacts/demo.pcap`. On it,
+the IDS2018-trained portable model rates almost every flow *unusual*, flags 191 benign-looking
+HTTPS flows *suspicious* and misses the generated SSH attempts (report 3.10): exactly the
+cross-network failure measured in the transfer experiments. Retrain on your own network.
+
+### Docker
+
+```bash
+docker compose up --build
+```
+
+Mounts a bundle from `NETSENTINEL_BUNDLE` read-only and publishes the API on 127.0.0.1:8000.
+Not built locally (Docker unavailable on the development machine); the CI workflow builds and
+smoke-tests the image once the repository is pushed.
+
 ## Dashboard (replay demonstration)
 
 The screenshots are from the running application, replaying **recorded** IDS2018 flows from
@@ -161,23 +204,28 @@ an evaluation, and not live traffic.
 
 ## Limitations
 
-* One benchmark with documented label errors; original labels were used. Results do not
-  transfer to other networks without re-validation.
-* Per-host baselines and application identification are **not possible** on this data: no
-  host addresses (except one day) and no application labels. "Service" is a port heuristic.
-* No live capture, Zeek or Suricata integration; Docker is not set up (neither tool was
-  available in the development environment).
-* Seed variance (5 seeds) covers the main validation comparisons only; the test evaluation,
-  anomaly variants and GRU open-set runs are single-seed.
+* **Measured: models do not transfer across networks.** Every deployment needs local
+  training data and threshold calibration; the shipped bundle is a demonstration.
+* Benchmarks with documented label errors (original labels used; the CIC and NetFlow releases
+  of IDS2018 even disagree on web-attack labels).
+* Per-host baselines and application identification were not evaluated: IDS2018 CSVs lack host
+  ids; "service" is a port heuristic. (NF-v3 has nDPI L7 labels - an unexplored option.)
+* The PCAP flow assembler approximates nProbe; field-level agreement is unverified. The
+  application was exercised on synthetic captures only. No live capture; Zeek is supported as
+  an input log, not run by NetSentinel; no Suricata integration.
+* Docker and CI are written but unexecuted (no local Docker, no remote repository yet).
+* Seed variance covers the main validation comparisons; the test evaluation (IDS2018 CIC only)
+  and several secondary runs are single-seed. NetFlow test splits are untouched.
 * The API has no TLS, accounts or rate limiting; it binds to localhost and is detection-only.
   See [`docs/security/threat_model.md`](docs/security/threat_model.md).
 
 ## Roadmap
 
-1. GRU with explicit context features as input, evaluated leave-one-family-out.
-2. Cross-dataset validation (corrected IDS2018 relabelling or CICIoT2023).
-3. Learned, out-of-fold fusion instead of the OR rule.
-4. Dockerfile, plus Zeek `conn.log` ingestion for real deployments.
+1. Pre-register and run the final locked-test evaluation (NetFlow test splits untouched).
+2. Incident-level false-alert evaluation for context models.
+3. Target-network calibration / domain adaptation as an explicit experiment.
+4. Validate the PCAP flow assembler against nProbe on paired captures.
+5. Push to GitHub to execute CI (tests, Docker build, security scans).
 
 ## References
 
@@ -189,4 +237,6 @@ Intrusion Traffic Characterization*, ICISSP 2018. Label errors: Liu, Engelen et 
 
 ## License
 
-MIT, see [LICENSE](LICENSE). The dataset is subject to its own terms (UNB/CIC).
+MIT, see [LICENSE](LICENSE). Datasets keep their own terms: CSE-CIC-IDS2018 (UNB/CIC, cite
+Sharafaldin et al. 2018); NetFlow v3 (UQ, re-use with commercial restriction, cite Luay et al.
+2025, arXiv:2503.04404).

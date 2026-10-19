@@ -48,6 +48,16 @@ claim), **High** (materially misleading or a missing core capability), **Medium*
 | R2 | Research limitation | Attack family confounded with capture day; context gains on the family task partly reflect day identity | Quantified in the report |
 | R3 | Research limitation | Seven source files truncated at the Excel row limit | Documented |
 
+## Update 2026-10-19 (second audit cycle)
+
+An independent validity audit (`docs/audit/validity_audit_2026-10-19.md`) found a critical
+open-set leak through twin classes (fixed protocol, re-run: the context effect survives), a
+robust-z implementation defect (fixed), Isolation Forest insensitivity (documented), fragile
+operating points and flood-day false positives (documented). A second dataset family
+(NetFlow v3, two datasets, identical features) shows saturated in-domain detection and **no
+cross-network transfer** (`docs/experiments/report_v1.md` 3.9). These supersede the
+"Do temporal models outperform baselines?" and generalisation answers above where they differ.
+
 ## Deliverables status
 
 | Deliverable | Status |
@@ -59,7 +69,9 @@ claim), **High** (materially misleading or a missing core capability), **Medium*
 | Application classification | Not achievable on IDS2018; port-derived service category only |
 | Attack classification with abstention | Done |
 | Unified inference, offline replay, API, dashboard | Done, tested |
-| Automated tests, CI | 52+ tests pass locally; CI written, not executed |
-| Reports, research and security docs | Done |
-| Docker / deployment | Not done (Docker unavailable); local run instructions only |
-| Live capture, Zeek/Suricata | Not implemented |
+| Automated tests, CI | 72 tests pass locally (incl. slow/data); CI (tests, Docker build + smoke, pip-audit, gitleaks) written, **not executed** (no remote) |
+| Reports, research and security docs | Done (incl. validity audit, NF dataset card) |
+| Second dataset / transfer | Done: NetFlow v3 UNSW-NB15 + IDS2018, in-domain, transfer, open-set (validation) |
+| PCAP / Zeek offline analysis | Done (pure-Python readers, flow assembler, CLI, API upload, dashboard page); tested on synthetic captures only; nProbe agreement unverified |
+| Docker / deployment | Dockerfile + compose written (non-root, read-only, localhost); **not built** (no local Docker) |
+| Live capture, Suricata | Not implemented (out of scope: detection-only offline analysis) |

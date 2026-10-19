@@ -6,6 +6,16 @@ Global rules (approval gates, RAM limits, Colab thresholds) are in `~/.claude/CL
 - `uv run pytest`: CPU tests (always run after code changes; < 1 min). `-m data` runs tests on the real dataset.
 - `uv run netsentinel --help`: all pipeline stages.
 - `uv run ruff check . && uv run ruff format .`
+- NetFlow v3: `uv run python scripts/download_nf_v3.py`, `uv run netsentinel data ingest-nf <name>`,
+  `uv run netsentinel features build --schema nf --interim ... --out ...` (feature sets `nf_*`).
+- Capture analysis: `uv run netsentinel analyze <pcap|conn.log> --bundle models/<id>`.
+- Batches: `scripts/run_batch_v{1..4}.py` (each item a separate process; need approval when
+  > 2 min / > 2 GB); aggregate with `scripts/aggregate_*.py`; audits in `scripts/audit/`.
+
+## Protected data
+- Test splits: IDS2018 CIC test used once for runs pre-registered in
+  `docs/experiments/test_preregistration.md`. NetFlow test splits: untouched. Never evaluate on
+  test without a new written pre-registration.
 
 ## Conventions
 - Stages are separate processes (8 GB RAM). Use Polars lazy/streaming for anything touching full days.

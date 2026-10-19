@@ -147,15 +147,57 @@ values in 3.4 should be read with that spread. The context-feature gains are sta
 seeds. Learned per-port sequences (GRU) add some unseen-family signal over flow-only models but
 far less than explicit network-wide multi-scale context features.
 
-## 4. Hypotheses: verdicts (validation unless stated; 5 seeds where noted in 3.7)
+### 3.8 Corrected open-set protocol (batch v3; audit V1; `results_v3.md`)
+
+Twin classes held out together (port-21 group), label cleaning v2, 5 seeds, benign-val FPR
+<= 1e-3. Supervised unseen-group recall, flow -> flow+ctx: port21_failed_conn 0.32 +- 0.44 ->
+0.999 +- 0.002; ssh_bruteforce 0.60 +- 0.23 -> 0.998 +- 0.003; dos_http 0.05 +- 0.01 ->
+0.951 +- 0.017; ddos 0.11 +- 0.14 -> 0.68 +- 0.09; botnet 0.25 +- 0.23 -> 0.66 +- 0.06;
+web_attack 0.09 +- 0.03 -> 0.015 +- 0.008. Scale-invariant context only (fractions, shares,
+surge ratios) gives the same numbers (e.g. dos_http 0.943, botnet 0.705 +- 0.004). Per label
+(flow+ctx): Hulk 0.99, HOIC 1.00, LOIC-UDP 0.98, GoldenEye 0.73, LOIC-HTTP 0.37, Slowloris
+0.09, web attacks <= 0.02. Anomaly-only recall 0.000 everywhere.
+
+### 3.9 Second dataset: NetFlow v3 (batch v4; `results_v4.md`, `docs/datasets/nf_v3.md`)
+
+Identical nProbe features in both datasets; validation splits only; cost 93 processes,
+62.5 min, peak 2.0 GB.
+
+* **In-domain retraining saturates on both** NF-UNSW-NB15-v3 and NF-IDS2018-v3: LightGBM
+  PR-AUC 1.000 and recall@1e-3 >= 0.999 for every feature set (including without TTL / TCP
+  window and with only the 15 Zeek-compatible "portable" fields), 5 seeds.
+* **Cross-dataset transfer fails in both directions** (3 seeds): IDS2018 -> UNSW target ROC-AUC
+  0.24-0.44 (below chance; partially inverted ranking), target PR-AUC 0.04-0.05, recall at an
+  oracle threshold chosen on the target <= 0.01. UNSW -> IDS2018: ROC-AUC 0.26-0.75; the frozen
+  source threshold flags 59-99.9 % of benign target flows. Context features give the best
+  ranking (0.44 / 0.75) but remain operationally useless.
+* **Open-set replication on NF-IDS2018** (same groups, 3 seeds), flow -> flow+ctx: port21
+  0.000 -> 0.996; ssh 0.33 +- 0.58 -> 1.000; dos_http 0.51 +- 0.36 -> 0.85 +- 0.05; ddos
+  0.993 -> 0.994; web 0.19 +- 0.32 -> 0.74 +- 0.38; **botnet 0.00 -> 0.00** (CIC: 0.66).
+  The context effect replicates for floods / brute force / failed-connection storms with a
+  different extractor, not for the botnet, and web results are unstable.
+* The NF timestamps independently confirm the 12-hour-clock correction to the second.
+
+### 3.10 Application demonstration (synthetic capture; not an evaluation)
+
+The portable bundle (NF-IDS2018, `nf_portable_ctx`) applied by `netsentinel analyze` to a
+generated 10-minute capture (`scripts/make_demo_pcap.py`; 19,800 packets -> 4,200 flows,
+41 s): all 3,000 generated SSH-attempt flows were rated *unusual* but none *suspicious*; 191
+benign-looking HTTPS flows were rated *suspicious*; nearly all flows exceeded the anomaly
+threshold. On unfamiliar traffic the shipped model behaves as the transfer results predict.
+
+## 4. Hypotheses: verdicts
+
+(Revised 2026-10-19 after the validity audit and batches v3/v4; v1 wording superseded.)
 
 | | Verdict | Evidence |
 |---|---|---|
-| H1 temporal context reduces false positives | **Not testable in-distribution** (both saturate; test FPR 0.0008 vs 0.0009 within CI); **supported for robustness**: context lifts recall on unseen families at equal FPR | 3.1, 3.4 |
-| H2 service-conditioned anomaly detection helps | **Not supported in a useful sense**: small PR-AUC gain for Isolation Forest, loss for robust-z, absolute recall stays near 0 at operational FPR | 3.3 |
-| H3 multi-scale context captures what single flows miss | **Supported for unseen volumetric/brute-force/bot families, stable over 5 seeds** (e.g. dos 0.34 +- 0.14 -> 0.967 +- 0.008); not for web attacks; no effect on seen attacks (saturated). A learned per-port GRU sequence helps less than explicit context features | 3.4, 3.7 |
-| H4 supervised + anomaly improves unseen-attack detection | **Refuted here (5 seeds)**: anomaly recall 0.000 for every family and seed; OR-fusion never beats context alone | 3.4, 3.7 |
-| H5 random vs leakage-aware splits differ | **Supported, with a refinement**: random rows and within-episode splits are equally saturated; performance drops only when whole attack episodes are unseen. The inflation comes from evaluating on attack sessions seen in training, not from row adjacency alone | 3.5 |
+| H1 temporal context reduces false positives | **Not testable in-distribution** (saturated); context improves recall on unseen flood / brute-force groups at equal FPR *within a network*, but also raises flow-level FPR on benign flows that co-occur with floods (audit V4) | 3.1, 3.8, audit |
+| H2 service-conditioned anomaly detection helps | **Not supported**: small PR-AUC changes, recall ~0 at FPR 1e-3; the robust-z conditioned variant was additionally defective in v1 (fixed; still no useful detection) | 3.3, audit V5-V7 |
+| H3 multi-scale context captures what single flows miss | **Supported within a network, for high-volume / failure-storm attacks**, robust to a leak-free protocol, to the absolute-rate scale, and partly to a different flow extractor (3.9); not for low-volume application-layer attacks; largely reproducible with single context statistics (audit V2); **does not transfer to another network** | 3.8, 3.9 |
+| H4 supervised + anomaly improves unseen-attack detection | **Refuted** (5 seeds, both protocols): anomaly recall 0.000; OR-fusion never helps | 3.7, 3.8 |
+| H5 random vs leakage-aware splits differ | **Supported, refined**: inflation comes from evaluating on attack sessions seen in training (and from twin classes, audit V1), not from row adjacency alone | 3.5, audit |
+| (new) Cross-network generalisation | **Not supported**: near-perfect in-domain detectors with identical features score at or below chance on another network | 3.9 |
 
 ## 5. Error analysis
 
@@ -193,23 +235,36 @@ far less than explicit network-wide multi-scale context features.
   development estimates, not locked-test results.
 * No packet-level, per-host or application-identity information exists in this data, so the
   application-aware parts of the original project vision could not be tested.
+* NetFlow v3: the CIC and NF releases of IDS2018 disagree on labels (no web labels on 02-23 in
+  NF; shifted web/infiltration windows), so the extractor cross-check is not label-identical.
+  The UNSW-NB15 time-zone offset is an assumption (affects day boundaries only). Transfer used
+  3 seeds and validation splits only.
+* The PCAP flow assembler approximates nProbe; field-level agreement is unverified (no paired
+  PCAP + NF-v3 data was available).
 
-## 7. Conclusions
+## 7. Conclusions (revised 2026-10-19)
 
-1. On IDS2018, standard tree ensembles reach near-perfect detection of attacks *seen in
-   training*, under any split that keeps attack episodes on both sides. These numbers say
-   little about real-world detection: a large part of the signal comes from collection
-   artefacts.
-2. Short-horizon causal context features are the most useful addition we measured: they make
-   detection of *unseen* volumetric and brute-force families possible at FPR 1e-3.
-3. Label-free anomaly scores, global or service-conditioned, were not useful at operational
-   false-positive rates on these features, and fusing them hurt.
-4. Leakage-aware evaluation changes conclusions mainly through *which attack sessions* are
-   held out. A random-row split and a within-episode split give the same (saturated) numbers.
+1. On both IDS2018 (CICFlowMeter and nProbe features) and UNSW-NB15 (nProbe), standard tree
+   ensembles reach near-perfect detection of attacks *seen in training*. These numbers say
+   little about real-world detection: they rest partly on collection artefacts and, as the
+   transfer experiments show, on network-specific traffic properties.
+2. Causal context features (5/30/300 s) are the most useful addition we measured **within a
+   network**: unseen flood, brute-force and failed-connection families are detected at FPR
+   1e-3, robustly across seeds, protocols and extractors. The mechanism is that these attacks
+   make the surrounding traffic unusual, not that the model learns attack semantics; low-volume
+   application-layer attacks are not detected.
+3. **Nothing we trained transfers across networks**, even with identical features from the same
+   extractor. Any deployment needs training and threshold calibration on the target network.
+4. Label-free anomaly scores were not useful at operational FPRs; fusing them never helped.
+5. Leakage-aware evaluation changes conclusions through which attack sessions are held out and
+   through twin classes hidden in the labels; both must be audited before claiming
+   generalisation.
 
 ## 8. Next steps
 
-* GRU with the explicit context features as additional input, in the open-set protocol.
-* Cross-dataset check (e.g. CICIoT2023 or the corrected DistriNet IDS2018) for the shortcut and
-  context findings.
-* Calibrated fusion with a learned (out-of-fold) combiner instead of the OR rule.
+* Locked test evaluation of the final configurations (pre-registration to be written before
+  any access; the NF test splits are untouched).
+* Incident-level (not flow-level) false-alert evaluation for context models.
+* Domain adaptation / target-calibrated thresholds as an explicit experiment, since transfer
+  without target data fails.
+* Real PCAP validation of the flow assembler against nProbe on paired data.
