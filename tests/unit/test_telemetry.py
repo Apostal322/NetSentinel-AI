@@ -112,6 +112,20 @@ def test_idle_timeout_splits_flows(tmp_path):
     assert len(flows) == 2
 
 
+def test_close_linger_absorbs_final_ack_and_new_syn_restarts(tmp_path):
+    # FIN/FIN then the final ACK: one flow (the ACK used to open a spurious tail flow);
+    # a fresh SYN on the same 5-tuple 1 s later starts a new flow despite the linger.
+    seq = [(0.00, C, S, 1000, 22, 0x02), (0.01, S, C, 22, 1000, 0x12), (0.02, C, S, 1000, 22, 0x11),
+           (0.03, S, C, 22, 1000, 0x11), (0.04, C, S, 1000, 22, 0x10),
+           (1.04, C, S, 1000, 22, 0x02), (1.05, S, C, 22, 1000, 0x12)]  # fmt: skip
+    frames = [(T0 + t, eth(ipv4(a, b, 6, tcp(sp, dp, fl)))) for t, a, b, sp, dp, fl in seq]
+    path = write_pcap(tmp_path / "f.pcap", frames)
+    flows = list(assemble_flows(read_packets(path)))
+    assert [f["IN_PKTS"] + f["OUT_PKTS"] for f in flows] == [5, 2]
+    legacy = list(assemble_flows(read_packets(path), close_linger=0))
+    assert [f["IN_PKTS"] + f["OUT_PKTS"] for f in legacy] == [4, 3]  # stray ACK + next SYN merged
+
+
 def test_rejects_non_pcap_and_oversized(tmp_path):
     bad = tmp_path / "x.pcap"
     bad.write_bytes(b"NOTAPCAP" * 10)

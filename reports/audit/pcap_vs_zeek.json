@@ -1,0 +1,244 @@
+{
+  "pcap": "2017-04-28_normal.pcap",
+  "conn_log": "conn.log",
+  "tolerance_s": 0.002,
+  "zeek_reader": {
+    "records": 15081,
+    "lines": 15090,
+    "skipped": {}
+  },
+  "zeek_conn_states": {
+    "SF": 14820,
+    "S0": 173,
+    "RSTO": 53,
+    "OTH": 18,
+    "RSTR": 12,
+    "S1": 4,
+    "SHR": 1
+  },
+  "zeek_missed_bytes_conns": 0,
+  "configs": {
+    "v0_no_close_linger": {
+      "packets": {
+        "read": 199279,
+        "parsed": 198760,
+        "skipped": {
+          "short_ethernet": 1,
+          "non_ip_ethertype": 518
+        }
+      },
+      "flows": {
+        "ours": 19423,
+        "zeek": 15081,
+        "matched": 15067,
+        "ours_by_proto": {
+          "6": 6173,
+          "58": 2,
+          "0": 1,
+          "17": 13232,
+          "1": 15
+        },
+        "zeek_by_proto": {
+          "6": 1867,
+          "17": 13196,
+          "1": 18
+        },
+        "match_rate_of_zeek": 0.9991,
+        "match_rate_of_ours": 0.7757
+      },
+      "packets_in_flows": {
+        "ours": 198760,
+        "zeek": 198760
+      },
+      "matched_agreement": {
+        "direction": 0.9999,
+        "orig_pkts": 0.9167,
+        "resp_pkts": 0.9129,
+        "orig_ip_bytes": 0.9167,
+        "resp_ip_bytes": 0.9129,
+        "total_pkts": 0.875,
+        "duration_within_1ms": 0.9602,
+        "start_within_1ms": 1.0,
+        "tcp_termination": 0.7161
+      },
+      "duration_abs_err_ms": {
+        "median": 0.261,
+        "p99": 217273.488,
+        "max": 22839537.841
+      },
+      "mismatch_kinds": {
+        "pktcount_tcp": 1826,
+        "SF->ours:open": 507,
+        "pktcount_17": 58,
+        "RSTO->ours:open": 12,
+        "SF->ours:rst": 10,
+        "RSTR->ours:open": 1
+      },
+      "unmatched_ours": {
+        "tcp_tail_after_close(<=2 pkts, no SYN)": 2161,
+        "tcp_no_syn_continuation": 2145,
+        "udp": 47,
+        "icmpv6": 2,
+        "proto_0": 1
+      },
+      "unmatched_zeek": {
+        "17:SF": 11,
+        "1:OTH": 3
+      },
+      "frame": {
+        "rows": 19423,
+        "columns": 68,
+        "null_cells": 0,
+        "nonfinite_cells": 0,
+        "negative_cells": 0,
+        "ts_min_ms": 50702,
+        "ts_max_ms": 23365842
+      }
+    },
+    "nprobe_defaults": {
+      "packets": {
+        "read": 199279,
+        "parsed": 198760,
+        "skipped": {
+          "short_ethernet": 1,
+          "non_ip_ethertype": 518
+        }
+      },
+      "flows": {
+        "ours": 17268,
+        "zeek": 15081,
+        "matched": 15067,
+        "ours_by_proto": {
+          "6": 4018,
+          "58": 2,
+          "0": 1,
+          "17": 13232,
+          "1": 15
+        },
+        "zeek_by_proto": {
+          "6": 1867,
+          "17": 13196,
+          "1": 18
+        },
+        "match_rate_of_zeek": 0.9991,
+        "match_rate_of_ours": 0.8725
+      },
+      "packets_in_flows": {
+        "ours": 198760,
+        "zeek": 198760
+      },
+      "matched_agreement": {
+        "direction": 0.9999,
+        "orig_pkts": 0.9614,
+        "resp_pkts": 0.9645,
+        "orig_ip_bytes": 0.9614,
+        "resp_ip_bytes": 0.9645,
+        "total_pkts": 0.9614,
+        "duration_within_1ms": 0.9034,
+        "start_within_1ms": 1.0,
+        "tcp_termination": 0.7215
+      },
+      "duration_abs_err_ms": {
+        "median": 0.284,
+        "p99": 217273.488,
+        "max": 22839537.841
+      },
+      "mismatch_kinds": {
+        "pktcount_tcp": 524,
+        "SF->ours:open": 507,
+        "pktcount_17": 58,
+        "RSTO->ours:open": 12,
+        "RSTR->ours:open": 1
+      },
+      "unmatched_ours": {
+        "tcp_no_syn_continuation": 2141,
+        "udp": 47,
+        "tcp_tail_after_close(<=2 pkts, no SYN)": 10,
+        "icmpv6": 2,
+        "proto_0": 1
+      },
+      "unmatched_zeek": {
+        "17:SF": 11,
+        "1:OTH": 3
+      },
+      "frame": {
+        "rows": 17268,
+        "columns": 68,
+        "null_cells": 0,
+        "nonfinite_cells": 0,
+        "negative_cells": 0,
+        "ts_min_ms": 50702,
+        "ts_max_ms": 23365842
+      }
+    },
+    "zeek_defaults": {
+      "packets": {
+        "read": 199279,
+        "parsed": 198760,
+        "skipped": {
+          "short_ethernet": 1,
+          "non_ip_ethertype": 518
+        }
+      },
+      "flows": {
+        "ours": 15049,
+        "zeek": 15081,
+        "matched": 15046,
+        "ours_by_proto": {
+          "6": 1867,
+          "58": 2,
+          "0": 1,
+          "17": 13164,
+          "1": 15
+        },
+        "zeek_by_proto": {
+          "6": 1867,
+          "17": 13196,
+          "1": 18
+        },
+        "match_rate_of_zeek": 0.9977,
+        "match_rate_of_ours": 0.9998
+      },
+      "packets_in_flows": {
+        "ours": 198760,
+        "zeek": 198760
+      },
+      "matched_agreement": {
+        "direction": 0.9999,
+        "orig_pkts": 0.9979,
+        "resp_pkts": 0.9979,
+        "orig_ip_bytes": 0.9979,
+        "resp_ip_bytes": 0.9979,
+        "total_pkts": 0.9979,
+        "duration_within_1ms": 0.9134,
+        "start_within_1ms": 1.0,
+        "tcp_termination": 1.0
+      },
+      "duration_abs_err_ms": {
+        "median": 0.282,
+        "p99": 6.791,
+        "max": 59732.17
+      },
+      "mismatch_kinds": {
+        "pktcount_17": 32
+      },
+      "unmatched_ours": {
+        "icmpv6": 2,
+        "proto_0": 1
+      },
+      "unmatched_zeek": {
+        "17:SF": 32,
+        "1:OTH": 3
+      },
+      "frame": {
+        "rows": 15049,
+        "columns": 68,
+        "null_cells": 0,
+        "nonfinite_cells": 0,
+        "negative_cells": 0,
+        "ts_min_ms": 50702,
+        "ts_max_ms": 23365842
+      }
+    }
+  }
+}
