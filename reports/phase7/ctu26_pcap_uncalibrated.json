@@ -1,0 +1,52 @@
+{
+  "source": "2017-04-28_normal.pcap",
+  "kind": "pcap",
+  "flows": 10433,
+  "parse": {
+    "packets": 199279,
+    "parsed": 198760,
+    "skipped": {
+      "short_ethernet": 1,
+      "non_ip_ethertype": 518
+    },
+    "time_filter": {
+      "since": "1970-01-01 03:15:00",
+      "until": "None",
+      "flows_kept": 10433
+    }
+  },
+  "verdicts": {
+    "unusual": 10433
+  },
+  "threat_status": {
+    "unverified_domain": 10433
+  },
+  "threat_mode": "unverified_domain",
+  "threat_policy": "unverified",
+  "behavior_status": {
+    "not_calibrated": 10433
+  },
+  "app_status": {
+    "no_classifier": 10433
+  },
+  "app_protocols": {},
+  "service_categories": {
+    "dns": 7708,
+    "web": 2387,
+    "ephemeral": 280,
+    "other_wellknown": 46,
+    "no_port": 10,
+    "windows_directory": 2
+  },
+  "model_versions": {
+    "bundle": "bundle-20261019T202605Z",
+    "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+    "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global"
+  },
+  "attack_categories": {},
+  "missing_features": [],
+  "bundle": "bundle-20261019T202605Z",
+  "top_alerts": [],
+  "top_behavior_anomalies": [],
+  "note": "Detection-only offline analysis. 'unusual' = deviation from the local baseline (or, uncalibrated, from the training reference), not an attack verdict; semantics in inference/schema.py and inference/pipeline.py."
+}

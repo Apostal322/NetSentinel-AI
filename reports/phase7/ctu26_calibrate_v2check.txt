@@ -1,0 +1,57 @@
+{
+  "calibration_id": "calibration-20261020T181712311699Z",
+  "status": "baseline_ready",
+  "mode": "vetted_benign",
+  "period": {
+    "start_utc_ms": 50702,
+    "end_utc_ms": 11699882,
+    "fit_end_utc_ms": 8190000,
+    "global_windows": 389,
+    "flows": 6835
+  },
+  "levels": {
+    "global": {
+      "threshold": 20.197228972770805,
+      "fit_windows": 272,
+      "holdout_windows": 117,
+      "own_profiles": 1,
+      "trimmed_windows": 0,
+      "trimmed_holdout_windows": 0,
+      "warnings": []
+    },
+    "device": {
+      "threshold": 15.084519489956799,
+      "fit_windows": 480,
+      "holdout_windows": 208,
+      "own_profiles": 3,
+      "trimmed_windows": 0,
+      "trimmed_holdout_windows": 0,
+      "warnings": []
+    },
+    "service": {
+      "threshold": 8.155364833409344,
+      "fit_windows": 651,
+      "holdout_windows": 287,
+      "own_profiles": 4,
+      "trimmed_windows": 0,
+      "trimmed_holdout_windows": 0,
+      "warnings": []
+    }
+  },
+  "threat_model_domain_check": {
+    "version": 2,
+    "bundle": "bundle-20261019T202605Z",
+    "flows": 6835,
+    "flags": 37,
+    "flag_rate_on_calibration": 0.005413313825896123,
+    "validation_fpr": 0.001,
+    "null_rate": 0.002,
+    "p_value": 1.3221183227456236e-07,
+    "alpha": 0.01,
+    "missing_features": [],
+    "supported": false,
+    "reason": "insufficient_flows",
+    "flows_needed": 10000
+  }
+}
+models\calibrations\calibration-20261020T181712311699Z

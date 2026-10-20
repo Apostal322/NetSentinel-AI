@@ -255,7 +255,7 @@ def _cmd_calibrate(args: argparse.Namespace) -> int:
     if args.bundle:
         from netsentinel.inference.engine import Engine
 
-        check = threat_domain_check(Engine(args.bundle), frame)
+        check = threat_domain_check(Engine(args.bundle), frame, mode=args.mode)
     statement = (
         "operator asserted the calibration traffic is benign (vetted_benign)"
         if args.mode == "vetted_benign"
@@ -438,10 +438,11 @@ def build_parser() -> argparse.ArgumentParser:
     _add_period_args(p)
     p.add_argument(
         "--threat-policy",
-        choices=("auto", "trust", "unsupported"),
-        default="auto",
-        help="auto: suppress supervised verdicts if calibration found the model "
-        "outside its training domain",
+        choices=("unverified", "auto", "trust", "unsupported"),
+        default="unverified",
+        help="unverified (default): supervised scores are reported but never escalate a "
+        "verdict; auto: escalate only if the calibration's domain check v2 passed; trust: "
+        "operator asserts the traffic is in the model's training domain",
     )
     p.set_defaults(func=_cmd_analyze)
 
@@ -463,8 +464,8 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p.add_argument(
         "--threat-policy",
-        choices=("auto", "trust", "unsupported"),
-        default=os.environ.get("NETSENTINEL_THREAT_POLICY", "auto"),
+        choices=("unverified", "auto", "trust", "unsupported"),
+        default=os.environ.get("NETSENTINEL_THREAT_POLICY", "unverified"),
     )
     p.set_defaults(func=_cmd_serve)
 

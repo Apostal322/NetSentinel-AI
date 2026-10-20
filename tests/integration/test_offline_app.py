@@ -209,7 +209,8 @@ def test_offline_app_end_to_end(app_ws, capsys, monkeypatch):
     assert m["flows"] > 100 and set(m["behavior_status"]) <= {"normal", "anomalous",
                                                               "insufficient_history"}  # fmt: skip
     assert m["behavior_windows"]["device"]["anomalous"] >= 1  # the injected scan
-    assert m["threat_mode"] in ("assessed", "unsupported_domain")
+    assert m["threat_mode"] == "unverified_domain"  # Phase 7 default: never escalate
+    assert m["threat_policy"] == "unverified" and "suspicious" not in m["verdicts"]
     assert set(m["app_status"]) <= {"predicted", "low_confidence", "out_of_distribution",
                                     "missing_features", "unsupported_protocol"}  # fmt: skip
     top = m["top_behavior_anomalies"][0]
@@ -219,7 +220,7 @@ def test_offline_app_end_to_end(app_ws, capsys, monkeypatch):
     assert top["verdict"] in ("unusual", "suspicious", "attack")
     # an anomaly alone never yields 'suspicious'
     for ev in m["top_behavior_anomalies"]:
-        if ev["threat_status"] in ("unsupported_domain", "no_evidence"):
+        if ev["threat_status"] in ("unverified_domain", "unsupported_domain", "no_evidence"):
             assert ev["verdict"] == "unusual"
     assert main(["analyze", "mon.log", "--bundle", bundle, "--calibration", cal_dir,
                  "--threat-policy", "unsupported", "--out", "mon2.json"]) == 0  # fmt: skip

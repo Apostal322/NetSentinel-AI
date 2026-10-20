@@ -1,16 +1,28 @@
 """Evidence-aware analysis: supervised threat model + local behaviour profile + application
 intelligence, combined without letting one stand in for another.
 
-Decision (per flow; the first matching rule wins):
+Supervised-threat policy (Phase 7, safe default):
+  unverified  (DEFAULT) the network is not known to resemble the supervised model's training
+              data -> threat_status `unverified_domain`; scores are reported, verdicts are
+              never escalated by the supervised model.
+  auto        escalate only if the calibration's domain check (version >= 2: enough flows and
+              a flag rate statistically compatible with the validation FPR) passed for THIS
+              bundle; otherwise `unverified_domain` / `unsupported_domain`.
+  trust       operator assertion that the traffic is in the training domain (e.g. replaying
+              the training dataset); verdicts are escalated.
+  unsupported never escalate (`unsupported_domain`).
+Phase 6 used `auto` with a lenient check by default; on an unfamiliar CTU capture the check
+passed and produced false `suspicious` verdicts (docs/phase7/RELIABILITY.md).
+
+Decision (`decide_verdict`, per flow; first matching rule wins):
   attack            threat_status == known_attack_category
   suspicious        threat_status == suspicious
-  unusual           behaviour anomalous (calibrated) - or, with no calibration loaded, the
-                    legacy bundle anomaly flag (documented as unreliable on new networks)
-  insufficient_data behaviour insufficient_history and no usable supervised evidence
+  unusual           behaviour anomalous (calibrated) - or, uncalibrated, the legacy bundle
+                    anomaly flag (documented as unreliable on new networks)
+  insufficient_data behaviour insufficient_history; or no calibration AND no assessed
+                    supervised model (normality cannot be claimed)
   benign            otherwise
-`threat_status = unsupported_domain` when the calibration's domain check found the supervised
-model far outside its training domain (policy `auto`), or when forced; its output is then
-reported but never escalates a verdict. An anomaly alone is never `suspicious`.
+An anomaly alone is never `suspicious`.
 """
 
 from __future__ import annotations
@@ -27,8 +39,53 @@ from netsentinel.inference.engine import Engine
 from netsentinel.inference.schema import ApplicationOut, BehaviorOut, Prediction
 from netsentinel.models.service import service_category_expr
 
-THREAT_POLICIES = ("auto", "trust", "unsupported")
+THREAT_POLICIES = ("unverified", "auto", "trust", "unsupported")
+DEFAULT_THREAT_POLICY = "unverified"
+ASSESSED = "assessed"
 LEVEL_ORDER = ("device", "service", "global")  # most specific first
+
+
+def threat_mode_for(policy: str, bundle_id: str | None, check: dict | None) -> str:
+    """Resolve the supervised-threat mode from the policy and the calibration domain check."""
+    if policy not in THREAT_POLICIES:
+        raise ValueError(f"threat_policy must be one of {THREAT_POLICIES}")
+    if bundle_id is None:
+        return "not_assessed"
+    if policy == "trust":
+        return ASSESSED
+    if policy == "unsupported":
+        return "unsupported_domain"
+    if policy == "auto" and check and check.get("bundle") == bundle_id:
+        if int(check.get("version", 1)) >= 2 and check.get("supported") is True:
+            return ASSESSED
+        if check.get("supported") is False and check.get("reason") != "insufficient_flows":
+            return "unsupported_domain"
+    return "unverified_domain"
+
+
+def threat_status_for(mode: str, threat) -> str:
+    if mode != ASSESSED:
+        return mode
+    if threat is None:
+        return "not_assessed"
+    if threat.is_suspicious:
+        return "known_attack_category" if threat.attack_category not in (None, "unknown") else (
+            "suspicious")  # fmt: skip
+    return "no_evidence"
+
+
+def decide_verdict(threat_status: str, behavior_status: str, legacy_anomalous: bool) -> str:
+    if threat_status == "known_attack_category":
+        return "attack"
+    if threat_status == "suspicious":
+        return "suspicious"
+    if behavior_status == "anomalous" or (behavior_status == "not_calibrated" and legacy_anomalous):
+        return "unusual"
+    if behavior_status == "insufficient_history":
+        return "insufficient_data"
+    if behavior_status == "not_calibrated" and threat_status != "no_evidence":
+        return "insufficient_data"  # neither a baseline nor a trusted model: no normality claim
+    return "benign"
 
 
 def _utc(ms: int) -> datetime:
@@ -37,10 +94,12 @@ def _utc(ms: int) -> datetime:
 
 class AnalysisPipeline:
     def __init__(self, bundle_dir: str | Path | None, calibration_dir: str | Path | None = None,
-                 appid_dir: str | Path | None = None, threat_policy: str = "auto"):  # fmt: skip
+                 appid_dir: str | Path | None = None,
+                 threat_policy: str = DEFAULT_THREAT_POLICY,
+                 engine: Engine | None = None):  # fmt: skip
         if threat_policy not in THREAT_POLICIES:
             raise ValueError(f"threat_policy must be one of {THREAT_POLICIES}")
-        self.engine = Engine(bundle_dir) if bundle_dir else None
+        self.engine = engine or (Engine(bundle_dir) if bundle_dir else None)
         self.profile = self.calibration = None
         if calibration_dir:
             from netsentinel.behavior.calibrate import load_profile
@@ -52,14 +111,8 @@ class AnalysisPipeline:
 
             self.classifier, self.classifier_manifest = load_classifier(appid_dir)
         check = (self.calibration or {}).get("threat_model_domain_check") or {}
-        if self.engine is None:
-            self.threat_mode = "not_assessed"
-        elif threat_policy == "unsupported" or (
-            threat_policy == "auto" and check and not check.get("supported", True)
-            and check.get("bundle") == self.engine.bundle_id):  # fmt: skip
-            self.threat_mode = "unsupported_domain"
-        else:
-            self.threat_mode = "assessed"
+        self.threat_mode = threat_mode_for(threat_policy, self.engine.bundle_id if self.engine
+                                           else None, check)  # fmt: skip
         self.threat_policy = threat_policy
 
     def versions(self) -> dict[str, str]:
@@ -138,36 +191,18 @@ class AnalysisPipeline:
         return out, scored
 
     # ------------------------------------------------------------------ main entry
-    def assess(self, frame: pl.DataFrame, source: str) -> tuple[list[Prediction], pl.DataFrame]:
+    def assess(self, frame: pl.DataFrame, source: str,
+               context: str = "compute") -> tuple[list[Prediction], pl.DataFrame]:  # fmt: skip
         if self.engine is None:
             raise ValueError("a model bundle is required for flow assessment")
-        preds = self.engine.predict(frame, source=source, context="compute")
+        preds = self.engine.predict(frame, source=source, context=context)
         apps = self._application(frame)
         behs, windows = self._behavior(frame)
         out = []
         for p, a, b in zip(preds, apps, behs, strict=True):
-            t = p.threat
-            if self.threat_mode == "unsupported_domain":
-                ts = "unsupported_domain"
-            elif t is None:
-                ts = "not_assessed"
-            elif t.is_suspicious:
-                ts = ("known_attack_category" if t.attack_category not in (None, "unknown")
-                      else "suspicious")  # fmt: skip
-            else:
-                ts = "no_evidence"
-            if ts == "known_attack_category":
-                verdict = "attack"
-            elif ts == "suspicious":
-                verdict = "suspicious"
-            elif b.behavior_status == "anomalous" or (
-                b.behavior_status == "not_calibrated" and p.anomaly and p.anomaly.is_anomalous
-            ):
-                verdict = "unusual"
-            elif b.behavior_status == "insufficient_history":  # cannot claim normality
-                verdict = "insufficient_data"
-            else:
-                verdict = "benign"
+            ts = threat_status_for(self.threat_mode, p.threat)
+            verdict = decide_verdict(ts, b.behavior_status,
+                                     bool(p.anomaly and p.anomaly.is_anomalous))  # fmt: skip
             out.append(p.model_copy(update={"application": a, "behavior": b,
                                              "threat_status": ts, "verdict": verdict,
                                              "model_versions": self.versions()}))  # fmt: skip
@@ -178,6 +213,7 @@ class AnalysisPipeline:
             "verdicts": dict(Counter(p.verdict for p in preds)),
             "threat_status": dict(Counter(p.threat_status for p in preds)),
             "threat_mode": self.threat_mode,
+            "threat_policy": self.threat_policy,
             "behavior_status": dict(Counter(p.behavior.behavior_status for p in preds
                                             if p.behavior)),
             "app_status": dict(Counter(p.application.app_status for p in preds

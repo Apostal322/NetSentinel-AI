@@ -40,7 +40,7 @@ class Settings(BaseModel):
     max_upload_bytes: int = MAX_UPLOAD_BYTES
     calibration_dir: Path | None = None  # local behaviour profile (netsentinel calibrate)
     appid_dir: Path | None = None  # application classifier artifact
-    threat_policy: str = "auto"
+    threat_policy: str = "unverified"  # supervised verdicts never escalate unless trusted
 
 
 class BatchRequest(BaseModel):
@@ -81,16 +81,13 @@ def create_app(settings: Settings) -> FastAPI:
     except Exception as exc:  # noqa: BLE001 - reported by /ready instead of crashing
         log.exception("failed to load bundle")
         state["error"] = f"{type(exc).__name__}: {exc}"
-    if state["engine"] is not None and (settings.calibration_dir or settings.appid_dir):
+    if state["engine"] is not None:
         from netsentinel.inference.pipeline import AnalysisPipeline
 
         try:  # refuses corrupt/incompatible artifacts; reported by /ready
-            state["pipeline"] = AnalysisPipeline(
-                settings.bundle_dir,
-                settings.calibration_dir,
-                settings.appid_dir,
-                settings.threat_policy,
-            )
+            state["pipeline"] = AnalysisPipeline(settings.bundle_dir, settings.calibration_dir,
+                                                 settings.appid_dir, settings.threat_policy,
+                                                 engine=state["engine"])  # fmt: skip
         except Exception as exc:  # noqa: BLE001
             log.exception("failed to load calibration / application classifier")
             state["error"] = f"{type(exc).__name__}: {exc}"
@@ -126,7 +123,8 @@ def create_app(settings: Settings) -> FastAPI:
         pipe = state["pipeline"]
         out["calibration"] = pipe.calibration if pipe else None
         out["application_classifier"] = pipe.classifier_manifest if pipe else None
-        out["threat_mode"] = pipe.threat_mode if pipe else "assessed (no calibration loaded)"
+        out["threat_mode"] = pipe.threat_mode if pipe else None
+        out["threat_policy"] = settings.threat_policy
         return out
 
     @app.get("/behavior")
@@ -139,17 +137,34 @@ def create_app(settings: Settings) -> FastAPI:
         """Scored behaviour windows (local-baseline deviations; not attack verdicts)."""
         return store.behavior(level, anomalous_only, source, limit)
 
+    def pipeline():
+        engine()  # raises 503 when the bundle is missing
+        return state["pipeline"]
+
+    def _assess_records(frame, source: str, context: str) -> list[Prediction]:
+        """Flow records (CICFlowMeter-style, no endpoints) cannot be windowed into behaviour,
+        so behaviour is `not_calibrated`; the supervised threat policy still applies."""
+        from netsentinel.inference.pipeline import decide_verdict, threat_status_for
+
+        pipe = pipeline()
+        out = []
+        for p in engine().predict(frame, source=source, context=context):
+            ts = threat_status_for(pipe.threat_mode, p.threat)
+            v = decide_verdict(ts, "not_calibrated", bool(p.anomaly and p.anomaly.is_anomalous))
+            out.append(p.model_copy(update={"threat_status": ts, "verdict": v}))
+        return out
+
     @app.post("/predict/flow", response_model=Prediction)
     def predict_flow(flow: FlowRecord) -> Prediction:
         # Single flows carry no traffic history -> context features are reported as missing.
-        return engine().predict(_flows_to_frame([flow]), source=flow.source, context="none")[0]
+        return _assess_records(_flows_to_frame([flow]), flow.source, "none")[0]
 
     @app.post("/predict/batch", response_model=list[Prediction])
     def predict_batch(req: BatchRequest, compute_context: bool = False) -> list[Prediction]:
         """`compute_context=true` treats the batch as one contiguous stream (causal context)."""
         frame = _flows_to_frame(req.flows)
-        return engine().predict(frame, source=req.flows[0].source,
-                                context="compute" if compute_context else "none")  # fmt: skip
+        return _assess_records(frame, req.flows[0].source,
+                               "compute" if compute_context else "none")  # fmt: skip
 
     @app.get("/events")
     def events(

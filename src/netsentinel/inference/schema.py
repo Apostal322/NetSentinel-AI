@@ -17,9 +17,10 @@ Phase 6 additions (optional, so older events stay valid):
                               port-heuristic service / application identity (always null).
 * `behavior`                - deviation of this flow's entity-window from the LOCAL calibrated
                               baseline; `anomaly_score` is a normalized non-probability.
-* `threat_status`           - supervised evidence: not_assessed | unsupported_domain |
-                              no_evidence | suspicious | known_attack_category. An anomaly
-                              never becomes `suspicious` by itself.
+* `threat_status`           - supervised evidence: not_assessed | unverified_domain (DEFAULT on
+                              any network not verified to match the training data) |
+                              unsupported_domain | no_evidence | suspicious |
+                              known_attack_category. An anomaly never becomes `suspicious`.
 """
 
 from __future__ import annotations
@@ -30,8 +31,8 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 Verdict = Literal["benign", "unusual", "suspicious", "attack", "insufficient_data"]
-ThreatStatus = Literal["not_assessed", "unsupported_domain", "no_evidence", "suspicious",
-                       "known_attack_category"]  # fmt: skip
+ThreatStatus = Literal["not_assessed", "unverified_domain", "unsupported_domain", "no_evidence",
+                       "suspicious", "known_attack_category"]  # fmt: skip
 BehaviorStatus = Literal["normal", "anomalous", "insufficient_history", "not_calibrated"]
 AppStatus = Literal["predicted", "low_confidence", "out_of_distribution", "missing_features",
                     "unsupported_protocol", "no_classifier"]  # fmt: skip

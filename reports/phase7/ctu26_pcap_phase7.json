@@ -1,0 +1,1445 @@
+{
+  "source": "2017-04-28_normal.pcap",
+  "kind": "pcap",
+  "flows": 10433,
+  "parse": {
+    "packets": 199279,
+    "parsed": 198760,
+    "skipped": {
+      "short_ethernet": 1,
+      "non_ip_ethertype": 518
+    },
+    "time_filter": {
+      "since": "1970-01-01 03:15:00",
+      "until": "None",
+      "flows_kept": 10433
+    }
+  },
+  "verdicts": {
+    "benign": 10309,
+    "unusual": 124
+  },
+  "threat_status": {
+    "unverified_domain": 10433
+  },
+  "threat_mode": "unverified_domain",
+  "threat_policy": "unverified",
+  "behavior_status": {
+    "normal": 10309,
+    "anomalous": 124
+  },
+  "app_status": {
+    "predicted": 10422,
+    "unsupported_protocol": 10,
+    "low_confidence": 1
+  },
+  "app_protocols": {
+    "dns": 7682,
+    "tls": 2268,
+    "http": 387,
+    "netbios": 39,
+    "other": 44,
+    "unknown": 2
+  },
+  "service_categories": {
+    "dns": 7708,
+    "web": 2387,
+    "ephemeral": 280,
+    "other_wellknown": 46,
+    "no_port": 10,
+    "windows_directory": 2
+  },
+  "model_versions": {
+    "bundle": "bundle-20261019T202605Z",
+    "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+    "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+    "calibration": "calibration-20261020T181712311699Z",
+    "appid": "appid-portable-20261020T114442Z"
+  },
+  "behavior_windows": {
+    "service": {
+      "windows": 1008,
+      "anomalous": 7
+    },
+    "device": {
+      "windows": 706,
+      "anomalous": 8
+    },
+    "global": {
+      "windows": 389,
+      "anomalous": 1
+    }
+  },
+  "baseline_state": {
+    "state": "drift_suspected",
+    "global_alert_rate": 0.002570694087403599,
+    "target_fpr": 0.01,
+    "score_ks": 0.3568430997736911,
+    "windows": 389,
+    "advice": "review the period; if the change is legitimate, recalibrate on vetted traffic (the previous artifact remains available for rollback). Persistent attack traffic must not be recalibrated in."
+  },
+  "attack_categories": {},
+  "missing_features": [],
+  "bundle": "bundle-20261019T202605Z",
+  "top_alerts": [],
+  "top_behavior_anomalies": [
+    {
+      "observation_id": "a60b8a61295e2124",
+      "timestamp": "1970-01-01T03:48:05.999000",
+      "source": "pcap:2017-04-28_normal.pcap",
+      "verdict": "unusual",
+      "service": {
+        "category": "ephemeral",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.81929525148078,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": false,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_flow_rate_300s below benign training baseline (robust z=-11.0)",
+        "ctx_pkt_rate_5s below benign training baseline (robust z=-9.9)",
+        "ctx_flow_rate_30s below benign training baseline (robust z=-9.7)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+        "calibration": "calibration-20261020T181712311699Z",
+        "appid": "appid-portable-20261020T114442Z"
+      },
+      "application": {
+        "transport": "tcp",
+        "app_protocol": "http",
+        "app_status": "predicted",
+        "app_confidence": 0.5066995839973879,
+        "confidence_semantics": "model top-class probability; not a calibrated probability",
+        "label_semantics": "nDPI master protocol proxy label",
+        "service_category": "ephemeral",
+        "service_method": "port_heuristic",
+        "application_identity": null,
+        "classifier": "appid-portable-20261020T114442Z"
+      },
+      "behavior": {
+        "behavior_status": "anomalous",
+        "anomaly_score": 100.0,
+        "anomaly_score_type": "normalized_non_probability",
+        "raw_score": 8.428149283760368,
+        "threshold": 8.155364833409344,
+        "model_scope": "service:ephemeral",
+        "window_s": 30,
+        "window_end": "1970-01-01T03:48:30",
+        "baseline_status": "drift_suspected",
+        "calibration": "calibration-20261020T181712311699Z",
+        "explanation": [
+          "typical_connection_duration_below_local_baseline",
+          "download_volume_below_local_baseline",
+          "upload_volume_below_local_baseline"
+        ]
+      },
+      "threat_status": "unverified_domain"
+    },
+    {
+      "observation_id": "f92cdc97004a5d84",
+      "timestamp": "1970-01-01T03:48:06.198000",
+      "source": "pcap:2017-04-28_normal.pcap",
+      "verdict": "unusual",
+      "service": {
+        "category": "ephemeral",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.81929525148078,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": false,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_flow_rate_300s below benign training baseline (robust z=-11.0)",
+        "ctx_pkt_rate_5s below benign training baseline (robust z=-9.9)",
+        "ctx_flow_rate_30s below benign training baseline (robust z=-9.7)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+        "calibration": "calibration-20261020T181712311699Z",
+        "appid": "appid-portable-20261020T114442Z"
+      },
+      "application": {
+        "transport": "tcp",
+        "app_protocol": "http",
+        "app_status": "predicted",
+        "app_confidence": 0.5066995839973879,
+        "confidence_semantics": "model top-class probability; not a calibrated probability",
+        "label_semantics": "nDPI master protocol proxy label",
+        "service_category": "ephemeral",
+        "service_method": "port_heuristic",
+        "application_identity": null,
+        "classifier": "appid-portable-20261020T114442Z"
+      },
+      "behavior": {
+        "behavior_status": "anomalous",
+        "anomaly_score": 100.0,
+        "anomaly_score_type": "normalized_non_probability",
+        "raw_score": 8.428149283760368,
+        "threshold": 8.155364833409344,
+        "model_scope": "service:ephemeral",
+        "window_s": 30,
+        "window_end": "1970-01-01T03:48:30",
+        "baseline_status": "drift_suspected",
+        "calibration": "calibration-20261020T181712311699Z",
+        "explanation": [
+          "typical_connection_duration_below_local_baseline",
+          "download_volume_below_local_baseline",
+          "upload_volume_below_local_baseline"
+        ]
+      },
+      "threat_status": "unverified_domain"
+    },
+    {
+      "observation_id": "320f34d18a8fb6fb",
+      "timestamp": "1970-01-01T03:48:08.211000",
+      "source": "pcap:2017-04-28_normal.pcap",
+      "verdict": "unusual",
+      "service": {
+        "category": "ephemeral",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.81427567513302,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": false,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_pkt_rate_5s below benign training baseline (robust z=-11.9)",
+        "ctx_byte_rate_5s below benign training baseline (robust z=-11.1)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-11.1)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+        "calibration": "calibration-20261020T181712311699Z",
+        "appid": "appid-portable-20261020T114442Z"
+      },
+      "application": {
+        "transport": "tcp",
+        "app_protocol": "http",
+        "app_status": "predicted",
+        "app_confidence": 0.5140438764818629,
+        "confidence_semantics": "model top-class probability; not a calibrated probability",
+        "label_semantics": "nDPI master protocol proxy label",
+        "service_category": "ephemeral",
+        "service_method": "port_heuristic",
+        "application_identity": null,
+        "classifier": "appid-portable-20261020T114442Z"
+      },
+      "behavior": {
+        "behavior_status": "anomalous",
+        "anomaly_score": 100.0,
+        "anomaly_score_type": "normalized_non_probability",
+        "raw_score": 8.428149283760368,
+        "threshold": 8.155364833409344,
+        "model_scope": "service:ephemeral",
+        "window_s": 30,
+        "window_end": "1970-01-01T03:48:30",
+        "baseline_status": "drift_suspected",
+        "calibration": "calibration-20261020T181712311699Z",
+        "explanation": [
+          "typical_connection_duration_below_local_baseline",
+          "download_volume_below_local_baseline",
+          "upload_volume_below_local_baseline"
+        ]
+      },
+      "threat_status": "unverified_domain"
+    },
+    {
+      "observation_id": "15d937e3ee33663c",
+      "timestamp": "1970-01-01T03:51:38.659000",
+      "source": "pcap:2017-04-28_normal.pcap",
+      "verdict": "unusual",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.8845497440016,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": false,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_byte_rate_5s below benign training baseline (robust z=-15.7)",
+        "ctx_pkt_rate_30s below benign training baseline (robust z=-13.5)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-13.2)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+        "calibration": "calibration-20261020T181712311699Z",
+        "appid": "appid-portable-20261020T114442Z"
+      },
+      "application": {
+        "transport": "tcp",
+        "app_protocol": "tls",
+        "app_status": "predicted",
+        "app_confidence": 0.9999853716586968,
+        "confidence_semantics": "model top-class probability; not a calibrated probability",
+        "label_semantics": "nDPI master protocol proxy label",
+        "service_category": "web",
+        "service_method": "port_heuristic",
+        "application_identity": null,
+        "classifier": "appid-portable-20261020T114442Z"
+      },
+      "behavior": {
+        "behavior_status": "anomalous",
+        "anomaly_score": 100.0,
+        "anomaly_score_type": "normalized_non_probability",
+        "raw_score": 20.382935059117937,
+        "threshold": 15.084519489956799,
+        "model_scope": "device:10.0.2.15",
+        "window_s": 30,
+        "window_end": "1970-01-01T03:52:00",
+        "baseline_status": "drift_suspected",
+        "calibration": "calibration-20261020T181712311699Z",
+        "explanation": [
+          "typical_connection_duration_above_local_baseline",
+          "udp_share_below_local_baseline"
+        ]
+      },
+      "threat_status": "unverified_domain"
+    },
+    {
+      "observation_id": "7d196e08eaad994f",
+      "timestamp": "1970-01-01T03:49:53.468000",
+      "source": "pcap:2017-04-28_normal.pcap",
+      "verdict": "unusual",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.8845497440016,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": false,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_flow_rate_300s below benign training baseline (robust z=-13.2)",
+        "ctx_pkt_rate_30s below benign training baseline (robust z=-13.1)",
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-12.2)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+        "calibration": "calibration-20261020T181712311699Z",
+        "appid": "appid-portable-20261020T114442Z"
+      },
+      "application": {
+        "transport": "tcp",
+        "app_protocol": "tls",
+        "app_status": "predicted",
+        "app_confidence": 0.9975397376393853,
+        "confidence_semantics": "model top-class probability; not a calibrated probability",
+        "label_semantics": "nDPI master protocol proxy label",
+        "service_category": "web",
+        "service_method": "port_heuristic",
+        "application_identity": null,
+        "classifier": "appid-portable-20261020T114442Z"
+      },
+      "behavior": {
+        "behavior_status": "anomalous",
+        "anomaly_score": 100.0,
+        "anomaly_score_type": "normalized_non_probability",
+        "raw_score": 20.382935059117937,
+        "threshold": 15.084519489956799,
+        "model_scope": "device:10.0.2.15",
+        "window_s": 30,
+        "window_end": "1970-01-01T03:52:00",
+        "baseline_status": "drift_suspected",
+        "calibration": "calibration-20261020T181712311699Z",
+        "explanation": [
+          "typical_connection_duration_above_local_baseline",
+          "udp_share_below_local_baseline"
+        ]
+      },
+      "threat_status": "unverified_domain"
+    },
+    {
+      "observation_id": "242e9fd0075669cd",
+      "timestamp": "1970-01-01T03:49:57.154000",
+      "source": "pcap:2017-04-28_normal.pcap",
+      "verdict": "unusual",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.98494127095672,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": false,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_byte_rate_5s below benign training baseline (robust z=-15.7)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-13.4)",
+        "ctx_pkt_rate_5s below benign training baseline (robust z=-13.1)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+        "calibration": "calibration-20261020T181712311699Z",
+        "appid": "appid-portable-20261020T114442Z"
+      },
+      "application": {
+        "transport": "tcp",
+        "app_protocol": "unknown",
+        "app_status": "predicted",
+        "app_confidence": 0.9110624813387399,
+        "confidence_semantics": "model top-class probability; not a calibrated probability",
+        "label_semantics": "nDPI master protocol proxy label",
+        "service_category": "web",
+        "service_method": "port_heuristic",
+        "application_identity": null,
+        "classifier": "appid-portable-20261020T114442Z"
+      },
+      "behavior": {
+        "behavior_status": "anomalous",
+        "anomaly_score": 100.0,
+        "anomaly_score_type": "normalized_non_probability",
+        "raw_score": 20.382935059117937,
+        "threshold": 15.084519489956799,
+        "model_scope": "device:10.0.2.15",
+        "window_s": 30,
+        "window_end": "1970-01-01T03:52:00",
+        "baseline_status": "drift_suspected",
+        "calibration": "calibration-20261020T181712311699Z",
+        "explanation": [
+          "typical_connection_duration_above_local_baseline",
+          "udp_share_below_local_baseline"
+        ]
+      },
+      "threat_status": "unverified_domain"
+    },
+    {
+      "observation_id": "77fd38dcf3b7b818",
+      "timestamp": "1970-01-01T04:25:44.262000",
+      "source": "pcap:2017-04-28_normal.pcap",
+      "verdict": "unusual",
+      "service": {
+        "category": "ephemeral",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.96988254191346,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": false,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_flow_rate_300s below benign training baseline (robust z=-14.7)",
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-14.1)",
+        "ctx_pkt_rate_30s below benign training baseline (robust z=-12.9)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+        "calibration": "calibration-20261020T181712311699Z",
+        "appid": "appid-portable-20261020T114442Z"
+      },
+      "application": {
+        "transport": "tcp",
+        "app_protocol": "http",
+        "app_status": "predicted",
+        "app_confidence": 0.9987272234084358,
+        "confidence_semantics": "model top-class probability; not a calibrated probability",
+        "label_semantics": "nDPI master protocol proxy label",
+        "service_category": "ephemeral",
+        "service_method": "port_heuristic",
+        "application_identity": null,
+        "classifier": "appid-portable-20261020T114442Z"
+      },
+      "behavior": {
+        "behavior_status": "anomalous",
+        "anomaly_score": 100.0,
+        "anomaly_score_type": "normalized_non_probability",
+        "raw_score": 8.865679907580647,
+        "threshold": 8.155364833409344,
+        "model_scope": "service:ephemeral",
+        "window_s": 30,
+        "window_end": "1970-01-01T04:26:00",
+        "baseline_status": "drift_suspected",
+        "calibration": "calibration-20261020T181712311699Z",
+        "explanation": [
+          "typical_connection_duration_below_local_baseline",
+          "download_volume_below_local_baseline",
+          "upload_volume_below_local_baseline"
+        ]
+      },
+      "threat_status": "unverified_domain"
+    },
+    {
+      "observation_id": "58f18f3794280c1c",
+      "timestamp": "1970-01-01T04:27:58.707000",
+      "source": "pcap:2017-04-28_normal.pcap",
+      "verdict": "unusual",
+      "service": {
+        "category": "ephemeral",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.93976508382693,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": false,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-15.9)",
+        "ctx_byte_rate_5s below benign training baseline (robust z=-15.7)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-14.6)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+        "calibration": "calibration-20261020T181712311699Z",
+        "appid": "appid-portable-20261020T114442Z"
+      },
+      "application": {
+        "transport": "tcp",
+        "app_protocol": "tls",
+        "app_status": "predicted",
+        "app_confidence": 0.9999184434484354,
+        "confidence_semantics": "model top-class probability; not a calibrated probability",
+        "label_semantics": "nDPI master protocol proxy label",
+        "service_category": "ephemeral",
+        "service_method": "port_heuristic",
+        "application_identity": null,
+        "classifier": "appid-portable-20261020T114442Z"
+      },
+      "behavior": {
+        "behavior_status": "anomalous",
+        "anomaly_score": 100.0,
+        "anomaly_score_type": "normalized_non_probability",
+        "raw_score": 8.624159874141302,
+        "threshold": 8.155364833409344,
+        "model_scope": "service:ephemeral",
+        "window_s": 30,
+        "window_end": "1970-01-01T04:29:00",
+        "baseline_status": "drift_suspected",
+        "calibration": "calibration-20261020T181712311699Z",
+        "explanation": [
+          "typical_connection_duration_above_local_baseline",
+          "upload_volume_above_local_baseline",
+          "packet_rate_above_local_baseline"
+        ]
+      },
+      "threat_status": "unverified_domain"
+    },
+    {
+      "observation_id": "9a4ae6c4c6603b89",
+      "timestamp": "1970-01-01T04:57:21.670000",
+      "source": "pcap:2017-04-28_normal.pcap",
+      "verdict": "unusual",
+      "service": {
+        "category": "ephemeral",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.88956932034937,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": false,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.3)",
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-12.2)",
+        "ctx_flow_rate_30s below benign training baseline (robust z=-9.4)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+        "calibration": "calibration-20261020T181712311699Z",
+        "appid": "appid-portable-20261020T114442Z"
+      },
+      "application": {
+        "transport": "tcp",
+        "app_protocol": "tls",
+        "app_status": "predicted",
+        "app_confidence": 0.9980218406351506,
+        "confidence_semantics": "model top-class probability; not a calibrated probability",
+        "label_semantics": "nDPI master protocol proxy label",
+        "service_category": "ephemeral",
+        "service_method": "port_heuristic",
+        "application_identity": null,
+        "classifier": "appid-portable-20261020T114442Z"
+      },
+      "behavior": {
+        "behavior_status": "anomalous",
+        "anomaly_score": 100.0,
+        "anomaly_score_type": "normalized_non_probability",
+        "raw_score": 14.50236539266086,
+        "threshold": 8.155364833409344,
+        "model_scope": "service:ephemeral",
+        "window_s": 30,
+        "window_end": "1970-01-01T04:58:30",
+        "baseline_status": "drift_suspected",
+        "calibration": "calibration-20261020T181712311699Z",
+        "explanation": [
+          "download_volume_above_local_baseline",
+          "typical_connection_duration_above_local_baseline",
+          "packet_rate_above_local_baseline"
+        ]
+      },
+      "threat_status": "unverified_domain"
+    },
+    {
+      "observation_id": "f92e381b7a1294bc",
+      "timestamp": "1970-01-01T05:38:54.047000",
+      "source": "pcap:2017-04-28_normal.pcap",
+      "verdict": "unusual",
+      "service": {
+        "category": "ephemeral",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.98494127095672,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": false,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_byte_rate_5s below benign training baseline (robust z=-15.7)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-14.6)",
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-13.7)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+        "calibration": "calibration-20261020T181712311699Z",
+        "appid": "appid-portable-20261020T114442Z"
+      },
+      "application": {
+        "transport": "tcp",
+        "app_protocol": "tls",
+        "app_status": "predicted",
+        "app_confidence": 0.8527021827499982,
+        "confidence_semantics": "model top-class probability; not a calibrated probability",
+        "label_semantics": "nDPI master protocol proxy label",
+        "service_category": "ephemeral",
+        "service_method": "port_heuristic",
+        "application_identity": null,
+        "classifier": "appid-portable-20261020T114442Z"
+      },
+      "behavior": {
+        "behavior_status": "anomalous",
+        "anomaly_score": 100.0,
+        "anomaly_score_type": "normalized_non_probability",
+        "raw_score": 12.283773219964488,
+        "threshold": 8.155364833409344,
+        "model_scope": "service:ephemeral",
+        "window_s": 30,
+        "window_end": "1970-01-01T05:41:00",
+        "baseline_status": "drift_suspected",
+        "calibration": "calibration-20261020T181712311699Z",
+        "explanation": [
+          "typical_connection_duration_above_local_baseline",
+          "upload_volume_above_local_baseline",
+          "download_volume_above_local_baseline"
+        ]
+      },
+      "threat_status": "unverified_domain"
+    },
+    {
+      "observation_id": "4c2b7c56a4776338",
+      "timestamp": "1970-01-01T06:25:54.201000",
+      "source": "pcap:2017-04-28_normal.pcap",
+      "verdict": "unusual",
+      "service": {
+        "category": "ephemeral",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.97992169460898,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": false,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_byte_rate_5s below benign training baseline (robust z=-15.7)",
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-15.4)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-14.2)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+        "calibration": "calibration-20261020T181712311699Z",
+        "appid": "appid-portable-20261020T114442Z"
+      },
+      "application": {
+        "transport": "tcp",
+        "app_protocol": "tls",
+        "app_status": "predicted",
+        "app_confidence": 0.9971235966483175,
+        "confidence_semantics": "model top-class probability; not a calibrated probability",
+        "label_semantics": "nDPI master protocol proxy label",
+        "service_category": "ephemeral",
+        "service_method": "port_heuristic",
+        "application_identity": null,
+        "classifier": "appid-portable-20261020T114442Z"
+      },
+      "behavior": {
+        "behavior_status": "anomalous",
+        "anomaly_score": 100.0,
+        "anomaly_score_type": "normalized_non_probability",
+        "raw_score": 10.775281510854036,
+        "threshold": 8.155364833409344,
+        "model_scope": "service:ephemeral",
+        "window_s": 30,
+        "window_end": "1970-01-01T06:26:00",
+        "baseline_status": "drift_suspected",
+        "calibration": "calibration-20261020T181712311699Z",
+        "explanation": [
+          "download_volume_above_local_baseline",
+          "upload_volume_above_local_baseline",
+          "packet_rate_above_local_baseline"
+        ]
+      },
+      "threat_status": "unverified_domain"
+    },
+    {
+      "observation_id": "564c3be903ef44a8",
+      "timestamp": "1970-01-01T06:24:06.095000",
+      "source": "pcap:2017-04-28_normal.pcap",
+      "verdict": "unusual",
+      "service": {
+        "category": "ephemeral",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.73396245356892,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": false,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_flow_rate_300s below benign training baseline (robust z=-14.1)",
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-12.3)",
+        "ctx_flow_rate_30s below benign training baseline (robust z=-11.4)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+        "calibration": "calibration-20261020T181712311699Z",
+        "appid": "appid-portable-20261020T114442Z"
+      },
+      "application": {
+        "transport": "tcp",
+        "app_protocol": "tls",
+        "app_status": "predicted",
+        "app_confidence": 0.9352958895240533,
+        "confidence_semantics": "model top-class probability; not a calibrated probability",
+        "label_semantics": "nDPI master protocol proxy label",
+        "service_category": "ephemeral",
+        "service_method": "port_heuristic",
+        "application_identity": null,
+        "classifier": "appid-portable-20261020T114442Z"
+      },
+      "behavior": {
+        "behavior_status": "anomalous",
+        "anomaly_score": 100.0,
+        "anomaly_score_type": "normalized_non_probability",
+        "raw_score": 10.775281510854036,
+        "threshold": 8.155364833409344,
+        "model_scope": "service:ephemeral",
+        "window_s": 30,
+        "window_end": "1970-01-01T06:26:00",
+        "baseline_status": "drift_suspected",
+        "calibration": "calibration-20261020T181712311699Z",
+        "explanation": [
+          "download_volume_above_local_baseline",
+          "upload_volume_above_local_baseline",
+          "packet_rate_above_local_baseline"
+        ]
+      },
+      "threat_status": "unverified_domain"
+    },
+    {
+      "observation_id": "f43aef0358e18c40",
+      "timestamp": "1970-01-01T04:37:21.535000",
+      "source": "pcap:2017-04-28_normal.pcap",
+      "verdict": "unusual",
+      "service": {
+        "category": "ephemeral",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.97992169460898,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": false,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_byte_rate_5s below benign training baseline (robust z=-15.7)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-14.8)",
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-14.5)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+        "calibration": "calibration-20261020T181712311699Z",
+        "appid": "appid-portable-20261020T114442Z"
+      },
+      "application": {
+        "transport": "tcp",
+        "app_protocol": "tls",
+        "app_status": "predicted",
+        "app_confidence": 0.9993804808086099,
+        "confidence_semantics": "model top-class probability; not a calibrated probability",
+        "label_semantics": "nDPI master protocol proxy label",
+        "service_category": "ephemeral",
+        "service_method": "port_heuristic",
+        "application_identity": null,
+        "classifier": "appid-portable-20261020T114442Z"
+      },
+      "behavior": {
+        "behavior_status": "anomalous",
+        "anomaly_score": 99.65156794425087,
+        "anomaly_score_type": "normalized_non_probability",
+        "raw_score": 8.321336792571808,
+        "threshold": 8.155364833409344,
+        "model_scope": "service:ephemeral",
+        "window_s": 30,
+        "window_end": "1970-01-01T04:37:30",
+        "baseline_status": "drift_suspected",
+        "calibration": "calibration-20261020T181712311699Z",
+        "explanation": [
+          "download_volume_above_local_baseline",
+          "upload_volume_above_local_baseline",
+          "packet_rate_above_local_baseline"
+        ]
+      },
+      "threat_status": "unverified_domain"
+    },
+    {
+      "observation_id": "1c115f0b2721c66e",
+      "timestamp": "1970-01-01T03:21:12.860000",
+      "source": "pcap:2017-04-28_normal.pcap",
+      "verdict": "unusual",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.81427567513302,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": false,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_byte_rate_5s below benign training baseline (robust z=-15.7)",
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-13.3)",
+        "ctx_pkt_rate_5s below benign training baseline (robust z=-13.1)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+        "calibration": "calibration-20261020T181712311699Z",
+        "appid": "appid-portable-20261020T114442Z"
+      },
+      "application": {
+        "transport": "tcp",
+        "app_protocol": "tls",
+        "app_status": "predicted",
+        "app_confidence": 0.9304247798308986,
+        "confidence_semantics": "model top-class probability; not a calibrated probability",
+        "label_semantics": "nDPI master protocol proxy label",
+        "service_category": "web",
+        "service_method": "port_heuristic",
+        "application_identity": null,
+        "classifier": "appid-portable-20261020T114442Z"
+      },
+      "behavior": {
+        "behavior_status": "anomalous",
+        "anomaly_score": 99.51923076923077,
+        "anomaly_score_type": "normalized_non_probability",
+        "raw_score": 16.81747312099789,
+        "threshold": 15.084519489956799,
+        "model_scope": "device:10.0.2.15",
+        "window_s": 30,
+        "window_end": "1970-01-01T03:22:00",
+        "baseline_status": "drift_suspected",
+        "calibration": "calibration-20261020T181712311699Z",
+        "explanation": [
+          "typical_connection_duration_above_local_baseline",
+          "download_volume_above_local_baseline",
+          "udp_share_below_local_baseline"
+        ]
+      },
+      "threat_status": "unverified_domain"
+    },
+    {
+      "observation_id": "c79649adf13322f0",
+      "timestamp": "1970-01-01T03:19:45.671000",
+      "source": "pcap:2017-04-28_normal.pcap",
+      "verdict": "unusual",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.89960847304488,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": true,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-13.3)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.8)",
+        "ctx_flow_rate_5s below benign training baseline (robust z=-8.9)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+        "calibration": "calibration-20261020T181712311699Z",
+        "appid": "appid-portable-20261020T114442Z"
+      },
+      "application": {
+        "transport": "tcp",
+        "app_protocol": "tls",
+        "app_status": "predicted",
+        "app_confidence": 0.6725868808248586,
+        "confidence_semantics": "model top-class probability; not a calibrated probability",
+        "label_semantics": "nDPI master protocol proxy label",
+        "service_category": "web",
+        "service_method": "port_heuristic",
+        "application_identity": null,
+        "classifier": "appid-portable-20261020T114442Z"
+      },
+      "behavior": {
+        "behavior_status": "anomalous",
+        "anomaly_score": 99.51923076923077,
+        "anomaly_score_type": "normalized_non_probability",
+        "raw_score": 16.81747312099789,
+        "threshold": 15.084519489956799,
+        "model_scope": "device:10.0.2.15",
+        "window_s": 30,
+        "window_end": "1970-01-01T03:22:00",
+        "baseline_status": "drift_suspected",
+        "calibration": "calibration-20261020T181712311699Z",
+        "explanation": [
+          "typical_connection_duration_above_local_baseline",
+          "download_volume_above_local_baseline",
+          "udp_share_below_local_baseline"
+        ]
+      },
+      "threat_status": "unverified_domain"
+    },
+    {
+      "observation_id": "8b8ed9a23994d8d0",
+      "timestamp": "1970-01-01T03:21:34.653000",
+      "source": "pcap:2017-04-28_normal.pcap",
+      "verdict": "unusual",
+      "service": {
+        "category": "dns",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.73396245356892,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": false,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-13.0)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.8)",
+        "ctx_flow_rate_5s below benign training baseline (robust z=-8.5)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+        "calibration": "calibration-20261020T181712311699Z",
+        "appid": "appid-portable-20261020T114442Z"
+      },
+      "application": {
+        "transport": "udp",
+        "app_protocol": "dns",
+        "app_status": "predicted",
+        "app_confidence": 0.9999997434349356,
+        "confidence_semantics": "model top-class probability; not a calibrated probability",
+        "label_semantics": "nDPI master protocol proxy label",
+        "service_category": "dns",
+        "service_method": "port_heuristic",
+        "application_identity": null,
+        "classifier": "appid-portable-20261020T114442Z"
+      },
+      "behavior": {
+        "behavior_status": "anomalous",
+        "anomaly_score": 99.51923076923077,
+        "anomaly_score_type": "normalized_non_probability",
+        "raw_score": 16.81747312099789,
+        "threshold": 15.084519489956799,
+        "model_scope": "device:10.0.2.15",
+        "window_s": 30,
+        "window_end": "1970-01-01T03:22:00",
+        "baseline_status": "drift_suspected",
+        "calibration": "calibration-20261020T181712311699Z",
+        "explanation": [
+          "typical_connection_duration_above_local_baseline",
+          "download_volume_above_local_baseline",
+          "udp_share_below_local_baseline"
+        ]
+      },
+      "threat_status": "unverified_domain"
+    },
+    {
+      "observation_id": "41ae0d709cc05a4f",
+      "timestamp": "1970-01-01T03:21:34.700000",
+      "source": "pcap:2017-04-28_normal.pcap",
+      "verdict": "unusual",
+      "service": {
+        "category": "dns",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.73396245356892,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": false,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-13.0)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.8)",
+        "ctx_flow_rate_5s below benign training baseline (robust z=-8.5)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+        "calibration": "calibration-20261020T181712311699Z",
+        "appid": "appid-portable-20261020T114442Z"
+      },
+      "application": {
+        "transport": "udp",
+        "app_protocol": "dns",
+        "app_status": "predicted",
+        "app_confidence": 0.9999997518232807,
+        "confidence_semantics": "model top-class probability; not a calibrated probability",
+        "label_semantics": "nDPI master protocol proxy label",
+        "service_category": "dns",
+        "service_method": "port_heuristic",
+        "application_identity": null,
+        "classifier": "appid-portable-20261020T114442Z"
+      },
+      "behavior": {
+        "behavior_status": "anomalous",
+        "anomaly_score": 99.51923076923077,
+        "anomaly_score_type": "normalized_non_probability",
+        "raw_score": 16.81747312099789,
+        "threshold": 15.084519489956799,
+        "model_scope": "device:10.0.2.15",
+        "window_s": 30,
+        "window_end": "1970-01-01T03:22:00",
+        "baseline_status": "drift_suspected",
+        "calibration": "calibration-20261020T181712311699Z",
+        "explanation": [
+          "typical_connection_duration_above_local_baseline",
+          "download_volume_above_local_baseline",
+          "udp_share_below_local_baseline"
+        ]
+      },
+      "threat_status": "unverified_domain"
+    },
+    {
+      "observation_id": "f0617a278a88369e",
+      "timestamp": "1970-01-01T03:21:34.730000",
+      "source": "pcap:2017-04-28_normal.pcap",
+      "verdict": "unusual",
+      "service": {
+        "category": "dns",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.73396245356892,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": false,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-13.0)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.8)",
+        "ctx_flow_rate_5s below benign training baseline (robust z=-8.5)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+        "calibration": "calibration-20261020T181712311699Z",
+        "appid": "appid-portable-20261020T114442Z"
+      },
+      "application": {
+        "transport": "udp",
+        "app_protocol": "dns",
+        "app_status": "predicted",
+        "app_confidence": 0.9999997378968281,
+        "confidence_semantics": "model top-class probability; not a calibrated probability",
+        "label_semantics": "nDPI master protocol proxy label",
+        "service_category": "dns",
+        "service_method": "port_heuristic",
+        "application_identity": null,
+        "classifier": "appid-portable-20261020T114442Z"
+      },
+      "behavior": {
+        "behavior_status": "anomalous",
+        "anomaly_score": 99.51923076923077,
+        "anomaly_score_type": "normalized_non_probability",
+        "raw_score": 16.81747312099789,
+        "threshold": 15.084519489956799,
+        "model_scope": "device:10.0.2.15",
+        "window_s": 30,
+        "window_end": "1970-01-01T03:22:00",
+        "baseline_status": "drift_suspected",
+        "calibration": "calibration-20261020T181712311699Z",
+        "explanation": [
+          "typical_connection_duration_above_local_baseline",
+          "download_volume_above_local_baseline",
+          "udp_share_below_local_baseline"
+        ]
+      },
+      "threat_status": "unverified_domain"
+    },
+    {
+      "observation_id": "d69f364d11a6bddc",
+      "timestamp": "1970-01-01T03:21:34.795000",
+      "source": "pcap:2017-04-28_normal.pcap",
+      "verdict": "unusual",
+      "service": {
+        "category": "dns",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.73396245356892,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": false,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-13.0)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.8)",
+        "ctx_flow_rate_5s below benign training baseline (robust z=-8.5)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+        "calibration": "calibration-20261020T181712311699Z",
+        "appid": "appid-portable-20261020T114442Z"
+      },
+      "application": {
+        "transport": "udp",
+        "app_protocol": "dns",
+        "app_status": "predicted",
+        "app_confidence": 0.9999999572761529,
+        "confidence_semantics": "model top-class probability; not a calibrated probability",
+        "label_semantics": "nDPI master protocol proxy label",
+        "service_category": "dns",
+        "service_method": "port_heuristic",
+        "application_identity": null,
+        "classifier": "appid-portable-20261020T114442Z"
+      },
+      "behavior": {
+        "behavior_status": "anomalous",
+        "anomaly_score": 99.51923076923077,
+        "anomaly_score_type": "normalized_non_probability",
+        "raw_score": 16.81747312099789,
+        "threshold": 15.084519489956799,
+        "model_scope": "device:10.0.2.15",
+        "window_s": 30,
+        "window_end": "1970-01-01T03:22:00",
+        "baseline_status": "drift_suspected",
+        "calibration": "calibration-20261020T181712311699Z",
+        "explanation": [
+          "typical_connection_duration_above_local_baseline",
+          "download_volume_above_local_baseline",
+          "udp_share_below_local_baseline"
+        ]
+      },
+      "threat_status": "unverified_domain"
+    },
+    {
+      "observation_id": "94c32943c438f6e9",
+      "timestamp": "1970-01-01T03:21:12.875000",
+      "source": "pcap:2017-04-28_normal.pcap",
+      "verdict": "unusual",
+      "service": {
+        "category": "web",
+        "method": "port_heuristic"
+      },
+      "anomaly": {
+        "score": 99.45788575444233,
+        "threshold": 97.47013352073085,
+        "is_anomalous": true,
+        "context": "__global__",
+        "calibrated_probability": false
+      },
+      "threat": {
+        "probability": 0.0,
+        "decision_rule": "raw score >= 2.01e-05 (val weighted FPR <= 0.001)",
+        "is_suspicious": false,
+        "attack_category": null,
+        "classification_confidence": null,
+        "calibration": "isotonic on validation, prevalence-weighted"
+      },
+      "evidence": [
+        "ctx_pkt_rate_300s below benign training baseline (robust z=-13.0)",
+        "ctx_flow_rate_300s below benign training baseline (robust z=-12.7)",
+        "ctx_byte_rate_300s below benign training baseline (robust z=-7.7)"
+      ],
+      "missing_features": [],
+      "model_versions": {
+        "bundle": "bundle-20261019T202605Z",
+        "threat": "20261019-232405_app_threat_nf_portable_ctx_lightgbm",
+        "anomaly": "20261019-232441_app_anomaly_nf_portable_ctx_iforest_global",
+        "calibration": "calibration-20261020T181712311699Z",
+        "appid": "appid-portable-20261020T114442Z"
+      },
+      "application": {
+        "transport": "tcp",
+        "app_protocol": "tls",
+        "app_status": "predicted",
+        "app_confidence": 0.9993582554163951,
+        "confidence_semantics": "model top-class probability; not a calibrated probability",
+        "label_semantics": "nDPI master protocol proxy label",
+        "service_category": "web",
+        "service_method": "port_heuristic",
+        "application_identity": null,
+        "classifier": "appid-portable-20261020T114442Z"
+      },
+      "behavior": {
+        "behavior_status": "anomalous",
+        "anomaly_score": 99.51923076923077,
+        "anomaly_score_type": "normalized_non_probability",
+        "raw_score": 16.81747312099789,
+        "threshold": 15.084519489956799,
+        "model_scope": "device:10.0.2.15",
+        "window_s": 30,
+        "window_end": "1970-01-01T03:22:00",
+        "baseline_status": "drift_suspected",
+        "calibration": "calibration-20261020T181712311699Z",
+        "explanation": [
+          "typical_connection_duration_above_local_baseline",
+          "download_volume_above_local_baseline",
+          "udp_share_below_local_baseline"
+        ]
+      },
+      "threat_status": "unverified_domain"
+    }
+  ],
+  "note": "Detection-only offline analysis. 'unusual' = deviation from the local baseline (or, uncalibrated, from the training reference), not an attack verdict; semantics in inference/schema.py and inference/pipeline.py."
+}

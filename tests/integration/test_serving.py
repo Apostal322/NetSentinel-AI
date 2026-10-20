@@ -66,7 +66,9 @@ def test_bundle_replay_store_and_api(trained, monkeypatch):
     r = client.post("/predict/flow", json=flow)
     assert r.status_code == 200, r.text
     body = r.json()
-    assert body["verdict"] in {"benign", "unusual", "suspicious", "attack"}
+    # Phase 7 default: supervised verdicts are unverified on API input, never escalated
+    assert body["threat_status"] == "unverified_domain"
+    assert body["verdict"] in {"unusual", "insufficient_data"}
     assert "fwd_pkt_len_max" in body["missing_features"]  # not supplied -> reported
     # Validation: unknown fields, bad ports and oversized batches are rejected.
     assert client.post("/predict/flow", json={**flow, "evil": 1}).status_code == 422

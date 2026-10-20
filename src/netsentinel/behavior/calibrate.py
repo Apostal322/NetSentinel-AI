@@ -93,12 +93,26 @@ def calibrate_windows(windows: dict[str, pl.DataFrame], cut_win: int, *, target_
     return out
 
 
-def threat_domain_check(engine, frame: pl.DataFrame, max_ratio: float = 10.0,
-                        abs_floor: float = 0.01) -> dict[str, Any]:  # fmt: skip
-    """Flag rate of the supervised threat model on (asserted benign) calibration flows vs its
-    validation FPR. Far above it -> the model is outside its training domain here."""
+DOMAIN_CHECK_VERSION = 2
+
+
+def threat_domain_check(engine, frame: pl.DataFrame, mode: str = "vetted_benign",
+                        ratio: float = 2.0, alpha: float = 0.01,
+                        min_expected_flags: float = 10.0) -> dict[str, Any]:  # fmt: skip
+    """Is the supervised model plausibly in-domain on this network? (version 2)
+
+    On traffic asserted benign, an in-domain model should flag about its validation FPR.
+    `supported` = True only if (a) the calibration is vetted benign, (b) there are enough
+    flows for the test (expected flags at the validation FPR >= `min_expected_flags`), and
+    (c) a one-sided exact binomial test does NOT reject "flag rate <= ratio x validation FPR"
+    at level `alpha`. Version 1 (Phase 6: limit max(10 x FPR, 1%)) accepted an unfamiliar CTU
+    network with a flag rate 5.4x the validation FPR; see docs/phase7/RELIABILITY.md."""
+    from scipy.stats import binom
+
     scored, missing = engine.score(frame, context="compute")
-    rate = float((scored["p_raw"] >= engine.thresholds.threat).mean())
+    flags = int((scored["p_raw"] >= engine.thresholds.threat).sum())
+    n = scored.height
+    rate = flags / n if n else float("nan")
     rule = engine.threat.get("threshold_rule") or ""
     val_fpr = 1e-3
     if "<=" in rule:
@@ -106,10 +120,20 @@ def threat_domain_check(engine, frame: pl.DataFrame, max_ratio: float = 10.0,
             val_fpr = float(rule.split("<=")[-1].strip())
         except ValueError:
             pass
-    limit = max(max_ratio * val_fpr, abs_floor)
-    return {"bundle": engine.bundle_id, "flag_rate_on_calibration": rate,
-            "validation_fpr": val_fpr, "limit": limit,
-            "supported": rate <= limit, "missing_features": missing}  # fmt: skip
+    p0 = min(ratio * val_fpr, 1.0)
+    p_value = float(binom.sf(flags - 1, n, p0)) if n else 0.0  # P(X >= flags | rate = p0)
+    out = {"version": DOMAIN_CHECK_VERSION, "bundle": engine.bundle_id, "flows": n,
+           "flags": flags, "flag_rate_on_calibration": rate, "validation_fpr": val_fpr,
+           "null_rate": p0, "p_value": p_value, "alpha": alpha,
+           "missing_features": missing}  # fmt: skip
+    if mode != "vetted_benign":
+        return {**out, "supported": False, "reason": "not_vetted_benign"}
+    if n * val_fpr < min_expected_flags:
+        return {**out, "supported": False, "reason": "insufficient_flows",
+                "flows_needed": int(np.ceil(min_expected_flags / val_fpr))}  # fmt: skip
+    if p_value < alpha:
+        return {**out, "supported": False, "reason": "flag_rate_above_validation_fpr"}
+    return {**out, "supported": True, "reason": "flag_rate_compatible_with_validation_fpr"}
 
 
 def _libs() -> dict[str, str]:

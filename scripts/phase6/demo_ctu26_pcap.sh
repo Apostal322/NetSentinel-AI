@@ -10,7 +10,7 @@ PCAP=data/raw/ctu_normal_26/2017-04-28_normal.pcap
 BUNDLE=models/bundle-20261019T202605Z
 APPID="${1:?application classifier directory}"
 CUT=1970-01-01T03:15:00
-OUT=reports/phase6
+OUT=${OUT:-reports/phase6}
 mkdir -p "$OUT" artifacts
 uv run netsentinel calibrate "$PCAP" --mode vetted_benign --assert-benign --until "$CUT" \
     --bundle "$BUNDLE" --out models/calibrations 2>"$OUT/ctu26_calibrate.log" | tee "$OUT/ctu26_calibrate.txt"

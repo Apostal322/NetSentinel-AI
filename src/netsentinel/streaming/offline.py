@@ -86,7 +86,7 @@ def analyze_capture(
     source_name: str | None = None,
     calibration_dir: str | Path | None = None,
     appid_dir: str | Path | None = None,
-    threat_policy: str = "auto",
+    threat_policy: str = "unverified",
     since=None,
     until=None,
 ) -> dict[str, Any]:
