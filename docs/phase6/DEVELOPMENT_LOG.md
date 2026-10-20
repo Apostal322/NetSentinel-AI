@@ -253,3 +253,29 @@
     prediction); Model management (bundles, calibration, classifier, limitations,
     historical figures labelled).
   - Screenshots: `docs/images/phase6_*`.
+
+### Wrap-up (6G/6H)
+
+- **Docker/CI review (static).**
+  - Compose: optional calibration/classifier mounts.
+  - `serve` reads `NETSENTINEL_CALIBRATION` / `NETSENTINEL_APPID` / `NETSENTINEL_THREAT_POLICY`.
+  - `uv lock --check` passes; the CI format check would now pass.
+  - **Not executed:** no Docker locally; no remote repository (a push needs the user's
+    authorisation).
+- **Documentation:** `docs/phase6/REPORT.md` (sections 1–7), `docs/phase6/FINAL_AUDIT.md`,
+  README Phase 6 status, findings, quick start, screenshots and limitations.
+- **Final checks:** ruff check and format clean; **92 tests passed**, 2 deselected
+  (slow/gpu).
+- **Compute used (measured, approximate):**
+  - H1 1 min; IoT-23 1 min; NF dev UNSW 1 min + IDS 20 min.
+  - App-ID runs 20 + 21 + 24 min; diagnostics about 12 min.
+  - H7 1 min; demo 1.5 min; tests about 10 min.
+  - Total about 1.9 h, within the 6 h budget.
+  - Peaks: one run at 4.56 GB (over budget, documented); all others <= 1.5 GB.
+- **Remaining:**
+  - stricter supervised domain check (F3);
+  - drift-robust calibration (F4);
+  - ML-application-conditioned baselines;
+  - temporal/forecasting models;
+  - live capture mode;
+  - executing Docker/CI (needs Docker or an authorised push).

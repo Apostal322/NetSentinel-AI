@@ -8,11 +8,16 @@ The project's main contribution is **evaluation honesty** rather than a new mode
 evidence of where near-perfect benchmark scores come from, what survives a leakage-aware and
 independently audited protocol, and what does **not** transfer to another network.
 
-> Status (2026-10-20): research prototype, detection only. In-domain scores are near-perfect,
-> cross-network transfer fails on a pre-registered final test, and no label-free adaptation we
-> tried restores detection. On a real benign capture from another network the shipped bundle
-> marks 99% of flows *unusual* and raises 21-34 false *suspicious* flows per hour. It is a
-> **demonstration that must be retrained on your own network**. See [Limitations](#limitations).
+> Status (2026-10-20, Phase 6): research prototype, detection only, offline-first.
+> - **Phase 5** showed that a pretrained detector does not transfer between networks.
+> - **Phase 6** adds a *local* workflow:
+>   - `netsentinel calibrate` learns a behavioural baseline from authorised local traffic;
+>   - an evidence-aware pipeline keeps "anomalous", "suspicious" and "known attack" apart;
+>   - an abstaining ML protocol classifier is integrated.
+> - On real benign traffic from an unfamiliar network, local calibration cut false alerts by
+>   about 50x. Its FPR target was not reliably met, and calibration does **not** restore
+>   attack detection.
+> - See [Limitations](#limitations) and [`docs/phase6/FINAL_AUDIT.md`](docs/phase6/FINAL_AUDIT.md).
 
 ## Key findings (measured; validation splits unless marked "test")
 
@@ -28,6 +33,9 @@ validation, answers to the research questions); audit:
 
 | Finding | Evidence |
 |---|---|
+| **Phase 6, local calibration on unfamiliar benign traffic** (13 CTU captures, calibrate on first half, evaluate second): median false-alert windows/h **2.3 vs 120** for the uncalibrated bundle. But FPR <= 3x target in only 7/12 captures, so the pre-registered H1 **fails**. On a real PCAP, flows marked unusual fall from 99.0% to 1.1% | `docs/phase6/REPORT.md` §2, §6 |
+| **Phase 6, contamination:** unlabelled calibration with malicious traffic in the baseline period learns it as normal. Recall falls to about 0 (IoT-23; NF development data); H5 **fails** | REPORT §3–4 |
+| **Phase 6, application classifier** (nDPI proxy labels): macro-F1 0.945 from Zeek/PCAP-common fields vs 0.84 port lookup (NF-IDS2018 validation); no host-stack shortcuts needed (H6). On independent real traffic (Zeek service as reference) accuracy is 0.925 vs a 0.999 port rule. HTTP is confidently misclassified, and abstention rarely triggers (H7 **fails**) | REPORT §5 |
 | **Pre-registered final test (NetFlow v3, one-shot, 3 seeds).** In-domain LightGBM recall 1.000 at FPR 0.0006-0.0010 on both datasets. Transfer fails both ways: ROC 0.37-0.66, with source thresholds flagging 35-99% of benign flows. Label-free target calibration cuts false alerts from 29-66k to 23-183 flows/h but finds <= 0.5% of attacks. 5 of 6 hypotheses supported; the autoencoder-robustness hypothesis (H5) **failed**. A seed-dependent split phase is documented as a protocol deviation | report_phase5 §4, results_final_nf |
 | **Why transfer fails:** the benign traffic of the two networks is separable with AUC about 1 (even on 5 fields); identically named nProbe fields have different semantics (active timeout, zero-duration flows, `*_SECOND_BYTES`); 8 features reverse their attack evidence between datasets | report_phase5 §1, `reports/audit/transfer.json` |
 | **Benign-only normal models** (robust-z, Isolation Forest, autoencoder; flow / context views; 10k-50k calibration flows) reach recall 0 at FPR 1e-3 on both IDS2018 variants. On NF-UNSW the autoencoder's success comes from attacker TTL / minimum packet length and is seed-unstable | report_phase5 §3-4, `reports/audit/autoencoder_unsw.json` |
@@ -84,7 +92,7 @@ Details: [`docs/architecture/overview.md`](docs/architecture/overview.md).
 * Serving: offline replay in event-time order, SQLite event store with retention, FastAPI
   (`/health /ready /models /predict/* /events /metrics/summary /replay/* /analyze`), Streamlit
   dashboard.
-* Engineering: uv lockfile, 74 default CPU tests (unit, ML, integration incl. the full
+* Engineering: uv lockfile, 92 default CPU tests (unit, ML, integration incl. the full
   capture -> verdict path on synthetic data), ruff, Dockerfile + docker-compose (non-root,
   read-only, localhost-only), GitHub Actions workflow with tests, Docker build/smoke test,
   dependency and secret scanning. **Docker and CI have not been executed**: Docker is not
@@ -195,6 +203,33 @@ On a **real** benign capture (CTU-Normal-26, 6.5 h, one host, see
 Zeek log). That is the cross-network failure again, on real telemetry. Retrain and calibrate
 on your own network.
 
+### Local behaviour calibration (Phase 6)
+
+Calibrate on traffic you are authorised to analyse and believe to be normal (the assertion
+is recorded in the artifact), then analyse a later period:
+
+```bash
+uv run netsentinel calibrate capture.pcap --mode vetted_benign --assert-benign --until 2026-10-20T12:00:00 --bundle models/<bundle-id> --out models/calibrations
+```
+
+```bash
+uv run netsentinel analyze capture.pcap --bundle models/<bundle-id> --calibration models/calibrations/<calibration-id> --appid models/appintel/<classifier-id> --since 2026-10-20T12:00:00 --events-db artifacts/events.sqlite --out summary.json
+```
+
+What the outputs mean:
+- `behavior.anomaly_score` is a percentile among held-out calibration windows (a
+  normalized non-probability).
+- `threat_status` is the supervised model's evidence. It reads `unsupported_domain` when
+  calibration showed the model is outside its training domain.
+- `application.app_protocol` is an ML prediction of an nDPI proxy label, or an abstention.
+  `application_identity` is never inferred.
+- Unlabelled calibration (`--mode unlabelled`) is possible, but malicious traffic in the
+  baseline period is learned as normal.
+- A real-traffic walkthrough: `scripts/phase6/demo_ctu26_pcap.sh`.
+
+![Network behaviour (device level, CTU-26)](docs/images/phase6_behaviour_device_ctu26.jpg)
+![Application intelligence (CTU-26)](docs/images/phase6_appintel_ctu26.jpg)
+
 ### Docker
 
 ```bash
@@ -245,6 +280,15 @@ an evaluation, and not live traffic.
 
 ## Limitations
 
+* **Phase 6 (measured).**
+  - Calibration FPR drifts within captures (H1 FPR criterion failed).
+  - The supervised domain check is too lenient: it passed on CTU-26 PCAP flows, leaving
+    about 31 false "suspicious" flows/h. Use `--threat-policy unsupported` on new networks.
+  - Contaminated calibration hides persistent attacks.
+  - The application classifier is a proxy-label model that misclassifies HTTP under shift.
+  - Connection logs reveal long-lived connections only when they end.
+  - No live capture mode; Docker and CI unexecuted.
+
 * **Measured: models do not transfer across networks.** Every deployment needs local
   training data and threshold calibration; the shipped bundle is a demonstration.
 * Benchmarks with documented label errors (original labels used; the CIC and NetFlow releases
@@ -268,8 +312,9 @@ an evaluation, and not live traffic.
 
 ## Roadmap
 
-1. A `calibrate` workflow on vetted local benign traffic (contamination-robust quantiles),
-   followed by local retraining once labelled incidents exist.
+1. Calibration robustness: larger held-out periods, drift-aware recalibration and a stricter
+   supervised-domain check (Phase 6 F3/F4), then local retraining once labelled incidents
+   exist.
 2. Validate the PCAP flow assembler against nProbe on paired captures.
 3. Incident-level false-alert evaluation.
 4. A fresh, untouched NetFlow evaluation set (e.g. a third dataset) for any new model choice;
