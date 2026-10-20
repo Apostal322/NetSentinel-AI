@@ -64,6 +64,7 @@ class AppClassifier:
     metadata: dict[str, Any] = field(default_factory=dict)
     port_table: dict[int, dict] = field(default_factory=dict)  # proto*65536+port -> stats
     policy: dict[str, Any] = field(default_factory=dict)
+    class_profiles: dict[str, dict] = field(default_factory=dict)  # Phase 8 consistency checks
 
     def predict(self, df: pl.DataFrame) -> pl.DataFrame:
         """Canonical flow frame -> app columns (same row order)."""
@@ -97,7 +98,8 @@ class AppClassifier:
         table = getattr(self, "port_table", None) or {}
         policy = {**DEFAULT_POLICY, **(getattr(self, "policy", None) or {})}
         label, method, status2, evidence = resolve_policy(
-            ml_label, top_label, conf, status, proto, port, table, policy)  # fmt: skip
+            ml_label, top_label, conf, status, proto, port, table, policy,
+            getattr(self, "class_profiles", None) or {})  # fmt: skip
         return pl.DataFrame({
             "transport": [TRANSPORT.get(int(p), "other") for p in proto],
             "app_protocol": label,
@@ -120,9 +122,55 @@ def port_support(table: dict[int, dict], proto: int, port: int, policy: dict) ->
     return None
 
 
-def resolve_policy(ml_label, top_label, conf, ml_status, proto, port, table, policy):
+def class_consistency(label: str, proto: int, port: int, profiles: dict) -> str | None:
+    """Phase 8: an ML label without port support must be consistent with how that class
+    appeared in training. Returns an abstention status or None.
+    * class_transport_mismatch: >= 99% of the class's training flows used another transport
+      (e.g. "dns" predicted for a TCP/22 flow - seen in the demo on unknown protocols);
+    * class_port_mismatch: the flow uses a well-known port (< 1024) outside the few ports that
+      carried >= 95% of the class's training flows."""
+    prof = profiles.get(label)
+    if not prof:
+        return None
+    share = prof.get("transport", {})
+    dom = max(share, key=share.get) if share else None
+    if dom is not None and share[dom] >= 0.99 and str(int(proto)) != str(dom):
+        return "class_transport_mismatch"
+    keys = set(prof.get("top_keys", []))
+    if (0 <= port < 1024 and prof.get("top_key_coverage", 0) >= 0.95 and len(keys) <= 20
+            and int(proto) * 65536 + int(port) not in keys):  # fmt: skip
+        return "class_port_mismatch"
+    return None
+
+
+def build_class_profiles(proto: np.ndarray, port: np.ndarray, labels: np.ndarray,
+                         weights: np.ndarray | None = None) -> dict[str, dict]:  # fmt: skip
+    """Per class: transport shares and the smallest set of (proto, port) keys covering >= 95%
+    of its (weighted) training flows (capped at 50 keys)."""
+    w = np.ones(len(labels)) if weights is None else np.asarray(weights, dtype=float)
+    out: dict[str, dict] = {}
+    keys = proto.astype(np.int64) * 65536 + port.astype(np.int64)
+    for c in np.unique(labels):
+        m = labels == c
+        tot = w[m].sum()
+        tr: dict[str, float] = {}
+        for pr in np.unique(proto[m]):
+            tr[str(int(pr))] = float(w[m & (proto == pr)].sum() / tot)
+        ks, inv = np.unique(keys[m], return_inverse=True)
+        ksum = np.bincount(inv, weights=w[m])
+        order = np.argsort(-ksum)
+        cum = np.cumsum(ksum[order]) / tot
+        n = int(min(np.searchsorted(cum, 0.95) + 1, 50, len(order)))
+        out[str(c)] = {"transport": tr, "top_keys": [int(k) for k in ks[order[:n]]],
+                       "top_key_coverage": float(cum[n - 1])}  # fmt: skip
+    return out
+
+
+def resolve_policy(ml_label, top_label, conf, ml_status, proto, port, table, policy,
+                   class_profiles=None):  # fmt: skip
     """Combine the ML prediction with training-data port evidence (see module docstring).
     Returns (label, method, status, evidence) lists, one entry per flow."""
+    class_profiles = class_profiles or {}
     labels, methods, statuses, evidence = [], [], [], []
     for ml, top, c, st, pr, po in zip(ml_label, top_label, conf, ml_status, proto, port,
                                       strict=True):  # fmt: skip
@@ -141,7 +189,12 @@ def resolve_policy(ml_label, top_label, conf, ml_status, proto, port, table, pol
             else:
                 labels.append(None), methods.append(None), statuses.append("port_ml_conflict")
         elif ml is not None:
-            labels.append(ml), methods.append("ml"), statuses.append("predicted")
+            bad = class_consistency(ml, pr, po, class_profiles) if class_profiles else None
+            if bad:
+                ev.append(f"{bad}: {ml} on {int(pr)}/{int(po)}")
+                labels.append(None), methods.append(None), statuses.append(bad)
+            else:
+                labels.append(ml), methods.append("ml"), statuses.append("predicted")
         else:
             labels.append(None), methods.append(None), statuses.append(st)
         evidence.append(ev)
@@ -182,6 +235,7 @@ def save_classifier(clf: AppClassifier, out_dir: str | Path, *, extra: dict | No
         "confidence_threshold": clf.confidence_threshold,
         "policy": {**DEFAULT_POLICY, **(clf.policy or {})} if clf.port_table else None,
         "port_table_entries": len(clf.port_table),
+        "class_profiles": sorted(clf.class_profiles) if clf.class_profiles else None,
         "label_semantics": "nDPI master protocol (proxy label from NF-v3 L7_PROTO; nDPI "
                            "version undocumented; names from nDPI 4.8)",
         "application_identity": "not provided (no validated source)",

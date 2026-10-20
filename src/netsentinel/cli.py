@@ -319,6 +319,18 @@ def _cmd_calibration(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_demo(args: argparse.Namespace) -> int:
+    import tempfile
+
+    from netsentinel.demo.runner import run_demo
+
+    ws = args.workspace or tempfile.mkdtemp(prefix="netsentinel-demo-")
+    result = run_demo(ws, quiet=args.quiet)
+    if args.json:
+        print(json.dumps(result, indent=2, default=str))
+    return 0
+
+
 def _cmd_serve(args: argparse.Namespace) -> int:
     import uvicorn
 
@@ -524,6 +536,12 @@ def build_parser() -> argparse.ArgumentParser:
         "operator asserts the traffic is in the model's training domain",
     )
     p.set_defaults(func=_cmd_analyze)
+
+    p = sub.add_parser("demo", help="offline synthetic end-to-end demonstration (no downloads)")
+    p.add_argument("--workspace", default=None, help="new/empty directory (default: a temp dir)")
+    p.add_argument("--quiet", action="store_true")
+    p.add_argument("--json", action="store_true", help="print the result as JSON")
+    p.set_defaults(func=_cmd_demo)
 
     p = sub.add_parser("serve", help="run the API (localhost only by default)")
     p.add_argument("--bundle", required=True)

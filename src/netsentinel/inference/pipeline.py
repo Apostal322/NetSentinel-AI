@@ -43,6 +43,7 @@ THREAT_POLICIES = ("unverified", "auto", "trust", "unsupported")
 DEFAULT_THREAT_POLICY = "unverified"
 ASSESSED = "assessed"
 LEVEL_ORDER = ("device", "service", "global")  # most specific first
+FLOW_LEVELS = ("device", "service")  # levels whose anomalies are attributed to a flow
 
 
 def threat_mode_for(policy: str, bundle_id: str | None, check: dict | None) -> str:
@@ -179,7 +180,10 @@ class AnalysisPipeline:
         out = []
         for i in range(frame.height):
             rows = {lv: lookup[lv].get((keys[lv][i], int(end[i]))) for lv in LEVEL_ORDER}
-            hit = next((lv for lv in LEVEL_ORDER if rows[lv] and rows[lv]["anomalous"]), None)
+            # A flow is "unusual" only through ITS OWN entity windows (device, service). A global
+            # anomaly is a network-level event (behaviour windows / incidents): stamping it on
+            # every flow of the window would mark benign flows unusual (Phase 8 demo finding).
+            hit = next((lv for lv in FLOW_LEVELS if rows[lv] and rows[lv]["anomalous"]), None)
             r = rows[hit] if hit else next((rows[lv] for lv in LEVEL_ORDER if rows[lv]), None)
             if r is None:
                 out.append(BehaviorOut(behavior_status="insufficient_history",

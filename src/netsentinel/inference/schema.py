@@ -35,7 +35,8 @@ ThreatStatus = Literal["not_assessed", "unverified_domain", "unsupported_domain"
                        "suspicious", "known_attack_category"]  # fmt: skip
 BehaviorStatus = Literal["normal", "anomalous", "insufficient_history", "not_calibrated"]
 AppStatus = Literal["predicted", "low_confidence", "out_of_distribution", "missing_features",
-                    "unsupported_protocol", "port_ml_conflict", "no_classifier"]  # fmt: skip
+                    "unsupported_protocol", "port_ml_conflict", "class_transport_mismatch",
+                    "class_port_mismatch", "no_classifier"]  # fmt: skip
 AppMethod = Literal["ml", "ml_port_agree", "port_estimate"]
 
 
