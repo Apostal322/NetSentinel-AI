@@ -161,6 +161,9 @@ def test_offline_app_end_to_end(app_ws, capsys, monkeypatch):
     s = json.loads((app_ws / "pcap.json").read_text())
     assert s["kind"] == "pcap" and s["flows"] == 2 and s["parse"]["parsed"] == 8
     assert sum(s["verdicts"].values()) == 2
+    # inference fallback: no calibration / classifier loaded -> explicit statuses
+    assert s["behavior_status"] == {"not_calibrated": 2} and s["app_status"] == {"no_classifier": 2}
+    assert main(["analyze", str(pcap), "--bundle", bundle, "--calibration", "missing-dir"]) == 2
     conn = app_ws / "conn.log"
     conn.write_text(ZEEK_TSV, encoding="utf-8")
     assert main(["analyze", str(conn), "--bundle", bundle, "--events-db", "ev.sqlite",

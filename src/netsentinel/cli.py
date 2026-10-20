@@ -190,7 +190,8 @@ def _cmd_analyze(args: argparse.Namespace) -> int:
 
     summary = analyze_capture(args.capture, args.bundle, args.events_db, args.utc_offset,
                               args.kind, calibration_dir=args.calibration,
-                              appid_dir=args.appid, threat_policy=args.threat_policy)  # fmt: skip
+                              appid_dir=args.appid, threat_policy=args.threat_policy,
+                              since=args.since, until=args.until)  # fmt: skip
     text = json.dumps(summary, indent=2, default=str)
     if args.out:
         Path(args.out).write_text(text, encoding="utf-8")
@@ -226,7 +227,8 @@ def _cmd_calibrate(args: argparse.Namespace) -> int:
         return 2
     frames, sources = [], []
     for cap in args.captures:
-        frame, kind, parse = load_capture(cap, args.kind, args.utc_offset)
+        frame, kind, parse = load_capture(cap, args.kind, args.utc_offset, since=args.since,
+                                          until=args.until)  # fmt: skip
         sources.append(
             {
                 "path": Path(cap).name,
@@ -296,6 +298,23 @@ def _add_config_args(p: argparse.ArgumentParser, default: str) -> None:
     p.add_argument("--config", default=default)
     p.add_argument("--override", default=None, help="YAML merged on top of --config")
     p.add_argument("--set", dest="sets", action="append", default=[], metavar="KEY=VALUE")
+
+
+def _add_period_args(p: argparse.ArgumentParser) -> None:
+    from datetime import datetime
+
+    p.add_argument(
+        "--since",
+        type=datetime.fromisoformat,
+        default=None,
+        help="keep flows ending at/after this time (ISO 8601, UTC if naive)",
+    )
+    p.add_argument(
+        "--until",
+        type=datetime.fromisoformat,
+        default=None,
+        help="keep flows ending before this time (ISO 8601, UTC if naive)",
+    )
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -402,6 +421,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--bundle", default=None, help="also check the supervised model's domain")
     p.add_argument("--utc-offset", type=float, default=0.0)
     p.add_argument("--out", default="models/calibrations")
+    _add_period_args(p)
     p.set_defaults(func=_cmd_calibrate)
 
     p = sub.add_parser("analyze", help="offline analysis of a PCAP/pcapng file or Zeek conn.log")
@@ -415,6 +435,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--calibration", default=None, help="local behaviour profile from `netsentinel calibrate`"
     )
     p.add_argument("--appid", default=None, help="application classifier artifact directory")
+    _add_period_args(p)
     p.add_argument(
         "--threat-policy",
         choices=("auto", "trust", "unsupported"),

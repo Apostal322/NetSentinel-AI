@@ -37,6 +37,10 @@ SETS = {
     "portable_noport": [*NF_PORTABLE_COLUMNS, "proto_tcp", "proto_udp", "proto_other"],
 }
 PREFERENCE = ("portable", "pcap_safe", "noshortcut")  # product choice order (pre-stated)
+# Multiclass LightGBM with balanced class weights diverged on NF-IDS2018 (leaf outputs ~1e7,
+# training accuracy 0.34; DEVELOPMENT_LOG run 2). max_delta_step caps leaf outputs.
+LGBM_PARAMS = {"max_delta_step": 2.0}
+DIVERGED_RAW = 1e3  # |raw score| above this = divergence
 
 
 def weighted_f1(y, pred, w, classes) -> float:
@@ -105,13 +109,19 @@ def main() -> None:
                                                                  classes)}  # fmt: skip
         for fs, feats in SETS.items():
             t1 = time.perf_counter()
-            m = make_model("lightgbm", cfg.get("lightgbm_params"), seed=seed)
+            m = make_model("lightgbm", {**LGBM_PARAMS, **(cfg.get("lightgbm_params") or {})},
+                           seed=seed)  # fmt: skip
             Xtr = tr.select(feats).to_numpy().astype(np.float32)  # noqa: N806
             fit_weighted(m, Xtr, y["train"], w["train"])
             sub = np.random.default_rng(0).choice(len(Xtr), size=min(20_000, len(Xtr)),
                                                   replace=False)  # fmt: skip
             train_acc = float((m.classes_[m.predict_proba(Xtr[sub]).argmax(1)]
                                == y["train"][sub]).mean())  # fmt: skip
+            raw_max = float(np.nanmax(np.abs(m.steps[-1][1].booster_.predict(
+                m.steps[0][1].transform(Xtr[sub[:2000]]), raw_score=True))))  # fmt: skip
+            maj_share = float(np.max(np.bincount(np.searchsorted(classes, y["train"][sub]))
+                                     / len(sub)))  # fmt: skip
+            diverged = raw_max > DIVERGED_RAW or train_acc < maj_share + 0.05
             lo = np.nanpercentile(Xtr, 0.5, axis=0)
             hi = np.nanpercentile(Xtr, 99.5, axis=0)
             pa = m.predict_proba(parts["val_a"].select(feats).to_numpy().astype(np.float32))
@@ -139,6 +149,8 @@ def main() -> None:
                 "confusion_val_b_weighted": conf_mat,
                 "fit_seconds": round(time.perf_counter() - t1, 1),
                 "train_accuracy_sample": train_acc,
+                "raw_score_absmax": raw_max,
+                "diverged": diverged,
             }  # fmt: skip
             models[(name, fs)] = (m, feats, [_name(c) for c in m.classes_], thr, lo, hi)
             print(name, fs, {k: round(r["models"][fs][k], 4) for k in
@@ -178,6 +190,8 @@ def main() -> None:
     res["H6"] = {"full_macro_f1": ids["full"]["macro_f1"],
                  "noshortcut_macro_f1": ids["noshortcut"]["macro_f1"],
                  "supported": ids["noshortcut"]["macro_f1"] >= 0.9 * ids["full"]["macro_f1"]}  # fmt: skip
+    if any(v.get("diverged") for v in ids.values()):
+        raise RuntimeError("a fit diverged; results not valid for H6 or product selection")
     chosen = next((fs for fs in PREFERENCE if ids[fs]["macro_f1"] >= 0.9 * ids["full"]["macro_f1"]),
                   "full")  # fmt: skip
     m, feats, cls, thr, lo, hi = models[(names[0], chosen)]

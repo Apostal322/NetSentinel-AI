@@ -15,6 +15,8 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Any
 
+import polars as pl
+
 from netsentinel.storage.events import EventStore
 from netsentinel.telemetry.flows import assemble_flows
 from netsentinel.telemetry.frames import records_to_frame
@@ -33,8 +35,10 @@ def detect_kind(path: Path) -> str:
 
 
 def load_capture(path: str | Path, kind: str = "auto", utc_offset_hours: float = 0.0,
-                 zeek_extras: dict | None = None):  # fmt: skip
-    """Capture -> (canonical flow frame or None if empty, kind, parse statistics)."""
+                 zeek_extras: dict | None = None, since=None, until=None):  # fmt: skip
+    """Capture -> (canonical flow frame or None if empty, kind, parse statistics).
+    `since` / `until` (datetime, UTC; naive = UTC) keep flows whose END time is in
+    [since, until): the period a calibration or analysis refers to."""
     path = Path(path)
     if not path.exists():
         raise FileNotFoundError(f"capture {path} not found")
@@ -51,7 +55,26 @@ def load_capture(path: str | Path, kind: str = "auto", utc_offset_hours: float =
         raise ValueError(f"unknown capture kind {kind!r}")
     if not records:
         return None, kind, parse
-    return records_to_frame(records, utc_offset_hours), kind, parse
+    frame = records_to_frame(records, utc_offset_hours)
+    if since is not None or until is not None:
+        end = pl.col("flow_end_milliseconds")
+        if since is not None:
+            frame = frame.filter(end >= _epoch_ms(since))
+        if until is not None:
+            frame = frame.filter(end < _epoch_ms(until))
+        parse = {**parse, "time_filter": {"since": str(since), "until": str(until),
+                                          "flows_kept": frame.height}}  # fmt: skip
+        if not frame.height:
+            return None, kind, parse
+    return frame, kind, parse
+
+
+def _epoch_ms(t) -> int:
+    from datetime import UTC
+
+    if t.tzinfo is None:
+        t = t.replace(tzinfo=UTC)
+    return int(t.timestamp() * 1000)
 
 
 def analyze_capture(
@@ -64,6 +87,8 @@ def analyze_capture(
     calibration_dir: str | Path | None = None,
     appid_dir: str | Path | None = None,
     threat_policy: str = "auto",
+    since=None,
+    until=None,
 ) -> dict[str, Any]:
     """Capture -> flows -> evidence-aware assessment (supervised bundle; optional local
     behaviour calibration and application classifier) -> events (+ behaviour windows)."""
@@ -72,7 +97,7 @@ def analyze_capture(
     path = Path(path)
     name = source_name or path.name
     pipe = AnalysisPipeline(bundle_dir, calibration_dir, appid_dir, threat_policy)
-    frame, kind, parse = load_capture(path, kind, utc_offset_hours)
+    frame, kind, parse = load_capture(path, kind, utc_offset_hours, since=since, until=until)
     if frame is None:
         return {"source": name, "kind": kind, "flows": 0, "parse": parse,
                 "model_versions": pipe.versions()}  # fmt: skip

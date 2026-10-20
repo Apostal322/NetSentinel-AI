@@ -187,3 +187,24 @@
   - Run 1's H6 verdict ("not supported") and product selection are therefore discarded. The
     portable artifact it saved was not degenerate (0.945 macro-F1), but it is superseded by
     the re-run.
+- **App-ID run 2** (deterministic order): NF-IDS2018 `full`, `full_noport` and `pcap_safe`
+  collapsed **on their own training sample** (training accuracy 0.34 / 0.25 / 0.56).
+  `noshortcut` and `portable` were healthy (0.99). All NF-UNSW fits were healthy.
+- **Root cause, confirmed** (diagnostic on NF-IDS2018 `full`):
+  - Multiclass LightGBM with `class_weight="balanced"` diverged: raw scores about 2e7,
+    training accuracy 0.344. Weighted subsample weights range 1–41, and rare classes get
+    large balanced weights.
+  - Remedies tested: `class_weight=None` gives 0.995; `max_delta_step=2.0` gives 0.993 with
+    raw scores <= 20.
+  - Fix (app-ID stage only; earlier binary/attack-type models are unchanged and showed no
+    divergence): `max_delta_step=2.0`.
+  - Guard: a fit is flagged `diverged` if |raw score| > 1e3 or training accuracy < majority
+    share + 0.05. Product selection and H6 refuse to proceed if any fit diverged.
+  - Runs 1 and 2 are discarded; run 3 is the reported one.
+  - The Phase 5 app-ID run (0.941) did not diverge, by its healthy accuracy. Its 0.27-style
+    collapses here came from different subsample order and weights.
+- **Also added:**
+  - `calibrate`/`analyze --since/--until` (UTC, by flow end time), recording the period used.
+  - Unit tests: 4 for app-ID abstention and integrity; 5 for error paths (out-of-order flows,
+    invalid timestamps, missing/empty inputs, missing endpoints, period filter).
+  - The integration test checks the no-calibration/no-classifier fallback statuses.
