@@ -125,7 +125,10 @@ def main() -> None:
     unsw_t = ("final_unsw2unsw_nf_flow_ctx", "final_ids2unsw_nf_flow_ctx")
     vals = [(m(p, (*c50, "target_autoencoder_flow"), "recall"),
              m(p, (*c50, "target_autoencoder_flow_noshortcut"), "recall")) for p in unsw_t]  # fmt: skip
-    hyp["H5"] = all(a is not None and b is not None and a >= 0.9 and b >= 0.8 for a, b in vals), vals
+    hyp["H5"] = (
+        all(a is not None and b is not None and a >= 0.9 and b >= 0.8 for a, b in vals),
+        vals,
+    )
     vals = {}
     for p in SETTINGS:
         for k in ("target_autoencoder_flow", "source_model_target_threshold"):

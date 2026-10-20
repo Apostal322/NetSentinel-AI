@@ -86,7 +86,10 @@ def _scores(y, pred, w, classes) -> dict[str, Any]:
         if r_den:
             f1s.append(f1)
         per[_name(c)] = {
-            "recall": round(rec, 4), "precision": round(prec, 4), "support_w": round(r_den, 1)}
+            "recall": round(rec, 4),
+            "precision": round(prec, 4),
+            "support_w": round(r_den, 1),
+        }
     return {"accuracy": round(acc, 4), "macro_f1": round(float(np.mean(f1s)), 4), "per_class": per}
 
 
@@ -139,8 +142,11 @@ def run_appid(cfg: dict[str, Any]) -> list[str]:
     for name, ds in cfg["datasets"].items():
         parts = _load(cfg, ds, seed, int(cfg.get("max_rows", 400_000)))
         tr = parts["train"]
-        share = tr.group_by("app").agg(pl.col("sample_weight").sum()).sort(
-            "sample_weight", descending=True)
+        share = (
+            tr.group_by("app")
+            .agg(pl.col("sample_weight").sum())
+            .sort("sample_weight", descending=True)
+        )
         top = share["app"].head(int(cfg.get("top_k", 10))).to_list()
         y = {k: np.where(np.isin(v["app"].to_numpy(), top), v["app"].to_numpy(), -1)
              for k, v in parts.items()}  # -1 = other  # fmt: skip
@@ -159,7 +165,8 @@ def run_appid(cfg: dict[str, Any]) -> list[str]:
         confs: dict[str, dict[str, np.ndarray]] = {}
         table = _port_table(_port_key(tr), y["train"], w["train"])
         preds["port_lookup"] = {
-            k: np.array([table.get(x, maj) for x in _port_key(parts[k]).tolist()]) for k in evals}
+            k: np.array([table.get(x, maj) for x in _port_key(parts[k]).tolist()]) for k in evals
+        }
         unseen = [x not in table for x in _port_key(parts["val_b"]).tolist()]
         res["port_lookup_unseen_share_b"] = round(float(np.mean(unseen)), 4)
         for mname, feats in (("lgbm_shape_noport", shape),

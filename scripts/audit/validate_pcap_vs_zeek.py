@@ -122,7 +122,8 @@ def evaluate(pcap: Path, zeek: list[dict], cfg: dict, tol: float) -> dict:
     for i, j in pairs:
         r, z = ours[i], zeek[j]
         same_dir = (r["IPV4_SRC_ADDR"], r["L4_SRC_PORT"]) == z["a"] or (
-            r["PROTOCOL"] in (1, 58) and r["IPV4_SRC_ADDR"] == z["a"][0])
+            r["PROTOCOL"] in (1, 58) and r["IPV4_SRC_ADDR"] == z["a"][0]
+        )
         agree["direction"].append(same_dir)
         ip, op = (r["IN_PKTS"], r["OUT_PKTS"]) if same_dir else (r["OUT_PKTS"], r["IN_PKTS"])
         ib, ob = (r["IN_BYTES"], r["OUT_BYTES"]) if same_dir else (r["OUT_BYTES"], r["IN_BYTES"])
@@ -152,7 +153,9 @@ def evaluate(pcap: Path, zeek: list[dict], cfg: dict, tol: float) -> dict:
     if dur_err:
         res["duration_abs_err_ms"] = {
             "median": round(dur_err[len(dur_err) // 2], 3),
-            "p99": round(dur_err[int(0.99 * (len(dur_err) - 1))], 3), "max": round(dur_err[-1], 3)}
+            "p99": round(dur_err[int(0.99 * (len(dur_err) - 1))], 3),
+            "max": round(dur_err[-1], 3),
+        }
     res["mismatch_kinds"] = dict(mism.most_common(15))
     res["unmatched_ours"] = dict(Counter(classify_unmatched(ours[i]) for i in range(len(ours))
                                          if i not in m_ours).most_common())  # fmt: skip

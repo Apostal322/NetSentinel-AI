@@ -45,8 +45,11 @@ def main() -> None:
         both = df.filter((pl.col("split_episode") == "test")
                          & (pl.col("split_chronological") == "test"))  # fmt: skip
         cross = df.group_by("split_episode", "split_chronological").len().sort("len")
-        fam = lambda d: {r["family"]: int(r["len"]) for r in  # noqa: E731
-                         d.group_by("family").len().sort("len", descending=True).to_dicts()}
+
+        def fam(d: pl.DataFrame) -> dict[str, int]:
+            rows = d.group_by("family").len().sort("len", descending=True).to_dicts()
+            return {r["family"]: int(r["len"]) for r in rows}
+
         out[name] = {
             "rows_non_purged_in_both": df.height,
             "cross_tab": cross.to_dicts(),

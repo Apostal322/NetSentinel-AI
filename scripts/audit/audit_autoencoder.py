@@ -122,8 +122,13 @@ def main() -> None:
                                       for lab in sorted(set(labels)) if lab != "benign"}  # fmt: skip
             res["_top_idx"] = [int(cols[i]) for i in order[:5]]
         out[name] = res
-        print(name, {k: res[k] for k in ("recall", "fpr", "roc_auc")},
-              "iforest", res["iforest_same_inputs"]["recall"], flush=True)
+        print(
+            name,
+            {k: res[k] for k in ("recall", "fpr", "roc_auc")},
+            "iforest",
+            res["iforest_same_inputs"]["recall"],
+            flush=True,
+        )
 
     all_cols = list(range(len(feats)))
     run("ae_all_flow", all_cols, detail=True)

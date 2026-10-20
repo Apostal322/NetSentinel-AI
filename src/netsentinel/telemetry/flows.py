@@ -178,8 +178,10 @@ def assemble_flows(
         a, b = (p.src, p.sport), (p.dst, p.dport)
         key = (p.proto, *sorted((a, b)))
         flow = active.get(key)
-        if flow is not None and (expired(flow, p.ts) or (
-                flow.closed_at is not None and p.tcp_flags & SYN and not p.tcp_flags & 16)):
+        if flow is not None and (
+            expired(flow, p.ts)
+            or (flow.closed_at is not None and p.tcp_flags & SYN and not p.tcp_flags & 16)
+        ):
             yield active.pop(key).record()
             flow = None
         if flow is None:
