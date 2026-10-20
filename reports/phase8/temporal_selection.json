@@ -1,0 +1,464 @@
+{
+ "rule": "docs/phase8/DEVELOPMENT_LOG.md 8B",
+ "primary": {
+  "units": [
+   "CTU-IoT-Malware-Capture-3-1",
+   "CTU-IoT-Malware-Capture-34-1",
+   "NF-UNSW-NB15-v3-dev"
+  ],
+  "configs": {
+   "robust_z/base": {
+    "mean_pr_auc": 0.8458617531428899,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.9997118467799375,
+     "CTU-IoT-Malware-Capture-34-1": 0.9408279230792057,
+     "NF-UNSW-NB15-v3-dev": 0.5970454895695263
+    },
+    "median_fpr": 0.0035149384885764497,
+    "median_fa_per_h": 0.16690445528957656,
+    "mean_recall": 0.3867154432413889,
+    "mean_recall_at_fpr1_oracle": 0.4807352421350301,
+    "median_score_us": 1.63,
+    "eligible": true
+   },
+   "guarded_ewma/base": {
+    "mean_pr_auc": 0.7227969778915608,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.8851934138656481,
+     "CTU-IoT-Malware-Capture-34-1": 0.8111816118560402,
+     "NF-UNSW-NB15-v3-dev": 0.4720159079529941
+    },
+    "median_fpr": 0.005272407732864675,
+    "median_fa_per_h": 0.16612806052303666,
+    "mean_recall": 0.1700359853491726,
+    "mean_recall_at_fpr1_oracle": 0.1721293130108987,
+    "median_score_us": 27.24,
+    "eligible": true
+   },
+   "lag_iforest/base": {
+    "mean_pr_auc": 0.7045123757280379,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.8848333020579658,
+     "CTU-IoT-Malware-Capture-34-1": 0.979058627252114,
+     "NF-UNSW-NB15-v3-dev": 0.2496451978740341
+    },
+    "median_fpr": 0.20210896309314588,
+    "median_fa_per_h": 3.8388024716602613,
+    "mean_recall": 0.4975491832038829,
+    "mean_recall_at_fpr1_oracle": 0.05627264326111638,
+    "median_score_us": 18.73,
+    "eligible": false
+   },
+   "gru/base": {
+    "mean_pr_auc": 0.7071579157168842,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.8822618276744562,
+     "CTU-IoT-Malware-Capture-34-1": 0.9919453779816585,
+     "NF-UNSW-NB15-v3-dev": 0.24726654149453814
+    },
+    "median_fpr": 0.008796179944709727,
+    "median_fa_per_h": 4.756776975752932,
+    "mean_recall": 0.31899991005266454,
+    "mean_recall_at_fpr1_oracle": 0.2977218626962927,
+    "median_score_us": 21.48,
+    "eligible": true
+   },
+   "tcn/base": {
+    "mean_pr_auc": 0.7031853762910462,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.8779749474509608,
+     "CTU-IoT-Malware-Capture-34-1": 0.983403235847019,
+     "NF-UNSW-NB15-v3-dev": 0.24817794557515838
+    },
+    "median_fpr": 0.005272407732864675,
+    "median_fa_per_h": 0.7882734933653648,
+    "mean_recall": 0.30950697669486127,
+    "mean_recall_at_fpr1_oracle": 0.1944720801984677,
+    "median_score_us": 22.55,
+    "eligible": true
+   },
+   "robust_z/ms": {
+    "mean_pr_auc": 0.8285296987082716,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.9786612365274759,
+     "CTU-IoT-Malware-Capture-34-1": 0.868768799085983,
+     "NF-UNSW-NB15-v3-dev": 0.6381590605113558
+    },
+    "median_fpr": 0.0008377314233056882,
+    "median_fa_per_h": 1.1261049905219498,
+    "mean_recall": 0.33400442700079175,
+    "mean_recall_at_fpr1_oracle": 0.18589555460771998,
+    "median_score_us": 1.92,
+    "eligible": true
+   },
+   "guarded_ewma/ms": {
+    "mean_pr_auc": 0.7122058398130675,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.8814664413670088,
+     "CTU-IoT-Malware-Capture-34-1": 0.7770910336599495,
+     "NF-UNSW-NB15-v3-dev": 0.47806004441224437
+    },
+    "median_fpr": 0.0017574692442882249,
+    "median_fa_per_h": 0.05537602017434556,
+    "mean_recall": 0.16938674821530822,
+    "mean_recall_at_fpr1_oracle": 0.16759056645809675,
+    "median_score_us": 28.65,
+    "eligible": true
+   },
+   "lag_iforest/ms": {
+    "mean_pr_auc": 0.6964707625689958,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.8793618797937501,
+     "CTU-IoT-Malware-Capture-34-1": 0.9570258976399604,
+     "NF-UNSW-NB15-v3-dev": 0.25302451027327666
+    },
+    "median_fpr": 0.31985940246045697,
+    "median_fa_per_h": 7.343796032741369,
+    "mean_recall": 0.6091727994400452,
+    "mean_recall_at_fpr1_oracle": 0.013276592545080117,
+    "median_score_us": 22.65,
+    "eligible": false
+   },
+   "gru/ms": {
+    "mean_pr_auc": 0.6897670648678188,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.8761412103674817,
+     "CTU-IoT-Malware-Capture-34-1": 0.9415310810887851,
+     "NF-UNSW-NB15-v3-dev": 0.25162890314718944
+    },
+    "median_fpr": 0.18804920913884007,
+    "median_fa_per_h": 5.925108162779968,
+    "mean_recall": 0.45599983173744785,
+    "mean_recall_at_fpr1_oracle": 0.023611644523553094,
+    "median_score_us": 20.1,
+    "eligible": false
+   },
+   "tcn/ms": {
+    "mean_pr_auc": 0.6975971410624467,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.8833130314749031,
+     "CTU-IoT-Malware-Capture-34-1": 0.9578682472763034,
+     "NF-UNSW-NB15-v3-dev": 0.2516101444361336
+    },
+    "median_fpr": 0.17926186291739896,
+    "median_fa_per_h": 5.648354057783247,
+    "mean_recall": 0.4485090503078944,
+    "mean_recall_at_fpr1_oracle": 0.015032253786663785,
+    "median_score_us": 22.77,
+    "eligible": false
+   }
+  }
+ },
+ "secondary_service_clean": {
+  "units": [
+   "CTU-IoT-Malware-Capture-3-1",
+   "CTU-IoT-Malware-Capture-34-1",
+   "CTU-IoT-Malware-Capture-8-1",
+   "NF-UNSW-NB15-v3-dev"
+  ],
+  "configs": {
+   "robust_z/base": {
+    "mean_pr_auc": 0.9050061806608343,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.9712539775853949,
+     "CTU-IoT-Malware-Capture-34-1": 0.7659590487663913,
+     "CTU-IoT-Malware-Capture-8-1": 0.9993450187254383,
+     "NF-UNSW-NB15-v3-dev": 0.8834666775661123
+    },
+    "median_fpr": 0.005255834311124291,
+    "median_fa_per_h": 0.33303251581261323,
+    "mean_recall": 0.08774012682432415,
+    "mean_recall_at_fpr1_oracle": 0.32386087630385224,
+    "median_score_us": 1.125,
+    "eligible": true
+   },
+   "guarded_ewma/base": {
+    "mean_pr_auc": 0.7797673388737445,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.8536524136906234,
+     "CTU-IoT-Malware-Capture-34-1": 0.7863886640133959,
+     "CTU-IoT-Malware-Capture-8-1": 0.6935094116678964,
+     "NF-UNSW-NB15-v3-dev": 0.7855188661230623
+    },
+    "median_fpr": 0.0032362964729800775,
+    "median_fa_per_h": 0.24958028816782496,
+    "mean_recall": 0.012803828287973683,
+    "mean_recall_at_fpr1_oracle": 0.026467242166360757,
+    "median_score_us": 28.869999999999997,
+    "eligible": true
+   },
+   "lag_iforest/base": {
+    "mean_pr_auc": 0.7404449583471381,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.7659253434295022,
+     "CTU-IoT-Malware-Capture-34-1": 0.5508236511474085,
+     "CTU-IoT-Malware-Capture-8-1": 0.8385644536363728,
+     "NF-UNSW-NB15-v3-dev": 0.8064663851752688
+    },
+    "median_fpr": 0.10016784034187479,
+    "median_fa_per_h": 5.665206058642664,
+    "mean_recall": 0.18149295069777488,
+    "mean_recall_at_fpr1_oracle": 0.10472421043841586,
+    "median_score_us": 13.7,
+    "eligible": false
+   },
+   "gru/base": {
+    "mean_pr_auc": 0.7449436579831978,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.7574880224174068,
+     "CTU-IoT-Malware-Capture-34-1": 0.5465195828886856,
+     "CTU-IoT-Malware-Capture-8-1": 0.8440043499931693,
+     "NF-UNSW-NB15-v3-dev": 0.8317626766335298
+    },
+    "median_fpr": 0.005460778345363845,
+    "median_fa_per_h": 0.30642656966240445,
+    "mean_recall": 0.11612543476754814,
+    "mean_recall_at_fpr1_oracle": 0.11085172419786245,
+    "median_score_us": 19.355,
+    "eligible": true
+   },
+   "tcn/base": {
+    "mean_pr_auc": 0.7685288739343015,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.8196549955066552,
+     "CTU-IoT-Malware-Capture-34-1": 0.5631878489116617,
+     "CTU-IoT-Malware-Capture-8-1": 0.834407321381317,
+     "NF-UNSW-NB15-v3-dev": 0.8568653299375717
+    },
+    "median_fpr": 0.06540744299704453,
+    "median_fa_per_h": 2.518145965047352,
+    "mean_recall": 0.17350186450090535,
+    "mean_recall_at_fpr1_oracle": 0.128283475874543,
+    "median_score_us": 23.045,
+    "eligible": false
+   },
+   "robust_z/ms": {
+    "mean_pr_auc": 0.857905485294057,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.9525262109429218,
+     "CTU-IoT-Malware-Capture-34-1": 0.6165119254147813,
+     "CTU-IoT-Malware-Capture-8-1": 0.9999961499998556,
+     "NF-UNSW-NB15-v3-dev": 0.8625876548186691
+    },
+    "median_fpr": 0.006355760032277794,
+    "median_fa_per_h": 0.8990255337140559,
+    "mean_recall": 0.355293864834047,
+    "mean_recall_at_fpr1_oracle": 0.25581428060656874,
+    "median_score_us": 1.32,
+    "eligible": true
+   },
+   "guarded_ewma/ms": {
+    "mean_pr_auc": 0.7100259452120645,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.7990548528519459,
+     "CTU-IoT-Malware-Capture-34-1": 0.6725410498477444,
+     "CTU-IoT-Malware-Capture-8-1": 0.6032854025410709,
+     "NF-UNSW-NB15-v3-dev": 0.7652224756074969
+    },
+    "median_fpr": 0.006522898090170703,
+    "median_fa_per_h": 0.3608048350602783,
+    "mean_recall": 0.017450739057911478,
+    "mean_recall_at_fpr1_oracle": 0.02814221658508621,
+    "median_score_us": 28.564999999999998,
+    "eligible": true
+   },
+   "lag_iforest/ms": {
+    "mean_pr_auc": 0.7329120008326713,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.7646496191763461,
+     "CTU-IoT-Malware-Capture-34-1": 0.5246484136009076,
+     "CTU-IoT-Malware-Capture-8-1": 0.8344440958286434,
+     "NF-UNSW-NB15-v3-dev": 0.8079058747247876
+    },
+    "median_fpr": 0.2780406209768595,
+    "median_fa_per_h": 12.124749600591805,
+    "mean_recall": 0.19582302448766542,
+    "mean_recall_at_fpr1_oracle": 0.10747406525849086,
+    "median_score_us": 15.940000000000001,
+    "eligible": false
+   },
+   "gru/ms": {
+    "mean_pr_auc": 0.7621280787414808,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.8670995725251875,
+     "CTU-IoT-Malware-Capture-34-1": 0.5157646795846378,
+     "CTU-IoT-Malware-Capture-8-1": 0.8342782393913235,
+     "NF-UNSW-NB15-v3-dev": 0.8313698234647742
+    },
+    "median_fpr": 0.00141643059490085,
+    "median_fa_per_h": 0.05537602017434556,
+    "mean_recall": 0.125793499803148,
+    "mean_recall_at_fpr1_oracle": 0.14620424872277166,
+    "median_score_us": 20.604999999999997,
+    "eligible": true
+   },
+   "tcn/ms": {
+    "mean_pr_auc": 0.7388982275015946,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.7647047021524894,
+     "CTU-IoT-Malware-Capture-34-1": 0.5230392779690777,
+     "CTU-IoT-Malware-Capture-8-1": 0.834406081478626,
+     "NF-UNSW-NB15-v3-dev": 0.8334428484061855
+    },
+    "median_fpr": 0.0035410764872521247,
+    "median_fa_per_h": 0.13844005043586388,
+    "mean_recall": 0.11568146260927763,
+    "mean_recall_at_fpr1_oracle": 0.1099968492002303,
+    "median_score_us": 23.025,
+    "eligible": true
+   }
+  }
+ },
+ "secondary_device_unlabelled": {
+  "units": [
+   "CTU-IoT-Malware-Capture-3-1",
+   "CTU-IoT-Malware-Capture-34-1",
+   "NF-UNSW-NB15-v3-dev"
+  ],
+  "configs": {
+   "robust_z/base": {
+    "mean_pr_auc": 0.6716073032175971,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.9986238302826718,
+     "CTU-IoT-Malware-Capture-34-1": 0.7056170913233236,
+     "NF-UNSW-NB15-v3-dev": 0.31058098804679574
+    },
+    "median_fpr": 0.0,
+    "median_fa_per_h": 0.0,
+    "mean_recall": 0.007516542556729916,
+    "mean_recall_at_fpr1_oracle": 0.3187096544878492,
+    "median_score_us": 1.69,
+    "eligible": true
+   },
+   "guarded_ewma/base": {
+    "mean_pr_auc": 0.7365114879963398,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.8852535836971016,
+     "CTU-IoT-Malware-Capture-34-1": 0.829887709782634,
+     "NF-UNSW-NB15-v3-dev": 0.49439317050928383
+    },
+    "median_fpr": 0.01273351763424646,
+    "median_fa_per_h": 0.41726113822394145,
+    "mean_recall": 0.013076483947329139,
+    "mean_recall_at_fpr1_oracle": 0.13619336431426657,
+    "median_score_us": 27.96,
+    "eligible": true
+   },
+   "lag_iforest/base": {
+    "mean_pr_auc": 0.6528279906799741,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.8571644147240233,
+     "CTU-IoT-Malware-Capture-34-1": 0.8522214708984117,
+     "NF-UNSW-NB15-v3-dev": 0.24909808641748726
+    },
+    "median_fpr": 0.0005026388539834129,
+    "median_fa_per_h": 0.6756629943131699,
+    "mean_recall": 0.11529171932489628,
+    "mean_recall_at_fpr1_oracle": 0.025433441779286164,
+    "median_score_us": 17.93,
+    "eligible": true
+   },
+   "gru/base": {
+    "mean_pr_auc": 0.6707996898223048,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.8724807674315672,
+     "CTU-IoT-Malware-Capture-34-1": 0.8894298086995741,
+     "NF-UNSW-NB15-v3-dev": 0.2504884933357731
+    },
+    "median_fpr": 0.005272407732864675,
+    "median_fa_per_h": 0.5630524952609749,
+    "mean_recall": 0.2651521853208606,
+    "mean_recall_at_fpr1_oracle": 0.02505499710391235,
+    "median_score_us": 20.21,
+    "eligible": true
+   },
+   "tcn/base": {
+    "mean_pr_auc": 0.6623752940857444,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.8700824643602545,
+     "CTU-IoT-Malware-Capture-34-1": 0.8658287981506498,
+     "NF-UNSW-NB15-v3-dev": 0.25121461974632875
+    },
+    "median_fpr": 0.0017574692442882249,
+    "median_fa_per_h": 0.5630524952609749,
+    "mean_recall": 0.17154130355986907,
+    "mean_recall_at_fpr1_oracle": 0.01611238474834665,
+    "median_score_us": 23.12,
+    "eligible": true
+   },
+   "robust_z/ms": {
+    "mean_pr_auc": 0.6906888152394077,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.996684163547964,
+     "CTU-IoT-Malware-Capture-34-1": 0.7016662600730631,
+     "NF-UNSW-NB15-v3-dev": 0.3737160220971961
+    },
+    "median_fpr": 0.005780346820809248,
+    "median_fa_per_h": 3.0877324228571665,
+    "mean_recall": 0.017414032835980534,
+    "mean_recall_at_fpr1_oracle": 0.3074398135285701,
+    "median_score_us": 2.04,
+    "eligible": true
+   },
+   "guarded_ewma/ms": {
+    "mean_pr_auc": 0.6417084208626963,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.6245071946898483,
+     "CTU-IoT-Malware-Capture-34-1": 0.7968270034802662,
+     "NF-UNSW-NB15-v3-dev": 0.5037910644179746
+    },
+    "median_fpr": 0.01757469244288225,
+    "median_fa_per_h": 0.5537602017434555,
+    "mean_recall": 0.020733305159138547,
+    "mean_recall_at_fpr1_oracle": 0.01023668440535914,
+    "median_score_us": 29.14,
+    "eligible": true
+   },
+   "lag_iforest/ms": {
+    "mean_pr_auc": 0.6292976339203111,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.8283933661759849,
+     "CTU-IoT-Malware-Capture-34-1": 0.8030400256943966,
+     "NF-UNSW-NB15-v3-dev": 0.256459509890552
+    },
+    "median_fpr": 0.0017574692442882249,
+    "median_fa_per_h": 0.5630524952609749,
+    "mean_recall": 0.06119318920916033,
+    "mean_recall_at_fpr1_oracle": 0.015291177908325052,
+    "median_score_us": 23.09,
+    "eligible": true
+   },
+   "gru/ms": {
+    "mean_pr_auc": 0.657771902797454,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.8431064271069996,
+     "CTU-IoT-Malware-Capture-34-1": 0.8773264926232991,
+     "NF-UNSW-NB15-v3-dev": 0.25288278866206315
+    },
+    "median_fpr": 0.0035149384885764497,
+    "median_fa_per_h": 0.11075204034869111,
+    "mean_recall": 0.3087131958276104,
+    "mean_recall_at_fpr1_oracle": 0.015020308610193963,
+    "median_score_us": 20.18,
+    "eligible": true
+   },
+   "tcn/ms": {
+    "mean_pr_auc": 0.6464663327289387,
+    "pr_auc": {
+     "CTU-IoT-Malware-Capture-3-1": 0.8543812163446078,
+     "CTU-IoT-Malware-Capture-34-1": 0.8329123015784489,
+     "NF-UNSW-NB15-v3-dev": 0.2521054802637592
+    },
+    "median_fpr": 0.0035149384885764497,
+    "median_fa_per_h": 0.11075204034869111,
+    "mean_recall": 0.2123664171424323,
+    "mean_recall_at_fpr1_oracle": 0.017599853764152514,
+    "median_score_us": 22.23,
+    "eligible": true
+   }
+  }
+ },
+ "selected_candidate": "guarded_ewma/base",
+ "baseline": "robust_z/base",
+ "dev_delta_pr_auc": -0.12306477525132908
+}

@@ -22,6 +22,11 @@ def test_demo_runs_offline_and_separates_injected_traffic(tmp_path):
     assert sum(r["verdict"] == "unusual" for r in benign) / len(benign) <= 0.05
     assert {r["application"]["app_protocol"] for r in benign} <= {"tls", "dns"}
     assert all(r["application"]["application_identity"] is None for r in rows)
+    # incidents: each attacker is exactly one device incident (Phase 8C)
+    con = sqlite3.connect(res["events_db"])
+    dev = [e for (e,) in con.execute("SELECT entity FROM incidents WHERE level = 'device'")]
+    assert dev.count("10.9.9.9") == 1 and dev.count("10.9.9.8") == 1
+    assert res["incidents"]["count"] == con.execute("SELECT COUNT(*) FROM incidents").fetchone()[0]
 
 
 def test_demo_cli_refuses_non_empty_workspace(tmp_path):

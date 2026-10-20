@@ -107,6 +107,8 @@ class BehaviorOut(BaseModel):
     raw_score: float | None = None
     threshold: float | None = None
     model_scope: str | None = None
+    level: str | None = None  # Phase 8: entity level of the window that decided the status
+    entity: str | None = None  # device address or service category of that window
     window_s: int | None = None
     window_end: datetime | None = None
     baseline_status: str

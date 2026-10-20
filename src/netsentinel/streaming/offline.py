@@ -89,6 +89,7 @@ def analyze_capture(
     threat_policy: str = "unverified",
     since=None,
     until=None,
+    incident_gap_s: int = 300,
 ) -> dict[str, Any]:
     """Capture -> flows -> evidence-aware assessment (supervised bundle; optional local
     behaviour calibration and application classifier) -> events (+ behaviour windows)."""
@@ -110,6 +111,16 @@ def analyze_capture(
         if windows.height and pipe.calibration:
             store.add_behavior(windows, source, pipe.calibration["calibration_id"],
                                pipe.profile.window_s)  # fmt: skip
+    incidents = []
+    if windows.height and pipe.calibration:
+        from netsentinel.incidents import aggregate_incidents
+
+        incidents = aggregate_incidents(
+            windows, preds, pipe.calibration["calibration_id"], source, pipe.profile.window_s,
+            gap_s=incident_gap_s, model_versions=pipe.versions(),
+            baseline_status=pipe.profile.status)  # fmt: skip
+        if store:
+            store.upsert_incidents(incidents)
     categories: Counter = Counter(p.threat.attack_category for p in preds
                                   if p.threat and p.threat.attack_category)  # fmt: skip
     alerts = [p for p in preds if p.verdict in ("attack", "suspicious")]
@@ -127,6 +138,11 @@ def analyze_capture(
         "bundle": pipe.engine.bundle_id,
         "top_alerts": [a.model_dump(mode="json") for a in alerts[:20]],
         "top_behavior_anomalies": [a.model_dump(mode="json") for a in anomalous[:20]],
+        "incidents": {"count": len(incidents),
+                      "by_severity": dict(Counter(i.severity for i in incidents)),
+                      "by_level": dict(Counter(i.level for i in incidents)),
+                      "top": [i.to_dict() for i in sorted(
+                          incidents, key=lambda i: (-i.max_ratio, i.incident_id))[:10]]},
         "note": "Detection-only offline analysis. 'unusual' = deviation from the local "
                 "baseline (or, uncalibrated, from the training reference), not an attack "
                 "verdict; semantics in inference/schema.py and inference/pipeline.py.",

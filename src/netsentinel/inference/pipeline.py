@@ -194,7 +194,8 @@ class AnalysisPipeline:
                 behavior_status="anomalous" if hit else "normal",
                 anomaly_score=None if sev is None or np.isnan(sev) else float(min(sev, 100.0)),
                 raw_score=float(r["score"]), threshold=float(r["threshold"]),
-                model_scope=f"{r['level']}:{r['model_scope']}", window_s=self.profile.window_s,
+                model_scope=f"{r['level']}:{r['model_scope']}", level=r["level"],
+                entity=str(r["key"]), window_s=self.profile.window_s,
                 window_end=_utc(r["window_end_ms"]), baseline_status=state, calibration=cid,
                 explanation=list(r["explanation"] or [])))  # fmt: skip
         return out, scored

@@ -1,0 +1,697 @@
+{
+ "demo": {
+  "device": {
+   "windows": 573,
+   "attack_windows": 24,
+   "alerts": 26,
+   "alerts_per_h": 156.0,
+   "false_alerts_per_h": 12.0,
+   "incidents": 4,
+   "incidents_per_h": 24.0,
+   "incidents_excl_insufficient_per_h": 12.0,
+   "benign_only_incidents_per_h": 12.0,
+   "alert_reduction": 6.5,
+   "mean_purity": 0.5,
+   "incidents_with_attack": 2,
+   "window_recall": 1.0,
+   "attacking_entities": 2,
+   "attacking_entities_detected": 2,
+   "max_incidents_per_attacking_entity": 1,
+   "severity": {
+    "low": 2,
+    "medium": 0,
+    "high": 2
+   }
+  },
+  "global": {
+   "windows": 60,
+   "attack_windows": 25,
+   "alerts": 24,
+   "alerts_per_h": 144.0,
+   "false_alerts_per_h": 0.0,
+   "incidents": 1,
+   "incidents_per_h": 6.0,
+   "incidents_excl_insufficient_per_h": 6.0,
+   "benign_only_incidents_per_h": 0.0,
+   "alert_reduction": 24.0,
+   "mean_purity": 1.0,
+   "incidents_with_attack": 1,
+   "window_recall": 0.96,
+   "attacking_entities": 1,
+   "attacking_entities_detected": 1,
+   "max_incidents_per_attacking_entity": 1,
+   "severity": {
+    "low": 0,
+    "medium": 0,
+    "high": 1
+   }
+  },
+  "store_incidents": 11
+ },
+ "iot23": {
+  "CTU-Honeypot-Capture-4-1": {
+   "device": {
+    "windows": 87,
+    "attack_windows": 0,
+    "alerts": 2,
+    "alerts_per_h": 0.18288929886008912,
+    "false_alerts_per_h": 0.18288929886008912,
+    "incidents": 1,
+    "incidents_per_h": 0.09144464943004456,
+    "incidents_excl_insufficient_per_h": 0.09144464943004456,
+    "benign_only_incidents_per_h": 0.09144464943004456,
+    "alert_reduction": 2.0,
+    "mean_purity": 0.0,
+    "incidents_with_attack": 0,
+    "window_recall": null,
+    "attacking_entities": 0,
+    "attacking_entities_detected": 0,
+    "max_incidents_per_attacking_entity": 0,
+    "severity": {
+     "low": 0,
+     "medium": 1,
+     "high": 0
+    }
+   },
+   "service": {
+    "windows": 133,
+    "attack_windows": 0,
+    "alerts": 3,
+    "alerts_per_h": 0.2743339482901337,
+    "false_alerts_per_h": 0.2743339482901337,
+    "incidents": 3,
+    "incidents_per_h": 0.2743339482901337,
+    "incidents_excl_insufficient_per_h": 0.18288929886008912,
+    "benign_only_incidents_per_h": 0.2743339482901337,
+    "alert_reduction": 1.0,
+    "mean_purity": 0.0,
+    "incidents_with_attack": 0,
+    "window_recall": null,
+    "attacking_entities": 0,
+    "attacking_entities_detected": 0,
+    "max_incidents_per_attacking_entity": 0,
+    "severity": {
+     "low": 1,
+     "medium": 2,
+     "high": 0
+    }
+   },
+   "global": {
+    "windows": 1309,
+    "attack_windows": 0,
+    "alerts": 6,
+    "alerts_per_h": 0.5486678965802674,
+    "false_alerts_per_h": 0.5486678965802674,
+    "incidents": 5,
+    "incidents_per_h": 0.4572232471502228,
+    "incidents_excl_insufficient_per_h": 0.18288929886008912,
+    "benign_only_incidents_per_h": 0.4572232471502228,
+    "alert_reduction": 1.2,
+    "mean_purity": 0.0,
+    "incidents_with_attack": 0,
+    "window_recall": null,
+    "attacking_entities": 0,
+    "attacking_entities_detected": 0,
+    "max_incidents_per_attacking_entity": 0,
+    "severity": {
+     "low": 4,
+     "medium": 1,
+     "high": 0
+    }
+   }
+  },
+  "CTU-Honeypot-Capture-5-1": {
+   "device": {
+    "windows": 295,
+    "attack_windows": 0,
+    "alerts": 3,
+    "alerts_per_h": 1.0940413644883897,
+    "false_alerts_per_h": 1.0940413644883897,
+    "incidents": 3,
+    "incidents_per_h": 1.0940413644883897,
+    "incidents_excl_insufficient_per_h": 1.0940413644883897,
+    "benign_only_incidents_per_h": 1.0940413644883897,
+    "alert_reduction": 1.0,
+    "mean_purity": 0.0,
+    "incidents_with_attack": 0,
+    "window_recall": null,
+    "attacking_entities": 0,
+    "attacking_entities_detected": 0,
+    "max_incidents_per_attacking_entity": 0,
+    "severity": {
+     "low": 0,
+     "medium": 3,
+     "high": 0
+    }
+   },
+   "service": {
+    "windows": 309,
+    "attack_windows": 0,
+    "alerts": 12,
+    "alerts_per_h": 4.376165457953559,
+    "false_alerts_per_h": 4.376165457953559,
+    "incidents": 8,
+    "incidents_per_h": 2.917443638635706,
+    "incidents_excl_insufficient_per_h": 2.1880827289767795,
+    "benign_only_incidents_per_h": 2.917443638635706,
+    "alert_reduction": 1.5,
+    "mean_purity": 0.0,
+    "incidents_with_attack": 0,
+    "window_recall": null,
+    "attacking_entities": 0,
+    "attacking_entities_detected": 0,
+    "max_incidents_per_attacking_entity": 0,
+    "severity": {
+     "low": 6,
+     "medium": 2,
+     "high": 0
+    }
+   },
+   "global": {
+    "windows": 327,
+    "attack_windows": 0,
+    "alerts": 0,
+    "alerts_per_h": 0.0,
+    "false_alerts_per_h": 0.0,
+    "incidents": 0,
+    "incidents_per_h": 0.0,
+    "incidents_excl_insufficient_per_h": 0.0,
+    "benign_only_incidents_per_h": 0.0,
+    "alert_reduction": null,
+    "mean_purity": null,
+    "incidents_with_attack": 0,
+    "window_recall": null,
+    "attacking_entities": 0,
+    "attacking_entities_detected": 0,
+    "max_incidents_per_attacking_entity": 0,
+    "severity": {
+     "low": 0,
+     "medium": 0,
+     "high": 0
+    }
+   }
+  },
+  "CTU-IoT-Malware-Capture-20-1": {
+   "device": {
+    "windows": 835,
+    "attack_windows": 1,
+    "alerts": 1,
+    "alerts_per_h": 0.08335973058135077,
+    "false_alerts_per_h": 0.0,
+    "incidents": 1,
+    "incidents_per_h": 0.08335973058135077,
+    "incidents_excl_insufficient_per_h": 0.08335973058135077,
+    "benign_only_incidents_per_h": 0.0,
+    "alert_reduction": 1.0,
+    "mean_purity": 1.0,
+    "incidents_with_attack": 1,
+    "window_recall": 1.0,
+    "attacking_entities": 1,
+    "attacking_entities_detected": 1,
+    "max_incidents_per_attacking_entity": 1,
+    "severity": {
+     "low": 0,
+     "medium": 1,
+     "high": 0
+    }
+   },
+   "service": {
+    "windows": 903,
+    "attack_windows": 1,
+    "alerts": 1,
+    "alerts_per_h": 0.08335973058135077,
+    "false_alerts_per_h": 0.0,
+    "incidents": 1,
+    "incidents_per_h": 0.08335973058135077,
+    "incidents_excl_insufficient_per_h": 0.08335973058135077,
+    "benign_only_incidents_per_h": 0.0,
+    "alert_reduction": 1.0,
+    "mean_purity": 1.0,
+    "incidents_with_attack": 1,
+    "window_recall": 1.0,
+    "attacking_entities": 1,
+    "attacking_entities_detected": 1,
+    "max_incidents_per_attacking_entity": 1,
+    "severity": {
+     "low": 0,
+     "medium": 1,
+     "high": 0
+    }
+   },
+   "global": {
+    "windows": 1439,
+    "attack_windows": 1,
+    "alerts": 1,
+    "alerts_per_h": 0.08335973058135077,
+    "false_alerts_per_h": 0.0,
+    "incidents": 1,
+    "incidents_per_h": 0.08335973058135077,
+    "incidents_excl_insufficient_per_h": 0.08335973058135077,
+    "benign_only_incidents_per_h": 0.0,
+    "alert_reduction": 1.0,
+    "mean_purity": 1.0,
+    "incidents_with_attack": 1,
+    "window_recall": 1.0,
+    "attacking_entities": 1,
+    "attacking_entities_detected": 1,
+    "max_incidents_per_attacking_entity": 1,
+    "severity": {
+     "low": 0,
+     "medium": 1,
+     "high": 0
+    }
+   }
+  },
+  "CTU-IoT-Malware-Capture-21-1": {
+   "device": {
+    "windows": 333,
+    "attack_windows": 2,
+    "alerts": 0,
+    "alerts_per_h": 0.0,
+    "false_alerts_per_h": 0.0,
+    "incidents": 0,
+    "incidents_per_h": 0.0,
+    "incidents_excl_insufficient_per_h": 0.0,
+    "benign_only_incidents_per_h": 0.0,
+    "alert_reduction": null,
+    "mean_purity": null,
+    "incidents_with_attack": 0,
+    "window_recall": 0.0,
+    "attacking_entities": 1,
+    "attacking_entities_detected": 0,
+    "max_incidents_per_attacking_entity": 0,
+    "severity": {
+     "low": 0,
+     "medium": 0,
+     "high": 0
+    }
+   },
+   "service": {
+    "windows": 365,
+    "attack_windows": 2,
+    "alerts": 9,
+    "alerts_per_h": 0.7500303310876947,
+    "false_alerts_per_h": 0.5833569241793181,
+    "incidents": 9,
+    "incidents_per_h": 0.7500303310876947,
+    "incidents_excl_insufficient_per_h": 0.1666734069083766,
+    "benign_only_incidents_per_h": 0.5833569241793181,
+    "alert_reduction": 1.0,
+    "mean_purity": 0.2222222222222222,
+    "incidents_with_attack": 2,
+    "window_recall": 1.0,
+    "attacking_entities": 1,
+    "attacking_entities_detected": 1,
+    "max_incidents_per_attacking_entity": 2,
+    "severity": {
+     "low": 9,
+     "medium": 0,
+     "high": 0
+    }
+   },
+   "global": {
+    "windows": 1441,
+    "attack_windows": 2,
+    "alerts": 2,
+    "alerts_per_h": 0.1666734069083766,
+    "false_alerts_per_h": 0.0,
+    "incidents": 2,
+    "incidents_per_h": 0.1666734069083766,
+    "incidents_excl_insufficient_per_h": 0.0833367034541883,
+    "benign_only_incidents_per_h": 0.0,
+    "alert_reduction": 1.0,
+    "mean_purity": 1.0,
+    "incidents_with_attack": 2,
+    "window_recall": 1.0,
+    "attacking_entities": 1,
+    "attacking_entities_detected": 1,
+    "max_incidents_per_attacking_entity": 2,
+    "severity": {
+     "low": 1,
+     "medium": 1,
+     "high": 0
+    }
+   }
+  },
+  "CTU-IoT-Malware-Capture-3-1": {
+   "device": {
+    "windows": 2737,
+    "attack_windows": 2168,
+    "alerts": 1106,
+    "alerts_per_h": 61.24311714791898,
+    "false_alerts_per_h": 0.0,
+    "incidents": 10,
+    "incidents_per_h": 0.5537352364187973,
+    "incidents_excl_insufficient_per_h": 0.5537352364187973,
+    "benign_only_incidents_per_h": 0.0,
+    "alert_reduction": 110.6,
+    "mean_purity": 1.0,
+    "incidents_with_attack": 10,
+    "window_recall": 0.5101476014760148,
+    "attacking_entities": 1,
+    "attacking_entities_detected": 1,
+    "max_incidents_per_attacking_entity": 10,
+    "severity": {
+     "low": 1,
+     "medium": 0,
+     "high": 9
+    }
+   },
+   "service": {
+    "windows": 3999,
+    "attack_windows": 3293,
+    "alerts": 7,
+    "alerts_per_h": 0.3876146654931581,
+    "false_alerts_per_h": 0.3876146654931581,
+    "incidents": 6,
+    "incidents_per_h": 0.3322411418512784,
+    "incidents_excl_insufficient_per_h": 0.05537352364187973,
+    "benign_only_incidents_per_h": 0.3322411418512784,
+    "alert_reduction": 1.1666666666666667,
+    "mean_purity": 0.0,
+    "incidents_with_attack": 0,
+    "window_recall": 0.0,
+    "attacking_entities": 2,
+    "attacking_entities_detected": 0,
+    "max_incidents_per_attacking_entity": 0,
+    "severity": {
+     "low": 6,
+     "medium": 0,
+     "high": 0
+    }
+   },
+   "global": {
+    "windows": 2168,
+    "attack_windows": 2168,
+    "alerts": 1125,
+    "alerts_per_h": 62.295214097114695,
+    "false_alerts_per_h": 0.0,
+    "incidents": 10,
+    "incidents_per_h": 0.5537352364187973,
+    "incidents_excl_insufficient_per_h": 0.5537352364187973,
+    "benign_only_incidents_per_h": 0.0,
+    "alert_reduction": 112.5,
+    "mean_purity": 1.0,
+    "incidents_with_attack": 10,
+    "window_recall": 0.5189114391143912,
+    "attacking_entities": 1,
+    "attacking_entities_detected": 1,
+    "max_incidents_per_attacking_entity": 10,
+    "severity": {
+     "low": 0,
+     "medium": 1,
+     "high": 9
+    }
+   }
+  },
+  "CTU-IoT-Malware-Capture-34-1": {
+   "device": {
+    "windows": 1120,
+    "attack_windows": 943,
+    "alerts": 9,
+    "alerts_per_h": 0.7500534586712789,
+    "false_alerts_per_h": 0.0,
+    "incidents": 8,
+    "incidents_per_h": 0.6667141854855813,
+    "incidents_excl_insufficient_per_h": 0.33335709274279063,
+    "benign_only_incidents_per_h": 0.0,
+    "alert_reduction": 1.125,
+    "mean_purity": 1.0,
+    "incidents_with_attack": 8,
+    "window_recall": 0.009544008483563097,
+    "attacking_entities": 1,
+    "attacking_entities_detected": 1,
+    "max_incidents_per_attacking_entity": 8,
+    "severity": {
+     "low": 4,
+     "medium": 4,
+     "high": 0
+    }
+   },
+   "service": {
+    "windows": 1349,
+    "attack_windows": 946,
+    "alerts": 8,
+    "alerts_per_h": 0.6667141854855813,
+    "false_alerts_per_h": 0.25001781955709296,
+    "incidents": 7,
+    "incidents_per_h": 0.5833749122998836,
+    "incidents_excl_insufficient_per_h": 0.25001781955709296,
+    "benign_only_incidents_per_h": 0.16667854637139531,
+    "alert_reduction": 1.1428571428571428,
+    "mean_purity": 0.7142857142857143,
+    "incidents_with_attack": 5,
+    "window_recall": 0.005285412262156448,
+    "attacking_entities": 3,
+    "attacking_entities_detected": 2,
+    "max_incidents_per_attacking_entity": 4,
+    "severity": {
+     "low": 5,
+     "medium": 2,
+     "high": 0
+    }
+   },
+   "global": {
+    "windows": 1439,
+    "attack_windows": 943,
+    "alerts": 257,
+    "alerts_per_h": 21.418193208724297,
+    "false_alerts_per_h": 0.0,
+    "incidents": 32,
+    "incidents_per_h": 2.666856741942325,
+    "incidents_excl_insufficient_per_h": 2.2501603760138367,
+    "benign_only_incidents_per_h": 0.0,
+    "alert_reduction": 8.03125,
+    "mean_purity": 1.0,
+    "incidents_with_attack": 32,
+    "window_recall": 0.2725344644750795,
+    "attacking_entities": 1,
+    "attacking_entities_detected": 1,
+    "max_incidents_per_attacking_entity": 32,
+    "severity": {
+     "low": 11,
+     "medium": 11,
+     "high": 10
+    }
+   }
+  },
+  "CTU-IoT-Malware-Capture-42-1": {
+   "device": {
+    "windows": 270,
+    "attack_windows": 0,
+    "alerts": 2,
+    "alerts_per_h": 0.47887951770447507,
+    "false_alerts_per_h": 0.47887951770447507,
+    "incidents": 2,
+    "incidents_per_h": 0.47887951770447507,
+    "incidents_excl_insufficient_per_h": 0.23943975885223753,
+    "benign_only_incidents_per_h": 0.47887951770447507,
+    "alert_reduction": 1.0,
+    "mean_purity": 0.0,
+    "incidents_with_attack": 0,
+    "window_recall": null,
+    "attacking_entities": 0,
+    "attacking_entities_detected": 0,
+    "max_incidents_per_attacking_entity": 0,
+    "severity": {
+     "low": 2,
+     "medium": 0,
+     "high": 0
+    }
+   },
+   "service": {
+    "windows": 338,
+    "attack_windows": 0,
+    "alerts": 51,
+    "alerts_per_h": 12.211427701464114,
+    "false_alerts_per_h": 12.211427701464114,
+    "incidents": 10,
+    "incidents_per_h": 2.3943975885223754,
+    "incidents_excl_insufficient_per_h": 2.154957829670138,
+    "benign_only_incidents_per_h": 2.3943975885223754,
+    "alert_reduction": 5.1,
+    "mean_purity": 0.0,
+    "incidents_with_attack": 0,
+    "window_recall": null,
+    "attacking_entities": 0,
+    "attacking_entities_detected": 0,
+    "max_incidents_per_attacking_entity": 0,
+    "severity": {
+     "low": 1,
+     "medium": 7,
+     "high": 2
+    }
+   },
+   "global": {
+    "windows": 501,
+    "attack_windows": 0,
+    "alerts": 19,
+    "alerts_per_h": 4.549355418192513,
+    "false_alerts_per_h": 4.549355418192513,
+    "incidents": 4,
+    "incidents_per_h": 0.9577590354089501,
+    "incidents_excl_insufficient_per_h": 0.7183192765567126,
+    "benign_only_incidents_per_h": 0.9577590354089501,
+    "alert_reduction": 4.75,
+    "mean_purity": 0.0,
+    "incidents_with_attack": 0,
+    "window_recall": null,
+    "attacking_entities": 0,
+    "attacking_entities_detected": 0,
+    "max_incidents_per_attacking_entity": 0,
+    "severity": {
+     "low": 2,
+     "medium": 1,
+     "high": 1
+    }
+   }
+  },
+  "CTU-IoT-Malware-Capture-44-1": {
+   "device": {
+    "windows": 47,
+    "attack_windows": 2,
+    "alerts": 1,
+    "alerts_per_h": 1.0473007568493469,
+    "false_alerts_per_h": 0.0,
+    "incidents": 1,
+    "incidents_per_h": 1.0473007568493469,
+    "incidents_excl_insufficient_per_h": 1.0473007568493469,
+    "benign_only_incidents_per_h": 0.0,
+    "alert_reduction": 1.0,
+    "mean_purity": 1.0,
+    "incidents_with_attack": 1,
+    "window_recall": 0.5,
+    "attacking_entities": 1,
+    "attacking_entities_detected": 1,
+    "max_incidents_per_attacking_entity": 1,
+    "severity": {
+     "low": 0,
+     "medium": 1,
+     "high": 0
+    }
+   },
+   "service": {
+    "windows": 48,
+    "attack_windows": 2,
+    "alerts": 1,
+    "alerts_per_h": 1.0473007568493469,
+    "false_alerts_per_h": 0.0,
+    "incidents": 1,
+    "incidents_per_h": 1.0473007568493469,
+    "incidents_excl_insufficient_per_h": 1.0473007568493469,
+    "benign_only_incidents_per_h": 0.0,
+    "alert_reduction": 1.0,
+    "mean_purity": 1.0,
+    "incidents_with_attack": 1,
+    "window_recall": 0.5,
+    "attacking_entities": 2,
+    "attacking_entities_detected": 1,
+    "max_incidents_per_attacking_entity": 1,
+    "severity": {
+     "low": 0,
+     "medium": 1,
+     "high": 0
+    }
+   },
+   "global": {
+    "windows": 116,
+    "attack_windows": 2,
+    "alerts": 1,
+    "alerts_per_h": 1.0473007568493469,
+    "false_alerts_per_h": 0.0,
+    "incidents": 1,
+    "incidents_per_h": 1.0473007568493469,
+    "incidents_excl_insufficient_per_h": 1.0473007568493469,
+    "benign_only_incidents_per_h": 0.0,
+    "alert_reduction": 1.0,
+    "mean_purity": 1.0,
+    "incidents_with_attack": 1,
+    "window_recall": 0.5,
+    "attacking_entities": 1,
+    "attacking_entities_detected": 1,
+    "max_incidents_per_attacking_entity": 1,
+    "severity": {
+     "low": 0,
+     "medium": 1,
+     "high": 0
+    }
+   }
+  },
+  "CTU-IoT-Malware-Capture-8-1": {
+   "device": {
+    "windows": 1441,
+    "attack_windows": 1441,
+    "alerts": 1196,
+    "alerts_per_h": 99.67213940543218,
+    "false_alerts_per_h": 0.0,
+    "incidents": 1,
+    "incidents_per_h": 0.08333790920186636,
+    "incidents_excl_insufficient_per_h": 0.08333790920186636,
+    "benign_only_incidents_per_h": 0.0,
+    "alert_reduction": 1196.0,
+    "mean_purity": 1.0,
+    "incidents_with_attack": 1,
+    "window_recall": 0.8299791811242193,
+    "attacking_entities": 1,
+    "attacking_entities_detected": 1,
+    "max_incidents_per_attacking_entity": 1,
+    "severity": {
+     "low": 0,
+     "medium": 0,
+     "high": 1
+    }
+   },
+   "service": {
+    "windows": 2254,
+    "attack_windows": 1441,
+    "alerts": 1442,
+    "alerts_per_h": 120.1732650690913,
+    "false_alerts_per_h": 0.08333790920186636,
+    "incidents": 2,
+    "incidents_per_h": 0.16667581840373272,
+    "incidents_excl_insufficient_per_h": 0.16667581840373272,
+    "benign_only_incidents_per_h": 0.08333790920186636,
+    "alert_reduction": 721.0,
+    "mean_purity": 0.5,
+    "incidents_with_attack": 1,
+    "window_recall": 1.0,
+    "attacking_entities": 1,
+    "attacking_entities_detected": 1,
+    "max_incidents_per_attacking_entity": 1,
+    "severity": {
+     "low": 0,
+     "medium": 1,
+     "high": 1
+    }
+   },
+   "global": {
+    "windows": 1441,
+    "attack_windows": 1441,
+    "alerts": 1402,
+    "alerts_per_h": 116.83974870101665,
+    "false_alerts_per_h": 0.0,
+    "incidents": 1,
+    "incidents_per_h": 0.08333790920186636,
+    "incidents_excl_insufficient_per_h": 0.08333790920186636,
+    "benign_only_incidents_per_h": 0.0,
+    "alert_reduction": 1402.0,
+    "mean_purity": 1.0,
+    "incidents_with_attack": 1,
+    "window_recall": 0.9729354614850798,
+    "attacking_entities": 1,
+    "attacking_entities_detected": 1,
+    "max_incidents_per_attacking_entity": 1,
+    "severity": {
+     "low": 0,
+     "medium": 0,
+     "high": 1
+    }
+   }
+  }
+ },
+ "meta": {
+  "seconds": 36.5,
+  "peak_rss_mb": 760.0234375,
+  "gap_s": 300
+ }
+}

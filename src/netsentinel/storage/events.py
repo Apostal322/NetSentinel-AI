@@ -50,7 +50,24 @@ CREATE TABLE IF NOT EXISTS behavior_events (
     calibration TEXT NOT NULL
 );
 CREATE INDEX IF NOT EXISTS idx_beh_ts ON behavior_events (window_end);
+CREATE TABLE IF NOT EXISTS incidents (
+    incident_id TEXT PRIMARY KEY,
+    first_seen TEXT NOT NULL,
+    last_seen TEXT NOT NULL,
+    source TEXT NOT NULL,
+    level TEXT NOT NULL,
+    entity TEXT NOT NULL,
+    severity TEXT NOT NULL,
+    status TEXT NOT NULL,
+    n_windows INTEGER NOT NULL,
+    n_flow_events INTEGER NOT NULL,
+    updated_at TEXT NOT NULL,
+    payload TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_inc_seen ON incidents (last_seen);
+CREATE INDEX IF NOT EXISTS idx_inc_status ON incidents (status, last_seen);
 """
+SEVERITIES = ("low", "medium", "high")
 # Phase 6 columns on `events`, added to older databases on open (indexed copies of payload
 # fields; the payload JSON remains the source of truth).
 EVENT_COLUMNS_V2 = {"threat_status": "TEXT", "behavior_status": "TEXT", "behavior_score": "REAL",
@@ -141,6 +158,100 @@ class EventStore:
             o["anomalous"] = bool(o["anomalous"])
         return out
 
+    # ------------------------------------------------------------------ incidents (Phase 8)
+    def upsert_incidents(self, incidents) -> int:
+        """Insert or update incidents (Incident objects or their dicts). Analyst lifecycle
+        changes are preserved; new evidence after "resolved" re-opens the incident."""
+        from netsentinel.incidents.aggregate import Incident
+
+        now = datetime.now(UTC).replace(tzinfo=None).isoformat()
+        n = 0
+        with self._lock, self._conn:
+            for inc in incidents:
+                d = inc.to_dict() if isinstance(inc, Incident) else dict(inc)
+                old = self._conn.execute("SELECT payload FROM incidents WHERE incident_id = ?",
+                                         (d["incident_id"],)).fetchone()  # fmt: skip
+                if old:
+                    prev = json.loads(old[0])
+                    hist = prev.get("status_history") or []
+                    d["status_history"] = hist
+                    if hist:  # analyst-managed: keep the analyst's status
+                        d["status"] = prev["status"]
+                        if prev["status"] == "resolved" and d["last_seen"] > prev["last_seen"]:
+                            d["status"] = "new"
+                            note = "re-opened: new evidence"
+                            hist.append({"at": now, "from": "resolved", "to": "new",
+                                         "by": "system", "note": note})
+                self._conn.execute(
+                    "INSERT OR REPLACE INTO incidents VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+                    (d["incident_id"], d["first_seen"], d["last_seen"], d["source"], d["level"],
+                     d["entity"], d["severity"], d["status"], d["n_windows"],
+                     d["n_flow_events"], now, json.dumps(d, default=str)))  # fmt: skip
+                n += 1
+        return n
+
+    def incidents(self, status: list[str] | None = None, severity: list[str] | None = None,
+                  level: str | None = None, entity: str | None = None,
+                  source: str | None = None, since: datetime | None = None,
+                  until: datetime | None = None, limit: int = 50,
+                  offset: int = 0) -> tuple[list[dict[str, Any]], int]:  # fmt: skip
+        """Filtered page of incidents (most recent activity first) and the total match count."""
+        from netsentinel.incidents.aggregate import STATUSES
+
+        if status and not set(status) <= set(STATUSES):
+            raise ValueError(f"unknown status {sorted(set(status) - set(STATUSES))}")
+        if severity and not set(severity) <= set(SEVERITIES):
+            raise ValueError(f"unknown severity {sorted(set(severity) - set(SEVERITIES))}")
+        where, args = [], []
+        for col, vals in (("status", status), ("severity", severity)):
+            if vals:
+                where.append(f"{col} IN ({','.join('?' * len(vals))})")
+                args += vals
+        for col, val in (("level", level), ("entity", entity), ("source", source)):
+            if val:
+                where.append(f"{col} = ?")
+                args.append(val)
+        if since:
+            where.append("last_seen >= ?")
+            args.append(since.replace(tzinfo=None).isoformat())
+        if until:
+            where.append("first_seen < ?")
+            args.append(until.replace(tzinfo=None).isoformat())
+        w = (" WHERE " + " AND ".join(where)) if where else ""
+        total = self._conn.execute(f"SELECT COUNT(*) FROM incidents{w}", args).fetchone()[0]
+        rows = self._conn.execute(
+            f"SELECT payload FROM incidents{w} ORDER BY last_seen DESC, incident_id "
+            "LIMIT ? OFFSET ?", (*args, max(1, min(int(limit), 500)), max(0, int(offset)))
+        ).fetchall()  # fmt: skip
+        return [json.loads(r[0]) for r in rows], int(total)
+
+    def get_incident(self, incident_id: str) -> dict[str, Any] | None:
+        row = self._conn.execute("SELECT payload FROM incidents WHERE incident_id = ?",
+                                 (incident_id,)).fetchone()  # fmt: skip
+        return json.loads(row[0]) if row else None
+
+    def set_incident_status(self, incident_id: str, status: str, note: str = "",
+                            by: str = "analyst") -> dict[str, Any]:  # fmt: skip
+        from netsentinel.incidents.aggregate import STATUSES
+
+        if status not in STATUSES:
+            raise ValueError(f"unknown status {status!r}; allowed {STATUSES}")
+        now = datetime.now(UTC).replace(tzinfo=None).isoformat()
+        with self._lock, self._conn:
+            row = self._conn.execute("SELECT payload FROM incidents WHERE incident_id = ?",
+                                     (incident_id,)).fetchone()  # fmt: skip
+            if row is None:
+                raise KeyError(incident_id)
+            d = json.loads(row[0])
+            d.setdefault("status_history", []).append(
+                {"at": now, "from": d["status"], "to": status, "by": by[:64], "note": note[:500]}
+            )
+            d["status"] = status
+            self._conn.execute("UPDATE incidents SET status = ?, updated_at = ?, payload = ? "
+                               "WHERE incident_id = ?",
+                               (status, now, json.dumps(d, default=str), incident_id))  # fmt: skip
+        return d
+
     def get(self, observation_id: str) -> dict[str, Any] | None:
         row = self._conn.execute(
             "SELECT payload FROM events WHERE observation_id = ?", (observation_id,)
@@ -207,5 +318,7 @@ class EventStore:
         with self._lock, self._conn:
             cur = self._conn.execute("DELETE FROM events WHERE ts < ?", (cutoff.isoformat(),))
             self._conn.execute("DELETE FROM behavior_events WHERE window_end < ?",
+                               (cutoff.isoformat(),))  # fmt: skip
+            self._conn.execute("DELETE FROM incidents WHERE last_seen < ?",
                                (cutoff.isoformat(),))  # fmt: skip
         return cur.rowcount
