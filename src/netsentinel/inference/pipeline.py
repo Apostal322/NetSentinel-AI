@@ -16,6 +16,7 @@ reported but never escalates a verdict. An anomaly alone is never `suspicious`.
 from __future__ import annotations
 
 from collections import Counter
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -28,6 +29,10 @@ from netsentinel.models.service import service_category_expr
 
 THREAT_POLICIES = ("auto", "trust", "unsupported")
 LEVEL_ORDER = ("device", "service", "global")  # most specific first
+
+
+def _utc(ms: int) -> datetime:
+    return datetime.fromtimestamp(ms / 1000, UTC).replace(tzinfo=None)
 
 
 class AnalysisPipeline:
@@ -128,7 +133,7 @@ class AnalysisPipeline:
                 anomaly_score=None if sev is None or np.isnan(sev) else float(min(sev, 100.0)),
                 raw_score=float(r["score"]), threshold=float(r["threshold"]),
                 model_scope=f"{r['level']}:{r['model_scope']}", window_s=self.profile.window_s,
-                window_end=None, baseline_status=state, calibration=cid,
+                window_end=_utc(r["window_end_ms"]), baseline_status=state, calibration=cid,
                 explanation=list(r["explanation"] or [])))  # fmt: skip
         return out, scored
 

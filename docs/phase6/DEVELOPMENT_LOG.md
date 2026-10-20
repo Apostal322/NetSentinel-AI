@@ -208,3 +208,48 @@
   - Unit tests: 4 for app-ID abstention and integrity; 5 for error paths (out-of-order flows,
     invalid timestamps, missing/empty inputs, missing endpoints, period filter).
   - The integration test checks the no-calibration/no-classifier fallback statuses.
+
+### App-ID run 3, H7, real-PCAP demo, dashboard smoke test
+
+- **App-ID run 3** (`reports/phase6/appid_v2.json`; 24 min; 1.46 GB): no fit diverged
+  (training accuracy 0.81–0.99, raw scores bounded).
+  - NF-IDS2018 macro-F1:
+
+    | full | full_noport | noshortcut | pcap_safe | portable | portable_noport | port lookup |
+    |---|---|---|---|---|---|---|
+    | 0.952 | 0.940 | 0.944 | 0.945 | 0.945 | 0.828 | 0.840 |
+
+  - NF-UNSW: 0.70–0.735 across sets, vs port lookup 0.634.
+  - **H6 supported:** noshortcut 0.944 vs full 0.952 (0.99x).
+  - **Product = `portable`** (pre-stated rule), artifact
+    `models/appintel/appid-portable-20261020T114442Z`.
+  - **Shift.** IDS->UNSW on shared classes: 0.51–0.75 accuracy at coverage about 1.0, i.e.
+    confidently wrong; abstention does not trigger. UNSW->IDS: abstention helps, e.g.
+    full_noport 0.81 -> 0.97 accepted accuracy at 76% coverage.
+- **H7 (CTU-Normal-20..32 + 26, Zeek `service` as independent reference; `h7_ctu_appid.json`):
+  not supported.**
+  - Pooled accuracy 0.925, coverage 0.9996, accepted accuracy 0.925.
+  - Port rule 0.999: the reference classes all use standard ports here.
+  - Per class: dns >= 0.96, tls 0.92–0.98, **http 0.42–0.72**.
+  - The confidence threshold rarely abstains under this shift.
+- **Real-PCAP end to end** (`scripts/phase6/demo_ctu26_pcap.sh`, product CLI only; 81 s for
+  three commands; peak <= 0.4 GB):
+  - CTU-26 PCAP, calibrated on flows ending before 03:15 and analysed from 03:15 (3.26 h).
+  - Uncalibrated (Phase-5 configuration): 10,331 unusual + 102 suspicious of 10,433 flows.
+  - Calibrated + application classifier: 10,214 benign / 117 unusual / 102 suspicious.
+    Behaviour windows anomalous: global 1/389, device 8/706, service 7/1,008.
+    Baseline state `drift_suspected` (score KS 0.36; alert rate 0.0026).
+  - **Domain check passed on PCAP flows** (flag rate 0.54% < 1% limit). It failed on the
+    Zeek log of the same capture (1.48%). So the 102 false suspicious flows (about 31/h)
+    remained.
+  - The limit is not retuned on this capture; documented as a limitation. The remedy is
+    `--threat-policy unsupported`.
+  - Bug fixed: `behavior.window_end` was null.
+- **Dashboard smoke test** (Streamlit, built-in browser, CTU-26 event store):
+  - Bug found and fixed: mixed ISO timestamp formats crashed the event loader; now
+    `format="ISO8601"`.
+  - Verified after the fix: Overview counts equal the analysis summary; Network behaviour
+    (global 389/1, device 706/8); Application intelligence (crosstab of port heuristic vs ML
+    prediction); Model management (bundles, calibration, classifier, limitations,
+    historical figures labelled).
+  - Screenshots: `docs/images/phase6_*`.

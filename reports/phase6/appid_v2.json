@@ -335,17 +335,17 @@
      "weighted_f1": 0.8951001943432798
     },
     "full": {
-     "accuracy": 0.9911,
-     "macro_f1": 0.9513,
+     "accuracy": 0.9913,
+     "macro_f1": 0.9523,
      "per_class": {
       "other": {
        "recall": 0.8174,
-       "precision": 0.8965,
+       "precision": 0.9008,
        "support_w": 26628.4
       },
       "unknown": {
-       "recall": 0.9276,
-       "precision": 0.8942,
+       "recall": 0.9321,
+       "precision": 0.8971,
        "support_w": 42546.9
       },
       "dns": {
@@ -354,8 +354,8 @@
        "support_w": 661587.6
       },
       "http": {
-       "recall": 0.981,
-       "precision": 0.9971,
+       "recall": 0.9817,
+       "precision": 0.9964,
        "support_w": 119124.7
       },
       "netbios": {
@@ -364,13 +364,13 @@
        "support_w": 66237.1
       },
       "smb2/3": {
-       "recall": 0.98,
+       "recall": 0.9808,
        "precision": 0.999,
        "support_w": 41367.4
       },
       "telnet": {
-       "recall": 0.9502,
-       "precision": 0.8794,
+       "recall": 0.9497,
+       "precision": 0.8732,
        "support_w": 10741.7
       },
       "rdp": {
@@ -379,13 +379,13 @@
        "support_w": 428592.8
       },
       "tls": {
-       "recall": 0.9914,
-       "precision": 0.9917,
+       "recall": 0.9911,
+       "precision": 0.9918,
        "support_w": 270853.6
       },
       "http_proxy": {
        "recall": 0.8631,
-       "precision": 0.7836,
+       "precision": 0.8003,
        "support_w": 5308.1
       },
       "llmnr": {
@@ -394,51 +394,51 @@
        "support_w": 7857.6
       }
      },
-     "weighted_f1": 0.991118928763104,
-     "confidence_threshold_95": 0.36244901446599626,
-     "coverage_at_threshold": 1.0,
-     "accepted_accuracy_at_threshold": 0.9911341070799755,
+     "weighted_f1": 0.9912472546551955,
+     "confidence_threshold_95": 0.3515577147621893,
+     "coverage_at_threshold": 0.9999806925895451,
+     "accepted_accuracy_at_threshold": 0.9912698923629341,
      "ood_share_val_b": 0.0,
      "coverage_curve": [
       {
        "threshold": 0.0,
        "coverage": 1.0,
-       "accepted_accuracy": 0.9911341070799755
+       "accepted_accuracy": 0.9912700609187055
       },
       {
        "threshold": 0.5,
-       "coverage": 0.9973842254090568,
-       "accepted_accuracy": 0.9920733717119
+       "coverage": 0.9973192580726954,
+       "accepted_accuracy": 0.992133854931117
       },
       {
        "threshold": 0.6,
-       "coverage": 0.9929898951747812,
-       "accepted_accuracy": 0.9936692642922939
+       "coverage": 0.9934126019580007,
+       "accepted_accuracy": 0.9934533193208176
       },
       {
        "threshold": 0.7,
-       "coverage": 0.9925725184774704,
-       "accepted_accuracy": 0.99392413483539
+       "coverage": 0.9928045158452798,
+       "accepted_accuracy": 0.9937841607026662
       },
       {
        "threshold": 0.8,
-       "coverage": 0.9778120729041089,
-       "accepted_accuracy": 0.9953681325696113
+       "coverage": 0.9779346157473818,
+       "accepted_accuracy": 0.9953174369571548
       },
       {
        "threshold": 0.9,
-       "coverage": 0.9573894228865646,
-       "accepted_accuracy": 0.9971487132742749
+       "coverage": 0.9576341631036968,
+       "accepted_accuracy": 0.9970714707522791
       },
       {
        "threshold": 0.95,
-       "coverage": 0.9535954041440475,
-       "accepted_accuracy": 0.9978890610511543
+       "coverage": 0.9537737423356561,
+       "accepted_accuracy": 0.9978596628643234
       },
       {
        "threshold": 0.99,
-       "coverage": 0.8989843698381484,
-       "accepted_accuracy": 0.9989571412569244
+       "coverage": 0.8985376144874386,
+       "accepted_accuracy": 0.9989768545817839
       }
      ],
      "confusion_val_b_weighted": {
@@ -456,16 +456,16 @@
        "llmnr": 0.0
       },
       "unknown": {
-       "other": 1064.6,
-       "unknown": 39464.8,
+       "other": 991.4,
+       "unknown": 39657.9,
        "dns": 0.0,
        "http": 79.5,
        "netbios": 0.0,
        "smb2/3": 0.0,
-       "telnet": 449.8,
+       "telnet": 490.5,
        "rdp": 78.6,
-       "tls": 588.3,
-       "http_proxy": 782.7,
+       "tls": 549.6,
+       "http_proxy": 660.7,
        "llmnr": 38.7
       },
       "dns": {
@@ -482,15 +482,15 @@
        "llmnr": 0.0
       },
       "http": {
-       "other": 437.9,
-       "unknown": 364.3,
+       "other": 308.1,
+       "unknown": 323.4,
        "dns": 0.0,
-       "http": 116859.5,
+       "http": 116948.5,
        "netbios": 0.0,
        "smb2/3": 0.0,
-       "telnet": 0.0,
+       "telnet": 40.9,
        "rdp": 32.5,
-       "tls": 1389.7,
+       "tls": 1430.6,
        "http_proxy": 40.9,
        "llmnr": 0.0
       },
@@ -513,21 +513,21 @@
        "dns": 0.0,
        "http": 0.0,
        "netbios": 39.0,
-       "smb2/3": 40541.9,
+       "smb2/3": 40574.4,
        "telnet": 0.0,
        "rdp": 534.1,
-       "tls": 220.0,
+       "tls": 187.5,
        "http_proxy": 0.0,
        "llmnr": 0.0
       },
       "telnet": {
-       "other": 302.5,
-       "unknown": 231.0,
+       "other": 389.4,
+       "unknown": 151.3,
        "dns": 0.0,
-       "http": 1.0,
+       "http": 0.0,
        "netbios": 0.0,
        "smb2/3": 0.0,
-       "telnet": 10207.2,
+       "telnet": 10201.0,
        "rdp": 0.0,
        "tls": 0.0,
        "http_proxy": 0.0,
@@ -550,12 +550,12 @@
        "other": 400.8,
        "unknown": 187.4,
        "dns": 0.0,
-       "http": 263.3,
+       "http": 343.1,
        "netbios": 0.0,
        "smb2/3": 0.0,
        "telnet": 0.0,
        "rdp": 1481.2,
-       "tls": 268520.9,
+       "tls": 268441.0,
        "http_proxy": 0.0,
        "llmnr": 0.0
       },
@@ -586,807 +586,305 @@
        "llmnr": 7857.6
       }
      },
-     "fit_seconds": 193.9
+     "fit_seconds": 179.3,
+     "train_accuracy_sample": 0.99335,
+     "raw_score_absmax": 20.073414907111292,
+     "diverged": false
     },
     "full_noport": {
-     "accuracy": 0.4123,
-     "macro_f1": 0.2717,
+     "accuracy": 0.9885,
+     "macro_f1": 0.9404,
      "per_class": {
       "other": {
-       "recall": 0.0044,
-       "precision": 0.0488,
+       "recall": 0.8011,
+       "precision": 0.928,
        "support_w": 26628.4
       },
       "unknown": {
-       "recall": 0.0072,
-       "precision": 0.0554,
+       "recall": 0.8941,
+       "precision": 0.8713,
        "support_w": 42546.9
       },
       "dns": {
-       "recall": 0.6922,
-       "precision": 0.9762,
+       "recall": 0.9997,
+       "precision": 0.9998,
        "support_w": 661587.6
       },
       "http": {
-       "recall": 0.546,
-       "precision": 0.5571,
+       "recall": 0.9803,
+       "precision": 0.9967,
        "support_w": 119124.7
       },
       "netbios": {
-       "recall": 0.358,
-       "precision": 0.5502,
-       "support_w": 66237.1
-      },
-      "smb2/3": {
-       "recall": 0.0258,
-       "precision": 0.77,
-       "support_w": 41367.4
-      },
-      "telnet": {
-       "recall": 0.0148,
-       "precision": 0.448,
-       "support_w": 10741.7
-      },
-      "rdp": {
-       "recall": 0.0,
-       "precision": 0.0,
-       "support_w": 428592.8
-      },
-      "tls": {
-       "recall": 0.487,
-       "precision": 0.251,
-       "support_w": 270853.6
-      },
-      "http_proxy": {
-       "recall": 0.9409,
-       "precision": 0.01,
-       "support_w": 5308.1
-      },
-      "llmnr": {
-       "recall": 0.9805,
-       "precision": 0.598,
-       "support_w": 7857.6
-      }
-     },
-     "weighted_f1": 0.43378746901936927,
-     "confidence_threshold_95": 1.0,
-     "coverage_at_threshold": 1.0,
-     "accepted_accuracy_at_threshold": 0.4122633244590337,
-     "ood_share_val_b": 0.0,
-     "coverage_curve": [
-      {
-       "threshold": 0.0,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4122633244590337
-      },
-      {
-       "threshold": 0.5,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4122633244590337
-      },
-      {
-       "threshold": 0.6,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4122633244590337
-      },
-      {
-       "threshold": 0.7,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4122633244590337
-      },
-      {
-       "threshold": 0.8,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4122633244590337
-      },
-      {
-       "threshold": 0.9,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4122633244590337
-      },
-      {
-       "threshold": 0.95,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4122633244590337
-      },
-      {
-       "threshold": 0.99,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4122633244590337
-      }
-     ],
-     "confusion_val_b_weighted": {
-      "other": {
-       "other": 116.9,
-       "unknown": 0.0,
-       "dns": 1742.9,
-       "http": 0.0,
-       "netbios": 1488.3,
-       "smb2/3": 0.0,
-       "telnet": 38.7,
-       "rdp": 39.0,
-       "tls": 4631.8,
-       "http_proxy": 17243.1,
-       "llmnr": 1327.7
-      },
-      "unknown": {
-       "other": 39.0,
-       "unknown": 305.9,
-       "dns": 1279.4,
-       "http": 0.0,
-       "netbios": 5066.6,
-       "smb2/3": 0.0,
-       "telnet": 79.4,
-       "rdp": 0.0,
-       "tls": 706.5,
-       "http_proxy": 34316.9,
-       "llmnr": 753.2
-      },
-      "dns": {
-       "other": 0.0,
-       "unknown": 4294.7,
-       "dns": 457932.5,
-       "http": 3234.7,
-       "netbios": 0.0,
-       "smb2/3": 0.0,
-       "telnet": 0.0,
-       "rdp": 195.8,
-       "tls": 1649.6,
-       "http_proxy": 194280.3,
-       "llmnr": 0.0
-      },
-      "http": {
-       "other": 0.0,
-       "unknown": 0.0,
-       "dns": 0.0,
-       "http": 65040.4,
-       "netbios": 506.1,
-       "smb2/3": 0.0,
-       "telnet": 0.0,
-       "rdp": 0.0,
-       "tls": 42499.7,
-       "http_proxy": 11005.2,
-       "llmnr": 73.3
-      },
-      "netbios": {
-       "other": 849.5,
-       "unknown": 343.1,
-       "dns": 4721.0,
-       "http": 163.5,
-       "netbios": 23710.6,
-       "smb2/3": 0.0,
-       "telnet": 0.0,
-       "rdp": 2758.5,
-       "tls": 23170.5,
-       "http_proxy": 10261.7,
-       "llmnr": 258.6
-      },
-      "smb2/3": {
-       "other": 853.2,
-       "unknown": 35.5,
-       "dns": 2096.6,
-       "http": 1227.1,
-       "netbios": 6571.8,
-       "smb2/3": 1068.6,
-       "telnet": 77.6,
-       "rdp": 308.0,
-       "tls": 1408.9,
-       "http_proxy": 27414.1,
-       "llmnr": 306.1
-      },
-      "telnet": {
-       "other": 198.3,
-       "unknown": 308.1,
-       "dns": 39.0,
-       "http": 0.0,
-       "netbios": 3146.6,
-       "smb2/3": 79.8,
-       "telnet": 158.8,
-       "rdp": 0.0,
-       "tls": 38.7,
-       "http_proxy": 5245.1,
-       "llmnr": 1527.3
-      },
-      "rdp": {
-       "other": 191.7,
-       "unknown": 122.5,
-       "dns": 1288.5,
-       "http": 40.7,
-       "netbios": 120.1,
-       "smb2/3": 0.0,
-       "telnet": 0.0,
-       "rdp": 0.0,
-       "tls": 319458.5,
-       "http_proxy": 107289.1,
-       "llmnr": 81.7
-      },
-      "tls": {
-       "other": 148.4,
-       "unknown": 112.2,
-       "dns": 0.0,
-       "http": 47031.5,
-       "netbios": 2252.1,
-       "smb2/3": 239.4,
-       "telnet": 0.0,
-       "rdp": 38.7,
-       "tls": 131918.4,
-       "http_proxy": 88342.9,
-       "llmnr": 770.0
-      },
-      "http_proxy": {
-       "other": 0.0,
-       "unknown": 0.0,
-       "dns": 0.0,
-       "http": 0.0,
-       "netbios": 232.1,
-       "smb2/3": 0.0,
-       "telnet": 0.0,
-       "rdp": 0.0,
-       "tls": 0.0,
-       "http_proxy": 4994.4,
-       "llmnr": 81.6
-      },
-      "llmnr": {
-       "other": 0.0,
-       "unknown": 0.0,
-       "dns": 0.0,
-       "http": 0.0,
-       "netbios": 0.0,
-       "smb2/3": 0.0,
-       "telnet": 0.0,
-       "rdp": 0.0,
-       "tls": 0.0,
-       "http_proxy": 153.0,
-       "llmnr": 7704.6
-      }
-     },
-     "fit_seconds": 105.6
-    },
-    "noshortcut": {
-     "accuracy": 0.4296,
-     "macro_f1": 0.3563,
-     "per_class": {
-      "other": {
-       "recall": 0.0799,
-       "precision": 0.0057,
-       "support_w": 26628.4
-      },
-      "unknown": {
-       "recall": 0.031,
-       "precision": 0.0342,
-       "support_w": 42546.9
-      },
-      "dns": {
-       "recall": 0.637,
-       "precision": 0.9992,
-       "support_w": 661587.6
-      },
-      "http": {
-       "recall": 0.7447,
-       "precision": 0.5468,
-       "support_w": 119124.7
-      },
-      "netbios": {
-       "recall": 0.4426,
-       "precision": 0.3823,
-       "support_w": 66237.1
-      },
-      "smb2/3": {
-       "recall": 0.8201,
-       "precision": 0.5758,
-       "support_w": 41367.4
-      },
-      "telnet": {
-       "recall": 0.9452,
-       "precision": 0.0334,
-       "support_w": 10741.7
-      },
-      "rdp": {
-       "recall": 0.1751,
-       "precision": 0.8359,
-       "support_w": 428592.8
-      },
-      "tls": {
-       "recall": 0.1781,
-       "precision": 0.601,
-       "support_w": 270853.6
-      },
-      "http_proxy": {
-       "recall": 0.7588,
-       "precision": 0.0675,
-       "support_w": 5308.1
-      },
-      "llmnr": {
-       "recall": 0.9909,
-       "precision": 0.4596,
-       "support_w": 7857.6
-      }
-     },
-     "weighted_f1": 0.506572680428326,
-     "confidence_threshold_95": 1.0,
-     "coverage_at_threshold": 1.0,
-     "accepted_accuracy_at_threshold": 0.4295896152240927,
-     "ood_share_val_b": 0.0,
-     "coverage_curve": [
-      {
-       "threshold": 0.0,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4295896152240927
-      },
-      {
-       "threshold": 0.5,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4295896152240927
-      },
-      {
-       "threshold": 0.6,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4295896152240927
-      },
-      {
-       "threshold": 0.7,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4295896152240927
-      },
-      {
-       "threshold": 0.8,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4295896152240927
-      },
-      {
-       "threshold": 0.9,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4295896152240927
-      },
-      {
-       "threshold": 0.95,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4295896152240927
-      },
-      {
-       "threshold": 0.99,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4295896152240927
-      }
-     ],
-     "confusion_val_b_weighted": {
-      "other": {
-       "other": 2127.3,
-       "unknown": 814.8,
-       "dns": 0.0,
-       "http": 103.9,
-       "netbios": 4521.6,
-       "smb2/3": 997.0,
-       "telnet": 6968.5,
-       "rdp": 77.9,
-       "tls": 9994.8,
-       "http_proxy": 910.5,
-       "llmnr": 112.2
-      },
-      "unknown": {
-       "other": 217.6,
-       "unknown": 1318.4,
-       "dns": 0.0,
-       "http": 331.5,
-       "netbios": 390.1,
-       "smb2/3": 155.6,
-       "telnet": 39779.6,
-       "rdp": 0.0,
-       "tls": 79.7,
-       "http_proxy": 274.4,
-       "llmnr": 0.0
-      },
-      "dns": {
-       "other": 1368.4,
-       "unknown": 32065.6,
-       "dns": 421406.2,
-       "http": 1121.2,
-       "netbios": 24299.0,
-       "smb2/3": 8273.2,
-       "telnet": 133644.3,
-       "rdp": 1613.0,
-       "tls": 11681.0,
-       "http_proxy": 23685.7,
-       "llmnr": 2430.1
-      },
-      "http": {
-       "other": 7382.8,
-       "unknown": 508.4,
-       "dns": 0.0,
-       "http": 88717.4,
-       "netbios": 151.1,
-       "smb2/3": 5624.1,
-       "telnet": 2708.6,
-       "rdp": 827.2,
-       "tls": 2442.2,
-       "http_proxy": 10762.9,
-       "llmnr": 0.0
-      },
-      "netbios": {
-       "other": 23843.6,
-       "unknown": 0.0,
-       "dns": 322.5,
-       "http": 428.3,
-       "netbios": 29319.0,
-       "smb2/3": 432.7,
-       "telnet": 77.3,
-       "rdp": 4601.7,
-       "tls": 6294.7,
-       "http_proxy": 385.5,
-       "llmnr": 531.8
-      },
-      "smb2/3": {
-       "other": 152.7,
-       "unknown": 64.9,
-       "dns": 0.0,
-       "http": 224.3,
-       "netbios": 4185.2,
-       "smb2/3": 33927.5,
-       "telnet": 721.6,
-       "rdp": 110.1,
-       "tls": 982.2,
-       "http_proxy": 958.0,
-       "llmnr": 40.9
-      },
-      "telnet": {
-       "other": 0.0,
-       "unknown": 159.7,
-       "dns": 0.0,
-       "http": 0.0,
-       "netbios": 39.0,
-       "smb2/3": 71.1,
-       "telnet": 10153.4,
-       "rdp": 0.0,
-       "tls": 118.4,
-       "http_proxy": 200.1,
-       "llmnr": 0.0
-      },
-      "rdp": {
-       "other": 241499.3,
-       "unknown": 73.3,
-       "dns": 0.0,
-       "http": 832.4,
-       "netbios": 782.7,
-       "smb2/3": 1936.4,
-       "telnet": 105033.1,
-       "rdp": 75040.3,
-       "tls": 357.9,
-       "http_proxy": 2847.9,
-       "llmnr": 189.5
-      },
-      "tls": {
-       "other": 95439.5,
-       "unknown": 3328.6,
-       "dns": 0.0,
-       "http": 70500.0,
-       "netbios": 13005.1,
-       "smb2/3": 7507.6,
-       "telnet": 3936.1,
-       "rdp": 7501.0,
-       "tls": 48250.4,
-       "http_proxy": 15535.2,
-       "llmnr": 5850.2
-      },
-      "http_proxy": {
-       "other": 0.0,
-       "unknown": 225.7,
-       "dns": 0.0,
-       "http": 0.0,
-       "netbios": 0.0,
-       "smb2/3": 0.0,
-       "telnet": 977.2,
-       "rdp": 0.0,
-       "tls": 77.3,
-       "http_proxy": 4027.8,
-       "llmnr": 0.0
-      },
-      "llmnr": {
-       "other": 0.0,
-       "unknown": 0.0,
-       "dns": 0.0,
-       "http": 0.0,
-       "netbios": 0.0,
-       "smb2/3": 0.0,
-       "telnet": 0.0,
-       "rdp": 0.0,
-       "tls": 0.0,
-       "http_proxy": 71.4,
-       "llmnr": 7786.2
-      }
-     },
-     "fit_seconds": 163.8
-    },
-    "pcap_safe": {
-     "accuracy": 0.7678,
-     "macro_f1": 0.5113,
-     "per_class": {
-      "other": {
-       "recall": 0.0786,
-       "precision": 0.153,
-       "support_w": 26628.4
-      },
-      "unknown": {
-       "recall": 0.9413,
-       "precision": 0.234,
-       "support_w": 42546.9
-      },
-      "dns": {
-       "recall": 0.9403,
-       "precision": 0.9738,
-       "support_w": 661587.6
-      },
-      "http": {
-       "recall": 0.568,
-       "precision": 0.8504,
-       "support_w": 119124.7
-      },
-      "netbios": {
-       "recall": 0.6171,
-       "precision": 0.4901,
-       "support_w": 66237.1
-      },
-      "smb2/3": {
-       "recall": 0.9245,
-       "precision": 0.5137,
-       "support_w": 41367.4
-      },
-      "telnet": {
-       "recall": 0.0,
-       "precision": 0.0,
-       "support_w": 10741.7
-      },
-      "rdp": {
-       "recall": 0.6449,
-       "precision": 0.9934,
-       "support_w": 428592.8
-      },
-      "tls": {
-       "recall": 0.7212,
-       "precision": 0.7845,
-       "support_w": 270853.6
-      },
-      "http_proxy": {
-       "recall": 0.0,
-       "precision": 0.0,
-       "support_w": 5308.1
-      },
-      "llmnr": {
-       "recall": 0.9857,
-       "precision": 0.6284,
-       "support_w": 7857.6
-      }
-     },
-     "weighted_f1": 0.7979015194144576,
-     "confidence_threshold_95": 1.0,
-     "coverage_at_threshold": 1.0,
-     "accepted_accuracy_at_threshold": 0.7677846519091701,
-     "ood_share_val_b": 0.0,
-     "coverage_curve": [
-      {
-       "threshold": 0.0,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.7677846519091701
-      },
-      {
-       "threshold": 0.5,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.7677846519091701
-      },
-      {
-       "threshold": 0.6,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.7677846519091701
-      },
-      {
-       "threshold": 0.7,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.7677846519091701
-      },
-      {
-       "threshold": 0.8,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.7677846519091701
-      },
-      {
-       "threshold": 0.9,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.7677846519091701
-      },
-      {
-       "threshold": 0.95,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.7677846519091701
-      },
-      {
-       "threshold": 0.99,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.7677846519091701
-      }
-     ],
-     "confusion_val_b_weighted": {
-      "other": {
-       "other": 2092.3,
-       "unknown": 6712.0,
-       "dns": 8229.8,
-       "http": 73.3,
-       "netbios": 809.9,
-       "smb2/3": 465.3,
-       "telnet": 0.0,
-       "rdp": 0.0,
-       "tls": 6094.6,
-       "http_proxy": 733.4,
-       "llmnr": 1417.8
-      },
-      "unknown": {
-       "other": 77.9,
-       "unknown": 40049.0,
-       "dns": 161.6,
-       "http": 40.7,
-       "netbios": 0.0,
-       "smb2/3": 311.4,
-       "telnet": 0.0,
-       "rdp": 0.0,
-       "tls": 587.8,
-       "http_proxy": 1279.4,
-       "llmnr": 39.0
-      },
-      "dns": {
-       "other": 3867.5,
-       "unknown": 476.9,
-       "dns": 622120.0,
-       "http": 318.3,
-       "netbios": 1391.7,
-       "smb2/3": 8548.7,
-       "telnet": 0.0,
-       "rdp": 0.0,
-       "tls": 39.0,
-       "http_proxy": 21939.8,
-       "llmnr": 2885.6
-      },
-      "http": {
-       "other": 194.8,
-       "unknown": 2430.3,
-       "dns": 0.0,
-       "http": 67658.0,
-       "netbios": 868.1,
-       "smb2/3": 9130.6,
-       "telnet": 0.0,
-       "rdp": 110.1,
-       "tls": 29775.5,
-       "http_proxy": 8916.3,
-       "llmnr": 40.9
-      },
-      "netbios": {
-       "other": 1292.0,
-       "unknown": 38.7,
-       "dns": 4806.7,
-       "http": 122.6,
-       "netbios": 40877.3,
-       "smb2/3": 5853.5,
-       "telnet": 0.0,
-       "rdp": 0.0,
-       "tls": 11039.2,
-       "http_proxy": 2207.2,
-       "llmnr": 0.0
-      },
-      "smb2/3": {
-       "other": 0.0,
-       "unknown": 935.9,
-       "dns": 0.0,
-       "http": 0.0,
-       "netbios": 77.6,
-       "smb2/3": 38243.9,
-       "telnet": 0.0,
-       "rdp": 1442.2,
-       "tls": 159.4,
-       "http_proxy": 508.5,
-       "llmnr": 0.0
-      },
-      "telnet": {
-       "other": 39.0,
-       "unknown": 10353.5,
-       "dns": 0.0,
-       "http": 0.0,
-       "netbios": 0.0,
-       "smb2/3": 71.1,
-       "telnet": 0.0,
-       "rdp": 0.0,
-       "tls": 0.0,
-       "http_proxy": 118.8,
-       "llmnr": 159.2
-      },
-      "rdp": {
-       "other": 1817.2,
-       "unknown": 105184.1,
-       "dns": 0.0,
-       "http": 185.6,
-       "netbios": 35169.1,
-       "smb2/3": 1422.5,
-       "telnet": 0.0,
-       "rdp": 276408.6,
-       "tls": 5947.7,
-       "http_proxy": 2458.0,
-       "llmnr": 0.0
-      },
-      "tls": {
-       "other": 3923.1,
-       "unknown": 3975.0,
-       "dns": 3512.1,
-       "http": 11161.1,
-       "netbios": 4205.9,
-       "smb2/3": 6331.5,
-       "telnet": 0.0,
-       "rdp": 279.4,
-       "tls": 195333.1,
-       "http_proxy": 42093.7,
-       "llmnr": 38.7
-      },
-      "http_proxy": {
-       "other": 303.1,
-       "unknown": 977.2,
-       "dns": 0.0,
-       "http": 0.0,
-       "netbios": 0.0,
-       "smb2/3": 4027.8,
-       "telnet": 0.0,
-       "rdp": 0.0,
-       "tls": 0.0,
-       "http_proxy": 0.0,
-       "llmnr": 0.0
-      },
-      "llmnr": {
-       "other": 71.4,
-       "unknown": 0.0,
-       "dns": 0.0,
-       "http": 0.0,
-       "netbios": 0.0,
-       "smb2/3": 40.7,
-       "telnet": 0.0,
-       "rdp": 0.0,
-       "tls": 0.0,
-       "http_proxy": 0.0,
-       "llmnr": 7745.5
-      }
-     },
-     "fit_seconds": 132.2
-    },
-    "portable": {
-     "accuracy": 0.9887,
-     "macro_f1": 0.9453,
-     "per_class": {
-      "other": {
-       "recall": 0.7927,
-       "precision": 0.9712,
-       "support_w": 26628.4
-      },
-      "unknown": {
-       "recall": 0.9051,
-       "precision": 0.8937,
-       "support_w": 42546.9
-      },
-      "dns": {
-       "recall": 0.9996,
-       "precision": 1.0,
-       "support_w": 661587.6
-      },
-      "http": {
-       "recall": 0.9706,
-       "precision": 0.985,
-       "support_w": 119124.7
-      },
-      "netbios": {
-       "recall": 0.9982,
-       "precision": 0.997,
+       "recall": 0.9988,
+       "precision": 0.9994,
        "support_w": 66237.1
       },
       "smb2/3": {
        "recall": 0.98,
-       "precision": 0.996,
+       "precision": 0.999,
        "support_w": 41367.4
       },
       "telnet": {
+       "recall": 0.9346,
+       "precision": 0.7174,
+       "support_w": 10741.7
+      },
+      "rdp": {
+       "recall": 0.9999,
+       "precision": 0.9894,
+       "support_w": 428592.8
+      },
+      "tls": {
+       "recall": 0.9836,
+       "precision": 0.9925,
+       "support_w": 270853.6
+      },
+      "http_proxy": {
+       "recall": 0.8275,
+       "precision": 0.8385,
+       "support_w": 5308.1
+      },
+      "llmnr": {
        "recall": 1.0,
-       "precision": 0.6613,
+       "precision": 0.9951,
+       "support_w": 7857.6
+      }
+     },
+     "weighted_f1": 0.9885504750469335,
+     "confidence_threshold_95": 0.33738736065538333,
+     "coverage_at_threshold": 1.0,
+     "accepted_accuracy_at_threshold": 0.9884951377658268,
+     "ood_share_val_b": 0.0,
+     "coverage_curve": [
+      {
+       "threshold": 0.0,
+       "coverage": 1.0,
+       "accepted_accuracy": 0.9884951377658268
+      },
+      {
+       "threshold": 0.5,
+       "coverage": 0.9963540930995115,
+       "accepted_accuracy": 0.9896004582820923
+      },
+      {
+       "threshold": 0.6,
+       "coverage": 0.9952969555111217,
+       "accepted_accuracy": 0.9902936809417302
+      },
+      {
+       "threshold": 0.7,
+       "coverage": 0.9939052184766441,
+       "accepted_accuracy": 0.9909517728681623
+      },
+      {
+       "threshold": 0.8,
+       "coverage": 0.9916779417552379,
+       "accepted_accuracy": 0.9918192757004236
+      },
+      {
+       "threshold": 0.9,
+       "coverage": 0.9026072248152959,
+       "accepted_accuracy": 0.9973851772267697
+      },
+      {
+       "threshold": 0.95,
+       "coverage": 0.8992279081180281,
+       "accepted_accuracy": 0.9980570545567737
+      },
+      {
+       "threshold": 0.99,
+       "coverage": 0.8942005260648808,
+       "accepted_accuracy": 0.9988576011811251
+      }
+     ],
+     "confusion_val_b_weighted": {
+      "other": {
+       "other": 21333.3,
+       "unknown": 3488.3,
+       "dns": 138.2,
+       "http": 0.0,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 1069.0,
+       "rdp": 196.3,
+       "tls": 0.0,
+       "http_proxy": 403.2,
+       "llmnr": 0.0
+      },
+      "unknown": {
+       "other": 631.4,
+       "unknown": 38040.5,
+       "dns": 0.0,
+       "http": 77.3,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 2771.4,
+       "rdp": 111.1,
+       "tls": 595.1,
+       "http_proxy": 281.5,
+       "llmnr": 38.7
+      },
+      "dns": {
+       "other": 116.6,
+       "unknown": 77.9,
+       "dns": 661393.1,
+       "http": 0.0,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 0.0,
+       "rdp": 0.0,
+       "tls": 0.0,
+       "http_proxy": 0.0,
+       "llmnr": 0.0
+      },
+      "http": {
+       "other": 209.6,
+       "unknown": 672.4,
+       "dns": 0.0,
+       "http": 116779.7,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 0.0,
+       "rdp": 32.5,
+       "tls": 1389.7,
+       "http_proxy": 40.9,
+       "llmnr": 0.0
+      },
+      "netbios": {
+       "other": 0.0,
+       "unknown": 0.0,
+       "dns": 0.0,
+       "http": 0.0,
+       "netbios": 66157.7,
+       "smb2/3": 40.7,
+       "telnet": 0.0,
+       "rdp": 38.7,
+       "tls": 0.0,
+       "http_proxy": 0.0,
+       "llmnr": 0.0
+      },
+      "smb2/3": {
+       "other": 0.0,
+       "unknown": 32.5,
+       "dns": 0.0,
+       "http": 0.0,
+       "netbios": 39.0,
+       "smb2/3": 40541.9,
+       "telnet": 0.0,
+       "rdp": 721.6,
+       "tls": 32.5,
+       "http_proxy": 0.0,
+       "llmnr": 0.0
+      },
+      "telnet": {
+       "other": 318.0,
+       "unknown": 264.5,
+       "dns": 0.0,
+       "http": 0.0,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 10038.7,
+       "rdp": 0.0,
+       "tls": 0.0,
+       "http_proxy": 120.4,
+       "llmnr": 0.0
+      },
+      "rdp": {
+       "other": 0.0,
+       "unknown": 39.0,
+       "dns": 0.0,
+       "http": 0.0,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 0.0,
+       "rdp": 428553.9,
+       "tls": 0.0,
+       "http_proxy": 0.0,
+       "llmnr": 0.0
+      },
+      "tls": {
+       "other": 71.4,
+       "unknown": 588.2,
+       "dns": 0.0,
+       "http": 271.7,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 0.0,
+       "rdp": 3502.8,
+       "tls": 266419.4,
+       "http_proxy": 0.0,
+       "llmnr": 0.0
+      },
+      "http_proxy": {
+       "other": 307.5,
+       "unknown": 455.7,
+       "dns": 0.0,
+       "http": 38.7,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 114.1,
+       "rdp": 0.0,
+       "tls": 0.0,
+       "http_proxy": 4392.2,
+       "llmnr": 0.0
+      },
+      "llmnr": {
+       "other": 0.0,
+       "unknown": 0.0,
+       "dns": 0.0,
+       "http": 0.0,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 0.0,
+       "rdp": 0.0,
+       "tls": 0.0,
+       "http_proxy": 0.0,
+       "llmnr": 7857.6
+      }
+     },
+     "fit_seconds": 171.6,
+     "train_accuracy_sample": 0.9899,
+     "raw_score_absmax": 20.36149156205703,
+     "diverged": false
+    },
+    "noshortcut": {
+     "accuracy": 0.9898,
+     "macro_f1": 0.9439,
+     "per_class": {
+      "other": {
+       "recall": 0.7952,
+       "precision": 0.9493,
+       "support_w": 26628.4
+      },
+      "unknown": {
+       "recall": 0.9025,
+       "precision": 0.8973,
+       "support_w": 42546.9
+      },
+      "dns": {
+       "recall": 0.9998,
+       "precision": 1.0,
+       "support_w": 661587.6
+      },
+      "http": {
+       "recall": 0.9807,
+       "precision": 0.9924,
+       "support_w": 119124.7
+      },
+      "netbios": {
+       "recall": 0.9982,
+       "precision": 1.0,
+       "support_w": 66237.1
+      },
+      "smb2/3": {
+       "recall": 0.98,
+       "precision": 0.997,
+       "support_w": 41367.4
+      },
+      "telnet": {
+       "recall": 0.9852,
+       "precision": 0.6579,
        "support_w": 10741.7
       },
       "rdp": {
@@ -1395,101 +893,101 @@
        "support_w": 428592.8
       },
       "tls": {
-       "recall": 0.9855,
-       "precision": 0.9879,
+       "recall": 0.9891,
+       "precision": 0.991,
        "support_w": 270853.6
       },
       "http_proxy": {
-       "recall": 0.8613,
-       "precision": 0.9352,
+       "recall": 0.8102,
+       "precision": 0.9393,
        "support_w": 5308.1
       },
       "llmnr": {
        "recall": 1.0,
-       "precision": 0.9728,
+       "precision": 0.9951,
        "support_w": 7857.6
       }
      },
-     "weighted_f1": 0.9888657937198069,
-     "confidence_threshold_95": 0.4477608389437387,
-     "coverage_at_threshold": 1.0,
-     "accepted_accuracy_at_threshold": 0.9887275247246018,
+     "weighted_f1": 0.9899259437669277,
+     "confidence_threshold_95": 0.42048050219135025,
+     "coverage_at_threshold": 0.9999770000961071,
+     "accepted_accuracy_at_threshold": 0.9898146982167775,
      "ood_share_val_b": 0.0,
      "coverage_curve": [
       {
        "threshold": 0.0,
        "coverage": 1.0,
-       "accepted_accuracy": 0.9887275247246018
+       "accepted_accuracy": 0.9897919325738468
       },
       {
        "threshold": 0.5,
-       "coverage": 0.9986190962510553,
-       "accepted_accuracy": 0.988866007836605
+       "coverage": 0.9985051239755492,
+       "accepted_accuracy": 0.990044881264557
       },
       {
        "threshold": 0.6,
-       "coverage": 0.9975636111590113,
-       "accepted_accuracy": 0.9894749046059823
+       "coverage": 0.9978378592645433,
+       "accepted_accuracy": 0.9904553269112015
       },
       {
        "threshold": 0.7,
-       "coverage": 0.9965066086155688,
-       "accepted_accuracy": 0.9900194115106139
+       "coverage": 0.9972607707808984,
+       "accepted_accuracy": 0.9907816472927434
       },
       {
        "threshold": 0.8,
-       "coverage": 0.9605593131461361,
-       "accepted_accuracy": 0.9941384534653848
+       "coverage": 0.9625506136054287,
+       "accepted_accuracy": 0.9945383141333171
       },
       {
        "threshold": 0.9,
-       "coverage": 0.9437901096740127,
-       "accepted_accuracy": 0.9975398983585393
+       "coverage": 0.9494605864064786,
+       "accepted_accuracy": 0.9976746306599171
       },
       {
        "threshold": 0.95,
-       "coverage": 0.9395654054166255,
-       "accepted_accuracy": 0.9980866848546844
+       "coverage": 0.9477232006011456,
+       "accepted_accuracy": 0.9980706245475286
       },
       {
        "threshold": 0.99,
-       "coverage": 0.878197308160657,
-       "accepted_accuracy": 0.999122972443087
+       "coverage": 0.8947659577756794,
+       "accepted_accuracy": 0.9987390689774487
       }
      ],
      "confusion_val_b_weighted": {
       "other": {
-       "other": 21107.4,
-       "unknown": 2849.3,
-       "dns": 0.0,
+       "other": 21176.2,
+       "unknown": 2968.0,
+       "dns": 32.5,
        "http": 0.0,
-       "netbios": 40.9,
+       "netbios": 0.0,
        "smb2/3": 0.0,
        "telnet": 2094.2,
        "rdp": 196.3,
-       "tls": 118.5,
-       "http_proxy": 40.9,
-       "llmnr": 180.9
+       "tls": 79.5,
+       "http_proxy": 81.7,
+       "llmnr": 0.0
       },
       "unknown": {
-       "other": 433.0,
-       "unknown": 38511.0,
+       "other": 473.8,
+       "unknown": 38399.2,
        "dns": 0.0,
-       "http": 318.8,
+       "http": 200.1,
        "netbios": 0.0,
        "smb2/3": 0.0,
        "telnet": 2530.7,
        "rdp": 78.6,
-       "tls": 360.2,
-       "http_proxy": 276.0,
+       "tls": 629.5,
+       "http_proxy": 196.3,
        "llmnr": 38.7
       },
       "dns": {
-       "other": 39.0,
-       "unknown": 77.9,
-       "dns": 661353.8,
+       "other": 77.9,
+       "unknown": 39.0,
+       "dns": 661431.7,
        "http": 0.0,
-       "netbios": 77.9,
+       "netbios": 0.0,
        "smb2/3": 0.0,
        "telnet": 39.0,
        "rdp": 0.0,
@@ -1501,12 +999,12 @@
        "other": 81.7,
        "unknown": 271.0,
        "dns": 0.0,
-       "http": 115621.9,
-       "netbios": 40.9,
-       "smb2/3": 79.8,
+       "http": 116830.7,
+       "netbios": 0.0,
+       "smb2/3": 39.0,
        "telnet": 437.8,
        "rdp": 32.5,
-       "tls": 2559.1,
+       "tls": 1432.0,
        "http_proxy": 0.0,
        "llmnr": 0.0
       },
@@ -1527,9 +1025,523 @@
        "other": 0.0,
        "unknown": 32.5,
        "dns": 0.0,
-       "http": 32.5,
-       "netbios": 39.0,
+       "http": 0.0,
+       "netbios": 0.0,
        "smb2/3": 40541.9,
+       "telnet": 0.0,
+       "rdp": 534.1,
+       "tls": 258.9,
+       "http_proxy": 0.0,
+       "llmnr": 0.0
+      },
+      "telnet": {
+       "other": 159.2,
+       "unknown": 0.0,
+       "dns": 0.0,
+       "http": 0.0,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 10582.4,
+       "rdp": 0.0,
+       "tls": 0.0,
+       "http_proxy": 0.0,
+       "llmnr": 0.0
+      },
+      "rdp": {
+       "other": 0.0,
+       "unknown": 39.0,
+       "dns": 0.0,
+       "http": 0.0,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 0.0,
+       "rdp": 428553.9,
+       "tls": 0.0,
+       "http_proxy": 0.0,
+       "llmnr": 0.0
+      },
+      "tls": {
+       "other": 188.3,
+       "unknown": 189.2,
+       "dns": 0.0,
+       "http": 697.5,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 400.8,
+       "rdp": 1481.2,
+       "tls": 267896.5,
+       "http_proxy": 0.0,
+       "llmnr": 0.0
+      },
+      "http_proxy": {
+       "other": 150.6,
+       "unknown": 856.8,
+       "dns": 0.0,
+       "http": 0.0,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 0.0,
+       "rdp": 0.0,
+       "tls": 0.0,
+       "http_proxy": 4300.7,
+       "llmnr": 0.0
+      },
+      "llmnr": {
+       "other": 0.0,
+       "unknown": 0.0,
+       "dns": 0.0,
+       "http": 0.0,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 0.0,
+       "rdp": 0.0,
+       "tls": 0.0,
+       "http_proxy": 0.0,
+       "llmnr": 7857.6
+      }
+     },
+     "fit_seconds": 179.3,
+     "train_accuracy_sample": 0.9918,
+     "raw_score_absmax": 19.89409957345203,
+     "diverged": false
+    },
+    "pcap_safe": {
+     "accuracy": 0.9898,
+     "macro_f1": 0.9445,
+     "per_class": {
+      "other": {
+       "recall": 0.7952,
+       "precision": 0.9509,
+       "support_w": 26628.4
+      },
+      "unknown": {
+       "recall": 0.9025,
+       "precision": 0.8973,
+       "support_w": 42546.9
+      },
+      "dns": {
+       "recall": 0.9998,
+       "precision": 1.0,
+       "support_w": 661587.6
+      },
+      "http": {
+       "recall": 0.9804,
+       "precision": 0.9926,
+       "support_w": 119124.7
+      },
+      "netbios": {
+       "recall": 0.9982,
+       "precision": 1.0,
+       "support_w": 66237.1
+      },
+      "smb2/3": {
+       "recall": 0.98,
+       "precision": 0.997,
+       "support_w": 41367.4
+      },
+      "telnet": {
+       "recall": 0.9888,
+       "precision": 0.6587,
+       "support_w": 10741.7
+      },
+      "rdp": {
+       "recall": 0.9999,
+       "precision": 0.9946,
+       "support_w": 428592.8
+      },
+      "tls": {
+       "recall": 0.9892,
+       "precision": 0.991,
+       "support_w": 270853.6
+      },
+      "http_proxy": {
+       "recall": 0.8175,
+       "precision": 0.9398,
+       "support_w": 5308.1
+      },
+      "llmnr": {
+       "recall": 1.0,
+       "precision": 0.9951,
+       "support_w": 7857.6
+      }
+     },
+     "weighted_f1": 0.9899676590328557,
+     "confidence_threshold_95": 0.40543280164913004,
+     "coverage_at_threshold": 0.9999770000961071,
+     "accepted_accuracy_at_threshold": 0.9898322318679753,
+     "ood_share_val_b": 0.0,
+     "coverage_curve": [
+      {
+       "threshold": 0.0,
+       "coverage": 1.0,
+       "accepted_accuracy": 0.9898324657256652
+      },
+      {
+       "threshold": 0.5,
+       "coverage": 0.9984346997716189,
+       "accepted_accuracy": 0.9901092384695558
+      },
+      {
+       "threshold": 0.6,
+       "coverage": 0.9978860211463861,
+       "accepted_accuracy": 0.9904264089135283
+      },
+      {
+       "threshold": 0.7,
+       "coverage": 0.9971873551738776,
+       "accepted_accuracy": 0.9907073018492888
+      },
+      {
+       "threshold": 0.8,
+       "coverage": 0.9626556550851278,
+       "accepted_accuracy": 0.9943912347675959
+      },
+      {
+       "threshold": 0.9,
+       "coverage": 0.9495639426203712,
+       "accepted_accuracy": 0.9975867696167948
+      },
+      {
+       "threshold": 0.95,
+       "coverage": 0.9476229710554334,
+       "accepted_accuracy": 0.9980447647236022
+      },
+      {
+       "threshold": 0.99,
+       "coverage": 0.894878085683621,
+       "accepted_accuracy": 0.9987205168689959
+      }
+     ],
+     "confusion_val_b_weighted": {
+      "other": {
+       "other": 21176.2,
+       "unknown": 2968.0,
+       "dns": 32.5,
+       "http": 0.0,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 2094.2,
+       "rdp": 196.3,
+       "tls": 79.5,
+       "http_proxy": 81.7,
+       "llmnr": 0.0
+      },
+      "unknown": {
+       "other": 473.8,
+       "unknown": 38399.2,
+       "dns": 0.0,
+       "http": 200.1,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 2530.7,
+       "rdp": 78.6,
+       "tls": 629.5,
+       "http_proxy": 196.3,
+       "llmnr": 38.7
+      },
+      "dns": {
+       "other": 77.9,
+       "unknown": 39.0,
+       "dns": 661431.7,
+       "http": 0.0,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 39.0,
+       "rdp": 0.0,
+       "tls": 0.0,
+       "http_proxy": 0.0,
+       "llmnr": 0.0
+      },
+      "http": {
+       "other": 81.7,
+       "unknown": 271.0,
+       "dns": 0.0,
+       "http": 116790.8,
+       "netbios": 0.0,
+       "smb2/3": 39.0,
+       "telnet": 437.8,
+       "rdp": 32.5,
+       "tls": 1471.9,
+       "http_proxy": 0.0,
+       "llmnr": 0.0
+      },
+      "netbios": {
+       "other": 0.0,
+       "unknown": 0.0,
+       "dns": 0.0,
+       "http": 0.0,
+       "netbios": 66116.9,
+       "smb2/3": 81.5,
+       "telnet": 0.0,
+       "rdp": 0.0,
+       "tls": 38.7,
+       "http_proxy": 0.0,
+       "llmnr": 0.0
+      },
+      "smb2/3": {
+       "other": 39.0,
+       "unknown": 32.5,
+       "dns": 0.0,
+       "http": 0.0,
+       "netbios": 0.0,
+       "smb2/3": 40541.9,
+       "telnet": 0.0,
+       "rdp": 534.1,
+       "tls": 220.0,
+       "http_proxy": 0.0,
+       "llmnr": 0.0
+      },
+      "telnet": {
+       "other": 120.6,
+       "unknown": 0.0,
+       "dns": 0.0,
+       "http": 0.0,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 10621.1,
+       "rdp": 0.0,
+       "tls": 0.0,
+       "http_proxy": 0.0,
+       "llmnr": 0.0
+      },
+      "rdp": {
+       "other": 0.0,
+       "unknown": 39.0,
+       "dns": 0.0,
+       "http": 0.0,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 0.0,
+       "rdp": 428553.9,
+       "tls": 0.0,
+       "http_proxy": 0.0,
+       "llmnr": 0.0
+      },
+      "tls": {
+       "other": 188.3,
+       "unknown": 189.2,
+       "dns": 0.0,
+       "http": 666.9,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 400.8,
+       "rdp": 1481.2,
+       "tls": 267927.2,
+       "http_proxy": 0.0,
+       "llmnr": 0.0
+      },
+      "http_proxy": {
+       "other": 112.0,
+       "unknown": 856.8,
+       "dns": 0.0,
+       "http": 0.0,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 0.0,
+       "rdp": 0.0,
+       "tls": 0.0,
+       "http_proxy": 4339.3,
+       "llmnr": 0.0
+      },
+      "llmnr": {
+       "other": 0.0,
+       "unknown": 0.0,
+       "dns": 0.0,
+       "http": 0.0,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 0.0,
+       "rdp": 0.0,
+       "tls": 0.0,
+       "http_proxy": 0.0,
+       "llmnr": 7857.6
+      }
+     },
+     "fit_seconds": 178.0,
+     "train_accuracy_sample": 0.9918,
+     "raw_score_absmax": 19.728074627994978,
+     "diverged": false
+    },
+    "portable": {
+     "accuracy": 0.9885,
+     "macro_f1": 0.9448,
+     "per_class": {
+      "other": {
+       "recall": 0.7899,
+       "precision": 0.9711,
+       "support_w": 26628.4
+      },
+      "unknown": {
+       "recall": 0.9042,
+       "precision": 0.8936,
+       "support_w": 42546.9
+      },
+      "dns": {
+       "recall": 0.9996,
+       "precision": 1.0,
+       "support_w": 661587.6
+      },
+      "http": {
+       "recall": 0.9707,
+       "precision": 0.9847,
+       "support_w": 119124.7
+      },
+      "netbios": {
+       "recall": 0.9976,
+       "precision": 0.9964,
+       "support_w": 66237.1
+      },
+      "smb2/3": {
+       "recall": 0.9791,
+       "precision": 0.996,
+       "support_w": 41367.4
+      },
+      "telnet": {
+       "recall": 1.0,
+       "precision": 0.6596,
+       "support_w": 10741.7
+      },
+      "rdp": {
+       "recall": 0.9999,
+       "precision": 0.9946,
+       "support_w": 428592.8
+      },
+      "tls": {
+       "recall": 0.985,
+       "precision": 0.9874,
+       "support_w": 270853.6
+      },
+      "http_proxy": {
+       "recall": 0.8613,
+       "precision": 0.9352,
+       "support_w": 5308.1
+      },
+      "llmnr": {
+       "recall": 1.0,
+       "precision": 0.9728,
+       "support_w": 7857.6
+      }
+     },
+     "weighted_f1": 0.9886820527081179,
+     "confidence_threshold_95": 0.4373651887348169,
+     "coverage_at_threshold": 1.0,
+     "accepted_accuracy_at_threshold": 0.9885456621648864,
+     "ood_share_val_b": 0.0,
+     "coverage_curve": [
+      {
+       "threshold": 0.0,
+       "coverage": 1.0,
+       "accepted_accuracy": 0.9885456621648864
+      },
+      {
+       "threshold": 0.5,
+       "coverage": 0.9986190962510553,
+       "accepted_accuracy": 0.9887082393966145
+      },
+      {
+       "threshold": 0.6,
+       "coverage": 0.9974982904371837,
+       "accepted_accuracy": 0.9894984865255096
+      },
+      {
+       "threshold": 0.7,
+       "coverage": 0.9964459363095034,
+       "accepted_accuracy": 0.9900273171633233
+      },
+      {
+       "threshold": 0.8,
+       "coverage": 0.959454329056148,
+       "accepted_accuracy": 0.9941083325102604
+      },
+      {
+       "threshold": 0.9,
+       "coverage": 0.9442394226926003,
+       "accepted_accuracy": 0.9975324232366871
+      },
+      {
+       "threshold": 0.95,
+       "coverage": 0.9390763417756786,
+       "accepted_accuracy": 0.9982072918536025
+      },
+      {
+       "threshold": 0.99,
+       "coverage": 0.8786306678146794,
+       "accepted_accuracy": 0.9991271395617838
+      }
+     ],
+     "confusion_val_b_weighted": {
+      "other": {
+       "other": 21034.1,
+       "unknown": 2890.2,
+       "dns": 32.5,
+       "http": 0.0,
+       "netbios": 40.9,
+       "smb2/3": 0.0,
+       "telnet": 2094.2,
+       "rdp": 196.3,
+       "tls": 118.5,
+       "http_proxy": 40.9,
+       "llmnr": 180.9
+      },
+      "unknown": {
+       "other": 473.8,
+       "unknown": 38470.1,
+       "dns": 0.0,
+       "http": 200.1,
+       "netbios": 0.0,
+       "smb2/3": 0.0,
+       "telnet": 2530.7,
+       "rdp": 78.6,
+       "tls": 478.8,
+       "http_proxy": 276.0,
+       "llmnr": 38.7
+      },
+      "dns": {
+       "other": 39.0,
+       "unknown": 77.9,
+       "dns": 661353.8,
+       "http": 0.0,
+       "netbios": 77.9,
+       "smb2/3": 0.0,
+       "telnet": 39.0,
+       "rdp": 0.0,
+       "tls": 0.0,
+       "http_proxy": 0.0,
+       "llmnr": 0.0
+      },
+      "http": {
+       "other": 40.9,
+       "unknown": 271.0,
+       "dns": 0.0,
+       "http": 115628.7,
+       "netbios": 40.9,
+       "smb2/3": 79.8,
+       "telnet": 478.7,
+       "rdp": 32.5,
+       "tls": 2552.3,
+       "http_proxy": 0.0,
+       "llmnr": 0.0
+      },
+      "netbios": {
+       "other": 0.0,
+       "unknown": 0.0,
+       "dns": 0.0,
+       "http": 0.0,
+       "netbios": 66078.0,
+       "smb2/3": 81.5,
+       "telnet": 0.0,
+       "rdp": 0.0,
+       "tls": 77.6,
+       "http_proxy": 0.0,
+       "llmnr": 0.0
+      },
+      "smb2/3": {
+       "other": 0.0,
+       "unknown": 32.5,
+       "dns": 0.0,
+       "http": 32.5,
+       "netbios": 77.9,
+       "smb2/3": 40503.0,
        "telnet": 0.0,
        "rdp": 534.1,
        "tls": 187.5,
@@ -1564,14 +1576,14 @@
       },
       "tls": {
        "other": 71.4,
-       "unknown": 572.7,
+       "unknown": 533.7,
        "dns": 0.0,
-       "http": 1406.7,
+       "http": 1566.0,
        "netbios": 0.0,
        "smb2/3": 0.0,
        "telnet": 400.8,
        "rdp": 1481.2,
-       "tls": 266920.8,
+       "tls": 266800.4,
        "http_proxy": 0.0,
        "llmnr": 0.0
       },
@@ -1602,60 +1614,63 @@
        "llmnr": 7857.6
       }
      },
-     "fit_seconds": 123.7
+     "fit_seconds": 142.5,
+     "train_accuracy_sample": 0.99115,
+     "raw_score_absmax": 20.20366329554617,
+     "diverged": false
     },
     "portable_noport": {
-     "accuracy": 0.9664,
-     "macro_f1": 0.8241,
+     "accuracy": 0.9668,
+     "macro_f1": 0.8275,
      "per_class": {
       "other": {
-       "recall": 0.7642,
+       "recall": 0.7615,
        "precision": 0.9777,
        "support_w": 26628.4
       },
       "unknown": {
-       "recall": 0.2172,
-       "precision": 0.7554,
+       "recall": 0.2181,
+       "precision": 0.7562,
        "support_w": 42546.9
       },
       "dns": {
        "recall": 0.9996,
-       "precision": 0.9998,
+       "precision": 0.9997,
        "support_w": 661587.6
       },
       "http": {
-       "recall": 0.9696,
-       "precision": 0.9853,
+       "recall": 0.9679,
+       "precision": 0.9836,
        "support_w": 119124.7
       },
       "netbios": {
        "recall": 0.9965,
-       "precision": 0.9953,
+       "precision": 0.9959,
        "support_w": 66237.1
       },
       "smb2/3": {
        "recall": 0.9772,
-       "precision": 0.9824,
+       "precision": 0.9852,
        "support_w": 41367.4
       },
       "telnet": {
-       "recall": 0.8961,
-       "precision": 0.2043,
+       "recall": 0.885,
+       "precision": 0.2024,
        "support_w": 10741.7
       },
       "rdp": {
-       "recall": 0.9976,
-       "precision": 0.9887,
+       "recall": 0.9982,
+       "precision": 0.9886,
        "support_w": 428592.8
       },
       "tls": {
-       "recall": 0.9672,
-       "precision": 0.9886,
+       "recall": 0.9703,
+       "precision": 0.9872,
        "support_w": 270853.6
       },
       "http_proxy": {
-       "recall": 0.8467,
-       "precision": 0.5006,
+       "recall": 0.826,
+       "precision": 0.5632,
        "support_w": 5308.1
       },
       "llmnr": {
@@ -1664,77 +1679,77 @@
        "support_w": 7857.6
       }
      },
-     "weighted_f1": 0.9677525721642631,
-     "confidence_threshold_95": 0.32560483444779803,
+     "weighted_f1": 0.9679774699107982,
+     "confidence_threshold_95": 0.3615084768349647,
      "coverage_at_threshold": 1.0,
-     "accepted_accuracy_at_threshold": 0.9663919756831993,
+     "accepted_accuracy_at_threshold": 0.9667548213469205,
      "ood_share_val_b": 0.0,
      "coverage_curve": [
       {
        "threshold": 0.0,
        "coverage": 1.0,
-       "accepted_accuracy": 0.9663919756831993
+       "accepted_accuracy": 0.9667548213469205
       },
       {
        "threshold": 0.5,
-       "coverage": 0.964491279728308,
-       "accepted_accuracy": 0.9915909024320584
+       "coverage": 0.9640639004679771,
+       "accepted_accuracy": 0.991680758018572
       },
       {
        "threshold": 0.6,
-       "coverage": 0.9632069078866573,
-       "accepted_accuracy": 0.9924004965076103
+       "coverage": 0.9629987071275619,
+       "accepted_accuracy": 0.992292090511523
       },
       {
        "threshold": 0.7,
-       "coverage": 0.9604149614856935,
-       "accepted_accuracy": 0.9936044855818281
+       "coverage": 0.9611378877937087,
+       "accepted_accuracy": 0.9933012459567491
       },
       {
        "threshold": 0.8,
-       "coverage": 0.9574624361048506,
-       "accepted_accuracy": 0.9944376935153505
+       "coverage": 0.95769298889978,
+       "accepted_accuracy": 0.9942842488550085
       },
       {
        "threshold": 0.9,
-       "coverage": 0.8893707148720106,
-       "accepted_accuracy": 0.9978143853652368
+       "coverage": 0.8888958906500195,
+       "accepted_accuracy": 0.9977693831615182
       },
       {
        "threshold": 0.95,
-       "coverage": 0.8853801830199336,
-       "accepted_accuracy": 0.9982087067937375
+       "coverage": 0.8855368545065754,
+       "accepted_accuracy": 0.9980975405862035
       },
       {
        "threshold": 0.99,
-       "coverage": 0.87397607299972,
-       "accepted_accuracy": 0.9989283103742737
+       "coverage": 0.874113465830604,
+       "accepted_accuracy": 0.9989593541566618
       }
      ],
      "confusion_val_b_weighted": {
       "other": {
-       "other": 20349.8,
+       "other": 20276.5,
        "unknown": 676.8,
-       "dns": 40.9,
+       "dns": 73.3,
        "http": 0.0,
        "netbios": 40.9,
        "smb2/3": 0.0,
        "telnet": 4268.8,
        "rdp": 196.3,
-       "tls": 39.0,
-       "http_proxy": 835.1,
+       "tls": 77.6,
+       "http_proxy": 837.3,
        "llmnr": 180.9
       },
       "unknown": {
        "other": 385.7,
-       "unknown": 9240.0,
+       "unknown": 9278.6,
        "dns": 122.6,
-       "http": 237.3,
+       "http": 159.4,
        "netbios": 0.0,
        "smb2/3": 0.0,
        "telnet": 31606.1,
        "rdp": 111.1,
-       "tls": 368.5,
+       "tls": 407.7,
        "http_proxy": 398.4,
        "llmnr": 77.3
       },
@@ -1755,13 +1770,13 @@
        "other": 0.0,
        "unknown": 474.2,
        "dns": 0.0,
-       "http": 115498.8,
+       "http": 115301.2,
        "netbios": 40.9,
-       "smb2/3": 39.0,
+       "smb2/3": 79.8,
        "telnet": 405.3,
-       "rdp": 109.8,
-       "tls": 2319.2,
-       "http_proxy": 237.6,
+       "rdp": 148.4,
+       "tls": 2554.2,
+       "http_proxy": 120.7,
        "llmnr": 0.0
       },
       "netbios": {
@@ -1797,22 +1812,22 @@
        "http": 0.0,
        "netbios": 0.0,
        "smb2/3": 0.0,
-       "telnet": 9625.2,
+       "telnet": 9506.8,
        "rdp": 0.0,
        "tls": 0.0,
-       "http_proxy": 0.0,
+       "http_proxy": 118.4,
        "llmnr": 0.0
       },
       "rdp": {
        "other": 0.0,
        "unknown": 39.0,
        "dns": 0.0,
-       "http": 122.5,
-       "netbios": 111.1,
-       "smb2/3": 571.1,
+       "http": 154.9,
+       "netbios": 72.4,
+       "smb2/3": 413.6,
        "telnet": 0.0,
-       "rdp": 427578.7,
-       "tls": 170.6,
+       "rdp": 427807.3,
+       "tls": 105.7,
        "http_proxy": 0.0,
        "llmnr": 0.0
       },
@@ -1820,13 +1835,13 @@
        "other": 0.0,
        "unknown": 533.7,
        "dns": 0.0,
-       "http": 1325.9,
+       "http": 1570.0,
        "netbios": 39.0,
        "smb2/3": 32.5,
        "telnet": 400.8,
        "rdp": 3582.3,
-       "tls": 261966.3,
-       "http_proxy": 2973.1,
+       "tls": 262808.0,
+       "http_proxy": 1887.3,
        "llmnr": 0.0
       },
       "http_proxy": {
@@ -1836,10 +1851,10 @@
        "http": 0.0,
        "netbios": 0.0,
        "smb2/3": 0.0,
-       "telnet": 813.7,
+       "telnet": 775.1,
        "rdp": 0.0,
-       "tls": 0.0,
-       "http_proxy": 4494.4,
+       "tls": 148.4,
+       "http_proxy": 4384.6,
        "llmnr": 0.0
       },
       "llmnr": {
@@ -1856,7 +1871,10 @@
        "llmnr": 7857.6
       }
      },
-     "fit_seconds": 119.0
+     "fit_seconds": 138.4,
+     "train_accuracy_sample": 0.9642,
+     "raw_score_absmax": 20.04701966559553,
+     "diverged": false
     }
    }
   },
@@ -1943,286 +1961,32 @@
      "weighted_f1": 0.664303332347772
     },
     "full": {
-     "accuracy": 0.4805,
-     "macro_f1": 0.3405,
+     "accuracy": 0.8337,
+     "macro_f1": 0.7277,
      "per_class": {
       "other": {
-       "recall": 0.4599,
-       "precision": 0.0067,
+       "recall": 0.3987,
+       "precision": 0.2838,
        "support_w": 331.7
       },
       "unknown": {
-       "recall": 0.0238,
-       "precision": 0.0247,
-       "support_w": 12144.0
-      },
-      "ftp_control": {
-       "recall": 0.4221,
-       "precision": 0.0272,
-       "support_w": 2155.5
-      },
-      "smtp": {
-       "recall": 0.447,
-       "precision": 0.1829,
-       "support_w": 4247.1
-      },
-      "imap": {
-       "recall": 0.9388,
-       "precision": 0.4037,
-       "support_w": 2525.6
-      },
-      "dns": {
-       "recall": 0.9995,
-       "precision": 0.7029,
-       "support_w": 45573.3
-      },
-      "http": {
-       "recall": 0.8093,
-       "precision": 0.6307,
-       "support_w": 20539.3
-      },
-      "nfs": {
-       "recall": 0.0,
-       "precision": 0.0,
-       "support_w": 27581.4
-      },
-      "edonkey": {
-       "recall": 0.8751,
-       "precision": 0.9311,
-       "support_w": 51774.0
-      },
-      "bittorrent": {
-       "recall": 0.1023,
-       "precision": 0.6447,
-       "support_w": 88469.8
-      },
-      "ssh": {
-       "recall": 0.5879,
-       "precision": 0.1349,
-       "support_w": 4956.6
-      }
-     },
-     "weighted_f1": 0.4553708452045574,
-     "confidence_threshold_95": 1.0,
-     "coverage_at_threshold": 1.0,
-     "accepted_accuracy_at_threshold": 0.4804629101011695,
-     "ood_share_val_b": 0.00016959213092512508,
-     "coverage_curve": [
-      {
-       "threshold": 0.0,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4804629101011695
-      },
-      {
-       "threshold": 0.5,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4804629101011695
-      },
-      {
-       "threshold": 0.6,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4804629101011695
-      },
-      {
-       "threshold": 0.7,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4804629101011695
-      },
-      {
-       "threshold": 0.8,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4804629101011695
-      },
-      {
-       "threshold": 0.9,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4804629101011695
-      },
-      {
-       "threshold": 0.95,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4804629101011695
-      },
-      {
-       "threshold": 0.99,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.4804629101011695
-      }
-     ],
-     "confusion_val_b_weighted": {
-      "other": {
-       "other": 152.5,
-       "unknown": 44.8,
-       "ftp_control": 0.0,
-       "smtp": 0.0,
-       "imap": 0.0,
-       "dns": 89.6,
-       "http": 0.0,
-       "nfs": 0.0,
-       "edonkey": 0.0,
-       "bittorrent": 0.0,
-       "ssh": 44.8
-      },
-      "unknown": {
-       "other": 3480.2,
-       "unknown": 289.0,
-       "ftp_control": 1000.6,
-       "smtp": 1113.5,
-       "imap": 244.2,
-       "dns": 439.5,
-       "http": 2541.7,
-       "nfs": 0.0,
-       "edonkey": 1451.5,
-       "bittorrent": 671.9,
-       "ssh": 911.9
-      },
-      "ftp_control": {
-       "other": 421.3,
-       "unknown": 179.2,
-       "ftp_control": 909.8,
-       "smtp": 0.0,
-       "imap": 0.0,
-       "dns": 156.8,
-       "http": 44.8,
-       "nfs": 0.0,
-       "edonkey": 0.0,
-       "bittorrent": 398.9,
-       "ssh": 44.8
-      },
-      "smtp": {
-       "other": 109.9,
-       "unknown": 134.4,
-       "ftp_control": 22.4,
-       "smtp": 1898.5,
-       "imap": 201.6,
-       "dns": 1438.8,
-       "http": 244.2,
-       "nfs": 67.2,
-       "edonkey": 22.4,
-       "bittorrent": 20.3,
-       "ssh": 87.5
-      },
-      "imap": {
-       "other": 0.0,
-       "unknown": 67.2,
-       "ftp_control": 0.0,
-       "smtp": 22.4,
-       "imap": 2371.0,
-       "dns": 0.0,
-       "http": 42.7,
-       "nfs": 0.0,
-       "edonkey": 0.0,
-       "bittorrent": 22.4,
-       "ssh": 0.0
-      },
-      "dns": {
-       "other": 0.0,
-       "unknown": 0.0,
-       "ftp_control": 0.0,
-       "smtp": 0.0,
-       "imap": 0.0,
-       "dns": 45550.9,
-       "http": 0.0,
-       "nfs": 0.0,
-       "edonkey": 0.0,
-       "bittorrent": 22.4,
-       "ssh": 0.0
-      },
-      "http": {
-       "other": 464.0,
-       "unknown": 1100.7,
-       "ftp_control": 0.0,
-       "smtp": 0.0,
-       "imap": 0.0,
-       "dns": 177.1,
-       "http": 16621.7,
-       "nfs": 0.0,
-       "edonkey": 0.0,
-       "bittorrent": 1864.3,
-       "ssh": 311.4
-      },
-      "nfs": {
-       "other": 3257.5,
-       "unknown": 802.0,
-       "ftp_control": 439.5,
-       "smtp": 1727.8,
-       "imap": 289.0,
-       "dns": 9933.4,
-       "http": 1021.8,
-       "nfs": 0.0,
-       "edonkey": 22.4,
-       "bittorrent": 1591.4,
-       "ssh": 8496.7
-      },
-      "edonkey": {
-       "other": 0.0,
-       "unknown": 374.4,
-       "ftp_control": 3774.4,
-       "smtp": 1539.3,
-       "imap": 0.0,
-       "dns": 89.6,
-       "http": 65.1,
-       "nfs": 625.3,
-       "edonkey": 45306.0,
-       "bittorrent": 0.0,
-       "ssh": 0.0
-      },
-      "bittorrent": {
-       "other": 14631.5,
-       "unknown": 8428.3,
-       "ftp_control": 26978.8,
-       "smtp": 3813.1,
-       "imap": 2614.3,
-       "dns": 6578.8,
-       "http": 5662.6,
-       "nfs": 65.1,
-       "edonkey": 1856.8,
-       "bittorrent": 9050.2,
-       "ssh": 8790.3
-      },
-      "ssh": {
-       "other": 174.9,
-       "unknown": 286.9,
-       "ftp_control": 303.0,
-       "smtp": 266.6,
-       "imap": 152.5,
-       "dns": 352.0,
-       "http": 109.9,
-       "nfs": 0.0,
-       "edonkey": 0.0,
-       "bittorrent": 396.8,
-       "ssh": 2913.9
-      }
-     },
-     "fit_seconds": 44.5
-    },
-    "full_noport": {
-     "accuracy": 0.8363,
-     "macro_f1": 0.7281,
-     "per_class": {
-      "other": {
-       "recall": 0.4599,
-       "precision": 0.2872,
-       "support_w": 331.7
-      },
-      "unknown": {
-       "recall": 0.8778,
-       "precision": 0.4547,
+       "recall": 0.8869,
+       "precision": 0.4527,
        "support_w": 12144.0
       },
       "ftp_control": {
        "recall": 0.4097,
-       "precision": 0.0414,
+       "precision": 0.0402,
        "support_w": 2155.5
       },
       "smtp": {
-       "recall": 0.8127,
-       "precision": 0.5174,
+       "recall": 0.8491,
+       "precision": 0.5134,
        "support_w": 4247.1
       },
       "imap": {
-       "recall": 0.8501,
-       "precision": 0.5216,
+       "recall": 0.8936,
+       "precision": 0.5312,
        "support_w": 2525.6
       },
       "dns": {
@@ -2246,8 +2010,8 @@
        "support_w": 51774.0
       },
       "bittorrent": {
-       "recall": 0.5647,
-       "precision": 0.9302,
+       "recall": 0.553,
+       "precision": 0.935,
        "support_w": 88469.8
       },
       "ssh": {
@@ -2256,57 +2020,57 @@
        "support_w": 4956.6
       }
      },
-     "weighted_f1": 0.8622659426054312,
-     "confidence_threshold_95": 0.8675544372664595,
-     "coverage_at_threshold": 0.7575652220524198,
-     "accepted_accuracy_at_threshold": 0.9447852740471413,
+     "weighted_f1": 0.8599214687217079,
+     "confidence_threshold_95": 0.874524729865185,
+     "coverage_at_threshold": 0.7499110467471272,
+     "accepted_accuracy_at_threshold": 0.9494840078514521,
      "ood_share_val_b": 0.00016959213092512508,
      "coverage_curve": [
       {
        "threshold": 0.0,
        "coverage": 1.0,
-       "accepted_accuracy": 0.8362591365751063
+       "accepted_accuracy": 0.8336569799807302
       },
       {
        "threshold": 0.5,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.8362591365751063
+       "coverage": 0.9999220993695673,
+       "accepted_accuracy": 0.8337219274444836
       },
       {
        "threshold": 0.6,
-       "coverage": 0.9542540444778608,
-       "accepted_accuracy": 0.8509400702544708
+       "coverage": 0.9522832336682923,
+       "accepted_accuracy": 0.852223735410593
       },
       {
        "threshold": 0.7,
-       "coverage": 0.892071932595377,
-       "accepted_accuracy": 0.8817942611156349
+       "coverage": 0.8893883685875387,
+       "accepted_accuracy": 0.884022176633294
       },
       {
        "threshold": 0.8,
-       "coverage": 0.8162952839718269,
-       "accepted_accuracy": 0.9205920461651087
+       "coverage": 0.817803324957116,
+       "accepted_accuracy": 0.9185944510194696
       },
       {
        "threshold": 0.9,
-       "coverage": 0.7219825434921116,
-       "accepted_accuracy": 0.9624217564471481
+       "coverage": 0.7244696025323535,
+       "accepted_accuracy": 0.9608768184235319
       },
       {
        "threshold": 0.95,
-       "coverage": 0.675700551473577,
-       "accepted_accuracy": 0.9834136276445059
+       "coverage": 0.6744715500446337,
+       "accepted_accuracy": 0.9842522448469609
       },
       {
        "threshold": 0.99,
-       "coverage": 0.6404318550427417,
-       "accepted_accuracy": 0.995374053397162
+       "coverage": 0.6391982196554817,
+       "accepted_accuracy": 0.9966602647721223
       }
      ],
      "confusion_val_b_weighted": {
       "other": {
-       "other": 152.5,
-       "unknown": 134.4,
+       "other": 132.3,
+       "unknown": 154.7,
        "ftp_control": 0.0,
        "smtp": 0.0,
        "imap": 0.0,
@@ -2318,8 +2082,8 @@
        "ssh": 0.0
       },
       "unknown": {
-       "other": 179.2,
-       "unknown": 10660.4,
+       "other": 156.8,
+       "unknown": 10770.2,
        "ftp_control": 0.0,
        "smtp": 0.0,
        "imap": 0.0,
@@ -2327,7 +2091,7 @@
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 1304.4,
+       "bittorrent": 1217.0,
        "ssh": 0.0
       },
       "ftp_control": {
@@ -2347,13 +2111,13 @@
        "other": 0.0,
        "unknown": 0.0,
        "ftp_control": 0.0,
-       "smtp": 3451.5,
+       "smtp": 3606.1,
        "imap": 0.0,
        "dns": 0.0,
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 795.7,
+       "bittorrent": 641.0,
        "ssh": 0.0
       },
       "imap": {
@@ -2361,12 +2125,269 @@
        "unknown": 0.0,
        "ftp_control": 0.0,
        "smtp": 0.0,
-       "imap": 2147.0,
+       "imap": 2256.9,
        "dns": 0.0,
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 378.6,
+       "bittorrent": 268.8,
+       "ssh": 0.0
+      },
+      "dns": {
+       "other": 0.0,
+       "unknown": 0.0,
+       "ftp_control": 0.0,
+       "smtp": 0.0,
+       "imap": 0.0,
+       "dns": 45573.3,
+       "http": 0.0,
+       "nfs": 0.0,
+       "edonkey": 0.0,
+       "bittorrent": 0.0,
+       "ssh": 0.0
+      },
+      "http": {
+       "other": 0.0,
+       "unknown": 0.0,
+       "ftp_control": 0.0,
+       "smtp": 0.0,
+       "imap": 0.0,
+       "dns": 0.0,
+       "http": 20539.3,
+       "nfs": 0.0,
+       "edonkey": 0.0,
+       "bittorrent": 0.0,
+       "ssh": 0.0
+      },
+      "nfs": {
+       "other": 0.0,
+       "unknown": 0.0,
+       "ftp_control": 0.0,
+       "smtp": 0.0,
+       "imap": 0.0,
+       "dns": 0.0,
+       "http": 0.0,
+       "nfs": 27581.4,
+       "edonkey": 0.0,
+       "bittorrent": 0.0,
+       "ssh": 0.0
+      },
+      "edonkey": {
+       "other": 0.0,
+       "unknown": 0.0,
+       "ftp_control": 0.0,
+       "smtp": 0.0,
+       "imap": 0.0,
+       "dns": 0.0,
+       "http": 0.0,
+       "nfs": 0.0,
+       "edonkey": 51774.0,
+       "bittorrent": 0.0,
+       "ssh": 0.0
+      },
+      "bittorrent": {
+       "other": 177.1,
+       "unknown": 12867.3,
+       "ftp_control": 21089.2,
+       "smtp": 3418.5,
+       "imap": 1991.5,
+       "dns": 0.0,
+       "http": 0.0,
+       "nfs": 0.0,
+       "edonkey": 0.0,
+       "bittorrent": 48926.4,
+       "ssh": 0.0
+      },
+      "ssh": {
+       "other": 0.0,
+       "unknown": 0.0,
+       "ftp_control": 0.0,
+       "smtp": 0.0,
+       "imap": 0.0,
+       "dns": 0.0,
+       "http": 0.0,
+       "nfs": 0.0,
+       "edonkey": 0.0,
+       "bittorrent": 0.0,
+       "ssh": 4956.6
+      }
+     },
+     "fit_seconds": 69.8,
+     "train_accuracy_sample": 0.87835,
+     "raw_score_absmax": 20.642455570007208,
+     "diverged": false
+    },
+    "full_noport": {
+     "accuracy": 0.8335,
+     "macro_f1": 0.7301,
+     "per_class": {
+      "other": {
+       "recall": 0.4599,
+       "precision": 0.2872,
+       "support_w": 331.7
+      },
+      "unknown": {
+       "recall": 0.8837,
+       "precision": 0.4543,
+       "support_w": 12144.0
+      },
+      "ftp_control": {
+       "recall": 0.4305,
+       "precision": 0.0417,
+       "support_w": 2155.5
+      },
+      "smtp": {
+       "recall": 0.8385,
+       "precision": 0.5184,
+       "support_w": 4247.1
+      },
+      "imap": {
+       "recall": 0.9033,
+       "precision": 0.5284,
+       "support_w": 2525.6
+      },
+      "dns": {
+       "recall": 1.0,
+       "precision": 0.999,
+       "support_w": 45573.3
+      },
+      "http": {
+       "recall": 1.0,
+       "precision": 1.0,
+       "support_w": 20539.3
+      },
+      "nfs": {
+       "recall": 1.0,
+       "precision": 1.0,
+       "support_w": 27581.4
+      },
+      "edonkey": {
+       "recall": 1.0,
+       "precision": 1.0,
+       "support_w": 51774.0
+      },
+      "bittorrent": {
+       "recall": 0.5524,
+       "precision": 0.9351,
+       "support_w": 88469.8
+      },
+      "ssh": {
+       "recall": 1.0,
+       "precision": 1.0,
+       "support_w": 4956.6
+      }
+     },
+     "weighted_f1": 0.8598671354113973,
+     "confidence_threshold_95": 0.8708198151409249,
+     "coverage_at_threshold": 0.7525864700136193,
+     "accepted_accuracy_at_threshold": 0.950398981535588,
+     "ood_share_val_b": 0.00016959213092512508,
+     "coverage_curve": [
+      {
+       "threshold": 0.0,
+       "coverage": 1.0,
+       "accepted_accuracy": 0.8334721225375095
+      },
+      {
+       "threshold": 0.5,
+       "coverage": 0.9999220993695673,
+       "accepted_accuracy": 0.833459148900216
+      },
+      {
+       "threshold": 0.6,
+       "coverage": 0.9538238376189663,
+       "accepted_accuracy": 0.8501036524465102
+      },
+      {
+       "threshold": 0.7,
+       "coverage": 0.8916173035124438,
+       "accepted_accuracy": 0.8827681016809114
+      },
+      {
+       "threshold": 0.8,
+       "coverage": 0.8163650438609134,
+       "accepted_accuracy": 0.9205589439695456
+      },
+      {
+       "threshold": 0.9,
+       "coverage": 0.725686956436921,
+       "accepted_accuracy": 0.9625799281034023
+      },
+      {
+       "threshold": 0.95,
+       "coverage": 0.6756063693604518,
+       "accepted_accuracy": 0.982877799200869
+      },
+      {
+       "threshold": 0.99,
+       "coverage": 0.6392679795445682,
+       "accepted_accuracy": 0.9970771444607185
+      }
+     ],
+     "confusion_val_b_weighted": {
+      "other": {
+       "other": 152.5,
+       "unknown": 134.4,
+       "ftp_control": 0.0,
+       "smtp": 0.0,
+       "imap": 0.0,
+       "dns": 44.8,
+       "http": 0.0,
+       "nfs": 0.0,
+       "edonkey": 0.0,
+       "bittorrent": 0.0,
+       "ssh": 0.0
+      },
+      "unknown": {
+       "other": 179.2,
+       "unknown": 10731.8,
+       "ftp_control": 0.0,
+       "smtp": 0.0,
+       "imap": 0.0,
+       "dns": 0.0,
+       "http": 0.0,
+       "nfs": 0.0,
+       "edonkey": 0.0,
+       "bittorrent": 1233.0,
+       "ssh": 0.0
+      },
+      "ftp_control": {
+       "other": 0.0,
+       "unknown": 0.0,
+       "ftp_control": 927.9,
+       "smtp": 0.0,
+       "imap": 0.0,
+       "dns": 0.0,
+       "http": 0.0,
+       "nfs": 0.0,
+       "edonkey": 0.0,
+       "bittorrent": 1227.6,
+       "ssh": 0.0
+      },
+      "smtp": {
+       "other": 0.0,
+       "unknown": 0.0,
+       "ftp_control": 0.0,
+       "smtp": 3561.3,
+       "imap": 0.0,
+       "dns": 0.0,
+       "http": 0.0,
+       "nfs": 0.0,
+       "edonkey": 0.0,
+       "bittorrent": 685.8,
+       "ssh": 0.0
+      },
+      "imap": {
+       "other": 0.0,
+       "unknown": 0.0,
+       "ftp_control": 0.0,
+       "smtp": 0.0,
+       "imap": 2281.4,
+       "dns": 0.0,
+       "http": 0.0,
+       "nfs": 0.0,
+       "edonkey": 0.0,
+       "bittorrent": 244.2,
        "ssh": 0.0
       },
       "dns": {
@@ -2423,15 +2444,15 @@
       },
       "bittorrent": {
        "other": 199.4,
-       "unknown": 12651.8,
-       "ftp_control": 20472.7,
-       "smtp": 3219.0,
-       "imap": 1969.1,
+       "unknown": 12755.3,
+       "ftp_control": 21298.3,
+       "smtp": 3308.6,
+       "imap": 2036.2,
        "dns": 0.0,
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 49957.8,
+       "bittorrent": 48871.9,
        "ssh": 0.0
       },
       "ssh": {
@@ -2448,35 +2469,38 @@
        "ssh": 4956.6
       }
      },
-     "fit_seconds": 51.2
+     "fit_seconds": 69.8,
+     "train_accuracy_sample": 0.87945,
+     "raw_score_absmax": 20.40969964843773,
+     "diverged": false
     },
     "noshortcut": {
-     "accuracy": 0.8368,
-     "macro_f1": 0.735,
+     "accuracy": 0.8352,
+     "macro_f1": 0.7352,
      "per_class": {
       "other": {
-       "recall": 0.5338,
-       "precision": 0.3466,
+       "recall": 0.5274,
+       "precision": 0.3438,
        "support_w": 331.7
       },
       "unknown": {
-       "recall": 0.8815,
-       "precision": 0.4536,
+       "recall": 0.8745,
+       "precision": 0.452,
        "support_w": 12144.0
       },
       "ftp_control": {
-       "recall": 0.4305,
-       "precision": 0.0434,
+       "recall": 0.4513,
+       "precision": 0.0446,
        "support_w": 2155.5
       },
       "smtp": {
-       "recall": 0.8385,
-       "precision": 0.5286,
+       "recall": 0.8438,
+       "precision": 0.5198,
        "support_w": 4247.1
       },
       "imap": {
-       "recall": 0.8324,
-       "precision": 0.5138,
+       "recall": 0.859,
+       "precision": 0.5242,
        "support_w": 2525.6
       },
       "dns": {
@@ -2500,8 +2524,8 @@
        "support_w": 51774.0
       },
       "bittorrent": {
-       "recall": 0.5643,
-       "precision": 0.9324,
+       "recall": 0.5589,
+       "precision": 0.9323,
        "support_w": 88469.8
       },
       "ssh": {
@@ -2510,57 +2534,57 @@
        "support_w": 4956.6
       }
      },
-     "weighted_f1": 0.8627365677874181,
-     "confidence_threshold_95": 0.8709541533196662,
-     "coverage_at_threshold": 0.7525539070482344,
-     "accepted_accuracy_at_threshold": 0.9475648175441157,
+     "weighted_f1": 0.8612331697582387,
+     "confidence_threshold_95": 0.8689288070552855,
+     "coverage_at_threshold": 0.7539759066617446,
+     "accepted_accuracy_at_threshold": 0.9481093807739593,
      "ood_share_val_b": 0.00016959213092512508,
      "coverage_curve": [
       {
        "threshold": 0.0,
        "coverage": 1.0,
-       "accepted_accuracy": 0.8368160885125109
+       "accepted_accuracy": 0.835156880224673
       },
       {
        "threshold": 0.5,
-       "coverage": 0.9997500166260095,
-       "accepted_accuracy": 0.8367752850475484
+       "coverage": 0.9999220993695673,
+       "accepted_accuracy": 0.8351440378412903
       },
       {
        "threshold": 0.6,
-       "coverage": 0.9528076226403118,
-       "accepted_accuracy": 0.8520854205811869
+       "coverage": 0.9552737662395446,
+       "accepted_accuracy": 0.8514898826142252
       },
       {
        "threshold": 0.7,
-       "coverage": 0.8894000161119143,
-       "accepted_accuracy": 0.88289547390526
+       "coverage": 0.8896011550378276,
+       "accepted_accuracy": 0.8840825797604679
       },
       {
        "threshold": 0.8,
-       "coverage": 0.8145372596125473,
-       "accepted_accuracy": 0.9220008370619641
+       "coverage": 0.8139024070447102,
+       "accepted_accuracy": 0.9205000008464337
       },
       {
        "threshold": 0.9,
-       "coverage": 0.7256904632199505,
-       "accepted_accuracy": 0.9596608596956197
+       "coverage": 0.7239324388606709,
+       "accepted_accuracy": 0.9623703843152213
       },
       {
        "threshold": 0.95,
-       "coverage": 0.676114476849779,
-       "accepted_accuracy": 0.9827204328977982
+       "coverage": 0.6743890154558843,
+       "accepted_accuracy": 0.9845847849837616
       },
       {
        "threshold": 0.99,
-       "coverage": 0.6408864841256748,
-       "accepted_accuracy": 0.9956077353565892
+       "coverage": 0.6393377394336546,
+       "accepted_accuracy": 0.9966737266717312
       }
      ],
      "confusion_val_b_weighted": {
       "other": {
-       "other": 177.1,
-       "unknown": 154.7,
+       "other": 174.9,
+       "unknown": 134.4,
        "ftp_control": 0.0,
        "smtp": 0.0,
        "imap": 0.0,
@@ -2568,12 +2592,12 @@
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 0.0,
+       "bittorrent": 22.4,
        "ssh": 0.0
       },
       "unknown": {
        "other": 156.8,
-       "unknown": 10705.2,
+       "unknown": 10619.8,
        "ftp_control": 0.0,
        "smtp": 0.0,
        "imap": 0.0,
@@ -2581,33 +2605,33 @@
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 1282.0,
+       "bittorrent": 1367.4,
        "ssh": 0.0
       },
       "ftp_control": {
        "other": 0.0,
        "unknown": 0.0,
-       "ftp_control": 927.9,
+       "ftp_control": 972.7,
        "smtp": 0.0,
        "imap": 0.0,
        "dns": 0.0,
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 1227.6,
+       "bittorrent": 1182.8,
        "ssh": 0.0
       },
       "smtp": {
        "other": 0.0,
        "unknown": 0.0,
        "ftp_control": 0.0,
-       "smtp": 3561.3,
+       "smtp": 3583.7,
        "imap": 0.0,
        "dns": 0.0,
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 685.8,
+       "bittorrent": 663.4,
        "ssh": 0.0
       },
       "imap": {
@@ -2615,12 +2639,12 @@
        "unknown": 0.0,
        "ftp_control": 0.0,
        "smtp": 0.0,
-       "imap": 2102.2,
+       "imap": 2169.4,
        "dns": 0.0,
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 423.4,
+       "bittorrent": 356.2,
        "ssh": 0.0
       },
       "dns": {
@@ -2678,14 +2702,14 @@
       "bittorrent": {
        "other": 177.1,
        "unknown": 12739.3,
-       "ftp_control": 20464.2,
-       "smtp": 3176.3,
-       "imap": 1989.3,
+       "ftp_control": 20828.9,
+       "smtp": 3310.7,
+       "imap": 1969.1,
        "dns": 0.0,
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 49923.6,
+       "bittorrent": 49444.8,
        "ssh": 0.0
       },
       "ssh": {
@@ -2702,35 +2726,38 @@
        "ssh": 4956.6
       }
      },
-     "fit_seconds": 50.1
+     "fit_seconds": 67.8,
+     "train_accuracy_sample": 0.8789,
+     "raw_score_absmax": 20.536042577443137,
+     "diverged": false
     },
     "pcap_safe": {
-     "accuracy": 0.8367,
-     "macro_f1": 0.7286,
+     "accuracy": 0.8343,
+     "macro_f1": 0.7309,
      "per_class": {
       "other": {
-       "recall": 0.3987,
-       "precision": 0.2838,
+       "recall": 0.4662,
+       "precision": 0.3166,
        "support_w": 331.7
       },
       "unknown": {
-       "recall": 0.8778,
-       "precision": 0.4522,
+       "recall": 0.8941,
+       "precision": 0.4538,
        "support_w": 12144.0
       },
       "ftp_control": {
-       "recall": 0.4201,
-       "precision": 0.0425,
+       "recall": 0.4409,
+       "precision": 0.0434,
        "support_w": 2155.5
       },
       "smtp": {
        "recall": 0.8385,
-       "precision": 0.5169,
+       "precision": 0.5184,
        "support_w": 4247.1
       },
       "imap": {
        "recall": 0.8767,
-       "precision": 0.5377,
+       "precision": 0.5107,
        "support_w": 2525.6
       },
       "dns": {
@@ -2754,8 +2781,8 @@
        "support_w": 51774.0
       },
       "bittorrent": {
-       "recall": 0.5639,
-       "precision": 0.9324,
+       "recall": 0.5538,
+       "precision": 0.9359,
        "support_w": 88469.8
       },
       "ssh": {
@@ -2764,56 +2791,56 @@
        "support_w": 4956.6
       }
      },
-     "weighted_f1": 0.8625455751918935,
-     "confidence_threshold_95": 0.878484556307003,
-     "coverage_at_threshold": 0.7467926419220776,
-     "accepted_accuracy_at_threshold": 0.9516100603281772,
+     "weighted_f1": 0.8603480063748643,
+     "confidence_threshold_95": 0.8750587528146647,
+     "coverage_at_threshold": 0.7479855736026064,
+     "accepted_accuracy_at_threshold": 0.9510079342803384,
      "ood_share_val_b": 0.00016959213092512508,
      "coverage_curve": [
       {
        "threshold": 0.0,
        "coverage": 1.0,
-       "accepted_accuracy": 0.8366649212099622
+       "accepted_accuracy": 0.8342755510658749
       },
       {
        "threshold": 0.5,
-       "coverage": 0.9998279172564422,
-       "accepted_accuracy": 0.8368089215850222
+       "coverage": 0.9997500166260095,
+       "accepted_accuracy": 0.8343980953452217
       },
       {
        "threshold": 0.6,
-       "coverage": 0.9537994153949276,
-       "accepted_accuracy": 0.8506629973788817
+       "coverage": 0.9550854020132944,
+       "accepted_accuracy": 0.8497915461649397
       },
       {
        "threshold": 0.7,
-       "coverage": 0.8913057009907132,
-       "accepted_accuracy": 0.8818583104608482
+       "coverage": 0.8901011217858085,
+       "accepted_accuracy": 0.8839635066080068
       },
       {
        "threshold": 0.8,
-       "coverage": 0.8148605096586538,
-       "accepted_accuracy": 0.9221873208953624
+       "coverage": 0.8139024070447102,
+       "accepted_accuracy": 0.9202028612501492
       },
       {
        "threshold": 0.9,
-       "coverage": 0.727341530766442,
-       "accepted_accuracy": 0.9611495930873775
+       "coverage": 0.7244777432736996,
+       "accepted_accuracy": 0.9607697314364559
       },
       {
        "threshold": 0.95,
-       "coverage": 0.6762249404455966,
-       "accepted_accuracy": 0.9819907584994791
+       "coverage": 0.6740983283751627,
+       "accepted_accuracy": 0.9837450456226844
       },
       {
        "threshold": 0.99,
-       "coverage": 0.6394156400640872,
-       "accepted_accuracy": 0.9962959074588155
+       "coverage": 0.6391982196554817,
+       "accepted_accuracy": 0.9967948730503263
       }
      ],
      "confusion_val_b_weighted": {
       "other": {
-       "other": 132.3,
+       "other": 154.7,
        "unknown": 154.7,
        "ftp_control": 0.0,
        "smtp": 0.0,
@@ -2822,12 +2849,12 @@
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 44.8,
+       "bittorrent": 22.4,
        "ssh": 0.0
       },
       "unknown": {
        "other": 156.8,
-       "unknown": 10660.4,
+       "unknown": 10857.7,
        "ftp_control": 0.0,
        "smtp": 0.0,
        "imap": 0.0,
@@ -2835,20 +2862,20 @@
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 1326.8,
+       "bittorrent": 1129.5,
        "ssh": 0.0
       },
       "ftp_control": {
        "other": 0.0,
        "unknown": 0.0,
-       "ftp_control": 905.5,
+       "ftp_control": 950.3,
        "smtp": 0.0,
        "imap": 0.0,
        "dns": 0.0,
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 1250.0,
+       "bittorrent": 1205.2,
        "ssh": 0.0
       },
       "smtp": {
@@ -2931,15 +2958,15 @@
       },
       "bittorrent": {
        "other": 177.1,
-       "unknown": 12761.7,
-       "ftp_control": 20414.0,
-       "smtp": 3328.9,
-       "imap": 1904.0,
+       "unknown": 12912.1,
+       "ftp_control": 20952.7,
+       "smtp": 3308.6,
+       "imap": 2121.6,
        "dns": 0.0,
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 49884.3,
+       "bittorrent": 48997.8,
        "ssh": 0.0
       },
       "ssh": {
@@ -2956,35 +2983,38 @@
        "ssh": 4956.6
       }
      },
-     "fit_seconds": 47.4
+     "fit_seconds": 64.3,
+     "train_accuracy_sample": 0.87815,
+     "raw_score_absmax": 20.500203951246004,
+     "diverged": false
     },
     "portable": {
-     "accuracy": 0.788,
-     "macro_f1": 0.7023,
+     "accuracy": 0.7867,
+     "macro_f1": 0.7017,
      "per_class": {
       "other": {
        "recall": 0.5949,
-       "precision": 0.0996,
+       "precision": 0.1019,
        "support_w": 331.7
       },
       "unknown": {
-       "recall": 0.8887,
-       "precision": 0.4602,
+       "recall": 0.8946,
+       "precision": 0.4605,
        "support_w": 12144.0
       },
       "ftp_control": {
-       "recall": 0.6477,
-       "precision": 0.0405,
+       "recall": 0.6685,
+       "precision": 0.0415,
        "support_w": 2155.5
       },
       "smtp": {
-       "recall": 0.9224,
-       "precision": 0.5263,
+       "recall": 0.9013,
+       "precision": 0.513,
        "support_w": 4247.1
       },
       "imap": {
-       "recall": 0.8146,
-       "precision": 0.5127,
+       "recall": 0.8412,
+       "precision": 0.5129,
        "support_w": 2525.6
       },
       "dns": {
@@ -3008,8 +3038,8 @@
        "support_w": 51774.0
       },
       "bittorrent": {
-       "recall": 0.411,
-       "precision": 0.9451,
+       "recall": 0.406,
+       "precision": 0.9457,
        "support_w": 88469.8
       },
       "ssh": {
@@ -3018,51 +3048,51 @@
        "support_w": 4956.6
       }
      },
-     "weighted_f1": 0.8187005730041673,
-     "confidence_threshold_95": 0.8739459181063671,
-     "coverage_at_threshold": 0.7171259025735043,
-     "accepted_accuracy_at_threshold": 0.9477112300348166,
+     "weighted_f1": 0.8169954735286203,
+     "confidence_threshold_95": 0.8716259362176348,
+     "coverage_at_threshold": 0.7197315659509099,
+     "accepted_accuracy_at_threshold": 0.9458569315827592,
      "ood_share_val_b": 0.0,
      "coverage_curve": [
       {
        "threshold": 0.0,
        "coverage": 1.0,
-       "accepted_accuracy": 0.7880377695371009
+       "accepted_accuracy": 0.7867099520367158
       },
       {
        "threshold": 0.5,
-       "coverage": 1.0,
-       "accepted_accuracy": 0.7880377695371009
+       "coverage": 0.9998279172564422,
+       "accepted_accuracy": 0.7868453545440814
       },
       {
        "threshold": 0.6,
-       "coverage": 0.9458952567156445,
-       "accepted_accuracy": 0.8072600837115468
+       "coverage": 0.9463580265399238,
+       "accepted_accuracy": 0.8071724968532534
       },
       {
        "threshold": 0.7,
-       "coverage": 0.854910325985406,
-       "accepted_accuracy": 0.866778014485721
+       "coverage": 0.8596844323152637,
+       "accepted_accuracy": 0.863628079522506
       },
       {
        "threshold": 0.8,
-       "coverage": 0.7843984825230612,
-       "accepted_accuracy": 0.9091776950993623
+       "coverage": 0.7875296620477737,
+       "accepted_accuracy": 0.90894529389605
       },
       {
        "threshold": 0.9,
-       "coverage": 0.6943191779184916,
-       "accepted_accuracy": 0.962682904351954
+       "coverage": 0.6955935170124827,
+       "accepted_accuracy": 0.9615260241871697
       },
       {
        "threshold": 0.95,
-       "coverage": 0.6629269771760236,
-       "accepted_accuracy": 0.9800720212371158
+       "coverage": 0.6628246543215522,
+       "accepted_accuracy": 0.9807425594420819
       },
       {
        "threshold": 0.99,
-       "coverage": 0.6399156068120683,
-       "accepted_accuracy": 0.9951395714519324
+       "coverage": 0.6385796485703369,
+       "accepted_accuracy": 0.9954953744629266
       }
      ],
      "confusion_val_b_weighted": {
@@ -3080,8 +3110,8 @@
        "ssh": 0.0
       },
       "unknown": {
-       "other": 775.4,
-       "unknown": 10792.6,
+       "other": 730.6,
+       "unknown": 10864.1,
        "ftp_control": 0.0,
        "smtp": 0.0,
        "imap": 0.0,
@@ -3089,33 +3119,33 @@
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 20.3,
-       "bittorrent": 555.7,
+       "bittorrent": 529.0,
        "ssh": 0.0
       },
       "ftp_control": {
        "other": 0.0,
        "unknown": 0.0,
-       "ftp_control": 1396.1,
+       "ftp_control": 1440.9,
        "smtp": 0.0,
        "imap": 0.0,
        "dns": 0.0,
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 759.4,
+       "bittorrent": 714.6,
        "ssh": 0.0
       },
       "smtp": {
        "other": 0.0,
        "unknown": 0.0,
        "ftp_control": 0.0,
-       "smtp": 3917.5,
+       "smtp": 3828.0,
        "imap": 0.0,
        "dns": 0.0,
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 329.6,
+       "bittorrent": 419.2,
        "ssh": 0.0
       },
       "imap": {
@@ -3123,12 +3153,12 @@
        "unknown": 0.0,
        "ftp_control": 0.0,
        "smtp": 0.0,
-       "imap": 2057.4,
+       "imap": 2124.6,
        "dns": 0.0,
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 468.2,
+       "bittorrent": 401.0,
        "ssh": 0.0
       },
       "dns": {
@@ -3185,15 +3215,15 @@
       },
       "bittorrent": {
        "other": 1009.0,
-       "unknown": 12501.4,
-       "ftp_control": 33116.3,
-       "smtp": 3526.2,
-       "imap": 1955.1,
+       "unknown": 12570.7,
+       "ftp_control": 33315.8,
+       "smtp": 3634.0,
+       "imap": 2018.1,
        "dns": 0.0,
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 36361.7,
+       "bittorrent": 35922.3,
        "ssh": 0.0
       },
       "ssh": {
@@ -3210,35 +3240,38 @@
        "ssh": 4956.6
       }
      },
-     "fit_seconds": 35.3
+     "fit_seconds": 49.7,
+     "train_accuracy_sample": 0.8114,
+     "raw_score_absmax": 20.454436978232184,
+     "diverged": false
     },
     "portable_noport": {
-     "accuracy": 0.7865,
-     "macro_f1": 0.6983,
+     "accuracy": 0.7864,
+     "macro_f1": 0.6997,
      "per_class": {
       "other": {
        "recall": 0.5949,
-       "precision": 0.0854,
+       "precision": 0.0871,
        "support_w": 331.7
       },
       "unknown": {
-       "recall": 0.8799,
-       "precision": 0.4563,
+       "recall": 0.8782,
+       "precision": 0.4559,
        "support_w": 12144.0
       },
       "ftp_control": {
-       "recall": 0.6373,
-       "precision": 0.0399,
+       "recall": 0.6269,
+       "precision": 0.0393,
        "support_w": 2155.5
       },
       "smtp": {
-       "recall": 0.9071,
-       "precision": 0.5174,
+       "recall": 0.9013,
+       "precision": 0.5145,
        "support_w": 4247.1
       },
       "imap": {
-       "recall": 0.8155,
-       "precision": 0.5099,
+       "recall": 0.8767,
+       "precision": 0.5126,
        "support_w": 2525.6
       },
       "dns": {
@@ -3262,8 +3295,8 @@
        "support_w": 51774.0
       },
       "bittorrent": {
-       "recall": 0.4087,
-       "precision": 0.946,
+       "recall": 0.4073,
+       "precision": 0.9475,
        "support_w": 88469.8
       },
       "ssh": {
@@ -3272,51 +3305,51 @@
        "support_w": 4956.6
       }
      },
-     "weighted_f1": 0.8175106481406784,
-     "confidence_threshold_95": 0.875591967027894,
-     "coverage_at_threshold": 0.7174619273192737,
-     "accepted_accuracy_at_threshold": 0.9466790908864016,
+     "weighted_f1": 0.8172193255352238,
+     "confidence_threshold_95": 0.8667661351019358,
+     "coverage_at_threshold": 0.7202071104748523,
+     "accepted_accuracy_at_threshold": 0.9456763532195653,
      "ood_share_val_b": 0.0,
      "coverage_curve": [
       {
        "threshold": 0.0,
        "coverage": 1.0,
-       "accepted_accuracy": 0.7865215878104656
+       "accepted_accuracy": 0.7863820680322926
       },
       {
        "threshold": 0.5,
-       "coverage": 0.9999139586282211,
-       "accepted_accuracy": 0.7865892670300274
+       "coverage": 0.9995000332520191,
+       "accepted_accuracy": 0.7867754295852137
       },
       {
        "threshold": 0.6,
-       "coverage": 0.9431210173777105,
-       "accepted_accuracy": 0.8085399154580449
+       "coverage": 0.9431372988604029,
+       "accepted_accuracy": 0.8076913526079915
       },
       {
        "threshold": 0.7,
-       "coverage": 0.8539720116371842,
-       "accepted_accuracy": 0.8666221020670017
+       "coverage": 0.852463970651895,
+       "accepted_accuracy": 0.8685493699058847
       },
       {
        "threshold": 0.8,
-       "coverage": 0.785943720432052,
-       "accepted_accuracy": 0.9089494329606128
+       "coverage": 0.7878901090175817,
+       "accepted_accuracy": 0.9063763673855126
       },
       {
        "threshold": 0.9,
-       "coverage": 0.6919507232154135,
-       "accepted_accuracy": 0.9653327787567063
+       "coverage": 0.6939831531727222,
+       "accepted_accuracy": 0.963202631956643
       },
       {
        "threshold": 0.95,
-       "coverage": 0.6602062162444836,
-       "accepted_accuracy": 0.9828323851742312
+       "coverage": 0.6613700917426572,
+       "accepted_accuracy": 0.98132606666235
       },
       {
        "threshold": 0.99,
-       "coverage": 0.6390958968010103,
-       "accepted_accuracy": 0.9953516454722985
+       "coverage": 0.6378134169656731,
+       "accepted_accuracy": 0.9957597639420729
       }
      ],
      "confusion_val_b_weighted": {
@@ -3334,8 +3367,8 @@
        "ssh": 0.0
       },
       "unknown": {
-       "other": 1017.5,
-       "unknown": 10684.9,
+       "other": 995.1,
+       "unknown": 10664.6,
        "ftp_control": 0.0,
        "smtp": 0.0,
        "imap": 0.0,
@@ -3343,33 +3376,33 @@
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 20.3,
-       "bittorrent": 421.3,
+       "bittorrent": 464.0,
        "ssh": 0.0
       },
       "ftp_control": {
        "other": 0.0,
        "unknown": 0.0,
-       "ftp_control": 1373.7,
+       "ftp_control": 1351.3,
        "smtp": 0.0,
        "imap": 0.0,
        "dns": 0.0,
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 781.8,
+       "bittorrent": 804.2,
        "ssh": 0.0
       },
       "smtp": {
        "other": 0.0,
        "unknown": 0.0,
        "ftp_control": 0.0,
-       "smtp": 3852.5,
+       "smtp": 3828.0,
        "imap": 0.0,
        "dns": 0.0,
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 394.7,
+       "bittorrent": 419.2,
        "ssh": 0.0
       },
       "imap": {
@@ -3377,12 +3410,12 @@
        "unknown": 0.0,
        "ftp_control": 0.0,
        "smtp": 0.0,
-       "imap": 2059.6,
+       "imap": 2214.2,
        "dns": 0.0,
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 466.1,
+       "bittorrent": 311.4,
        "ssh": 0.0
       },
       "dns": {
@@ -3399,8 +3432,8 @@
        "ssh": 0.0
       },
       "http": {
-       "other": 22.4,
-       "unknown": 0.0,
+       "other": 0.0,
+       "unknown": 22.4,
        "ftp_control": 0.0,
        "smtp": 0.0,
        "imap": 0.0,
@@ -3439,15 +3472,15 @@
       },
       "bittorrent": {
        "other": 1074.1,
-       "unknown": 12597.3,
-       "ftp_control": 33065.2,
-       "smtp": 3593.4,
-       "imap": 1979.7,
+       "unknown": 12572.8,
+       "ftp_control": 33069.4,
+       "smtp": 3611.6,
+       "imap": 2105.6,
        "dns": 0.0,
        "http": 0.0,
        "nfs": 0.0,
        "edonkey": 0.0,
-       "bittorrent": 36160.1,
+       "bittorrent": 36036.4,
        "ssh": 0.0
       },
       "ssh": {
@@ -3464,7 +3497,10 @@
        "ssh": 4956.6
       }
      },
-     "fit_seconds": 35.4
+     "fit_seconds": 50.2,
+     "train_accuracy_sample": 0.80935,
+     "raw_score_absmax": 20.53609721202016,
+     "diverged": false
     }
    }
   }
@@ -3477,55 +3513,11 @@
     "unknown"
    ],
    "rows": 3539,
-   "accuracy": 0.5338284003408198,
-   "coverage_at_source_threshold": 0.9955292330764448,
-   "accepted_accuracy": 0.5362257406456573
+   "accuracy": 0.5130988221658481,
+   "coverage_at_source_threshold": 0.9968789614420199,
+   "accepted_accuracy": 0.5147052370566964
   },
   "nf_cicids2018->nf_unsw_nb15/full_noport": {
-   "shared_classes": [
-    "dns",
-    "http",
-    "unknown"
-   ],
-   "rows": 3539,
-   "accuracy": 0.11099974462637645,
-   "coverage_at_source_threshold": 1.0,
-   "accepted_accuracy": 0.11099974462637645
-  },
-  "nf_cicids2018->nf_unsw_nb15/noshortcut": {
-   "shared_classes": [
-    "dns",
-    "http",
-    "unknown"
-   ],
-   "rows": 3539,
-   "accuracy": 0.00028619240387018095,
-   "coverage_at_source_threshold": 1.0,
-   "accepted_accuracy": 0.00028619240387018095
-  },
-  "nf_cicids2018->nf_unsw_nb15/pcap_safe": {
-   "shared_classes": [
-    "dns",
-    "http",
-    "unknown"
-   ],
-   "rows": 3539,
-   "accuracy": 0.5823573839024319,
-   "coverage_at_source_threshold": 1.0,
-   "accepted_accuracy": 0.5823573839024319
-  },
-  "nf_cicids2018->nf_unsw_nb15/portable": {
-   "shared_classes": [
-    "dns",
-    "http",
-    "unknown"
-   ],
-   "rows": 3539,
-   "accuracy": 0.5130988221658481,
-   "coverage_at_source_threshold": 0.9813974937484382,
-   "accepted_accuracy": 0.5228246713837348
-  },
-  "nf_cicids2018->nf_unsw_nb15/portable_noport": {
    "shared_classes": [
     "dns",
     "http",
@@ -3536,6 +3528,50 @@
    "coverage_at_source_threshold": 1.0,
    "accepted_accuracy": 0.5130988221658481
   },
+  "nf_cicids2018->nf_unsw_nb15/noshortcut": {
+   "shared_classes": [
+    "dns",
+    "http",
+    "unknown"
+   ],
+   "rows": 3539,
+   "accuracy": 0.748042789688584,
+   "coverage_at_source_threshold": 0.9988552303845193,
+   "accepted_accuracy": 0.7489001077769973
+  },
+  "nf_cicids2018->nf_unsw_nb15/pcap_safe": {
+   "shared_classes": [
+    "dns",
+    "http",
+    "unknown"
+   ],
+   "rows": 3539,
+   "accuracy": 0.7477565972847138,
+   "coverage_at_source_threshold": 0.992667309037743,
+   "accepted_accuracy": 0.7532801679643937
+  },
+  "nf_cicids2018->nf_unsw_nb15/portable": {
+   "shared_classes": [
+    "dns",
+    "http",
+    "unknown"
+   ],
+   "rows": 3539,
+   "accuracy": 0.5130988221658481,
+   "coverage_at_source_threshold": 0.9907993516336113,
+   "accepted_accuracy": 0.5178635021509254
+  },
+  "nf_cicids2018->nf_unsw_nb15/portable_noport": {
+   "shared_classes": [
+    "dns",
+    "http",
+    "unknown"
+   ],
+   "rows": 3539,
+   "accuracy": 0.5133850145697183,
+   "coverage_at_source_threshold": 1.0,
+   "accepted_accuracy": 0.5133850145697183
+  },
   "nf_unsw_nb15->nf_cicids2018/full": {
    "shared_classes": [
     "dns",
@@ -3543,9 +3579,9 @@
     "unknown"
    ],
    "rows": 21809,
-   "accuracy": 0.7712278744069693,
-   "coverage_at_source_threshold": 1.0,
-   "accepted_accuracy": 0.7712278744069693
+   "accuracy": 0.8152942449459745,
+   "coverage_at_source_threshold": 0.8873162441827889,
+   "accepted_accuracy": 0.8419525947095151
   },
   "nf_unsw_nb15->nf_cicids2018/full_noport": {
    "shared_classes": [
@@ -3554,9 +3590,9 @@
     "unknown"
    ],
    "rows": 21809,
-   "accuracy": 0.748841314348482,
-   "coverage_at_source_threshold": 0.6500554550282173,
-   "accepted_accuracy": 0.9495910062851521
+   "accuracy": 0.813138210849615,
+   "coverage_at_source_threshold": 0.759007048806701,
+   "accepted_accuracy": 0.9688442115906459
   },
   "nf_unsw_nb15->nf_cicids2018/noshortcut": {
    "shared_classes": [
@@ -3565,9 +3601,9 @@
     "unknown"
    ],
    "rows": 21809,
-   "accuracy": 0.7796850726949566,
-   "coverage_at_source_threshold": 0.8955494509429378,
-   "accepted_accuracy": 0.8227534174090553
+   "accuracy": 0.8088781790692013,
+   "coverage_at_source_threshold": 0.9212212815526045,
+   "accepted_accuracy": 0.8523781488801564
   },
   "nf_unsw_nb15->nf_cicids2018/pcap_safe": {
    "shared_classes": [
@@ -3576,9 +3612,9 @@
     "unknown"
    ],
    "rows": 21809,
-   "accuracy": 0.7823991406119737,
-   "coverage_at_source_threshold": 0.8630701426023272,
-   "accepted_accuracy": 0.8234051700597904
+   "accuracy": 0.8135784021076249,
+   "coverage_at_source_threshold": 0.8755132945253536,
+   "accepted_accuracy": 0.8421098973690438
   },
   "nf_unsw_nb15->nf_cicids2018/portable": {
    "shared_classes": [
@@ -3587,9 +3623,9 @@
     "unknown"
    ],
    "rows": 21809,
-   "accuracy": 0.8657701618446743,
-   "coverage_at_source_threshold": 0.8925403658065929,
-   "accepted_accuracy": 0.9175708551566432
+   "accuracy": 0.8686500566582257,
+   "coverage_at_source_threshold": 0.9051671566795034,
+   "accepted_accuracy": 0.9040692710272021
   },
   "nf_unsw_nb15->nf_cicids2018/portable_noport": {
    "shared_classes": [
@@ -3598,22 +3634,22 @@
     "unknown"
    ],
    "rows": 21809,
-   "accuracy": 0.8244686883877199,
-   "coverage_at_source_threshold": 0.8013142071758346,
-   "accepted_accuracy": 0.9560370646587665
+   "accuracy": 0.8116800734363303,
+   "coverage_at_source_threshold": 0.7629633337558588,
+   "accepted_accuracy": 0.9664670968663489
   }
  },
  "H6": {
-  "full_macro_f1": 0.9513,
-  "noshortcut_macro_f1": 0.3563,
-  "supported": false
+  "full_macro_f1": 0.9523,
+  "noshortcut_macro_f1": 0.9439,
+  "supported": true
  },
  "product_model": {
   "feature_set": "portable",
-  "artifact": "models\\appintel\\appid-portable-20261020T102217Z"
+  "artifact": "models\\appintel\\appid-portable-20261020T114442Z"
  },
  "meta": {
-  "seconds": 1198.8,
-  "peak_rss_mb": 1009.2109375
+  "seconds": 1450.4,
+  "peak_rss_mb": 1461.5390625
  }
 }

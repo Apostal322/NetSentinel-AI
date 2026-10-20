@@ -214,6 +214,7 @@ def test_offline_app_end_to_end(app_ws, capsys, monkeypatch):
                                     "missing_features", "unsupported_protocol"}  # fmt: skip
     top = m["top_behavior_anomalies"][0]
     assert top["behavior"]["anomaly_score_type"] == "normalized_non_probability"
+    assert top["behavior"]["window_end"] is not None
     assert top["application"]["application_identity"] is None
     assert top["verdict"] in ("unusual", "suspicious", "attack")
     # an anomaly alone never yields 'suspicious'

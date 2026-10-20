@@ -1,0 +1,297 @@
+{
+ "captures": [
+  {
+   "capture": "CTU-Normal-26",
+   "flows": 14868,
+   "ref_mix": {
+    "dns": 13146,
+    "tls": 1414,
+    "http": 308
+   },
+   "accuracy_no_abstention": 0.9882970137207425,
+   "coverage": 1.0,
+   "accepted_accuracy": 0.9882970137207425,
+   "port_rule_accuracy": 0.999663707290826,
+   "status": {
+    "predicted": 14868
+   },
+   "per_ref_recall": {
+    "dns": 0.9958162178609463,
+    "tls": 0.978076379066478,
+    "http": 0.7142857142857143
+   }
+  },
+  {
+   "capture": "CTU-Normal-20",
+   "flows": 18269,
+   "ref_mix": {
+    "dns": 14896,
+    "tls": 2464,
+    "http": 909
+   },
+   "accuracy_no_abstention": 0.9736712463736384,
+   "coverage": 0.998741036728885,
+   "accepted_accuracy": 0.9748986079140634,
+   "port_rule_accuracy": 0.9993431495976791,
+   "status": {
+    "low_confidence": 23,
+    "predicted": 18246
+   },
+   "per_ref_recall": {
+    "dns": 0.9981203007518797,
+    "tls": 0.9448051948051948,
+    "http": 0.6512651265126512
+   }
+  },
+  {
+   "capture": "CTU-Normal-21",
+   "flows": 9412,
+   "ref_mix": {
+    "dns": 4481,
+    "tls": 3065,
+    "http": 1866
+   },
+   "accuracy_no_abstention": 0.8593285167870803,
+   "coverage": 0.9991500212494687,
+   "accepted_accuracy": 0.8596341982135262,
+   "port_rule_accuracy": 0.9971313217169571,
+   "status": {
+    "low_confidence": 8,
+    "predicted": 9404
+   },
+   "per_ref_recall": {
+    "dns": 0.9863869671948226,
+    "tls": 0.9262642740619902,
+    "http": 0.4442658092175777
+   }
+  },
+  {
+   "capture": "CTU-Normal-22",
+   "flows": 63446,
+   "ref_mix": {
+    "dns": 28527,
+    "tls": 14601,
+    "http": 20318
+   },
+   "accuracy_no_abstention": 0.7884815433597074,
+   "coverage": 0.9988651766856854,
+   "accepted_accuracy": 0.788998642976615,
+   "port_rule_accuracy": 0.9978564448507392,
+   "status": {
+    "low_confidence": 72,
+    "predicted": 63374
+   },
+   "per_ref_recall": {
+    "dns": 0.9871349949170961,
+    "tls": 0.9180878022053284,
+    "http": 0.41642878236046854
+   }
+  },
+  {
+   "capture": "CTU-Normal-23",
+   "flows": 15857,
+   "ref_mix": {
+    "dns": 12225,
+    "tls": 3076,
+    "http": 556
+   },
+   "accuracy_no_abstention": 0.9787475562842909,
+   "coverage": 1.0,
+   "accepted_accuracy": 0.9787475562842909,
+   "port_rule_accuracy": 0.9993063000567572,
+   "status": {
+    "predicted": 15857
+   },
+   "per_ref_recall": {
+    "dns": 0.9977096114519427,
+    "tls": 0.9691157347204161,
+    "http": 0.6151079136690647
+   }
+  },
+  {
+   "capture": "CTU-Normal-24",
+   "flows": 6961,
+   "ref_mix": {
+    "dns": 5439,
+    "tls": 1098,
+    "http": 424
+   },
+   "accuracy_no_abstention": 0.9718431259876454,
+   "coverage": 0.9998563424795288,
+   "accepted_accuracy": 0.9719827586206896,
+   "port_rule_accuracy": 0.9994253699181153,
+   "status": {
+    "low_confidence": 1,
+    "predicted": 6960
+   },
+   "per_ref_recall": {
+    "dns": 0.9961389961389961,
+    "tls": 0.9562841530054644,
+    "http": 0.7004716981132075
+   }
+  },
+  {
+   "capture": "CTU-Normal-25",
+   "flows": 7223,
+   "ref_mix": {
+    "dns": 6206,
+    "tls": 874,
+    "http": 143
+   },
+   "accuracy_no_abstention": 0.9901702893534542,
+   "coverage": 1.0,
+   "accepted_accuracy": 0.9901702893534542,
+   "port_rule_accuracy": 0.9995846601135262,
+   "status": {
+    "predicted": 7223
+   },
+   "per_ref_recall": {
+    "dns": 0.9991943280696101,
+    "tls": 0.9702517162471396,
+    "http": 0.7202797202797203
+   }
+  },
+  {
+   "capture": "CTU-Normal-27",
+   "flows": 34213,
+   "ref_mix": {
+    "dns": 26086,
+    "tls": 6339,
+    "http": 1788
+   },
+   "accuracy_no_abstention": 0.9719404904568439,
+   "coverage": 0.9999415426884518,
+   "accepted_accuracy": 0.9719680804419631,
+   "port_rule_accuracy": 0.9996492561307105,
+   "status": {
+    "low_confidence": 2,
+    "predicted": 34211
+   },
+   "per_ref_recall": {
+    "dns": 0.9974699072299318,
+    "tls": 0.9656097176210758,
+    "http": 0.6219239373601789
+   }
+  },
+  {
+   "capture": "CTU-Normal-28",
+   "flows": 10164,
+   "ref_mix": {
+    "dns": 6842,
+    "tls": 2614,
+    "http": 708
+   },
+   "accuracy_no_abstention": 0.9282762691853601,
+   "coverage": 0.9993112947658402,
+   "accepted_accuracy": 0.9287191099734173,
+   "port_rule_accuracy": 0.9984258166076347,
+   "status": {
+    "low_confidence": 7,
+    "predicted": 10157
+   },
+   "per_ref_recall": {
+    "dns": 0.9634609763227127,
+    "tls": 0.9521805661820965,
+    "http": 0.5
+   }
+  },
+  {
+   "capture": "CTU-Normal-29",
+   "flows": 28758,
+   "ref_mix": {
+    "dns": 20987,
+    "tls": 5275,
+    "http": 2496
+   },
+   "accuracy_no_abstention": 0.9527435843939078,
+   "coverage": 0.9998609082690034,
+   "accepted_accuracy": 0.9528065660429853,
+   "port_rule_accuracy": 0.9997218165380068,
+   "status": {
+    "low_confidence": 4,
+    "predicted": 28754
+   },
+   "per_ref_recall": {
+    "dns": 0.9982370038595321,
+    "tls": 0.9664454976303317,
+    "http": 0.5412660256410257
+   }
+  },
+  {
+   "capture": "CTU-Normal-30",
+   "flows": 46133,
+   "ref_mix": {
+    "dns": 34242,
+    "tls": 8545,
+    "http": 3346
+   },
+   "accuracy_no_abstention": 0.955671645026337,
+   "coverage": 0.9999566470856003,
+   "accepted_accuracy": 0.955713077973597,
+   "port_rule_accuracy": 0.9991979710836061,
+   "status": {
+    "low_confidence": 2,
+    "predicted": 46131
+   },
+   "per_ref_recall": {
+    "dns": 0.9968751825243852,
+    "tls": 0.9592744294909303,
+    "http": 0.5248057381948595
+   }
+  },
+  {
+   "capture": "CTU-Normal-31",
+   "flows": 51802,
+   "ref_mix": {
+    "dns": 38808,
+    "tls": 9674,
+    "http": 3320
+   },
+   "accuracy_no_abstention": 0.9598664144241535,
+   "coverage": 0.9999806957260338,
+   "accepted_accuracy": 0.9598849443060945,
+   "port_rule_accuracy": 0.9995753059727424,
+   "status": {
+    "low_confidence": 1,
+    "predicted": 51801
+   },
+   "per_ref_recall": {
+    "dns": 0.9950783343640487,
+    "tls": 0.9640272896423403,
+    "http": 0.536144578313253
+   }
+  },
+  {
+   "capture": "CTU-Normal-32",
+   "flows": 66889,
+   "ref_mix": {
+    "dns": 48978,
+    "tls": 10246,
+    "http": 7665
+   },
+   "accuracy_no_abstention": 0.9266097564621986,
+   "coverage": 0.9994767450552408,
+   "accepted_accuracy": 0.9269452837526551,
+   "port_rule_accuracy": 0.9994318946314042,
+   "status": {
+    "low_confidence": 35,
+    "predicted": 66854
+   },
+   "per_ref_recall": {
+    "dns": 0.9828290252766548,
+    "tls": 0.9602771813390591,
+    "http": 0.5223744292237443
+   }
+  }
+ ],
+ "summary": {
+  "classifier": "appid-portable-20261020T114442Z",
+  "feature_set": "portable",
+  "pooled_flows": 373995,
+  "accuracy_no_abstention": 0.9249080870065108,
+  "coverage": 0.9995855559566305,
+  "accepted_accuracy": 0.9251765461159854,
+  "port_rule_accuracy": 0.9991149614299656,
+  "H7_supported": false
+ }
+}

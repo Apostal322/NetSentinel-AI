@@ -40,7 +40,7 @@ def load_events(db: str, limit: int = 200_000) -> pd.DataFrame:
             "SELECT observation_id, ts, source, verdict, service, anomaly_score, p_malicious, "
             f"attack_category, bundle{cols} FROM events ORDER BY ts LIMIT ?", conn,
             params=(limit,))  # fmt: skip
-    df["ts"] = pd.to_datetime(df["ts"])
+    df["ts"] = pd.to_datetime(df["ts"], format="ISO8601")  # mixed with/without fractions
     return df
 
 
@@ -53,7 +53,7 @@ def load_behavior(db: str) -> pd.DataFrame:
         if not conn.execute(q).fetchone():
             return pd.DataFrame()
         df = pd.read_sql_query("SELECT * FROM behavior_events ORDER BY window_end", conn)
-    df["window_end"] = pd.to_datetime(df["window_end"])
+    df["window_end"] = pd.to_datetime(df["window_end"], format="ISO8601")
     return df
 
 
