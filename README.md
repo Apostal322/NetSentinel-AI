@@ -1,5 +1,7 @@
 # NetSentinel AI
 
+[![ci](https://github.com/Apostal322/NetSentinel-AI/actions/workflows/ci.yml/badge.svg)](https://github.com/Apostal322/NetSentinel-AI/actions/workflows/ci.yml)
+
 **Leakage-aware machine-learning research on network-flow intrusion detection, plus a local,
 detection-only tool that learns a behavioural baseline from your own PCAP or Zeek data.**
 
@@ -194,7 +196,8 @@ peak memory are recorded in the development logs.
   single-seed.
 - The API has no TLS, accounts or rate limiting (localhost only). Threat model:
   [`docs/security/threat_model.md`](docs/security/threat_model.md).
-- Docker and CI status: see the [release-readiness audit](docs/RELEASE_READINESS.md).
+- Docker is verified only in CI (image build + health smoke test without a bundle); see the
+  [release-readiness audit](docs/RELEASE_READINESS.md).
 
 ## Repository layout
 

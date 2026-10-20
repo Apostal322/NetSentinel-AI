@@ -24,9 +24,9 @@ Legend:
 | Dashboard | **Verified**: Streamlit AppTest renders all 7 pages (a bug was found and fixed), plus a manual browser check on real events | `tests/integration/test_dashboard.py` |
 | Event storage (flows + behaviour windows, migration, retention) | **Verified** (tests; real CTU-26 run) | integration tests |
 | Safe supervised-threat default | **Verified** (16 policy tests; CTU-26: 102 -> 0 false `suspicious`) | `docs/phase7/RELIABILITY.md` P1 |
-| Docker image build / container smoke test | **Blocked**: Docker is not installed on the development machine | release validation output |
-| GitHub Actions run | **Unverified** until the repository is pushed; the configuration is reviewed | `.github/workflows/ci.yml` |
-| Dependency vulnerability scan (pip-audit) and secret scan (gitleaks) | **Unverified** locally; they run as the CI `security` job. A manual history scan (below) found no secrets | — |
+| Docker image build / container smoke test | **Verified in CI** (GitHub-hosted runner): image builds, `--help` runs, API `/health` 200 and `/ready` 503 without a bundle. Not run locally (no Docker on the development machine) | CI run 39480870143, job `docker` |
+| GitHub Actions run | **Verified**: all three jobs passed on the first push (commit a1a8a35) | https://github.com/Apostal322/NetSentinel-AI/actions/runs/39480870143 |
+| Dependency vulnerability scan (pip-audit) and secret scan (gitleaks) | **Verified in CI** (job `security` passed); manual history scan (below) also clean | same run |
 | Live capture / streaming | **Incomplete** (not implemented, by design) | — |
 
 ## Independent audit findings (Phase 7)
@@ -71,7 +71,7 @@ Performed over all commits (`git log --all -p`):
 
 ## Remaining work
 
-1. Execute the Docker build and the CI workflow (on GitHub after publication).
+1. Run the Docker image with a mounted bundle (CI smoke-tests it without one).
 2. A genuinely untouched evaluation capture for any new confirmatory claim.
 3. Paired PCAP + nProbe captures to verify field-level NetFlow compatibility.
 4. Behaviour baselines conditioned on the ML application class; live capture mode.
