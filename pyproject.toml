@@ -1,7 +1,7 @@
 [project]
 name = "netsentinel-ai"
-version = "0.1.0"
-description = "Leakage-aware ML for network flow intrusion detection: temporal context, anomaly scoring and abstaining classifiers."
+version = "0.7.0"
+description = "Leakage-aware ML research on network-flow intrusion detection, plus a local, detection-only behaviour-baseline and protocol-identification tool for PCAP/Zeek captures."
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.11"   # local is pinned to 3.12 by .python-version
@@ -21,6 +21,10 @@ dependencies = [
     "uvicorn>=0.30",
     "python-multipart>=0.0.9",
 ]
+
+[project.urls]
+Repository = "https://github.com/Apostal322/NetSentinel-AI"
+Documentation = "https://github.com/Apostal322/NetSentinel-AI/tree/main/docs"
 
 [project.optional-dependencies]
 # Torch is unpinned on purpose. On Colab, pip keeps the preinstalled build.

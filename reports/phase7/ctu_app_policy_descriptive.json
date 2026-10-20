@@ -1,0 +1,378 @@
+{
+ "captures": [
+  {
+   "capture": "CTU-Normal-26",
+   "flows": 14868,
+   "ref_mix": {
+    "dns": 13146,
+    "tls": 1414,
+    "http": 308
+   },
+   "accuracy_no_abstention": 0.9882970137207425,
+   "coverage": 0.988498789346247,
+   "accepted_accuracy": 0.9997958767095325,
+   "port_rule_accuracy": 0.999663707290826,
+   "final_label_accepted_accuracy": 0.9997958767095325,
+   "methods": {
+    "None": 171,
+    "ml_port_agree": 14697
+   },
+   "status": {
+    "port_ml_conflict": 171,
+    "predicted": 14697
+   },
+   "per_ref_recall": {
+    "dns": 0.9958162178609463,
+    "tls": 0.978076379066478,
+    "http": 0.7142857142857143
+   }
+  },
+  {
+   "capture": "CTU-Normal-20",
+   "flows": 18269,
+   "ref_mix": {
+    "dns": 14896,
+    "tls": 2464,
+    "http": 909
+   },
+   "accuracy_no_abstention": 0.9736712463736384,
+   "coverage": 0.9746565219771197,
+   "accepted_accuracy": 0.9989891047961361,
+   "port_rule_accuracy": 0.9993431495976791,
+   "final_label_accepted_accuracy": 0.9989891047961361,
+   "methods": {
+    "None": 463,
+    "ml": 12,
+    "ml_port_agree": 17794
+   },
+   "status": {
+    "port_ml_conflict": 463,
+    "predicted": 17806
+   },
+   "per_ref_recall": {
+    "dns": 0.9981203007518797,
+    "tls": 0.9448051948051948,
+    "http": 0.6512651265126512
+   }
+  },
+  {
+   "capture": "CTU-Normal-21",
+   "flows": 9412,
+   "ref_mix": {
+    "dns": 4481,
+    "tls": 3065,
+    "http": 1866
+   },
+   "accuracy_no_abstention": 0.8593285167870803,
+   "coverage": 0.8623034424139396,
+   "accepted_accuracy": 0.996057171020207,
+   "port_rule_accuracy": 0.9971313217169571,
+   "final_label_accepted_accuracy": 0.996057171020207,
+   "methods": {
+    "None": 1296,
+    "ml": 13,
+    "ml_port_agree": 8103
+   },
+   "status": {
+    "port_ml_conflict": 1296,
+    "predicted": 8116
+   },
+   "per_ref_recall": {
+    "dns": 0.9863869671948226,
+    "tls": 0.9262642740619902,
+    "http": 0.4442658092175777
+   }
+  },
+  {
+   "capture": "CTU-Normal-22",
+   "flows": 63446,
+   "ref_mix": {
+    "dns": 28527,
+    "tls": 14601,
+    "http": 20318
+   },
+   "accuracy_no_abstention": 0.7884815433597074,
+   "coverage": 0.7910191343819941,
+   "accepted_accuracy": 0.9963137864387192,
+   "port_rule_accuracy": 0.9978564448507392,
+   "final_label_accepted_accuracy": 0.9963137864387192,
+   "methods": {
+    "None": 13259,
+    "ml": 163,
+    "ml_port_agree": 50024
+   },
+   "status": {
+    "port_ml_conflict": 13259,
+    "predicted": 50187
+   },
+   "per_ref_recall": {
+    "dns": 0.9871349949170961,
+    "tls": 0.9180878022053284,
+    "http": 0.41642878236046854
+   }
+  },
+  {
+   "capture": "CTU-Normal-23",
+   "flows": 15857,
+   "ref_mix": {
+    "dns": 12225,
+    "tls": 3076,
+    "http": 556
+   },
+   "accuracy_no_abstention": 0.9787475562842909,
+   "coverage": 0.9796304471211452,
+   "accepted_accuracy": 0.9990987511265611,
+   "port_rule_accuracy": 0.9993063000567572,
+   "final_label_accepted_accuracy": 0.9990987511265611,
+   "methods": {
+    "None": 323,
+    "ml": 10,
+    "ml_port_agree": 15524
+   },
+   "status": {
+    "port_ml_conflict": 323,
+    "predicted": 15534
+   },
+   "per_ref_recall": {
+    "dns": 0.9977096114519427,
+    "tls": 0.9691157347204161,
+    "http": 0.6151079136690647
+   }
+  },
+  {
+   "capture": "CTU-Normal-24",
+   "flows": 6961,
+   "ref_mix": {
+    "dns": 5439,
+    "tls": 1098,
+    "http": 424
+   },
+   "accuracy_no_abstention": 0.9718431259876454,
+   "coverage": 0.9725614135900015,
+   "accepted_accuracy": 0.9992614475627769,
+   "port_rule_accuracy": 0.9994253699181153,
+   "final_label_accepted_accuracy": 0.9992614475627769,
+   "methods": {
+    "None": 191,
+    "ml": 2,
+    "ml_port_agree": 6768
+   },
+   "status": {
+    "port_ml_conflict": 191,
+    "predicted": 6770
+   },
+   "per_ref_recall": {
+    "dns": 0.9961389961389961,
+    "tls": 0.9562841530054644,
+    "http": 0.7004716981132075
+   }
+  },
+  {
+   "capture": "CTU-Normal-25",
+   "flows": 7223,
+   "ref_mix": {
+    "dns": 6206,
+    "tls": 874,
+    "http": 143
+   },
+   "accuracy_no_abstention": 0.9901702893534542,
+   "coverage": 0.990585629239928,
+   "accepted_accuracy": 0.99958071278826,
+   "port_rule_accuracy": 0.9995846601135262,
+   "final_label_accepted_accuracy": 0.99958071278826,
+   "methods": {
+    "None": 68,
+    "ml_port_agree": 7155
+   },
+   "status": {
+    "port_ml_conflict": 68,
+    "predicted": 7155
+   },
+   "per_ref_recall": {
+    "dns": 0.9991943280696101,
+    "tls": 0.9702517162471396,
+    "http": 0.7202797202797203
+   }
+  },
+  {
+   "capture": "CTU-Normal-27",
+   "flows": 34213,
+   "ref_mix": {
+    "dns": 26086,
+    "tls": 6339,
+    "http": 1788
+   },
+   "accuracy_no_abstention": 0.9719404904568439,
+   "coverage": 0.9726127495396487,
+   "accepted_accuracy": 0.999278759466282,
+   "port_rule_accuracy": 0.9996492561307105,
+   "final_label_accepted_accuracy": 0.999278759466282,
+   "methods": {
+    "None": 937,
+    "ml": 14,
+    "ml_port_agree": 33262
+   },
+   "status": {
+    "port_ml_conflict": 937,
+    "predicted": 33276
+   },
+   "per_ref_recall": {
+    "dns": 0.9974699072299318,
+    "tls": 0.9656097176210758,
+    "http": 0.6219239373601789
+   }
+  },
+  {
+   "capture": "CTU-Normal-28",
+   "flows": 10164,
+   "ref_mix": {
+    "dns": 6842,
+    "tls": 2614,
+    "http": 708
+   },
+   "accuracy_no_abstention": 0.9282762691853601,
+   "coverage": 0.9288665879574971,
+   "accepted_accuracy": 0.9991526321364262,
+   "port_rule_accuracy": 0.9984258166076347,
+   "final_label_accepted_accuracy": 0.9991526321364262,
+   "methods": {
+    "None": 723,
+    "ml": 2,
+    "ml_port_agree": 9439
+   },
+   "status": {
+    "port_ml_conflict": 723,
+    "predicted": 9441
+   },
+   "per_ref_recall": {
+    "dns": 0.9634609763227127,
+    "tls": 0.9521805661820965,
+    "http": 0.5
+   }
+  },
+  {
+   "capture": "CTU-Normal-29",
+   "flows": 28758,
+   "ref_mix": {
+    "dns": 20987,
+    "tls": 5275,
+    "http": 2496
+   },
+   "accuracy_no_abstention": 0.9527435843939078,
+   "coverage": 0.9533347242506433,
+   "accepted_accuracy": 0.9993069740297637,
+   "port_rule_accuracy": 0.9997218165380068,
+   "final_label_accepted_accuracy": 0.9993069740297637,
+   "methods": {
+    "None": 1342,
+    "ml": 13,
+    "ml_port_agree": 27403
+   },
+   "status": {
+    "port_ml_conflict": 1342,
+    "predicted": 27416
+   },
+   "per_ref_recall": {
+    "dns": 0.9982370038595321,
+    "tls": 0.9664454976303317,
+    "http": 0.5412660256410257
+   }
+  },
+  {
+   "capture": "CTU-Normal-30",
+   "flows": 46133,
+   "ref_mix": {
+    "dns": 34242,
+    "tls": 8545,
+    "http": 3346
+   },
+   "accuracy_no_abstention": 0.955671645026337,
+   "coverage": 0.9565820562287299,
+   "accepted_accuracy": 0.9990482664853841,
+   "port_rule_accuracy": 0.9991979710836061,
+   "final_label_accepted_accuracy": 0.9990482664853841,
+   "methods": {
+    "None": 2003,
+    "ml": 8,
+    "ml_port_agree": 44122
+   },
+   "status": {
+    "port_ml_conflict": 2003,
+    "predicted": 44130
+   },
+   "per_ref_recall": {
+    "dns": 0.9968751825243852,
+    "tls": 0.9592744294909303,
+    "http": 0.5248057381948595
+   }
+  },
+  {
+   "capture": "CTU-Normal-31",
+   "flows": 51802,
+   "ref_mix": {
+    "dns": 38808,
+    "tls": 9674,
+    "http": 3320
+   },
+   "accuracy_no_abstention": 0.9598664144241535,
+   "coverage": 0.9606964982047025,
+   "accepted_accuracy": 0.9991359562753688,
+   "port_rule_accuracy": 0.9995753059727424,
+   "final_label_accepted_accuracy": 0.9991359562753688,
+   "methods": {
+    "None": 2036,
+    "ml": 37,
+    "ml_port_agree": 49729
+   },
+   "status": {
+    "port_ml_conflict": 2036,
+    "predicted": 49766
+   },
+   "per_ref_recall": {
+    "dns": 0.9950783343640487,
+    "tls": 0.9640272896423403,
+    "http": 0.536144578313253
+   }
+  },
+  {
+   "capture": "CTU-Normal-32",
+   "flows": 66889,
+   "ref_mix": {
+    "dns": 48978,
+    "tls": 10246,
+    "http": 7665
+   },
+   "accuracy_no_abstention": 0.9266097564621986,
+   "coverage": 0.9271928119720731,
+   "accepted_accuracy": 0.9992099195407859,
+   "port_rule_accuracy": 0.9994318946314042,
+   "final_label_accepted_accuracy": 0.9992099195407859,
+   "methods": {
+    "None": 4870,
+    "ml": 40,
+    "ml_port_agree": 61979
+   },
+   "status": {
+    "port_ml_conflict": 4870,
+    "predicted": 62019
+   },
+   "per_ref_recall": {
+    "dns": 0.9828290252766548,
+    "tls": 0.9602771813390591,
+    "http": 0.5223744292237443
+   }
+  }
+ ],
+ "summary": {
+  "classifier": "appid-portable-20261020T184500Z",
+  "feature_set": "portable",
+  "pooled_flows": 373995,
+  "accuracy_no_abstention": 0.9249080870065108,
+  "coverage": 0.9259829676867338,
+  "accepted_accuracy": 0.9987150352426851,
+  "port_rule_accuracy": 0.9991149614299656,
+  "final_label_accepted_accuracy": 0.9987150352426851,
+  "h7_criterion_met_DESCRIPTIVE_ONLY": true
+ },
+ "note": "DESCRIPTIVE: CTU logs were already inspected in Phase 6 (H7 failed there and stands). Policy parameters were selected on NF development data, not on CTU."
+}

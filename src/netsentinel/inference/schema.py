@@ -35,7 +35,8 @@ ThreatStatus = Literal["not_assessed", "unverified_domain", "unsupported_domain"
                        "suspicious", "known_attack_category"]  # fmt: skip
 BehaviorStatus = Literal["normal", "anomalous", "insufficient_history", "not_calibrated"]
 AppStatus = Literal["predicted", "low_confidence", "out_of_distribution", "missing_features",
-                    "unsupported_protocol", "no_classifier"]  # fmt: skip
+                    "unsupported_protocol", "port_ml_conflict", "no_classifier"]  # fmt: skip
+AppMethod = Literal["ml", "ml_port_agree", "port_estimate"]
 
 
 class FlowRecord(BaseModel):
@@ -86,6 +87,9 @@ class ApplicationOut(BaseModel):
     transport: str
     app_protocol: str | None = None
     app_status: AppStatus = "no_classifier"
+    app_method: AppMethod | None = None  # which evidence produced app_protocol
+    app_ml_class: str | None = None  # the ML model's own (non-abstained) class
+    app_evidence: list[str] = Field(default_factory=list)
     app_confidence: float | None = Field(default=None, ge=0, le=1)
     confidence_semantics: str = "model top-class probability; not a calibrated probability"
     label_semantics: str = "nDPI master protocol proxy label"

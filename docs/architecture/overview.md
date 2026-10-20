@@ -1,59 +1,65 @@
 # Architecture
 
-Everything on this page exists in the repository and is exercised by tests unless it is
-explicitly marked *not implemented*.
+Status labels:
+- **verified**: exercised by automated tests and, where stated, on real captures;
+- **research**: experiment code, not part of the product path;
+- **not implemented**.
+
+## Two halves
 
 ```
- CSE-CIC-IDS2018 processed CSVs (public S3, ETag-verified)
-          | netsentinel data verify / ingest        src/netsentinel/data/
-          v
- per-day typed Parquet (12h-clock fix, invalid rows dropped, labels canonicalised)
-          | netsentinel data eda, scripts/label_quality.py
-          v
- causal context features (5 s / 30 s / 300 s trailing windows, chunked)   features/context.py
- + stratified sample with inverse-probability weights                       features/build.py
-          | netsentinel features build
-          v
- split protocols + leakage checks (random | blocked | chronological | episode | leave-day-out)
-          |                                                                 data/splits.py
-          v
- training stages (separate processes, run ledger per run)                   training/
-   baseline  - dummy / logreg / random forest / HistGB / LightGBM (binary, label, family)
-   anomaly   - robust-z, Isolation Forest; global vs service-conditioned
-   openset   - leave-one-attack-family-out, supervised vs anomaly vs OR-fusion
-          | netsentinel evaluate --final  (test split, once per run)
-          v
- model bundle (threat + anomaly + attack type + evidence baselines + thresholds,
-               isotonic calibration, SHA-256 manifest)                      inference/bundle.py
-          v
- inference engine -> Prediction contract (inference/schema.py)              inference/engine.py
-   service (port heuristic) | anomaly score 0-100 | P(malicious) | attack type or unknown
-   | verdict benign/unusual/suspicious/attack | measured evidence | model versions
-          |
-          +--> offline replay (event-time order, pacing, idempotent ids)    streaming/replay.py
-          +--> FastAPI (localhost; admin-token replay control)              api/app.py
-          v
- SQLite event store (indexed, retention purge)                              storage/events.py
-          v
- Streamlit dashboard (read-only on the same store + reports)                dashboard/app.py
+RESEARCH PIPELINE (benchmarks; offline, reproducible)          PRODUCT PATH (local, detection-only)
+-------------------------------------------------------        -----------------------------------
+public datasets (CIC-IDS2018 CSV, NetFlow v3, CTU, IoT-23)     authorised capture: PCAP/pcapng or Zeek conn.log
+  | data verify / ingest / ingest-nf      data/                   | readers + flow assembler       telemetry/   [verified, real CTU-26]
+  v                                                               v
+typed Parquet, causal context features   features/             canonical NF-v3-style flow frame telemetry/frames.py
+  | splits + leakage checks              data/splits.py           |
+  v                                                               +--> netsentinel calibrate      behavior/    [verified]
+training stages (baseline, anomaly, openset, temporal,                 causal entity windows (global/device/service)
+  transfer, adapt, appid)                training/                     robust profiles, cross-fit thresholds,
+  | run ledger per run                   ledger.py                     diagnostics, statuses, registry + rollback
+  v                                                               |
+reports/, runs/, pre-registered one-shot tests                     v
+                                                                 netsentinel analyze / API / dashboard
+model bundle (supervised threat model,                                 AnalysisPipeline          inference/pipeline.py [verified]
+  anomaly reference, evidence)          inference/bundle.py  ---->  1 supervised evidence (bundle) - policy-gated
+app classifier artifact (+ port table, policy) appintel/      ---->  2 behaviour vs local baseline
+                                                                      3 application protocol (ML / port / unknown)
+                                                                       -> evidence-aware Prediction  inference/schema.py
+                                                                  |
+                                                                  v
+                                                                 SQLite event store (flows + behaviour windows)  storage/
+                                                                  |
+                                                                  +--> FastAPI (localhost)   api/app.py         [verified, tests + real process]
+                                                                  +--> Streamlit dashboard   dashboard/app.py   [verified, AppTest + browser]
 ```
+
+## The decision contract (per flow)
+
+| Field | Source | Semantics |
+|---|---|---|
+| `threat_status` | supervised bundle, gated by policy | Default `unverified_domain`: scores are shown but never escalate. `suspicious` / `known_attack_category` only under `--threat-policy trust`, or `auto` with a passed domain check v2 |
+| `behavior` | local calibrated profile | `anomaly_score` is a percentile among held-out calibration windows, type `normalized_non_probability`. `behavior_status` is normal / anomalous / insufficient_history / not_calibrated; `baseline_status` includes `baseline_provisional` and `drift_suspected` |
+| `application` | ML + training-data port table | `app_protocol` with `app_method` (ml / ml_port_agree / port_estimate) or an abstention (`app_status`). `service_category` is a port heuristic. `application_identity` is always null |
+| `verdict` | `decide_verdict` | attack / suspicious only from trusted supervised evidence; unusual = behaviour anomaly; insufficient_data when nothing supports a normality claim; benign otherwise |
 
 ## Key design decisions
 
 | Decision | Reason |
 |---|---|
-| Event time = flow start + duration; context uses only complete seconds before it | A flow record exists only once the flow ends; no look-ahead (tested against brute force and a truncation test) |
-| Context computed on the full day stream before sampling | Matches what a sensor sees; sampling would otherwise change the features |
-| Episode-chronological split by default | Each IDS2018 attack is mostly one contiguous session per day; random 15-min blocks put whole attacks in one partition (measured), random rows put identical neighbours on both sides |
-| Purge 150 s around partition boundaries | Rows of different partitions are >= 300 s apart, the longest context window |
-| Inverse-probability `sample_weight` | Metrics estimate the prevalence of the available data, not of the sample |
-| Anomaly score as benign-tail percentile | Interpretable, threshold maps to an expected benign alert rate; explicitly not a probability |
-| Decision layer separates `unusual` from `suspicious`/`attack` | An anomaly is not an attack; unknown attack types abstain to `unknown` |
+| A flow is assigned to the window containing its END time | The record exists only when the flow ends; nothing reads the future (causality tests) |
+| No online learning; explicit recalibration with review/rollback | Continuous learning would absorb persistent attack traffic into "normal" |
+| Supervised verdicts unverified by default | Phase 5: no cross-network transfer; Phase 6: a lenient domain check produced false alerts |
+| Cross-fitted thresholds by default | Phase 6 FPR misses were small-sample threshold noise (Phase 7 P2); costs recall in some IoT-23 scenarios |
+| Port evidence can override the ML protocol | The portable model sees only a coarse port class; long HTTP on port 80 looked like TLS |
+| Every artifact hash-checked and schema-versioned | Refuses corrupted or incompatible models, calibrations and classifiers |
 | One heavy framework per process, lazy imports | 8 GB RAM development machine |
 
 ## Not implemented
 
-* Live packet capture, Zeek/Suricata ingestion (Zeek and Docker are not installed on the
-  development machine; see docs/limitations).
-* Per-host baselines: the processed IDS2018 CSVs carry no host addresses (except one day).
-* Application identification: only port-derived service categories are available on IDS2018.
+- Live packet capture or streaming monitoring. The system is offline only, by design.
+- Zeek or Suricata execution: NetSentinel reads Zeek logs, it does not run Zeek.
+- Behaviour baselines conditioned on the ML application class (they use the port
+  heuristic).
+- Blocking or any network change: detection only.

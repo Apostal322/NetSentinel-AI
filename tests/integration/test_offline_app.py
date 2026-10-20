@@ -235,7 +235,9 @@ def test_offline_app_end_to_end(app_ws, capsys, monkeypatch):
                                          calibration_dir=cal_dir, appid_dir=app_dir)))  # fmt: skip
     mods = api.get("/models").json()
     assert mods["calibration"]["calibration_id"] in cal_dir
-    assert mods["application_classifier"]["schema_version"] == "appintel-1.0.0"
+    from netsentinel.appintel.model import APP_SCHEMA_VERSION
+
+    assert mods["application_classifier"]["schema_version"] == APP_SCHEMA_VERSION
     b = api.get("/behavior", params={"anomalous_only": True, "level": "device"}).json()
     assert b and b[0]["level"] == "device"
     assert api.get("/behavior", params={"level": "nonsense"}).status_code == 422

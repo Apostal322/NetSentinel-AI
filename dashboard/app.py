@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sqlite3
 import sys
 from pathlib import Path
@@ -17,8 +18,13 @@ import streamlit as st
 
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
-parser.add_argument("--events-db", default=str(ROOT / "artifacts/events.sqlite"))
-parser.add_argument("--models-dir", default=str(ROOT / "models"))
+parser.add_argument(
+    "--events-db",
+    default=os.environ.get("NETSENTINEL_EVENTS_DB", str(ROOT / "artifacts/events.sqlite")),
+)
+parser.add_argument(
+    "--models-dir", default=os.environ.get("NETSENTINEL_MODELS_DIR", str(ROOT / "models"))
+)
 args, _ = parser.parse_known_args(sys.argv[1:])
 
 st.set_page_config(page_title="NetSentinel AI", layout="wide")
@@ -54,6 +60,7 @@ def load_behavior(db: str) -> pd.DataFrame:
             return pd.DataFrame()
         df = pd.read_sql_query("SELECT * FROM behavior_events ORDER BY window_end", conn)
     df["window_end"] = pd.to_datetime(df["window_end"], format="ISO8601")
+    df["anomalous"] = df["anomalous"].astype(bool)  # SQLite stores 0/1
     return df
 
 

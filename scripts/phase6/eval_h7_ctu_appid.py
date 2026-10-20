@@ -51,6 +51,7 @@ def main() -> None:
         ref = np.array([REF[v] for v in frame["zeek_service"].to_list()], dtype=object)
         top = np.array(p["app_top_class"].to_list(), dtype=object)
         acc_mask = np.array([s == "predicted" for s in p["app_status"].to_list()])
+        final = np.array(p["app_protocol"].to_list(), dtype=object)  # after any policy
         port = np.array([PORT_RULE.get(int(x)) for x in frame["dst_port"].to_list()], dtype=object)
         ok_all, ok_port = top == ref, port == ref
         r = {"capture": name, "flows": frame.height,
@@ -59,6 +60,11 @@ def main() -> None:
              "coverage": float(acc_mask.mean()),
              "accepted_accuracy": float(ok_all[acc_mask].mean()) if acc_mask.any() else None,
              "port_rule_accuracy": float(ok_port.mean()),
+             "final_label_accepted_accuracy": float((final == ref)[acc_mask].mean())
+             if acc_mask.any() else None,
+             "methods": {str(k): int(v) for k, v in zip(*np.unique(
+                 [str(m) for m in p["app_method"].to_list()], return_counts=True), strict=True)}
+             if "app_method" in p.columns else None,
              "status": dict(zip(*np.unique(p["app_status"].to_list(), return_counts=True),
                                 strict=True)),
              "per_ref_recall": {k: float(ok_all[ref == k].mean()) for k in ("dns", "tls", "http")
@@ -69,6 +75,7 @@ def main() -> None:
         pooled["ok_all"] += int(ok_all.sum())
         pooled["acc"] += int(acc_mask.sum())
         pooled["ok_acc"] += int(ok_all[acc_mask].sum())
+        pooled["ok_final"] = pooled.get("ok_final", 0) + int((final == ref)[acc_mask].sum())
         pooled["ok_port"] += int(ok_port.sum())
         print(name, {k: v for k, v in r.items() if k not in ("status",)}, flush=True)
     acc_all = pooled["ok_all"] / pooled["n"]
@@ -78,9 +85,11 @@ def main() -> None:
                "pooled_flows": pooled["n"], "accuracy_no_abstention": acc_all,
                "coverage": cov, "accepted_accuracy": acc_sel,
                "port_rule_accuracy": pooled["ok_port"] / pooled["n"],
+               "final_label_accepted_accuracy": pooled.get("ok_final", 0) / pooled["acc"]
+               if pooled["acc"] else None,
                "H7_supported": bool(acc_sel is not None and cov >= 0.5
                                     and acc_sel - acc_all >= 0.05)}  # fmt: skip
-    out = Path("reports/phase6/h7_ctu_appid.json")
+    out = Path(sys.argv[2] if len(sys.argv) > 2 else "reports/phase6/h7_ctu_appid.json")
     out.write_text(json.dumps({"captures": rows, "summary": summary}, indent=1, default=str),
                    "utf-8")  # fmt: skip
     print(json.dumps(summary, indent=1))

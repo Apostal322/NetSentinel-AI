@@ -12,10 +12,10 @@ jobs:
       - uses: astral-sh/setup-uv@v6
         with:
           enable-cache: true
-      - run: uv sync --locked          # base deps only: no torch, so CI stays fast
-      - run: uv run ruff check .
-      - run: uv run ruff format --check .
-      - run: uv run pytest             # gpu/slow/data tests are excluded by default
+      - run: uv sync --locked --extra dashboard   # no torch (CPU-light); dashboard for AppTest
+      - run: uv run --extra dashboard ruff check .
+      - run: uv run --extra dashboard ruff format --check .
+      - run: uv run --extra dashboard pytest             # gpu/slow/data tests are excluded by default
 
   docker:
     runs-on: ubuntu-latest

@@ -34,3 +34,13 @@ changes network state. Live capture is not implemented.
 * Retention: `EventStore.purge_older_than(cutoff)`; operators should schedule it.
 * Authorised data only: the shipped workflows use a public research dataset. Applying NetSentinel
   to other traffic requires authorisation to monitor that network.
+
+## Phase 6–7 additions (2026-10-20)
+
+| # | Threat | Mitigation | Residual risk |
+|---|---|---|---|
+| T9 | Authoritative attack verdicts on a network the supervised model does not fit (false alarms that look like attacks) | Default `--threat-policy unverified` on `analyze`, the API (including `/predict/*`) and the dashboard. Escalation needs `trust` (operator assertion) or `auto` with a passed domain check v2 (vetted calibration, >= 10/FPR flows, binomial test). Regression tests in `tests/unit/test_threat_policy.py` | An operator can still pass `trust` wrongly. `replay` uses the engine directly and is meant only for the bundle's own training-domain data |
+| T10 | Baseline poisoning: attack traffic in a calibration period becomes "normal" | No online learning. `calibrate --previous active` scores the new period under the active baseline and marks it `review_required` if it is significantly anomalous; such artifacts activate only with `--reviewed`. Rollback keeps history. Unlabelled mode warns explicitly | A slow, low-rate attack present in every calibration period is undetectable by design; vetted-benign calibration relies on the operator's assertion |
+| T11 | Calibration and classifier artifact tampering | Same SHA-256 manifest + schema-version checks as bundles (`load_profile`, `load_classifier`), tested; the API refuses to become ready with a corrupt artifact (`/ready` 503) | Same as T3: whoever can write the directory can rewrite the manifest |
+| T12 | Device addresses in stored outputs | Behaviour windows key devices by source address; flow events carry it only in `behavior.model_scope` for device-level profiles; retention purges both tables | No pseudonymisation of addresses; keep the event store local |
+| T13 | Over-trusting application labels | `app_protocol` is an nDPI-proxy label with `app_method` / `app_evidence`; `application_identity` is always null; conflicts between ML and port evidence are explicit | Port-based estimates are wrong for services on non-standard ports |

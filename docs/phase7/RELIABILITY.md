@@ -129,3 +129,60 @@ on data already inspected; an independent evaluation would need new captures.
 - provisional status on short history;
 - contamination and trimming warnings;
 - update check, activation refusal, review override, rollback and missing registry.
+
+## P3: conservative application-protocol policy
+
+**Failure analysis** (CTU logs, already inspected; Zeek `service` as reference). Of 27,983
+Zeek-labelled HTTP flows (port 80), the portable ML model called **15,115 TLS, at a median
+confidence of 0.97**. Wrong predictions were confident (median 0.97, 90th percentile 1.00),
+so the validation-chosen confidence threshold almost never abstained (Phase 6 H7). The cause:
+- the portable feature set sees only a coarse port class (well-known / registered /
+  dynamic), so it cannot tell 80 from 443;
+- long HTTP transfers (median 21 response packets) resemble TLS in flow shape.
+
+**Policy** (`appintel/model.py::resolve_policy`, artifact schema `appintel-1.1.0`).
+- A (protocol, dst port) pair is *port-supported* if NF-IDS2018 **training** flows map it to
+  one label with purity >= p and support >= n. The table has 14,324 entries, stored inside
+  the artifact.
+- ML and port agree: label, `app_method = ml_port_agree`.
+- They conflict: `port_ml_conflict`, no label. The variant `conflict=port` would output the
+  port label as `port_estimate` instead.
+- No port support: the ML label only if the ML did not abstain (`app_method = ml`).
+- Every flow carries `app_evidence` (the ML class with its confidence, and the port
+  statistics) and `app_ml_class`.
+- `application_identity` stays null: this is protocol recognition, not application
+  identification.
+
+**Selection** (`scripts/phase7/select_app_policy.py` -> `reports/phase7/app_policy_selection.json`;
+development data only).
+- Pre-stated rule: on NF-IDS2018 validation A, coverage >= 0.95, maximise accepted accuracy.
+- Grid: purity {0.90, 0.95, 0.99} x support {50, 200} x conflict {port, unknown}.
+- Chosen: **purity 0.90, support 50, conflict -> unknown**. The 12 candidates differ by at
+  most 0.0008 accepted accuracy on validation A.
+
+| Policy | NF-IDS2018 val B: coverage / accepted acc. | NF-UNSW val B (shared classes): coverage / accepted acc. |
+|---|---|---|
+| ML only (Phase 6) | 0.997 / 0.988 | 0.991 / **0.519** |
+| port lookup only | 0.939 / 0.966 | 0.856 / 0.990 |
+| **chosen policy** | 0.993 / **0.992** | 0.660 / **0.779** |
+
+On the other dataset the policy turns confident ML errors into abstentions: accepted
+accuracy rises from 0.52 to 0.78, at the cost of 34% coverage. Port lookup alone is even
+more accurate there (0.99), because UNSW's shared classes sit on standard ports.
+
+**Descriptive check on CTU** (already inspected; parameters were *not* chosen on it;
+`reports/phase7/ctu_app_policy_descriptive.json`): coverage 0.926, accepted accuracy 0.9987,
+vs ML-only 0.925 at full coverage and the port rule 0.999. On standard-port traffic the
+policy is in effect a port lookup confirmed by the ML. The ML contributes only where no port
+evidence exists. Phase 6's H7 verdict (not supported) stands, and nothing here is a new
+confirmatory claim.
+
+**Product artifact:** `models/appintel/appid-portable-20261020T184500Z` (same model weights
+as the Phase 6 artifact, plus the port table and policy). Phase 6 artifacts (schema 1.0.0)
+still load and run ML-only.
+
+**Tests:** `tests/unit/test_appintel.py`:
+- agreement / conflict / no-support / low-confidence / unsupported cases;
+- both conflict modes;
+- port-table purity and support;
+- backward-compatible loading of 1.0.0 artifacts.

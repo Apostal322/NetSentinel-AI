@@ -135,7 +135,9 @@ class AnalysisPipeline:
         app = self.classifier.predict(frame)
         cid = self.classifier_manifest["classifier_id"]
         return [ApplicationOut(transport=r["transport"], app_protocol=r["app_protocol"],
-                               app_status=r["app_status"],
+                               app_status=r["app_status"], app_method=r["app_method"],
+                               app_ml_class=r["app_ml_class"],
+                               app_evidence=list(r["app_evidence"] or []),
                                app_confidence=float(np.clip(r["app_confidence"], 0, 1)),
                                service_category=s, classifier=cid)
                 for r, s in zip(app.iter_rows(named=True), svc, strict=True)]  # fmt: skip

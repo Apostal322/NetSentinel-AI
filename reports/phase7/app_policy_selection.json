@@ -1,0 +1,160 @@
+{
+ "selection_rule": "IDS val A: coverage >= 0.95, max accepted accuracy",
+ "port_table_entries": 14324,
+ "candidates": {
+  "ml_only": {
+   "ids_val_a": {
+    "coverage": 0.9964749994386942,
+    "accepted_accuracy": 0.9871344238655311,
+    "accuracy_abstain_wrong": 0.9836547744673207,
+    "rows": 44539
+   },
+   "ids_val_b": {
+    "coverage": 0.9971710821733274,
+    "accepted_accuracy": 0.9882019183140451,
+    "accuracy_abstain_wrong": 0.9854063762909744,
+    "rows": 44540
+   },
+   "unsw_val_b_shared": {
+    "coverage": 0.9906753320146934,
+    "accepted_accuracy": 0.5191100969766115,
+    "accuracy_abstain_wrong": 0.5142695676744843,
+    "rows": 3539
+   }
+  },
+  "port_only": {
+   "ids_val_a": {
+    "coverage": 0.9774130537281933,
+    "accepted_accuracy": 0.9688052741598328,
+    "accuracy_abstain_wrong": 0.9469229214845416,
+    "rows": 44539
+   },
+   "ids_val_b": {
+    "coverage": 0.93861697350696,
+    "accepted_accuracy": 0.9661531837535282,
+    "accuracy_abstain_wrong": 0.9068477772788505,
+    "rows": 44540
+   },
+   "unsw_val_b_shared": {
+    "coverage": 0.8561740604690591,
+    "accepted_accuracy": 0.9904290429042905,
+    "accuracy_abstain_wrong": 0.8479796552698502,
+    "rows": 3539
+   }
+  },
+  "pur0.9_sup50_port": {
+   "ids_val_a": {
+    "coverage": 0.9964749994386942,
+    "accepted_accuracy": 0.99166328691812,
+    "accuracy_abstain_wrong": 0.9881676732751072,
+    "rows": 44539
+   }
+  },
+  "pur0.9_sup50_unknown": {
+   "ids_val_a": {
+    "coverage": 0.9913783425761692,
+    "accepted_accuracy": 0.9919374929226589,
+    "accuracy_abstain_wrong": 0.983385347672826,
+    "rows": 44539
+   },
+   "ids_val_b": {
+    "coverage": 0.9926582846879209,
+    "accepted_accuracy": 0.9923778074322032,
+    "accuracy_abstain_wrong": 0.9850920520880108,
+    "rows": 44540
+   },
+   "unsw_val_b_shared": {
+    "coverage": 0.6603560327776208,
+    "accepted_accuracy": 0.7787762088147198,
+    "accuracy_abstain_wrong": 0.5142695676744843,
+    "rows": 3539
+   }
+  },
+  "pur0.9_sup200_port": {
+   "ids_val_a": {
+    "coverage": 0.9964749994386942,
+    "accepted_accuracy": 0.9910549321797125,
+    "accuracy_abstain_wrong": 0.9875614629874941,
+    "rows": 44539
+   }
+  },
+  "pur0.9_sup200_unknown": {
+   "ids_val_a": {
+    "coverage": 0.9919845528637823,
+    "accepted_accuracy": 0.9913313113937803,
+    "accuracy_abstain_wrong": 0.983385347672826,
+    "rows": 44539
+   }
+  },
+  "pur0.95_sup50_port": {
+   "ids_val_a": {
+    "coverage": 0.9964749994386942,
+    "accepted_accuracy": 0.99166328691812,
+    "accuracy_abstain_wrong": 0.9881676732751072,
+    "rows": 44539
+   }
+  },
+  "pur0.95_sup50_unknown": {
+   "ids_val_a": {
+    "coverage": 0.9913783425761692,
+    "accepted_accuracy": 0.9919374929226589,
+    "accuracy_abstain_wrong": 0.983385347672826,
+    "rows": 44539
+   }
+  },
+  "pur0.95_sup200_port": {
+   "ids_val_a": {
+    "coverage": 0.9964749994386942,
+    "accepted_accuracy": 0.9910549321797125,
+    "accuracy_abstain_wrong": 0.9875614629874941,
+    "rows": 44539
+   }
+  },
+  "pur0.95_sup200_unknown": {
+   "ids_val_a": {
+    "coverage": 0.9919845528637823,
+    "accepted_accuracy": 0.9913313113937803,
+    "accuracy_abstain_wrong": 0.983385347672826,
+    "rows": 44539
+   }
+  },
+  "pur0.99_sup50_port": {
+   "ids_val_a": {
+    "coverage": 0.9964749994386942,
+    "accepted_accuracy": 0.9915956919471858,
+    "accuracy_abstain_wrong": 0.9881003165764836,
+    "rows": 44539
+   }
+  },
+  "pur0.99_sup50_unknown": {
+   "ids_val_a": {
+    "coverage": 0.9914456992747929,
+    "accepted_accuracy": 0.9918701028126273,
+    "accuracy_abstain_wrong": 0.983385347672826,
+    "rows": 44539
+   }
+  },
+  "pur0.99_sup200_port": {
+   "ids_val_a": {
+    "coverage": 0.9964749994386942,
+    "accepted_accuracy": 0.9910549321797125,
+    "accuracy_abstain_wrong": 0.9875614629874941,
+    "rows": 44539
+   }
+  },
+  "pur0.99_sup200_unknown": {
+   "ids_val_a": {
+    "coverage": 0.9919845528637823,
+    "accepted_accuracy": 0.9913313113937803,
+    "accuracy_abstain_wrong": 0.983385347672826,
+    "rows": 44539
+   }
+  }
+ },
+ "chosen": "pur0.9_sup50_unknown",
+ "artifact": "models\\appintel\\appid-portable-20261020T184500Z",
+ "meta": {
+  "seconds": 652.8,
+  "peak_rss_mb": 1116.36328125
+ }
+}

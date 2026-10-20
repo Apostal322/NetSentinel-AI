@@ -19,3 +19,6 @@ __pycache__/
 *.sqlite
 *.db
 .aris/
+
+# local tool configuration
+/.claude/
