@@ -92,3 +92,53 @@ clean calibration; device level):
   attacking device (intermittent activity with gaps > 300 s).
 - IoT-23 8-1: 99.7 alerts/h -> 0.08 incidents/h, purity 1.0, 1 incident.
 - benign-only captures (honeypots 4-1, 5-1; 42-1): 0.09-1.1 incidents/h.
+
+## 8D: application-ID abstention (development data)
+
+Adoption rule, fixed before running `scripts/phase8/app_abstention.py`: a variant replaces the
+product policy if, against `hybrid`:
+- (a) NF-IDS2018 val B accepted accuracy drops by <= 0.005 and coverage by <= 0.02;
+- (b) NF-UNSW val B (shared classes) accepted accuracy does not drop;
+- (c) abstention on NF-UNSW flows of classes unknown to the model rises by >= 0.05.
+
+If both qualifying variants pass, the simpler one wins.
+
+Result (`reports/phase8/app_abstention.json`, 84 s, 1.1 GB):
+
+| variant | IDS val B cov / acc | UNSW shared cov / acc | unknown-class abstention |
+|---|---|---|---|
+| port_only | 0.939 / 0.966 | **0.856 / 0.990** | 0.387 |
+| ml_only | 0.997 / 0.988 | 0.991 / 0.519 | 0.010 |
+| hybrid (Phase 7) | 0.993 / 0.992 | 0.660 / 0.779 | 0.010 |
+| hybrid+consistency | 0.989 / **0.996** | 0.660 / 0.779 | **0.406** |
+| hybrid+consistency+pcthr | 0.966 / 0.998 | 0.621 / 0.828 | 0.467 (fails a: coverage -0.027) |
+
+- Adopted: `hybrid+consistency`. New product artifact `appid-portable-20261020T201432Z`
+  (same weights, port table and policy; plus class profiles from IDS training flows). Unknown
+  classes in UNSW: ssh, smtp, imap, ftp, nfs, bittorrent, edonkey and others.
+- Honest note: **across datasets, the port table alone beats every ML variant on UNSW**
+  (0.990 accepted accuracy at 0.856 coverage). The ML model adds value in-domain (IDS) and on
+  non-standard ports, not for cross-network protocol identification. The dashboard and API keep
+  `app_method`, so users can see which evidence was used.
+
+## 8E: streaming monitor
+
+- `netsentinel monitor --zeek-log FILE [--follow]`: opt-in, read-only, detection only. It reads
+  a conn.log written by the operator's own Zeek. There is no capture, interception, scanning
+  or blocking.
+- `streaming/live.py`:
+  - event-time windows; watermark = max flow start - lateness;
+  - late records are counted and dropped;
+  - duplicates are dropped per window;
+  - clock-skew guard and bounded buffer with forced closes;
+  - a context lookback of whole closed windows for supervised context features;
+  - incidents and events stored per closed batch.
+- Verified (tests):
+  - in-order and jittered (+/-20 s, lateness 60 s) streams with 50 duplicates reproduce the
+    offline window scores and incident IDs exactly;
+  - the full demo pipeline (bundle + calibration + app classifier) streamed gives the same
+    verdict counts and incident IDs as offline `analyze`;
+  - a log whose scan records arrive an hour late reports exactly those 800 records as late.
+- Found while building the confirmatory run: `load_capture` materialises all records. The
+  fresh 49-1 log (853,630,635 bytes, SHA-256 `12e12cd6...fa54f`, contents not yet inspected)
+  must therefore be processed through the bounded streaming path.

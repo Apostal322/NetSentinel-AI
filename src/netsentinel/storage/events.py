@@ -180,8 +180,15 @@ class EventStore:
                         if prev["status"] == "resolved" and d["last_seen"] > prev["last_seen"]:
                             d["status"] = "new"
                             note = "re-opened: new evidence"
-                            hist.append({"at": now, "from": "resolved", "to": "new",
-                                         "by": "system", "note": note})
+                            hist.append(
+                                {
+                                    "at": now,
+                                    "from": "resolved",
+                                    "to": "new",
+                                    "by": "system",
+                                    "note": note,
+                                }
+                            )
                 self._conn.execute(
                     "INSERT OR REPLACE INTO incidents VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
                     (d["incident_id"], d["first_seen"], d["last_seen"], d["source"], d["level"],

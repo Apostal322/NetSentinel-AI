@@ -1,0 +1,544 @@
+{
+ "product_artifact": "appid-portable-20261020T184500Z",
+ "policy": {
+  "min_purity": 0.9,
+  "min_support": 50,
+  "conflict": "unknown"
+ },
+ "per_class_thresholds": {
+  "other": 0.7552619467391577,
+  "unknown": 0.9886677972667086,
+  "dns": 0.822144351270264,
+  "http": 0.4373651887348169,
+  "netbios": 0.7622356021311769,
+  "smb2/3": 0.5147545766364638,
+  "telnet": 0.8989315946404747,
+  "rdp": 0.7771046852934642,
+  "tls": 0.49202799822104015,
+  "http_proxy": 0.7810180807726445,
+  "llmnr": 0.5095077012373045
+ },
+ "variants": {
+  "port_only": {
+   "ids_val_b": {
+    "rows": 44540,
+    "coverage": 0.93861697350696,
+    "accepted_accuracy": 0.9661531837535282,
+    "per_class": {
+     "dns": {
+      "n": 17453,
+      "coverage": 0.9999427032601845,
+      "accepted_accuracy": 1.0
+     },
+     "http": {
+      "n": 3217,
+      "coverage": 0.9906745414982904,
+      "accepted_accuracy": 0.9956071540633825
+     },
+     "http_proxy": {
+      "n": 138,
+      "coverage": 1.0,
+      "accepted_accuracy": 1.0
+     },
+     "llmnr": {
+      "n": 211,
+      "coverage": 1.0,
+      "accepted_accuracy": 1.0
+     },
+     "netbios": {
+      "n": 1759,
+      "coverage": 1.0,
+      "accepted_accuracy": 1.0
+     },
+     "other": {
+      "n": 711,
+      "coverage": 0.9817158931082982,
+      "accepted_accuracy": 0.998567335243553
+     },
+     "rdp": {
+      "n": 11385,
+      "coverage": 0.8168642951251647,
+      "accepted_accuracy": 0.9776344086021506
+     },
+     "smb2/3": {
+      "n": 1111,
+      "coverage": 0.9252925292529253,
+      "accepted_accuracy": 0.0038910505836575876
+     },
+     "telnet": {
+      "n": 285,
+      "coverage": 1.0,
+      "accepted_accuracy": 1.0
+     },
+     "tls": {
+      "n": 7131,
+      "coverage": 0.9747580984434161,
+      "accepted_accuracy": 0.9916558768522514
+     },
+     "unknown": {
+      "n": 1139,
+      "coverage": 0.6997366110623354,
+      "accepted_accuracy": 0.8619824341279799
+     }
+    }
+   },
+   "unsw_val_b_shared": {
+    "rows": 3539,
+    "coverage": 0.8561740604690591,
+    "accepted_accuracy": 0.9904290429042905,
+    "per_class": {
+     "dns": {
+      "n": 2062,
+      "coverage": 0.9995150339476236,
+      "accepted_accuracy": 1.0
+     },
+     "http": {
+      "n": 929,
+      "coverage": 0.9978471474703983,
+      "accepted_accuracy": 1.0
+     },
+     "unknown": {
+      "n": 548,
+      "coverage": 0.07664233576642336,
+      "accepted_accuracy": 0.30952380952380953
+     }
+    }
+   },
+   "unsw_unknown_abstention": 0.3873273564332445,
+   "unsw_unknown_rows": 8254,
+   "unsw_unknown_classes": [
+    "81",
+    "85",
+    "95",
+    "bittorrent",
+    "edonkey",
+    "ftp_control",
+    "ftp_data",
+    "imap",
+    "nfs",
+    "smtp",
+    "ssh"
+   ]
+  },
+  "ml_only": {
+   "ids_val_b": {
+    "rows": 44540,
+    "coverage": 0.9971710821733274,
+    "accepted_accuracy": 0.9882019183140451,
+    "per_class": {
+     "dns": {
+      "n": 17453,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.999656219561107
+     },
+     "http": {
+      "n": 3217,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9676717438607398
+     },
+     "http_proxy": {
+      "n": 138,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.855072463768116
+     },
+     "llmnr": {
+      "n": 211,
+      "coverage": 1.0,
+      "accepted_accuracy": 1.0
+     },
+     "netbios": {
+      "n": 1759,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9977259806708357
+     },
+     "other": {
+      "n": 711,
+      "coverage": 0.8227848101265823,
+      "accepted_accuracy": 0.7367521367521368
+     },
+     "rdp": {
+      "n": 11385,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9999121651295564
+     },
+     "smb2/3": {
+      "n": 1111,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9792979297929792
+     },
+     "telnet": {
+      "n": 285,
+      "coverage": 1.0,
+      "accepted_accuracy": 1.0
+     },
+     "tls": {
+      "n": 7131,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9854157902117515
+     },
+     "unknown": {
+      "n": 1139,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9051799824407375
+     }
+    }
+   },
+   "unsw_val_b_shared": {
+    "rows": 3539,
+    "coverage": 0.9906753320146934,
+    "accepted_accuracy": 0.5191100969766115,
+    "per_class": {
+     "dns": {
+      "n": 2062,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.8826382153249273
+     },
+     "http": {
+      "n": 929,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.0
+     },
+     "unknown": {
+      "n": 548,
+      "coverage": 0.9397810218978102,
+      "accepted_accuracy": 0.0
+     }
+    }
+   },
+   "unsw_unknown_abstention": 0.010176883935061788,
+   "unsw_unknown_rows": 8254,
+   "unsw_unknown_classes": [
+    "81",
+    "85",
+    "95",
+    "bittorrent",
+    "edonkey",
+    "ftp_control",
+    "ftp_data",
+    "imap",
+    "nfs",
+    "smtp",
+    "ssh"
+   ]
+  },
+  "hybrid": {
+   "ids_val_b": {
+    "rows": 44540,
+    "coverage": 0.9926582846879209,
+    "accepted_accuracy": 0.9923778074322032,
+    "per_class": {
+     "dns": {
+      "n": 17453,
+      "coverage": 0.9998281097805535,
+      "accepted_accuracy": 0.9998280802292263
+     },
+     "http": {
+      "n": 3217,
+      "coverage": 0.9698476841778054,
+      "accepted_accuracy": 0.9974358974358974
+     },
+     "http_proxy": {
+      "n": 138,
+      "coverage": 0.855072463768116,
+      "accepted_accuracy": 1.0
+     },
+     "llmnr": {
+      "n": 211,
+      "coverage": 1.0,
+      "accepted_accuracy": 1.0
+     },
+     "netbios": {
+      "n": 1759,
+      "coverage": 0.9988629903354178,
+      "accepted_accuracy": 0.9988616960728515
+     },
+     "other": {
+      "n": 711,
+      "coverage": 0.8227848101265823,
+      "accepted_accuracy": 0.7367521367521368
+     },
+     "rdp": {
+      "n": 11385,
+      "coverage": 0.9999121651295564,
+      "accepted_accuracy": 1.0
+     },
+     "smb2/3": {
+      "n": 1111,
+      "coverage": 1.0,
+      "accepted_accuracy": 0.9792979297929792
+     },
+     "telnet": {
+      "n": 285,
+      "coverage": 1.0,
+      "accepted_accuracy": 1.0
+     },
+     "tls": {
+      "n": 7131,
+      "coverage": 0.9901837049502173,
+      "accepted_accuracy": 0.9944767030165699
+     },
+     "unknown": {
+      "n": 1139,
+      "coverage": 0.9929762949956101,
+      "accepted_accuracy": 0.9045092838196287
+     }
+    }
+   },
+   "unsw_val_b_shared": {
+    "rows": 3539,
+    "coverage": 0.6603560327776208,
+    "accepted_accuracy": 0.7787762088147198,
+    "per_class": {
+     "dns": {
+      "n": 2062,
+      "coverage": 0.8826382153249273,
+      "accepted_accuracy": 1.0
+     },
+     "http": {
+      "n": 929,
+      "coverage": 0.002152852529601722,
+      "accepted_accuracy": 0.0
+     },
+     "unknown": {
+      "n": 548,
+      "coverage": 0.9397810218978102,
+      "accepted_accuracy": 0.0
+     }
+    }
+   },
+   "unsw_unknown_abstention": 0.010176883935061788,
+   "unsw_unknown_rows": 8254,
+   "unsw_unknown_classes": [
+    "81",
+    "85",
+    "95",
+    "bittorrent",
+    "edonkey",
+    "ftp_control",
+    "ftp_data",
+    "imap",
+    "nfs",
+    "smtp",
+    "ssh"
+   ]
+  },
+  "hybrid+consistency": {
+   "ids_val_b": {
+    "rows": 44540,
+    "coverage": 0.9894252357431522,
+    "accepted_accuracy": 0.9956205042093081,
+    "per_class": {
+     "dns": {
+      "n": 17453,
+      "coverage": 0.999770813040738,
+      "accepted_accuracy": 0.9998853802510173
+     },
+     "http": {
+      "n": 3217,
+      "coverage": 0.9698476841778054,
+      "accepted_accuracy": 0.9974358974358974
+     },
+     "http_proxy": {
+      "n": 138,
+      "coverage": 0.855072463768116,
+      "accepted_accuracy": 1.0
+     },
+     "llmnr": {
+      "n": 211,
+      "coverage": 1.0,
+      "accepted_accuracy": 1.0
+     },
+     "netbios": {
+      "n": 1759,
+      "coverage": 0.9977259806708357,
+      "accepted_accuracy": 1.0
+     },
+     "other": {
+      "n": 711,
+      "coverage": 0.729957805907173,
+      "accepted_accuracy": 0.8304431599229287
+     },
+     "rdp": {
+      "n": 11385,
+      "coverage": 0.9999121651295564,
+      "accepted_accuracy": 1.0
+     },
+     "smb2/3": {
+      "n": 1111,
+      "coverage": 0.9945994599459946,
+      "accepted_accuracy": 0.9846153846153847
+     },
+     "telnet": {
+      "n": 285,
+      "coverage": 1.0,
+      "accepted_accuracy": 1.0
+     },
+     "tls": {
+      "n": 7131,
+      "coverage": 0.9901837049502173,
+      "accepted_accuracy": 0.9944767030165699
+     },
+     "unknown": {
+      "n": 1139,
+      "coverage": 0.932396839332748,
+      "accepted_accuracy": 0.963276836158192
+     }
+    }
+   },
+   "unsw_val_b_shared": {
+    "rows": 3539,
+    "coverage": 0.6603560327776208,
+    "accepted_accuracy": 0.7787762088147198,
+    "per_class": {
+     "dns": {
+      "n": 2062,
+      "coverage": 0.8826382153249273,
+      "accepted_accuracy": 1.0
+     },
+     "http": {
+      "n": 929,
+      "coverage": 0.002152852529601722,
+      "accepted_accuracy": 0.0
+     },
+     "unknown": {
+      "n": 548,
+      "coverage": 0.9397810218978102,
+      "accepted_accuracy": 0.0
+     }
+    }
+   },
+   "unsw_unknown_abstention": 0.40562151684031983,
+   "unsw_unknown_rows": 8254,
+   "unsw_unknown_classes": [
+    "81",
+    "85",
+    "95",
+    "bittorrent",
+    "edonkey",
+    "ftp_control",
+    "ftp_data",
+    "imap",
+    "nfs",
+    "smtp",
+    "ssh"
+   ],
+   "adoption_checks": {
+    "a": true,
+    "b": true,
+    "c": true
+   }
+  },
+  "hybrid+consistency+pcthr": {
+   "ids_val_b": {
+    "rows": 44540,
+    "coverage": 0.9655590480466996,
+    "accepted_accuracy": 0.9975584802120634,
+    "per_class": {
+     "dns": {
+      "n": 17453,
+      "coverage": 0.9997135163009224,
+      "accepted_accuracy": 0.9999426868408987
+     },
+     "http": {
+      "n": 3217,
+      "coverage": 0.9676717438607398,
+      "accepted_accuracy": 0.9996787664632187
+     },
+     "http_proxy": {
+      "n": 138,
+      "coverage": 0.855072463768116,
+      "accepted_accuracy": 1.0
+     },
+     "llmnr": {
+      "n": 211,
+      "coverage": 1.0,
+      "accepted_accuracy": 1.0
+     },
+     "netbios": {
+      "n": 1759,
+      "coverage": 0.9965889710062535,
+      "accepted_accuracy": 1.0
+     },
+     "other": {
+      "n": 711,
+      "coverage": 0.6104078762306611,
+      "accepted_accuracy": 0.9746543778801844
+     },
+     "rdp": {
+      "n": 11385,
+      "coverage": 0.9999121651295564,
+      "accepted_accuracy": 1.0
+     },
+     "smb2/3": {
+      "n": 1111,
+      "coverage": 0.9927992799279928,
+      "accepted_accuracy": 0.986400725294651
+     },
+     "telnet": {
+      "n": 285,
+      "coverage": 1.0,
+      "accepted_accuracy": 1.0
+     },
+     "tls": {
+      "n": 7131,
+      "coverage": 0.9901837049502173,
+      "accepted_accuracy": 0.9944767030165699
+     },
+     "unknown": {
+      "n": 1139,
+      "coverage": 0.08428446005267778,
+      "accepted_accuracy": 0.6041666666666666
+     }
+    }
+   },
+   "unsw_val_b_shared": {
+    "rows": 3539,
+    "coverage": 0.6207968352641989,
+    "accepted_accuracy": 0.8284023668639053,
+    "per_class": {
+     "dns": {
+      "n": 2062,
+      "coverage": 0.8826382153249273,
+      "accepted_accuracy": 1.0
+     },
+     "http": {
+      "n": 929,
+      "coverage": 0.002152852529601722,
+      "accepted_accuracy": 0.0
+     },
+     "unknown": {
+      "n": 548,
+      "coverage": 0.6843065693430657,
+      "accepted_accuracy": 0.0
+     }
+    }
+   },
+   "unsw_unknown_abstention": 0.4669251272110492,
+   "unsw_unknown_rows": 8254,
+   "unsw_unknown_classes": [
+    "81",
+    "85",
+    "95",
+    "bittorrent",
+    "edonkey",
+    "ftp_control",
+    "ftp_data",
+    "imap",
+    "nfs",
+    "smtp",
+    "ssh"
+   ],
+   "adoption_checks": {
+    "a": false,
+    "b": true,
+    "c": true
+   }
+  }
+ },
+ "adopted": "hybrid+consistency",
+ "artifact": "appid-portable-20261020T201432Z",
+ "meta": {
+  "seconds": 83.7,
+  "peak_rss_mb": 1094.97265625
+ }
+}

@@ -319,6 +319,42 @@ def _cmd_calibration(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_monitor(args: argparse.Namespace) -> int:
+    """Opt-in streaming of a LOCAL Zeek conn.log written by the operator's own Zeek."""
+    from netsentinel.inference.pipeline import AnalysisPipeline
+    from netsentinel.storage.events import EventStore
+    from netsentinel.streaming.live import StreamMonitor, follow_lines
+    from netsentinel.telemetry.zeek import ZeekStats, parse_conn_lines, read_conn_log
+
+    path = Path(args.zeek_log)
+    if not path.is_file():
+        log.error("Zeek log %s not found", path)
+        return 2
+    cal = _resolve_cal(args.calibration)
+    if not cal:
+        log.error("monitoring needs a behaviour calibration (--calibration or an active one)")
+        return 2
+    pipe = AnalysisPipeline(args.bundle, cal, args.appid, args.threat_policy)
+    store = EventStore(args.events_db)
+    mon = StreamMonitor(pipe, store, source=f"zeek-stream:{path.name}",
+                        lateness_s=args.lateness, max_buffer=args.max_buffer,
+                        utc_offset_hours=args.utc_offset)  # fmt: skip
+    zs = ZeekStats()
+    if args.follow:
+        recs = parse_conn_lines(follow_lines(path, idle_timeout_s=args.idle_timeout), zs)
+    else:
+        recs = read_conn_log(path, zs)
+    try:
+        mon.feed(recs)
+    except KeyboardInterrupt:
+        log.info("interrupted: closing open windows")
+    mon.close()
+    out = {**mon.summary(), "parse": {"lines": zs.lines, "records": zs.records,
+                                      "skipped": zs.skipped}}  # fmt: skip
+    print(json.dumps(out, indent=2, default=str))
+    return 0
+
+
 def _cmd_demo(args: argparse.Namespace) -> int:
     import tempfile
 
@@ -536,6 +572,23 @@ def build_parser() -> argparse.ArgumentParser:
         "operator asserts the traffic is in the model's training domain",
     )
     p.set_defaults(func=_cmd_analyze)
+
+    p = sub.add_parser("monitor", help="opt-in streaming of a local Zeek conn.log (read-only, "
+                                       "detection only)")  # fmt: skip
+    p.add_argument("--zeek-log", required=True, help="conn.log written by YOUR Zeek instance")
+    p.add_argument("--follow", action="store_true", help="keep reading as the file grows")
+    p.add_argument("--idle-timeout", type=float, default=None,
+                   help="with --follow: stop after this many idle seconds")  # fmt: skip
+    p.add_argument("--bundle", default=None, help="supervised bundle (optional)")
+    p.add_argument("--calibration", default="active", help="behaviour profile (default: active)")
+    p.add_argument("--appid", default=None)
+    p.add_argument("--events-db", default="artifacts/events.sqlite")
+    p.add_argument("--lateness", type=float, default=60.0, help="allowed lateness, seconds")
+    p.add_argument("--max-buffer", type=int, default=2_000_000, help="max buffered records")
+    p.add_argument("--utc-offset", type=float, default=0.0)
+    p.add_argument("--threat-policy", choices=("unverified", "auto", "trust", "unsupported"),
+                   default="unverified")  # fmt: skip
+    p.set_defaults(func=_cmd_monitor)
 
     p = sub.add_parser("demo", help="offline synthetic end-to-end demonstration (no downloads)")
     p.add_argument("--workspace", default=None, help="new/empty directory (default: a temp dir)")
