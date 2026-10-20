@@ -15,7 +15,7 @@ Confirmatory results: [CONFIRMATORY_RESULTS.md](CONFIRMATORY_RESULTS.md).
 | E. App intelligence | class-consistency abstention (OOD by transport/port profile), port/ML disagreement, unknown protocols; port-only / ML-only / hybrid / +abstention compared | 8D: adopted by a pre-declared rule | H5 not testable on 49-1; the port table beats ML across datasets |
 | F. Robust local normality | sample size, time of day, drift, contamination, safe updates | 8F; update gate v2 | gate catches 7/12 short bursts (tuned on dev data) |
 | G. Dashboard and API | the six sections plus existing pages; incident filtering/paging; `/baseline`; uncertainty field | AppTest, TestClient | dashboard status changes are unauthenticated (localhost only) |
-| H. Docker CI with a model | demo artifacts built on the runner and mounted read-only; ready, schema, safe defaults, incidents, auth, tampering, cleanup | `.github/workflows/ci.yml` | first CI run of this job pending at the time of writing |
+| H. Docker CI with a model | demo artifacts built on the runner and mounted read-only; ready, schema, safe defaults, incidents, auth, tampering, cleanup | `.github/workflows/ci.yml` | passes in CI (run for `3e2d9d4`); the first attempt expected 401 where an unset admin token correctly gives 403 |
 | I. Performance | 24.8k records/s, 2.99 GB peak on 5.4M records; per-scorer latency | H7, 8B tables | single machine |
 | J. Research plan before testing | frozen, pushed `d838738`, dry runs on inspected data, corrections recorded before reading 49-1 | git history | none |
 
@@ -59,11 +59,10 @@ A v1.0 RC is **not justified** yet:
 - CI security job: red on a newly published certifi advisory (GHSA-6q48-6c7w-9gw2, fixed in
   2026.10.19). The fix needs a dependency upgrade, which waits for the maintainer's approval.
 - H3 (the incident layer's analyst benefit) was refuted on the only fresh capture.
-- The model-backed Docker job has not yet passed in CI.
 - Confirmatory evidence is one capture.
 
 Criteria proposed for 1.0-rc1:
-- all CI jobs green;
+- all CI jobs green (test and docker are green; security waits for the certifi upgrade);
 - the incident-ranking fix, validated on development data and on a new fresh capture;
 - at least one additional fresh capture with a pre-registered replication of H2;
 - Zeek log rotation in `monitor`.
