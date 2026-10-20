@@ -58,7 +58,8 @@ def threat_mode_for(policy: str, bundle_id: str | None, check: dict | None) -> s
     if policy == "auto" and check and check.get("bundle") == bundle_id:
         if int(check.get("version", 1)) >= 2 and check.get("supported") is True:
             return ASSESSED
-        if check.get("supported") is False and check.get("reason") != "insufficient_flows":
+        untested = ("insufficient_flows", "not_vetted_benign")  # could not test: unverified
+        if check.get("supported") is False and check.get("reason") not in untested:
             return "unsupported_domain"
     return "unverified_domain"
 

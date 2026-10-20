@@ -1,0 +1,36 @@
+release validation 2026-10-20T18:56:29Z commit 6d9cf42
+
+== fresh clone
+6d9cf42 Phase 7 P3: conservative application-protocol policy (training-data port table + ML agreement/conflict, schema appintel-1.1.0, back-compatible), selected on NF development data; CTU descriptive check; dashboard AppTest smoke test (fixed int-as-bool filter bug), CI installs dashboard extra; architecture, datasets provenance, consolidated results, threat model updates; v0.7.0; release validation script
+
+== install from lockfile (base deps + dashboard extra, as CI)
+ + watchdog==6.0.0
+ + websockets==17.2
+
+== CI test job: ruff check / ruff format --check / pytest
+All checks passed!
+162 files already formatted
+114 passed, 1 skipped, 1 deselected in 71.45s (0:01:11)
+
+== CLI
+netsentinel --help ok
+wrote <TMP>\demo.pcap (19800 packets)
+
+== calibrate (synthetic capture; vetted mode) + registry
+<TMP>\cal\calibration-20261020T185908719857Z
+{
+  "active": "calibration-20261020T185908719857Z",
+  "calibrations": [
+
+== analyze (PCAP) with bundle + calibration, default threat policy
+analyze ok: 4200 flows; {'benign': 4194, 'unusual': 6} | threat unverified_domain
+
+== API server (real process) on 127.0.0.1:8765
+{"status":"ok","version":"0.7.0"}
+{"status":"ready","bundle":"bundle-20261019T202605Z"}
+/events ok
+/predict/flow ok: unusual unverified_domain
+
+== docker
+BLOCKED: docker is not installed on this machine (image not built)
+validation finished

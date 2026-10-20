@@ -34,6 +34,8 @@ def test_default_policy_is_unverified():
                   "reason": "insufficient_flows"}, "unverified_domain"),
         ("auto", {"version": 2, "bundle": "b1", "supported": False,
                   "reason": "flag_rate_above_validation_fpr"}, "unsupported_domain"),
+        ("auto", {"version": 2, "bundle": "b1", "supported": False,
+                  "reason": "not_vetted_benign"}, "unverified_domain"),
         ("trust", None, "assessed"),
         ("unsupported", OK_CHECK, "unsupported_domain"),
     ],
@@ -94,3 +96,16 @@ def test_domain_check_v2_accepts_in_domain_rate_and_requires_vetted_mode():
     assert ok["supported"] is True
     un = threat_domain_check(StubEngine(20_000, 22), None, mode="unlabelled")
     assert un["supported"] is False and un["reason"] == "not_vetted_benign"
+
+
+def test_cli_resolves_active_calibration_from_registry(tmp_path, monkeypatch):
+    from netsentinel.behavior.registry import resolve_calibration
+
+    monkeypatch.chdir(tmp_path)
+    root = tmp_path / "models" / "calibrations"
+    root.mkdir(parents=True)
+    (root / "registry.json").write_text('{"active": "calibration-x", "history": []}')
+    assert resolve_calibration("active") == root.relative_to(tmp_path) / "calibration-x"
+    assert str(resolve_calibration("some/dir")) == str(
+        tmp_path.joinpath("some/dir").relative_to(tmp_path)
+    )

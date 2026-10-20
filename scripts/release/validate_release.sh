@@ -69,3 +69,12 @@ else
     echo "BLOCKED: docker is not installed on this machine (image not built)" | tee -a "$LOG"
 fi
 echo "validation finished" | tee -a "$LOG"
+# do not leak local user paths into the committed report
+python - "$LOG" <<'PY'
+import re, sys
+p = sys.argv[1]
+t = open(p, encoding="utf-8").read()
+t = re.sub(r"[A-Za-z]:\\Users\\[^\\]+\\AppData\\Local\\Temp\\[A-Za-z0-9._-]+", "<TMP>", t)
+t = re.sub(r"/tmp/tmp\.[A-Za-z0-9]+", "<TMP>", t)
+open(p, "w", encoding="utf-8").write(t)
+PY
