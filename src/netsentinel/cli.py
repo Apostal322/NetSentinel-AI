@@ -197,6 +197,64 @@ def _cmd_analyze(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_calibrate(args: argparse.Namespace) -> int:
+    import polars as pl
+
+    from netsentinel.behavior.calibrate import calibrate_flows, save_profile, threat_domain_check
+    from netsentinel.ledger import file_sha256
+    from netsentinel.streaming.offline import load_capture
+
+    if args.mode == "vetted_benign" and not args.assert_benign:
+        log.error(
+            "vetted_benign mode needs --assert-benign: the operator must state that the "
+            "calibration traffic is believed to be normal (otherwise use --mode unlabelled)"
+        )
+        return 2
+    frames, sources = [], []
+    for cap in args.captures:
+        frame, kind, parse = load_capture(cap, args.kind, args.utc_offset)
+        sources.append(
+            {
+                "path": Path(cap).name,
+                "kind": kind,
+                "sha256": file_sha256(Path(cap)),
+                "flows": 0 if frame is None else frame.height,
+                "parse": parse,
+            }
+        )
+        if frame is not None:
+            frames.append(frame)
+    if not frames:
+        log.error("no flows in the calibration captures")
+        return 2
+    frame = pl.concat(frames, how="diagonal_relaxed")
+    profile = calibrate_flows(
+        frame,
+        window_s=args.window,
+        mode=args.mode,
+        target_fpr=args.target_fpr,
+        min_windows=args.min_windows,
+    )
+    check = None
+    if args.bundle:
+        from netsentinel.inference.engine import Engine
+
+        check = threat_domain_check(Engine(args.bundle), frame)
+    statement = (
+        "operator asserted the calibration traffic is benign (vetted_benign)"
+        if args.mode == "vetted_benign"
+        else "no benign assertion: unlabelled traffic, contamination-limiting trimming"
+    )
+    out = save_profile(profile, args.out, sources=sources, operator_statement=statement,
+                       threat_check=check)  # fmt: skip
+    summary = json.loads((out / "manifest.json").read_text("utf-8"))
+    print(json.dumps({k: summary[k] for k in ("calibration_id", "status", "mode", "period",
+                                              "levels", "threat_model_domain_check")},
+                     indent=2, default=str))  # fmt: skip
+    print(out)
+    return 0
+
+
 def _cmd_serve(args: argparse.Namespace) -> int:
     import uvicorn
 
@@ -313,6 +371,23 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--speed", type=float, default=0.0)
     p.add_argument("--events-db", default="artifacts/events.sqlite")
     p.set_defaults(func=_cmd_replay)
+
+    p = sub.add_parser("calibrate", help="learn a local behaviour profile from authorised traffic")
+    p.add_argument("captures", nargs="+", help="PCAP/pcapng files or Zeek conn logs, in time order")
+    p.add_argument("--kind", choices=("auto", "pcap", "zeek"), default="auto")
+    p.add_argument("--mode", choices=("vetted_benign", "unlabelled"), default="unlabelled")
+    p.add_argument(
+        "--assert-benign",
+        action="store_true",
+        help="operator statement that the traffic is believed benign (vetted_benign)",
+    )
+    p.add_argument("--window", type=int, default=30, help="window length in seconds")
+    p.add_argument("--target-fpr", type=float, default=0.01, help="per entity-window FPR")
+    p.add_argument("--min-windows", type=int, default=30)
+    p.add_argument("--bundle", default=None, help="also check the supervised model's domain")
+    p.add_argument("--utc-offset", type=float, default=0.0)
+    p.add_argument("--out", default="models/calibrations")
+    p.set_defaults(func=_cmd_calibrate)
 
     p = sub.add_parser("analyze", help="offline analysis of a PCAP/pcapng file or Zeek conn.log")
     p.add_argument("capture")

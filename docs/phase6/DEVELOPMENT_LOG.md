@@ -19,3 +19,30 @@
   - IoT-23 data lines separate the last three fields by spaces, not tabs, and need a
     dedicated loader.
 - **Plan and frozen hypotheses:** `docs/phase6/IMPLEMENTATION_PLAN.md`.
+- **Criterion clarification (before any evaluation).** H1 compared window false alerts with
+  the bundle's per-flow "unusual" rate, which are different units. The uncalibrated
+  comparator is now defined at window level: a window alerts if any of its flows gets the
+  Phase-5 bundle verdict "unusual" or "suspicious".
+- **6B/6C core implemented.**
+  - `behavior/windows.py`: causal tumbling windows. A flow is assigned by its end time. Global
+    silent windows are kept, with only the flow count defined.
+  - `behavior/profile.py`: robust median/MAD per entity, device -> pooled fallback,
+    split-conformal thresholds, percentile severity, explanations. Trimming in unlabelled
+    mode.
+  - `behavior/calibrate.py`: versioned artifact with SHA-256, schema and feature-list checks,
+    cold start, and the threat-model domain check.
+  - `behavior/monitor.py`: scoring against a frozen profile; baseline state (monitoring /
+    drift_suspected / stale). No online learning.
+  - CLI `netsentinel calibrate`; vetted-benign mode requires `--assert-benign`.
+- **Decisions.**
+  - Window score = mean of the top-2 |z|.
+  - Scale floors: 0.25 for log features, 0.15 for fractions. A floor of 0.05 made fraction
+    features saturate at z = 20; seen on CTU-26 before any evaluation.
+  - Silent global windows have undefined (NaN) non-count features rather than 0, which had
+    made the distributions bimodal.
+- **Smoke run, CTU-26 Zeek log.** 12 s; 778 global windows; status baseline_ready. Threat
+  domain check: the bundle flags 1.48% of asserted-benign flows against a limit of 1%, so it
+  is marked unsupported.
+- **Tests.** `tests/unit/test_behavior.py`: 8 tests (causality, end-time assignment, burst
+  detection, cold start, trimming, artifact tamper/schema refusal, empty input, drift), all
+  passing.

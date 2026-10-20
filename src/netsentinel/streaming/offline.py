@@ -33,16 +33,11 @@ def detect_kind(path: Path) -> str:
     return "zeek"
 
 
-def analyze_capture(
-    path: str | Path,
-    bundle_dir: str | Path,
-    events_db: str | Path | None = None,
-    utc_offset_hours: float = 0.0,
-    kind: str = "auto",
-    source_name: str | None = None,
-) -> dict[str, Any]:
+def load_capture(path: str | Path, kind: str = "auto", utc_offset_hours: float = 0.0):
+    """Capture -> (canonical flow frame or None if empty, kind, parse statistics)."""
     path = Path(path)
-    name = source_name or path.name
+    if not path.exists():
+        raise FileNotFoundError(f"capture {path} not found")
     kind = detect_kind(path) if kind == "auto" else kind
     if kind == "pcap":
         pstats = ReadStats()
@@ -55,8 +50,23 @@ def analyze_capture(
     else:
         raise ValueError(f"unknown capture kind {kind!r}")
     if not records:
+        return None, kind, parse
+    return records_to_frame(records, utc_offset_hours), kind, parse
+
+
+def analyze_capture(
+    path: str | Path,
+    bundle_dir: str | Path,
+    events_db: str | Path | None = None,
+    utc_offset_hours: float = 0.0,
+    kind: str = "auto",
+    source_name: str | None = None,
+) -> dict[str, Any]:
+    path = Path(path)
+    name = source_name or path.name
+    frame, kind, parse = load_capture(path, kind, utc_offset_hours)
+    if frame is None:
         return {"source": name, "kind": kind, "flows": 0, "parse": parse}
-    frame = records_to_frame(records, utc_offset_hours)
     engine = Engine(bundle_dir)
     store = EventStore(events_db) if events_db else None
     source = f"{kind}:{name}"
