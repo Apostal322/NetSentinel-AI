@@ -64,11 +64,9 @@ def calibrate_flows(frame: pl.DataFrame, *, window_s: int = 30, mode: str = "vet
         "insufficient_history")  # fmt: skip
     levels_out = {}
     if status == "baseline_ready":
-        for level in levels:
-            agg = aggregate(flows, level, window_s)
-            fit = agg.filter(pl.col("win") < cut)
-            hold = agg.filter(pl.col("win") >= cut)
-            levels_out[level] = fit_level(fit, hold, level, target_fpr, min_windows, mode, top_k)
+        windows = {level: aggregate(flows, level, window_s) for level in levels}
+        levels_out = calibrate_windows(windows, cut, target_fpr=target_fpr,
+                                       min_windows=min_windows, mode=mode, top_k=top_k)  # fmt: skip
     else:
         missing_s = (need_fit - fit_windows) / fit_fraction * window_s
         diagnostics["cold_start"] = (
@@ -80,6 +78,19 @@ def calibrate_flows(frame: pl.DataFrame, *, window_s: int = 30, mode: str = "vet
                            min_windows=min_windows, top_k=top_k, levels=levels_out,
                            known_dst=known, status=status, period=period,
                            diagnostics=diagnostics)  # fmt: skip
+
+
+def calibrate_windows(windows: dict[str, pl.DataFrame], cut_win: int, *, target_fpr: float,
+                      min_windows: int, mode: str, top_k: int = 2) -> dict:  # fmt: skip
+    """Fit level profiles from pre-aggregated calibration windows: windows with index below
+    `cut_win` fit the profile, the rest are held out for thresholds. Used by
+    `calibrate_flows` and by chunked (per-day) research pipelines."""
+    out = {}
+    for level, agg in windows.items():
+        fit = agg.filter(pl.col("win") < cut_win)
+        hold = agg.filter(pl.col("win") >= cut_win)
+        out[level] = fit_level(fit, hold, level, target_fpr, min_windows, mode, top_k)
+    return out
 
 
 def threat_domain_check(engine, frame: pl.DataFrame, max_ratio: float = 10.0,

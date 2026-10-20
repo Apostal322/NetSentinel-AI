@@ -169,3 +169,21 @@ def test_zeek_tsv_and_json(tmp_path):
                  '"orig_pkts": 1, "resp_pkts": 1, "history": "S"}\n', encoding="utf-8")  # fmt: skip
     df = records_to_frame(read_conn_log(j))
     assert df["min_ttl"].null_count() == 1  # Zeek has no TTL: stays missing, not invented
+
+
+def test_zeek_iot23_space_joined_label_columns_and_extras(tmp_path):
+    hdr = ("#separator \x09\n#fields\tts\tuid\tid.orig_h\tid.orig_p\tid.resp_h\tid.resp_p\tproto"
+           "\tduration\torig_ip_bytes\tresp_ip_bytes\torig_pkts\tresp_pkts\thistory"
+           "\ttunnel_parents   label   detailed-label\n")  # fmt: skip
+    rows = ("1.0\tC1\t10.0.0.1\t5000\t1.2.3.4\t80\ttcp\t0.5\t100\t200\t2\t2\tShAD"
+            "\t-   Malicious   C&C\n"
+            "2.0\tC2\t10.0.0.1\t5001\t1.2.3.4\t443\ttcp\t0.5\t100\t200\t2\t2\tShAD"
+            "\t-   Benign   -\n")  # fmt: skip
+    p = tmp_path / "conn.log.labeled"
+    p.write_text(hdr + rows)
+    stats = ZeekStats()
+    def flag(d: dict) -> float:
+        return 1.0 if d.get("label", "").lower() == "malicious" else 0.0
+
+    recs = list(read_conn_log(p, stats, extras={"IS_ATTACK": flag}))
+    assert stats.skipped == {} and [r["IS_ATTACK"] for r in recs] == [1.0, 0.0]

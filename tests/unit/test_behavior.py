@@ -13,8 +13,13 @@ from netsentinel.behavior.windows import aggregate, prepare_flows
 HOSTS = [f"10.0.0.{i}" for i in range(1, 5)]
 
 
-def synth(minutes: int, seed: int = 0, start_ms: int = 1_600_000_000_000,
-          burst_at_min: int | None = None, burst_host: str = "10.0.0.1") -> pl.DataFrame:  # fmt: skip
+def synth(
+    minutes: int,
+    seed: int = 0,
+    start_ms: int = 1_600_000_000_000,
+    burst_at_min: int | None = None,
+    burst_host: str = "10.0.0.1",
+) -> pl.DataFrame:
     """Steady web/DNS traffic from 4 hosts; optional 1-minute port-scan burst."""
     rng = np.random.default_rng(seed)
     rows = []

@@ -39,6 +39,7 @@ EXPLAIN = {
     "upload_share": "upload_download_balance", "new_dst_frac": "previously_unseen_destinations",
 }  # fmt: skip
 LEVELS = ("global", "device", "service")
+PASSTHROUGH = ("is_attack", "zeek_service")  # evaluation-only columns, never features
 REQUIRED = ("ipv4_src_addr", "ipv4_dst_addr", "dst_port", "protocol", "in_bytes", "out_bytes",
             "in_pkts", "out_pkts", "flow_duration_milliseconds")  # fmt: skip
 
@@ -79,6 +80,7 @@ def prepare_flows(df: pl.DataFrame, service_col: str | None = None) -> pl.DataFr
         ((pl.col("protocol") == 6) & rst).cast(pl.Float64).alias("rst"),
         (pl.col("protocol") == 17).cast(pl.Float64).alias("udp"),
         pl.col("flow_duration_milliseconds").cast(pl.Float64).fill_null(0).alias("dur_ms"),
+        *[pl.col(c) for c in PASSTHROUGH if c in df.columns],
     ).sort("end_ms")
 
 
@@ -93,17 +95,20 @@ def _key_expr(level: str) -> pl.Expr:
 
 
 def aggregate(flows: pl.DataFrame, level: str, window_s: int,
-              known_dst: set[str] | None = None) -> pl.DataFrame:  # fmt: skip
+              known_dst: set[str] | None = None,
+              prior_dst: set[str] | None = None) -> pl.DataFrame:  # fmt: skip
     """Entity-window features. `known_dst`: destinations considered already seen (frozen
     calibration set at scoring time); if None, the set expands causally over the stream
-    (a destination is 'new' in a window if it never appeared in an EARLIER window)."""
+    (a destination is 'new' in a window if it never appeared in an EARLIER window, nor in
+    `prior_dst` - destinations of earlier chunks when a stream is processed in chunks)."""
     w_ms = window_s * 1000
     f = flows.with_columns((pl.col("end_ms") // w_ms).alias("win"), _key_expr(level))
     if known_dst is None:
         first = f.group_by("dst").agg(pl.col("win").min().alias("first_win"))
-        f = f.join(first, on="dst").with_columns(
-            (pl.col("win") == pl.col("first_win")).cast(pl.Float64).alias("is_new")
-        )
+        new = pl.col("win") == pl.col("first_win")
+        if prior_dst:
+            new = new & ~pl.col("dst").is_in(list(prior_dst))
+        f = f.join(first, on="dst").with_columns(new.cast(pl.Float64).alias("is_new"))
     else:
         f = f.with_columns((~pl.col("dst").is_in(list(known_dst))).cast(pl.Float64).alias("is_new"))
     g = f.group_by("key", "win").agg(

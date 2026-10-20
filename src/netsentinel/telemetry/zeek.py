@@ -9,13 +9,16 @@ Mapping (only fields Zeek actually provides; everything else stays missing):
   history -> CLIENT/SERVER_TCP_FLAGS: uppercase = originator, lowercase = responder;
             S/s,h SYN (h = SYN+ACK), A/a ACK, D/d PSH (data seen - an approximation),
             F/f FIN, R/r RST.
-Unparseable lines are counted and skipped.
+Unparseable lines are counted and skipped. IoT-23 `conn.log.labeled` files separate their
+last three columns (tunnel_parents, label, detailed-label) by spaces instead of tabs; such
+lines are repaired. `extras` maps output names to functions of the raw field dict (numeric
+values only, e.g. an attack flag from `label`), so labels stay aligned with their records.
 """
 
 from __future__ import annotations
 
 import json
-from collections.abc import Iterator
+from collections.abc import Callable, Iterator
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -66,8 +69,12 @@ def _record(d: dict) -> dict:
     }  # fmt: skip
 
 
-def read_conn_log(path: str | Path, stats: ZeekStats | None = None,
-                  max_bytes: int = 2 * 1024**3) -> Iterator[dict]:  # fmt: skip
+def read_conn_log(
+    path: str | Path,
+    stats: ZeekStats | None = None,
+    max_bytes: int = 2 * 1024**3,
+    extras: dict[str, Callable[[dict], float]] | None = None,
+) -> Iterator[dict]:
     path = Path(path)
     if path.stat().st_size > max_bytes:
         raise ValueError(f"{path.name} exceeds the {max_bytes}-byte limit")
@@ -87,13 +94,16 @@ def read_conn_log(path: str | Path, stats: ZeekStats | None = None,
                     if line.startswith("#separator"):
                         sep = line.split(" ", 1)[1].encode().decode("unicode_escape")
                     elif line.startswith("#fields"):
-                        fields = line.split(sep)[1:]
+                        # IoT-23 headers also join their last columns with spaces
+                        fields = [f for part in line.split(sep)[1:] for f in part.split()]
                     continue
                 else:
                     if fields is None:
                         stats.skip("no_fields_header")
                         continue
                     vals = line.split(sep)
+                    if len(vals) < len(fields) and " " in vals[-1]:  # IoT-23 label columns
+                        vals = vals[:-1] + vals[-1].split()
                     if len(vals) != len(fields):
                         stats.skip("field_count")
                         continue
@@ -102,6 +112,8 @@ def read_conn_log(path: str | Path, stats: ZeekStats | None = None,
                     stats.skip("missing_core_fields")
                     continue
                 rec = _record(d)
+                for name, fn in (extras or {}).items():
+                    rec[name] = fn(d)
             except (ValueError, KeyError, TypeError):
                 stats.skip("unparseable")
                 continue

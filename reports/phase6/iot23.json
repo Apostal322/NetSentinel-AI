@@ -1,0 +1,1210 @@
+{
+ "scenarios": {
+  "CTU-Honeypot-Capture-4-1": {
+   "cal_flows": 234,
+   "cal_attack_share": 0.0,
+   "eval_flows": 218,
+   "eval_attack_share": 0.0,
+   "eval_hours": 10.896650555555556,
+   "clean": {
+    "status": "baseline_ready",
+    "robustz_global": {
+     "windows": 1309,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.006111535523300229,
+     "fa_per_h": 0.7341705562835796,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "robustz_device": {
+     "windows": 87,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.06896551724137931,
+     "fa_per_h": 0.5506279172126848,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "robustz_service": {
+     "windows": 133,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.06015037593984962,
+     "fa_per_h": 0.7341705562835796,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "iforest_global": {
+     "windows": 1309,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.008403361344537815,
+     "fa_per_h": 1.009484514889922,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "iforest_device": {
+     "windows": 87,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.13793103448275862,
+     "fa_per_h": 1.1012558344253696,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "iforest_service": {
+     "windows": 133,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.045112781954887216,
+     "fa_per_h": 0.5506279172126848,
+     "precision": 0.0,
+     "roc_auc": null
+    }
+   },
+   "unlabelled": {
+    "status": "baseline_ready",
+    "robustz_global": {
+     "windows": 1309,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.006875477463712758,
+     "fa_per_h": 0.8259418758190271,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "robustz_device": {
+     "windows": 87,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.06896551724137931,
+     "fa_per_h": 0.5506279172126848,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "robustz_service": {
+     "windows": 133,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.045112781954887216,
+     "fa_per_h": 0.5506279172126848,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "iforest_global": {
+     "windows": 1309,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.008403361344537815,
+     "fa_per_h": 1.009484514889922,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "iforest_device": {
+     "windows": 87,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.13793103448275862,
+     "fa_per_h": 1.1012558344253696,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "iforest_service": {
+     "windows": 133,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.045112781954887216,
+     "fa_per_h": 0.5506279172126848,
+     "precision": 0.0,
+     "roc_auc": null
+    }
+   },
+   "parse": {
+    "lines": 461,
+    "records": 452,
+    "skipped": {}
+   }
+  },
+  "CTU-Honeypot-Capture-5-1": {
+   "cal_flows": 745,
+   "cal_attack_share": 0.0,
+   "eval_flows": 629,
+   "eval_attack_share": 0.0,
+   "eval_hours": 2.7150527777777778,
+   "clean": {
+    "status": "baseline_ready",
+    "robustz_global": {
+     "windows": 327,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": null,
+     "roc_auc": null
+    },
+    "robustz_device": {
+     "windows": 295,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.010169491525423728,
+     "fa_per_h": 1.104950896186794,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "robustz_service": {
+     "windows": 309,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.003236245954692557,
+     "fa_per_h": 0.368316965395598,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "iforest_global": {
+     "windows": 327,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.0061162079510703364,
+     "fa_per_h": 0.736633930791196,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "iforest_device": {
+     "windows": 295,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.003389830508474576,
+     "fa_per_h": 0.368316965395598,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "iforest_service": {
+     "windows": 309,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": null,
+     "roc_auc": null
+    }
+   },
+   "unlabelled": {
+    "status": "baseline_ready",
+    "robustz_global": {
+     "windows": 327,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": null,
+     "roc_auc": null
+    },
+    "robustz_device": {
+     "windows": 295,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.010169491525423728,
+     "fa_per_h": 1.104950896186794,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "robustz_service": {
+     "windows": 309,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.003236245954692557,
+     "fa_per_h": 0.368316965395598,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "iforest_global": {
+     "windows": 327,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.0061162079510703364,
+     "fa_per_h": 0.736633930791196,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "iforest_device": {
+     "windows": 295,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.003389830508474576,
+     "fa_per_h": 0.368316965395598,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "iforest_service": {
+     "windows": 309,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": null,
+     "roc_auc": null
+    }
+   },
+   "parse": {
+    "lines": 1383,
+    "records": 1374,
+    "skipped": {}
+   }
+  },
+  "CTU-IoT-Malware-Capture-20-1": {
+   "cal_flows": 1866,
+   "cal_attack_share": 0.008038585209003215,
+   "eval_flows": 1343,
+   "eval_attack_share": 0.0007446016381236039,
+   "eval_hours": 11.987691111111111,
+   "clean": {
+    "status": "baseline_ready",
+    "robustz_global": {
+     "windows": 1439,
+     "attack_windows": 1,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 44328.372
+    },
+    "robustz_device": {
+     "windows": 835,
+     "attack_windows": 1,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 44328.372
+    },
+    "robustz_service": {
+     "windows": 903,
+     "attack_windows": 1,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 44328.372
+    },
+    "iforest_global": {
+     "windows": 1439,
+     "attack_windows": 1,
+     "recall": 1.0,
+     "fpr": 0.006954102920723227,
+     "fa_per_h": 0.8341889949709526,
+     "precision": 0.09090909090909091,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 44328.372
+    },
+    "iforest_device": {
+     "windows": 835,
+     "attack_windows": 1,
+     "recall": 1.0,
+     "fpr": 0.004796163069544364,
+     "fa_per_h": 0.33367559798838103,
+     "precision": 0.2,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 44328.372
+    },
+    "iforest_service": {
+     "windows": 903,
+     "attack_windows": 1,
+     "recall": 1.0,
+     "fpr": 0.0066518847006651885,
+     "fa_per_h": 0.5005133969825716,
+     "precision": 0.14285714285714285,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 44328.372
+    }
+   },
+   "unlabelled": {
+    "status": "baseline_ready",
+    "robustz_global": {
+     "windows": 1439,
+     "attack_windows": 1,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 44328.372
+    },
+    "robustz_device": {
+     "windows": 835,
+     "attack_windows": 1,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 44328.372
+    },
+    "robustz_service": {
+     "windows": 903,
+     "attack_windows": 1,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 44328.372
+    },
+    "iforest_global": {
+     "windows": 1439,
+     "attack_windows": 1,
+     "recall": 1.0,
+     "fpr": 0.0013908205841446453,
+     "fa_per_h": 0.16683779899419052,
+     "precision": 0.3333333333333333,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 44328.372
+    },
+    "iforest_device": {
+     "windows": 835,
+     "attack_windows": 1,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 44328.372
+    },
+    "iforest_service": {
+     "windows": 903,
+     "attack_windows": 1,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 44328.372
+    }
+   },
+   "parse": {
+    "lines": 3218,
+    "records": 3209,
+    "skipped": {}
+   }
+  },
+  "CTU-IoT-Malware-Capture-21-1": {
+   "cal_flows": 2681,
+   "cal_attack_share": 0.004475941812756434,
+   "eval_flows": 605,
+   "eval_attack_share": 0.003305785123966942,
+   "eval_hours": 11.993764166666667,
+   "clean": {
+    "status": "baseline_ready",
+    "robustz_global": {
+     "windows": 1441,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0006949270326615705,
+     "fa_per_h": 0.08337666024643223,
+     "precision": 0.6666666666666666,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 25977.0825
+    },
+    "robustz_device": {
+     "windows": 333,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0030211480362537764,
+     "fa_per_h": 0.08337666024643223,
+     "precision": 0.6666666666666666,
+     "roc_auc": 0.9984894259818731,
+     "median_detection_delay_s": 25977.0825
+    },
+    "robustz_service": {
+     "windows": 365,
+     "attack_windows": 2,
+     "recall": 0.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": null,
+     "roc_auc": 0.977961432506887
+    },
+    "iforest_global": {
+     "windows": 1441,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 25977.0825
+    },
+    "iforest_device": {
+     "windows": 333,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0030211480362537764,
+     "fa_per_h": 0.08337666024643223,
+     "precision": 0.6666666666666666,
+     "roc_auc": 0.9984894259818731,
+     "median_detection_delay_s": 25977.0825
+    },
+    "iforest_service": {
+     "windows": 365,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0027548209366391185,
+     "fa_per_h": 0.08337666024643223,
+     "precision": 0.6666666666666666,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 25977.0825
+    }
+   },
+   "unlabelled": {
+    "status": "baseline_ready",
+    "robustz_global": {
+     "windows": 1441,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 25977.0825
+    },
+    "robustz_device": {
+     "windows": 333,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0030211480362537764,
+     "fa_per_h": 0.08337666024643223,
+     "precision": 0.6666666666666666,
+     "roc_auc": 0.9984894259818731,
+     "median_detection_delay_s": 25977.0825
+    },
+    "robustz_service": {
+     "windows": 365,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 25977.0825
+    },
+    "iforest_global": {
+     "windows": 1441,
+     "attack_windows": 2,
+     "recall": 0.5,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 0.9975677553856845,
+     "median_detection_delay_s": 22418.177
+    },
+    "iforest_device": {
+     "windows": 333,
+     "attack_windows": 2,
+     "recall": 0.5,
+     "fpr": 0.0030211480362537764,
+     "fa_per_h": 0.08337666024643223,
+     "precision": 0.5,
+     "roc_auc": 0.9969788519637462,
+     "median_detection_delay_s": 22418.177
+    },
+    "iforest_service": {
+     "windows": 365,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0027548209366391185,
+     "fa_per_h": 0.08337666024643223,
+     "precision": 0.6666666666666666,
+     "roc_auc": 0.9972451790633609,
+     "median_detection_delay_s": 25977.0825
+    }
+   },
+   "parse": {
+    "lines": 3295,
+    "records": 3286,
+    "skipped": {}
+   }
+  },
+  "CTU-IoT-Malware-Capture-3-1": {
+   "cal_flows": 77547,
+   "cal_attack_share": 0.9692315627941764,
+   "eval_flows": 78556,
+   "eval_attack_share": 0.9726309893579103,
+   "eval_hours": 18.058358055555555,
+   "clean": {
+    "status": "baseline_ready",
+    "robustz_global": {
+     "windows": 2168,
+     "attack_windows": 2168,
+     "recall": 0.974169741697417,
+     "fpr": null,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": null,
+     "median_detection_delay_s": 32.0975
+    },
+    "robustz_device": {
+     "windows": 2737,
+     "attack_windows": 2168,
+     "recall": 0.7126383763837638,
+     "fpr": 0.0035149384885764497,
+     "fa_per_h": 0.11075204034869111,
+     "precision": 0.9987071751777634,
+     "roc_auc": 0.998945356325268,
+     "median_detection_delay_s": 32.387
+    },
+    "robustz_service": {
+     "windows": 3999,
+     "attack_windows": 3293,
+     "recall": 0.0,
+     "fpr": 0.0084985835694051,
+     "fa_per_h": 0.3322561210460733,
+     "precision": 0.0,
+     "roc_auc": 0.9664495638013161
+    },
+    "iforest_global": {
+     "windows": 2168,
+     "attack_windows": 2168,
+     "recall": 0.9520295202952029,
+     "fpr": null,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": null,
+     "median_detection_delay_s": 32.1085
+    },
+    "iforest_device": {
+     "windows": 2737,
+     "attack_windows": 2168,
+     "recall": 0.8777675276752768,
+     "fpr": 0.005272407732864675,
+     "fa_per_h": 0.16612806052303666,
+     "precision": 0.9984260230849947,
+     "roc_auc": 0.9991236973002419,
+     "median_detection_delay_s": 32.209
+    },
+    "iforest_service": {
+     "windows": 3999,
+     "attack_windows": 3293,
+     "recall": 0.3413300941390829,
+     "fpr": 0.00141643059490085,
+     "fa_per_h": 0.05537602017434556,
+     "precision": 0.9991111111111111,
+     "roc_auc": 0.9988085293811493,
+     "median_detection_delay_s": 32.5445
+    }
+   },
+   "unlabelled": {
+    "status": "baseline_ready",
+    "robustz_global": {
+     "windows": 2168,
+     "attack_windows": 2168,
+     "recall": 0.0027675276752767526,
+     "fpr": null,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": null,
+     "median_detection_delay_s": 32.826499999999996
+    },
+    "robustz_device": {
+     "windows": 2737,
+     "attack_windows": 2168,
+     "recall": 0.008763837638376383,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 0.9940369263095091,
+     "median_detection_delay_s": 31.832
+    },
+    "robustz_service": {
+     "windows": 3999,
+     "attack_windows": 3293,
+     "recall": 0.0003036744609778318,
+     "fpr": 0.029745042492917848,
+     "fa_per_h": 1.1628964236612567,
+     "precision": 0.045454545454545456,
+     "roc_auc": 0.4834338269262037,
+     "median_detection_delay_s": 93304.113
+    },
+    "iforest_global": {
+     "windows": 2168,
+     "attack_windows": 2168,
+     "recall": 0.017988929889298892,
+     "fpr": null,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": null,
+     "median_detection_delay_s": 32.534
+    },
+    "iforest_device": {
+     "windows": 2737,
+     "attack_windows": 2168,
+     "recall": 0.017527675276752766,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 0.7043755147569051,
+     "median_detection_delay_s": 32.3595
+    },
+    "iforest_service": {
+     "windows": 3999,
+     "attack_windows": 3293,
+     "recall": 0.015183723048891588,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 0.2645834713345933,
+     "median_detection_delay_s": 32.5655
+    }
+   },
+   "parse": {
+    "lines": 156112,
+    "records": 156103,
+    "skipped": {}
+   }
+  },
+  "CTU-IoT-Malware-Capture-34-1": {
+   "cal_flows": 4919,
+   "cal_attack_share": 0.7194551738158163,
+   "eval_flows": 18226,
+   "eval_attack_share": 0.9702073960276528,
+   "eval_hours": 11.98290361111111,
+   "clean": {
+    "status": "baseline_ready",
+    "robustz_global": {
+     "windows": 1439,
+     "attack_windows": 943,
+     "recall": 0.44750795334040294,
+     "fpr": 0.004032258064516129,
+     "fa_per_h": 0.16690445528957656,
+     "precision": 0.9952830188679245,
+     "roc_auc": 0.9055989806041118,
+     "median_detection_delay_s": 29.578
+    },
+    "robustz_device": {
+     "windows": 1120,
+     "attack_windows": 943,
+     "recall": 0.44750795334040294,
+     "fpr": 0.011299435028248588,
+     "fa_per_h": 0.16690445528957656,
+     "precision": 0.9952830188679245,
+     "roc_auc": 0.741161457303593,
+     "median_detection_delay_s": 29.578
+    },
+    "robustz_service": {
+     "windows": 1349,
+     "attack_windows": 946,
+     "recall": 0.2864693446088795,
+     "fpr": 0.009925558312655087,
+     "fa_per_h": 0.33380891057915313,
+     "precision": 0.9854545454545455,
+     "roc_auc": 0.5542469533467282,
+     "median_detection_delay_s": 29.287
+    },
+    "iforest_global": {
+     "windows": 1439,
+     "attack_windows": 943,
+     "recall": 1.0,
+     "fpr": 0.02217741935483871,
+     "fa_per_h": 0.9179745040926711,
+     "precision": 0.9884696016771488,
+     "roc_auc": 0.99819767044094,
+     "median_detection_delay_s": 40.127
+    },
+    "iforest_device": {
+     "windows": 1120,
+     "attack_windows": 943,
+     "recall": 0.9915164369034994,
+     "fpr": 0.03389830508474576,
+     "fa_per_h": 0.5007133658687297,
+     "precision": 0.9936238044633369,
+     "roc_auc": 0.9995147114330392,
+     "median_detection_delay_s": 40.42
+    },
+    "iforest_service": {
+     "windows": 1349,
+     "attack_windows": 946,
+     "recall": 0.9556025369978859,
+     "fpr": 0.04218362282878412,
+     "fa_per_h": 1.418687869961401,
+     "precision": 0.9815418023887079,
+     "roc_auc": 0.9906475744810328,
+     "median_detection_delay_s": 41.010999999999996
+    }
+   },
+   "unlabelled": {
+    "status": "baseline_ready",
+    "robustz_global": {
+     "windows": 1439,
+     "attack_windows": 943,
+     "recall": 0.02014846235418876,
+     "fpr": 0.006048387096774193,
+     "fa_per_h": 0.25035668293436486,
+     "precision": 0.8636363636363636,
+     "roc_auc": 0.674686997571238,
+     "median_detection_delay_s": 43.768
+    },
+    "robustz_device": {
+     "windows": 1120,
+     "attack_windows": 943,
+     "recall": 0.013785790031813362,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 0.053693285643247,
+     "median_detection_delay_s": 44.547
+    },
+    "robustz_service": {
+     "windows": 1349,
+     "attack_windows": 946,
+     "recall": 0.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": null,
+     "roc_auc": 0.20936003231577124
+    },
+    "iforest_global": {
+     "windows": 1439,
+     "attack_windows": 943,
+     "recall": 0.018027571580063628,
+     "fpr": 0.014112903225806451,
+     "fa_per_h": 0.584165593513518,
+     "precision": 0.7083333333333334,
+     "roc_auc": 0.7351986624704957,
+     "median_detection_delay_s": 44.547
+    },
+    "iforest_device": {
+     "windows": 1120,
+     "attack_windows": 943,
+     "recall": 0.018027571580063628,
+     "fpr": 0.02824858757062147,
+     "fa_per_h": 0.41726113822394145,
+     "precision": 0.7727272727272727,
+     "roc_auc": 0.7294126810096399,
+     "median_detection_delay_s": 42.826
+    },
+    "iforest_service": {
+     "windows": 1349,
+     "attack_windows": 946,
+     "recall": 0.013742071881606765,
+     "fpr": 0.019851116625310174,
+     "fa_per_h": 0.6676178211583063,
+     "precision": 0.6190476190476191,
+     "roc_auc": 0.8284378787004444,
+     "median_detection_delay_s": 956.218
+    }
+   },
+   "parse": {
+    "lines": 23154,
+    "records": 23145,
+    "skipped": {}
+   }
+  },
+  "CTU-IoT-Malware-Capture-42-1": {
+   "cal_flows": 3839,
+   "cal_attack_share": 0.0015629070070330815,
+   "eval_flows": 587,
+   "eval_attack_share": 0.0,
+   "eval_hours": 4.171443055555556,
+   "clean": {
+    "status": "baseline_ready",
+    "robustz_global": {
+     "windows": 501,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.029940119760479042,
+     "fa_per_h": 3.5958779252716635,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "robustz_device": {
+     "windows": 270,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.05555555555555555,
+     "fa_per_h": 3.5958779252716635,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "robustz_service": {
+     "windows": 338,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.0029585798816568047,
+     "fa_per_h": 0.2397251950181109,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "iforest_global": {
+     "windows": 501,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.09580838323353294,
+     "fa_per_h": 11.506809360869322,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "iforest_device": {
+     "windows": 270,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.02962962962962963,
+     "fa_per_h": 1.9178015601448872,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "iforest_service": {
+     "windows": 338,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.2514792899408284,
+     "fa_per_h": 20.376641576539427,
+     "precision": 0.0,
+     "roc_auc": null
+    }
+   },
+   "unlabelled": {
+    "status": "baseline_ready",
+    "robustz_global": {
+     "windows": 501,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.003992015968063872,
+     "fa_per_h": 0.4794503900362218,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "robustz_device": {
+     "windows": 270,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": null,
+     "roc_auc": null
+    },
+    "robustz_service": {
+     "windows": 338,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.0029585798816568047,
+     "fa_per_h": 0.2397251950181109,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "iforest_global": {
+     "windows": 501,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.07984031936127745,
+     "fa_per_h": 9.589007800724437,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "iforest_device": {
+     "windows": 270,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.044444444444444446,
+     "fa_per_h": 2.8767023402173306,
+     "precision": 0.0,
+     "roc_auc": null
+    },
+    "iforest_service": {
+     "windows": 338,
+     "attack_windows": 0,
+     "recall": null,
+     "fpr": 0.2455621301775148,
+     "fa_per_h": 19.897191186503203,
+     "precision": 0.0,
+     "roc_auc": null
+    }
+   },
+   "parse": {
+    "lines": 4435,
+    "records": 4426,
+    "skipped": {}
+   }
+  },
+  "CTU-IoT-Malware-Capture-44-1": {
+   "cal_flows": 173,
+   "cal_attack_share": 0.13872832369942195,
+   "eval_flows": 64,
+   "eval_attack_share": 0.03125,
+   "eval_hours": 0.9537880555555556,
+   "clean": {
+    "status": "baseline_ready",
+    "robustz_global": {
+     "windows": 116,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 3574.8105
+    },
+    "robustz_device": {
+     "windows": 47,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 3574.8105
+    },
+    "robustz_service": {
+     "windows": 48,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 3574.8105
+    },
+    "iforest_global": {
+     "windows": 116,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 3574.8105
+    },
+    "iforest_device": {
+     "windows": 47,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 3574.8105
+    },
+    "iforest_service": {
+     "windows": 48,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 3574.8105
+    }
+   },
+   "unlabelled": {
+    "status": "baseline_ready",
+    "robustz_global": {
+     "windows": 116,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 3574.8105
+    },
+    "robustz_device": {
+     "windows": 47,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 3574.8105
+    },
+    "robustz_service": {
+     "windows": 48,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 3574.8105
+    },
+    "iforest_global": {
+     "windows": 116,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 3574.8105
+    },
+    "iforest_device": {
+     "windows": 47,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 3574.8105
+    },
+    "iforest_service": {
+     "windows": 48,
+     "attack_windows": 2,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 3574.8105
+    }
+   },
+   "parse": {
+    "lines": 246,
+    "records": 237,
+    "skipped": {}
+   }
+  },
+  "CTU-IoT-Malware-Capture-8-1": {
+   "cal_flows": 5015,
+   "cal_attack_share": 0.7784646061814556,
+   "eval_flows": 5388,
+   "eval_attack_share": 0.8014105419450631,
+   "eval_hours": 11.997466388888888,
+   "clean": {
+    "status": "baseline_ready",
+    "robustz_global": {
+     "windows": 1441,
+     "attack_windows": 1441,
+     "recall": 0.9729354614850798,
+     "fpr": null,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": null,
+     "median_detection_delay_s": 25.665
+    },
+    "robustz_device": {
+     "windows": 1441,
+     "attack_windows": 1441,
+     "recall": 0.027064538514920196,
+     "fpr": null,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": null,
+     "median_detection_delay_s": 18.384
+    },
+    "robustz_service": {
+     "windows": 2254,
+     "attack_windows": 1441,
+     "recall": 0.055517002081887576,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 0.9994191371476518,
+     "median_detection_delay_s": 18.384
+    },
+    "iforest_global": {
+     "windows": 1441,
+     "attack_windows": 1441,
+     "recall": 0.9986120749479528,
+     "fpr": null,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": null,
+     "median_detection_delay_s": 25.526
+    },
+    "iforest_device": {
+     "windows": 1441,
+     "attack_windows": 1441,
+     "recall": 0.890353920888272,
+     "fpr": null,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": null,
+     "median_detection_delay_s": 25.711
+    },
+    "iforest_service": {
+     "windows": 2254,
+     "attack_windows": 1441,
+     "recall": 1.0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": 1.0,
+     "median_detection_delay_s": 25.505
+    }
+   },
+   "unlabelled": {
+    "status": "baseline_ready",
+    "robustz_global": {
+     "windows": 1441,
+     "attack_windows": 1441,
+     "recall": 0.01457321304649549,
+     "fpr": null,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": null,
+     "median_detection_delay_s": 18.148
+    },
+    "robustz_device": {
+     "windows": 1441,
+     "attack_windows": 1441,
+     "recall": 0.01457321304649549,
+     "fpr": null,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": null,
+     "median_detection_delay_s": 18.148
+    },
+    "robustz_service": {
+     "windows": 2254,
+     "attack_windows": 1441,
+     "recall": 0.016655100624566273,
+     "fpr": 0.0012300123001230013,
+     "fa_per_h": 0.08335093157052904,
+     "precision": 0.96,
+     "roc_auc": 0.6088774281219564,
+     "median_detection_delay_s": 18.4645
+    },
+    "iforest_global": {
+     "windows": 1441,
+     "attack_windows": 1441,
+     "recall": 0.0006939625260235947,
+     "fpr": null,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": null,
+     "median_detection_delay_s": 19.969
+    },
+    "iforest_device": {
+     "windows": 1441,
+     "attack_windows": 1441,
+     "recall": 0.0006939625260235947,
+     "fpr": null,
+     "fa_per_h": 0.0,
+     "precision": 1.0,
+     "roc_auc": null,
+     "median_detection_delay_s": 19.969
+    },
+    "iforest_service": {
+     "windows": 2254,
+     "attack_windows": 1441,
+     "recall": 0.0,
+     "fpr": 0.017220172201722016,
+     "fa_per_h": 1.1669130419874068,
+     "precision": 0.0,
+     "roc_auc": 0.6298251948515321
+    }
+   },
+   "parse": {
+    "lines": 10412,
+    "records": 10403,
+    "skipped": {}
+   }
+  }
+ },
+ "meta": {
+  "seconds": 28.3,
+  "peak_rss_mb": 730.93359375
+ }
+}

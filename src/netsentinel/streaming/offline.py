@@ -33,7 +33,8 @@ def detect_kind(path: Path) -> str:
     return "zeek"
 
 
-def load_capture(path: str | Path, kind: str = "auto", utc_offset_hours: float = 0.0):
+def load_capture(path: str | Path, kind: str = "auto", utc_offset_hours: float = 0.0,
+                 zeek_extras: dict | None = None):  # fmt: skip
     """Capture -> (canonical flow frame or None if empty, kind, parse statistics)."""
     path = Path(path)
     if not path.exists():
@@ -45,7 +46,7 @@ def load_capture(path: str | Path, kind: str = "auto", utc_offset_hours: float =
         parse = asdict(pstats)
     elif kind == "zeek":
         zstats = ZeekStats()
-        records = list(read_conn_log(path, zstats))
+        records = list(read_conn_log(path, zstats, extras=zeek_extras))
         parse = asdict(zstats)
     else:
         raise ValueError(f"unknown capture kind {kind!r}")
