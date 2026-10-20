@@ -138,7 +138,8 @@ class EventStore:
         return cur.rowcount
 
     def behavior(self, level: str | None = None, anomalous_only: bool = False,
-                 source: str | None = None, limit: int = 500) -> list[dict[str, Any]]:  # fmt: skip
+                 source: str | None = None, limit: int = 500,
+                 offset: int = 0) -> list[dict[str, Any]]:  # fmt: skip
         where, args = [], []
         if level:
             where.append("level = ?")
@@ -149,8 +150,8 @@ class EventStore:
             where.append("source = ?")
             args.append(source)
         sql = "SELECT * FROM behavior_events" + (" WHERE " + " AND ".join(where) if where else "")
-        sql += " ORDER BY window_end DESC LIMIT ?"
-        cur = self._conn.execute(sql, (*args, max(1, min(int(limit), 5000))))
+        sql += " ORDER BY window_end DESC, event_id LIMIT ? OFFSET ?"
+        cur = self._conn.execute(sql, (*args, max(1, min(int(limit), 5000)), max(0, int(offset))))
         names = [d[0] for d in cur.description]
         out = [dict(zip(names, r, strict=True)) for r in cur.fetchall()]
         for o in out:

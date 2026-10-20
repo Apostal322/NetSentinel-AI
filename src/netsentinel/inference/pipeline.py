@@ -125,6 +125,11 @@ class AnalysisPipeline:
             v["appid"] = self.classifier_manifest["classifier_id"]
         return v
 
+    def _fpr_upper95(self, level: str) -> float | None:
+        lp = self.profile.levels.get(level) if self.profile else None
+        v = (getattr(lp, "threshold_diag", None) or {}).get("fpr_upper95") if lp else None
+        return float(v) if v is not None else None
+
     # ------------------------------------------------------------------ components
     def _application(self, frame: pl.DataFrame) -> list[ApplicationOut]:
         svc = frame.select(service_category_expr())["service"].to_list()
@@ -194,6 +199,7 @@ class AnalysisPipeline:
                 behavior_status="anomalous" if hit else "normal",
                 anomaly_score=None if sev is None or np.isnan(sev) else float(min(sev, 100.0)),
                 raw_score=float(r["score"]), threshold=float(r["threshold"]),
+                threshold_fpr_upper95=self._fpr_upper95(r["level"]),
                 model_scope=f"{r['level']}:{r['model_scope']}", level=r["level"],
                 entity=str(r["key"]), window_s=self.profile.window_s,
                 window_end=_utc(r["window_end_ms"]), baseline_status=state, calibration=cid,

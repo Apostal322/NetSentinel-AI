@@ -1,0 +1,399 @@
+{
+ "plan": "docs/phase8/RESEARCH_PLAN.md",
+ "git": "d838738",
+ "capture": "conn.log.labeled",
+ "versions": {
+  "polars": "2.0.0",
+  "numpy": "2.5.4",
+  "scikit-learn": "1.9.1",
+  "lightgbm": "4.7.0",
+  "torch": "2.14.1+cu126"
+ },
+ "pass0": {
+  "records": 5410561,
+  "attack_records": 5406896,
+  "min_end_ms": 1551383433016,
+  "max_end_ms": 1551409817668,
+  "mid_ms": 1551396625342,
+  "parse": {
+   "lines": 5410570,
+   "skipped": {}
+  },
+  "seconds": 65.3
+ },
+ "app_artifacts": {
+  "phase7": "appid-portable-20261020T184500Z",
+  "phase8": "appid-portable-20261020T201432Z"
+ },
+ "pass1": {
+  "stream": {
+   "records": 5410561,
+   "accepted": 5410561,
+   "duplicates": 0,
+   "late": 0,
+   "clock_skew": 0,
+   "forced_closes": 0,
+   "windows_closed": 880,
+   "max_buffered": 766093,
+   "watermark_ms": 1551406117668
+  },
+  "seconds": 530.8,
+  "peak_rss_mb": 2985.171875,
+  "flows": {
+   "cal": 2703959,
+   "eval": 2706602
+  }
+ },
+ "eval_hours": 3.664535,
+ "testability": {
+  "clean": {
+   "cal_windows": 1233,
+   "eval_attack_windows": 441,
+   "eval_benign_windows": 823,
+   "ok": true
+  },
+  "unlabelled": {
+   "cal_windows": 1269,
+   "eval_attack_windows": 441,
+   "eval_benign_windows": 823,
+   "ok": true
+  }
+ },
+ "exploratory_fpr_by_hour_utc": [
+  {
+   "h": 0,
+   "fpr": 0.01556420233463035,
+   "n": 257
+  },
+  {
+   "h": 1,
+   "fpr": 0.0,
+   "n": 199
+  },
+  {
+   "h": 2,
+   "fpr": 0.014634146341463415,
+   "n": 205
+  },
+  {
+   "h": 3,
+   "fpr": 0.0,
+   "n": 33
+  },
+  {
+   "h": 23,
+   "fpr": 0.015503875968992248,
+   "n": 129
+  }
+ ],
+ "exploratory_stream_vs_main_pass": {
+  "same_keys": true,
+  "main": 2290,
+  "stream": 2290
+ },
+ "hypotheses": {
+  "H1a": {
+   "variant": "clean",
+   "statistic": "PR-AUC(robust_z/base) - PR-AUC(guarded_ewma/base)",
+   "delta": 0.25245371722890075,
+   "ci95": [
+    0.2191359223731627,
+    0.29472887612661114
+   ],
+   "blocks": 4,
+   "resamples": 2000,
+   "skipped": 0,
+   "verdict": "supported",
+   "metrics": {
+    "cal_windows": 1233,
+    "fit_windows": 865,
+    "hold_windows": 368,
+    "eval_windows": 1264,
+    "robust_z/base": {
+     "windows": 1264,
+     "attack_windows": 441,
+     "pr_auc": 0.9281896060719075,
+     "roc_auc": 0.9902767101170156,
+     "recall": 1.0,
+     "fpr": 0.010935601458080195,
+     "fa_per_h": 2.4559732680954065,
+     "base_rate": 0.34889240506329117,
+     "recall_at_fpr1_oracle": 1.0,
+     "median_delay_s": 30.166,
+     "fit_seconds": 8.096,
+     "score_us_per_window": 326.91,
+     "threshold_reliable": true
+    },
+    "guarded_ewma/base": {
+     "windows": 1264,
+     "attack_windows": 441,
+     "pr_auc": 0.6757358888430067,
+     "roc_auc": 0.7862832455785068,
+     "recall": 0.006802721088435374,
+     "fpr": 0.002430133657351154,
+     "fa_per_h": 0.5457718373545347,
+     "base_rate": 0.34889240506329117,
+     "recall_at_fpr1_oracle": 0.024943310657596373,
+     "median_delay_s": 29.777,
+     "fit_seconds": 0.131,
+     "score_us_per_window": 238.27,
+     "threshold_reliable": true
+    }
+   }
+  },
+  "H1b": {
+   "variant": "unlabelled",
+   "statistic": "PR-AUC(guarded_ewma/base) - PR-AUC(robust_z/base)",
+   "delta": -0.08433743942132121,
+   "ci95": [
+    -0.11909047864992195,
+    -0.03491651951193042
+   ],
+   "blocks": 4,
+   "resamples": 2000,
+   "skipped": 0,
+   "verdict": "refuted",
+   "metrics": {
+    "cal_windows": 1269,
+    "fit_windows": 888,
+    "hold_windows": 381,
+    "eval_windows": 1264,
+    "robust_z/base": {
+     "windows": 1264,
+     "attack_windows": 441,
+     "pr_auc": 0.7225196857149099,
+     "roc_auc": 0.8065288488826069,
+     "recall": 0.018140589569160998,
+     "fpr": 0.010935601458080195,
+     "fa_per_h": 2.4559732680954065,
+     "base_rate": 0.34889240506329117,
+     "recall_at_fpr1_oracle": 0.0022675736961451248,
+     "median_delay_s": 30.4955,
+     "fit_seconds": 0.345,
+     "score_us_per_window": 54.76,
+     "threshold_reliable": true
+    },
+    "guarded_ewma/base": {
+     "windows": 1264,
+     "attack_windows": 441,
+     "pr_auc": 0.6381822462935887,
+     "roc_auc": 0.7553362373706064,
+     "recall": 0.009070294784580499,
+     "fpr": 0.007290400972053463,
+     "fa_per_h": 1.6373155120636043,
+     "base_rate": 0.34889240506329117,
+     "recall_at_fpr1_oracle": 0.018140589569160998,
+     "median_delay_s": 30.243000000000002,
+     "fit_seconds": 0.002,
+     "score_us_per_window": 215.79,
+     "threshold_reliable": true
+    }
+   }
+  },
+  "H2": {
+   "fpr": 0.010935601458080195,
+   "ci95": [
+    0.0050123070801171106,
+    0.020657290751474055
+   ],
+   "false_alerts": 9,
+   "benign_windows": 823,
+   "threshold": 7.5815031769647625,
+   "threshold_diag": {
+    "n": 1233,
+    "k": 1222,
+    "expected_fpr": 0.009724473257698542,
+    "fpr_upper95": 0.01472367712092831,
+    "reliable": true,
+    "windows_needed_for_2x_target": 1233
+   },
+   "recall": 1.0,
+   "verdict": "supported"
+  },
+  "H3": {
+   "alert_reduction": 45.0,
+   "mean_purity": 0.1,
+   "verdict": "refuted",
+   "device": {
+    "windows": 1264,
+    "attack_windows": 441,
+    "alerts": 450,
+    "alerts_per_h": 122.79866340477032,
+    "false_alerts_per_h": 2.4559732680954065,
+    "incidents": 10,
+    "incidents_per_h": 2.7288591867726737,
+    "incidents_excl_insufficient_per_h": 2.7288591867726737,
+    "benign_only_incidents_per_h": 2.4559732680954065,
+    "alert_reduction": 45.0,
+    "mean_purity": 0.1,
+    "incidents_with_attack": 1,
+    "window_recall": 1.0,
+    "attacking_entities": 1,
+    "attacking_entities_detected": 1,
+    "max_incidents_per_attacking_entity": 1,
+    "severity": {
+     "low": 0,
+     "medium": 8,
+     "high": 2
+    }
+   },
+   "service_exploratory": {
+    "windows": 1026,
+    "attack_windows": 441,
+    "alerts": 448,
+    "alerts_per_h": 122.25289156741579,
+    "false_alerts_per_h": 2.4559732680954065,
+    "incidents": 8,
+    "incidents_per_h": 2.183087349418139,
+    "incidents_excl_insufficient_per_h": 1.9102014307408717,
+    "benign_only_incidents_per_h": 1.9102014307408717,
+    "alert_reduction": 56.0,
+    "mean_purity": 0.125,
+    "incidents_with_attack": 1,
+    "window_recall": 0.9954648526077098,
+    "attacking_entities": 1,
+    "attacking_entities_detected": 1,
+    "max_incidents_per_attacking_entity": 1,
+    "severity": {
+     "low": 3,
+     "medium": 4,
+     "high": 1
+    }
+   }
+  },
+  "H5": {
+   "variants": {
+    "port_only": {
+     "ref_n": 25,
+     "coverage": 1.0,
+     "accepted_accuracy": 0.72,
+     "outside_n": 1,
+     "outside_abstention": 0.0,
+     "per_reference": {
+      "dns_n": 6,
+      "dns_covered": 6,
+      "dns_correct": 4,
+      "tls_n": 0,
+      "tls_covered": 0,
+      "tls_correct": 0,
+      "http_n": 19,
+      "http_covered": 19,
+      "http_correct": 14
+     }
+    },
+    "ml_only": {
+     "ref_n": 25,
+     "coverage": 1.0,
+     "accepted_accuracy": 0.08,
+     "outside_n": 1,
+     "outside_abstention": 0.0,
+     "per_reference": {
+      "dns_n": 6,
+      "dns_covered": 6,
+      "dns_correct": 2,
+      "tls_n": 0,
+      "tls_covered": 0,
+      "tls_correct": 0,
+      "http_n": 19,
+      "http_covered": 19,
+      "http_correct": 0
+     }
+    },
+    "hybrid": {
+     "ref_n": 25,
+     "coverage": 0.36,
+     "accepted_accuracy": 0.2222222222222222,
+     "outside_n": 1,
+     "outside_abstention": 0.0,
+     "per_reference": {
+      "dns_n": 6,
+      "dns_covered": 4,
+      "dns_correct": 2,
+      "tls_n": 0,
+      "tls_covered": 0,
+      "tls_correct": 0,
+      "http_n": 19,
+      "http_covered": 5,
+      "http_correct": 0
+     }
+    },
+    "hybrid+consistency": {
+     "ref_n": 25,
+     "coverage": 0.36,
+     "accepted_accuracy": 0.2222222222222222,
+     "outside_n": 1,
+     "outside_abstention": 0.0,
+     "per_reference": {
+      "dns_n": 6,
+      "dns_covered": 4,
+      "dns_correct": 2,
+      "tls_n": 0,
+      "tls_covered": 0,
+      "tls_correct": 0,
+      "http_n": 19,
+      "http_covered": 5,
+      "http_correct": 0
+     }
+    }
+   },
+   "outside_services": {
+    "dhcp": 1
+   },
+   "a_testable": false,
+   "b_testable": false,
+   "a": null,
+   "b": null,
+   "verdict": "not_testable"
+  },
+  "H6": {
+   "run_file_order": {
+    "flows": 2706602,
+    "stats": {
+     "records": 2706602,
+     "accepted": 2706602,
+     "duplicates": 0,
+     "late": 0,
+     "clock_skew": 0,
+     "forced_closes": 0,
+     "windows_closed": 441,
+     "max_buffered": 765907,
+     "watermark_ms": 1551406117668
+    },
+    "seconds": 218.5,
+    "file_records": 5410561,
+    "records_per_s": 24757.941966985753,
+    "incidents": 18
+   },
+   "run_jittered": {
+    "flows": 2706602,
+    "stats": {
+     "records": 2733948,
+     "accepted": 2706602,
+     "duplicates": 27346,
+     "late": 0,
+     "clock_skew": 0,
+     "forced_closes": 0,
+     "windows_closed": 441,
+     "max_buffered": 765411,
+     "watermark_ms": 1551406117668
+    },
+    "seconds": 211.0,
+    "file_records": 5410561,
+    "records_per_s": 25645.674247258936,
+    "incidents": 18,
+    "duplicates_inserted": 27346
+   },
+   "same_window_keys": true,
+   "max_abs_score_diff": 0.0,
+   "same_incident_ids": true,
+   "windows": 2290,
+   "verdict": "supported"
+  },
+  "H7": {
+   "peak_rss_mb": 3469.23046875,
+   "records_per_s": 24757.941966985753,
+   "verdict": "supported"
+  }
+ },
+ "seconds": 1094.5
+}

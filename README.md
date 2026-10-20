@@ -11,7 +11,8 @@ The main contribution is *evaluation honesty*, not a new model. The repository m
 - what does not transfer to another network;
 - what a local, calibrated baseline can and cannot do instead.
 
-> **Status (v0.7.0, 2026-10-20): research prototype, detection only, offline.**
+> **Status (v0.8.0, 2026-10-21): research prototype, detection only.** Offline analysis, plus
+> an opt-in monitor that reads the Zeek log your own Zeek writes.
 > - Supervised models score almost perfectly on the network they were trained on and fail on
 >   other networks (pre-registered test).
 > - The product path therefore treats them as *unverified* by default. It reports deviations
@@ -28,10 +29,14 @@ The main contribution is *evaluation honesty*, not a new model. The repository m
 | `netsentinel calibrate`: local behaviour baseline (global / device / service, causal 30 s windows) with diagnostics, provisional/insufficient-history states, review-before-activate and rollback | **Implemented and tested** (unit, integration, real CTU captures) | `docs/phase7/RELIABILITY.md` |
 | Evidence-aware decisions: behaviour anomaly vs supervised evidence vs known attack; supervised verdicts unverified by default | **Implemented and tested** | `tests/unit/test_threat_policy.py` |
 | Protocol identification: ML (nDPI proxy labels) + training-data port evidence, abstains on conflict | **Implemented**; validated on development data; descriptive check on real traffic | `docs/phase7/RELIABILITY.md` P3 |
-| FastAPI service, SQLite event store, Streamlit dashboard | **Implemented and tested** (TestClient, real `serve` process, Streamlit AppTest, browser check) | `tests/integration/` |
+| FastAPI service, SQLite event store, Streamlit dashboard | **Implemented and tested** (TestClient, real `serve` process, Streamlit AppTest, browser check; model-backed Docker smoke test in CI) | `tests/integration/`, `.github/workflows/ci.yml` |
+| `netsentinel demo`: offline end-to-end walkthrough on synthetic traffic | **Implemented and tested** (about 1 min, no downloads) | `tests/integration/test_demo.py` |
+| `netsentinel monitor --zeek-log`: opt-in streaming of a local Zeek log (event-time windows, lateness, deduplication, bounded memory) | **Validated**: identical to offline on 5.4M real records, including jittered and duplicated input (pre-registered H6) | `docs/phase8/CONFIRMATORY_RESULTS.md` |
+| Incidents: per-entity grouping, stable IDs, severity, lifecycle, API and dashboard explorer | **Implemented and tested**; alert reduction 45x on a fresh capture, but 9 of 10 incidents there were isolated false alerts (pre-registered H3 refuted) | `docs/phase8/CONFIRMATORY_RESULTS.md` |
+| Temporal models (EWMA, lag-IForest, GRU, TCN) | **Research, negative result**: none beat the robust baseline (development data, and pre-registered H1a/H1b) | `docs/phase8/DEVELOPMENT_LOG.md` |
 | Supervised attack detection (LightGBM, CIC-IDS2018 / NetFlow v3) | **Research**: in-domain only | `docs/RESULTS.md` |
 | Unknown-attack detection by anomaly models | **Research, negative result** | `docs/phase6/REPORT.md` |
-| Live capture, blocking, multi-network deployment | **Not implemented** | — |
+| Packet capture, blocking, multi-network deployment | **Not implemented** (by design) | — |
 
 ## Headline results
 
@@ -43,6 +48,7 @@ Full tables with sources and data roles: [`docs/RESULTS.md`](docs/RESULTS.md).
 | Does it transfer to another network? | **No.** ROC 0.37–0.66 IDS2018 <-> UNSW-NB15 on identical nProbe features; source thresholds flag 35–99% of benign flows (pre-registered) |
 | Does a local baseline reduce false alerts on an unfamiliar benign network? | Yes: about 120 -> 2.3 false-alert windows/h (13 CTU captures). Its pre-registered FPR guarantee failed in 5/12 captures with Phase 6 thresholds; cross-fitted thresholds fixed that on the same data (exploratory) at a recall cost elsewhere |
 | Does calibration restore attack detection? | **No.** With attack traffic in the calibration period, recall collapses (IoT-23, NetFlow development data) |
+| Does the local baseline hold on a fresh capture? (Phase 8, pre-registered, IoT-23 49-1) | FPR 1.09% at a 1% target, recall 1.00 under vetted calibration; robust median/MAD beats the adaptive EWMA candidate (PR-AUC 0.93 vs 0.68). One capture: no generalisation claim |
 | ML protocol ID vs port lookup | Better in-dataset (macro-F1 0.945 vs 0.840). Confidently wrong under shift (HTTP on port 80 called TLS), so the product combines it with port evidence and abstains on conflicts |
 
 ## Quick start
@@ -57,8 +63,20 @@ uv sync --extra dashboard
 uv run --extra dashboard pytest
 ```
 
-A synthetic walkthrough (generated traffic, a software demo, not evidence of detection
-quality):
+The fastest way to see everything work is a one-command offline demo. It generates traffic,
+trains a small model, calibrates, analyses an injected SSH brute force and port scan, and
+writes events and incidents. It is a software demo on synthetic traffic, not evidence of
+detection quality:
+
+```bash
+uv run netsentinel demo --workspace artifacts/demo
+```
+
+```bash
+uv run --extra dashboard streamlit run dashboard/app.py -- --events-db artifacts/demo/events.sqlite --models-dir artifacts/demo/models
+```
+
+The steps one by one:
 
 ```bash
 uv run python scripts/make_demo_pcap.py artifacts/demo.pcap
@@ -98,6 +116,20 @@ Only analyse traffic you are authorised to analyse.
      domain check v2 passed.
    - `application.app_protocol` comes with `app_method` and `app_evidence`.
      `application_identity` is never inferred.
+
+4. **Monitor continuously (opt-in).** If you run Zeek yourself, NetSentinel can follow its
+   `conn.log`. It only reads the file; it never captures, scans or blocks:
+
+   ```bash
+   uv run netsentinel monitor --zeek-log /path/to/zeek/conn.log --follow --calibration active --events-db artifacts/events.sqlite
+   ```
+
+   `--lateness` (default 360 s) must exceed Zeek's inactivity timeouts: Zeek logs a
+   connection only after it times out. Late records are counted, never silently merged.
+5. **Triage incidents.** Anomalous windows of the same device or service, separated by less
+   than 5 minutes, form one incident with a stable ID. Set its status (investigating,
+   acknowledged, resolved, ...) in the dashboard's Incident explorer or with
+   `POST /incidents/{id}/status`.
 
 The API (`netsentinel serve`, localhost only) and the dashboard expose the same fields.
 
@@ -191,6 +223,12 @@ peak memory are recorded in the development logs.
 - Protocol labels are nDPI proxy labels (nDPI version of the training data undocumented). On
   standard ports the policy is mostly a port lookup confirmed by the ML.
 - Zeek logs a connection only when it ends: long-lived C&C appears hours late.
+- Incidents turn each isolated false alert into its own incident. On the fresh Phase 8
+  capture, 9 of 10 incidents were benign-only (2.5/h): rank by duration as well as severity.
+- The calibration update gate catches short bursts only partly (7 of 12 injected 60 s scans,
+  development data) and sustained attack periods only through the alert rate.
+- Temporal models (EWMA, GRU, TCN, lag-IForest) are research code; none beat the robust
+  baseline.
 - The PCAP extractor matches Zeek, but its field-level agreement with nProbe is unverified.
 - Benchmark labels contain documented errors; the test partitions are spent; the CIC test is
   single-seed.

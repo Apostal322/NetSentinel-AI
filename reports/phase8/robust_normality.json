@@ -1,0 +1,1096 @@
+{
+ "captures": {
+  "CTU-Normal-26": {
+   "span_h": 6.4764275,
+   "flows": 15081,
+   "sample_size": {
+    "15": {
+     "status": "insufficient_history",
+     "device_fpr": null,
+     "eval_windows": 0,
+     "fpr_upper95": null
+    },
+    "30": {
+     "status": "baseline_provisional",
+     "device_fpr": 0.0024449877750611247,
+     "eval_windows": 409,
+     "fpr_upper95": 0.04437517261818429
+    },
+    "60": {
+     "status": "baseline_provisional",
+     "device_fpr": 0.0,
+     "eval_windows": 409,
+     "fpr_upper95": 0.023312410428213085
+    },
+    "120": {
+     "status": "baseline_ready",
+     "device_fpr": 0.007334963325183374,
+     "eval_windows": 409,
+     "fpr_upper95": 0.01875948903359667
+    }
+   },
+   "fpr_by_hour_utc": [
+    {
+     "h": 3,
+     "fpr": 0.02127659574468085,
+     "n": 94
+    },
+    {
+     "h": 4,
+     "fpr": 0.0,
+     "n": 127
+    },
+    {
+     "h": 5,
+     "fpr": 0.0,
+     "n": 124
+    },
+    {
+     "h": 6,
+     "fpr": 0.015625,
+     "n": 64
+    }
+   ],
+   "device_fpr_half": 0.007334963325183374,
+   "drift": {
+    "state": "monitoring",
+    "global_alert_rate": 0.005141388174807198,
+    "target_fpr": 0.01,
+    "score_ks": 0.29467404917276385,
+    "alert_rate_p_value": 0.9011730651352154,
+    "windows": 389,
+    "baseline_status": "baseline_ready"
+   },
+   "update_gate": {
+    "clean_review_required": false,
+    "contaminated_review_required": false,
+    "clean": {
+     "previous": "calibration-20261020T210256785091Z",
+     "global_windows": 389,
+     "alerts": 2,
+     "alert_rate_under_previous": 0.005141388174807198,
+     "previous_target_fpr": 0.01,
+     "p_value": 0.9011730651352154,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [],
+     "review_required": false,
+     "reason": "consistent with the current baseline"
+    },
+    "contaminated": {
+     "previous": "calibration-20261020T210256785091Z",
+     "global_windows": 389,
+     "alerts": 2,
+     "alert_rate_under_previous": 0.005141388174807198,
+     "previous_target_fpr": 0.01,
+     "p_value": 0.9011730651352154,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [],
+     "review_required": false,
+     "reason": "consistent with the current baseline"
+    }
+   }
+  },
+  "CTU-Normal-20": {
+   "span_h": 3.1551347222222224,
+   "flows": 18892,
+   "sample_size": {
+    "15": {
+     "status": "insufficient_history",
+     "device_fpr": null,
+     "eval_windows": 0,
+     "fpr_upper95": null
+    },
+    "30": {
+     "status": "baseline_provisional",
+     "device_fpr": 0.025252525252525252,
+     "eval_windows": 198,
+     "fpr_upper95": 0.04572970233076244
+    },
+    "60": {
+     "status": "baseline_provisional",
+     "device_fpr": 0.010101010101010102,
+     "eval_windows": 198,
+     "fpr_upper95": 0.023132405251746743
+    }
+   },
+   "fpr_by_hour_utc": [
+    {
+     "h": 1,
+     "fpr": 0.0,
+     "n": 49
+    },
+    {
+     "h": 2,
+     "fpr": 0.0,
+     "n": 125
+    },
+    {
+     "h": 3,
+     "fpr": 0.0,
+     "n": 24
+    }
+   ],
+   "device_fpr_half": 0.0,
+   "drift": {
+    "state": "monitoring",
+    "global_alert_rate": 0.0,
+    "target_fpr": 0.01,
+    "score_ks": 0.09801598236428766,
+    "alert_rate_p_value": 1.0,
+    "windows": 190,
+    "baseline_status": "baseline_ready"
+   },
+   "update_gate": {
+    "clean_review_required": false,
+    "contaminated_review_required": true,
+    "clean": {
+     "previous": "calibration-20261020T210300101618Z",
+     "global_windows": 190,
+     "alerts": 0,
+     "alert_rate_under_previous": 0.0,
+     "previous_target_fpr": 0.01,
+     "p_value": 1.0,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [],
+     "review_required": false,
+     "reason": "consistent with the current baseline"
+    },
+    "contaminated": {
+     "previous": "calibration-20261020T210300101618Z",
+     "global_windows": 190,
+     "alerts": 0,
+     "alert_rate_under_previous": 0.0,
+     "previous_target_fpr": 0.01,
+     "p_value": 1.0,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [
+      {
+       "level": "service",
+       "entity": "ephemeral",
+       "window_end_ms": 8640000,
+       "ratio_to_holdout_max": 3.18
+      },
+      {
+       "level": "service",
+       "entity": "ephemeral",
+       "window_end_ms": 8670000,
+       "ratio_to_holdout_max": 3.004
+      },
+      {
+       "level": "service",
+       "entity": "ephemeral",
+       "window_end_ms": 8610000,
+       "ratio_to_holdout_max": 2.206
+      }
+     ],
+     "review_required": true,
+     "reason": "3 window(s) score >= 2.0x the largest held-out calibration score (top: service ephemeral, 3.18x): a short burst that would be absorbed into the new baseline"
+    }
+   }
+  },
+  "CTU-Normal-21": {
+   "span_h": 0.31453583333333335,
+   "flows": 10660,
+   "sample_size": {}
+  },
+  "CTU-Normal-22": {
+   "span_h": 1.4589316666666667,
+   "flows": 76166,
+   "sample_size": {
+    "15": {
+     "status": "insufficient_history",
+     "device_fpr": null,
+     "eval_windows": 0,
+     "fpr_upper95": null
+    },
+    "30": {
+     "status": "baseline_provisional",
+     "device_fpr": 0.0,
+     "eval_windows": 293,
+     "fpr_upper95": 0.017775418086689046
+    }
+   },
+   "fpr_by_hour_utc": [
+    {
+     "h": 13,
+     "fpr": 0.0,
+     "n": 293
+    }
+   ],
+   "device_fpr_half": 0.0,
+   "drift": {
+    "state": "monitoring",
+    "global_alert_rate": 0.011235955056179775,
+    "target_fpr": 0.01,
+    "score_ks": 0.17607252298263537,
+    "alert_rate_p_value": 0.5911798255774504,
+    "windows": 89,
+    "baseline_status": "baseline_provisional"
+   },
+   "update_gate": {
+    "clean_review_required": false,
+    "contaminated_review_required": false,
+    "clean": {
+     "previous": "calibration-20261020T210303915263Z",
+     "global_windows": 89,
+     "alerts": 1,
+     "alert_rate_under_previous": 0.011235955056179775,
+     "previous_target_fpr": 0.01,
+     "p_value": 0.5911798255774504,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [],
+     "review_required": false,
+     "reason": "consistent with the current baseline"
+    },
+    "contaminated": {
+     "previous": "calibration-20261020T210303915263Z",
+     "global_windows": 89,
+     "alerts": 4,
+     "alert_rate_under_previous": 0.0449438202247191,
+     "previous_target_fpr": 0.01,
+     "p_value": 0.012461682081656362,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [],
+     "review_required": false,
+     "reason": "consistent with the current baseline"
+    }
+   }
+  },
+  "CTU-Normal-23": {
+   "span_h": 2.193428888888889,
+   "flows": 16334,
+   "sample_size": {
+    "15": {
+     "status": "insufficient_history",
+     "device_fpr": null,
+     "eval_windows": 0,
+     "fpr_upper95": null
+    },
+    "30": {
+     "status": "baseline_provisional",
+     "device_fpr": 0.0,
+     "eval_windows": 134,
+     "fpr_upper95": 0.04870291331009749
+    },
+    "60": {
+     "status": "baseline_provisional",
+     "device_fpr": 0.0,
+     "eval_windows": 134,
+     "fpr_upper95": 0.02406134393764123
+    }
+   },
+   "fpr_by_hour_utc": [
+    {
+     "h": 1,
+     "fpr": 0.0,
+     "n": 106
+    },
+    {
+     "h": 2,
+     "fpr": 0.0,
+     "n": 28
+    }
+   ],
+   "device_fpr_half": 0.0,
+   "drift": {
+    "state": "drift_suspected",
+    "global_alert_rate": 0.0,
+    "target_fpr": 0.01,
+    "score_ks": 0.37121212121212116,
+    "alert_rate_p_value": 1.0,
+    "windows": 132,
+    "baseline_status": "baseline_provisional",
+    "advice": "review the period; if the change is legitimate, recalibrate on vetted traffic (the previous artifact remains available for rollback). Persistent attack traffic must not be recalibrated in."
+   },
+   "update_gate": {
+    "clean_review_required": false,
+    "contaminated_review_required": true,
+    "clean": {
+     "previous": "calibration-20261020T210305103843Z",
+     "global_windows": 132,
+     "alerts": 0,
+     "alert_rate_under_previous": 0.0,
+     "previous_target_fpr": 0.01,
+     "p_value": 1.0,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [],
+     "review_required": false,
+     "reason": "consistent with the current baseline"
+    },
+    "contaminated": {
+     "previous": "calibration-20261020T210305103843Z",
+     "global_windows": 132,
+     "alerts": 0,
+     "alert_rate_under_previous": 0.0,
+     "previous_target_fpr": 0.01,
+     "p_value": 1.0,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [
+      {
+       "level": "service",
+       "entity": "ephemeral",
+       "window_end_ms": 6000000,
+       "ratio_to_holdout_max": 3.17
+      },
+      {
+       "level": "service",
+       "entity": "ephemeral",
+       "window_end_ms": 6030000,
+       "ratio_to_holdout_max": 3.154
+      }
+     ],
+     "review_required": true,
+     "reason": "2 window(s) score >= 2.0x the largest held-out calibration score (top: service ephemeral, 3.17x): a short burst that would be absorbed into the new baseline"
+    }
+   }
+  },
+  "CTU-Normal-24": {
+   "span_h": 4.254069444444444,
+   "flows": 7211,
+   "sample_size": {
+    "15": {
+     "status": "insufficient_history",
+     "device_fpr": null,
+     "eval_windows": 0,
+     "fpr_upper95": null
+    },
+    "30": {
+     "status": "baseline_provisional",
+     "device_fpr": 0.013513513513513514,
+     "eval_windows": 148,
+     "fpr_upper95": 0.06581877114493394
+    },
+    "60": {
+     "status": "baseline_provisional",
+     "device_fpr": 0.0,
+     "eval_windows": 148,
+     "fpr_upper95": 0.033847610681619573
+    },
+    "120": {
+     "status": "baseline_ready",
+     "device_fpr": 0.0,
+     "eval_windows": 148,
+     "fpr_upper95": 0.02278060709122924
+    }
+   },
+   "fpr_by_hour_utc": [
+    {
+     "h": 2,
+     "fpr": 0.0,
+     "n": 59
+    },
+    {
+     "h": 3,
+     "fpr": 0.0,
+     "n": 62
+    },
+    {
+     "h": 4,
+     "fpr": 0.0,
+     "n": 27
+    }
+   ],
+   "device_fpr_half": 0.0,
+   "drift": {
+    "state": "monitoring",
+    "global_alert_rate": 0.0,
+    "target_fpr": 0.01,
+    "score_ks": 0.13671875,
+    "alert_rate_p_value": 1.0,
+    "windows": 255,
+    "baseline_status": "baseline_ready"
+   },
+   "update_gate": {
+    "clean_review_required": false,
+    "contaminated_review_required": true,
+    "clean": {
+     "previous": "calibration-20261020T210305982430Z",
+     "global_windows": 255,
+     "alerts": 0,
+     "alert_rate_under_previous": 0.0,
+     "previous_target_fpr": 0.01,
+     "p_value": 1.0,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [],
+     "review_required": false,
+     "reason": "consistent with the current baseline"
+    },
+    "contaminated": {
+     "previous": "calibration-20261020T210305982430Z",
+     "global_windows": 255,
+     "alerts": 0,
+     "alert_rate_under_previous": 0.0,
+     "previous_target_fpr": 0.01,
+     "p_value": 1.0,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [
+      {
+       "level": "service",
+       "entity": "ephemeral",
+       "window_end_ms": 11640000,
+       "ratio_to_holdout_max": 2.267
+      }
+     ],
+     "review_required": true,
+     "reason": "1 window(s) score >= 2.0x the largest held-out calibration score (top: service ephemeral, 2.267x): a short burst that would be absorbed into the new baseline"
+    }
+   }
+  },
+  "CTU-Normal-25": {
+   "span_h": 1.4521008333333334,
+   "flows": 7323,
+   "sample_size": {
+    "15": {
+     "status": "insufficient_history",
+     "device_fpr": null,
+     "eval_windows": 0,
+     "fpr_upper95": null
+    },
+    "30": {
+     "status": "baseline_provisional",
+     "device_fpr": 0.0,
+     "eval_windows": 94,
+     "fpr_upper95": 0.04792395210660731
+    }
+   },
+   "fpr_by_hour_utc": [
+    {
+     "h": 0,
+     "fpr": 0.0,
+     "n": 31
+    },
+    {
+     "h": 1,
+     "fpr": 0.0,
+     "n": 63
+    }
+   ],
+   "device_fpr_half": 0.0,
+   "drift": {
+    "state": "monitoring",
+    "global_alert_rate": 0.0,
+    "target_fpr": 0.01,
+    "score_ks": 0.21590909090909094,
+    "alert_rate_p_value": 1.0,
+    "windows": 88,
+    "baseline_status": "baseline_provisional"
+   },
+   "update_gate": {
+    "clean_review_required": false,
+    "contaminated_review_required": true,
+    "clean": {
+     "previous": "calibration-20261020T210306637286Z",
+     "global_windows": 88,
+     "alerts": 0,
+     "alert_rate_under_previous": 0.0,
+     "previous_target_fpr": 0.01,
+     "p_value": 1.0,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [],
+     "review_required": false,
+     "reason": "consistent with the current baseline"
+    },
+    "contaminated": {
+     "previous": "calibration-20261020T210306637286Z",
+     "global_windows": 88,
+     "alerts": 0,
+     "alert_rate_under_previous": 0.0,
+     "previous_target_fpr": 0.01,
+     "p_value": 1.0,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [
+      {
+       "level": "service",
+       "entity": "ephemeral",
+       "window_end_ms": 4050000,
+       "ratio_to_holdout_max": 3.18
+      },
+      {
+       "level": "service",
+       "entity": "ephemeral",
+       "window_end_ms": 4080000,
+       "ratio_to_holdout_max": 3.045
+      },
+      {
+       "level": "service",
+       "entity": "ephemeral",
+       "window_end_ms": 4020000,
+       "ratio_to_holdout_max": 2.02
+      }
+     ],
+     "review_required": true,
+     "reason": "3 window(s) score >= 2.0x the largest held-out calibration score (top: service ephemeral, 3.18x): a short burst that would be absorbed into the new baseline"
+    }
+   }
+  },
+  "CTU-Normal-27": {
+   "span_h": 4.1284375,
+   "flows": 35453,
+   "sample_size": {
+    "15": {
+     "status": "insufficient_history",
+     "device_fpr": null,
+     "eval_windows": 0,
+     "fpr_upper95": null
+    },
+    "30": {
+     "status": "baseline_provisional",
+     "device_fpr": 0.0,
+     "eval_windows": 265,
+     "fpr_upper95": 0.043098564820088364
+    },
+    "60": {
+     "status": "baseline_provisional",
+     "device_fpr": 0.0,
+     "eval_windows": 265,
+     "fpr_upper95": 0.022439348489406666
+    },
+    "120": {
+     "status": "baseline_ready",
+     "device_fpr": 0.0,
+     "eval_windows": 265,
+     "fpr_upper95": 0.018114794088197387
+    }
+   },
+   "fpr_by_hour_utc": [
+    {
+     "h": 2,
+     "fpr": 0.0,
+     "n": 117
+    },
+    {
+     "h": 3,
+     "fpr": 0.0,
+     "n": 128
+    },
+    {
+     "h": 4,
+     "fpr": 0.0,
+     "n": 20
+    }
+   ],
+   "device_fpr_half": 0.0,
+   "drift": {
+    "state": "monitoring",
+    "global_alert_rate": 0.0,
+    "target_fpr": 0.01,
+    "score_ks": 0.16618085244202616,
+    "alert_rate_p_value": 1.0,
+    "windows": 249,
+    "baseline_status": "baseline_ready"
+   },
+   "update_gate": {
+    "clean_review_required": false,
+    "contaminated_review_required": false,
+    "clean": {
+     "previous": "calibration-20261020T210308621476Z",
+     "global_windows": 249,
+     "alerts": 0,
+     "alert_rate_under_previous": 0.0,
+     "previous_target_fpr": 0.01,
+     "p_value": 1.0,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [],
+     "review_required": false,
+     "reason": "consistent with the current baseline"
+    },
+    "contaminated": {
+     "previous": "calibration-20261020T210308621476Z",
+     "global_windows": 249,
+     "alerts": 2,
+     "alert_rate_under_previous": 0.008032128514056224,
+     "previous_target_fpr": 0.01,
+     "p_value": 0.7121889233298736,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [],
+     "review_required": false,
+     "reason": "consistent with the current baseline"
+    }
+   }
+  },
+  "CTU-Normal-28": {
+   "span_h": 0.7957763888888889,
+   "flows": 11543,
+   "sample_size": {
+    "15": {
+     "status": "insufficient_history",
+     "device_fpr": null,
+     "eval_windows": 0,
+     "fpr_upper95": null
+    }
+   },
+   "fpr_by_hour_utc": [
+    {
+     "h": 0,
+     "fpr": 0.0,
+     "n": 51
+    }
+   ],
+   "device_fpr_half": 0.0,
+   "drift": {
+    "state": "monitoring",
+    "reason": "48 global windows scored; drift check needs 60"
+   },
+   "update_gate": {
+    "clean_review_required": false,
+    "contaminated_review_required": false,
+    "clean": {
+     "previous": "calibration-20261020T210309399910Z",
+     "global_windows": 48,
+     "alerts": 0,
+     "alert_rate_under_previous": 0.0,
+     "previous_target_fpr": 0.01,
+     "p_value": 1.0,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [],
+     "review_required": false,
+     "reason": "consistent with the current baseline"
+    },
+    "contaminated": {
+     "previous": "calibration-20261020T210309399910Z",
+     "global_windows": 48,
+     "alerts": 2,
+     "alert_rate_under_previous": 0.041666666666666664,
+     "previous_target_fpr": 0.01,
+     "p_value": 0.08341766950993568,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [],
+     "review_required": false,
+     "reason": "consistent with the current baseline"
+    }
+   }
+  },
+  "CTU-Normal-29": {
+   "span_h": 1.95126,
+   "flows": 30382,
+   "sample_size": {
+    "15": {
+     "status": "insufficient_history",
+     "device_fpr": null,
+     "eval_windows": 0,
+     "fpr_upper95": null
+    },
+    "30": {
+     "status": "baseline_provisional",
+     "device_fpr": 0.0,
+     "eval_windows": 126,
+     "fpr_upper95": 0.043727554781889444
+    }
+   },
+   "fpr_by_hour_utc": [
+    {
+     "h": 0,
+     "fpr": 0.0,
+     "n": 1
+    },
+    {
+     "h": 1,
+     "fpr": 0.0,
+     "n": 125
+    }
+   ],
+   "device_fpr_half": 0.0,
+   "drift": {
+    "state": "monitoring",
+    "global_alert_rate": 0.0,
+    "target_fpr": 0.01,
+    "score_ks": 0.2542372881355932,
+    "alert_rate_p_value": 1.0,
+    "windows": 118,
+    "baseline_status": "baseline_provisional"
+   },
+   "update_gate": {
+    "clean_review_required": false,
+    "contaminated_review_required": true,
+    "clean": {
+     "previous": "calibration-20261020T210310941479Z",
+     "global_windows": 118,
+     "alerts": 0,
+     "alert_rate_under_previous": 0.0,
+     "previous_target_fpr": 0.01,
+     "p_value": 1.0,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [],
+     "review_required": false,
+     "reason": "consistent with the current baseline"
+    },
+    "contaminated": {
+     "previous": "calibration-20261020T210310941479Z",
+     "global_windows": 118,
+     "alerts": 0,
+     "alert_rate_under_previous": 0.0,
+     "previous_target_fpr": 0.01,
+     "p_value": 1.0,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [
+      {
+       "level": "service",
+       "entity": "ephemeral",
+       "window_end_ms": 5370000,
+       "ratio_to_holdout_max": 2.727
+      },
+      {
+       "level": "service",
+       "entity": "ephemeral",
+       "window_end_ms": 5340000,
+       "ratio_to_holdout_max": 2.673
+      }
+     ],
+     "review_required": true,
+     "reason": "2 window(s) score >= 2.0x the largest held-out calibration score (top: service ephemeral, 2.727x): a short burst that would be absorbed into the new baseline"
+    }
+   }
+  },
+  "CTU-Normal-30": {
+   "span_h": 4.040869722222222,
+   "flows": 48307,
+   "sample_size": {
+    "15": {
+     "status": "insufficient_history",
+     "device_fpr": null,
+     "eval_windows": 0,
+     "fpr_upper95": null
+    },
+    "30": {
+     "status": "baseline_provisional",
+     "device_fpr": 0.01937984496124031,
+     "eval_windows": 258,
+     "fpr_upper95": 0.04248741054859369
+    },
+    "60": {
+     "status": "baseline_provisional",
+     "device_fpr": 0.0,
+     "eval_windows": 258,
+     "fpr_upper95": 0.021786610611001896
+    },
+    "120": {
+     "status": "baseline_ready",
+     "device_fpr": 0.0,
+     "eval_windows": 258,
+     "fpr_upper95": 0.01784227218441384
+    }
+   },
+   "fpr_by_hour_utc": [
+    {
+     "h": 2,
+     "fpr": 0.0,
+     "n": 123
+    },
+    {
+     "h": 3,
+     "fpr": 0.0,
+     "n": 126
+    },
+    {
+     "h": 4,
+     "fpr": 0.0,
+     "n": 9
+    }
+   ],
+   "device_fpr_half": 0.0,
+   "drift": {
+    "state": "monitoring",
+    "global_alert_rate": 0.0,
+    "target_fpr": 0.01,
+    "score_ks": 0.1404068002428658,
+    "alert_rate_p_value": 1.0,
+    "windows": 244,
+    "baseline_status": "baseline_ready"
+   },
+   "update_gate": {
+    "clean_review_required": false,
+    "contaminated_review_required": true,
+    "clean": {
+     "previous": "calibration-20261020T210313467914Z",
+     "global_windows": 244,
+     "alerts": 0,
+     "alert_rate_under_previous": 0.0,
+     "previous_target_fpr": 0.01,
+     "p_value": 1.0,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [],
+     "review_required": false,
+     "reason": "consistent with the current baseline"
+    },
+    "contaminated": {
+     "previous": "calibration-20261020T210313467914Z",
+     "global_windows": 244,
+     "alerts": 0,
+     "alert_rate_under_previous": 0.0,
+     "previous_target_fpr": 0.01,
+     "p_value": 1.0,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [
+      {
+       "level": "service",
+       "entity": "ephemeral",
+       "window_end_ms": 11010000,
+       "ratio_to_holdout_max": 3.089
+      },
+      {
+       "level": "service",
+       "entity": "ephemeral",
+       "window_end_ms": 10980000,
+       "ratio_to_holdout_max": 3.01
+      }
+     ],
+     "review_required": true,
+     "reason": "2 window(s) score >= 2.0x the largest held-out calibration score (top: service ephemeral, 3.089x): a short burst that would be absorbed into the new baseline"
+    }
+   }
+  },
+  "CTU-Normal-31": {
+   "span_h": 3.7453772222222224,
+   "flows": 54025,
+   "sample_size": {
+    "15": {
+     "status": "insufficient_history",
+     "device_fpr": null,
+     "eval_windows": 0,
+     "fpr_upper95": null
+    },
+    "30": {
+     "status": "baseline_provisional",
+     "device_fpr": 0.0,
+     "eval_windows": 240,
+     "fpr_upper95": 0.043098564820088364
+    },
+    "60": {
+     "status": "baseline_provisional",
+     "device_fpr": 0.0,
+     "eval_windows": 240,
+     "fpr_upper95": 0.022439348489406666
+    }
+   },
+   "fpr_by_hour_utc": [
+    {
+     "h": 1,
+     "fpr": 0.0,
+     "n": 14
+    },
+    {
+     "h": 2,
+     "fpr": 0.0,
+     "n": 128
+    },
+    {
+     "h": 3,
+     "fpr": 0.0,
+     "n": 98
+    }
+   ],
+   "device_fpr_half": 0.0,
+   "drift": {
+    "state": "monitoring",
+    "global_alert_rate": 0.0,
+    "target_fpr": 0.01,
+    "score_ks": 0.2337463126843658,
+    "alert_rate_p_value": 1.0,
+    "windows": 225,
+    "baseline_status": "baseline_provisional"
+   },
+   "update_gate": {
+    "clean_review_required": false,
+    "contaminated_review_required": true,
+    "clean": {
+     "previous": "calibration-20261020T210316105113Z",
+     "global_windows": 225,
+     "alerts": 0,
+     "alert_rate_under_previous": 0.0,
+     "previous_target_fpr": 0.01,
+     "p_value": 1.0,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [],
+     "review_required": false,
+     "reason": "consistent with the current baseline"
+    },
+    "contaminated": {
+     "previous": "calibration-20261020T210316105113Z",
+     "global_windows": 225,
+     "alerts": 0,
+     "alert_rate_under_previous": 0.0,
+     "previous_target_fpr": 0.01,
+     "p_value": 1.0,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [
+      {
+       "level": "service",
+       "entity": "ephemeral",
+       "window_end_ms": 10200000,
+       "ratio_to_holdout_max": 2.776
+      },
+      {
+       "level": "service",
+       "entity": "ephemeral",
+       "window_end_ms": 10230000,
+       "ratio_to_holdout_max": 2.52
+      },
+      {
+       "level": "service",
+       "entity": "ephemeral",
+       "window_end_ms": 10170000,
+       "ratio_to_holdout_max": 2.194
+      }
+     ],
+     "review_required": true,
+     "reason": "3 window(s) score >= 2.0x the largest held-out calibration score (top: service ephemeral, 2.776x): a short burst that would be absorbed into the new baseline"
+    }
+   }
+  },
+  "CTU-Normal-32": {
+   "span_h": 3.954938888888889,
+   "flows": 72316,
+   "sample_size": {
+    "15": {
+     "status": "insufficient_history",
+     "device_fpr": null,
+     "eval_windows": 0,
+     "fpr_upper95": null
+    },
+    "30": {
+     "status": "baseline_provisional",
+     "device_fpr": 0.0,
+     "eval_windows": 254,
+     "fpr_upper95": 0.04504225812301352
+    },
+    "60": {
+     "status": "baseline_provisional",
+     "device_fpr": 0.0,
+     "eval_windows": 254,
+     "fpr_upper95": 0.022955158445512647
+    }
+   },
+   "fpr_by_hour_utc": [
+    {
+     "h": 1,
+     "fpr": 0.0,
+     "n": 1
+    },
+    {
+     "h": 2,
+     "fpr": 0.0,
+     "n": 128
+    },
+    {
+     "h": 3,
+     "fpr": 0.0,
+     "n": 125
+    }
+   ],
+   "device_fpr_half": 0.0,
+   "drift": {
+    "state": "monitoring",
+    "global_alert_rate": 0.0,
+    "target_fpr": 0.01,
+    "score_ks": 0.16806722689075637,
+    "alert_rate_p_value": 1.0,
+    "windows": 238,
+    "baseline_status": "baseline_ready"
+   },
+   "update_gate": {
+    "clean_review_required": false,
+    "contaminated_review_required": false,
+    "clean": {
+     "previous": "calibration-20261020T210319403690Z",
+     "global_windows": 238,
+     "alerts": 0,
+     "alert_rate_under_previous": 0.0,
+     "previous_target_fpr": 0.01,
+     "p_value": 1.0,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [],
+     "review_required": false,
+     "reason": "consistent with the current baseline"
+    },
+    "contaminated": {
+     "previous": "calibration-20261020T210319403690Z",
+     "global_windows": 238,
+     "alerts": 2,
+     "alert_rate_under_previous": 0.008403361344537815,
+     "previous_target_fpr": 0.01,
+     "p_value": 0.6887058061207587,
+     "rate_review": false,
+     "outlier_factor": 2.0,
+     "strong_outliers": [],
+     "review_required": false,
+     "reason": "consistent with the current baseline"
+    }
+   }
+  }
+ },
+ "summary_sample_size": {
+  "15": {
+   "captures": 12,
+   "ready": 0,
+   "provisional": 0,
+   "insufficient": 12,
+   "median_fpr": null,
+   "within_3x": 0
+  },
+  "30": {
+   "captures": 11,
+   "ready": 0,
+   "provisional": 11,
+   "insufficient": 0,
+   "median_fpr": 0.0,
+   "within_3x": 11
+  },
+  "60": {
+   "captures": 8,
+   "ready": 0,
+   "provisional": 8,
+   "insufficient": 0,
+   "median_fpr": 0.0,
+   "within_3x": 8
+  },
+  "120": {
+   "captures": 4,
+   "ready": 4,
+   "provisional": 0,
+   "insufficient": 0,
+   "median_fpr": 0.0,
+   "within_3x": 4
+  },
+  "240": {
+   "captures": 0,
+   "ready": 0,
+   "provisional": 0,
+   "insufficient": 0,
+   "median_fpr": null,
+   "within_3x": 0
+  }
+ },
+ "drift_false_alarms": 1,
+ "update_gate": {
+  "clean_flagged": 0,
+  "contaminated_flagged": 7,
+  "captures": 12
+ },
+ "meta": {
+  "seconds": 26.7,
+  "peak_rss_mb": 534.16015625
+ }
+}

@@ -17,6 +17,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
+import numpy as np
 import polars as pl
 
 DEFAULT_ROOT = Path("models/calibrations")
@@ -91,10 +92,18 @@ def rollback(root: str | Path = DEFAULT_ROOT) -> dict:
 
 
 def update_check(previous_dir: str | Path, frame: pl.DataFrame, alpha: float = 0.01,
-                 rate_factor: float = 2.0) -> dict:  # fmt: skip
-    """Score the NEW calibration period with the CURRENT (previous) baseline. A global alert
-    rate significantly above the previous target FPR means the new period differs from what
-    was normal: legitimate change or attack traffic - a human must decide."""
+                 rate_factor: float = 2.0, outlier_factor: float = 2.0) -> dict:  # fmt: skip
+    """Score the NEW calibration period with the CURRENT (previous) baseline; a human must
+    review it before activation if either
+    * rate: the global alert rate is significantly above the previous target FPR (the period
+      as a whole differs: legitimate change or sustained attack traffic), or
+    * strong outlier (Phase 8F): any window of a level scores >= `outlier_factor` x the
+      LARGEST held-out calibration score of that level. A short attack burst (e.g. a 60 s
+      scan) barely moves an alert RATE but would otherwise be absorbed into the new baseline.
+      The reference is the held-out maximum, not the threshold: the maximum of hundreds of
+      normal windows routinely exceeds a 1%-FPR threshold. Factor 2.0 was chosen on
+      development data (reports/phase8/robust_normality.json): no false review on 12 benign
+      CTU periods and 10 synthetic ones, 7 of 12 injected 60 s scans caught. Exploratory."""
     from scipy.stats import binom
 
     from netsentinel.behavior.calibrate import load_profile
@@ -107,11 +116,37 @@ def update_check(previous_dir: str | Path, frame: pl.DataFrame, alpha: float = 0
     alerts = int(g["anomalous"].sum()) if n else 0
     rate = alerts / n if n else 0.0
     p_value = float(binom.sf(alerts - 1, n, prev.target_fpr)) if alerts else 1.0
-    review = bool(n and rate > rate_factor * prev.target_fpr and p_value < alpha)
+    rate_review = bool(n and rate > rate_factor * prev.target_fpr and p_value < alpha)
+    outliers = []
+    for lv, lp in prev.levels.items() if s.height else ():
+        hs = lp.holdout_scores
+        ref = float(np.max(hs)) if hs is not None and len(hs) else lp.threshold
+        if not ref or ref <= 0:
+            continue
+        top = (
+            s.filter(pl.col("level") == lv)
+            .with_columns((pl.col("score") / ref).alias("ratio"))
+            .filter(pl.col("ratio") >= outlier_factor)
+            .sort("ratio", descending=True)
+        )
+        outliers += [{"level": lv, "entity": str(x["key"]), "window_end_ms":
+                      int(x["window_end_ms"]), "ratio_to_holdout_max": round(float(x["ratio"]), 3)}
+                     for x in top.head(10).iter_rows(named=True)]  # fmt: skip
+    outliers.sort(key=lambda o: -o["ratio_to_holdout_max"])
+    review = rate_review or bool(outliers)
+    if rate_review:
+        reason = ("new calibration period is anomalous under the current baseline (alert rate "
+                  f"{rate:.2%} vs target {prev.target_fpr:.2%}); it may contain attack traffic "
+                  "or a legitimate change")  # fmt: skip
+    elif outliers:
+        o = outliers[0]
+        reason = (f"{len(outliers)} window(s) score >= {outlier_factor}x the largest held-out "
+                  f"calibration score (top: {o['level']} {o['entity']}, "
+                  f"{o['ratio_to_holdout_max']}x): a short burst that would be absorbed into "
+                  "the new baseline")  # fmt: skip
+    else:
+        reason = "consistent with the current baseline"
     return {"previous": manifest["calibration_id"], "global_windows": n, "alerts": alerts,
             "alert_rate_under_previous": rate, "previous_target_fpr": prev.target_fpr,
-            "p_value": p_value, "review_required": review,
-            "reason": ("new calibration period is anomalous under the current baseline "
-                       f"(alert rate {rate:.2%} vs target {prev.target_fpr:.2%}); it may "
-                       "contain attack traffic or a legitimate change") if review else
-                      "consistent with the current baseline"}  # fmt: skip
+            "p_value": p_value, "rate_review": rate_review, "outlier_factor": outlier_factor,
+            "strong_outliers": outliers, "review_required": review, "reason": reason}  # fmt: skip

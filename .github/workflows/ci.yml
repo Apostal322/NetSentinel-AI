@@ -33,6 +33,41 @@ jobs:
           test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8000/ready)" = "503"
           docker logs ns
           docker rm -f ns
+      - uses: astral-sh/setup-uv@v6
+      - name: Build demo artifacts on the runner (synthetic, offline)
+        run: |
+          uv sync --locked
+          uv run netsentinel demo --workspace /tmp/demo --quiet --json > /tmp/demo.json
+          python3 - <<'PY'
+          import json, os, shutil
+          d = json.load(open("/tmp/demo.json"))
+          os.makedirs("/tmp/models", exist_ok=True)
+          for key, name in (("bundle", "bundle"), ("calibration", "cal"), ("classifier", "appid")):
+              shutil.copytree(d[key], f"/tmp/models/{name}")
+          shutil.copytree(d["bundle"], "/tmp/models/tampered")
+          print(json.dumps({k: d[k] for k in ("bundle", "calibration", "classifier")}))
+          PY
+          f=$(ls /tmp/models/tampered/*.joblib | head -1); printf 'x' >> "$f"
+          chmod -R a+rX /tmp/models
+      - name: Model-backed API in the container (ready, schema, safe defaults, incidents)
+        run: |
+          docker run -d --name nsm -p 127.0.0.1:8001:8000 -v /tmp/models:/models:ro             -e NETSENTINEL_CALIBRATION=/models/cal -e NETSENTINEL_APPID=/models/appid netsentinel:ci
+          for i in $(seq 1 30); do curl -fs http://127.0.0.1:8001/ready && break; sleep 2; done
+          curl -fs http://127.0.0.1:8001/ready | python3 -c "import json,sys; d=json.load(sys.stdin); assert d['status']=='ready', d"
+          curl -fs http://127.0.0.1:8001/baseline | python3 -c "import json,sys; d=json.load(sys.stdin); assert d['calibration_id'].startswith('calibration-'), d"
+          curl -fs -X POST http://127.0.0.1:8001/predict/flow -H 'content-type: application/json'             -d '{"timestamp":"2025-10-09T09:20:00","dst_port":443,"protocol":6,"flow_duration":120,"features":{"in_bytes":900,"out_bytes":4000}}'             | python3 -c "import json,sys; d=json.load(sys.stdin); assert d['threat_status']=='unverified_domain' and d['verdict'] in ('benign','unusual','insufficient_data'), d; assert {'model_versions','missing_features','evidence'} <= set(d), d"
+          curl -fs "http://127.0.0.1:8001/incidents?limit=5" | python3 -c "import json,sys; d=json.load(sys.stdin); assert d['total']==0 and d['items']==[], d"
+          test "$(curl -s -o /dev/null -w '%{http_code}' -X POST http://127.0.0.1:8001/incidents/x/status -H 'content-type: application/json' -d '{"status":"resolved"}')" = "401"
+          docker logs nsm
+      - name: Tampered bundle is refused (ready 503)
+        run: |
+          docker run -d --name nst -p 127.0.0.1:8002:8000 -v /tmp/models/tampered:/models/bundle:ro netsentinel:ci
+          for i in $(seq 1 30); do curl -fs http://127.0.0.1:8002/health && break; sleep 2; done
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8002/ready)" = "503"
+          docker logs nst 2>&1 | tail -5
+      - name: Clean up containers
+        if: always()
+        run: docker rm -f ns nsm nst 2>/dev/null || true
 
   security:
     runs-on: ubuntu-latest

@@ -21,7 +21,8 @@ training stages (baseline, anomaly, openset, temporal,                 causal en
   | run ledger per run                   ledger.py                     diagnostics, statuses, registry + rollback
   v                                                               |
 reports/, runs/, pre-registered one-shot tests                     v
-                                                                 netsentinel analyze / API / dashboard
+                                                                 netsentinel analyze / monitor (opt-in Zeek
+                                                                   streaming, streaming/live.py) / API / dashboard
 model bundle (supervised threat model,                                 AnalysisPipeline          inference/pipeline.py [verified]
   anomaly reference, evidence)          inference/bundle.py  ---->  1 supervised evidence (bundle) - policy-gated
 app classifier artifact (+ port table, policy) appintel/      ---->  2 behaviour vs local baseline
@@ -29,7 +30,11 @@ app classifier artifact (+ port table, policy) appintel/      ---->  2 behaviour
                                                                        -> evidence-aware Prediction  inference/schema.py
                                                                   |
                                                                   v
-                                                                 SQLite event store (flows + behaviour windows)  storage/
+                                                                  +--> incidents: per-entity grouping, stable IDs,
+                                                                  |    severity, lifecycle       incidents/   [Phase 8]
+                                                                  v
+                                                                 SQLite event store (flows, behaviour windows,
+                                                                   incidents)                    storage/
                                                                   |
                                                                   +--> FastAPI (localhost)   api/app.py         [verified, tests + real process]
                                                                   +--> Streamlit dashboard   dashboard/app.py   [verified, AppTest + browser]
@@ -42,6 +47,7 @@ app classifier artifact (+ port table, policy) appintel/      ---->  2 behaviour
 | `threat_status` | supervised bundle, gated by policy | Default `unverified_domain`: scores are shown but never escalate. `suspicious` / `known_attack_category` only under `--threat-policy trust`, or `auto` with a passed domain check v2 |
 | `behavior` | local calibrated profile | `anomaly_score` is a percentile among held-out calibration windows, type `normalized_non_probability`. `behavior_status` is normal / anomalous / insufficient_history / not_calibrated; `baseline_status` includes `baseline_provisional` and `drift_suspected` |
 | `application` | ML + training-data port table | `app_protocol` with `app_method` (ml / ml_port_agree / port_estimate) or an abstention (`app_status`). `service_category` is a port heuristic. `application_identity` is always null |
+| `behavior.level/entity`, `threshold_fpr_upper95` | deciding window | which device/service window decided the status (links the flow to its incident); sampling uncertainty of that threshold |
 | `verdict` | `decide_verdict` | attack / suspicious only from trusted supervised evidence; unusual = behaviour anomaly; insufficient_data when nothing supports a normality claim; benign otherwise |
 
 ## Key design decisions
@@ -55,10 +61,15 @@ app classifier artifact (+ port table, policy) appintel/      ---->  2 behaviour
 | Port evidence can override the ML protocol | The portable model sees only a coarse port class; long HTTP on port 80 looked like TLS |
 | Every artifact hash-checked and schema-versioned | Refuses corrupted or incompatible models, calibrations and classifiers |
 | One heavy framework per process, lazy imports | 8 GB RAM development machine |
+| Global-window anomalies never mark individual flows | Phase 8 demo: a network-wide anomaly marked 80% of benign flows "unusual"; it is now a network incident |
+| Streaming watermark = largest flow START minus lateness (360 s default) | Safe for start-ordered files and end-ordered live Zeek output; Zeek writes connections after their inactivity timeout (up to about 300 s on 22 development logs) |
+| Incident IDs = hash(calibration, level, entity, first window start) | Batch, replay and in-order streaming give the same IDs; re-analysis updates instead of duplicating, and analyst status survives |
+| Robust median/MAD stays the scorer; temporal models are research | Phase 8B: GRU/TCN/EWMA/lag-IForest did not beat it with clean calibration on development data |
 
 ## Not implemented
 
-- Live packet capture or streaming monitoring. The system is offline only, by design.
+- Live packet capture. The opt-in `monitor` reads a Zeek log that the operator's own Zeek
+  writes; NetSentinel itself never captures, intercepts or scans.
 - Zeek or Suricata execution: NetSentinel reads Zeek logs, it does not run Zeek.
 - Behaviour baselines conditioned on the ML application class (they use the port
   heuristic).

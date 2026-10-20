@@ -91,13 +91,32 @@ def event_payload(db: str, oid: str) -> dict | None:
 
 st.title("NetSentinel AI")
 st.warning(
-    "**Offline analysis.** Events are model outputs on *recorded* traffic (replayed benchmark "
-    "flows or captures you upload), not live network monitoring. Anomaly scores are "
-    "benign-tail percentiles, not attack probabilities."
+    "**Detection only.** Events are model outputs on recorded traffic (captures you analyse, "
+    "replayed benchmark flows) or on the Zeek log that YOUR Zeek writes, read by the opt-in "
+    "`netsentinel monitor`. NetSentinel never captures, intercepts, scans or blocks traffic. "
+    "Scores are local-baseline deviations, not attack probabilities."
 )
-page = st.sidebar.radio("Page", ["Overview", "Network behaviour", "Application intelligence",
-                                 "Traffic explorer", "Anomalies", "Threats", "Analyze capture",
-                                 "Model management"])  # fmt: skip
+PAGES = ["Live traffic", "Behavior intelligence", "Application intelligence",
+         "Incident explorer", "Traffic explorer", "Anomalies", "Threats", "Analyze capture",
+         "Model management", "Research & diagnostics"]  # fmt: skip
+STANDALONE = ("Model management", "Incident explorer", "Research & diagnostics")
+page = st.sidebar.radio("Page", PAGES)
+
+
+def calibration_manifest(cid: str) -> dict | None:
+    for m in manifests("calibrations/*/manifest.json"):
+        if m.get("calibration_id") == cid:
+            return m
+    return None
+
+
+def reports(name: str) -> dict | None:
+    f = ROOT / "reports" / name
+    try:
+        return json.loads(f.read_text("utf-8")) if f.exists() else None
+    except (OSError, ValueError):
+        return None
+
 
 if page == "Analyze capture":
     import tempfile
@@ -149,16 +168,130 @@ if page == "Analyze capture":
         st.json(summary.get("top_alerts", [])[:5])
     st.stop()
 
+if page == "Incident explorer":
+    sys.path.insert(0, str(ROOT / "src"))
+    from netsentinel.incidents import STATUSES
+    from netsentinel.storage.events import EventStore
+
+    st.subheader("Incident explorer")
+    st.caption(
+        "An incident groups the anomalous windows of ONE entity (device, service or the whole "
+        "network) separated by at most 5 minutes. Severity ranks deviation strength "
+        "(score/threshold, duration); it is not an attack probability. `threat_status` is the "
+        "supervised evidence of the linked flows (unverified by default)."
+    )
+    if not Path(args.events_db).exists():
+        st.info(f"No event store at {args.events_db}.")
+        st.stop()
+    store = EventStore(args.events_db)
+    c = st.columns(4)
+    status = c[0].multiselect("Status", list(STATUSES),
+                              default=[x for x in STATUSES if x != "resolved"])  # fmt: skip
+    sev = c[1].multiselect("Severity", ["high", "medium", "low"], default=["high", "medium", "low"])
+    level = c[2].selectbox("Level", ["(all)", "device", "service", "global"])
+    size = 50
+    pg = int(c[3].number_input("Page", min_value=1, value=1, step=1))
+    items, total = store.incidents(status=status or None, severity=sev or None,
+                                   level=None if level == "(all)" else level, limit=size,
+                                   offset=(pg - 1) * size)  # fmt: skip
+    st.caption(f"{total} matching incidents; page {pg} of {max(1, -(-total // size))}")
+    if not items:
+        st.info("No incidents match. Incidents are created by `analyze` or `monitor` with a "
+                "behaviour calibration.")  # fmt: skip
+        st.stop()
+    cols = ("incident_id", "severity", "status", "level", "entity", "first_seen", "last_seen",
+            "n_windows", "n_flow_events", "max_ratio", "threat_status_worst")  # fmt: skip
+    tab = pd.DataFrame(
+        [
+            {**{k: d.get(k) for k in cols}, "explanation": ", ".join(d.get("explanation", [])[:3])}
+            for d in items
+        ]
+    )
+    st.dataframe(tab, use_container_width=True, hide_index=True)
+    pick = st.selectbox("Inspect incident", tab["incident_id"].tolist())
+    d = store.get_incident(pick)
+    m = st.columns(4)
+    m[0].metric("severity", d["severity"])
+    m[1].metric("windows", d["n_windows"])
+    m[2].metric("linked flow events", d["n_flow_events"])
+    m[3].metric("duration", f"{d['duration_s'] / 60:.1f} min")
+    st.write("**Why it was raised** (largest deviations from the local baseline)")
+    for e in d.get("explanation") or ["no explanation recorded"]:
+        st.write(f"- {e}")
+    st.caption(d.get("severity_semantics", ""))
+    st.subheader("Window evidence")
+    st.dataframe(pd.DataFrame(d.get("window_evidence", [])), use_container_width=True,
+                 hide_index=True)  # fmt: skip
+    if d.get("app_protocols"):
+        st.subheader("Application protocols of linked flows")
+        st.bar_chart(pd.Series(d["app_protocols"], name="flows"))
+    with st.expander("Linked flow events, threat status and model versions"):
+        st.json(
+            {
+                "flow_evidence": d.get("flow_evidence"),
+                "threat_status": d.get("threat_status"),
+                "flow_verdicts": d.get("flow_verdicts"),
+                "model_versions": d.get("model_versions"),
+                "calibration": d.get("calibration"),
+                "baseline_status": d.get("baseline_status"),
+            }
+        )
+    st.subheader("Lifecycle")
+    if d.get("status_history"):
+        st.dataframe(pd.DataFrame(d["status_history"]), use_container_width=True, hide_index=True)
+    with st.form("status"):
+        new = st.selectbox("Set status", list(STATUSES), index=list(STATUSES).index(d["status"]))
+        note = st.text_input("Note (optional)", max_chars=500)
+        if st.form_submit_button("Update status"):
+            store.set_incident_status(pick, new, note, by="dashboard")
+            st.success(f"{pick}: {d['status']} -> {new}")
+    st.stop()
+
+if page == "Research & diagnostics":
+    st.subheader("Research & diagnostics (development and historical results, not live)")
+    st.caption("Numbers on this page come from the committed experiment reports. They describe "
+               "the research datasets, not your traffic.")  # fmt: skip
+    conf = reports("phase8/confirm_49_1.json")
+    if conf:
+        st.markdown("**Phase 8 confirmatory test** (IoT-23 49-1, pre-registered in "
+                    "docs/phase8/RESEARCH_PLAN.md)")  # fmt: skip
+        st.dataframe(
+            pd.DataFrame(
+                [
+                    {"hypothesis": h, "verdict": v.get("verdict")}
+                    for h, v in conf["hypotheses"].items()
+                ]
+            ),
+            hide_index=True,
+        )
+    sel = reports("phase8/temporal_selection.json")
+    if sel:
+        st.markdown("**Temporal scorers on development data** (device level, clean "
+                    "calibration; exploratory)")  # fmt: skip
+        st.dataframe(pd.DataFrame([{"config": k, **{x: v[x] for x in (
+            "mean_pr_auc", "median_fpr", "median_fa_per_h", "median_score_us")}}
+            for k, v in sel["primary"]["configs"].items()]).sort_values(
+            "mean_pr_auc", ascending=False), hide_index=True)  # fmt: skip
+    lat = reports("phase8/zeek_lateness.json")
+    if lat:
+        st.markdown("**Zeek record lateness** (why `monitor` defaults to 360 s)")
+        st.dataframe(pd.DataFrame(lat).T, use_container_width=True)
+    for fig in ("binary_recall_by_label.png", "openset_recall.png", "adaptation_calibration.png"):
+        f = ROOT / "reports/figures" / fig
+        if f.exists():
+            st.image(str(f), caption=f"historical research figure: {fig}")
+    st.stop()
+
 events = load_events(args.events_db)
-if events.empty and page != "Model management":
+if events.empty and page not in STANDALONE:
     st.info(f"No events in {args.events_db}. Run `netsentinel replay ...` first.")
     st.stop()
 
-if page != "Model management":
+if page not in STANDALONE:
     sources = sorted(events["source"].unique())
     # One replay source (capture day) at a time: time spans and timelines across different
     # days would be meaningless.
-    pick = st.sidebar.selectbox("Replay source", sources)
+    pick = st.sidebar.selectbox("Source", sources)
     events = events[events["source"] == pick]
     t0, t1 = events["ts"].min().to_pydatetime(), events["ts"].max().to_pydatetime()
     if t0 < t1:
@@ -167,7 +300,11 @@ if page != "Model management":
         events = events[(events["ts"] >= rng[0]) & (events["ts"] <= rng[1])]
     bucket = st.sidebar.selectbox("Timeline bucket", ["10s", "1min", "5min"], index=1)
 
-if page == "Overview":
+if page == "Live traffic":
+    st.caption(
+        "Sources named `zeek-stream:*` are written continuously by "
+        "`netsentinel monitor --zeek-log ... --follow`; this page refreshes every 10 s."
+    )
     counts = events["verdict"].value_counts()
     cols = st.columns(5)
     for c, v in zip(cols, VERDICT_ORDER, strict=True):
@@ -247,7 +384,7 @@ elif page == "Threats":
                        "it is not a causal explanation of the model's decision.")  # fmt: skip
             st.json(payload)
 
-elif page == "Network behaviour":
+elif page == "Behavior intelligence":
     beh = load_behavior(args.events_db)
     beh = beh[beh["source"] == pick] if not beh.empty else beh
     if beh.empty:
@@ -269,6 +406,32 @@ elif page == "Network behaviour":
     c[1].metric("anomalous", int(d["anomalous"].sum()))
     c[2].metric("entities", d["entity"].nunique())
     c[3].metric("calibration", d["calibration"].iloc[-1] if len(d) else "-")
+    man = calibration_manifest(d["calibration"].iloc[-1]) if len(d) else None
+    with st.expander("Baseline metadata (local calibration)"):
+        if man is None:
+            st.write("Calibration manifest not found under the models directory.")
+        else:
+            lvm = man.get("levels", {}).get(lv, {})
+            diag = lvm.get("threshold_diagnostics") or {}
+            st.json(
+                {
+                    "status": man.get("status"),
+                    "mode": man.get("mode"),
+                    "operator_statement": man.get("operator_statement"),
+                    "period": man.get("period"),
+                    "window_s": man.get("hyperparameters", {}).get("window_s"),
+                    "target_fpr": man.get("hyperparameters", {}).get("target_fpr"),
+                    "threshold": lvm.get("threshold"),
+                    "threshold_method": lvm.get("threshold_method"),
+                    "holdout_windows": lvm.get("holdout_windows"),
+                    "expected_fpr": diag.get("expected_fpr"),
+                    "fpr_upper95": diag.get("fpr_upper95"),
+                    "warnings": lvm.get("warnings"),
+                }
+            )
+            st.caption("fpr_upper95: 95% upper bound of the false-alert rate implied by the "
+                       "number of held-out calibration windows (sampling uncertainty only; "
+                       "drift is not included).")  # fmt: skip
     if len(d):
         st.subheader("Window score vs local alert threshold")
         g = d.groupby("window_end").agg(score=("score", "max"), threshold=("threshold", "max"))
@@ -321,8 +484,4 @@ else:  # Model management
         "alarms but does not restore attack detection; application labels are nDPI "
         "proxy labels. See docs/phase6/FINAL_AUDIT.md."
     )
-    st.subheader("Historical research results (not live performance)")
-    for fig in ("binary_recall_by_label.png", "openset_recall.png", "adaptation_calibration.png"):
-        p = ROOT / "reports/figures" / fig
-        if p.exists():
-            st.image(str(p), caption=f"historical research figure: {fig}")
+    st.caption("Historical research figures and Phase 8 results: Research & diagnostics.")

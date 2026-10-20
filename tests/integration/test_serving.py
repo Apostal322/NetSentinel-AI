@@ -84,6 +84,31 @@ def test_bundle_replay_store_and_api(trained, monkeypatch):
     hdr = {"x-admin-token": "test-token-123"}
     assert client.post("/replay/start", json={"day": "../../etc"}, headers=hdr).status_code == 422
     assert client.post("/replay/start", json={"day": "2019-01-01"}, headers=hdr).status_code == 404
+    # Phase 8 incidents API: pagination, filters, lifecycle (admin), baseline metadata
+    from netsentinel.incidents import aggregate_incidents
+
+    ws_ = [{"level": "device", "key": f"10.0.0.{k}", "win": k * 20,
+            "window_start_ms": k * 20 * 30_000, "window_end_ms": (k * 20 + 1) * 30_000,
+            "score": 2.0 + k, "threshold": 1.0, "anomalous": True, "n_flows": 4,
+            "explanation": []} for k in range(5)]  # fmt: skip
+    store.upsert_incidents(aggregate_incidents(ws_, [], "cal-x", "test", 30))
+    r = client.get("/incidents", params={"limit": 2}).json()
+    assert r["total"] == 5 and len(r["items"]) == 2 and r["next_offset"] == 2
+    assert client.get("/incidents", params={"limit": 2, "offset": 4}).json()["next_offset"] is None
+    assert client.get("/incidents", params={"status": "bogus"}).status_code == 422
+    assert client.get("/incidents", params={"severity": "high"}).json()["total"] == 4
+    iid = r["items"][0]["incident_id"]
+    assert client.get(f"/incidents/{iid}").json()["incident_id"] == iid
+    assert client.get("/incidents/inc-none").status_code == 404
+    body = {"status": "acknowledged", "note": "checked"}
+    assert client.post(f"/incidents/{iid}/status", json=body).status_code == 401
+    ok = client.post(f"/incidents/{iid}/status", json=body, headers=hdr)
+    assert ok.status_code == 200 and ok.json()["status"] == "acknowledged"
+    bad = client.post(f"/incidents/{iid}/status", json={"status": "closed"}, headers=hdr)
+    assert bad.status_code == 422
+    assert client.post("/incidents/inc-none/status", json=body, headers=hdr).status_code == 404
+    assert client.get("/baseline").status_code == 404  # no calibration loaded
+    assert client.get("/behavior", params={"offset": 10}).status_code == 200
 
 
 def test_tampered_bundle_is_refused(trained, tmp_path):

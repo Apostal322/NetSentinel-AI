@@ -44,3 +44,12 @@ changes network state. Live capture is not implemented.
 | T11 | Calibration and classifier artifact tampering | Same SHA-256 manifest + schema-version checks as bundles (`load_profile`, `load_classifier`), tested; the API refuses to become ready with a corrupt artifact (`/ready` 503) | Same as T3: whoever can write the directory can rewrite the manifest |
 | T12 | Device addresses in stored outputs | Behaviour windows key devices by source address; flow events carry it only in `behavior.model_scope` for device-level profiles; retention purges both tables | No pseudonymisation of addresses; keep the event store local |
 | T13 | Over-trusting application labels | `app_protocol` is an nDPI-proxy label with `app_method` / `app_evidence`; `application_identity` is always null; conflicts between ML and port evidence are explicit | Port-based estimates are wrong for services on non-standard ports |
+
+## Phase 8 additions (2026-10-20)
+
+| ID | Threat | Mitigation | Residual risk |
+|---|---|---|---|
+| T14 | Hostile or malformed Zeek log input to `monitor` / `analyze` | Field-count and type checks; unparseable lines are counted and skipped (`parse.skipped`); a 2 GB file size limit for `analyze`; `monitor` only reads a local path the operator names, read-only | A crafted log can still inject fake flows: the log's integrity is the operator's Zeek deployment's responsibility |
+| T15 | Resource exhaustion by flooding the stream, or skewed timestamps | Bounded buffer (`--max-buffer`, forced window closes counted); a clock-skew guard (a record > 1 h ahead of the watermark clock does not advance it); late records are counted and dropped; the deduplication state lives only per open window | A sustained flood degrades to forced closes (windows scored early, possibly incomplete) instead of growing memory |
+| T16 | Tampering with incident lifecycle (hiding an incident by marking it resolved) | API status changes need the admin token; every change is appended to `status_history` with time, actor and note; new evidence re-opens a resolved incident | The dashboard writes as "dashboard" without authentication: keep it on localhost, as documented |
+| T17 | Incidents expose device addresses | Incident entities are device addresses or service names; retention (`purge_older_than`) covers the incidents table | No pseudonymisation |

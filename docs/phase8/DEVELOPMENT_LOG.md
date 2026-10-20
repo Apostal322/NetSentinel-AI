@@ -142,3 +142,73 @@ Result (`reports/phase8/app_abstention.json`, 84 s, 1.1 GB):
 - Found while building the confirmatory run: `load_capture` materialises all records. The
   fresh 49-1 log (853,630,635 bytes, SHA-256 `12e12cd6...fa54f`, contents not yet inspected)
   must therefore be processed through the bounded streaming path.
+
+## 8J / 8I: pre-registration and confirmatory test
+
+- Plan frozen and pushed in `d838738`.
+- Two dry runs on inspected scenarios before 49-1 was read. They fixed the lateness setting
+  and the H7 throughput definition, both recorded in the plan.
+- Run: 18 min, 2.99 GB. Results in [CONFIRMATORY_RESULTS.md](CONFIRMATORY_RESULTS.md):
+  - supported: H1a, H2, H6, H7;
+  - refuted: H1b, H3;
+  - not testable: H5.
+
+## 8F: robust local normality (development, exploratory)
+
+`scripts/phase8/robust_normality.py`, `reports/phase8/robust_normality.json`: 12 benign
+CTU-Normal captures.
+
+- **Sample size.**
+  - 15 min of calibration: insufficient history in 12/12 captures.
+  - 30-60 min: provisional status. Realised device FPR has median 0, and 19/19 runs are within
+    3x the target.
+  - 120 min: baseline ready (4/4 captures long enough).
+- **Time of day:** per-hour FPR is recorded per capture. On 49-1 (exploratory) it ranged
+  0-1.6% across the 5 UTC hours.
+- **Drift:** 1 of 12 benign evaluation halves was flagged `drift_suspected` (a false drift
+  alarm).
+- **Contamination and safe updates.** This study found a real gap.
+  - The update gate tested only the global alert RATE, so a 60 s port scan (800 SYNs) injected
+    into a candidate period was flagged in **0/12** captures. The device level saw the scan,
+    but a short burst barely moves a rate.
+  - Gate v2 adds a strong-outlier rule: any window >= 2.0x the largest held-out calibration
+    score of its level requires review.
+  - A fixed 1.5x-threshold rule falsely flagged every synthetic normal period, because the
+    maximum of hundreds of windows exceeds a 1% threshold.
+  - Result: 7/12 contaminated periods flagged and 0/12 clean ones; with a 1.5x factor, 10/12
+    and 3/12.
+  - The factor was chosen on these data and is unvalidated. Five of 12 bursts still pass.
+
+## 8G: API and dashboard
+
+- API:
+  - `GET /incidents` (filters, pagination with total / next_offset) and
+    `GET /incidents/{id}`;
+  - `POST /incidents/{id}/status` (admin token; history kept);
+  - `GET /baseline` (calibration metadata with threshold uncertainty);
+  - `/behavior` offset.
+- Flow predictions carry `behavior.level`, `behavior.entity` and
+  `behavior.threshold_fpr_upper95`.
+- Dashboard sections:
+  - Live traffic;
+  - Behavior intelligence (with baseline metadata);
+  - Application intelligence;
+  - Incident explorer (filters, paging, evidence, lifecycle changes);
+  - Traffic explorer, Anomalies, Threats, Analyze capture;
+  - Model management;
+  - Research & diagnostics.
+- Covered by the Streamlit AppTest and TestClient tests.
+
+## 8H: model-backed Docker smoke test (CI)
+
+- The CI `docker` job now builds the synthetic demo artifacts on the runner. It mounts them
+  read-only into the image and checks:
+  - `/ready`;
+  - `/baseline`;
+  - the `/predict/flow` schema and the safe default (`unverified_domain`);
+  - `/incidents` paging;
+  - the admin requirement on status changes;
+  - that a tampered bundle keeps `/ready` at 503;
+  - container cleanup in an `always()` step.
+- The same calls were checked locally against demo artifacts through the API.
+- Performance on real data is H7: 24.8k records/s, 2.99 GB peak, for 5.4M records.

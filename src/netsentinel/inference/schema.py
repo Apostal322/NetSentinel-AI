@@ -106,6 +106,9 @@ class BehaviorOut(BaseModel):
     anomaly_score_type: Literal["normalized_non_probability"] = "normalized_non_probability"
     raw_score: float | None = None
     threshold: float | None = None
+    # Phase 8 uncertainty: 95% upper bound of the false-alert rate of `threshold`, from the
+    # number of held-out calibration windows (sampling only; drift not included)
+    threshold_fpr_upper95: float | None = None
     model_scope: str | None = None
     level: str | None = None  # Phase 8: entity level of the window that decided the status
     entity: str | None = None  # device address or service category of that window

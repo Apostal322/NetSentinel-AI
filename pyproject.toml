@@ -1,6 +1,6 @@
 [project]
 name = "netsentinel-ai"
-version = "0.7.0"
+version = "0.8.0"
 description = "Leakage-aware ML research on network-flow intrusion detection, plus a local, detection-only behaviour-baseline and protocol-identification tool for PCAP/Zeek captures."
 readme = "README.md"
 license = { text = "MIT" }

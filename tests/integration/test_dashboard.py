@@ -19,8 +19,9 @@ from netsentinel.inference.schema import (  # noqa: E402
 from netsentinel.storage.events import EventStore  # noqa: E402
 
 APP = str(Path(__file__).resolve().parents[2] / "dashboard" / "app.py")
-PAGES = ["Overview", "Network behaviour", "Application intelligence", "Traffic explorer",
-         "Anomalies", "Threats", "Model management"]  # fmt: skip
+PAGES = ["Live traffic", "Behavior intelligence", "Application intelligence",
+         "Incident explorer", "Traffic explorer", "Anomalies", "Threats", "Model management",
+         "Research & diagnostics"]  # fmt: skip
 
 
 def _pred(i: int, verdict: str) -> Prediction:
@@ -51,6 +52,12 @@ def test_all_pages_render(tmp_path, monkeypatch):
         "severity": [40.0, 99.0], "threshold": [5.0, 5.0], "anomalous": [False, True],
         "model_scope": ["global", "10.0.0.1"], "explanation": [[], ["connection_rate_above"]],
     }), "pcap:demo.pcap", "calibration-test", 30)  # fmt: skip
+    from netsentinel.incidents import aggregate_incidents
+
+    w = {"level": "device", "key": "10.0.0.1", "win": 1, "window_start_ms": 1_767_268_800_000,
+         "window_end_ms": 1_767_268_830_000, "score": 9.0, "threshold": 5.0, "anomalous": True,
+         "n_flows": 3, "explanation": ["connection_rate_above_local_baseline"]}  # fmt: skip
+    store.upsert_incidents(aggregate_incidents([w], [], "calibration-test", "pcap:demo.pcap", 30))
     store.close()
     monkeypatch.setenv("NETSENTINEL_EVENTS_DB", str(db))
     monkeypatch.setenv("NETSENTINEL_MODELS_DIR", str(tmp_path / "models"))
@@ -59,6 +66,8 @@ def test_all_pages_render(tmp_path, monkeypatch):
         assert not at.exception, at.exception
         at.sidebar.radio[0].set_value(page).run()
         assert not at.exception, (page, at.exception)
-        if page == "Overview":
+        if page == "Incident explorer":
+            assert at.dataframe and "10.0.0.1" in at.dataframe[0].value["entity"].tolist()
+        if page == "Live traffic":
             values = {m.label: m.value for m in at.metric}
             assert values["unusual"] == "6" and values["benign"] == "54"

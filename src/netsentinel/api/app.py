@@ -57,6 +57,14 @@ class ReplayRequest(BaseModel):
     speed: float = Field(default=0.0, ge=0, le=10_000)
 
 
+class IncidentStatusRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    status: str = Field(
+        pattern=r"^(new|investigating|acknowledged|resolved|insufficient_evidence)$"
+    )
+    note: str = Field(default="", max_length=500)
+
+
 def _flows_to_frame(flows: list[FlowRecord]) -> pl.DataFrame:
     rows = []
     for f in flows:
@@ -133,9 +141,69 @@ def create_app(settings: Settings) -> FastAPI:
         anomalous_only: bool = False,
         source: str | None = None,
         limit: int = Query(500, ge=1, le=5000),
+        offset: int = Query(0, ge=0),
     ) -> list[dict]:
         """Scored behaviour windows (local-baseline deviations; not attack verdicts)."""
-        return store.behavior(level, anomalous_only, source, limit)
+        return store.behavior(level, anomalous_only, source, limit, offset)
+
+    @app.get("/baseline")
+    def baseline() -> dict:
+        """Metadata of the loaded local calibration: status, mode, period, thresholds and their
+        sampling uncertainty (fpr_upper95). 404 when no calibration is loaded."""
+        pipe = state["pipeline"]
+        man = pipe.calibration if pipe else None
+        if not man:
+            raise HTTPException(404, "no behaviour calibration loaded")
+        levels = {lv: {"threshold": m.get("threshold"),
+                       "threshold_method": m.get("threshold_method"),
+                       "holdout_windows": m.get("holdout_windows"),
+                       "expected_fpr": (m.get("threshold_diagnostics") or {}).get("expected_fpr"),
+                       "fpr_upper95": (m.get("threshold_diagnostics") or {}).get("fpr_upper95"),
+                       "reliable": (m.get("threshold_diagnostics") or {}).get("reliable"),
+                       "warnings": m.get("warnings")}
+                  for lv, m in (man.get("levels") or {}).items()}  # fmt: skip
+        return {"calibration_id": man["calibration_id"], "status": man.get("status"),
+                "mode": man.get("mode"), "operator_statement": man.get("operator_statement"),
+                "period": man.get("period"), "hyperparameters": man.get("hyperparameters"),
+                "levels": levels, "threat_mode": pipe.threat_mode,
+                "domain_assumption": man.get("domain_assumption")}  # fmt: skip
+
+    @app.get("/incidents")
+    def incidents(
+        status: Annotated[list[str] | None, Query()] = None,
+        severity: Annotated[list[str] | None, Query()] = None,
+        level: str | None = Query(None, pattern="^(global|device|service)$"),
+        entity: str | None = Query(None, max_length=256),
+        source: str | None = Query(None, max_length=256),
+        since: datetime | None = None,
+        until: datetime | None = None,
+        limit: int = Query(50, ge=1, le=500),
+        offset: int = Query(0, ge=0),
+    ) -> dict:
+        """Incidents (grouped anomalous windows of one entity), most recent activity first."""
+        try:
+            items, total = store.incidents(status, severity, level, entity, source, since,
+                                           until, limit, offset)  # fmt: skip
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from exc
+        return {"items": items, "total": total, "limit": limit, "offset": offset,
+                "next_offset": offset + limit if offset + limit < total else None}  # fmt: skip
+
+    @app.get("/incidents/{incident_id}")
+    def incident(incident_id: str) -> dict:
+        found = store.get_incident(incident_id)
+        if not found:
+            raise HTTPException(404, "incident not found")
+        return found
+
+    @app.post("/incidents/{incident_id}/status", dependencies=[Depends(admin)])
+    def incident_status(incident_id: str, req: IncidentStatusRequest) -> dict:
+        try:
+            return store.set_incident_status(incident_id, req.status, req.note, by="api")
+        except KeyError as exc:
+            raise HTTPException(404, "incident not found") from exc
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from exc
 
     def pipeline():
         engine()  # raises 503 when the bundle is missing

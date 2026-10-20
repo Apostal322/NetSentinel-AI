@@ -36,6 +36,23 @@ Every number links to its source. **Data role:**
 | ML vs Zeek service on real traffic | 13 CTU logs | accuracy 0.925 vs port rule 0.999; abstains on 0.04%: **H7 not supported** | C | `reports/phase6/h7_ctu_appid.json` |
 | Conservative ML + port policy (Phase 7) | NF development; CTU descriptive | see `docs/phase7/RELIABILITY.md` P3 | V / E | `reports/phase7/app_policy_selection.json` |
 
+## Phase 8 (temporal models, incidents, streaming)
+
+- Development (exploratory): [`docs/phase8/DEVELOPMENT_LOG.md`](phase8/DEVELOPMENT_LOG.md).
+- Confirmatory (pre-registered, IoT-23 49-1, fresh):
+  [`docs/phase8/CONFIRMATORY_RESULTS.md`](phase8/CONFIRMATORY_RESULTS.md).
+
+| Question | Data | Result |
+|---|---|---|
+| Do temporal scorers beat robust median/MAD? | IoT-23 + NF-UNSW dev (3 eligible units) | No: mean PR-AUC 0.846 (robust) vs <= 0.723 (EWMA, GRU, TCN, lag-IForest) |
+| Same, fresh capture, clean calibration (H1a) | 49-1 | Supported: 0.928 vs 0.676 (EWMA), delta CI [0.22, 0.29] |
+| Does EWMA cope better with contaminated calibration (H1b)? | 49-1 | Refuted: 0.638 vs 0.723; both lose the attacker (recall < 0.02) |
+| Product FPR on a fresh network (H2) | 49-1 | Supported: 1.09% (CI 0.5-2.1%) at a 1% target, recall 1.00 |
+| Incidents (H3) | 49-1 | Refuted: 45x alert reduction, but purity 0.10 (9 benign single-window incidents) |
+| App-ID consistency abstention | NF dev | Unknown-protocol abstention 1% -> 41%, IDS accepted accuracy 0.992 -> 0.996; the port table alone wins across datasets (UNSW 0.990 at 0.856 coverage) |
+| Streaming exactness and cost (H6, H7) | 49-1, 5.4M records | Identical windows and incidents under jitter and duplicates; 24.8k records/s, 2.99 GB |
+| Update gate vs a 60 s scan | 12 CTU-Normal (dev) | Rate-only gate: 0/12 flagged; v2 (strong-outlier rule): 7/12, 0 false |
+
 ## Telemetry
 
 | Check | Result | Source |

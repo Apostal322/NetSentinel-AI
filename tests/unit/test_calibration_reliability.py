@@ -87,3 +87,19 @@ def test_update_check_blocks_activation_of_anomalous_period_and_rollback(tmp_pat
     assert reg["active"] == second.name and reg["history"][-1]["note"].startswith("rollback")
     with pytest.raises(FileNotFoundError):
         resolve_calibration("active", tmp_path / "empty")
+
+
+def test_update_gate_flags_a_short_burst_the_rate_test_misses(tmp_path):
+    """Phase 8F: a 60 s scan inside an otherwise normal candidate period."""
+    first = _save(tmp_path, synth(240, seed=35))
+    normal = synth(240, seed=36, start_ms=T0 + 240 * 60_000)
+    row = normal.row(0, named=True)
+    at = T0 + 360 * 60_000
+    scan = pl.DataFrame([{**row, "flow_start_milliseconds": at + i * 75,
+                          "flow_end_milliseconds": at + i * 75, "flow_duration_milliseconds": 0,
+                          "ipv4_dst_addr": f"172.31.{i // 250}.{i % 250}", "dst_port": 1000 + i,
+                          "protocol": 6, "in_bytes": 60, "out_bytes": 0, "in_pkts": 1,
+                          "out_pkts": 0} for i in range(800)], schema=normal.schema)  # fmt: skip
+    chk = update_check(first, pl.concat([normal, scan]).sort("flow_end_milliseconds"))
+    assert chk["review_required"] and chk["strong_outliers"] and not chk["rate_review"]
+    assert update_check(first, normal)["review_required"] is False
