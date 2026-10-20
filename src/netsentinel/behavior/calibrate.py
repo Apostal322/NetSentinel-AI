@@ -117,7 +117,8 @@ def save_profile(profile: BehaviorProfile, out_dir: str | Path, *, sources: list
     joblib.dump(profile, out / "profile.joblib", compress=3)
     levels = {lv: {"threshold": p.threshold, "fit_windows": p.n_fit_windows,
                    "holdout_windows": p.n_holdout_windows, "own_profiles": len(p.keys),
-                   "trimmed_windows": p.trimmed_windows, "warnings": p.warnings}
+                   "trimmed_windows": p.trimmed_windows,
+                   "trimmed_holdout_windows": p.trimmed_holdout_windows, "warnings": p.warnings}
               for lv, p in profile.levels.items()}  # fmt: skip
     manifest = {
         "calibration_id": cid,

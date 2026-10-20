@@ -10,9 +10,10 @@ Threshold: per level, the conformal (1 - target_fpr) quantile of scores of HELD-
 Severity: empirical percentile (0-100) of the score among held-out calibration windows -
        a `normalized_non_probability`, never a probability of attack.
 
-Unlabelled mode: iterative trimming - after each fit, windows whose score exceeds the
-`trim_quantile` of fit-window scores are dropped and the profile is refit. Trimming limits,
-but cannot exclude, persistent malicious behaviour that dominates the calibration period;
+Unlabelled mode: iterative trimming - after each fit, windows whose score is a robust outlier
+(median + 4 scaled MAD of the scores, at most 20%) are dropped and the profile is refit. The
+threshold uses ALL held-out windows; their outliers are only counted for review. Trimming
+limits, but cannot exclude, persistent malicious behaviour that dominates the calibration period;
 the artifact records how much was trimmed so the operator can review it.
 """
 
@@ -55,6 +56,7 @@ class LevelProfile:
     n_fit_windows: int = 0
     n_holdout_windows: int = 0
     trimmed_windows: int = 0
+    trimmed_holdout_windows: int = 0
     warnings: list[str] = field(default_factory=list)
 
     def scope_for(self, key: str) -> str:
@@ -96,8 +98,23 @@ def conformal_threshold(scores: np.ndarray, target_fpr: float) -> tuple[float, b
     return float(s[k - 1]), True
 
 
+def robust_outliers(s: np.ndarray, k: float = 4.0, max_share: float = 0.2) -> np.ndarray:
+    """Mask of scores far above the bulk (median + k * scaled MAD), at most `max_share` of
+    them (the largest). Clean data: almost nothing is flagged; a contaminating cluster that is
+    far from the bulk is removed. Revised after the H1 run (see DEVELOPMENT_LOG): the first
+    version always trimmed a fixed top quantile, which inflated false alerts on clean data."""
+    if not len(s):
+        return np.zeros(0, bool)
+    med = np.median(s)
+    mad = 1.4826 * np.median(np.abs(s - med))
+    out = s > med + k * max(mad, 1e-9)
+    if out.mean() > max_share:
+        out = s > np.quantile(s, 1 - max_share)
+    return out
+
+
 def fit_level(fit: pl.DataFrame, holdout: pl.DataFrame, level: str, target_fpr: float,
-              min_windows: int, mode: str, top_k: int = 2, trim_quantile: float = 0.9,
+              min_windows: int, mode: str, top_k: int = 2,
               trim_passes: int = 2) -> LevelProfile:  # fmt: skip
     prof = LevelProfile(level=level)
     data = fit
@@ -109,9 +126,9 @@ def fit_level(fit: pl.DataFrame, holdout: pl.DataFrame, level: str, target_fpr: 
         prof.pooled = _stats(_x(data)) if data.height else None
         if prof.pooled is None or p == trim_passes or mode != "unlabelled":
             break
-        s = window_scores(_zs(prof, data), top_k)
-        cut = np.quantile(s, trim_quantile)
-        keep = s <= cut
+        keep = ~robust_outliers(window_scores(_zs(prof, data), top_k))
+        if keep.all():
+            break
         prof.trimmed_windows += int((~keep).sum())
         data = data.filter(pl.Series(keep))
     prof.n_fit_windows = data.height
@@ -119,11 +136,16 @@ def fit_level(fit: pl.DataFrame, holdout: pl.DataFrame, level: str, target_fpr: 
         prof.warnings.append("no fit windows")
         return prof
     hs = window_scores(_zs(prof, holdout), top_k) if holdout.height else np.array([])
-    if mode == "unlabelled" and len(hs):
-        hs = hs[hs <= np.quantile(hs, trim_quantile + (1 - trim_quantile) / 2)]
-        prof.warnings.append("unlabelled calibration: threshold from trimmed held-out windows; "
-                             "persistent malicious behaviour in the calibration period may be "
-                             "learned as normal")  # fmt: skip
+    if mode == "unlabelled":
+        # Held-out windows are NOT trimmed: trimming them always lowers the threshold and
+        # raised false alerts on clean captures (H1 run 2). Contamination therefore raises the
+        # threshold (costing recall, measured in H5) instead of flooding the operator.
+        prof.trimmed_holdout_windows = int(robust_outliers(hs).sum()) if len(hs) else 0
+        prof.warnings.append(
+            "unlabelled calibration: profile fit on trimmed windows; threshold from all held-out "
+            "windows (contamination raises it). Persistent malicious behaviour in the "
+            "calibration period may be learned as normal"
+        )
     prof.holdout_scores = np.sort(hs)
     prof.n_holdout_windows = len(hs)
     prof.threshold, reliable = conformal_threshold(hs, target_fpr)

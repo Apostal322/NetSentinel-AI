@@ -46,3 +46,27 @@
 - **Tests.** `tests/unit/test_behavior.py`: 8 tests (causality, end-time assignment, burst
   detection, cold start, trimming, artifact tamper/schema refusal, empty input, drift), all
   passing.
+
+### H1 (benign CTU captures, `scripts/phase6/eval_h1_ctu.py` -> `reports/phase6/h1_ctu.json`)
+
+- Setup: 13 captures; CTU-21 (0.3 h) is correctly `insufficient_history`. Each capture's
+  first 50% of time calibrates, the last 50% is evaluated. Window 30 s, target FPR 0.01.
+  29 s runtime, 0.59 GB peak.
+- **Vetted mode (pre-registered primary):**
+  - Median global false-alert windows per hour: **2.3**, vs **120** for the uncalibrated
+    Phase-5 bundle (any flow unusual/suspicious; window FPR 0.54–1.00). Ratio criterion met
+    (52x).
+  - Global-window FPR <= 0.03 in only **7/12** captures; five captures reach 0.033–0.042.
+  - **H1 not supported** as pre-specified: the FPR criterion fails. Thresholds come from
+    about 100–230 held-out windows of the same capture's first half, and the second half
+    drifts.
+  - Device and service levels: median 1.1 and 0.5 false alerts/h.
+- **Post-hoc revision of unlabelled mode (exploratory on CTU from here on).**
+  - Run 1, fixed-quantile trimming of fit and held-out windows: median 10.7 FA/h.
+  - Run 2, robust-outlier trimming of both: 23.7 FA/h. Trimming held-out windows always
+    lowers the threshold.
+  - Final design: trim only fit windows and set the threshold from all held-out windows, so
+    contamination costs recall (to be measured in H5 on unused data), not false alerts.
+    Run 3: median 1.4 FA/h on clean captures.
+  - H1's vetted-mode result is unaffected by these changes.
+- Comparator bug (window count allowed FPR > 1) fixed; conclusions unchanged.
