@@ -583,7 +583,9 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--calibration", default="active", help="behaviour profile (default: active)")
     p.add_argument("--appid", default=None)
     p.add_argument("--events-db", default="artifacts/events.sqlite")
-    p.add_argument("--lateness", type=float, default=60.0, help="allowed lateness, seconds")
+    p.add_argument("--lateness", type=float, default=360.0,
+                   help="allowed lateness in seconds (Zeek logs a connection after its "
+                        "inactivity timeout, 300 s for TCP by default)")  # fmt: skip
     p.add_argument("--max-buffer", type=int, default=2_000_000, help="max buffered records")
     p.add_argument("--utc-offset", type=float, default=0.0)
     p.add_argument("--threat-policy", choices=("unverified", "auto", "trust", "unsupported"),

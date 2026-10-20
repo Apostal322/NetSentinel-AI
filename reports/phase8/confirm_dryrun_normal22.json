@@ -1,0 +1,193 @@
+{
+ "plan": "docs/phase8/RESEARCH_PLAN.md",
+ "git": "3b9b3c2-dirty",
+ "capture": "conn.log",
+ "versions": {
+  "polars": "2.0.0",
+  "numpy": "2.5.4",
+  "scikit-learn": "1.9.1",
+  "lightgbm": "4.7.0",
+  "torch": "2.14.1+cu126"
+ },
+ "pass0": {
+  "records": 76166,
+  "attack_records": 0,
+  "min_end_ms": 1493727727602,
+  "max_end_ms": 1493732979756,
+  "mid_ms": 1493730353679,
+  "parse": {
+   "lines": 76175,
+   "skipped": {}
+  },
+  "seconds": 0.9
+ },
+ "app_artifacts": {
+  "phase7": "appid-portable-20261020T184500Z",
+  "phase8": "appid-portable-20261020T201432Z"
+ },
+ "pass1": {
+  "stream": {
+   "records": 76166,
+   "accepted": 76166,
+   "duplicates": 0,
+   "late": 0,
+   "clock_skew": 0,
+   "forced_closes": 0,
+   "windows_closed": 176,
+   "max_buffered": 59870,
+   "watermark_ms": 1493729276787
+  },
+  "seconds": 43.8,
+  "peak_rss_mb": 539.3046875,
+  "flows": {
+   "cal": 38034,
+   "eval": 38132
+  }
+ },
+ "eval_hours": 0.7294658333333334,
+ "testability": {
+  "clean": {
+   "cal_windows": 378,
+   "eval_attack_windows": 0,
+   "eval_benign_windows": 293,
+   "ok": false
+  },
+  "unlabelled": {
+   "cal_windows": 378,
+   "eval_attack_windows": 0,
+   "eval_benign_windows": 293,
+   "ok": false
+  }
+ },
+ "hypotheses": {
+  "H1a": {
+   "verdict": "not_testable",
+   "testability": {
+    "cal_windows": 378,
+    "eval_attack_windows": 0,
+    "eval_benign_windows": 293,
+    "ok": false
+   }
+  },
+  "H1b": {
+   "verdict": "not_testable",
+   "testability": {
+    "cal_windows": 378,
+    "eval_attack_windows": 0,
+    "eval_benign_windows": 293,
+    "ok": false
+   }
+  },
+  "H2": {
+   "verdict": "not_testable",
+   "testability": {
+    "cal_windows": 378,
+    "eval_attack_windows": 0,
+    "eval_benign_windows": 293,
+    "ok": false
+   }
+  },
+  "H3": {
+   "verdict": "not_testable",
+   "testability": {
+    "cal_windows": 378,
+    "eval_attack_windows": 0,
+    "eval_benign_windows": 293,
+    "ok": false
+   }
+  },
+  "H5": {
+   "variants": {
+    "port_only": {
+     "ref_n": 63446,
+     "coverage": 0.9999684771301579,
+     "accepted_accuracy": 0.9978879011411639,
+     "outside_n": 19,
+     "outside_abstention": 0.0,
+     "per_reference": {
+      "dns_n": 28527,
+      "dns_covered": 28527,
+      "dns_correct": 28402,
+      "tls_n": 14601,
+      "tls_covered": 14599,
+      "tls_correct": 14597,
+      "http_n": 20318,
+      "http_covered": 20318,
+      "http_correct": 20311
+     }
+    },
+    "ml_only": {
+     "ref_n": 63446,
+     "coverage": 0.9988651766856854,
+     "accepted_accuracy": 0.788998642976615,
+     "outside_n": 19,
+     "outside_abstention": 0.0,
+     "per_reference": {
+      "dns_n": 28527,
+      "dns_covered": 28520,
+      "dns_correct": 28159,
+      "tls_n": 14601,
+      "tls_covered": 14586,
+      "tls_correct": 13401,
+      "http_n": 20318,
+      "http_covered": 20268,
+      "http_correct": 8442
+     }
+    },
+    "hybrid": {
+     "ref_n": 63446,
+     "coverage": 0.7910191343819941,
+     "accepted_accuracy": 0.9963137864387192,
+     "outside_n": 19,
+     "outside_abstention": 0.0,
+     "per_reference": {
+      "dns_n": 28527,
+      "dns_covered": 28335,
+      "dns_correct": 28159,
+      "tls_n": 14601,
+      "tls_covered": 13405,
+      "tls_correct": 13401,
+      "http_n": 20318,
+      "http_covered": 8447,
+      "http_correct": 8442
+     }
+    },
+    "hybrid+consistency": {
+     "ref_n": 63446,
+     "coverage": 0.7901995397661004,
+     "accepted_accuracy": 0.9973471626608158,
+     "outside_n": 19,
+     "outside_abstention": 0.47368421052631576,
+     "per_reference": {
+      "dns_n": 28527,
+      "dns_covered": 28283,
+      "dns_correct": 28159,
+      "tls_n": 14601,
+      "tls_covered": 13405,
+      "tls_correct": 13401,
+      "http_n": 20318,
+      "http_covered": 8447,
+      "http_correct": 8442
+     }
+    }
+   },
+   "outside_services": {
+    "dhcp": 19
+   },
+   "a_testable": true,
+   "b_testable": false,
+   "a": true,
+   "b": null,
+   "verdict": "not_testable"
+  },
+  "H6": {
+   "verdict": "not_testable"
+  },
+  "H7": {
+   "peak_rss_mb": 539.3046875,
+   "records_per_s": null,
+   "verdict": "refuted"
+  }
+ },
+ "seconds": 46.0
+}

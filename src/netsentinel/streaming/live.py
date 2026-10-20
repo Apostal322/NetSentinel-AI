@@ -61,7 +61,7 @@ class StreamStats:
 class WindowStream:
     """Event-time tumbling windows over flow records (dicts with NF-style keys)."""
 
-    def __init__(self, window_s: int, lateness_s: float = 60.0, max_buffer: int = 2_000_000,
+    def __init__(self, window_s: int, lateness_s: float = 360.0, max_buffer: int = 2_000_000,
                  max_skew_s: float = 3600.0):  # fmt: skip
         self.w_ms = int(window_s * 1000)
         self.lateness_ms = int(lateness_s * 1000)
@@ -168,7 +168,7 @@ class StreamMonitor:
     -> incidents -> event store. Without a model bundle only the behaviour path runs."""
 
     def __init__(self, pipeline, store=None, source: str = "zeek-stream",
-                 lateness_s: float = 60.0, max_buffer: int = 2_000_000, batch_flows: int = 20_000,
+                 lateness_s: float = 360.0, max_buffer: int = 2_000_000, batch_flows: int = 20_000,
                  context_lookback_s: int = 300, incident_gap_s: int = 300,
                  utc_offset_hours: float = 0.0):  # fmt: skip
         from netsentinel.incidents import IncidentTracker

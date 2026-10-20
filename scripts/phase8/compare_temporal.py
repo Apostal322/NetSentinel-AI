@@ -99,12 +99,19 @@ def compare_level(cal: pl.DataFrame, ev: pl.DataFrame, level: str, cfgs, hours) 
     cal_w = multiscale_windows(cal, level, WINDOW, COARSE)
     if cal_w.height < 60:
         return {"status": f"too few calibration windows ({cal_w.height})"}
+    known = set(cal["dst"].unique().to_list())
+    ev_w = multiscale_windows(ev, level, WINDOW, COARSE, known_dst=known)
+    return compare_windows(cal_w, ev_w, truth(ev, level), cfgs, hours)
+
+
+def compare_windows(cal_w: pl.DataFrame, ev_w: pl.DataFrame, tr: pl.DataFrame, cfgs, hours,
+                    keep_scores: bool = False) -> dict:  # fmt: skip
+    """The 8B protocol on pre-aggregated windows (also used by the chunked confirmatory run):
+    fit on calibration windows before 70% of the span, split-conformal threshold on the rest,
+    evaluation scored with the full calibration history before it."""
     lo, hi = int(cal_w["win"].min()), int(cal_w["win"].max())
     cut = lo + int(math.floor((hi - lo + 1) * 0.7))
     fit_w = cal_w.filter(pl.col("win") < cut)
-    known = set(cal["dst"].unique().to_list())
-    ev_w = multiscale_windows(ev, level, WINDOW, COARSE, known_dst=known)
-    tr = truth(ev, level)
     hold_mask = (cal_w["win"] >= cut).to_numpy()
     both = pl.concat([cal_w, ev_w], how="diagonal_relaxed")
     ev_mask = np.r_[np.zeros(cal_w.height, bool), np.ones(ev_w.height, bool)]
@@ -128,6 +135,8 @@ def compare_level(cal: pl.DataFrame, ev: pl.DataFrame, level: str, cfgs, hours) 
                  threshold_reliable=reliable)  # fmt: skip
         if hasattr(s, "n_parameters"):
             m["parameters"] = s.n_parameters()
+        if keep_scores:
+            m["_scores"], m["_threshold"] = sc, thr
         res[f"{name}/{feats}"] = m
     return res
 
