@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import os
 import sys
 from pathlib import Path
 
@@ -188,12 +189,25 @@ def _cmd_analyze(args: argparse.Namespace) -> int:
     from netsentinel.streaming.offline import analyze_capture
 
     summary = analyze_capture(args.capture, args.bundle, args.events_db, args.utc_offset,
-                              args.kind)  # fmt: skip
+                              args.kind, calibration_dir=args.calibration,
+                              appid_dir=args.appid, threat_policy=args.threat_policy)  # fmt: skip
     text = json.dumps(summary, indent=2, default=str)
     if args.out:
         Path(args.out).write_text(text, encoding="utf-8")
-    print(json.dumps({k: summary[k] for k in ("source", "kind", "flows", "verdicts", "parse")
-                      if k in summary}, indent=2, default=str))  # fmt: skip
+    keys = (
+        "source",
+        "kind",
+        "flows",
+        "verdicts",
+        "threat_mode",
+        "threat_status",
+        "behavior_status",
+        "app_status",
+        "app_protocols",
+        "baseline_state",
+        "parse",
+    )
+    print(json.dumps({k: summary[k] for k in keys if k in summary}, indent=2, default=str))
     return 0
 
 
@@ -261,7 +275,8 @@ def _cmd_serve(args: argparse.Namespace) -> int:
     from netsentinel.api.app import Settings, create_app
 
     app = create_app(Settings(bundle_dir=args.bundle, events_db=args.events_db,
-                              replay_dir=args.replay_dir))  # fmt: skip
+                              replay_dir=args.replay_dir, calibration_dir=args.calibration,
+                              appid_dir=args.appid, threat_policy=args.threat_policy))  # fmt: skip
     uvicorn.run(app, host=args.host, port=args.port, log_level="info")
     return 0
 
@@ -396,6 +411,17 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--utc-offset", type=float, default=0.0, help="local time = UTC + offset h")
     p.add_argument("--events-db", default="artifacts/events.sqlite")
     p.add_argument("--out", default=None, help="write the full JSON summary here")
+    p.add_argument(
+        "--calibration", default=None, help="local behaviour profile from `netsentinel calibrate`"
+    )
+    p.add_argument("--appid", default=None, help="application classifier artifact directory")
+    p.add_argument(
+        "--threat-policy",
+        choices=("auto", "trust", "unsupported"),
+        default="auto",
+        help="auto: suppress supervised verdicts if calibration found the model "
+        "outside its training domain",
+    )
     p.set_defaults(func=_cmd_analyze)
 
     p = sub.add_parser("serve", help="run the API (localhost only by default)")
@@ -404,6 +430,21 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--port", type=int, default=8000)
     p.add_argument("--events-db", default="artifacts/events.sqlite")
     p.add_argument("--replay-dir", default="data/interim/ids2018")
+    p.add_argument(
+        "--calibration",
+        default=os.environ.get("NETSENTINEL_CALIBRATION") or None,
+        help="local behaviour profile directory (env NETSENTINEL_CALIBRATION)",
+    )
+    p.add_argument(
+        "--appid",
+        default=os.environ.get("NETSENTINEL_APPID") or None,
+        help="application classifier directory (env NETSENTINEL_APPID)",
+    )
+    p.add_argument(
+        "--threat-policy",
+        choices=("auto", "trust", "unsupported"),
+        default=os.environ.get("NETSENTINEL_THREAT_POLICY", "auto"),
+    )
     p.set_defaults(func=_cmd_serve)
 
     p = sub.add_parser("evaluate", help="one-shot test evaluation of a run")

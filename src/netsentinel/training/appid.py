@@ -58,7 +58,9 @@ def _load(cfg: dict, ds: dict, seed: int, max_rows: int) -> dict[str, pl.DataFra
         .join(df.lazy().filter(pl.col("day") == day).select("day", "row_id"),
               on=["day", "row_id"])
         .collect() for day in df["day"].unique().sort().to_list()])  # fmt: skip
-    df = df.join(l7, on=["day", "row_id"], how="inner").sort(["day", "event_sec"])
+    df = df.join(l7, on=["day", "row_id"], how="inner").sort(
+        ["day", "event_sec", "row_id"]
+    )  # row_id: deterministic tie order
     rng = np.random.default_rng(seed)
     out = {}
     for part, cap in (("train", max_rows), ("val", max_rows // 2)):

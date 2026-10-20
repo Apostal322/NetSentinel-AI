@@ -38,6 +38,9 @@ class Settings(BaseModel):
     events_db: Path = Path("artifacts/events.sqlite")
     replay_dir: Path = Path("data/interim/ids2018")
     max_upload_bytes: int = MAX_UPLOAD_BYTES
+    calibration_dir: Path | None = None  # local behaviour profile (netsentinel calibrate)
+    appid_dir: Path | None = None  # application classifier artifact
+    threat_policy: str = "auto"
 
 
 class BatchRequest(BaseModel):
@@ -72,12 +75,26 @@ def create_app(settings: Settings) -> FastAPI:
     app = FastAPI(title="NetSentinel AI", version=__version__,
                   description="Detection-only network flow intelligence API (offline replay "
                               "and on-demand scoring). Not a blocking/IPS system.")  # fmt: skip
-    state: dict = {"engine": None, "error": None}
+    state: dict = {"engine": None, "error": None, "pipeline": None}
     try:
         state["engine"] = Engine(settings.bundle_dir)
     except Exception as exc:  # noqa: BLE001 - reported by /ready instead of crashing
         log.exception("failed to load bundle")
         state["error"] = f"{type(exc).__name__}: {exc}"
+    if state["engine"] is not None and (settings.calibration_dir or settings.appid_dir):
+        from netsentinel.inference.pipeline import AnalysisPipeline
+
+        try:  # refuses corrupt/incompatible artifacts; reported by /ready
+            state["pipeline"] = AnalysisPipeline(
+                settings.bundle_dir,
+                settings.calibration_dir,
+                settings.appid_dir,
+                settings.threat_policy,
+            )
+        except Exception as exc:  # noqa: BLE001
+            log.exception("failed to load calibration / application classifier")
+            state["error"] = f"{type(exc).__name__}: {exc}"
+            state["engine"] = None
     store = EventStore(settings.events_db)
     replayer = Replayer(state["engine"], store) if state["engine"] else None
 
@@ -105,7 +122,22 @@ def create_app(settings: Settings) -> FastAPI:
 
     @app.get("/models")
     def models() -> dict:
-        return engine().manifest
+        out = {**engine().manifest}
+        pipe = state["pipeline"]
+        out["calibration"] = pipe.calibration if pipe else None
+        out["application_classifier"] = pipe.classifier_manifest if pipe else None
+        out["threat_mode"] = pipe.threat_mode if pipe else "assessed (no calibration loaded)"
+        return out
+
+    @app.get("/behavior")
+    def behavior(
+        level: str | None = Query(None, pattern="^(global|device|service)$"),
+        anomalous_only: bool = False,
+        source: str | None = None,
+        limit: int = Query(500, ge=1, le=5000),
+    ) -> list[dict]:
+        """Scored behaviour windows (local-baseline deviations; not attack verdicts)."""
+        return store.behavior(level, anomalous_only, source, limit)
 
     @app.post("/predict/flow", response_model=Prediction)
     def predict_flow(flow: FlowRecord) -> Prediction:
@@ -182,8 +214,10 @@ def create_app(settings: Settings) -> FastAPI:
                     fh.write(chunk)
             name = os.path.basename(file.filename or "upload")[:128]
             try:
-                return analyze_capture(tmp, settings.bundle_dir, settings.events_db, utc_offset,
-                                       source_name=name)  # fmt: skip
+                return analyze_capture(
+                    tmp, settings.bundle_dir, settings.events_db, utc_offset, source_name=name,
+                    calibration_dir=settings.calibration_dir, appid_dir=settings.appid_dir,
+                    threat_policy=settings.threat_policy)  # fmt: skip
             except ValueError as exc:
                 raise HTTPException(422, str(exc)) from exc
         finally:

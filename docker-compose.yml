@@ -1,6 +1,10 @@
 # Local, detection-only deployment. Ports are published on 127.0.0.1 only.
 # Provide a trained bundle:  export NETSENTINEL_BUNDLE=./models/bundle-<id>
 # Admin endpoints (/replay/*, /analyze) need NETSENTINEL_ADMIN_TOKEN (unset = disabled).
+# Optional local calibration / application classifier (directories from
+# `netsentinel calibrate` / scripts/phase6/train_appid_v2.py), mounted read-only:
+#   export NETSENTINEL_CALIBRATION_DIR=./models/calibrations/calibration-<id>
+#   export NETSENTINEL_APPID_DIR=./models/appintel/appid-<id>
 services:
   api:
     build: .
@@ -9,8 +13,12 @@ services:
       - "127.0.0.1:8000:8000"
     environment:
       NETSENTINEL_ADMIN_TOKEN: ${NETSENTINEL_ADMIN_TOKEN:-}
+      NETSENTINEL_CALIBRATION: ${NETSENTINEL_CALIBRATION_DIR:+/models/calibration}
+      NETSENTINEL_APPID: ${NETSENTINEL_APPID_DIR:+/models/appid}
     volumes:
       - ${NETSENTINEL_BUNDLE:-./models/bundle}:/models/bundle:ro
+      - ${NETSENTINEL_CALIBRATION_DIR:-./models/.none-calibration}:/models/calibration:ro
+      - ${NETSENTINEL_APPID_DIR:-./models/.none-appid}:/models/appid:ro
       - netsentinel-artifacts:/app/artifacts
     read_only: true
     tmpfs:

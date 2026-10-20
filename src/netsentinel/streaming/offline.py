@@ -15,7 +15,6 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Any
 
-from netsentinel.inference.engine import Engine
 from netsentinel.storage.events import EventStore
 from netsentinel.telemetry.flows import assemble_flows
 from netsentinel.telemetry.frames import records_to_frame
@@ -62,41 +61,50 @@ def analyze_capture(
     utc_offset_hours: float = 0.0,
     kind: str = "auto",
     source_name: str | None = None,
+    calibration_dir: str | Path | None = None,
+    appid_dir: str | Path | None = None,
+    threat_policy: str = "auto",
 ) -> dict[str, Any]:
+    """Capture -> flows -> evidence-aware assessment (supervised bundle; optional local
+    behaviour calibration and application classifier) -> events (+ behaviour windows)."""
+    from netsentinel.inference.pipeline import AnalysisPipeline
+
     path = Path(path)
     name = source_name or path.name
+    pipe = AnalysisPipeline(bundle_dir, calibration_dir, appid_dir, threat_policy)
     frame, kind, parse = load_capture(path, kind, utc_offset_hours)
     if frame is None:
-        return {"source": name, "kind": kind, "flows": 0, "parse": parse}
-    engine = Engine(bundle_dir)
-    store = EventStore(events_db) if events_db else None
+        return {"source": name, "kind": kind, "flows": 0, "parse": parse,
+                "model_versions": pipe.versions()}  # fmt: skip
     source = f"{kind}:{name}"
-    verdicts: Counter = Counter()
-    categories: Counter = Counter()
-    alerts = []
-    # Context needs the whole capture as one stream, so the frame is scored in a single pass.
-    preds = engine.predict(frame, source=source, context="compute")
-    missing = preds[0].missing_features if preds else []
-    for p in preds:
-        verdicts[p.verdict] += 1
-        if p.threat and p.threat.attack_category:
-            categories[p.threat.attack_category] += 1
-        if p.verdict in ("attack", "suspicious"):
-            alerts.append(p)
+    # Context and behaviour windows need the whole capture as one stream: one pass.
+    preds, windows = pipe.assess(frame, source)
+    store = EventStore(events_db) if events_db else None
     if store:
         store.add(preds)
+        if windows.height and pipe.calibration:
+            store.add_behavior(windows, source, pipe.calibration["calibration_id"],
+                               pipe.profile.window_s)  # fmt: skip
+    categories: Counter = Counter(p.threat.attack_category for p in preds
+                                  if p.threat and p.threat.attack_category)  # fmt: skip
+    alerts = [p for p in preds if p.verdict in ("attack", "suspicious")]
     alerts.sort(key=lambda p: -(p.threat.probability or 0))
+    anomalous = [p for p in preds if p.behavior and p.behavior.behavior_status == "anomalous"]
+    anomalous.sort(key=lambda p: -(p.behavior.anomaly_score or 0))
     summary = {
         "source": name,
         "kind": kind,
         "flows": len(preds),
         "parse": parse,
-        "verdicts": dict(verdicts),
+        **pipe.summary(preds, windows),
         "attack_categories": dict(categories),
-        "missing_features": missing,
-        "bundle": engine.bundle_id,
+        "missing_features": preds[0].missing_features if preds else [],
+        "bundle": pipe.engine.bundle_id,
         "top_alerts": [a.model_dump(mode="json") for a in alerts[:20]],
-        "note": "Detection-only offline analysis; verdict semantics in inference/schema.py.",
-    }
-    log.info("analyzed %s: %d flows, verdicts %s", name, len(preds), dict(verdicts))
+        "top_behavior_anomalies": [a.model_dump(mode="json") for a in anomalous[:20]],
+        "note": "Detection-only offline analysis. 'unusual' = deviation from the local "
+                "baseline (or, uncalibrated, from the training reference), not an attack "
+                "verdict; semantics in inference/schema.py and inference/pipeline.py.",
+    }  # fmt: skip
+    log.info("analyzed %s: %d flows, verdicts %s", name, len(preds), summary["verdicts"])
     return summary

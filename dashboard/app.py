@@ -32,12 +32,39 @@ def load_events(db: str, limit: int = 200_000) -> pd.DataFrame:
     if not Path(db).exists():
         return pd.DataFrame()
     with sqlite3.connect(f"file:{db}?mode=ro", uri=True) as conn:
+        have = {r[1] for r in conn.execute("PRAGMA table_info(events)")}
+        v2 = [c for c in ("threat_status", "behavior_status", "behavior_score", "app_protocol",
+                          "app_status") if c in have]  # fmt: skip
+        cols = "".join(", " + c for c in v2)
         df = pd.read_sql_query(
             "SELECT observation_id, ts, source, verdict, service, anomaly_score, p_malicious, "
-            "attack_category, bundle FROM events ORDER BY ts LIMIT ?", conn, params=(limit,)
-        )  # fmt: skip
+            f"attack_category, bundle{cols} FROM events ORDER BY ts LIMIT ?", conn,
+            params=(limit,))  # fmt: skip
     df["ts"] = pd.to_datetime(df["ts"])
     return df
+
+
+@st.cache_data(ttl=10)
+def load_behavior(db: str) -> pd.DataFrame:
+    if not Path(db).exists():
+        return pd.DataFrame()
+    with sqlite3.connect(f"file:{db}?mode=ro", uri=True) as conn:
+        q = "SELECT name FROM sqlite_master WHERE name='behavior_events'"
+        if not conn.execute(q).fetchone():
+            return pd.DataFrame()
+        df = pd.read_sql_query("SELECT * FROM behavior_events ORDER BY window_end", conn)
+    df["window_end"] = pd.to_datetime(df["window_end"])
+    return df
+
+
+def manifests(pattern: str) -> list[dict]:
+    out = []
+    for m in sorted(Path(args.models_dir).glob(pattern)):
+        try:
+            out.append({"_path": str(m.parent), **json.loads(m.read_text("utf-8"))})
+        except (OSError, ValueError):
+            continue
+    return out
 
 
 def hhmm(obj: pd.DataFrame | pd.Series):
@@ -61,8 +88,9 @@ st.warning(
     "flows or captures you upload), not live network monitoring. Anomaly scores are "
     "benign-tail percentiles, not attack probabilities."
 )
-page = st.sidebar.radio("Page", ["Overview", "Traffic explorer", "Anomalies", "Threats",
-                                 "Analyze capture", "Model performance"])  # fmt: skip
+page = st.sidebar.radio("Page", ["Overview", "Network behaviour", "Application intelligence",
+                                 "Traffic explorer", "Anomalies", "Threats", "Analyze capture",
+                                 "Model management"])  # fmt: skip
 
 if page == "Analyze capture":
     import tempfile
@@ -79,6 +107,10 @@ if page == "Analyze capture":
         st.info(f"No bundles in {args.models_dir}.")
         st.stop()
     bundle = st.selectbox("Model bundle", [b.name for b in bundles], index=len(bundles) - 1)
+    cals = ["(none)"] + [m["_path"] for m in manifests("calibrations/*/manifest.json")]
+    cal = st.selectbox("Local calibration (behaviour profile)", cals, index=len(cals) - 1)
+    apps = ["(none)"] + [m["_path"] for m in manifests("appintel/*/manifest.json")]
+    app_dir = st.selectbox("Application classifier", apps, index=len(apps) - 1)
     offset = st.number_input("Capture UTC offset (hours)", -14.0, 14.0, 0.0, 0.5)
     up = st.file_uploader("Capture file", type=None, accept_multiple_files=False)
     if up is not None and st.button("Analyze"):
@@ -86,16 +118,22 @@ if page == "Analyze capture":
             path = Path(tmp) / "capture.bin"
             path.write_bytes(up.getbuffer())
             try:
-                summary = analyze_capture(path, Path(args.models_dir) / bundle, args.events_db,
-                                          offset, source_name=Path(up.name).name[:128])  # fmt: skip
+                summary = analyze_capture(
+                    path, Path(args.models_dir) / bundle, args.events_db, offset,
+                    source_name=Path(up.name).name[:128],
+                    calibration_dir=None if cal == "(none)" else cal,
+                    appid_dir=None if app_dir == "(none)" else app_dir)  # fmt: skip
             except ValueError as exc:
                 st.error(str(exc))
                 st.stop()
         load_events.clear()
+        load_behavior.clear()
         c = st.columns(4)
         c[0].metric("flows", summary["flows"])
         for col, v in zip(c[1:], ("attack", "suspicious", "unusual"), strict=True):
             col.metric(v, summary.get("verdicts", {}).get(v, 0))
+        keys = ("threat_mode", "threat_status", "behavior_status", "app_status", "baseline_state")
+        st.write("**Evidence sources**", {k: summary.get(k) for k in keys})
         st.write("**Parsing**", summary["parse"])
         if summary.get("missing_features"):
             st.warning(f"{len(summary['missing_features'])} model features missing from this "
@@ -105,11 +143,11 @@ if page == "Analyze capture":
     st.stop()
 
 events = load_events(args.events_db)
-if events.empty and page != "Model performance":
+if events.empty and page != "Model management":
     st.info(f"No events in {args.events_db}. Run `netsentinel replay ...` first.")
     st.stop()
 
-if page != "Model performance":
+if page != "Model management":
     sources = sorted(events["source"].unique())
     # One replay source (capture day) at a time: time spans and timelines across different
     # days would be meaningless.
@@ -202,17 +240,82 @@ elif page == "Threats":
                        "it is not a causal explanation of the model's decision.")  # fmt: skip
             st.json(payload)
 
-else:  # Model performance
-    report = ROOT / "reports/experiments/results_v1.md"
-    bundles = sorted(Path(args.models_dir).glob("bundle-*/manifest.json"))
-    if bundles:
-        st.subheader("Active bundle manifest")
-        st.json(json.loads(bundles[-1].read_text("utf-8")))
-    for fig in ("binary_recall_by_label.png", "openset_recall.png"):
+elif page == "Network behaviour":
+    beh = load_behavior(args.events_db)
+    beh = beh[beh["source"] == pick] if not beh.empty else beh
+    if beh.empty:
+        st.info(
+            "No behaviour windows for this source. Run `netsentinel calibrate` on vetted "
+            "local traffic, then `netsentinel analyze ... --calibration <profile>`."
+        )
+        st.stop()
+    st.caption(
+        "Each row is a closed time window of one entity (the whole network, one "
+        "originating device, or one service), compared with the LOCAL calibrated "
+        "baseline. Severity is a percentile among held-out calibration windows: a "
+        "normalized non-probability, not an attack probability."
+    )
+    lv = st.radio("Level", ["global", "device", "service"], horizontal=True)
+    d = beh[beh["level"] == lv]
+    c = st.columns(4)
+    c[0].metric("windows", len(d))
+    c[1].metric("anomalous", int(d["anomalous"].sum()))
+    c[2].metric("entities", d["entity"].nunique())
+    c[3].metric("calibration", d["calibration"].iloc[-1] if len(d) else "-")
+    if len(d):
+        st.subheader("Window score vs local alert threshold")
+        g = d.groupby("window_end").agg(score=("score", "max"), threshold=("threshold", "max"))
+        st.line_chart(hhmm(g))
+        st.subheader("Flows per window (observed)")
+        st.line_chart(hhmm(d.groupby("window_end")["n_flows"].sum().rename("flows")))
+        st.subheader("Anomalous windows")
+        top = d[d["anomalous"]].sort_values("score", ascending=False).head(200)
+        st.dataframe(top, use_container_width=True, hide_index=True)
+
+elif page == "Application intelligence":
+    if "app_status" not in events.columns or events["app_status"].isna().all():
+        st.info("No application-classifier output for this source (analyze with --appid).")
+        st.stop()
+    st.caption(
+        "`app_protocol` is an ML prediction of the nDPI master-protocol PROXY label "
+        "(it may abstain); `service` is a port heuristic; no application identity "
+        "(e.g. which product inside TLS) is inferred."
+    )
+    c = st.columns(2)
+    c[0].subheader("ML app protocol (predicted only)")
+    c[0].bar_chart(events["app_protocol"].dropna().value_counts())
+    c[1].subheader("Abstention / status")
+    c[1].bar_chart(events["app_status"].value_counts())
+    st.subheader("Port heuristic vs ML prediction")
+    xt = pd.crosstab(events["service"], events["app_protocol"].fillna("(abstained)"))
+    st.dataframe(xt, use_container_width=True)
+
+else:  # Model management
+    st.subheader("Installed artifacts")
+    st.caption(
+        "Research metrics below are HISTORICAL validation/test results from the "
+        "experiment reports, not measurements of performance on your traffic."
+    )
+    groups = (
+        ("Supervised bundles", "bundle-*/manifest.json"),
+        ("Local calibrations", "calibrations/*/manifest.json"),
+        ("Application classifiers", "appintel/*/manifest.json"),
+    )
+    for title, pattern in groups:
+        ms = manifests(pattern)
+        st.markdown(f"**{title}** ({len(ms)})")
+        for m in ms[-5:]:
+            name = m.get("bundle_id") or m.get("calibration_id") or m.get("classifier_id")
+            with st.expander(str(name)):
+                st.json(m)
+    st.markdown(
+        "**Known limitations**: the supervised bundle was trained on NF-CICIDS2018 and "
+        "does not transfer to other networks (Phase 5); calibration controls false "
+        "alarms but does not restore attack detection; application labels are nDPI "
+        "proxy labels. See docs/phase6/FINAL_AUDIT.md."
+    )
+    st.subheader("Historical research results (not live performance)")
+    for fig in ("binary_recall_by_label.png", "openset_recall.png", "adaptation_calibration.png"):
         p = ROOT / "reports/figures" / fig
         if p.exists():
-            st.image(str(p))
-    if report.exists():
-        st.markdown(report.read_text("utf-8"))
-    else:
-        st.info("No experiment report yet (scripts/aggregate_results.py).")
+            st.image(str(p), caption=f"historical research figure: {fig}")

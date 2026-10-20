@@ -185,6 +185,122 @@ def test_offline_app_end_to_end(app_ws, capsys, monkeypatch):
     srcs = {e["source"] for e in client.get("/events", params={"limit": 50}).json()}
     assert {"pcap:s.pcap", "zeek:conn.log"} <= srcs
 
+    # ---- Phase 6: local calibration + application classifier + evidence-aware verdicts
+    zeek_long(app_ws / "cal.log", hours=2.0, seed=1)
+    zeek_long(app_ws / "mon.log", hours=1.0, seed=2, start=1_600_007_200, scan_at=1800)
+    assert (
+        main(["calibrate", "cal.log", "--mode", "vetted_benign", "--out", "cal"]) == 2
+    )  # no assert
+    capsys.readouterr()
+    assert main(["calibrate", "cal.log", "--mode", "vetted_benign", "--assert-benign",
+                 "--bundle", bundle, "--out", "cal"]) == 0  # fmt: skip
+    cal_dir = capsys.readouterr().out.strip().splitlines()[-1]
+    cal_mf = json.loads(open(f"{cal_dir}/manifest.json").read())
+    assert cal_mf["status"] == "baseline_ready" and cal_mf["mode"] == "vetted_benign"
+    assert "supported" in cal_mf["threat_model_domain_check"]
+    app_dir = tiny_classifier(app_ws / "appintel")
+    args = ["analyze", "mon.log", "--bundle", bundle, "--calibration", cal_dir, "--appid",
+            str(app_dir), "--events-db", "ev.sqlite", "--out", "mon.json"]  # fmt: skip
+    assert main(args) == 0
+    m = json.loads((app_ws / "mon.json").read_text())
+    assert m["flows"] > 100 and set(m["behavior_status"]) <= {"normal", "anomalous",
+                                                              "insufficient_history"}  # fmt: skip
+    assert m["behavior_windows"]["device"]["anomalous"] >= 1  # the injected scan
+    assert m["threat_mode"] in ("assessed", "unsupported_domain")
+    assert set(m["app_status"]) <= {"predicted", "low_confidence", "out_of_distribution",
+                                    "missing_features", "unsupported_protocol"}  # fmt: skip
+    top = m["top_behavior_anomalies"][0]
+    assert top["behavior"]["anomaly_score_type"] == "normalized_non_probability"
+    assert top["application"]["application_identity"] is None
+    assert top["verdict"] in ("unusual", "suspicious", "attack")
+    # an anomaly alone never yields 'suspicious'
+    for ev in m["top_behavior_anomalies"]:
+        if ev["threat_status"] in ("unsupported_domain", "no_evidence"):
+            assert ev["verdict"] == "unusual"
+    assert main(["analyze", "mon.log", "--bundle", bundle, "--calibration", cal_dir,
+                 "--threat-policy", "unsupported", "--out", "mon2.json"]) == 0  # fmt: skip
+    m2 = json.loads((app_ws / "mon2.json").read_text())
+    assert set(m2["threat_status"]) == {"unsupported_domain"}
+    assert "suspicious" not in m2["verdicts"] and "attack" not in m2["verdicts"]
+    from netsentinel.storage.events import EventStore
+
+    beh = EventStore(app_ws / "ev.sqlite").behavior(anomalous_only=True)
+    assert beh and all(b["anomalous"] for b in beh)
+    api = TestClient(create_app(Settings(bundle_dir=bundle, events_db=app_ws / "ev.sqlite",
+                                         calibration_dir=cal_dir, appid_dir=app_dir)))  # fmt: skip
+    mods = api.get("/models").json()
+    assert mods["calibration"]["calibration_id"] in cal_dir
+    assert mods["application_classifier"]["schema_version"] == "appintel-1.0.0"
+    b = api.get("/behavior", params={"anomalous_only": True, "level": "device"}).json()
+    assert b and b[0]["level"] == "device"
+    assert api.get("/behavior", params={"level": "nonsense"}).status_code == 422
+    r = api.post("/analyze", files={"file": ("m.log", (app_ws / "mon.log").read_bytes())},
+                 headers=hdr)  # fmt: skip
+    assert r.status_code == 200 and r.json()["behavior_windows"]["device"]["anomalous"] >= 1
+    # cold start: too little history -> insufficient_data, never 'benign'
+    zeek_long(app_ws / "short.log", hours=0.1, seed=3)
+    assert main(["calibrate", "short.log", "--out", "cal"]) == 0
+    short_dir = capsys.readouterr().out.strip().splitlines()[-1]
+    assert main(["analyze", "mon.log", "--bundle", bundle, "--calibration", short_dir,
+                 "--threat-policy", "unsupported", "--out", "mon3.json"]) == 0  # fmt: skip
+    m3 = json.loads((app_ws / "mon3.json").read_text())
+    assert set(m3["verdicts"]) == {"insufficient_data"}
+    # corrupted calibration is refused
+    with open(f"{cal_dir}/profile.joblib", "ab") as fh:
+        fh.write(b"x")
+    assert main(["analyze", "mon.log", "--bundle", bundle, "--calibration", cal_dir]) == 2
+    bad = TestClient(create_app(Settings(bundle_dir=bundle, events_db=app_ws / "ev.sqlite",
+                                         calibration_dir=cal_dir)))  # fmt: skip
+    assert bad.get("/ready").status_code == 503  # corrupted calibration is not served
+
+
+def zeek_long(
+    path: Path, hours: float, seed: int, start: int = 1_600_000_000, scan_at: int | None = None
+) -> Path:
+    """Synthetic Zeek conn.log: 3 hosts doing web/DNS; optional 60 s port scan from host 1."""
+    rng = np.random.default_rng(seed)
+    fields = ["ts", "uid", "id.orig_h", "id.orig_p", "id.resp_h", "id.resp_p", "proto",
+              "service", "duration", "orig_bytes", "resp_bytes", "conn_state", "history",
+              "orig_pkts", "orig_ip_bytes", "resp_pkts", "resp_ip_bytes"]  # fmt: skip
+    head = "#separator \\x09\n#fields\t" + "\t".join(fields) + "\n"
+    rows = []
+    services = [(443, "tcp", "ssl"), (53, "udp", "dns"), (80, "tcp", "http")]
+    for t in range(0, int(hours * 3600), 2):
+        port, proto, svc = services[rng.choice(3, p=[0.6, 0.3, 0.1])]
+        host = f"10.0.0.{rng.integers(1, 4)}"
+        rows.append([f"{start + t + rng.uniform(0, 2):.3f}", f"C{t}", host,
+                     str(40000 + t % 20000), f"93.184.216.{rng.integers(1, 20)}", str(port), proto,
+                     svc, f"{rng.uniform(0.01, 3):.3f}", "300", "5000", "SF", "ShADadFf", "6",
+                     "620", "8", "5400"])  # fmt: skip
+    if scan_at is not None:
+        for i in range(800):
+            rows.append([f"{start + scan_at + i * 0.075:.3f}", f"S{i}", "10.0.0.1", "50000",
+                         f"172.16.{i // 200}.{i % 200}", str(1000 + i), "tcp", "-", "0.0", "0",
+                         "0", "S0", "S", "1", "60", "0", "0"])  # fmt: skip
+    body = "\n".join("\t".join(r) for r in rows)
+    path.write_text(head + body + "\n", encoding="utf-8")
+    return path
+
+
+def tiny_classifier(out: Path) -> Path:
+    """A small AppClassifier artifact trained on synthetic portable features (software test
+    only - says nothing about real classification quality)."""
+    from lightgbm import LGBMClassifier
+
+    from netsentinel.appintel.model import AppClassifier, save_classifier
+    from netsentinel.features.nf_schema import NF_PORTABLE_COLUMNS
+
+    feats = [*NF_PORTABLE_COLUMNS, "proto_tcp", "proto_udp", "proto_other", "port_class"]
+    rng = np.random.default_rng(0)
+    X = rng.random((300, len(feats))).astype(np.float32) * 1000  # noqa: N806
+    y = np.array(["dns", "tls", "http"])[rng.integers(0, 3, 300)]
+    m = LGBMClassifier(n_estimators=10, num_leaves=7, verbose=-1).fit(X, y)
+    clf = AppClassifier(model=m, features=feats, classes=[str(c) for c in m.classes_],
+                        feature_set="portable", confidence_threshold=0.5,
+                        ood_low=np.zeros(len(feats)),
+                        ood_high=np.full(len(feats), 1e9))  # fmt: skip
+    return save_classifier(clf, out)
+
 
 def test_appid_stage_on_synthetic_flows(app_ws, capsys):
     """Application identification runs end to end on benign flows; test rows are excluded."""

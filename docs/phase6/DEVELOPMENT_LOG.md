@@ -126,3 +126,64 @@
   - **Verdict: not supported.**
 - **Robust-z** ranks devices well (ROC 0.86–0.91) but its operating recall is about 0: the
   conformal threshold sits in the heavy benign tail.
+
+### 6D application classification: pre-stated choices (before any 6D run)
+
+- **Feature sets** (LightGBM, NF-v3 nDPI master label, benign flows, episode train/val):
+  - `full` (nf_flow);
+  - `full_noport`;
+  - `noshortcut` (no TTL/TCP window);
+  - `pcap_safe` (noshortcut minus `*_SECOND_BYTES`, whose nProbe semantics our extractor
+    does not reproduce);
+  - `portable` (15 Zeek/PCAP-common fields + protocol + port class);
+  - `portable_noport`.
+- **Product model:** the most portable set whose NF-IDS2018 validation macro-F1 is >= 0.9x
+  `full`. Order of preference: portable > pcap_safe > noshortcut.
+- **H6** is tested with `noshortcut` vs `full`, as pre-registered.
+- **Abstention.**
+  - Confidence threshold chosen on validation A for 95% accepted accuracy.
+  - OOD = more than 30% of features outside the training [0.5%, 99.5%] range.
+  - `missing_features` when a required field is null.
+- **External check (H7):** CTU Zeek logs, with Zeek `service` as an independent reference
+  for dns/ssl/http only.
+
+### 6D/6F integration and an app-ID reliability problem
+
+- **Implemented.**
+  - `appintel/model.py`: abstaining classifier artifact (SHA-256 manifest, schema check);
+    four separate fields (transport, app protocol, port-heuristic service, application
+    identity = null).
+  - `inference/pipeline.py`: evidence-aware decisions.
+    - Supervised verdicts are suppressed (`unsupported_domain`) when calibration's domain
+      check failed.
+    - An anomaly alone is never `suspicious`.
+    - Cold start gives `insufficient_data`, never `benign`.
+  - `analyze --calibration --appid --threat-policy`; API `/behavior`, `/models` (calibration
+    and classifier manifests); serve options and env fallbacks.
+  - Event store: `behavior_events` table, plus v2 columns with automatic migration of old
+    databases.
+  - Dashboard: Network behaviour, Application intelligence and Model management pages.
+    Historical research metrics are explicitly labelled as such.
+  - docker-compose: optional read-only calibration/classifier mounts (**unverified**: no
+    Docker here).
+- **Tests.** End-to-end integration test extended: calibrate (refused without
+  `--assert-benign`) -> analyze with calibration + classifier -> injected scan detected at
+  device level -> forced unsupported domain -> API `/models`, `/behavior`, `/analyze` ->
+  cold start -> corrupted calibration refused by CLI and API (`/ready` 503).
+  **Full default suite: 83 passed.**
+- **App-ID ablation run 1 (`reports/phase6/appid_v2.json`, 20 min, 1.0 GB) is NOT reliable.**
+  - Several fits collapsed to near-majority predictions: NF-IDS `full_noport` 0.27,
+    `noshortcut` 0.36, `pcap_safe` 0.51; NF-UNSW `full` 0.34. Other sets reached 0.70–0.95.
+    The same configuration reached 0.94 in Phase 5.
+  - Diagnosis:
+    - (a) `training/appid._load` sorted by (day, event_sec) only. Tied rows came out of the
+      join in arbitrary order, so the seeded subsample and the val A/B split differed
+      between runs. Fixed by adding `row_id` to the sort.
+    - (b) A collapsed fit did not reproduce in isolation: 8/8 repeated fits were identical
+      and healthy (0.835 val acc). A repeat of the batch for UNSW failed on a different set
+      (`pcap_safe`), and a third repeat had no failures.
+    - Root cause of the collapses not yet identified. Each fit's training-sample accuracy is
+      now recorded so a collapsed model is visible.
+  - Run 1's H6 verdict ("not supported") and product selection are therefore discarded. The
+    portable artifact it saved was not degenerate (0.945 macro-F1), but it is superseded by
+    the re-run.
