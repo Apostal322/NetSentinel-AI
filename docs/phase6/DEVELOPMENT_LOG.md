@@ -70,3 +70,59 @@
     Run 3: median 1.4 FA/h on clean captures.
   - H1's vetted-mode result is unaffected by these changes.
 - Comparator bug (window count allowed FPR > 1) fixed; conclusions unchanged.
+
+### IoT-23 (`scripts/phase6/eval_iot23.py` -> `reports/phase6/iot23.json`), exploratory
+
+- Setup: 9 scenarios; the first 50% of each scenario's time calibrates. Labels come from the
+  dataset authors. 28 s, 0.73 GB.
+- **Oracle-clean calibration** (dataset-labelled benign flows only):
+  - global recall 0.97 (3-1, 8-1); Isolation Forest recall 1.00 on 34-1, at FPR <= 0.04.
+- **Unlabelled calibration** where 72–97% of calibration flows are malicious (3-1, 8-1,
+  34-1): recall 0.00–0.02. Dominant malicious behaviour is learned as normal, the expected
+  failure.
+- Low-contamination scenarios (20-1, 21-1, 44-1) have only 1–2 attack windows each; recall
+  is 1.0 in both variants, which is too few to support anything.
+- **Device vs global** on single-device IoT captures: device is worse (3-1: 0.71 vs 0.97;
+  8-1: 0.03 vs 0.97).
+- **Detection delay:** Zeek logs a connection when it ends, so long-lived C&C flows are only
+  visible hours later (median delay up to 12 h in 20-1). This is a limitation of
+  connection-log monitoring.
+- **Bug fixed:** IoT-23 headers and data join the last columns with spaces. Labels were
+  silently missing in the first run, which was discarded. Regression test added.
+
+### NF development data (`scripts/phase6/eval_nf_dev.py` -> `reports/phase6/nf_dev_{unsw,ids}.json`), exploratory
+
+- **Leakage guard.** The chronological split is per day (`data/splits.py`), so consumed test
+  rows sit at the end of every day. Only flows in the first 78% of each day's span are used.
+  - A first UNSW run with a global 80% cut was discarded: it ended the dev period before any
+    18 February attack.
+  - Silent global windows are dropped, because excluded day-ends would look like silence.
+- **Cost.** UNSW: 22 s, 0.96 GB. IDS: 1,184 s, **4.56 GB peak, over the 3.5 GB budget**.
+  Cause: device windows for 5 variants held at once (1.25M windows each). Not repeated;
+  future runs must process variants one at a time.
+- **H2 (service vs global FPR at matched recall).**
+  - IDS: robust-z 0.0006 vs 0.0996; Isolation Forest 0.116 vs 0.311. Met.
+  - UNSW: degenerate (global operating recall 0).
+  - Secondary, not pre-specified (FPR at recall 0.5): service 0.14–0.31 vs global 0.47–1.0
+    on both datasets.
+  - **Verdict: partially supported**; exploratory on development data.
+- **H3 (device recall >= global + 0.05, FPR <= 1.5x).**
+  - IDS Isolation Forest: 0.603 vs 0.223, at FPR 0.067 vs 0.311. Met.
+  - Robust-z: 0 vs 0.004. Not met.
+  - UNSW: the FPR clause is unattainable (global FPR 0).
+  - IoT-23: device is worse.
+  - **Verdict: not supported** as specified. Ranking evidence still favours device context:
+    FPR at recall 0.5 is 0.05–0.09 vs 0.47–1.0 for global, on both NF datasets.
+- **H4 (Isolation Forest ROC >= robust-z + 0.05 on >= 1 dataset).**
+  - IDS service +0.069; IoT-23 34-1 global +0.092; UNSW device +0.038.
+  - **Verdict: weakly supported.**
+  - But Isolation Forest thresholds did not hold the FPR on IDS (0.31 global, 0.17
+    service, against a 0.01 target).
+- **H5 (contamination <= 5%: unlabelled recall >= 0.8x clean, FPR <= 2x).**
+  - Isolation Forest device: IDS 0.603 clean -> 0.137 natural / 0.142 inj1 / 0.555 inj5 /
+    0.153 inj10 (non-monotonic: single seed, unstable). UNSW 0.332 -> 0.023 (inj1) / 0.052
+    (natural 1.9%).
+  - UNSW inj5/inj10 are capped at the available attack flows (identical to natural).
+  - **Verdict: not supported.**
+- **Robust-z** ranks devices well (ROC 0.86–0.91) but its operating recall is about 0: the
+  conformal threshold sits in the heavy benign tail.

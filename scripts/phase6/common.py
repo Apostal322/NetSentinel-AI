@@ -90,12 +90,15 @@ def iforest_scores(cal_flows: pl.DataFrame, ev_flows: pl.DataFrame, level: str, 
     thr, _ = conformal_threshold(-m.score_samples(x(hold)), target_fpr)
     s = -m.score_samples(x(ev))
     return ev.select("key", "win", "window_end_ms").with_columns(
-        pl.Series("score", s), pl.Series("anomalous", s > thr))
+        pl.Series("score", s), pl.Series("anomalous", s > thr)
+    )
 
 
 def evaluate(cal: pl.DataFrame, ev: pl.DataFrame, *, window_s: int = 30, target_fpr: float = 0.01,
              levels=("global", "device", "service"), with_iforest: bool = True) -> dict:  # fmt: skip
-    hours = (int(ev["flow_end_milliseconds"].max()) - int(ev["flow_end_milliseconds"].min())) / 3.6e6
+    hours = (
+        int(ev["flow_end_milliseconds"].max()) - int(ev["flow_end_milliseconds"].min())
+    ) / 3.6e6
     res: dict = {"cal_flows": cal.height, "cal_attack_share": float(cal["is_attack"].mean()),
                  "eval_flows": ev.height, "eval_attack_share": float(ev["is_attack"].mean()),
                  "eval_hours": hours}  # fmt: skip

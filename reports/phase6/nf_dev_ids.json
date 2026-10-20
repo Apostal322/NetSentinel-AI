@@ -1,0 +1,336 @@
+{
+ "info": {
+  "dataset": "ids",
+  "dev_end_ms": 1520015377391,
+  "cal_end_ms": 1519239593785,
+  "cal_flows_benign": 7207809,
+  "cal_flows_attack": 2123907,
+  "eval_flows": 9331717,
+  "inj_sampling_rates": {
+   "clean": null,
+   "natural": null,
+   "inj1": 0.034279350044588354,
+   "inj5": 0.17861345549548668,
+   "inj10": 0.3770728504904719
+  }
+ },
+ "eval_hours": 62.64323805555556,
+ "clean": {
+  "robustz_global": {
+   "windows": 5377,
+   "attack_windows": 1402,
+   "recall": 0.003566333808844508,
+   "fpr": 0.09962264150943397,
+   "fa_per_h": 6.32151230191525,
+   "roc_auc": 0.5127262939735687
+  },
+  "iforest_global": {
+   "windows": 5377,
+   "attack_windows": 1402,
+   "recall": 0.2225392296718973,
+   "fpr": 0.31119496855345913,
+   "fa_per_h": 19.746744236033244,
+   "roc_auc": 0.4642953911303708
+  },
+  "robustz_device": {
+   "windows": 1254463,
+   "attack_windows": 5263,
+   "recall": 0.0,
+   "fpr": 0.005426673070765289,
+   "fa_per_h": 108.21598963303909,
+   "roc_auc": 0.8645180544657454
+  },
+  "iforest_device": {
+   "windows": 1254463,
+   "attack_windows": 5263,
+   "recall": 0.6030780923427703,
+   "fpr": 0.06716218379763049,
+   "fa_per_h": 1339.3145470161303,
+   "roc_auc": 0.8882296222689114
+  },
+  "robustz_service": {
+   "windows": 39879,
+   "attack_windows": 2142,
+   "recall": 0.037815126050420166,
+   "fpr": 0.011023663778254764,
+   "fa_per_h": 6.6407805999917775,
+   "roc_auc": 0.6398063893831817
+  },
+  "iforest_service": {
+   "windows": 39879,
+   "attack_windows": 2142,
+   "recall": 0.3366013071895425,
+   "fpr": 0.1651694623313989,
+   "fa_per_h": 99.49996509554988,
+   "roc_auc": 0.7092779423028718
+  }
+ },
+ "natural": {
+  "robustz_global": {
+   "windows": 5377,
+   "attack_windows": 1402,
+   "recall": 0.0,
+   "fpr": 0.038742138364779875,
+   "fa_per_h": 2.4583658951892637,
+   "roc_auc": 0.5256571474712675
+  },
+  "iforest_global": {
+   "windows": 5377,
+   "attack_windows": 1402,
+   "recall": 0.037089871611982884,
+   "fpr": 0.12754716981132075,
+   "fa_per_h": 8.09345135623998,
+   "roc_auc": 0.4578576875801864
+  },
+  "robustz_device": {
+   "windows": 1254463,
+   "attack_windows": 5263,
+   "recall": 0.0,
+   "fpr": 0.006113512648094781,
+   "fa_per_h": 121.91259962052213,
+   "roc_auc": 0.8636339542315632
+  },
+  "iforest_device": {
+   "windows": 1254463,
+   "attack_windows": 5263,
+   "recall": 0.13699410982329469,
+   "fpr": 0.0646525776496958,
+   "fa_per_h": 1289.2692412926344,
+   "roc_auc": 0.8865787011154362
+  },
+  "robustz_service": {
+   "windows": 39879,
+   "attack_windows": 2142,
+   "recall": 0.041549953314659195,
+   "fpr": 0.011103161353578715,
+   "fa_per_h": 6.688670844703257,
+   "roc_auc": 0.6547104032981522
+  },
+  "iforest_service": {
+   "windows": 39879,
+   "attack_windows": 2142,
+   "recall": 0.24743230625583568,
+   "fpr": 0.12539417547764795,
+   "fa_per_h": 75.53887932490647,
+   "roc_auc": 0.713490416880287
+  }
+ },
+ "inj1": {
+  "robustz_global": {
+   "windows": 5377,
+   "attack_windows": 1402,
+   "recall": 0.0,
+   "fpr": 0.0880503144654088,
+   "fa_per_h": 5.587195216339236,
+   "roc_auc": 0.5132874868785832
+  },
+  "iforest_global": {
+   "windows": 5377,
+   "attack_windows": 1402,
+   "recall": 0.19686162624821682,
+   "fpr": 0.2870440251572327,
+   "fa_per_h": 18.21425640526591,
+   "roc_auc": 0.46552400434240393
+  },
+  "robustz_device": {
+   "windows": 1254463,
+   "attack_windows": 5263,
+   "recall": 0.0,
+   "fpr": 0.00611511367275056,
+   "fa_per_h": 121.94452645032979,
+   "roc_auc": 0.8636213592051374
+  },
+  "iforest_device": {
+   "windows": 1254463,
+   "attack_windows": 5263,
+   "recall": 0.14231426942808284,
+   "fpr": 0.06871998078770412,
+   "fa_per_h": 1370.3793524189764,
+   "roc_auc": 0.8885287213115273
+  },
+  "robustz_service": {
+   "windows": 39879,
+   "attack_windows": 2142,
+   "recall": 0.041549953314659195,
+   "fpr": 0.011103161353578715,
+   "fa_per_h": 6.688670844703257,
+   "roc_auc": 0.656073565269798
+  },
+  "iforest_service": {
+   "windows": 39879,
+   "attack_windows": 2142,
+   "recall": 0.38235294117647056,
+   "fpr": 0.1622545512361873,
+   "fa_per_h": 97.74398945612899,
+   "roc_auc": 0.7114372243672712
+  }
+ },
+ "inj5": {
+  "robustz_global": {
+   "windows": 5377,
+   "attack_windows": 1402,
+   "recall": 0.0,
+   "fpr": 0.08553459119496855,
+   "fa_per_h": 5.427561067300973,
+   "roc_auc": 0.5220106047963825
+  },
+  "iforest_global": {
+   "windows": 5377,
+   "attack_windows": 1402,
+   "recall": 0.08630527817403709,
+   "fpr": 0.1831446540880503,
+   "fa_per_h": 11.62136604998561,
+   "roc_auc": 0.46502767833912023
+  },
+  "robustz_device": {
+   "windows": 1254463,
+   "attack_windows": 5263,
+   "recall": 0.0,
+   "fpr": 0.006112712135766891,
+   "fa_per_h": 121.89663620561831,
+   "roc_auc": 0.8636340095966568
+  },
+  "iforest_device": {
+   "windows": 1254463,
+   "attack_windows": 5263,
+   "recall": 0.554626638799164,
+   "fpr": 0.06746637848222863,
+   "fa_per_h": 1345.3806446795843,
+   "roc_auc": 0.8907707586094697
+  },
+  "robustz_service": {
+   "windows": 39879,
+   "attack_windows": 2142,
+   "recall": 0.041549953314659195,
+   "fpr": 0.011103161353578715,
+   "fa_per_h": 6.688670844703257,
+   "roc_auc": 0.6571654507347984
+  },
+  "iforest_service": {
+   "windows": 39879,
+   "attack_windows": 2142,
+   "recall": 0.35294117647058826,
+   "fpr": 0.15213185997827067,
+   "fa_per_h": 91.6459649628673,
+   "roc_auc": 0.7116973667597256
+  }
+ },
+ "inj10": {
+  "robustz_global": {
+   "windows": 5377,
+   "attack_windows": 1402,
+   "recall": 0.0,
+   "fpr": 0.0789937106918239,
+   "fa_per_h": 5.012512279801486,
+   "roc_auc": 0.524711149391256
+  },
+  "iforest_global": {
+   "windows": 5377,
+   "attack_windows": 1402,
+   "recall": 0.09343794579172611,
+   "fpr": 0.18716981132075472,
+   "fa_per_h": 11.876780688446834,
+   "roc_auc": 0.46190186525987137
+  },
+  "robustz_device": {
+   "windows": 1254463,
+   "attack_windows": 5263,
+   "recall": 0.0,
+   "fpr": 0.006113512648094781,
+   "fa_per_h": 121.91259962052213,
+   "roc_auc": 0.863633948299589
+  },
+  "iforest_device": {
+   "windows": 1254463,
+   "attack_windows": 5263,
+   "recall": 0.15295458863765912,
+   "fpr": 0.06647134165866155,
+   "fa_per_h": 1325.538119954128,
+   "roc_auc": 0.8856221056148175
+  },
+  "robustz_service": {
+   "windows": 39879,
+   "attack_windows": 2142,
+   "recall": 0.041549953314659195,
+   "fpr": 0.011103161353578715,
+   "fa_per_h": 6.688670844703257,
+   "roc_auc": 0.6566589103952964
+  },
+  "iforest_service": {
+   "windows": 39879,
+   "attack_windows": 2142,
+   "recall": 0.29971988795518206,
+   "fpr": 0.1405782123645229,
+   "fa_per_h": 84.68591606479899,
+   "roc_auc": 0.7107856003342412
+  }
+ },
+ "h2": {
+  "robustz": {
+   "global_recall": 0.003566333808844508,
+   "global_fpr": 0.09962264150943397,
+   "service_fpr_at_global_recall": 0.0005829822190423192,
+   "device_fpr_at_global_recall": 0.009657380723663145
+  },
+  "iforest": {
+   "global_recall": 0.2225392296718973,
+   "global_fpr": 0.31119496855345913,
+   "service_fpr_at_global_recall": 0.11577496886344966,
+   "device_fpr_at_global_recall": 0.06431796349663785
+  }
+ },
+ "fpr_at_recall": {
+  "clean/robustz/global": {
+   "r0.5": 0.4716981132075472,
+   "r0.8": 0.7270440251572327
+  },
+  "clean/iforest/global": {
+   "r0.5": 0.5499371069182389,
+   "r0.8": 0.7776100628930818
+  },
+  "clean/robustz/device": {
+   "r0.5": 0.072957893051553,
+   "r0.8": 0.3098286903618316
+  },
+  "clean/iforest/device": {
+   "r0.5": 0.06508725584373999,
+   "r0.8": 0.09880243355747678
+  },
+  "clean/robustz/service": {
+   "r0.5": 0.30524419005220343,
+   "r0.8": 0.6176166626917879
+  },
+  "clean/iforest/service": {
+   "r0.5": 0.22020828364734876,
+   "r0.8": 0.5224845642207913
+  },
+  "natural/robustz/global": {
+   "r0.5": 0.4633962264150943,
+   "r0.8": 0.7217610062893082
+  },
+  "natural/iforest/global": {
+   "r0.5": 0.5662893081761007,
+   "r0.8": 0.7695597484276729
+  },
+  "natural/robustz/device": {
+   "r0.5": 0.07373118796029458,
+   "r0.8": 0.3121749919948767
+  },
+  "natural/iforest/device": {
+   "r0.5": 0.07215017611271214,
+   "r0.8": 0.10913464617355108
+  },
+  "natural/robustz/service": {
+   "r0.5": 0.3006068314916395,
+   "r0.8": 0.5796963192622625
+  },
+  "natural/iforest/service": {
+   "r0.5": 0.23083445954898377,
+   "r0.8": 0.4976548215279434
+  }
+ },
+ "meta": {
+  "seconds": 1183.5,
+  "peak_rss_mb": 4556.35546875
+ }
+}

@@ -182,6 +182,7 @@ def test_zeek_iot23_space_joined_label_columns_and_extras(tmp_path):
     p = tmp_path / "conn.log.labeled"
     p.write_text(hdr + rows)
     stats = ZeekStats()
+
     def flag(d: dict) -> float:
         return 1.0 if d.get("label", "").lower() == "malicious" else 0.0
 
