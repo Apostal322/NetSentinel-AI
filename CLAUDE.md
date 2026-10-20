@@ -14,8 +14,13 @@ Global rules (approval gates, RAM limits, Colab thresholds) are in `~/.claude/CL
 
 ## Protected data
 - Test splits: IDS2018 CIC test used once for runs pre-registered in
-  `docs/experiments/test_preregistration.md`. NetFlow test splits: untouched. Never evaluate on
-  test without a new written pre-registration.
+  `docs/experiments/test_preregistration.md`. NetFlow test (rows that are test under both the
+  episode and chronological protocols) used once on 2026-10-20 for the runs pre-registered in
+  `docs/experiments/final_preregistration_nf.md`; markers in `reports/final/` block reruns.
+  Both test sets are now spent: never select or tune anything on them. A new model choice needs
+  a new untouched evaluation set and a new written pre-registration.
+- The episode split's phase depends on the seed (`splits._episodic`); a project-wide
+  "untouched" partition must be computed under every seed used.
 
 ## Conventions
 - Stages are separate processes (8 GB RAM). Use Polars lazy/streaming for anything touching full days.

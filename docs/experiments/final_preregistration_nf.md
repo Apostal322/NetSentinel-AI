@@ -114,3 +114,34 @@ It is a statement about this testbed.
 - Open-set holdout groups on NF data. The intersection lacks most IDS groups.
 - The real-traffic CTU-Normal-26 capture, which is benign only and used for telemetry
   validation.
+
+---
+
+## Addendum after the final runs (2026-10-20, 03:30): protocol deviation
+
+*Appended after the test results; the text above is unchanged since commit 47d0817.*
+
+The episode split draws its segment phase from the run seed (`splits._episodic`,
+`rng.integers(0, 10)`). Section 2's composition was computed with seed 42 only. Consequences:
+- **Seed 42:** the final test set is exactly the pre-registered intersection (NF-IDS2018:
+  21,408 rows; NF-UNSW: 39,151 rows; row counts identical to section 2; see
+  `reports/final/*_s42.json`).
+- **Seeds 1 and 2** used their own episode phase, so their test sets differ: NF-IDS2018
+  18,210 and 22,869 rows (5,890 botnet and 20 web rows each time; only the benign count
+  changes); NF-UNSW 39,234 and 39,154.
+- Within each run the protocol stays leak-free. The run's source model is trained on that
+  seed's episode-train partition, which excludes that run's test rows, and the target
+  calibration pool (chronological train) excludes the chronological test.
+- But for seeds 1 and 2, section 2's claim that test rows "were never used to fit, calibrate,
+  threshold or select anything" is not guaranteed across the whole project. Some of those
+  rows may lie in train/validation partitions of v4 runs with seed 42. Strictly, the same
+  applies to seed 42 relative to the v4 runs with seeds 1–4.
+- No hyper-parameter was tuned on those runs (all models use defaults). The exposure is
+  limited to knowing the validation results that motivated the hypotheses.
+
+Handling:
+- The pre-registered primary analysis (mean over seeds 42, 1, 2) is reported unchanged.
+- A seed-42-only analysis, the only one whose test set exactly matches section 2, is
+  reported as a labelled sensitivity analysis:
+  `reports/experiments/results_final_nf{,_seeds42}.md`.
+- Where the two disagree, the report says so.

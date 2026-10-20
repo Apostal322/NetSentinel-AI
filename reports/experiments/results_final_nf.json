@@ -1,0 +1,145 @@
+{
+ "hypotheses": {
+  "H1": {
+   "supported": true,
+   "values": [
+    [
+     1.0,
+     0.0009501129551634947
+    ],
+    [
+     0.9999863819092404,
+     0.0005786218543653551
+    ]
+   ]
+  },
+  "H2": {
+   "supported": true,
+   "values": [
+    [
+     0.4165496248137949,
+     0.3518557896488826
+    ],
+    [
+     0.3656932882117963,
+     0.3525850420618051
+    ],
+    [
+     0.6627032959768137,
+     0.9926874074297203
+    ]
+   ]
+  },
+  "H3": {
+   "supported": true,
+   "values": [
+    [
+     0.0019944922777717,
+     0.002239214988206167
+    ],
+    [
+     0.00028744572511327227,
+     0.0051737402638305915
+    ],
+    [
+     0.002769580905952402,
+     0.0
+    ]
+   ]
+  },
+  "H4": {
+   "supported": true,
+   "values": {
+    "final_ids2ids_nf_flow_ctx:target_robust_z_flow": 0.0,
+    "final_ids2ids_nf_flow_ctx:target_iforest_flow": 0.0,
+    "final_ids2ids_nf_flow_ctx:target_autoencoder_flow": 0.0,
+    "final_ids2ids_nf_flow_ctx:target_robust_z_ctx": 0.0,
+    "final_ids2ids_nf_flow_ctx:target_iforest_ctx": 0.0,
+    "final_ids2ids_nf_flow_ctx:target_autoencoder_ctx": 0.0005091297745045201,
+    "final_ids2ids_nf_flow_ctx:target_robust_z_all": 0.0,
+    "final_ids2ids_nf_flow_ctx:target_iforest_all": 0.0,
+    "final_ids2ids_nf_flow_ctx:target_autoencoder_all": 0.0,
+    "final_ids2ids_nf_flow_ctx:target_robust_z_flow_noshortcut": 0.0,
+    "final_ids2ids_nf_flow_ctx:target_iforest_flow_noshortcut": 0.0,
+    "final_ids2ids_nf_flow_ctx:target_autoencoder_flow_noshortcut": 0.0,
+    "final_unsw2ids_nf_flow_ctx:target_robust_z_flow": 0.0,
+    "final_unsw2ids_nf_flow_ctx:target_iforest_flow": 0.0,
+    "final_unsw2ids_nf_flow_ctx:target_autoencoder_flow": 0.0,
+    "final_unsw2ids_nf_flow_ctx:target_robust_z_ctx": 0.0,
+    "final_unsw2ids_nf_flow_ctx:target_iforest_ctx": 0.0,
+    "final_unsw2ids_nf_flow_ctx:target_autoencoder_ctx": 0.0005091297745045201,
+    "final_unsw2ids_nf_flow_ctx:target_robust_z_all": 0.0,
+    "final_unsw2ids_nf_flow_ctx:target_iforest_all": 0.0,
+    "final_unsw2ids_nf_flow_ctx:target_autoencoder_all": 0.0,
+    "final_unsw2ids_nf_flow_ctx:target_robust_z_flow_noshortcut": 0.0,
+    "final_unsw2ids_nf_flow_ctx:target_iforest_flow_noshortcut": 0.0,
+    "final_unsw2ids_nf_flow_ctx:target_autoencoder_flow_noshortcut": 0.0
+   }
+  },
+  "H5": {
+   "supported": false,
+   "values": [
+    [
+     0.9171550164065939,
+     0.6251131998128784
+    ],
+    [
+     0.9171550164065939,
+     0.6251131998128784
+    ]
+   ]
+  },
+  "H6": {
+   "supported": true,
+   "values": {
+    "final_unsw2unsw_nf_flow_ctx:target_autoencoder_flow": [
+     0.0010067722365576558,
+     0.9171550164065939
+    ],
+    "final_unsw2unsw_nf_flow_ctx:source_model_target_threshold": [
+     0.0112122743401804,
+     1.0
+    ],
+    "final_ids2ids_nf_flow_ctx:target_autoencoder_flow": [
+     0.0,
+     0.0
+    ],
+    "final_ids2ids_nf_flow_ctx:source_model_target_threshold": [
+     0.0,
+     0.9999931909546201
+    ],
+    "final_ids2unsw_nf_flow_ctx:target_autoencoder_flow": [
+     0.0010067722365576558,
+     0.9171550164065939
+    ],
+    "final_ids2unsw_nf_flow_ctx:source_model_target_threshold": [
+     0.001850138602901892,
+     0.002239214988206167
+    ],
+    "final_ids2unsw_nf_portable_ctx:target_autoencoder_flow": [
+     0.004803590813820852,
+     0.18872189154385222
+    ],
+    "final_ids2unsw_nf_portable_ctx:source_model_target_threshold": [
+     0.004801199284362168,
+     0.0051737402638305915
+    ],
+    "final_unsw2ids_nf_flow_ctx:target_autoencoder_flow": [
+     0.0,
+     0.0
+    ],
+    "final_unsw2ids_nf_flow_ctx:source_model_target_threshold": [
+     0.0,
+     0.0
+    ]
+   }
+  }
+ },
+ "runs_found": {
+  "final_unsw2unsw_nf_flow_ctx": 3,
+  "final_ids2ids_nf_flow_ctx": 3,
+  "final_ids2unsw_nf_flow_ctx": 3,
+  "final_ids2unsw_nf_portable_ctx": 3,
+  "final_unsw2ids_nf_flow_ctx": 3
+ }
+}

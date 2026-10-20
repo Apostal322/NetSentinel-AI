@@ -6,6 +6,7 @@ the 3 seeds). Writes reports/experiments/results_final_nf.{md,json}.
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -27,10 +28,15 @@ SHOW = ("source_model_target_threshold", "normalized_target_threshold",
         "target_autoencoder_all")  # fmt: skip
 
 
+SEEDS = tuple(int(x) for x in sys.argv[1].split(",")) if len(sys.argv) > 1 else (42, 1, 2)
+SUFFIX = "" if SEEDS == (42, 1, 2) else "_seeds" + "_".join(map(str, SEEDS))
+
+
 def load() -> dict[str, list[dict]]:
     out: dict[str, list[dict]] = {}
     for pre in SETTINGS:
-        runs = [json.loads(p.read_text("utf-8")) for p in sorted(FINAL.glob(f"{pre}_s*.json"))]
+        runs = [json.loads((FINAL / f"{pre}_s{s}.json").read_text("utf-8")) for s in SEEDS
+                if (FINAL / f"{pre}_s{s}.json").exists()]  # fmt: skip
         if runs:
             out[pre] = runs
     return out
@@ -73,7 +79,8 @@ def main() -> None:
     md = ["# Final NF-v3 evaluation (pre-registered, one-shot)\n\n",
           "Pre-registration: `docs/experiments/final_preregistration_nf.md` (commit 47d0817). "
           "Test rows = test under both the episode and chronological protocols. Recall: mean "
-          "over seeds (per-seed values); CI = 95% block bootstrap of seed 42; FA/h = "
+          "over seeds (per-seed values, order " + ",".join(map(str, SEEDS)) + "); CI = 95% block "
+          "bootstrap of the first listed seed; FA/h = "
           "false-alert flows per hour.\n\n"]  # fmt: skip
     for pre, title in SETTINGS.items():
         runs = R.get(pre)
@@ -132,8 +139,8 @@ def main() -> None:
         txt = txt.replace("|", "/")
         md.append(f"| {k} | {'**yes**' if ok else '**no**'} | {txt[:900]} |\n")
     OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / "results_final_nf.md").write_text("".join(md), encoding="utf-8")
-    (OUT / "results_final_nf.json").write_text(json.dumps(
+    (OUT / f"results_final_nf{SUFFIX}.md").write_text("".join(md), encoding="utf-8")
+    (OUT / f"results_final_nf{SUFFIX}.json").write_text(json.dumps(
         {"hypotheses": {k: {"supported": ok, "values": v} for k, (ok, v) in hyp.items()},
          "runs_found": {k: len(v) for k, v in R.items()}}, indent=1, default=str), "utf-8")  # fmt: skip
     print("".join(md[-8:]))

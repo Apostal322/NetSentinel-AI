@@ -75,3 +75,30 @@ cross-network transfer** (`docs/experiments/report_v1.md` 3.9). These supersede 
 | PCAP / Zeek offline analysis | Done (pure-Python readers, flow assembler, CLI, API upload, dashboard page); tested on synthetic captures only; nProbe agreement unverified |
 | Docker / deployment | Dockerfile + compose written (non-root, read-only, localhost); **not built** (no local Docker) |
 | Live capture, Suricata | Not implemented (out of scope: detection-only offline analysis) |
+
+
+## Phase 5 addendum (2026-10-20)
+
+Evidence: `docs/experiments/report_phase5.md` and the files it cites.
+
+| # | Severity | Finding | Status |
+|---|---|---|---|
+| A6 | High | No external dataset | **Closed**: NetFlow v3 IDS2018 + UNSW-NB15 in-domain, transfer, adaptation and a pre-registered final test |
+| A11 | Medium (open) | CI and Docker never executed | Still open: no Docker locally, no remote repository |
+| P1 | High (fixed) | Flow assembler split every closed TCP connection into the connection plus a spurious 1–2-packet tail flow (found on real traffic against Zeek; 2,161 extra flows on CTU-Normal-26) | 5 s close linger, regression test, re-validated |
+| P2 | High (open) | `*_SECOND_BYTES` fields mean bytes/s in our extractor but not in nProbe's NF-v3 export | `nf_flow*` models must not score PCAP-derived flows; the portable bundle does not use these fields |
+| P3 | High (open) | The deployed bundle is uninformative on a new network: 99% "unusual", 21–34 false "suspicious" flows/h on real benign traffic | Documented; no product `calibrate` step yet |
+| P4 | Medium (documented) | Final-test protocol deviation: the episode split phase depends on the seed, so the test sets of seeds 1 and 2 are not the pre-registered intersection | Primary analysis unchanged, seed-42 sensitivity reported; H3, H5 and H6 differ between the two analyses |
+| P5 | Medium (fixed) | Decision-layer docstring claimed all thresholds were validation-tuned; the attack-type threshold is a fixed 0.6 | Docstring corrected |
+| P6 | Medium (documented) | Unlabelled calibration with realistic contamination collapses recall even in-domain | Report §2; calibration must use vetted benign data |
+| P7 | Research limitation | NF-UNSW autoencoder "detection" depends on attacker TTL / packet-size signatures and is seed-unstable (H5 failed) | No unknown-attack claim |
+| P8 | Research limitation | NF-IDS2018 final test contains only botnet and 20 web rows | Stated with every IDS-target result |
+| P9 | Research limitation | Application-ID target is nDPI's label (version assumed); host-identifying fields may let the model learn servers rather than applications | Validation-only, not deployed |
+
+Updated answers:
+- Unknown threats: still not detected by any label-free method at an operational FPR on
+  IDS2018 data (final test).
+- Application identification: a learned DPI-label classifier exists (validation only). The
+  product still reports `port_heuristic`.
+- Production readiness: **not production-ready**. It needs local retraining, a calibration
+  workflow, Docker/CI execution and dashboard re-verification.

@@ -1,6 +1,6 @@
 # NetSentinel AI, Phase 5: domain adaptation, generalisation and production validation
 
-Status: **draft in progress** (2026-10-20). Sections are added as their evidence is complete.
+Status: complete (2026-10-20). Sections 2–3 use validation data; section 4 is the one-shot pre-registered final test.
 All numbers come from files under `reports/` that are named in each section. Validation and
 calibration partitions only, unless a section explicitly says "final test".
 
@@ -130,6 +130,56 @@ runs, e.g. autoencoder flow 0.979.)
   0.01 recall.
 - **No unknown-attack detection claim is made.** The same "unusual" verdict is kept separate
   from "suspicious" in the product. Section 6 shows what that means on a real benign capture.
+
+## 4. Pre-registered final test (Mission 5)
+
+Pre-registration: `docs/experiments/final_preregistration_nf.md`. It was committed as
+`47d0817` before any NF test row was evaluated, and the deviation addendum was appended
+afterwards. Runs: `scripts/run_final_nf.py`, 15 one-shot runs, 63 min, peak 3.2 GB. Markers
+are in `reports/final/`; aggregation is `scripts/aggregate_final_nf.py` ->
+`reports/experiments/results_final_nf.md` (primary) and `results_final_nf_seeds42.md`
+(sensitivity).
+
+Test sets:
+- NF-UNSW: about 39.2k rows over 3.75 h, all 9 attack labels.
+- NF-IDS2018: 18–23k rows over 7.25 h, of which 5,890 are botnet and 20 web attack; it has
+  no brute-force, DoS or DDoS rows.
+
+**Deviation (stated before interpreting results).** The episode split's phase depends on the
+seed, so only seed 42's test set equals the pre-registered intersection. Seeds 1 and 2 are
+leak-free within each run, but not guaranteed untouched project-wide (addendum).
+
+Each cell: recall at the procedure's threshold, mean of 3 seeds. In brackets: seed 42 and its
+95% block-bootstrap CI. Then FPR and false-alert flows/h (both 3-seed means). Clean target
+calibration, 50k flows.
+
+| Setting | source model, source threshold | source model, target-calibrated threshold | Isolation Forest (flow), target benign | autoencoder (flow), target benign | autoencoder without TTL/window |
+|---|---|---|---|---|---|
+| NF-UNSW in-domain | **1.000** (1.000 [1.000, 1.000]); 0.0010; 81/h | 1.000; 0.0009; 74/h | 0.014 (0.024 [0.009, 0.049]); 0.0007 | 0.917 (1.000 [1.000, 1.000]); 0.0004; 35/h | 0.625 (0.916 [0.904, 0.927]); 0.0003 |
+| NF-IDS2018 in-domain | **1.000** (1.000); 0.0006; 36/h | 1.000; 0.0014; 85/h | 0.000; 0.0008 | 0.000; 0.0008; 54/h | 0.000; 0.0009 |
+| NF-IDS -> NF-UNSW, nf_flow_ctx | 0.254 (0.346); **0.352**; 29,076/h; ROC 0.42 | 0.002 (0.005); 0.0020; 172/h | as in-domain UNSW (same target) | as in-domain UNSW | as in-domain UNSW |
+| NF-IDS -> NF-UNSW, portable | 0.067 (0.081); **0.353**; 29,548/h; ROC 0.37 | 0.005 (0.001); 0.0003; 23/h | 0.030 (0.042); 0.0007 | 0.189 (0.128 [0.095, 0.159]); 0.0004 | (same: no TTL fields) |
+| NF-UNSW -> NF-IDS, nf_flow_ctx | 1.000; **0.993**; 65,781/h; ROC 0.66 | 0.000; 0.0028; 183/h | 0.000; 0.0008 | 0.000; 0.0008 | 0.000; 0.0009 |
+
+Pre-registered hypotheses (primary: mean over 3 seeds; sensitivity: seed 42 only):
+
+| ID | Primary | Seed 42 | Reading |
+|---|---|---|---|
+| H1 in-domain retraining detects test attacks | **supported** | supported | recall 1.000 at FPR 0.0006–0.0011 on both datasets |
+| H2 supervised models do not transfer | **supported** | supported | source-only ROC 0.37–0.66, FPR 0.35–0.99 |
+| H3 target calibration controls FPR, recall stays < 0.05 | **supported** | **not supported** | seed 42 IDS->UNSW FPR 0.0039 > 0.003. Recall is 0.000–0.005 under both analyses; the FPR bound was set too tight |
+| H4 no target-benign detector finds NF-IDS test attacks | **supported** | supported | all 12 detector/view combinations: recall <= 0.0005 |
+| H5 UNSW autoencoder separates attacks, also without TTL/window | **not supported** | supported | mean 0.917 / 0.625. Seed 1 gives 0.752 / 0.043, so the result depends on the calibration draw and initialisation |
+| H6 unlabelled calibration is harmful | **supported** | not supported | the seed-42 exception is 0.0032 vs 0.0014 recall (both about 0) |
+
+What the final test establishes:
+1. In-domain supervised detection is real but uninformative: recall 1.000 at FPR about 1e-3
+   on both datasets, as on validation.
+2. Cross-network transfer fails on the untouched test data, both ways. Target calibration
+   turns 29–66k false alerts/h into 23–183/h but finds at most 0.5% of attacks.
+3. Benign-only normal modelling detects nothing on NF-IDS2018 (botnet).
+4. On NF-UNSW it works only in an unstable, artefact-dependent way. The pre-registered
+   robustness criterion (H5) failed, and we report it as failed.
 
 ## 5. Multi-task objectives audit (Mission 4)
 
@@ -283,3 +333,76 @@ output is in `reports/`. Anything else is labelled.
 | Docker image / compose | **unverified** | Docker is not installed on this machine; the Dockerfile has never been built |
 | GitHub Actions CI | **unverified** | the workflow exists but has never run: no remote repository (pushing needs your authorisation) |
 | Pre-registered final test (NF) | see section 4 | one-shot markers in `reports/final/` |
+
+## 8. Answers to the research questions (Mission 8)
+
+1. **Why did transfer fail?** Section 1 gives six measured causes:
+   - no common support between the benign traffic of the two networks (domain AUC about 1,
+     even on 5 fields);
+   - different extractor semantics for nominally identical nProbe fields (active timeout,
+     zero-duration flows, IAT and size-bin identities, `*_SECOND_BYTES`);
+   - topologies differing by four orders of magnitude;
+   - attack taxonomies overlapping only in DoS;
+   - eight features whose attack evidence reverses sign between datasets.
+
+   The final test confirms the failure on untouched data: ROC 0.37–0.66; source thresholds
+   flag 35–99% of benign flows.
+2. **Did adaptation help?** It helped false alarms, not detection.
+   - Label-free target threshold calibration reduced false alerts from 29–66k/h to 23–183/h
+     (final test).
+   - No source-based adaptation method raised recall above 0.005: target-calibrated
+     threshold, robust per-domain normalisation, shift-robust feature subset.
+   - Importance weighting was not run, because there is no support overlap.
+   - Self-supervised or adversarial DA was not run either. With reversed class-conditional
+     evidence and disjoint attack taxonomies, aligning feature distributions cannot
+     recover the label relationship. We judged the extra complexity unjustified (not
+     tested).
+3. **How much calibration data is needed?** It depends on what is calibrated.
+   - Thresholds of a fixed model: 1,000 vetted benign flows held FPR near the 1e-3 target on
+     validation (0.0012 ± 0.0008); 100 flows overshot it 5x (0.0055).
+   - On the later test period the same procedure gave FPR 0.0020–0.0039 into UNSW and
+     0.0028 into IDS (2–4x the target). That is drift between calibration time and test
+     time, which calibration size does not fix.
+   - Target normal models: far more. The UNSW autoencoder needs 50k flows (recall 0.14 /
+     0.83 / 0.98 at 1k / 10k / 50k), and its threshold uses only half of them.
+   - A 1e-3 quantile estimated from n/2 = 500 points rests on fewer than 1 expected
+     exceedance, so small calibration sets give unreliable FPRs.
+   - Calibration data must be benign-vetted. At realistic dataset contamination (9–17%),
+     unlabelled calibration drove recall to about 0 even in-domain.
+4. **Best operational trade-offs.**
+   - With local labels: supervised LightGBM at a validation FPR of 1e-3 gives recall 1.000 at
+     36–81 false-alert *flows*/h on the final test (not incidents; incident grouping was not
+     evaluated).
+   - Without local labels: no configuration we tested is both quiet and useful. Calibrated
+     thresholds are quiet (about 23–183 flows/h) but blind.
+   - The honest operating point for a new network is to collect vetted benign traffic and
+     labelled incidents, then retrain.
+5. **Temporal DL vs LightGBM.** No new temporal experiments in Phase 5. Earlier results
+   (report_v1 §3.6–3.7, CIC IDS2018):
+   - On seen attacks a GRU over per-port flow sequences is level with an MLP (recall@1e-3
+     0.9993 vs 0.9986, 5 seeds) and with LightGBM.
+   - On unseen families (n=1, and partly affected by the later-corrected twin-class leak)
+     it is far below LightGBM with explicit multi-scale context features.
+   - Explicit context features, not sequence models, carried the temporal signal.
+6. **Did anomaly detection catch unseen attacks?** No, except in a testbed-artefact sense.
+   - On both IDS2018 schemas, every label-free detector has recall about 0 at an
+     operational FPR, on validation and on the final test.
+   - On NF-UNSW the flow autoencoder catches most attacks. The cause is TTL and
+     minimum-packet-length signatures of the attacking hosts, and the effect was unstable
+     across seeds (H5 failed). We make no claim of unknown-attack detection.
+7. **Did application-aware modelling reduce false positives?** Not demonstrated.
+   - Service conditioning changed anomaly PR-AUC (+0.05 IForest, −0.14 robust-z) without
+     producing usable recall.
+   - The new flow-shape application classifier (macro-F1 0.94 NF-IDS / 0.73 NF-UNSW vs
+     port lookup 0.84 / 0.63) was not used for conditioning.
+8. **What remains unsolved?**
+   - Detection on a new network without local labels.
+   - Robust benign-only calibration: trimmed quantiles, or contamination-robust estimators.
+   - Field-level agreement between our PCAP extractor and nProbe; we have no paired data.
+   - Incident-level false-alert evaluation.
+   - An NF-IDS2018 test set with brute-force, DoS and DDoS attacks; the protocol intersection
+     removed them.
+   - Docker and CI execution, and dashboard re-verification.
+   - Application identification inside encrypted traffic, beyond the DPI label.
+   - A product-level target-calibration workflow (`analyze` cannot calibrate on local
+     benign traffic yet).
