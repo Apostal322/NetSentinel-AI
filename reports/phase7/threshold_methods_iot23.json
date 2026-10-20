@@ -1,0 +1,671 @@
+{
+ "note": "exploratory; IoT-23 inspected in Phase 6",
+ "scenarios": {
+  "CTU-Honeypot-Capture-4-1": {
+   "split": {
+    "clean": {
+     "global": {
+      "recall": null,
+      "fpr": 0.006111535523300229,
+      "attack_windows": 0
+     },
+     "device": {
+      "recall": null,
+      "fpr": 0.06896551724137931,
+      "attack_windows": 0
+     },
+     "service": {
+      "recall": null,
+      "fpr": 0.06015037593984962,
+      "attack_windows": 0
+     }
+    },
+    "unlabelled": {
+     "global": {
+      "recall": null,
+      "fpr": 0.006875477463712758,
+      "attack_windows": 0
+     },
+     "device": {
+      "recall": null,
+      "fpr": 0.06896551724137931,
+      "attack_windows": 0
+     },
+     "service": {
+      "recall": null,
+      "fpr": 0.045112781954887216,
+      "attack_windows": 0
+     }
+    }
+   },
+   "crossfit": {
+    "clean": {
+     "global": {
+      "recall": null,
+      "fpr": 0.004583651642475172,
+      "attack_windows": 0
+     },
+     "device": {
+      "recall": null,
+      "fpr": 0.022988505747126436,
+      "attack_windows": 0
+     },
+     "service": {
+      "recall": null,
+      "fpr": 0.022556390977443608,
+      "attack_windows": 0
+     }
+    },
+    "unlabelled": {
+     "global": {
+      "recall": null,
+      "fpr": 0.0038197097020626434,
+      "attack_windows": 0
+     },
+     "device": {
+      "recall": null,
+      "fpr": 0.022988505747126436,
+      "attack_windows": 0
+     },
+     "service": {
+      "recall": null,
+      "fpr": 0.015037593984962405,
+      "attack_windows": 0
+     }
+    }
+   }
+  },
+  "CTU-Honeypot-Capture-5-1": {
+   "split": {
+    "clean": {
+     "global": {
+      "recall": null,
+      "fpr": 0.0,
+      "attack_windows": 0
+     },
+     "device": {
+      "recall": null,
+      "fpr": 0.010169491525423728,
+      "attack_windows": 0
+     },
+     "service": {
+      "recall": null,
+      "fpr": 0.003236245954692557,
+      "attack_windows": 0
+     }
+    },
+    "unlabelled": {
+     "global": {
+      "recall": null,
+      "fpr": 0.0,
+      "attack_windows": 0
+     },
+     "device": {
+      "recall": null,
+      "fpr": 0.010169491525423728,
+      "attack_windows": 0
+     },
+     "service": {
+      "recall": null,
+      "fpr": 0.003236245954692557,
+      "attack_windows": 0
+     }
+    }
+   },
+   "crossfit": {
+    "clean": {
+     "global": {
+      "recall": null,
+      "fpr": 0.0,
+      "attack_windows": 0
+     },
+     "device": {
+      "recall": null,
+      "fpr": 0.010169491525423728,
+      "attack_windows": 0
+     },
+     "service": {
+      "recall": null,
+      "fpr": 0.038834951456310676,
+      "attack_windows": 0
+     }
+    },
+    "unlabelled": {
+     "global": {
+      "recall": null,
+      "fpr": 0.0,
+      "attack_windows": 0
+     },
+     "device": {
+      "recall": null,
+      "fpr": 0.010169491525423728,
+      "attack_windows": 0
+     },
+     "service": {
+      "recall": null,
+      "fpr": 0.02912621359223301,
+      "attack_windows": 0
+     }
+    }
+   }
+  },
+  "CTU-IoT-Malware-Capture-20-1": {
+   "split": {
+    "clean": {
+     "global": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 1
+     },
+     "device": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 1
+     },
+     "service": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 1
+     }
+    },
+    "unlabelled": {
+     "global": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 1
+     },
+     "device": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 1
+     },
+     "service": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 1
+     }
+    }
+   },
+   "crossfit": {
+    "clean": {
+     "global": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 1
+     },
+     "device": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 1
+     },
+     "service": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 1
+     }
+    },
+    "unlabelled": {
+     "global": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 1
+     },
+     "device": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 1
+     },
+     "service": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 1
+     }
+    }
+   }
+  },
+  "CTU-IoT-Malware-Capture-21-1": {
+   "split": {
+    "clean": {
+     "global": {
+      "recall": 1.0,
+      "fpr": 0.0006949270326615705,
+      "attack_windows": 2
+     },
+     "device": {
+      "recall": 1.0,
+      "fpr": 0.0030211480362537764,
+      "attack_windows": 2
+     },
+     "service": {
+      "recall": 0.0,
+      "fpr": 0.0,
+      "attack_windows": 2
+     }
+    },
+    "unlabelled": {
+     "global": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 2
+     },
+     "device": {
+      "recall": 1.0,
+      "fpr": 0.0030211480362537764,
+      "attack_windows": 2
+     },
+     "service": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 2
+     }
+    }
+   },
+   "crossfit": {
+    "clean": {
+     "global": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 2
+     },
+     "device": {
+      "recall": 0.0,
+      "fpr": 0.0,
+      "attack_windows": 2
+     },
+     "service": {
+      "recall": 1.0,
+      "fpr": 0.01928374655647383,
+      "attack_windows": 2
+     }
+    },
+    "unlabelled": {
+     "global": {
+      "recall": 0.0,
+      "fpr": 0.0,
+      "attack_windows": 2
+     },
+     "device": {
+      "recall": 0.0,
+      "fpr": 0.0,
+      "attack_windows": 2
+     },
+     "service": {
+      "recall": 1.0,
+      "fpr": 0.011019283746556474,
+      "attack_windows": 2
+     }
+    }
+   }
+  },
+  "CTU-IoT-Malware-Capture-3-1": {
+   "split": {
+    "clean": {
+     "global": {
+      "recall": 0.974169741697417,
+      "fpr": null,
+      "attack_windows": 2168
+     },
+     "device": {
+      "recall": 0.7126383763837638,
+      "fpr": 0.0035149384885764497,
+      "attack_windows": 2168
+     },
+     "service": {
+      "recall": 0.0,
+      "fpr": 0.0084985835694051,
+      "attack_windows": 3293
+     }
+    },
+    "unlabelled": {
+     "global": {
+      "recall": 0.0027675276752767526,
+      "fpr": null,
+      "attack_windows": 2168
+     },
+     "device": {
+      "recall": 0.008763837638376383,
+      "fpr": 0.0,
+      "attack_windows": 2168
+     },
+     "service": {
+      "recall": 0.0003036744609778318,
+      "fpr": 0.029745042492917848,
+      "attack_windows": 3293
+     }
+    }
+   },
+   "crossfit": {
+    "clean": {
+     "global": {
+      "recall": 0.5189114391143912,
+      "fpr": null,
+      "attack_windows": 2168
+     },
+     "device": {
+      "recall": 0.5101476014760148,
+      "fpr": 0.0,
+      "attack_windows": 2168
+     },
+     "service": {
+      "recall": 0.0,
+      "fpr": 0.009915014164305949,
+      "attack_windows": 3293
+     }
+    },
+    "unlabelled": {
+     "global": {
+      "recall": 0.00046125461254612545,
+      "fpr": null,
+      "attack_windows": 2168
+     },
+     "device": {
+      "recall": 0.0,
+      "fpr": 0.0,
+      "attack_windows": 2168
+     },
+     "service": {
+      "recall": 0.021257212268448223,
+      "fpr": 0.00141643059490085,
+      "attack_windows": 3293
+     }
+    }
+   }
+  },
+  "CTU-IoT-Malware-Capture-34-1": {
+   "split": {
+    "clean": {
+     "global": {
+      "recall": 0.44750795334040294,
+      "fpr": 0.004032258064516129,
+      "attack_windows": 943
+     },
+     "device": {
+      "recall": 0.44750795334040294,
+      "fpr": 0.011299435028248588,
+      "attack_windows": 943
+     },
+     "service": {
+      "recall": 0.2864693446088795,
+      "fpr": 0.009925558312655087,
+      "attack_windows": 946
+     }
+    },
+    "unlabelled": {
+     "global": {
+      "recall": 0.02014846235418876,
+      "fpr": 0.006048387096774193,
+      "attack_windows": 943
+     },
+     "device": {
+      "recall": 0.013785790031813362,
+      "fpr": 0.0,
+      "attack_windows": 943
+     },
+     "service": {
+      "recall": 0.0,
+      "fpr": 0.0,
+      "attack_windows": 946
+     }
+    }
+   },
+   "crossfit": {
+    "clean": {
+     "global": {
+      "recall": 0.2725344644750795,
+      "fpr": 0.0,
+      "attack_windows": 943
+     },
+     "device": {
+      "recall": 0.009544008483563097,
+      "fpr": 0.0,
+      "attack_windows": 943
+     },
+     "service": {
+      "recall": 0.005285412262156448,
+      "fpr": 0.007444168734491315,
+      "attack_windows": 946
+     }
+    },
+    "unlabelled": {
+     "global": {
+      "recall": 0.010604453870625663,
+      "fpr": 0.0,
+      "attack_windows": 943
+     },
+     "device": {
+      "recall": 0.0,
+      "fpr": 0.0,
+      "attack_windows": 943
+     },
+     "service": {
+      "recall": 0.004228329809725159,
+      "fpr": 0.004962779156327543,
+      "attack_windows": 946
+     }
+    }
+   }
+  },
+  "CTU-IoT-Malware-Capture-42-1": {
+   "split": {
+    "clean": {
+     "global": {
+      "recall": null,
+      "fpr": 0.029940119760479042,
+      "attack_windows": 0
+     },
+     "device": {
+      "recall": null,
+      "fpr": 0.05555555555555555,
+      "attack_windows": 0
+     },
+     "service": {
+      "recall": null,
+      "fpr": 0.0029585798816568047,
+      "attack_windows": 0
+     }
+    },
+    "unlabelled": {
+     "global": {
+      "recall": null,
+      "fpr": 0.003992015968063872,
+      "attack_windows": 0
+     },
+     "device": {
+      "recall": null,
+      "fpr": 0.0,
+      "attack_windows": 0
+     },
+     "service": {
+      "recall": null,
+      "fpr": 0.0029585798816568047,
+      "attack_windows": 0
+     }
+    }
+   },
+   "crossfit": {
+    "clean": {
+     "global": {
+      "recall": null,
+      "fpr": 0.03792415169660679,
+      "attack_windows": 0
+     },
+     "device": {
+      "recall": null,
+      "fpr": 0.007407407407407408,
+      "attack_windows": 0
+     },
+     "service": {
+      "recall": null,
+      "fpr": 0.15088757396449703,
+      "attack_windows": 0
+     }
+    },
+    "unlabelled": {
+     "global": {
+      "recall": null,
+      "fpr": 0.0,
+      "attack_windows": 0
+     },
+     "device": {
+      "recall": null,
+      "fpr": 0.0,
+      "attack_windows": 0
+     },
+     "service": {
+      "recall": null,
+      "fpr": 0.15088757396449703,
+      "attack_windows": 0
+     }
+    }
+   }
+  },
+  "CTU-IoT-Malware-Capture-44-1": {
+   "split": {
+    "clean": {
+     "global": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 2
+     },
+     "device": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 2
+     },
+     "service": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 2
+     }
+    },
+    "unlabelled": {
+     "global": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 2
+     },
+     "device": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 2
+     },
+     "service": {
+      "recall": 1.0,
+      "fpr": 0.0,
+      "attack_windows": 2
+     }
+    }
+   },
+   "crossfit": {
+    "clean": {
+     "global": {
+      "recall": 0.5,
+      "fpr": 0.0,
+      "attack_windows": 2
+     },
+     "device": {
+      "recall": 0.5,
+      "fpr": 0.0,
+      "attack_windows": 2
+     },
+     "service": {
+      "recall": 0.5,
+      "fpr": 0.0,
+      "attack_windows": 2
+     }
+    },
+    "unlabelled": {
+     "global": {
+      "recall": 0.5,
+      "fpr": 0.0,
+      "attack_windows": 2
+     },
+     "device": {
+      "recall": 0.5,
+      "fpr": 0.0,
+      "attack_windows": 2
+     },
+     "service": {
+      "recall": 0.5,
+      "fpr": 0.0,
+      "attack_windows": 2
+     }
+    }
+   }
+  },
+  "CTU-IoT-Malware-Capture-8-1": {
+   "split": {
+    "clean": {
+     "global": {
+      "recall": 0.9729354614850798,
+      "fpr": null,
+      "attack_windows": 1441
+     },
+     "device": {
+      "recall": 0.027064538514920196,
+      "fpr": null,
+      "attack_windows": 1441
+     },
+     "service": {
+      "recall": 0.055517002081887576,
+      "fpr": 0.0,
+      "attack_windows": 1441
+     }
+    },
+    "unlabelled": {
+     "global": {
+      "recall": 0.01457321304649549,
+      "fpr": null,
+      "attack_windows": 1441
+     },
+     "device": {
+      "recall": 0.01457321304649549,
+      "fpr": null,
+      "attack_windows": 1441
+     },
+     "service": {
+      "recall": 0.016655100624566273,
+      "fpr": 0.0012300123001230013,
+      "attack_windows": 1441
+     }
+    }
+   },
+   "crossfit": {
+    "clean": {
+     "global": {
+      "recall": 0.9729354614850798,
+      "fpr": null,
+      "attack_windows": 1441
+     },
+     "device": {
+      "recall": 0.8299791811242193,
+      "fpr": null,
+      "attack_windows": 1441
+     },
+     "service": {
+      "recall": 1.0,
+      "fpr": 0.0012300123001230013,
+      "attack_windows": 1441
+     }
+    },
+    "unlabelled": {
+     "global": {
+      "recall": 0.0,
+      "fpr": null,
+      "attack_windows": 1441
+     },
+     "device": {
+      "recall": 0.0,
+      "fpr": null,
+      "attack_windows": 1441
+     },
+     "service": {
+      "recall": 0.015961138098542677,
+      "fpr": 0.0012300123001230013,
+      "attack_windows": 1441
+     }
+    }
+   }
+  }
+ }
+}

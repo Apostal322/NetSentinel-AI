@@ -189,7 +189,7 @@ def _cmd_analyze(args: argparse.Namespace) -> int:
     from netsentinel.streaming.offline import analyze_capture
 
     summary = analyze_capture(args.capture, args.bundle, args.events_db, args.utc_offset,
-                              args.kind, calibration_dir=args.calibration,
+                              args.kind, calibration_dir=_resolve_cal(args.calibration),
                               appid_dir=args.appid, threat_policy=args.threat_policy,
                               since=args.since, until=args.until)  # fmt: skip
     text = json.dumps(summary, indent=2, default=str)
@@ -250,6 +250,7 @@ def _cmd_calibrate(args: argparse.Namespace) -> int:
         mode=args.mode,
         target_fpr=args.target_fpr,
         min_windows=args.min_windows,
+        threshold_method=args.threshold_method,
     )
     check = None
     if args.bundle:
@@ -261,13 +262,60 @@ def _cmd_calibrate(args: argparse.Namespace) -> int:
         if args.mode == "vetted_benign"
         else "no benign assertion: unlabelled traffic, contamination-limiting trimming"
     )
+    from netsentinel.behavior.registry import activate, resolve_calibration, update_check
+
+    upd = None
+    if args.previous:
+        upd = update_check(resolve_calibration(args.previous, args.out), frame)
     out = save_profile(profile, args.out, sources=sources, operator_statement=statement,
-                       threat_check=check)  # fmt: skip
+                       threat_check=check, update_check=upd)  # fmt: skip
     summary = json.loads((out / "manifest.json").read_text("utf-8"))
     print(json.dumps({k: summary[k] for k in ("calibration_id", "status", "mode", "period",
-                                              "levels", "threat_model_domain_check")},
+                                              "levels", "threat_model_domain_check",
+                                              "update_check")},
                      indent=2, default=str))  # fmt: skip
+    if args.activate:
+        try:
+            activate(out.name, args.out, reviewed=False, note="calibrate --activate")
+        except ValueError as exc:
+            log.error("saved but NOT activated: %s", exc)
+            print(out)
+            return 3
     print(out)
+    return 0
+
+
+def _resolve_cal(arg):
+    from netsentinel.behavior.registry import resolve_calibration
+
+    return resolve_calibration(arg)
+
+
+def _cmd_calibration(args: argparse.Namespace) -> int:
+    from netsentinel.behavior.registry import activate, read_registry, rollback
+
+    if args.action == "list":
+        reg = read_registry(args.root)
+        rows = []
+        for d in sorted(Path(args.root).glob("calibration-*/manifest.json")):
+            m = json.loads(d.read_text("utf-8"))
+            rows.append({"id": m["calibration_id"], "status": m["status"], "mode": m["mode"],
+                         "schema": m.get("schema_version"),
+                         "review_required": (m.get("update_check") or {}).get("review_required"),
+                         "active": m["calibration_id"] == reg.get("active")})  # fmt: skip
+        print(json.dumps({"active": reg.get("active"), "calibrations": rows}, indent=2))
+    elif args.action == "show":
+        reg = read_registry(args.root)
+        print(json.dumps(reg, indent=2))
+    elif args.action == "activate":
+        if not args.id:
+            log.error("activate needs a calibration id")
+            return 2
+        reg = activate(args.id, args.root, reviewed=args.reviewed, note=args.note or "")
+        print(json.dumps({"active": reg["active"]}))
+    elif args.action == "rollback":
+        reg = rollback(args.root)
+        print(json.dumps({"active": reg["active"]}))
     return 0
 
 
@@ -277,7 +325,8 @@ def _cmd_serve(args: argparse.Namespace) -> int:
     from netsentinel.api.app import Settings, create_app
 
     app = create_app(Settings(bundle_dir=args.bundle, events_db=args.events_db,
-                              replay_dir=args.replay_dir, calibration_dir=args.calibration,
+                              replay_dir=args.replay_dir,
+                              calibration_dir=_resolve_cal(args.calibration),
                               appid_dir=args.appid, threat_policy=args.threat_policy))  # fmt: skip
     uvicorn.run(app, host=args.host, port=args.port, log_level="info")
     return 0
@@ -421,8 +470,38 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--bundle", default=None, help="also check the supervised model's domain")
     p.add_argument("--utc-offset", type=float, default=0.0)
     p.add_argument("--out", default="models/calibrations")
+    p.add_argument(
+        "--threshold-method",
+        choices=("crossfit", "split"),
+        default="crossfit",
+        help="crossfit: time-blocked cross-fitted thresholds from all calibration "
+        "windows (default); split: fit 70%% / threshold 30%% (Phase 6)",
+    )
+    p.add_argument(
+        "--previous",
+        default=None,
+        help="compare with this calibration (or 'active'): flags the new artifact "
+        "review_required if the new period is anomalous under it",
+    )
+    p.add_argument(
+        "--activate",
+        action="store_true",
+        help="make it the active calibration unless review is required",
+    )
     _add_period_args(p)
     p.set_defaults(func=_cmd_calibrate)
+
+    p = sub.add_parser("calibration", help="list / show / activate / rollback calibrations")
+    p.add_argument("action", choices=("list", "show", "activate", "rollback"))
+    p.add_argument("id", nargs="?", default=None)
+    p.add_argument("--root", default="models/calibrations")
+    p.add_argument(
+        "--reviewed",
+        action="store_true",
+        help="operator confirms a review_required period was vetted",
+    )
+    p.add_argument("--note", default=None)
+    p.set_defaults(func=_cmd_calibration)
 
     p = sub.add_parser("analyze", help="offline analysis of a PCAP/pcapng file or Zeek conn.log")
     p.add_argument("capture")

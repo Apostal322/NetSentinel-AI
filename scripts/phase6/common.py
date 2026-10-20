@@ -95,7 +95,10 @@ def iforest_scores(cal_flows: pl.DataFrame, ev_flows: pl.DataFrame, level: str, 
 
 
 def evaluate(cal: pl.DataFrame, ev: pl.DataFrame, *, window_s: int = 30, target_fpr: float = 0.01,
-             levels=("global", "device", "service"), with_iforest: bool = True) -> dict:  # fmt: skip
+             levels=("global", "device", "service"), with_iforest: bool = True,
+             threshold_method: str = "split") -> dict:  # fmt: skip
+    """`threshold_method` defaults to "split", the method Phase 6 used, so its results
+    reproduce exactly; Phase 7 passes "crossfit" explicitly."""
     hours = (
         int(ev["flow_end_milliseconds"].max()) - int(ev["flow_end_milliseconds"].min())
     ) / 3.6e6
@@ -110,9 +113,10 @@ def evaluate(cal: pl.DataFrame, ev: pl.DataFrame, *, window_s: int = 30, target_
             res[vname] = {"status": "no calibration flows"}
             continue
         prof = calibrate_flows(data, window_s=window_s, mode=mode, target_fpr=target_fpr,
+                               threshold_method=threshold_method,
                                levels=tuple(levels))  # fmt: skip
         r: dict = {"status": prof.status}
-        if prof.status == "baseline_ready":
+        if prof.status in ("baseline_ready", "baseline_provisional"):
             s = score_flows(prof, ev)
             for lv in levels:
                 d = s.filter(pl.col("level") == lv)

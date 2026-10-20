@@ -78,7 +78,13 @@ def test_calibrate_detects_injected_burst_and_ignores_normal():
     burst_win = (1_600_000_000_000 + 300 * 60_000) // 30_000
     hit = dev.filter(pl.col("win").is_between(burst_win, burst_win + 1))
     assert hit["anomalous"].any()
-    assert any("destination_diversity_above" in e or "unanswered" in e
+    scan_signs = (
+        "destination_diversity_above",
+        "destination_port_diversity_above",
+        "unanswered",
+        "connection_rate_above",
+    )
+    assert any(any(sign in e for sign in scan_signs)
                for row in hit["explanation"].to_list() for e in row)  # fmt: skip
     normal = s.filter((pl.col("level") == "global") & ~pl.col("win").is_between(
         burst_win - 1, burst_win + 2))  # fmt: skip

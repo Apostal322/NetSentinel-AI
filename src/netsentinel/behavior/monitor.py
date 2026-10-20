@@ -12,7 +12,7 @@ from typing import Any
 import numpy as np
 import polars as pl
 
-from netsentinel.behavior.profile import BehaviorProfile
+from netsentinel.behavior.profile import ALERTING_STATUSES, BehaviorProfile
 from netsentinel.behavior.windows import aggregate, prepare_flows
 
 STATES = ("collecting_baseline", "baseline_ready", "monitoring", "drift_suspected", "stale")
@@ -39,11 +39,11 @@ def _ks(a: np.ndarray, b: np.ndarray) -> float:
 
 def baseline_state(profile: BehaviorProfile, scored: pl.DataFrame, *,
                    now_ms: int | None = None, max_age_days: float = 30.0,
-                   min_windows: int = 60, rate_factor: float = 3.0,
+                   min_windows: int = 60, rate_factor: float = 2.0,
                    ks_limit: float = 0.3) -> dict[str, Any]:  # fmt: skip
     """Global-level drift assessment of a scored period against the calibration held-out
     windows: alert rate far above the target, or a shifted score distribution."""
-    if profile.status != "baseline_ready":
+    if profile.status not in ALERTING_STATUSES:
         return {"state": "collecting_baseline", "reason": profile.diagnostics.get("cold_start")}
     end = profile.period["end_utc_ms"]
     if now_ms is not None and now_ms - end > max_age_days * 86_400_000:
@@ -52,11 +52,18 @@ def baseline_state(profile: BehaviorProfile, scored: pl.DataFrame, *,
     if not g.height or g.height < min_windows:
         return {"state": "monitoring", "reason": f"{g.height} global windows scored; drift "
                 f"check needs {min_windows}"}  # fmt: skip
-    rate = float(g["anomalous"].mean())
+    from scipy.stats import binom
+
+    alerts = int(g["anomalous"].sum())
+    rate = alerts / g.height
     ks = _ks(g["score"].to_numpy(), profile.levels["global"].holdout_scores)
+    # Is the alert rate above what the target FPR allows, beyond sampling noise?
+    p_value = float(binom.sf(alerts - 1, g.height, profile.target_fpr)) if alerts else 1.0
     info = {"global_alert_rate": rate, "target_fpr": profile.target_fpr, "score_ks": ks,
-            "windows": g.height}  # fmt: skip
-    if rate > rate_factor * profile.target_fpr or ks > ks_limit:
+            "alert_rate_p_value": p_value, "windows": g.height,
+            "baseline_status": profile.status}  # fmt: skip
+    rate_excess = rate > rate_factor * profile.target_fpr and p_value < 0.01
+    if rate_excess or ks > ks_limit:
         return {
             "state": "drift_suspected",
             **info,

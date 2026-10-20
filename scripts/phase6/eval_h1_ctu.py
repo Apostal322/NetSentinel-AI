@@ -57,9 +57,11 @@ def main() -> None:
         rec: dict = {"capture": name, "flows_cal": cal.height, "flows_eval": ev.height,
                      "eval_hours": round(hours, 3)}  # fmt: skip
         for mode in ("vetted_benign", "unlabelled"):
-            prof = calibrate_flows(cal, window_s=WINDOW, mode=mode, target_fpr=TARGET)
+            prof = calibrate_flows(
+                cal, window_s=WINDOW, mode=mode, target_fpr=TARGET, threshold_method="split"
+            )  # Phase 6 method, reproducible
             rec[f"{mode}_status"] = prof.status
-            if prof.status != "baseline_ready":
+            if prof.status not in ("baseline_ready", "baseline_provisional"):
                 continue
             s = score_flows(prof, ev)
             for lv in ("global", "device", "service"):

@@ -26,17 +26,21 @@ import numpy as np
 import polars as pl
 
 from netsentinel import __version__
-from netsentinel.behavior.profile import BehaviorProfile, fit_level
+from netsentinel.behavior.profile import BehaviorProfile, fit_level, fit_level_crossfit
 from netsentinel.behavior.windows import LEVELS, WINDOW_FEATURES, aggregate, prepare_flows
 from netsentinel.ledger import file_sha256, git_sha
 
-BEHAVIOR_SCHEMA_VERSION = "behavior-1.0.0"
+BEHAVIOR_SCHEMA_VERSION = "behavior-1.1.0"  # 1.1: cross-fit thresholds, diagnostics, statuses
+THRESHOLD_METHODS = ("crossfit", "split")
 
 
 def calibrate_flows(frame: pl.DataFrame, *, window_s: int = 30, mode: str = "vetted_benign",
                     target_fpr: float = 0.01, min_windows: int = 30, fit_fraction: float = 0.7,
                     levels: tuple[str, ...] = LEVELS, top_k: int = 2,
-                    service_col: str | None = None) -> BehaviorProfile:  # fmt: skip
+                    service_col: str | None = None,
+                    threshold_method: str = "crossfit") -> BehaviorProfile:  # fmt: skip
+    if threshold_method not in THRESHOLD_METHODS:
+        raise ValueError(f"threshold_method must be one of {THRESHOLD_METHODS}")
     if mode not in ("vetted_benign", "unlabelled"):
         raise ValueError(f"unknown calibration mode {mode!r}")
     if not 0 < target_fpr < 0.5:
@@ -66,14 +70,20 @@ def calibrate_flows(frame: pl.DataFrame, *, window_s: int = 30, mode: str = "vet
     if status == "baseline_ready":
         windows = {level: aggregate(flows, level, window_s) for level in levels}
         levels_out = calibrate_windows(windows, cut, target_fpr=target_fpr,
-                                       min_windows=min_windows, mode=mode, top_k=top_k)  # fmt: skip
+                                       min_windows=min_windows, mode=mode, top_k=top_k,
+                                       threshold_method=threshold_method)  # fmt: skip
+        g = levels_out.get("global")
+        if g is not None and not g.threshold_diag.get("reliable", False):
+            status = "baseline_provisional"  # thresholds exist but are statistically weak
     else:
         missing_s = (need_fit - fit_windows) / fit_fraction * window_s
         diagnostics["cold_start"] = (
             f"{fit_windows} fit windows of {window_s} s available, {need_fit} required: collect "
             f"about {max(missing_s, window_s) / 60:.0f} more minutes of representative traffic "
             "before calibrated alerting can start")  # fmt: skip
-    known = set(flows.filter(pl.col("end_ms") < cut * w_ms)["dst"].unique().to_list())
+    known_until = cut * w_ms if threshold_method == "split" else int(flows["end_ms"].max()) + 1
+    known = set(flows.filter(pl.col("end_ms") < known_until)["dst"].unique().to_list())
+    diagnostics["threshold_method"] = threshold_method
     return BehaviorProfile(window_s=window_s, mode=mode, target_fpr=target_fpr,
                            min_windows=min_windows, top_k=top_k, levels=levels_out,
                            known_dst=known, status=status, period=period,
@@ -81,15 +91,20 @@ def calibrate_flows(frame: pl.DataFrame, *, window_s: int = 30, mode: str = "vet
 
 
 def calibrate_windows(windows: dict[str, pl.DataFrame], cut_win: int, *, target_fpr: float,
-                      min_windows: int, mode: str, top_k: int = 2) -> dict:  # fmt: skip
-    """Fit level profiles from pre-aggregated calibration windows: windows with index below
-    `cut_win` fit the profile, the rest are held out for thresholds. Used by
-    `calibrate_flows` and by chunked (per-day) research pipelines."""
+                      min_windows: int, mode: str, top_k: int = 2,
+                      threshold_method: str = "split") -> dict:  # fmt: skip
+    """Fit level profiles from pre-aggregated calibration windows.
+    split: windows with index below `cut_win` fit the profile, the rest set the thresholds.
+    crossfit: time-blocked cross-fitting over all windows (profile.fit_level_crossfit).
+    Used by `calibrate_flows` and by chunked (per-day) research pipelines."""
     out = {}
     for level, agg in windows.items():
-        fit = agg.filter(pl.col("win") < cut_win)
-        hold = agg.filter(pl.col("win") >= cut_win)
-        out[level] = fit_level(fit, hold, level, target_fpr, min_windows, mode, top_k)
+        if threshold_method == "crossfit":
+            out[level] = fit_level_crossfit(agg, level, target_fpr, min_windows, mode, top_k)
+        else:
+            fit = agg.filter(pl.col("win") < cut_win)
+            hold = agg.filter(pl.col("win") >= cut_win)
+            out[level] = fit_level(fit, hold, level, target_fpr, min_windows, mode, top_k)
     return out
 
 
@@ -145,12 +160,15 @@ def _libs() -> dict[str, str]:
 
 
 def save_profile(profile: BehaviorProfile, out_dir: str | Path, *, sources: list[dict],
-                 operator_statement: str, threat_check: dict | None = None) -> Path:  # fmt: skip
+                 operator_statement: str, threat_check: dict | None = None,
+                 update_check: dict | None = None) -> Path:  # fmt: skip
     cid = f"calibration-{datetime.now(UTC).strftime('%Y%m%dT%H%M%S%fZ')}"
     out = Path(out_dir) / cid
     out.mkdir(parents=True, exist_ok=False)
     joblib.dump(profile, out / "profile.joblib", compress=3)
-    levels = {lv: {"threshold": p.threshold, "fit_windows": p.n_fit_windows,
+    levels = {lv: {"threshold": p.threshold, "threshold_method": p.threshold_method,
+                   "threshold_diagnostics": p.threshold_diag,
+                   "holdout_outlier_share": p.outlier_share, "fit_windows": p.n_fit_windows,
                    "holdout_windows": p.n_holdout_windows, "own_profiles": len(p.keys),
                    "trimmed_windows": p.trimmed_windows,
                    "trimmed_holdout_windows": p.trimmed_holdout_windows, "warnings": p.warnings}
@@ -170,6 +188,7 @@ def save_profile(profile: BehaviorProfile, out_dir: str | Path, *, sources: list
         "levels": levels,
         "diagnostics": profile.diagnostics,
         "threat_model_domain_check": threat_check,
+        "update_check": update_check,
         "evaluation_status": "not evaluated (thresholds set on held-out calibration windows "
                              "only; no attack-labelled evaluation)",
         "domain_assumption": "valid only for the network and period it was calibrated on",

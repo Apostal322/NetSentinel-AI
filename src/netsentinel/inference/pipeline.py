@@ -148,7 +148,9 @@ class AnalysisPipeline:
         from netsentinel.behavior.monitor import baseline_state, score_flows
 
         cid = self.calibration["calibration_id"]
-        if self.profile.status != "baseline_ready":
+        from netsentinel.behavior.profile import ALERTING_STATUSES
+
+        if self.profile.status not in ALERTING_STATUSES:
             b = BehaviorOut(
                 behavior_status="insufficient_history",
                 baseline_status=self.profile.status,

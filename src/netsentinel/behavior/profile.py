@@ -33,6 +33,8 @@ FRACTION_FEATURES = {"no_reply_frac", "rst_frac", "udp_share", "upload_share", "
 SCALE_FLOOR_LOG = 0.25
 SCALE_FLOOR_FRAC = 0.15
 POOLED = "__pooled__"
+# baseline_provisional: thresholds exist but are statistically weak (see threshold_diagnostics)
+ALERTING_STATUSES = ("baseline_ready", "baseline_provisional")
 
 
 def _stats(x: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
@@ -58,6 +60,9 @@ class LevelProfile:
     trimmed_windows: int = 0
     trimmed_holdout_windows: int = 0
     warnings: list[str] = field(default_factory=list)
+    threshold_method: str = "split"
+    threshold_diag: dict = field(default_factory=dict)
+    outlier_share: float = 0.0
 
     def scope_for(self, key: str) -> str:
         return key if key in self.keys else POOLED
@@ -98,6 +103,31 @@ def conformal_threshold(scores: np.ndarray, target_fpr: float) -> tuple[float, b
     return float(s[k - 1]), True
 
 
+def threshold_diagnostics(n: int, target_fpr: float) -> dict:
+    """Sampling uncertainty of a conformal threshold from n exchangeable held-out scores.
+
+    The k-th order statistic's exceedance probability is Beta(n - k + 1, k) distributed, so even
+    without drift the realised FPR varies around its expectation. Phase 6's H1 used about
+    100-230 held-out windows at a 1% target: the threshold was the largest or second-largest
+    score and the 95% upper bound of its exceedance probability was about 2.5% (RELIABILITY.md
+    P2). `windows_needed` = smallest n whose 95% upper bound is <= 2 x target."""
+    from scipy.stats import beta
+
+    if n <= 0:
+        return {"n": 0, "reliable": False}
+    k = min(math.ceil((n + 1) * (1 - target_fpr)), n)
+    a, b = n - k + 1, k
+    up = float(beta.ppf(0.95, a, b))
+    need = n
+    while need < 1_000_000:
+        kk = min(math.ceil((need + 1) * (1 - target_fpr)), need)
+        if beta.ppf(0.95, need - kk + 1, kk) <= 2 * target_fpr:
+            break
+        need = int(need * 1.25) + 1
+    return {"n": n, "k": k, "expected_fpr": a / (n + 1), "fpr_upper95": up,
+            "reliable": up <= 2 * target_fpr, "windows_needed_for_2x_target": need}  # fmt: skip
+
+
 def robust_outliers(s: np.ndarray, k: float = 4.0, max_share: float = 0.2) -> np.ndarray:
     """Mask of scores far above the bulk (median + k * scaled MAD), at most `max_share` of
     them (the largest). Clean data: almost nothing is flagged; a contaminating cluster that is
@@ -113,50 +143,112 @@ def robust_outliers(s: np.ndarray, k: float = 4.0, max_share: float = 0.2) -> np
     return out
 
 
-def fit_level(fit: pl.DataFrame, holdout: pl.DataFrame, level: str, target_fpr: float,
-              min_windows: int, mode: str, top_k: int = 2,
-              trim_passes: int = 2) -> LevelProfile:  # fmt: skip
-    prof = LevelProfile(level=level)
-    data = fit
+def _fit_stats(data: pl.DataFrame, min_windows: int, mode: str, top_k: int,
+               trim_passes: int = 2) -> tuple[dict, tuple | None, int, int]:  # fmt: skip
+    """Robust per-key and pooled statistics; unlabelled mode trims robust-outlier windows."""
+    tmp = LevelProfile(level="tmp")
+    trimmed = 0
     for p in range(trim_passes + 1 if mode == "unlabelled" else 1):
-        prof.keys = {}
+        tmp.keys = {}
         counts = data.group_by("key").len()
         for k in counts.filter(pl.col("len") >= min_windows)["key"].to_list():
-            prof.keys[k] = _stats(_x(data.filter(pl.col("key") == k)))
-        prof.pooled = _stats(_x(data)) if data.height else None
-        if prof.pooled is None or p == trim_passes or mode != "unlabelled":
+            tmp.keys[k] = _stats(_x(data.filter(pl.col("key") == k)))
+        tmp.pooled = _stats(_x(data)) if data.height else None
+        if tmp.pooled is None or p == trim_passes or mode != "unlabelled":
             break
-        keep = ~robust_outliers(window_scores(_zs(prof, data), top_k))
+        keep = ~robust_outliers(window_scores(_zs(tmp, data), top_k))
         if keep.all():
             break
-        prof.trimmed_windows += int((~keep).sum())
+        trimmed += int((~keep).sum())
         data = data.filter(pl.Series(keep))
-    prof.n_fit_windows = data.height
-    if prof.pooled is None:
-        prof.warnings.append("no fit windows")
-        return prof
-    hs = window_scores(_zs(prof, holdout), top_k) if holdout.height else np.array([])
+    return tmp.keys, tmp.pooled, trimmed, data.height
+
+
+def _finish(prof: LevelProfile, hs: np.ndarray, level: str, target_fpr: float,
+            min_windows: int, mode: str) -> LevelProfile:  # fmt: skip
     if mode == "unlabelled":
-        # Held-out windows are NOT trimmed: trimming them always lowers the threshold and
-        # raised false alerts on clean captures (H1 run 2). Contamination therefore raises the
-        # threshold (costing recall, measured in H5) instead of flooding the operator.
-        prof.trimmed_holdout_windows = int(robust_outliers(hs).sum()) if len(hs) else 0
+        # Held-out scores are NOT trimmed: trimming them always lowers the threshold and raised
+        # false alerts on clean captures (Phase 6 H1 run 2). Contamination therefore raises the
+        # threshold (costing recall, Phase 6 H5) instead of flooding the operator.
         prof.warnings.append(
             "unlabelled calibration: profile fit on trimmed windows; threshold from all held-out "
-            "windows (contamination raises it). Persistent malicious behaviour in the "
+            "scores (contamination raises it). Persistent malicious behaviour in the "
             "calibration period may be learned as normal"
+        )
+    out = robust_outliers(hs) if len(hs) else np.zeros(0, bool)
+    prof.trimmed_holdout_windows = int(out.sum())
+    prof.outlier_share = float(out.mean()) if len(hs) else 0.0
+    if prof.outlier_share > 0.05:
+        prof.warnings.append(
+            f"{prof.outlier_share:.1%} of held-out calibration windows are robust outliers: "
+            "possible contamination or a regime change inside the calibration period; review "
+            "it before relying on this baseline"
         )
     prof.holdout_scores = np.sort(hs)
     prof.n_holdout_windows = len(hs)
     prof.threshold, reliable = conformal_threshold(hs, target_fpr)
+    prof.threshold_diag = threshold_diagnostics(len(hs), target_fpr)
     if not reliable:
         prof.warnings.append(
             f"{len(hs)} held-out windows are too few for target FPR {target_fpr}; threshold = "
             "largest held-out score (FPR not guaranteed)"
         )
+    elif not prof.threshold_diag.get("reliable"):
+        d = prof.threshold_diag
+        prof.warnings.append(
+            f"threshold from {d['n']} held-out windows: realised FPR may reach "
+            f"{d['fpr_upper95']:.2%} (95% bound) even without drift; about "
+            f"{d['windows_needed_for_2x_target']} windows are needed for <= 2x target"
+        )
     if level != "global" and not prof.keys:
         prof.warnings.append(f"no {level} key has >= {min_windows} windows; pooled profile only")
     return prof
+
+
+def fit_level(fit: pl.DataFrame, holdout: pl.DataFrame, level: str, target_fpr: float,
+              min_windows: int, mode: str, top_k: int = 2,
+              trim_passes: int = 2) -> LevelProfile:  # fmt: skip
+    """Split calibration: fit on the earlier part, threshold on the later (held-out) part."""
+    prof = LevelProfile(level=level, threshold_method="split")
+    prof.keys, prof.pooled, prof.trimmed_windows, prof.n_fit_windows = _fit_stats(
+        fit, min_windows, mode, top_k, trim_passes)  # fmt: skip
+    if prof.pooled is None:
+        prof.warnings.append("no fit windows")
+        return prof
+    hs = window_scores(_zs(prof, holdout), top_k) if holdout.height else np.array([])
+    return _finish(prof, hs, level, target_fpr, min_windows, mode)
+
+
+def fit_level_crossfit(windows: pl.DataFrame, level: str, target_fpr: float, min_windows: int,
+                       mode: str, top_k: int = 2, folds: int = 5,
+                       trim_passes: int = 2) -> LevelProfile:  # fmt: skip
+    """Time-blocked cross-fitted calibration: windows are cut into `folds` contiguous time
+    blocks; each block is scored by statistics fit on the OTHER blocks, so every calibration
+    window yields an out-of-sample score (about 3x more than the 30% split). The final profile
+    uses all windows. Exchangeability across blocks is assumed (it fails under strong drift)."""
+    prof = LevelProfile(level=level, threshold_method=f"crossfit{folds}")
+    if not windows.height:
+        prof.warnings.append("no fit windows")
+        return prof
+    wins = np.sort(windows["win"].unique().to_numpy())
+    edges = np.array_split(wins, folds)
+    scores = []
+    for block in edges:
+        if not len(block):
+            continue
+        inside = pl.col("win").is_between(int(block[0]), int(block[-1]))
+        train, test = windows.filter(~inside), windows.filter(inside)
+        tmp = LevelProfile(level=level)
+        tmp.keys, tmp.pooled, _, _ = _fit_stats(train, min_windows, mode, top_k, trim_passes)
+        if tmp.pooled is not None and test.height:
+            scores.append(window_scores(_zs(tmp, test), top_k))
+    prof.keys, prof.pooled, prof.trimmed_windows, prof.n_fit_windows = _fit_stats(
+        windows, min_windows, mode, top_k, trim_passes)  # fmt: skip
+    if prof.pooled is None:
+        prof.warnings.append("no fit windows")
+        return prof
+    hs = np.concatenate(scores) if scores else np.array([])
+    return _finish(prof, hs, level, target_fpr, min_windows, mode)
 
 
 def explain_row(z: np.ndarray, top: int = 3, min_abs: float = 3.0) -> list[str]:
@@ -197,7 +289,7 @@ class BehaviorProfile:
                 pl.Series("score", s),
                 pl.Series("severity", sev),
                 pl.lit(thr).alias("threshold"),
-                pl.Series("anomalous", s > thr if self.status == "baseline_ready"
+                pl.Series("anomalous", s > thr if self.status in ALERTING_STATUSES
                           else np.zeros(len(s), bool)),
                 pl.Series("model_scope", [prof.scope_for(k) if level != "global" else "global"
                                           for k in w["key"].to_list()]),

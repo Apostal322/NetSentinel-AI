@@ -65,3 +65,67 @@ The 7 flows that were both `suspicious` and behaviour-anomalous are now reported
 
 **Not addressed.** Whether the supervised model would be useful on any network other than
 its training data. Phase 5 says no, and nothing here changes that.
+
+## P2: calibration reliability
+
+**Diagnosis** (`scripts/phase7/diagnose_calibration_drift.py` ->
+`reports/phase7/calibration_drift.json`; exploratory, the same CTU captures as Phase 6 H1).
+- With Phase 6 split thresholds, the **global level had a median of only 63 held-out windows**.
+  At a 1% target the threshold is then the largest held-out score, and its true exceedance
+  probability is Beta(1, n): 95% bound about 3/n, i.e. 4–8% for n = 36–73.
+- 11 of 12 evaluation FPRs lie **within that sampling bound**, and evaluation FPR does not
+  correlate with calibration-vs-evaluation score drift (r = -0.19).
+- The H1 FPR misses were therefore mostly small-sample threshold noise, not traffic change.
+  Phase 6's explanation ("within-capture drift") was only partly right.
+- The drift monitor flagged 4 of the 5 over-target captures.
+
+**Changes.**
+1. **Threshold diagnostics** (`profile.threshold_diagnostics`), recorded per level in every
+   artifact: n, the order statistic used, expected FPR, the 95% upper bound, and the number of
+   windows needed for a bound <= 2x target. Unreliable thresholds raise a warning.
+2. **`baseline_provisional` status**: thresholds exist but the global bound exceeds 2x target.
+   Alerting stays on, and the status is shown in behaviour outputs and the dashboard.
+3. **Time-blocked cross-fitted thresholds** (`--threshold-method crossfit`, new default).
+   - Every calibration window is scored by statistics fit on the other 4 of 5 contiguous
+     time blocks. That is about 3.3x more held-out scores, and the final profile uses all
+     windows.
+   - `split` remains available, and Phase 6 scripts pin it so their results reproduce.
+   - Exchangeability across blocks is assumed; strong drift violates it.
+4. **Drift test**: `baseline_state` now uses a one-sided binomial test of the alert count
+   against the target (alert rate > 2x target and p < 0.01), alongside the score
+   distribution check (KS > 0.3).
+5. **Contamination warning**: more than 5% robust-outlier windows among held-out scores
+   produce a warning. Unlabelled mode still warns that persistent malicious behaviour can be
+   learned as normal.
+6. **Safe updates and rollback** (`behavior/registry.py`; `netsentinel calibration
+   list|show|activate|rollback`; `calibrate --previous active --activate`; `analyze`/`serve
+   --calibration active`).
+   - A new calibration period is scored under the active baseline. If it is significantly
+     anomalous (binomial test), the artifact is marked `review_required` and can only be
+     activated with an explicit `--reviewed`. That is the guard against silently re-learning
+     attack traffic.
+   - History is append-only. Rollback re-activates the previous profile.
+   - There is still no online learning.
+
+**Effect** (exploratory; same data).
+
+| | split (Phase 6) | crossfit (Phase 7 default) |
+|---|---|---|
+| CTU, median held-out windows (global) | 63 | 208.5 |
+| CTU, captures with global FPR <= 3x target | 7/12 | **12/12** (median FPR 0) |
+| CTU, FPRs within their own sampling bound | 11/12 | 12/12 |
+| IoT-23 (oracle-clean), global recall 3-1 / 34-1 / 44-1 / 8-1 | 0.97 / 0.45 / 1.0 / 0.97 | 0.52 / 0.27 / 0.5 / 0.97 |
+| IoT-23 (oracle-clean), device recall 3-1 / 34-1 / 8-1 | 0.71 / 0.45 / 0.03 | 0.51 / 0.01 / 0.83 |
+
+(`reports/phase7/threshold_methods_iot23.json`.) Cross-fitting makes the false-positive
+promise of calibration hold on these captures, **at a recall cost in several IoT-23
+scenarios**, with a gain in one. It is the default because calibration's job is FPR
+control. This is not a detection improvement, and none is claimed. All of these numbers are
+on data already inspected; an independent evaluation would need new captures.
+
+**Tests:** `tests/unit/test_calibration_reliability.py` (5 tests):
+- diagnostics maths, at the Phase 6 held-out size;
+- cross-fit scores every window;
+- provisional status on short history;
+- contamination and trimming warnings;
+- update check, activation refusal, review override, rollback and missing registry.
