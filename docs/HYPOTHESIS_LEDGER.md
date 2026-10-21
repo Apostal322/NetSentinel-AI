@@ -33,11 +33,12 @@ One capture is n = 1.
 | P8-H1b | Guarded EWMA beats robust_z under contaminated calibration | **refuted, n = 1** | 49-1: 0.638 vs 0.723 | — |
 | P6-H5 | Calibration tolerates <= 5% contamination | exploratory only (not supported) | NF dev, IoT-23 | No confirmatory test at low contamination exists |
 | — | Detection works under realistic (unlabelled) calibration when the attacker is present during calibration | **refuted in every exploratory setting**; 49-1 consistent (recall < 0.02) | | Fundamental limit, not a tuning issue |
-| P8b-B1/B2 | Cross-capture supervised window LightGBM ranks better than local robust baselines (clean and contaminated calibration) | **supported, n = 1** | 1-1: PR-AUC 1.00 vs 0.92 (CI of delta [0.05, 0.11]); dev 0.90 vs 0.85 | replication on 60-1, 9-1 |
-| P8b-B3 | GRU / TCN do not beat robust statistics | **supported, n = 1** (+ dev, + 49-1 for EWMA) | 1-1: robust ahead by 0.35 | |
-| P8b-B4 | Product FPR <= 3x target on fresh traffic | **supported, n = 1** (second fresh capture after P8-H2) | 1-1: 1.53% | |
-| P8b-B5 | A transferred (source) threshold breaks the FPR target | **supported, n = 1** | 1-1: 5.5% vs 1% | |
-| P8b-B6 | Incidents concentrate attack evidence (window-weighted purity >= 0.8, reduction >= 5) | **refuted, n = 1** | 1-1: product detected 0 attack windows (recall 0 at PR-AUC 0.92) | why the product's threshold misses a well-ranked attacker |
+| P8b-B1/B2 | Cross-capture supervised window LightGBM ranks better than local robust baselines (clean and contaminated calibration) | **replicated** (2 supported, 1 inconclusive, 0 refuted) | IoT-23 1-1, 60-1, 9-1: e.g. +0.082 / +0.018 (ns) / +0.063 | cross-network (non-IoT-23) test |
+| P8b-B3 | GRU / TCN do not beat robust statistics | **replicated** (3/3) | robust ahead by 0.35-0.5 | |
+| P8b-B4 | Product FPR <= 3x target on fresh traffic | **replicated** (3/3; 4/4 with 49-1) | 0.0-1.5% | |
+| P8b-B5 | A transferred (source) threshold breaks the FPR target | **mixed** | 5.5% / 1.3% / 0.0% | |
+| P8b-B6 | Incidents concentrate attack evidence (window-weighted purity >= 0.8, reduction >= 5) | **refuted** (2 refuted, 1 not testable) | product had no true detections | |
+| — | The deployed baseline detects attacking devices on fresh captures | **contradicted (secondary metric)** | 0/4 attackers on 1-1, 60-1, 9-1 (49-1: 1/1) | why? development investigation |
 | — | Detection delay on Zeek logs | exploratory only | IoT-23 20-1: up to about 12 h for long C&C | not measured confirmatorily |
 
 ## Incidents (Phase 8)
@@ -76,6 +77,5 @@ One capture is n = 1.
    changes that.
 
 Phase 8b (docs/phase8b/) addresses gaps 1-4 with fresh IoT-23 captures from other malware
-families. Status: 1-1 evaluated ([results](phase8b/CONFIRMATORY_RESULTS.md)); 60-1 and 9-1
-await download approval. Gap 4 is explained (structural single-window false incidents), but
+families. Status: 1-1, 60-1 and 9-1 evaluated ([results](phase8b/CONFIRMATORY_RESULTS.md)). Gap 4 is explained (structural single-window false incidents), but
 not solved.

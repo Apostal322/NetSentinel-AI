@@ -85,3 +85,17 @@ Leave-one-capture-out over 22 development captures; device windows; 3 eligible u
 - These motivate B1-B6 in [RESEARCH_PLAN.md](RESEARCH_PLAN.md).
 - Dry run of `confirm.py` on 34-1 and 3-1 (development, software check only): all paths ran,
   92 s, 1.4 GB.
+
+## Fresh data (completed 2026-10-21)
+
+- 60-1: 467,559,811 B, SHA-256 `4e15902f6c39b1fad60605e667761b10c0c9866beb514aa6320b7baf108ea7c0`.
+- 9-1: 993,459,767 B, SHA-256 `b2749ab394d6a8f96dab5f9aa0e848c9c5b85ad4a6fa3034040d718de56c918b`.
+- Both are evaluated; see [CONFIRMATORY_RESULTS.md](CONFIRMATORY_RESULTS.md). All four fresh
+  IoT-23 captures (49-1, 1-1, 60-1, 9-1) are now consumed.
+
+## Open question for the next development cycle (do not use the fresh captures for it)
+
+Why does the deployed robust_z_product path detect none of the attackers on 1-1, 60-1 and 9-1,
+while ranking them well (PR-AUC 0.92-0.95)? It detected 9/10 development attackers. Investigate
+on development data only (threshold method, per-device vs pooled profiles, top-k scoring),
+then test any change on a new fresh capture.

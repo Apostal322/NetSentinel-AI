@@ -60,11 +60,11 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 
 | Question | Data | Result | Role |
 |---|---|---|---|
-| Cross-capture supervised window LightGBM vs local robust baseline (same 12 features) | IoT-23 1-1 (Hide and Seek), fresh | PR-AUC 1.00 vs 0.92, delta CI [0.05, 0.11]; dev 0.90 vs 0.85 | C, n = 1 |
-| GRU / TCN vs robust statistics | 1-1 | robust ahead by 0.35 | C, n = 1 |
-| Product FPR on fresh traffic | 1-1 | 1.53% at a 1% target (second fresh capture within 3x) | C, n = 1 |
-| Transferred (source) threshold | 1-1 | FPR 5.5%: domain shift breaks the promise; a local threshold gave recall 0.999 at 0 false alerts | C, n = 1 |
-| Does the deployed baseline catch the attacker? | 1-1 | **No**: PR-AUC 0.92 but recall 0 at its operating threshold; all 45 incidents benign | C, n = 1 |
+| Cross-capture supervised window LightGBM vs local robust baseline (same 12 features) | IoT-23 1-1, 60-1, 9-1 (Hide and Seek, Gafgyt, Hajime), fresh | **replicated**: better PR-AUC in 2/3 (third inconclusive); detected 4/4 attackers at FPR 0-5.5% | C |
+| GRU / TCN vs robust statistics | same | robust ahead in 3/3 (**replicated**) | C |
+| Product FPR on fresh traffic | same | 0.0-1.5% at a 1% target (**replicated**; 4/4 with 49-1) | C |
+| Transferred (source) threshold | same | FPR 5.5% / 1.3% / 0.0%: **mixed** | C |
+| Does the deployed baseline catch the attacker? | same | **No: 0/4 attacking devices**, despite PR-AUC 0.92-0.95; incidents (B6) refuted | C (secondary) |
 | Why incidents fail | 22 dev captures | 161/193 incidents single-window, 139 of them benign; persistence rules cost detection | E |
 
 ## Telemetry
