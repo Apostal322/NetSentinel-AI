@@ -50,6 +50,12 @@ name = "pytorch-cu126"
 url = "https://download.pytorch.org/whl/cu126"
 explicit = true
 
+[tool.uv]
+# Security: Pillow < 13 has 9 advisories published 2026-10-20 (e.g. GHSA-8g5g-8vmr-9782), fixed only
+# in 13.0.0, while every streamlit release so far (1.66.0) caps pillow<13. Override the cap; the
+# dashboard AppTest covers streamlit with Pillow 13. Remove when streamlit allows Pillow 13.
+override-dependencies = ["pillow>=13.0.0"]
+
 [tool.uv.sources]
 torch = { index = "pytorch-cu126" }
 
