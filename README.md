@@ -49,6 +49,7 @@ Full tables with sources and data roles: [`docs/RESULTS.md`](docs/RESULTS.md).
 | Does a local baseline reduce false alerts on an unfamiliar benign network? | Yes: about 120 -> 2.3 false-alert windows/h (13 CTU captures). Its pre-registered FPR guarantee failed in 5/12 captures with Phase 6 thresholds; cross-fitted thresholds fixed that on the same data (exploratory) at a recall cost elsewhere |
 | Does calibration restore attack detection? | **No.** With attack traffic in the calibration period, recall collapses (IoT-23, NetFlow development data) |
 | Does the local baseline hold on a fresh capture? (Phase 8, pre-registered, IoT-23 49-1) | FPR 1.09% at a 1% target, recall 1.00 under vetted calibration; robust median/MAD beats the adaptive EWMA candidate (PR-AUC 0.93 vs 0.68). One capture: no generalisation claim |
+| Does a cross-capture supervised window model beat the local baseline? (Phase 8b, pre-registered, fresh IoT-23 1-1) | On one new malware family: PR-AUC 1.00 vs 0.92. But with a transferred threshold its FPR is 5.5%, and the deployed local baseline detected the attacker in **0** windows there. Replication on more captures pending: [`docs/HYPOTHESIS_LEDGER.md`](docs/HYPOTHESIS_LEDGER.md) |
 | ML protocol ID vs port lookup | Better in-dataset (macro-F1 0.945 vs 0.840). Confidently wrong under shift (HTTP on port 80 called TLS), so the product combines it with port evidence and abstains on conflicts |
 
 ## Quick start
