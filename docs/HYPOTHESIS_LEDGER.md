@@ -33,7 +33,11 @@ One capture is n = 1.
 | P8-H1b | Guarded EWMA beats robust_z under contaminated calibration | **refuted, n = 1** | 49-1: 0.638 vs 0.723 | — |
 | P6-H5 | Calibration tolerates <= 5% contamination | exploratory only (not supported) | NF dev, IoT-23 | No confirmatory test at low contamination exists |
 | — | Detection works under realistic (unlabelled) calibration when the attacker is present during calibration | **refuted in every exploratory setting**; 49-1 consistent (recall < 0.02) | | Fundamental limit, not a tuning issue |
-| — | Supervised window-level LightGBM vs local baselines on the same window features | **open** | — | Phase 8b |
+| P8b-B1/B2 | Cross-capture supervised window LightGBM ranks better than local robust baselines (clean and contaminated calibration) | **supported, n = 1** | 1-1: PR-AUC 1.00 vs 0.92 (CI of delta [0.05, 0.11]); dev 0.90 vs 0.85 | replication on 60-1, 9-1 |
+| P8b-B3 | GRU / TCN do not beat robust statistics | **supported, n = 1** (+ dev, + 49-1 for EWMA) | 1-1: robust ahead by 0.35 | |
+| P8b-B4 | Product FPR <= 3x target on fresh traffic | **supported, n = 1** (second fresh capture after P8-H2) | 1-1: 1.53% | |
+| P8b-B5 | A transferred (source) threshold breaks the FPR target | **supported, n = 1** | 1-1: 5.5% vs 1% | |
+| P8b-B6 | Incidents concentrate attack evidence (window-weighted purity >= 0.8, reduction >= 5) | **refuted, n = 1** | 1-1: product detected 0 attack windows (recall 0 at PR-AUC 0.92) | why the product's threshold misses a well-ranked attacker |
 | — | Detection delay on Zeek logs | exploratory only | IoT-23 20-1: up to about 12 h for long C&C | not measured confirmatorily |
 
 ## Incidents (Phase 8)
@@ -71,5 +75,7 @@ One capture is n = 1.
 5. Contaminated calibration remains the binding limitation, and nothing tested so far
    changes that.
 
-Phase 8b (docs/phase8b/) addresses gaps 1-4 with additional fresh IoT-23 captures from
-different malware families.
+Phase 8b (docs/phase8b/) addresses gaps 1-4 with fresh IoT-23 captures from other malware
+families. Status: 1-1 evaluated ([results](phase8b/CONFIRMATORY_RESULTS.md)); 60-1 and 9-1
+await download approval. Gap 4 is explained (structural single-window false incidents), but
+not solved.
