@@ -13,6 +13,8 @@ jobs:
         with:
           enable-cache: true
       - run: uv sync --locked --extra dashboard   # no torch (CPU-light); dashboard for AppTest
+      - name: Dependency metadata (only the documented Pillow exception is allowed)
+        run: uv run --extra dashboard python scripts/release/check_dependency_exceptions.py --online
       - run: uv run --extra dashboard ruff check .
       - run: uv run --extra dashboard ruff format --check .
       - run: uv run --extra dashboard pytest             # gpu/slow/data tests are excluded by default
@@ -23,6 +25,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build image
         run: docker build -t netsentinel:ci .
+      - name: Image has exactly the locked dependencies (no drift, consistent metadata)
+        run: |
+          docker run --rm --entrypoint uv netsentinel:ci sync --frozen --no-dev --check
+          docker run --rm --entrypoint uv netsentinel:ci pip check --python /opt/venv/bin/python
+          docker run --rm --entrypoint python netsentinel:ci -c "import PIL, importlib.util as u; assert int(PIL.__version__.split('.')[0]) >= 13, PIL.__version__; assert u.find_spec('streamlit') is None; print('Pillow', PIL.__version__)"
       - name: CLI runs in the image
         run: docker run --rm netsentinel:ci --help
       - name: API starts without a bundle (health ok, ready 503)

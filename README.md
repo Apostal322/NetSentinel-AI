@@ -232,6 +232,9 @@ peak memory are recorded in the development logs.
 - The PCAP extractor matches Zeek, but its field-level agreement with nProbe is unverified.
 - Benchmark labels contain documented errors; the test partitions are spent; the CIC test is
   single-seed.
+- The dashboard runs Pillow 13 although Streamlit 1.66 declares `pillow<13`: an accepted,
+  tested, temporary exception for security fixes, not upstream-supported compatibility
+  ([`docs/security/DEPENDENCY_EXCEPTIONS.md`](docs/security/DEPENDENCY_EXCEPTIONS.md)).
 - The API has no TLS, accounts or rate limiting (localhost only). Threat model:
   [`docs/security/threat_model.md`](docs/security/threat_model.md).
 - Docker is verified only in CI (image build + health smoke test without a bundle); see the

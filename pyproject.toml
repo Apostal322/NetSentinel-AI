@@ -53,7 +53,8 @@ explicit = true
 [tool.uv]
 # Security: Pillow < 13 has 9 advisories published 2026-10-20 (e.g. GHSA-8g5g-8vmr-9782), fixed only
 # in 13.0.0, while every streamlit release so far (1.66.0) caps pillow<13. Override the cap; the
-# dashboard AppTest covers streamlit with Pillow 13. Remove when streamlit allows Pillow 13.
+# dashboard tests cover streamlit with Pillow 13. Accepted temporary exception E1 in
+# docs/security/DEPENDENCY_EXCEPTIONS.md (gate: scripts/release/check_dependency_exceptions.py).
 override-dependencies = ["pillow>=13.0.0"]
 
 [tool.uv.sources]

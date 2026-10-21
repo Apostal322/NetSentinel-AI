@@ -63,7 +63,8 @@ A v1.0 RC is **not justified** yet:
 - Confirmatory evidence is one capture.
 
 Criteria proposed for 1.0-rc1:
-- all CI jobs green (met on `f02917a`), and the Pillow override removed once streamlit allows Pillow 13;
+- all CI jobs green (met on `f02917a`), and the Pillow override (accepted exception E1,
+  `docs/security/DEPENDENCY_EXCEPTIONS.md`) removed once Streamlit allows Pillow 13;
 - the incident-ranking fix, validated on development data and on a new fresh capture;
 - at least one additional fresh capture with a pre-registered replication of H2;
 - Zeek log rotation in `monitor`.
