@@ -56,13 +56,14 @@ Confirmatory results: [CONFIRMATORY_RESULTS.md](CONFIRMATORY_RESULTS.md).
 ## Release decision: v0.8.0, not a v1.0 release candidate
 
 A v1.0 RC is **not justified** yet:
-- CI security job: red on a newly published certifi advisory (GHSA-6q48-6c7w-9gw2, fixed in
-  2026.10.19). The fix needs a dependency upgrade, which waits for the maintainer's approval.
+- (Resolved since: the CI security job was red on certifi GHSA-6q48-6c7w-9gw2 and nine
+  Pillow advisories of 2026-10-20. Fixed by certifi 2026.10.19 and Pillow 13.0.0 (a uv
+  override of streamlit's pillow<13 cap). All CI jobs are green on `f02917a`.)
 - H3 (the incident layer's analyst benefit) was refuted on the only fresh capture.
 - Confirmatory evidence is one capture.
 
 Criteria proposed for 1.0-rc1:
-- all CI jobs green (test and docker are green; security waits for the certifi upgrade);
+- all CI jobs green (met on `f02917a`), and the Pillow override removed once streamlit allows Pillow 13;
 - the incident-ranking fix, validated on development data and on a new fresh capture;
 - at least one additional fresh capture with a pre-registered replication of H2;
 - Zeek log rotation in `monitor`.
