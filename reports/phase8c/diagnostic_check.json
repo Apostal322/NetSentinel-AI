@@ -1,0 +1,50 @@
+{
+ "CTU-IoT-Malware-Capture-1-1": {
+  "role": "retrospective (consumed)",
+  "tail_fallback_share": 1.0,
+  "warned": true,
+  "threshold_reliable": true
+ },
+ "CTU-IoT-Malware-Capture-60-1": {
+  "role": "retrospective (consumed)",
+  "tail_fallback_share": 0.0,
+  "warned": false,
+  "threshold_reliable": false
+ },
+ "CTU-IoT-Malware-Capture-9-1": {
+  "role": "retrospective (consumed)",
+  "tail_fallback_share": 1.0,
+  "warned": true,
+  "threshold_reliable": true
+ },
+ "CTU-IoT-Malware-Capture-3-1": {
+  "role": "development",
+  "tail_fallback_share": 0.0,
+  "warned": false,
+  "threshold_reliable": true
+ },
+ "CTU-IoT-Malware-Capture-34-1": {
+  "role": "development",
+  "tail_fallback_share": 0.0,
+  "warned": false,
+  "threshold_reliable": true
+ },
+ "CTU-IoT-Malware-Capture-20-1": {
+  "role": "development",
+  "tail_fallback_share": 0.0,
+  "warned": false,
+  "threshold_reliable": true
+ },
+ "CTU-IoT-Malware-Capture-44-1": {
+  "role": "development",
+  "tail_fallback_share": 1.0,
+  "warned": true,
+  "threshold_reliable": false
+ },
+ "NF-UNSW-NB15-v3-dev": {
+  "role": "development",
+  "tail_fallback_share": 0.697841726618705,
+  "warned": true,
+  "threshold_reliable": true
+ }
+}

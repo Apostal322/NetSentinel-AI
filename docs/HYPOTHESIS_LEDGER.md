@@ -38,7 +38,9 @@ One capture is n = 1.
 | P8b-B4 | Product FPR <= 3x target on fresh traffic | **replicated** (3/3; 4/4 with 49-1) | 0.0-1.5% | |
 | P8b-B5 | A transferred (source) threshold breaks the FPR target | **mixed** | 5.5% / 1.3% / 0.0% | |
 | P8b-B6 | Incidents concentrate attack evidence (window-weighted purity >= 0.8, reduction >= 5) | **refuted** (2 refuted, 1 not testable) | product had no true detections | |
-| — | The deployed baseline detects attacking devices on fresh captures | **contradicted (secondary metric)** | 0/4 attackers on 1-1, 60-1, 9-1 (49-1: 1/1) | why? development investigation |
+| — | The deployed baseline detects attacking devices on fresh captures | **contradicted (secondary metric)** | 0/4 attackers on 1-1, 60-1, 9-1 (49-1: 1/1) | root cause found (Phase 8c, below) |
+| P8c | Why 0/4: the single device-level threshold is set by transient sources scored against the pooled fallback (100% of the tail on 1-1 and 9-1); 60-1: insufficient calibration | **explained retrospectively** (no coding defect; design defect in threshold pooling) | `docs/phase8c/ROOT_CAUSE.md` | does a corrected threshold policy work? Pre-registered as X2 (ToN_IoT) |
+| P8c | LightGBM's advantage reflects a recurring scanning signature (a single feature matches it) | exploratory | lgbm_audit.json | X4 (ToN_IoT, non-scanning attacks) |
 | — | Detection delay on Zeek logs | exploratory only | IoT-23 20-1: up to about 12 h for long C&C | not measured confirmatorily |
 
 ## Incidents (Phase 8)

@@ -1,0 +1,90 @@
+{
+ "CTU-IoT-Malware-Capture-1-1": {
+  "role": "retrospective (consumed)",
+  "heldout": 20278,
+  "heldout_pooled_share": 0.6254068448564947,
+  "heldout_external_share": 0.6259493046651543,
+  "tail": 93,
+  "tail_pooled_share": 1.0,
+  "tail_external_share": 1.0,
+  "devices": 11972,
+  "external_devices": 11968
+ },
+ "CTU-IoT-Malware-Capture-60-1": {
+  "role": "retrospective (consumed)",
+  "heldout": 228,
+  "heldout_pooled_share": 0.008771929824561403,
+  "heldout_external_share": 0.0043859649122807015,
+  "tail": 3,
+  "tail_pooled_share": 0.3333333333333333,
+  "tail_external_share": 0.0,
+  "devices": 3,
+  "external_devices": 1
+ },
+ "CTU-IoT-Malware-Capture-9-1": {
+  "role": "retrospective (consumed)",
+  "heldout": 1907,
+  "heldout_pooled_share": 0.5055060304142632,
+  "heldout_external_share": 0.502884111169376,
+  "tail": 19,
+  "tail_pooled_share": 1.0,
+  "tail_external_share": 0.8947368421052632,
+  "devices": 919,
+  "external_devices": 917
+ },
+ "CTU-IoT-Malware-Capture-3-1": {
+  "role": "development",
+  "heldout": 1459,
+  "heldout_pooled_share": 0.4434544208361892,
+  "heldout_external_share": 0.43728581220013707,
+  "tail": 15,
+  "tail_pooled_share": 0.0,
+  "tail_external_share": 0.0,
+  "devices": 508,
+  "external_devices": 506
+ },
+ "CTU-IoT-Malware-Capture-34-1": {
+  "role": "development",
+  "heldout": 912,
+  "heldout_pooled_share": 0.0010964912280701754,
+  "heldout_external_share": 0.0,
+  "tail": 10,
+  "tail_pooled_share": 0.1,
+  "tail_external_share": 0.0,
+  "devices": 2,
+  "external_devices": 0
+ },
+ "CTU-IoT-Malware-Capture-20-1": {
+  "role": "development",
+  "heldout": 953,
+  "heldout_pooled_share": 0.002098635886673662,
+  "heldout_external_share": 0.0,
+  "tail": 2,
+  "tail_pooled_share": 0.0,
+  "tail_external_share": 0.0,
+  "devices": 3,
+  "external_devices": 0
+ },
+ "CTU-IoT-Malware-Capture-44-1": {
+  "role": "development",
+  "heldout": 94,
+  "heldout_pooled_share": 0.02127659574468085,
+  "heldout_external_share": 0.0,
+  "tail": 1,
+  "tail_pooled_share": 1.0,
+  "tail_external_share": 0.0,
+  "devices": 2,
+  "external_devices": 0
+ },
+ "NF-UNSW-NB15-v3-dev": {
+  "role": "development",
+  "heldout": 14057,
+  "heldout_pooled_share": 0.012733869246638685,
+  "heldout_external_share": 0.9594508074269047,
+  "tail": 139,
+  "tail_pooled_share": 0.697841726618705,
+  "tail_external_share": 0.6618705035971223,
+  "devices": 36,
+  "external_devices": 30
+ }
+}

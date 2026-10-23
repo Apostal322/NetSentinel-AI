@@ -63,6 +63,9 @@ class LevelProfile:
     threshold_method: str = "split"
     threshold_diag: dict = field(default_factory=dict)
     outlier_share: float = 0.0
+    # Phase 8c: share of the held-out windows above the threshold that were scored against the
+    # POOLED fallback (keys without an own profile - e.g. transient external sources)
+    tail_fallback_share: float | None = None
 
     def scope_for(self, key: str) -> str:
         return key if key in self.keys else POOLED
@@ -164,8 +167,37 @@ def _fit_stats(data: pl.DataFrame, min_windows: int, mode: str, top_k: int,
     return tmp.keys, tmp.pooled, trimmed, data.height
 
 
+TAIL_FALLBACK_WARN = 0.5
+
+
+def _tail_diagnostic(prof: LevelProfile, hs: np.ndarray, fallback: np.ndarray | None) -> None:
+    """Phase 8c root cause of the Phase 8b 0-of-4 detection failure: when most of the held-out
+    tail comes from keys scored against the pooled fallback (transient sources with < min_windows
+    windows, e.g. Internet hosts contacting an exposed device), the single level-wide threshold
+    is set by them and keys with an own profile (local devices) can rarely exceed it. This is a
+    diagnostic only; it does not change any decision."""
+    if fallback is None or not len(hs) or prof.threshold is None or level_is_global(prof):
+        return
+    above = hs > prof.threshold
+    tail = above if above.any() else hs >= np.max(hs)
+    prof.tail_fallback_share = float(fallback[tail].mean())
+    if prof.tail_fallback_share > TAIL_FALLBACK_WARN and prof.keys:
+        prof.warnings.append(
+            f"{prof.tail_fallback_share:.0%} of the held-out windows above the {prof.level} "
+            "threshold come from sources WITHOUT an own profile (transient sources scored against "
+            "the pooled fallback). The single threshold is set by them: devices with an own "
+            "profile may be undetectable at this operating point (Phase 8c, "
+            "docs/phase8c/ROOT_CAUSE.md)"
+        )
+
+
+def level_is_global(prof: LevelProfile) -> bool:
+    return prof.level == "global"
+
+
 def _finish(prof: LevelProfile, hs: np.ndarray, level: str, target_fpr: float,
-            min_windows: int, mode: str) -> LevelProfile:  # fmt: skip
+            min_windows: int, mode: str,
+            fallback: np.ndarray | None = None) -> LevelProfile:  # fmt: skip
     if mode == "unlabelled":
         # Held-out scores are NOT trimmed: trimming them always lowers the threshold and raised
         # false alerts on clean captures (Phase 6 H1 run 2). Contamination therefore raises the
@@ -202,6 +234,7 @@ def _finish(prof: LevelProfile, hs: np.ndarray, level: str, target_fpr: float,
         )
     if level != "global" and not prof.keys:
         prof.warnings.append(f"no {level} key has >= {min_windows} windows; pooled profile only")
+    _tail_diagnostic(prof, hs, fallback)
     return prof
 
 
@@ -216,7 +249,10 @@ def fit_level(fit: pl.DataFrame, holdout: pl.DataFrame, level: str, target_fpr: 
         prof.warnings.append("no fit windows")
         return prof
     hs = window_scores(_zs(prof, holdout), top_k) if holdout.height else np.array([])
-    return _finish(prof, hs, level, target_fpr, min_windows, mode)
+    fb = (
+        np.array([k not in prof.keys for k in holdout["key"].to_list()]) if holdout.height else None
+    )
+    return _finish(prof, hs, level, target_fpr, min_windows, mode, fb)
 
 
 def fit_level_crossfit(windows: pl.DataFrame, level: str, target_fpr: float, min_windows: int,
@@ -232,7 +268,7 @@ def fit_level_crossfit(windows: pl.DataFrame, level: str, target_fpr: float, min
         return prof
     wins = np.sort(windows["win"].unique().to_numpy())
     edges = np.array_split(wins, folds)
-    scores = []
+    scores, fallback = [], []
     for block in edges:
         if not len(block):
             continue
@@ -242,13 +278,15 @@ def fit_level_crossfit(windows: pl.DataFrame, level: str, target_fpr: float, min
         tmp.keys, tmp.pooled, _, _ = _fit_stats(train, min_windows, mode, top_k, trim_passes)
         if tmp.pooled is not None and test.height:
             scores.append(window_scores(_zs(tmp, test), top_k))
+            fallback.append(np.array([k not in tmp.keys for k in test["key"].to_list()]))
     prof.keys, prof.pooled, prof.trimmed_windows, prof.n_fit_windows = _fit_stats(
         windows, min_windows, mode, top_k, trim_passes)  # fmt: skip
     if prof.pooled is None:
         prof.warnings.append("no fit windows")
         return prof
     hs = np.concatenate(scores) if scores else np.array([])
-    return _finish(prof, hs, level, target_fpr, min_windows, mode)
+    fb = np.concatenate(fallback) if fallback else None
+    return _finish(prof, hs, level, target_fpr, min_windows, mode, fb)
 
 
 def explain_row(z: np.ndarray, top: int = 3, min_abs: float = 3.0) -> list[str]:

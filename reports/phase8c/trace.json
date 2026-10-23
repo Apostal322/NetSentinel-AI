@@ -1,0 +1,1151 @@
+{
+ "CTU-IoT-Malware-Capture-1-1": {
+  "role": "retrospective (consumed)",
+  "threshold": 18.38865847889621,
+  "threshold_diag": {
+   "n": 20278,
+   "k": 20077,
+   "expected_fpr": 0.009961043443956803,
+   "fpr_upper95": 0.011134882598476408,
+   "reliable": true,
+   "windows_needed_for_2x_target": 20278
+  },
+  "heldout_windows": 20278,
+  "heldout_scores": {
+   "p50": 0.3474157331580793,
+   "p90": 2.378534433916845,
+   "p99": 18.38865847889621,
+   "p100": 34.17620626854864
+  },
+  "devices_in_calibration": 11972,
+  "devices_with_own_profile": 3,
+  "tail_owners": [
+   {
+    "key": "118.163.192.88",
+    "n": 6,
+    "p99": 34.17620626854864,
+    "own": 0.0,
+    "tail": 6
+   },
+   {
+    "key": "201.81.12.29",
+    "n": 7,
+    "p99": 34.078801101709395,
+    "own": 0.0,
+    "tail": 6
+   },
+   {
+    "key": "125.125.23.137",
+    "n": 4,
+    "p99": 24.156160340909793,
+    "own": 0.0,
+    "tail": 4
+   },
+   {
+    "key": "146.94.254.33",
+    "n": 3,
+    "p99": 21.715011918621187,
+    "own": 0.0,
+    "tail": 3
+   },
+   {
+    "key": "175.196.5.46",
+    "n": 3,
+    "p99": 31.695809818725586,
+    "own": 0.0,
+    "tail": 3
+   }
+  ],
+  "eval_benign_scores": {
+   "p50": 0.3474157331580793,
+   "p90": 1.4779515180365022,
+   "p99": 18.88543913351291,
+   "p100": 34.34698491599968
+  },
+  "attackers": {
+   "192.168.100.103": {
+    "profile_used": "own",
+    "calibration_windows_of_attacker": 6715,
+    "calibration_flows_of_attacker": 228599,
+    "attack_windows": 6715,
+    "attack_scores": {
+     "p50": 4.531295092477504,
+     "p90": 4.681579560250566,
+     "p99": 7.486571174939128,
+     "p100": 17.723535705812004
+    },
+    "share_above_threshold": 0.0,
+    "max_score_over_threshold": 0.9638297283160957,
+    "top2_feature_counts": {
+     "log_up_bytes": 6707,
+     "log_down_bytes": 5275,
+     "log_pkts": 1439,
+     "med_log_dur": 7,
+     "udp_share": 2
+    },
+    "median_abs_z_per_feature": {
+     "log_flows": 2.83,
+     "log_up_bytes": 4.83,
+     "log_down_bytes": 4.27,
+     "log_pkts": 3.79,
+     "log_dst_hosts": 1.66,
+     "log_dst_ports": 0.35,
+     "no_reply_frac": 0.19,
+     "rst_frac": 0.0,
+     "udp_share": 3.2,
+     "med_log_dur": 0.0,
+     "upload_share": 0.27,
+     "new_dst_frac": 0.22
+    },
+    "own_profile_median": {
+     "log_flows": 3.555,
+     "log_up_bytes": 7.353,
+     "log_down_bytes": 4.344,
+     "log_pkts": 3.638,
+     "log_dst_hosts": 3.497,
+     "log_dst_ports": 3.497,
+     "no_reply_frac": 0.972,
+     "rst_frac": 0.0,
+     "udp_share": 0.909,
+     "med_log_dur": 0.0,
+     "upload_share": 0.959,
+     "new_dst_frac": 0.968
+    },
+    "attack_window_median": {
+     "log_flows": 4.263,
+     "log_up_bytes": 8.56,
+     "log_down_bytes": 0.0,
+     "log_pkts": 4.585,
+     "log_dst_hosts": 3.912,
+     "log_dst_ports": 3.584,
+     "no_reply_frac": 1.0,
+     "rst_frac": 0.0,
+     "udp_share": 0.429,
+     "med_log_dur": 0.0,
+     "upload_share": 1.0,
+     "new_dst_frac": 1.0
+    }
+   }
+  }
+ },
+ "CTU-IoT-Malware-Capture-60-1": {
+  "role": "retrospective (consumed)",
+  "threshold": 48.62411279072717,
+  "threshold_diag": {
+   "n": 228,
+   "k": 227,
+   "expected_fpr": 0.008733624454148471,
+   "fpr_upper95": 0.0206363762123005,
+   "reliable": false,
+   "windows_needed_for_2x_target": 286
+  },
+  "heldout_windows": 228,
+  "heldout_scores": {
+   "p50": 13.394209176118204,
+   "p90": 14.45532499745731,
+   "p99": 32.462366376821464,
+   "p100": 59.363265649922056
+  },
+  "devices_in_calibration": 3,
+  "devices_with_own_profile": 1,
+  "tail_owners": [
+   {
+    "key": "192.168.1.195",
+    "n": 226,
+    "p99": 32.157465584347136,
+    "own": 1.0,
+    "tail": 2
+   },
+   {
+    "key": "192.168.1.1",
+    "n": 1,
+    "p99": 32.575137902805125,
+    "own": 0.0,
+    "tail": 1
+   },
+   {
+    "key": "184.103.250.171",
+    "n": 1,
+    "p99": 13.394209176118204,
+    "own": 0.0,
+    "tail": 0
+   }
+  ],
+  "eval_benign_scores": {
+   "p50": 0.1103728129909068,
+   "p90": 4.979126749634405,
+   "p99": 11.174255464098628,
+   "p100": 39.506911312057525
+  },
+  "attackers": {
+   "162.248.88.215": {
+    "profile_used": "pooled",
+    "calibration_windows_of_attacker": 0,
+    "calibration_flows_of_attacker": 0,
+    "attack_windows": 10,
+    "attack_scores": {
+     "p50": 17.95351464510677,
+     "p90": 18.186868524278744,
+     "p99": 18.22823247352711,
+     "p100": 18.23282846788804
+    },
+    "share_above_threshold": 0.0,
+    "max_score_over_threshold": 0.37497503648776337,
+    "top2_feature_counts": {
+     "log_flows": 10,
+     "log_up_bytes": 10,
+     "log_down_bytes": 0,
+     "log_pkts": 0,
+     "log_dst_hosts": 0
+    },
+    "median_abs_z_per_feature": {
+     "log_flows": 15.79,
+     "log_up_bytes": 20.12,
+     "log_down_bytes": 1.9,
+     "log_pkts": 2.56,
+     "log_dst_hosts": 0.0,
+     "log_dst_ports": 11.62,
+     "no_reply_frac": 6.67,
+     "rst_frac": 0.0,
+     "udp_share": 6.67,
+     "med_log_dur": 0.67,
+     "upload_share": 3.33,
+     "new_dst_frac": 0.0
+    },
+    "own_profile_median": null,
+    "attack_window_median": {
+     "log_flows": 4.568,
+     "log_up_bytes": 0.0,
+     "log_down_bytes": 0.0,
+     "log_pkts": 0.0,
+     "log_dst_hosts": 0.693,
+     "log_dst_ports": 3.569,
+     "no_reply_frac": 1.0,
+     "rst_frac": 0.0,
+     "udp_share": 0.0,
+     "med_log_dur": 0.0,
+     "upload_share": 0.0,
+     "new_dst_frac": 0.0
+    }
+   },
+   "192.168.1.195": {
+    "profile_used": "own",
+    "calibration_windows_of_attacker": 226,
+    "calibration_flows_of_attacker": 251,
+    "attack_windows": 22,
+    "attack_scores": {
+     "p50": 32.92740019278254,
+     "p90": 43.66403342137038,
+     "p99": 46.46084453313833,
+     "p100": 46.96062118429633
+    },
+    "share_above_threshold": 0.0,
+    "max_score_over_threshold": 0.9657887514865243,
+    "top2_feature_counts": {
+     "log_up_bytes": 21,
+     "log_flows": 12,
+     "log_pkts": 10,
+     "no_reply_frac": 1,
+     "log_down_bytes": 0
+    },
+    "median_abs_z_per_feature": {
+     "log_flows": 40.69,
+     "log_up_bytes": 26.18,
+     "log_down_bytes": 1.9,
+     "log_pkts": 9.85,
+     "log_dst_hosts": 0.0,
+     "log_dst_ports": 0.0,
+     "no_reply_frac": 6.67,
+     "rst_frac": 0.0,
+     "udp_share": 6.67,
+     "med_log_dur": 0.72,
+     "upload_share": 3.33,
+     "new_dst_frac": 6.67
+    },
+    "own_profile_median": {
+     "log_flows": 0.693,
+     "log_up_bytes": 5.03,
+     "log_down_bytes": 5.03,
+     "log_pkts": 1.609,
+     "log_dst_hosts": 0.693,
+     "log_dst_ports": 0.693,
+     "no_reply_frac": 0.0,
+     "rst_frac": 0.0,
+     "udp_share": 1.0,
+     "med_log_dur": 1.609,
+     "upload_share": 0.5,
+     "new_dst_frac": 0.0
+    },
+    "attack_window_median": {
+     "log_flows": 0.693,
+     "log_up_bytes": 5.03,
+     "log_down_bytes": 5.03,
+     "log_pkts": 1.609,
+     "log_dst_hosts": 0.693,
+     "log_dst_ports": 0.693,
+     "no_reply_frac": 0.0,
+     "rst_frac": 0.0,
+     "udp_share": 1.0,
+     "med_log_dur": 1.792,
+     "upload_share": 0.498,
+     "new_dst_frac": 0.0
+    }
+   }
+  }
+ },
+ "CTU-IoT-Malware-Capture-9-1": {
+  "role": "retrospective (consumed)",
+  "threshold": 17.38827638242132,
+  "threshold_diag": {
+   "n": 1907,
+   "k": 1889,
+   "expected_fpr": 0.009958071278825996,
+   "fpr_upper95": 0.013964814711925932,
+   "reliable": true,
+   "windows_needed_for_2x_target": 1907
+  },
+  "heldout_windows": 1907,
+  "heldout_scores": {
+   "p50": 0.6934188847139298,
+   "p90": 3.8783218669904223,
+   "p99": 17.3869479200676,
+   "p100": 35.933465713354316
+  },
+  "devices_in_calibration": 919,
+  "devices_with_own_profile": 1,
+  "tail_owners": [
+   {
+    "key": "191.254.249.105",
+    "n": 2,
+    "p99": 17.486741862356844,
+    "own": 0.0,
+    "tail": 2
+   },
+   {
+    "key": "192.168.100.102",
+    "n": 5,
+    "p99": 35.933465713354316,
+    "own": 0.0,
+    "tail": 2
+   },
+   {
+    "key": "223.25.97.62",
+    "n": 2,
+    "p99": 17.390930662837448,
+    "own": 0.0,
+    "tail": 2
+   },
+   {
+    "key": "125.114.158.81",
+    "n": 1,
+    "p99": 31.91951499845792,
+    "own": 0.0,
+    "tail": 1
+   },
+   {
+    "key": "185.28.249.2",
+    "n": 1,
+    "p99": 17.390267422904326,
+    "own": 0.0,
+    "tail": 1
+   }
+  ],
+  "eval_benign_scores": {
+   "p50": 0.5102471805665144,
+   "p90": 0.6744907594765952,
+   "p99": 12.565827296574568,
+   "p100": 42.78301594505764
+  },
+  "attackers": {
+   "192.168.100.111": {
+    "profile_used": "own",
+    "calibration_windows_of_attacker": 943,
+    "calibration_flows_of_attacker": 8493,
+    "attack_windows": 1439,
+    "attack_scores": {
+     "p50": 6.313865885355553,
+     "p90": 6.340187803673766,
+     "p99": 6.632100371793497,
+     "p100": 6.6489952609475615
+    },
+    "share_above_threshold": 0.0,
+    "max_score_over_threshold": 0.3823838035878797,
+    "top2_feature_counts": {
+     "log_flows": 1439,
+     "log_dst_hosts": 1439,
+     "log_up_bytes": 0,
+     "log_down_bytes": 0,
+     "log_pkts": 0
+    },
+    "median_abs_z_per_feature": {
+     "log_flows": 6.31,
+     "log_up_bytes": 2.75,
+     "log_down_bytes": 0.67,
+     "log_pkts": 4.08,
+     "log_dst_hosts": 6.31,
+     "log_dst_ports": 0.67,
+     "no_reply_frac": 1.07,
+     "rst_frac": 0.67,
+     "udp_share": 3.2,
+     "med_log_dur": 2.26,
+     "upload_share": 0.76,
+     "new_dst_frac": 1.35
+    },
+    "own_profile_median": {
+     "log_flows": 2.079,
+     "log_up_bytes": 7.783,
+     "log_down_bytes": 4.804,
+     "log_pkts": 3.178,
+     "log_dst_hosts": 2.079,
+     "log_dst_ports": 1.946,
+     "no_reply_frac": 0.7,
+     "rst_frac": 0.167,
+     "udp_share": 0.826,
+     "med_log_dur": 8.012,
+     "upload_share": 0.856,
+     "new_dst_frac": 0.5
+    },
+    "attack_window_median": {
+     "log_flows": 7.964,
+     "log_up_bytes": 11.654,
+     "log_down_bytes": 4.796,
+     "log_pkts": 7.966,
+     "log_dst_hosts": 7.963,
+     "log_dst_ports": 1.792,
+     "no_reply_frac": 0.999,
+     "rst_frac": 0.001,
+     "udp_share": 0.002,
+     "med_log_dur": 0.0,
+     "upload_share": 0.999,
+     "new_dst_frac": 1.0
+    }
+   }
+  }
+ },
+ "CTU-IoT-Malware-Capture-3-1": {
+  "role": "development",
+  "threshold": 7.076256972538699,
+  "threshold_diag": {
+   "n": 1459,
+   "k": 1446,
+   "expected_fpr": 0.009589041095890411,
+   "fpr_upper95": 0.014129017172047816,
+   "reliable": true,
+   "windows_needed_for_2x_target": 1459
+  },
+  "heldout_windows": 1459,
+  "heldout_scores": {
+   "p50": 4.315156226392981,
+   "p90": 5.991464547107981,
+   "p99": 6.953615573150412,
+   "p100": 12.807356063385747
+  },
+  "devices_in_calibration": 508,
+  "devices_with_own_profile": 1,
+  "tail_owners": [
+   {
+    "key": "192.168.2.5",
+    "n": 812,
+    "p99": 7.402851486629766,
+    "own": 1.0,
+    "tail": 15
+   },
+   {
+    "key": "31.186.234.1",
+    "n": 1,
+    "p99": 4.613553573046752,
+    "own": 0.0,
+    "tail": 0
+   },
+   {
+    "key": "112.190.100.154",
+    "n": 1,
+    "p99": 4.066292066052716,
+    "own": 0.0,
+    "tail": 0
+   },
+   {
+    "key": "31.41.56.33",
+    "n": 1,
+    "p99": 4.613553573046752,
+    "own": 0.0,
+    "tail": 0
+   },
+   {
+    "key": "161.184.0.198",
+    "n": 1,
+    "p99": 4.299286702722699,
+    "own": 0.0,
+    "tail": 0
+   }
+  ],
+  "eval_benign_scores": {
+   "p50": 4.587246697498533,
+   "p90": 4.626090636981425,
+   "p99": 4.6332008289880156,
+   "p100": 5.748880596279728
+  },
+  "attackers": {
+   "192.168.2.5": {
+    "profile_used": "own",
+    "calibration_windows_of_attacker": 812,
+    "calibration_flows_of_attacker": 1739,
+    "attack_windows": 2168,
+    "attack_scores": {
+     "p50": 8.607931424176158,
+     "p90": 12.971939681624646,
+     "p99": 13.266636866560752,
+     "p100": 14.051076629277041
+    },
+    "share_above_threshold": 0.5101476014760148,
+    "max_score_over_threshold": 1.985665116997021,
+    "top2_feature_counts": {
+     "log_flows": 1177,
+     "log_dst_hosts": 1083,
+     "no_reply_frac": 1037,
+     "rst_frac": 999,
+     "log_up_bytes": 39
+    },
+    "median_abs_z_per_feature": {
+     "log_flows": 10.18,
+     "log_up_bytes": 6.06,
+     "log_down_bytes": 4.66,
+     "log_pkts": 4.22,
+     "log_dst_hosts": 6.44,
+     "log_dst_ports": 1.62,
+     "no_reply_frac": 6.67,
+     "rst_frac": 5.04,
+     "udp_share": 0.0,
+     "med_log_dur": 2.38,
+     "upload_share": 2.71,
+     "new_dst_frac": 0.0
+    },
+    "own_profile_median": {
+     "log_flows": 0.693,
+     "log_up_bytes": 4.796,
+     "log_down_bytes": 4.394,
+     "log_pkts": 1.609,
+     "log_dst_hosts": 0.693,
+     "log_dst_ports": 0.693,
+     "no_reply_frac": 0.0,
+     "rst_frac": 0.882,
+     "udp_share": 0.0,
+     "med_log_dur": 5.031,
+     "upload_share": 0.592,
+     "new_dst_frac": 1.0
+    },
+    "attack_window_median": {
+     "log_flows": 3.238,
+     "log_up_bytes": 8.857,
+     "log_down_bytes": 0.0,
+     "log_pkts": 4.804,
+     "log_dst_hosts": 2.303,
+     "log_dst_ports": 1.099,
+     "no_reply_frac": 1.0,
+     "rst_frac": 0.0,
+     "udp_share": 0.0,
+     "med_log_dur": 4.326,
+     "upload_share": 0.998,
+     "new_dst_frac": 1.0
+    }
+   }
+  }
+ },
+ "CTU-IoT-Malware-Capture-34-1": {
+  "role": "development",
+  "threshold": 21.798811296741516,
+  "threshold_diag": {
+   "n": 912,
+   "k": 904,
+   "expected_fpr": 0.009857612267250822,
+   "fpr_upper95": 0.01577165248325429,
+   "reliable": true,
+   "windows_needed_for_2x_target": 912
+  },
+  "heldout_windows": 912,
+  "heldout_scores": {
+   "p50": 2.1841952152938315,
+   "p90": 12.020944177040702,
+   "p99": 13.022902447428523,
+   "p100": 26.762048704900533
+  },
+  "devices_in_calibration": 2,
+  "devices_with_own_profile": 1,
+  "tail_owners": [
+   {
+    "key": "192.168.1.195",
+    "n": 911,
+    "p99": 12.637936227492869,
+    "own": 1.0,
+    "tail": 9
+   },
+   {
+    "key": "192.168.1.1",
+    "n": 1,
+    "p99": 21.798811296741516,
+    "own": 0.0,
+    "tail": 1
+   }
+  ],
+  "eval_benign_scores": {
+   "p50": 12.020944177040702,
+   "p90": 12.020944177040702,
+   "p99": 12.020944177040702,
+   "p100": 12.020944177040702
+  },
+  "attackers": {
+   "192.168.1.195": {
+    "profile_used": "own",
+    "calibration_windows_of_attacker": 911,
+    "calibration_flows_of_attacker": 1379,
+    "attack_windows": 943,
+    "attack_scores": {
+     "p50": 9.549935513194017,
+     "p90": 13.161278274569899,
+     "p99": 20.445611684834915,
+     "p100": 45.05637839865214
+    },
+    "share_above_threshold": 0.009544008483563097,
+    "max_score_over_threshold": 2.0669190528470316,
+    "top2_feature_counts": {
+     "log_down_bytes": 839,
+     "log_up_bytes": 836,
+     "no_reply_frac": 106,
+     "log_pkts": 100,
+     "log_flows": 2
+    },
+    "median_abs_z_per_feature": {
+     "log_flows": 2.77,
+     "log_up_bytes": 8.95,
+     "log_down_bytes": 8.43,
+     "log_pkts": 6.7,
+     "log_dst_hosts": 0.0,
+     "log_dst_ports": 0.0,
+     "no_reply_frac": 5.33,
+     "rst_frac": 0.0,
+     "udp_share": 6.67,
+     "med_log_dur": 4.26,
+     "upload_share": 0.77,
+     "new_dst_frac": 0.0
+    },
+    "own_profile_median": {
+     "log_flows": 0.693,
+     "log_up_bytes": 4.344,
+     "log_down_bytes": 4.344,
+     "log_pkts": 1.099,
+     "log_dst_hosts": 0.693,
+     "log_dst_ports": 0.693,
+     "no_reply_frac": 0.0,
+     "rst_frac": 0.0,
+     "udp_share": 1.0,
+     "med_log_dur": 1.099,
+     "upload_share": 0.497,
+     "new_dst_frac": 0.0
+    },
+    "attack_window_median": {
+     "log_flows": 1.386,
+     "log_up_bytes": 6.466,
+     "log_down_bytes": 6.38,
+     "log_pkts": 2.639,
+     "log_dst_hosts": 0.693,
+     "log_dst_ports": 0.693,
+     "no_reply_frac": 0.8,
+     "rst_frac": 0.0,
+     "udp_share": 0.0,
+     "med_log_dur": 5.202,
+     "upload_share": 0.623,
+     "new_dst_frac": 0.0
+    }
+   }
+  }
+ },
+ "CTU-IoT-Malware-Capture-20-1": {
+  "role": "development",
+  "threshold": 12.020944177040702,
+  "threshold_diag": {
+   "n": 953,
+   "k": 945,
+   "expected_fpr": 0.009433962264150943,
+   "fpr_upper95": 0.015095420994468547,
+   "reliable": true,
+   "windows_needed_for_2x_target": 953
+  },
+  "heldout_windows": 953,
+  "heldout_scores": {
+   "p50": 2.7465299981550046,
+   "p90": 12.020944177040702,
+   "p99": 12.020944177040702,
+   "p100": 13.044185596340304
+  },
+  "devices_in_calibration": 3,
+  "devices_with_own_profile": 1,
+  "tail_owners": [
+   {
+    "key": "192.168.100.103",
+    "n": 951,
+    "p99": 12.020944177040702,
+    "own": 1.0,
+    "tail": 2
+   },
+   {
+    "key": "169.254.77.178",
+    "n": 1,
+    "p99": 3.2007132724041387,
+    "own": 0.0,
+    "tail": 0
+   },
+   {
+    "key": "192.168.100.102",
+    "n": 1,
+    "p99": 12.020944177040702,
+    "own": 0.0,
+    "tail": 0
+   }
+  ],
+  "eval_benign_scores": {
+   "p50": 1.0687126859990137,
+   "p90": 12.020944177040702,
+   "p99": 12.020944177040702,
+   "p100": 12.020944177040702
+  },
+  "attackers": {
+   "192.168.100.103": {
+    "profile_used": "own",
+    "calibration_windows_of_attacker": 951,
+    "calibration_flows_of_attacker": 1849,
+    "attack_windows": 1,
+    "attack_scores": {
+     "p50": 34.02542311252936,
+     "p90": 34.02542311252936,
+     "p99": 34.02542311252936,
+     "p100": 34.02542311252936
+    },
+    "share_above_threshold": 1.0,
+    "max_score_over_threshold": 2.8305116978677867,
+    "top2_feature_counts": {
+     "log_up_bytes": 1,
+     "log_down_bytes": 1,
+     "log_flows": 0,
+     "log_pkts": 0,
+     "log_dst_hosts": 0
+    },
+    "median_abs_z_per_feature": {
+     "log_flows": 0.0,
+     "log_up_bytes": 33.94,
+     "log_down_bytes": 34.11,
+     "log_pkts": 20.42,
+     "log_dst_hosts": 0.0,
+     "log_dst_ports": 0.0,
+     "no_reply_frac": 0.0,
+     "rst_frac": 0.0,
+     "udp_share": 6.67,
+     "med_log_dur": 13.07,
+     "upload_share": 0.06,
+     "new_dst_frac": 6.67
+    },
+    "own_profile_median": {
+     "log_flows": 0.693,
+     "log_up_bytes": 4.344,
+     "log_down_bytes": 4.344,
+     "log_pkts": 1.099,
+     "log_dst_hosts": 0.693,
+     "log_dst_ports": 0.693,
+     "no_reply_frac": 0.0,
+     "rst_frac": 0.0,
+     "udp_share": 1.0,
+     "med_log_dur": 1.386,
+     "upload_share": 0.498,
+     "new_dst_frac": 0.0
+    },
+    "attack_window_median": {
+     "log_flows": 0.693,
+     "log_up_bytes": 4.344,
+     "log_down_bytes": 4.344,
+     "log_pkts": 1.099,
+     "log_dst_hosts": 0.693,
+     "log_dst_ports": 0.693,
+     "no_reply_frac": 0.0,
+     "rst_frac": 0.0,
+     "udp_share": 1.0,
+     "med_log_dur": 1.386,
+     "upload_share": 0.497,
+     "new_dst_frac": 0.0
+    }
+   }
+  }
+ },
+ "CTU-IoT-Malware-Capture-44-1": {
+  "role": "development",
+  "threshold": 22.506783083908296,
+  "threshold_diag": {
+   "n": 94,
+   "k": 94,
+   "expected_fpr": 0.010526315789473684,
+   "fpr_upper95": 0.03136701207878765,
+   "reliable": false,
+   "windows_needed_for_2x_target": 186
+  },
+  "heldout_windows": 94,
+  "heldout_scores": {
+   "p50": 0.9407845431334332,
+   "p90": 4.359666326802223,
+   "p99": 15.305465028113373,
+   "p100": 22.506783083908296
+  },
+  "devices_in_calibration": 2,
+  "devices_with_own_profile": 1,
+  "tail_owners": [
+   {
+    "key": "192.168.1.1",
+    "n": 2,
+    "p99": 22.506783083908296,
+    "own": 0.0,
+    "tail": 1
+   },
+   {
+    "key": "192.168.1.199",
+    "n": 92,
+    "p99": 5.513166496734446,
+    "own": 1.0,
+    "tail": 0
+   }
+  ],
+  "eval_benign_scores": {
+   "p50": 12.020944177040702,
+   "p90": 12.020944177040702,
+   "p99": 12.020944177040702,
+   "p100": 12.020944177040702
+  },
+  "attackers": {
+   "192.168.1.199": {
+    "profile_used": "own",
+    "calibration_windows_of_attacker": 92,
+    "calibration_flows_of_attacker": 147,
+    "attack_windows": 2,
+    "attack_scores": {
+     "p50": 40.94926785977511,
+     "p90": 56.0938088807561,
+     "p99": 59.50133061047681,
+     "p100": 59.87994413600134
+    },
+    "share_above_threshold": 0.5,
+    "max_score_over_threshold": 2.660528779824327,
+    "top2_feature_counts": {
+     "log_up_bytes": 2,
+     "log_down_bytes": 1,
+     "log_pkts": 1,
+     "log_flows": 0,
+     "log_dst_hosts": 0
+    },
+    "median_abs_z_per_feature": {
+     "log_flows": 1.39,
+     "log_up_bytes": 44.86,
+     "log_down_bytes": 19.76,
+     "log_pkts": 36.88,
+     "log_dst_hosts": 1.39,
+     "log_dst_ports": 0.81,
+     "no_reply_frac": 5.56,
+     "rst_frac": 0.0,
+     "udp_share": 1.11,
+     "med_log_dur": 4.34,
+     "upload_share": 1.72,
+     "new_dst_frac": 4.44
+    },
+    "own_profile_median": {
+     "log_flows": 0.693,
+     "log_up_bytes": 4.344,
+     "log_down_bytes": 4.344,
+     "log_pkts": 1.099,
+     "log_dst_hosts": 0.693,
+     "log_dst_ports": 0.693,
+     "no_reply_frac": 0.0,
+     "rst_frac": 0.0,
+     "udp_share": 1.0,
+     "med_log_dur": 2.079,
+     "upload_share": 0.497,
+     "new_dst_frac": 0.0
+    },
+    "attack_window_median": {
+     "log_flows": 0.693,
+     "log_up_bytes": 4.344,
+     "log_down_bytes": 0.0,
+     "log_pkts": 1.099,
+     "log_dst_hosts": 0.693,
+     "log_dst_ports": 0.693,
+     "no_reply_frac": 1.0,
+     "rst_frac": 0.0,
+     "udp_share": 1.0,
+     "med_log_dur": 0.0,
+     "upload_share": 0.987,
+     "new_dst_frac": 0.0
+    }
+   }
+  }
+ },
+ "NF-UNSW-NB15-v3-dev": {
+  "role": "development",
+  "threshold": 11.522538465630948,
+  "threshold_diag": {
+   "n": 14057,
+   "k": 13918,
+   "expected_fpr": 0.00995874235310855,
+   "fpr_upper95": 0.01137469298536355,
+   "reliable": true,
+   "windows_needed_for_2x_target": 14057
+  },
+  "heldout_windows": 14057,
+  "heldout_scores": {
+   "p50": 1.235574612418461,
+   "p90": 3.1969465654287474,
+   "p99": 11.522538465630948,
+   "p100": 27.282497666570062
+  },
+  "devices_in_calibration": 36,
+  "devices_with_own_profile": 23,
+  "tail_owners": [
+   {
+    "key": "192.168.241.243",
+    "n": 24,
+    "p99": 12.102267268752165,
+    "own": 0.0,
+    "tail": 24
+   },
+   {
+    "key": "10.40.85.10",
+    "n": 18,
+    "p99": 13.942267474563009,
+    "own": 0.0,
+    "tail": 18
+   },
+   {
+    "key": "149.171.126.18",
+    "n": 72,
+    "p99": 14.431277090165956,
+    "own": 0.0,
+    "tail": 13
+   },
+   {
+    "key": "149.171.126.13",
+    "n": 8,
+    "p99": 13.996971948531934,
+    "own": 0.0,
+    "tail": 7
+   },
+   {
+    "key": "149.171.126.15",
+    "n": 13,
+    "p99": 15.294913643608869,
+    "own": 0.0,
+    "tail": 7
+   }
+  ],
+  "eval_benign_scores": {
+   "p50": 1.2164288730253896,
+   "p90": 2.919799785963741,
+   "p99": 14.539652717343994,
+   "p100": 37.63034521121509
+  },
+  "attackers": {
+   "175.45.176.0": {
+    "profile_used": "pooled",
+    "calibration_windows_of_attacker": 0,
+    "calibration_flows_of_attacker": 0,
+    "attack_windows": 1025,
+    "attack_scores": {
+     "p50": 6.0290787816538405,
+     "p90": 7.696933405667027,
+     "p99": 10.073804657969962,
+     "p100": 13.384052026372782
+    },
+    "share_above_threshold": 0.004878048780487805,
+    "max_score_over_threshold": 1.1615541198924435,
+    "top2_feature_counts": {
+     "new_dst_frac": 753,
+     "log_up_bytes": 447,
+     "log_pkts": 289,
+     "log_dst_ports": 230,
+     "upload_share": 126
+    },
+    "median_abs_z_per_feature": {
+     "log_flows": 4.04,
+     "log_up_bytes": 4.72,
+     "log_down_bytes": 3.4,
+     "log_pkts": 4.82,
+     "log_dst_hosts": 2.42,
+     "log_dst_ports": 4.82,
+     "no_reply_frac": 0.89,
+     "rst_frac": 0.0,
+     "udp_share": 1.19,
+     "med_log_dur": 3.92,
+     "upload_share": 2.58,
+     "new_dst_frac": 5.83
+    },
+    "own_profile_median": null,
+    "attack_window_median": {
+     "log_flows": 2.485,
+     "log_up_bytes": 10.388,
+     "log_down_bytes": 10.334,
+     "log_pkts": 5.79,
+     "log_dst_hosts": 1.792,
+     "log_dst_ports": 1.792,
+     "no_reply_frac": 0.133,
+     "rst_frac": 0.0,
+     "udp_share": 0.125,
+     "med_log_dur": 6.244,
+     "upload_share": 0.531,
+     "new_dst_frac": 0.875
+    }
+   },
+   "175.45.176.1": {
+    "profile_used": "pooled",
+    "calibration_windows_of_attacker": 0,
+    "calibration_flows_of_attacker": 0,
+    "attack_windows": 1020,
+    "attack_scores": {
+     "p50": 5.930461424659791,
+     "p90": 7.513239613644901,
+     "p99": 9.407420650666483,
+     "p100": 14.539652717343994
+    },
+    "share_above_threshold": 0.00196078431372549,
+    "max_score_over_threshold": 1.2618445805767884,
+    "top2_feature_counts": {
+     "new_dst_frac": 793,
+     "log_up_bytes": 413,
+     "log_pkts": 259,
+     "log_dst_ports": 244,
+     "upload_share": 136
+    },
+    "median_abs_z_per_feature": {
+     "log_flows": 3.52,
+     "log_up_bytes": 4.33,
+     "log_down_bytes": 3.19,
+     "log_pkts": 4.54,
+     "log_dst_hosts": 2.42,
+     "log_dst_ports": 4.82,
+     "no_reply_frac": 0.95,
+     "rst_frac": 0.0,
+     "udp_share": 1.2,
+     "med_log_dur": 3.97,
+     "upload_share": 2.74,
+     "new_dst_frac": 5.83
+    },
+    "own_profile_median": null,
+    "attack_window_median": {
+     "log_flows": 2.708,
+     "log_up_bytes": 10.641,
+     "log_down_bytes": 10.578,
+     "log_pkts": 5.955,
+     "log_dst_hosts": 1.792,
+     "log_dst_ports": 1.792,
+     "no_reply_frac": 0.143,
+     "rst_frac": 0.0,
+     "udp_share": 0.125,
+     "med_log_dur": 6.229,
+     "upload_share": 0.555,
+     "new_dst_frac": 0.875
+    }
+   },
+   "175.45.176.2": {
+    "profile_used": "pooled",
+    "calibration_windows_of_attacker": 0,
+    "calibration_flows_of_attacker": 0,
+    "attack_windows": 1025,
+    "attack_scores": {
+     "p50": 6.013600415510678,
+     "p90": 7.752053015736749,
+     "p99": 10.227207037579605,
+     "p100": 14.539652717343994
+    },
+    "share_above_threshold": 0.003902439024390244,
+    "max_score_over_threshold": 1.2618445805767884,
+    "top2_feature_counts": {
+     "new_dst_frac": 756,
+     "log_up_bytes": 433,
+     "log_dst_ports": 292,
+     "log_pkts": 273,
+     "upload_share": 151
+    },
+    "median_abs_z_per_feature": {
+     "log_flows": 4.04,
+     "log_up_bytes": 4.38,
+     "log_down_bytes": 3.36,
+     "log_pkts": 4.64,
+     "log_dst_hosts": 2.42,
+     "log_dst_ports": 4.82,
+     "no_reply_frac": 0.67,
+     "rst_frac": 0.0,
+     "udp_share": 1.16,
+     "med_log_dur": 3.98,
+     "upload_share": 2.56,
+     "new_dst_frac": 5.93
+    },
+    "own_profile_median": null,
+    "attack_window_median": {
+     "log_flows": 2.485,
+     "log_up_bytes": 10.592,
+     "log_down_bytes": 10.382,
+     "log_pkts": 5.894,
+     "log_dst_hosts": 1.792,
+     "log_dst_ports": 1.792,
+     "no_reply_frac": 0.1,
+     "rst_frac": 0.0,
+     "udp_share": 0.1,
+     "med_log_dur": 6.399,
+     "upload_share": 0.528,
+     "new_dst_frac": 0.889
+    }
+   },
+   "175.45.176.3": {
+    "profile_used": "pooled",
+    "calibration_windows_of_attacker": 0,
+    "calibration_flows_of_attacker": 0,
+    "attack_windows": 1021,
+    "attack_scores": {
+     "p50": 6.007787504224709,
+     "p90": 7.336156131388397,
+     "p99": 9.503403782372658,
+     "p100": 13.90361973667681
+    },
+    "share_above_threshold": 0.0009794319294809011,
+    "max_score_over_threshold": 1.206645547606378,
+    "top2_feature_counts": {
+     "new_dst_frac": 795,
+     "log_up_bytes": 435,
+     "log_dst_ports": 274,
+     "log_pkts": 242,
+     "upload_share": 131
+    },
+    "median_abs_z_per_feature": {
+     "log_flows": 3.24,
+     "log_up_bytes": 4.64,
+     "log_down_bytes": 3.26,
+     "log_pkts": 4.57,
+     "log_dst_hosts": 2.42,
+     "log_dst_ports": 4.82,
+     "no_reply_frac": 0.95,
+     "rst_frac": 0.0,
+     "udp_share": 1.19,
+     "med_log_dur": 4.02,
+     "upload_share": 2.62,
+     "new_dst_frac": 5.83
+    },
+    "own_profile_median": null,
+    "attack_window_median": {
+     "log_flows": 2.833,
+     "log_up_bytes": 10.482,
+     "log_down_bytes": 10.495,
+     "log_pkts": 5.938,
+     "log_dst_hosts": 1.792,
+     "log_dst_ports": 1.792,
+     "no_reply_frac": 0.143,
+     "rst_frac": 0.0,
+     "udp_share": 0.143,
+     "med_log_dur": 6.286,
+     "upload_share": 0.538,
+     "new_dst_frac": 0.875
+    }
+   }
+  }
+ }
+}

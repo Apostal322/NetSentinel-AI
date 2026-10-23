@@ -1,0 +1,161 @@
+{
+ "note": "development = leave-one-capture-out; retrospective = consumed captures",
+ "shap_mean_abs_dev": {
+  "new_dst_frac": 2.1914,
+  "no_reply_frac": 1.362,
+  "udp_share": 1.1955,
+  "upload_share": 0.7247,
+  "med_log_dur": 0.6826,
+  "log_flows": 0.4917,
+  "log_pkts": 0.3896,
+  "log_down_bytes": 0.3602,
+  "log_dst_hosts": 0.259,
+  "log_up_bytes": 0.241,
+  "rst_frac": 0.1835,
+  "log_dst_ports": 0.1171
+ },
+ "top3": [
+  "new_dst_frac",
+  "no_reply_frac",
+  "udp_share"
+ ],
+ "development": {
+  "CTU-IoT-Malware-Capture-3-1": {
+   "windows": 2737,
+   "attack": 2168,
+   "private_share": 0.7921081476068689,
+   "pr_auc": 0.9104718835229172,
+   "single_feature_pr_auc": {
+    "log_flows": 1.0000000000000002,
+    "new_dst_frac": 1.0,
+    "log_pkts": 0.9991990747385285,
+    "log_up_bytes": 0.9991742697461995
+   },
+   "base_rate": 0.7921081476068689,
+   "pr_auc_without_top3": 0.8451054688259603,
+   "pr_auc_trained_unsw_ctu_only": 0.999987958866163
+  },
+  "CTU-IoT-Malware-Capture-34-1": {
+   "windows": 1120,
+   "attack": 943,
+   "private_share": 1.0,
+   "pr_auc": 0.9985286866157523,
+   "pr_auc_private_only": 0.9985286866157523,
+   "base_rate_private_only": 0.8419642857142857,
+   "single_feature_pr_auc": {
+    "udp_share": 1.0,
+    "log_up_bytes": 0.9918493148958576,
+    "log_pkts": 0.9906389400922893,
+    "med_log_dur": 0.9647940694756114
+   },
+   "base_rate": 0.8419642857142857,
+   "pr_auc_without_top3": 0.9720671051746542,
+   "pr_auc_trained_unsw_ctu_only": 0.8678519457366038
+  },
+  "NF-UNSW-NB15-v3-dev": {
+   "windows": 16028,
+   "attack": 4091,
+   "private_share": 0.047417020214624406,
+   "pr_auc": 0.765031012435973,
+   "single_feature_pr_auc": {
+    "new_dst_frac": 0.9982593712798855,
+    "med_log_dur": 0.5629139798076526,
+    "log_flows": 0.5563182448544318,
+    "log_dst_hosts": 0.5290477044889114
+   },
+   "base_rate": 0.25524082855003744,
+   "pr_auc_without_top3": 0.5348941476833983,
+   "pr_auc_trained_iot23_ctu_only": 0.765031012435973
+  }
+ },
+ "retrospective_consumed": {
+  "CTU-IoT-Malware-Capture-1-1": {
+   "windows": 10831,
+   "attack": 6715,
+   "private_share": 0.6924568368571692,
+   "pr_auc": 1.0,
+   "pr_auc_private_only": 1.0,
+   "base_rate_private_only": 0.8953333333333333,
+   "single_feature_pr_auc": {
+    "log_flows": 1.0,
+    "log_dst_ports": 1.0,
+    "new_dst_frac": 1.0,
+    "log_dst_hosts": 0.9999999999999999
+   },
+   "base_rate": 0.6199796879327856,
+   "pr_auc_without_top3": 0.999998524210874,
+   "shap_mean_abs": {
+    "new_dst_frac": 3.3324,
+    "no_reply_frac": 2.4688,
+    "log_flows": 1.2071,
+    "log_pkts": 0.7326,
+    "med_log_dur": 0.6842,
+    "udp_share": 0.6047,
+    "upload_share": 0.5577,
+    "log_down_bytes": 0.4065,
+    "log_up_bytes": 0.3705,
+    "log_dst_hosts": 0.1475,
+    "rst_frac": 0.0927,
+    "log_dst_ports": 0.0775
+   }
+  },
+  "CTU-IoT-Malware-Capture-60-1": {
+   "windows": 264,
+   "attack": 32,
+   "private_share": 0.9545454545454546,
+   "pr_auc": 0.9446012094789269,
+   "pr_auc_private_only": 0.9597296313699475,
+   "base_rate_private_only": 0.0873015873015873,
+   "single_feature_pr_auc": {
+    "log_flows": 0.7787452779830829,
+    "udp_share": 0.6906715250329379,
+    "new_dst_frac": 0.6903387421121974,
+    "upload_share": 0.6307391121573678
+   },
+   "base_rate": 0.12121212121212122,
+   "pr_auc_without_top3": 0.8790245492415619,
+   "shap_mean_abs": {
+    "udp_share": 2.3693,
+    "new_dst_frac": 1.0688,
+    "no_reply_frac": 0.9436,
+    "upload_share": 0.6174,
+    "log_pkts": 0.6084,
+    "med_log_dur": 0.5903,
+    "log_down_bytes": 0.4455,
+    "log_flows": 0.3351,
+    "log_up_bytes": 0.3091,
+    "log_dst_hosts": 0.2685,
+    "rst_frac": 0.068,
+    "log_dst_ports": 0.0353
+   }
+  },
+  "CTU-IoT-Malware-Capture-9-1": {
+   "windows": 3139,
+   "attack": 1439,
+   "private_share": 0.458426250398216,
+   "pr_auc": 1.0,
+   "single_feature_pr_auc": {
+    "log_flows": 1.0,
+    "log_up_bytes": 1.0,
+    "log_pkts": 1.0,
+    "log_dst_hosts": 1.0
+   },
+   "base_rate": 0.458426250398216,
+   "pr_auc_without_top3": 1.0,
+   "shap_mean_abs": {
+    "new_dst_frac": 2.57,
+    "no_reply_frac": 2.3723,
+    "udp_share": 1.3324,
+    "log_flows": 1.2939,
+    "upload_share": 0.7725,
+    "log_pkts": 0.7286,
+    "log_down_bytes": 0.5504,
+    "log_up_bytes": 0.4809,
+    "med_log_dur": 0.3744,
+    "log_dst_hosts": 0.2267,
+    "log_dst_ports": 0.0787,
+    "rst_frac": 0.0644
+   }
+  }
+ }
+}
