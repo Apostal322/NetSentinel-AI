@@ -13,6 +13,10 @@ Event time and windows
 * Late records (their window has closed) are counted and dropped, never silently merged.
 * Duplicates (same 5-tuple, start, end and byte counts) are dropped within their window.
 * A record whose start lies more than `max_skew_s` ahead of the watermark clock is processed
+  but does not advance the clock (one clock-skewed record cannot close every open window).
+  After `resync_after` CONSECUTIVE such records the jump is accepted as real time (a capture
+  gap or a quiet period) and the clock re-synchronises to the earliest of them (Phase 8c:
+  without this, a gap > max_skew_s froze the clock for the rest of the stream).
   but does not advance the clock (a clock-skewed sensor cannot close every open window).
 * Memory is bounded: only the records of open windows (plus a context lookback of whole
   closed windows for the supervised context features) are held; above `max_buffer` records the
@@ -49,6 +53,7 @@ class StreamStats:
     duplicates: int = 0
     late: int = 0
     clock_skew: int = 0
+    clock_resyncs: int = 0
     forced_closes: int = 0
     windows_closed: int = 0
     max_buffered: int = 0
@@ -62,11 +67,13 @@ class WindowStream:
     """Event-time tumbling windows over flow records (dicts with NF-style keys)."""
 
     def __init__(self, window_s: int, lateness_s: float = 360.0, max_buffer: int = 2_000_000,
-                 max_skew_s: float = 3600.0):  # fmt: skip
+                 max_skew_s: float = 3600.0, resync_after: int = 1000):  # fmt: skip
         self.w_ms = int(window_s * 1000)
         self.lateness_ms = int(lateness_s * 1000)
         self.max_buffer = max_buffer
         self.max_skew_ms = int(max_skew_s * 1000)
+        self.resync_after = resync_after
+        self._skew_run, self._skew_min = 0, None
         self.buf: dict[int, list[dict]] = {}
         self.keys: dict[int, set] = {}
         self.heap: list[int] = []
@@ -107,8 +114,15 @@ class WindowStream:
         st.max_buffered = max(st.max_buffered, self.n_buffered)
         if self.clock is None or start <= self.clock + self.max_skew_ms:
             self.clock = start if self.clock is None else max(self.clock, start)
+            self._skew_run, self._skew_min = 0, None
         else:
             st.clock_skew += 1
+            self._skew_run += 1
+            self._skew_min = start if self._skew_min is None else min(self._skew_min, start)
+            if self._skew_run >= self.resync_after:
+                self.clock = self._skew_min  # sustained jump: real time moved on
+                self._skew_run, self._skew_min = 0, None
+                st.clock_resyncs += 1
         out = []
         wm = self.clock - self.lateness_ms
         st.watermark_ms = wm

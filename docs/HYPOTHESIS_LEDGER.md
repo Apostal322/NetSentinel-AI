@@ -40,7 +40,12 @@ One capture is n = 1.
 | P8b-B6 | Incidents concentrate attack evidence (window-weighted purity >= 0.8, reduction >= 5) | **refuted** (2 refuted, 1 not testable) | product had no true detections | |
 | — | The deployed baseline detects attacking devices on fresh captures | **contradicted (secondary metric)** | 0/4 attackers on 1-1, 60-1, 9-1 (49-1: 1/1) | root cause found (Phase 8c, below) |
 | P8c | Why 0/4: the single device-level threshold is set by transient sources scored against the pooled fallback (100% of the tail on 1-1 and 9-1); 60-1: insufficient calibration | **explained retrospectively** (no coding defect; design defect in threshold pooling) | `docs/phase8c/ROOT_CAUSE.md` | does a corrected threshold policy work? Pre-registered as X2 (ToN_IoT) |
-| P8c | LightGBM's advantage reflects a recurring scanning signature (a single feature matches it) | exploratory | lgbm_audit.json | X4 (ToN_IoT, non-scanning attacks) |
+| P8c | LightGBM's advantage reflects a recurring scanning signature (a single feature matches it) | exploratory on IoT-23/UNSW; **not the whole story externally** | lgbm_audit.json; X4 | |
+| P8c-X1 | Deployed FPR <= 3x target on an external network (ToN_IoT) | **refuted, n = 1** | FPR 8.9% [7.4, 10.5]; 19-day gap between calibration and evaluation | drift vs model failure not separable |
+| P8c-X2 | Root-cause prediction (no tail warning, so the address-class threshold changes nothing) | **supported, n = 1** | diagnostic silent; recall 0.317 vs 0.314 | |
+| P8c-X3 | Cross-network supervised LightGBM (no UNSW in training) ranks better than robust_z | **supported, n = 1** | ToN_IoT: 0.973 vs 0.695; 4 bootstrap blocks only | |
+| P8c-X4 | LightGBM adds ranking beyond the scan signature | **supported, n = 1** | delta 0.147 [0.035, 0.262] | |
+| P8c-X5 | Incidents: window-weighted purity >= 0.8 and reduction >= 5 | **refuted, n = 1** (0.779, 11x) | | |
 | — | Detection delay on Zeek logs | exploratory only | IoT-23 20-1: up to about 12 h for long C&C | not measured confirmatorily |
 
 ## Incidents (Phase 8)

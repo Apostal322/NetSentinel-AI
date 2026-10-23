@@ -103,3 +103,8 @@ Secondary, no verdict:
 - **Fix.** The CSV is opened with `encoding="utf-8-sig"`. A regression test was added.
 - **Unchanged:** the adapter's field mapping, the harness, scorers, policies, thresholds,
   hypotheses and criteria.
+
+**After the run (not a deviation):** results are in [EXTERNAL_RESULTS.md](EXTERNAL_RESULTS.md).
+The run exposed a streaming clock-freeze defect after real time gaps. It was fixed afterwards
+in the product, with no effect on this run's windows (0 late records), and the frozen result
+was not repeated.

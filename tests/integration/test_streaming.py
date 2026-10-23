@@ -104,3 +104,27 @@ def test_buffer_is_bounded_and_clock_skew_ignored():
     ws2.push({**base, START: 0, END: 5})
     ws2.push({**base, START: 10**10, END: 10**10 + 5})  # skewed sensor clock
     assert ws2.stats.clock_skew == 1 and ws2.stats.windows_closed == 0
+
+
+def test_clock_resyncs_after_a_real_time_gap():
+    """Phase 8c defect (ToN_IoT run): after a gap longer than max_skew_s the clock froze, so
+    windows closed only via the buffer cap. A sustained run of later records is a real jump."""
+    base = {"IPV4_SRC_ADDR": "a", "IPV4_DST_ADDR": "b", "L4_DST_PORT": 2, "PROTOCOL": 6}
+    ws = WindowStream(window_s=30, lateness_s=60, max_buffer=10**9, max_skew_s=3600,
+                      resync_after=100)  # fmt: skip
+    t = 0
+    for i in range(500):  # before the gap
+        t = i * 1000
+        ws.push({**base, "L4_SRC_PORT": i, START: t, END: t + 5})
+    gap = t + 10 * 3600 * 1000
+    for i in range(5000):  # 10 h later, 1 record per second
+        s = gap + i * 1000
+        ws.push({**base, "L4_SRC_PORT": 10_000 + i, START: s, END: s + 5})
+    st = ws.stats
+    assert st.clock_resyncs == 1 and st.clock_skew == 100
+    assert st.forced_closes == 0 and st.late == 0
+    assert st.max_buffered < 600  # windows keep closing after the gap
+    one = WindowStream(window_s=30, lateness_s=0, max_skew_s=60, resync_after=100)
+    one.push({**base, START: 0, END: 5})
+    one.push({**base, START: 10**10, END: 10**10 + 5})  # a single skewed record is still ignored
+    assert one.stats.clock_resyncs == 0 and one.stats.clock_skew == 1
