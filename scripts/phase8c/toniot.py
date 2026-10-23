@@ -36,7 +36,7 @@ def _num(v, cast=float, default=0):
 def records(paths: list[str | Path], stats: dict | None = None) -> Iterator[dict]:
     stats = stats if stats is not None else {}
     for p in paths:
-        with Path(p).open(encoding="utf-8", errors="replace", newline="") as fh:
+        with Path(p).open(encoding="utf-8-sig", errors="replace", newline="") as fh:  # BOM-safe
             for row in csv.DictReader(fh):
                 stats["rows"] = stats.get("rows", 0) + 1
                 try:

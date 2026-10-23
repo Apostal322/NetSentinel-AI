@@ -88,4 +88,18 @@ Secondary, no verdict:
 
 ## Deviations
 
-None at freezing time.
+**D1 (2026-10-24): adapter BOM bug; software fix only, before any analysis.**
+- **What happened.** The first frozen run (frozen code, commit `590f8d2`) stopped before any
+  analysis. `toniot.py` yielded 0 records, so the time span was undefined
+  (`ValueError: cannot convert float NaN to integer`). No window, label, statistic or verdict
+  was produced, and no cache was written.
+- **Diagnosis.** Only the header line of each file was read (column names; no data rows). The
+  official files begin with a UTF-8 byte-order mark (`EF BB BF`), so the first column name
+  was read as `﻿ts`, and every row was skipped for lacking `ts`.
+- **Header check.** All four files share the identical header, and every column the plan
+  relies on is present with the expected names (ts, src_ip, src_port, dst_ip, dst_port,
+  proto, service, duration, src/dst_bytes, conn_state, missed_bytes, src_pkts, src_ip_bytes,
+  dst_pkts, dst_ip_bytes, ..., label, type).
+- **Fix.** The CSV is opened with `encoding="utf-8-sig"`. A regression test was added.
+- **Unchanged:** the adapter's field mapping, the harness, scorers, policies, thresholds,
+  hypotheses and criteria.

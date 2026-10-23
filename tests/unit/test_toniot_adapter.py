@@ -50,3 +50,15 @@ def test_records_feed_the_standard_window_pipeline(tmp_path):
     w = aggregate(flows, "device", 30)
     assert set(w["key"].unique().to_list()) == {"192.168.1.0", "192.168.1.1", "192.168.1.2"}
     assert flows["is_attack"].sum() == 0
+
+
+def test_utf8_bom_header_is_handled(tmp_path):
+    """The official ToN_IoT files start with a UTF-8 byte-order mark (Phase 8c deviation D1):
+    without BOM handling the first column is read as '\ufeffts' and every row is skipped."""
+    p = tmp_path / "Network_dataset_1.csv"
+    row = "1554198358.5,192.168.1.37,4444,192.168.1.193,80,tcp,-,1,1,1,SF,0,1,60,1,60,0,normal"
+    p.write_bytes(b"\xef\xbb\xbf" + (HEADER + "\n" + row + "\n").encode("utf-8"))
+    stats = {}
+    r = list(toniot.records([p], stats))
+    assert len(r) == 1 and stats.get("skipped", 0) == 0
+    assert r[0]["FLOW_START_MILLISECONDS"] == 1554198358500
