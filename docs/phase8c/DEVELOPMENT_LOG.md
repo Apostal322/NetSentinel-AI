@@ -87,3 +87,30 @@ frozen; the data is not downloaded.
 once in a full-suite run on 2026-10-23, with no traceback captured. It passed in the 5
 following runs (4 isolated, 1 full suite). It is not reproduced, and the cause is unknown.
 Watch for it in CI.
+
+## 4. ToN_IoT acquisition (2026-10-24, before the frozen run; contents not opened)
+
+- **Source:** the official SharePoint folder linked from
+  https://research.unsw.edu.au/projects/toniot-datasets. Opened anonymously through the public
+  share link; no sign-in or credentials.
+- **Layout check.** `TON_IoT datasets/Processed_datasets/Processed_Network_dataset/`
+  contains `Network_dataset_1.csv` ... `Network_dataset_23.csv` (23 files, server timestamps
+  2024-02-08). This matches the plan, so there is **no deviation**.
+- **Selection rule** (numeric order, at most 4 files, at most 2 GB): files 1-4, 583,060,453 B
+  in total.
+- **Download.**
+  - Via each file's short-lived pre-authenticated `@content.downloadUrl`, which SharePoint's
+    v2.0 API issues to the anonymous guest session.
+  - The temporary tokens were used only for these downloads, then deleted. They are not stored
+    in the repository.
+- **Verification:** every downloaded size equals the server-reported size.
+
+| file | bytes | SHA-256 |
+|---|---|---|
+| Network_dataset_1.csv | 146,725,605 | `37ea5238fcd2a7a18574b8e37e0427086c6c34d03a22f690256fc925946c0448` |
+| Network_dataset_2.csv | 145,496,506 | `63b70bb96a95499b477b890674b74cc207ccb638b68ea4cc3a3dea9a448772c1` |
+| Network_dataset_3.csv | 145,618,265 | `7c8710722f26679c5d795b60019975945a81730934c768083261e66e3b1ee366` |
+| Network_dataset_4.csv | 145,220,077 | `a20b2aed18fa474681f3614d35d4a23554272d6424cf6148596015440fb84a91` |
+
+Licence: free academic research use, with citation of the eight papers listed on the project
+page. Stored under the git-ignored `data/raw/toniot/` (hashes also in `SHA256SUMS.txt` there).
