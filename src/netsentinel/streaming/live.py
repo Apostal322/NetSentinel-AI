@@ -17,7 +17,14 @@ Event time and windows
   After `resync_after` CONSECUTIVE such records the jump is accepted as real time (a capture
   gap or a quiet period) and the clock re-synchronises to the earliest of them (Phase 8c:
   without this, a gap > max_skew_s froze the clock for the rest of the stream).
-  but does not advance the clock (a clock-skewed sensor cannot close every open window).
+* A resync is on PROBATION (Phase 8d): later records whose start lies more than `max_skew_s`
+  BEHIND the resynced clock count against the jump, records consistent with it count for it.
+  If `resync_after` records contradict it first, the jump was not real time - e.g. a burst of
+  malformed or forged future timestamps - and the clock reverts to the contradicting records'
+  time (`clock_reverts`, health `clock_anomaly`). Without this, 1,000 forged records 30 days
+  ahead made 97% of the genuine traffic that followed late and dropped indefinitely.
+  Residual risk: up to about `resync_after` genuine records (plus the windows open at the
+  jump) are lost per event.
 * Memory is bounded: only the records of open windows (plus a context lookback of whole
   closed windows for the supervised context features) are held; above `max_buffer` records the
   oldest open window is force-closed (counted).
@@ -54,6 +61,8 @@ class StreamStats:
     late: int = 0
     clock_skew: int = 0
     clock_resyncs: int = 0
+    clock_reverts: int = 0
+    health: str = "ok"  # ok | clock_anomaly
     forced_closes: int = 0
     windows_closed: int = 0
     max_buffered: int = 0
@@ -74,6 +83,9 @@ class WindowStream:
         self.max_skew_ms = int(max_skew_s * 1000)
         self.resync_after = resync_after
         self._skew_run, self._skew_min = 0, None
+        self._probation = False  # a resync is being verified
+        self._resync_clock: int | None = None
+        self._behind, self._behind_max, self._consistent = 0, None, 0
         self.buf: dict[int, list[dict]] = {}
         self.keys: dict[int, set] = {}
         self.heap: list[int] = []
@@ -90,6 +102,23 @@ class WindowStream:
         self.stats.windows_closed += 1
         return w, recs
 
+    def _probation_vote(self, start: int) -> None:
+        """After a resync: does real time continue near the new clock, or behind it?"""
+        if not self._probation:
+            return
+        if start < self._resync_clock - self.max_skew_ms:  # contradicts the jump
+            self._behind += 1
+            self._behind_max = start if self._behind_max is None else max(self._behind_max, start)
+            if self._behind >= self.resync_after:  # the jump was not real time: revert
+                self.clock = self._behind_max
+                self._probation = False
+                self.stats.clock_reverts += 1
+                self.stats.health = "clock_anomaly"
+        else:
+            self._consistent += 1
+            if self._consistent >= self.resync_after:  # the jump was real: confirmed
+                self._probation = False
+
     def push(self, rec: dict) -> list[tuple[int, list[dict]]]:
         """Add one record; returns the windows it closed, in window order."""
         st = self.stats
@@ -98,7 +127,9 @@ class WindowStream:
         w = end // self.w_ms
         if self.closed_below is not None and w < self.closed_below:
             st.late += 1
+            self._probation_vote(start)
             return []
+        self._probation_vote(start)
         k = tuple(rec.get(c) for c in DEDUP_KEY)
         seen = self.keys.setdefault(w, set())
         if k in seen:
@@ -115,14 +146,17 @@ class WindowStream:
         if self.clock is None or start <= self.clock + self.max_skew_ms:
             self.clock = start if self.clock is None else max(self.clock, start)
             self._skew_run, self._skew_min = 0, None
+
         else:
             st.clock_skew += 1
             self._skew_run += 1
             self._skew_min = start if self._skew_min is None else min(self._skew_min, start)
             if self._skew_run >= self.resync_after:
-                self.clock = self._skew_min  # sustained jump: real time moved on
+                self.clock = self._skew_min  # sustained jump: real time moved on (probation)
                 self._skew_run, self._skew_min = 0, None
                 st.clock_resyncs += 1
+                self._probation, self._resync_clock = True, self.clock
+                self._behind, self._behind_max, self._consistent = 0, None, 0
         out = []
         wm = self.clock - self.lateness_ms
         st.watermark_ms = wm

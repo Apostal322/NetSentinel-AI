@@ -1,0 +1,233 @@
+{
+ "role": "post-hoc sensitivity analysis (consumed ToN_IoT input); labels not read",
+ "reference_duplicates": 18606,
+ "old_stats": {
+  "records": 4000000,
+  "accepted": 3981394,
+  "duplicates": 18606,
+  "late": 0,
+  "clock_skew": 3797795,
+  "clock_resyncs": 0,
+  "forced_closes": 334,
+  "windows_closed": 5820,
+  "max_buffered": 1500001,
+  "watermark_ms": 1554360511000
+ },
+ "fixed_stats": {
+  "records": 4000000,
+  "accepted": 3981394,
+  "duplicates": 18606,
+  "late": 0,
+  "clock_skew": 2000,
+  "clock_resyncs": 2,
+  "forced_closes": 140,
+  "windows_closed": 5820,
+  "max_buffered": 1500001,
+  "watermark_ms": 1556072351000
+ },
+ "close_kinds": {
+  "old": {
+   "watermark": 5406,
+   "forced": 334,
+   "flush": 80
+  },
+  "fixed": {
+   "watermark": 5662,
+   "forced": 140,
+   "flush": 18
+  }
+ },
+ "old_vs_reference": {
+  "windows_a": 5820,
+  "windows_b": 5820,
+  "only_in_a": 0,
+  "only_in_b": 0,
+  "membership_differs": 0,
+  "examples": []
+ },
+ "fixed_vs_reference": {
+  "windows_a": 5820,
+  "windows_b": 5820,
+  "only_in_a": 0,
+  "only_in_b": 0,
+  "membership_differs": 0,
+  "examples": []
+ },
+ "old_vs_fixed": {
+  "windows_a": 5820,
+  "windows_b": 5820,
+  "only_in_a": 0,
+  "only_in_b": 0,
+  "membership_differs": 0,
+  "examples": []
+ },
+ "forced_closures_old": 334,
+ "forced_closures_fixed": 140,
+ "forced_windows_identical_to_reference": 334,
+ "forced_detail_first": [
+  {
+   "win": 51812017,
+   "window_end_ms": 1554360540000,
+   "records": 27,
+   "same_as_reference": true,
+   "same_as_fixed": true,
+   "closed_by_fixed_as": "watermark"
+  },
+  {
+   "win": 51812018,
+   "window_end_ms": 1554360570000,
+   "records": 37,
+   "same_as_reference": true,
+   "same_as_fixed": true,
+   "closed_by_fixed_as": "watermark"
+  },
+  {
+   "win": 51812019,
+   "window_end_ms": 1554360600000,
+   "records": 26,
+   "same_as_reference": true,
+   "same_as_fixed": true,
+   "closed_by_fixed_as": "watermark"
+  },
+  {
+   "win": 51812020,
+   "window_end_ms": 1554360630000,
+   "records": 26,
+   "same_as_reference": true,
+   "same_as_fixed": true,
+   "closed_by_fixed_as": "watermark"
+  },
+  {
+   "win": 51812021,
+   "window_end_ms": 1554360660000,
+   "records": 28,
+   "same_as_reference": true,
+   "same_as_fixed": true,
+   "closed_by_fixed_as": "watermark"
+  },
+  {
+   "win": 51812022,
+   "window_end_ms": 1554360690000,
+   "records": 26,
+   "same_as_reference": true,
+   "same_as_fixed": true,
+   "closed_by_fixed_as": "watermark"
+  },
+  {
+   "win": 51812023,
+   "window_end_ms": 1554360720000,
+   "records": 37,
+   "same_as_reference": true,
+   "same_as_fixed": true,
+   "closed_by_fixed_as": "watermark"
+  },
+  {
+   "win": 51812024,
+   "window_end_ms": 1554360750000,
+   "records": 26,
+   "same_as_reference": true,
+   "same_as_fixed": true,
+   "closed_by_fixed_as": "watermark"
+  },
+  {
+   "win": 51812025,
+   "window_end_ms": 1554360780000,
+   "records": 34,
+   "same_as_reference": true,
+   "same_as_fixed": true,
+   "closed_by_fixed_as": "watermark"
+  },
+  {
+   "win": 51812026,
+   "window_end_ms": 1554360810000,
+   "records": 29,
+   "same_as_reference": true,
+   "same_as_fixed": true,
+   "closed_by_fixed_as": "watermark"
+  },
+  {
+   "win": 51812027,
+   "window_end_ms": 1554360840000,
+   "records": 26,
+   "same_as_reference": true,
+   "same_as_fixed": true,
+   "closed_by_fixed_as": "watermark"
+  },
+  {
+   "win": 51812028,
+   "window_end_ms": 1554360870000,
+   "records": 28,
+   "same_as_reference": true,
+   "same_as_fixed": true,
+   "closed_by_fixed_as": "watermark"
+  },
+  {
+   "win": 51812029,
+   "window_end_ms": 1554360900000,
+   "records": 26,
+   "same_as_reference": true,
+   "same_as_fixed": true,
+   "closed_by_fixed_as": "watermark"
+  },
+  {
+   "win": 51812030,
+   "window_end_ms": 1554360930000,
+   "records": 27,
+   "same_as_reference": true,
+   "same_as_fixed": true,
+   "closed_by_fixed_as": "watermark"
+  },
+  {
+   "win": 51812031,
+   "window_end_ms": 1554360960000,
+   "records": 27,
+   "same_as_reference": true,
+   "same_as_fixed": true,
+   "closed_by_fixed_as": "watermark"
+  },
+  {
+   "win": 51812032,
+   "window_end_ms": 1554360990000,
+   "records": 25,
+   "same_as_reference": true,
+   "same_as_fixed": true,
+   "closed_by_fixed_as": "watermark"
+  },
+  {
+   "win": 51812033,
+   "window_end_ms": 1554361020000,
+   "records": 21,
+   "same_as_reference": true,
+   "same_as_fixed": true,
+   "closed_by_fixed_as": "watermark"
+  },
+  {
+   "win": 51812034,
+   "window_end_ms": 1554361050000,
+   "records": 20,
+   "same_as_reference": true,
+   "same_as_fixed": true,
+   "closed_by_fixed_as": "watermark"
+  },
+  {
+   "win": 51812035,
+   "window_end_ms": 1554361080000,
+   "records": 25,
+   "same_as_reference": true,
+   "same_as_fixed": true,
+   "closed_by_fixed_as": "watermark"
+  },
+  {
+   "win": 51812036,
+   "window_end_ms": 1554361110000,
+   "records": 28,
+   "same_as_reference": true,
+   "same_as_fixed": true,
+   "closed_by_fixed_as": "watermark"
+  }
+ ],
+ "meta": {
+  "seconds": 341.4,
+  "peak_rss_mb": 1359.5546875
+ }
+}

@@ -128,3 +128,50 @@ def test_clock_resyncs_after_a_real_time_gap():
     one.push({**base, START: 0, END: 5})
     one.push({**base, START: 10**10, END: 10**10 + 5})  # a single skewed record is still ignored
     assert one.stats.clock_resyncs == 0 and one.stats.clock_skew == 1
+
+
+def _forged_burst_stream(resync_after=1000):
+    base = {"IPV4_SRC_ADDR": "a", "IPV4_DST_ADDR": "b", "L4_DST_PORT": 2, "PROTOCOL": 6}
+    ws = WindowStream(window_s=30, lateness_s=60, max_buffer=10**9, max_skew_s=3600,
+                      resync_after=resync_after)  # fmt: skip
+    port = 0
+
+    def push(t):
+        nonlocal port
+        port += 1
+        ws.push({**base, "L4_SRC_PORT": port, START: t, END: t + 5})
+
+    t = 0
+    for i in range(1800):  # 30 min of genuine traffic
+        t = i * 1000
+        push(t)
+    forged = t + 30 * 86_400_000
+    for i in range(1000):  # malformed or forged timestamps 30 days ahead
+        push(forged + i)
+    for i in range(1, 7201):  # genuine traffic continues for 2 h
+        push(t + i * 1000)
+    return ws.stats
+
+
+def test_forged_future_timestamps_are_reverted_with_bounded_loss():
+    """Phase 8d: without probation, 1,000 forged future records made 97% of the following
+    genuine records late (dropped) for as long as the forged time lay ahead."""
+    st = _forged_burst_stream()
+    assert st.clock_resyncs == 1 and st.clock_reverts == 1 and st.health == "clock_anomaly"
+    assert st.late <= 1100  # bounded: about one probation period of genuine records
+    assert st.accepted >= 1800 + 1000 + 7200 - 1100
+
+
+def test_genuine_gap_is_confirmed_not_reverted():
+    base = {"IPV4_SRC_ADDR": "a", "IPV4_DST_ADDR": "b", "L4_DST_PORT": 2, "PROTOCOL": 6}
+    ws = WindowStream(window_s=30, lateness_s=60, max_buffer=10**9, max_skew_s=3600,
+                      resync_after=1000)  # fmt: skip
+    for i in range(1800):
+        ws.push({**base, "L4_SRC_PORT": i, START: i * 1000, END: i * 1000 + 5})
+    gap = 1800 * 1000 + 20 * 3600 * 1000
+    for i in range(5000):
+        s = gap + i * 1000
+        ws.push({**base, "L4_SRC_PORT": 10_000 + i, START: s, END: s + 5})
+    st = ws.stats
+    assert st.clock_resyncs == 1 and st.clock_reverts == 0 and st.health == "ok"
+    assert st.late == 0 and st.forced_closes == 0
