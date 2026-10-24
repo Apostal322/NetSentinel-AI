@@ -36,6 +36,8 @@ The main contribution is *evaluation honesty*, not a new model. The repository m
 | Temporal models (EWMA, lag-IForest, GRU, TCN) | **Research, negative result**: none beat the robust baseline (development data, and pre-registered H1a/H1b) | `docs/phase8/DEVELOPMENT_LOG.md` |
 | Supervised attack detection (LightGBM, CIC-IDS2018 / NetFlow v3) | **Research**: in-domain only | `docs/RESULTS.md` |
 | Unknown-attack detection by anomaly models | **Research, negative result** | `docs/phase6/REPORT.md` |
+| Explicit uncertainty states (Phase 8e): every prediction says whether "no alert" is a supported claim of normality or an uncertainty (insufficient or expired calibration, drift, degraded telemetry, unsupported network, no model) | **Implemented and tested**; evidence is never silenced by uncertainty, verdicts unchanged | [`docs/phase8e/UNCERTAINTY_STATES.md`](docs/phase8e/UNCERTAINTY_STATES.md) |
+| Streaming timestamp security (Phase 8e): quarantine of out-of-range records, verified clock jumps, explicit health flags | **Tested** on 10 adversarial scenarios (0 genuine records lost, 0 forged records emitted) and real ToN_IoT data (identical windows) | [`docs/phase8e/STREAMING_ROBUSTNESS.md`](docs/phase8e/STREAMING_ROBUSTNESS.md) |
 | Packet capture, blocking, multi-network deployment | **Not implemented** (by design) | — |
 
 ## Headline results
@@ -52,6 +54,7 @@ Full tables with sources and data roles: [`docs/RESULTS.md`](docs/RESULTS.md).
 | Does the local baseline detect attackers on fresh captures? (Phase 8b, pre-registered, IoT-23 1-1, 60-1, 9-1) | **Quiet but blind**: FPR 0-1.5% as promised, but 0 of 4 attacking devices detected at its operating threshold. A cross-capture supervised window model ranked better (replicated) and caught 4/4 at FPR 0-5.5%; GRU/TCN lost to robust statistics (3/3). [`docs/HYPOTHESIS_LEDGER.md`](docs/HYPOTHESIS_LEDGER.md) Root cause (Phase 8c): the single threshold was set by transient external sources scored against the pooled fallback, not a coding bug; calibration now warns when this happens ([`docs/phase8c/ROOT_CAUSE.md`](docs/phase8c/ROOT_CAUSE.md)) |
 | External network (ToN_IoT, UNSW testbed; pre-registered, Phase 8c) | The deployed baseline **failed** its FPR promise (8.9% at 1%). A cross-network supervised window model (trained without UNSW data) ranked far better (PR-AUC 0.97 vs 0.70) and beyond the scan signature. One dataset, a 4-hour evaluation, IP-tagged labels: [`docs/phase8c/EXTERNAL_RESULTS.md`](docs/phase8c/EXTERNAL_RESULTS.md) |
 | Can thresholds make detections reliable? (Phase 8d, development data) | No policy tested is both within the false-alert budget and sensitive. Only selective abstention (no decision where calibration is unreliable) kept the budget, covering 11 of 22 captures. Every LightGBM operating point broke it (up to 29% FPR), so it stays research-only: [`docs/phase8d/REPORT.md`](docs/phase8d/REPORT.md) |
+| Can per-population false-alert budgets fix the alert burden? (Phase 8e, development data, pre-declared rule) | **No.** No policy kept every population within budget; overruns come from calibration-to-evaluation shift (39% realised FPR at a 1% target on one dataset), not from how thresholds are allocated. ToN_IoT labels mark 3 scanners plus 37 responders as "attack sources" (retrospective): [`docs/phase8e/REPORT.md`](docs/phase8e/REPORT.md) |
 | ML protocol ID vs port lookup | Better in-dataset (macro-F1 0.945 vs 0.840). Confidently wrong under shift (HTTP on port 80 called TLS), so the product combines it with port evidence and abstains on conflicts |
 
 ## Quick start
@@ -119,6 +122,9 @@ Only analyse traffic you are authorised to analyse.
      domain check v2 passed.
    - `application.app_protocol` comes with `app_method` and `app_evidence`.
      `application_identity` is never inferred.
+   - `assessment.state` says what a quiet result means. Only `normal_valid_baseline`
+     (`normality_supported: true`) is a claim of normality. Check `normality_supported_share`
+     and `telemetry_health` in the summary before reading the absence of alerts as "clean".
 
 4. **Monitor continuously (opt-in).** If you run Zeek yourself, NetSentinel can follow its
    `conn.log`. It only reads the file; it never captures, scans or blocks:
@@ -226,6 +232,9 @@ peak memory are recorded in the development logs.
 - Protocol labels are nDPI proxy labels (nDPI version of the training data undocumented). On
   standard ports the policy is mostly a port lookup confirmed by the ML.
 - Zeek logs a connection only when it ends: long-lived C&C appears hours late.
+- `normal_valid_baseline` means the validated conditions hold, not that traffic is benign.
+  The 24 h calibration-expiry and 1% parse-error limits are pre-declared defaults, not
+  validated ones.
 - Incidents turn each isolated false alert into its own incident. On the fresh Phase 8
   capture, 9 of 10 incidents were benign-only (2.5/h): rank by duration as well as severity.
 - The calibration update gate catches short bursts only partly (7 of 12 injected 60 s scans,

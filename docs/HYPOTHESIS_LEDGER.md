@@ -100,3 +100,13 @@ not solved.
 | Unlabelled drift alarms separate drift from attack | **refuted (exploratory)** | suspension removes 95% of false alerts and 93% of alerted attack windows |
 | ToN_IoT labels follow the documented attacker-IP tagging | **contradicted in files 1-4** | 0 of 40 attack-labelled sources in 192.168.159.30-39 |
 | X3/X4 intervals depend on the 4-block bootstrap | **direction robust (post-hoc)** | CIs exclude 0 at 60/15/5 min and iid |
+
+## Phase 8e (evidence integrity, uncertainty, streaming security; docs/phase8e/REPORT.md)
+
+| Claim | Status | Evidence |
+|---|---|---|
+| ToN_IoT attack labels identify attacking hosts | **refuted (retrospective, files 1-4)** | 3 initiators (192.168.1.30-32) are endpoints of 100% of attack flows; the other 37 labelled sources are responders; labels are flow-level, direction-agnostic and time-bounded |
+| Frozen X policies detect the ToN_IoT initiators | **3/3 for every policy (retrospective)** | initiator window recall A 0.42, C2 0.43, E 0.56; frozen X verdicts unchanged |
+| The Phase 8d probation resync survives adversarial timestamps | **refuted, then fixed** | before: up to 83% genuine loss, silent loss after a backward reset; quarantine state machine: 0 loss and 0 forged records in 10 scenarios; identical ToN_IoT windows |
+| A per-population threshold policy meets FA/h budgets without degenerating (development) | **not found** | no policy passes the pre-declared rule; overruns are driven by shift (NF-UNSW local FPR 39% at 1%); never-alert rejected by the guard |
+| Frozen 49-1 and ToN_IoT bootstrap intervals support inference | **reinterpreted as descriptive** | 4 blocks = 35 distinct resamples; verdicts unchanged (EVALUATION_METHODOLOGY.md) |
