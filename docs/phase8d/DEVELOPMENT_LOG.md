@@ -28,3 +28,18 @@ benign windows, and median false alerts/h <= 1.
 **Selection rule:** among within-budget policies, the highest attacker-level recall. Ties go
 to the simpler policy (robust before LightGBM; no abstention before abstention). A selected
 policy is a candidate only; it is not validated.
+
+## Results (2026-10-24)
+
+See [REPORT.md](REPORT.md):
+- **M1:** membership identical in all 5,820 windows; forged-timestamp defect fixed.
+- **M2:** the rule selects A + abstention (within budget at 11/22 coverage). Every LightGBM
+  policy breaks the budget.
+- **M3:** robust-z FPR roughly doubles within hours. Unlabelled drift alarms cannot separate
+  drift from attacks.
+- **M4:** X3/X4 direction is robust to the block size.
+
+Resources:
+- the first post-hoc window rebuild was stopped by the memory watchdog at 3.43 GB;
+- it was repeated with a 1.0M buffer cap, which is a stricter equivalence test;
+- the other analyses peaked below 1.5 GB.

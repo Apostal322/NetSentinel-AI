@@ -86,3 +86,17 @@ One capture is n = 1.
 Phase 8b (docs/phase8b/) addresses gaps 1-4 with fresh IoT-23 captures from other malware
 families. Status: 1-1, 60-1 and 9-1 evaluated ([results](phase8b/CONFIRMATORY_RESULTS.md)). Gap 4 is explained (structural single-window false incidents), but
 not solved.
+
+## Phase 8d (operating points, drift, streaming; docs/phase8d/REPORT.md)
+
+| Claim | Status | Evidence |
+|---|---|---|
+| The streaming clock bug changed the ToN_IoT evaluation windows | **refuted (post-hoc)** | identical record membership in all 5,820 windows, incl. 334 force-closed |
+| Clock resync is safe against forged future timestamps | **refuted, then fixed** | 97% of genuine records dropped; probation limits loss to about 1,000 |
+| A threshold policy is both within the false-alert budget and sensitive (development) | **not found** | only A + abstention is within budget: 4/10 attackers, 11/22 captures covered |
+| LightGBM keeps the false-alert budget on benign development captures | **refuted** | max FPR 29% (local), 95% (source); device / hierarchical thresholds do not repair it |
+| Window PR-AUC predicts attacker-level detection | **refuted (mechanism measured)** | window weighting, ranking-undetectable attackers (ToN: 26-36 of 40), threshold misplacement |
+| Calibration validity decays with time since calibration | **exploratory, supported** | robust-z FPR 1.7% -> about 3% within 2-16 h; aged calibration up to 16% |
+| Unlabelled drift alarms separate drift from attack | **refuted (exploratory)** | suspension removes 95% of false alerts and 93% of alerted attack windows |
+| ToN_IoT labels follow the documented attacker-IP tagging | **contradicted in files 1-4** | 0 of 40 attack-labelled sources in 192.168.159.30-39 |
+| X3/X4 intervals depend on the 4-block bootstrap | **direction robust (post-hoc)** | CIs exclude 0 at 60/15/5 min and iid |

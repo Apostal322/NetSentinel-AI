@@ -58,11 +58,31 @@ def table_diff(a: pl.DataFrame, b: pl.DataFrame, keys) -> dict:
     return out
 
 
+BUFFER_CAP = 1_000_000  # frozen run: 1.5M; lowered so the rebuild stays under the 3.4 GB limit
+
+
+def _cap_buffer() -> None:
+    """The first post-hoc attempt with the frozen 1.5M-record buffer cap was stopped by the
+    memory watchdog at 3.43 GB. A smaller cap only causes MORE forced closures, so matching
+    the frozen tables with it is a stricter equivalence test, not a weaker one."""
+    import netsentinel.streaming.live as live
+
+    orig = live.WindowStream
+
+    class Capped(orig):
+        def __init__(self, *a, **kw):
+            kw["max_buffer"] = min(kw.get("max_buffer", BUFFER_CAP), BUFFER_CAP)
+            super().__init__(*a, **kw)
+
+    live.WindowStream = Capped
+
+
 def main() -> None:
+    _cap_buffer()
     old = load(FROZEN)
     new = load(POSTHOC) if (POSTHOC / "meta.json").exists() else build_windows(FILES, POSTHOC)
     res: dict = {"role": "post-hoc sensitivity analysis; frozen Phase 8c verdicts unchanged",
-                 "stream_frozen": old["meta"]["stream"], "stream_current": new["meta"]["stream"],
+                 "stream_frozen": old["meta"]["stream"], "stream_current": new["meta"]["stream"], "posthoc_buffer_cap": BUFFER_CAP,
                  "tables": {}}  # fmt: skip
     for v in VARIANTS:
         for part in ("cal", "eval"):

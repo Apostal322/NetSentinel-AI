@@ -1,0 +1,97 @@
+{
+ "role": "post-hoc sensitivity analysis; frozen Phase 8c verdicts unchanged",
+ "stream_frozen": {
+  "records": 4000000,
+  "accepted": 3981394,
+  "duplicates": 18606,
+  "late": 0,
+  "clock_skew": 3797795,
+  "forced_closes": 334,
+  "windows_closed": 5820,
+  "max_buffered": 1500001,
+  "watermark_ms": 1554360511000
+ },
+ "stream_current": {
+  "records": 4000000,
+  "accepted": 3981394,
+  "duplicates": 18606,
+  "late": 0,
+  "clock_skew": 2000,
+  "clock_resyncs": 2,
+  "clock_reverts": 0,
+  "health": "ok",
+  "forced_closes": 195,
+  "windows_closed": 5820,
+  "max_buffered": 1000001,
+  "watermark_ms": 1556072351000
+ },
+ "posthoc_buffer_cap": 1000000,
+ "tables": {
+  "cal_clean": {
+   "rows": [
+    28493,
+    28493
+   ],
+   "same_shape": true,
+   "differing_cells_by_column": {},
+   "identical": true
+  },
+  "eval_clean": {
+   "rows": [
+    2729,
+    2729
+   ],
+   "same_shape": true,
+   "differing_cells_by_column": {},
+   "identical": true
+  },
+  "cal_unlabelled": {
+   "rows": [
+    28493,
+    28493
+   ],
+   "same_shape": true,
+   "differing_cells_by_column": {},
+   "identical": true
+  },
+  "eval_unlabelled": {
+   "rows": [
+    2729,
+    2729
+   ],
+   "same_shape": true,
+   "differing_cells_by_column": {},
+   "identical": true
+  },
+  "truth": {
+   "rows": [
+    2729,
+    2729
+   ],
+   "same_shape": true,
+   "differing_cells_by_column": {},
+   "identical": true
+  }
+ },
+ "meta_equal": {
+  "flows": true,
+  "first_attack_ms": true,
+  "mid_ms": true,
+  "eval_span_ms": true
+ },
+ "policies": {
+  "A": {
+   "max_abs_score_diff": 0.0,
+   "alert_disagreements": 0
+  },
+  "C2": {
+   "max_abs_score_diff": 0.0,
+   "alert_disagreements": 0
+  },
+  "E": {
+   "max_abs_score_diff": 0.0,
+   "alert_disagreements": 0
+  }
+ },
+ "peak_rss_mb": 3332.54296875
+}

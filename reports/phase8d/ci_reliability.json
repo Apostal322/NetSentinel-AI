@@ -1,0 +1,105 @@
+{
+ "role": "post-hoc on consumed ToN_IoT; frozen X3/X4 verdicts unchanged",
+ "point": {
+  "X3": 0.2779605119739741,
+  "X4": 0.14653930626322242
+ },
+ "X3": {
+  "60min": {
+   "blocks": 4,
+   "distinct_resample_multisets": 35,
+   "ci95": [
+    0.13615302420853248,
+    0.4251919088013054
+   ],
+   "resamples_used": 2000
+  },
+  "15min": {
+   "blocks": 12,
+   "distinct_resample_multisets": 1352078,
+   "ci95": [
+    0.2085866186592542,
+    0.3721977801534936
+   ],
+   "resamples_used": 2000
+  },
+  "5min": {
+   "blocks": 31,
+   "distinct_resample_multisets": ">1e15",
+   "ci95": [
+    0.20864457648761003,
+    0.3555482804178165
+   ],
+   "resamples_used": 2000
+  },
+  "iid": {
+   "blocks": 2729,
+   "distinct_resample_multisets": ">1e15",
+   "ci95": [
+    0.24946884689803336,
+    0.30491999065020664
+   ],
+   "resamples_used": 2000
+  }
+ },
+ "X4": {
+  "60min": {
+   "blocks": 4,
+   "distinct_resample_multisets": 35,
+   "ci95": [
+    0.03535256263101827,
+    0.2622140147190968
+   ],
+   "resamples_used": 2000
+  },
+  "15min": {
+   "blocks": 12,
+   "distinct_resample_multisets": 1352078,
+   "ci95": [
+    0.09027402886173587,
+    0.218947924577433
+   ],
+   "resamples_used": 2000
+  },
+  "5min": {
+   "blocks": 31,
+   "distinct_resample_multisets": ">1e15",
+   "ci95": [
+    0.10865170745240682,
+    0.19357690468325683
+   ],
+   "resamples_used": 2000
+  },
+  "iid": {
+   "blocks": 2729,
+   "distinct_resample_multisets": ">1e15",
+   "ci95": [
+    0.12217873869250782,
+    0.17049462408275193
+   ],
+   "resamples_used": 2000
+  }
+ },
+ "per_hour": [
+  {
+   "hour": 0,
+   "windows": 879,
+   "attack_share": 0.4141069397042093
+  },
+  {
+   "hour": 1,
+   "windows": 1375,
+   "attack_share": 0.5069090909090909
+  },
+  {
+   "hour": 2,
+   "windows": 430,
+   "attack_share": 0.5953488372093023
+  },
+  {
+   "hour": 15,
+   "windows": 45,
+   "attack_share": 0.7777777777777778
+  }
+ ]
+}
