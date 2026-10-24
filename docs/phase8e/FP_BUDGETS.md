@@ -91,3 +91,82 @@ All policies use the deployed scoring:
 
 Thresholds with too few held-out windows for the target (`conformal_threshold` reliable =
 False) are kept, flagged and counted. They are not dropped.
+
+---
+
+## Results (appended after the rule commit 8b70c94)
+
+- Scripts: `scripts/phase8e/population_windows.py` (84 s, peak 1.1 GB) and
+  `scripts/phase8e/fp_budgets.py` (8 s).
+- Result: `reports/phase8e/fp_budgets.json`. All numbers are **[D]** development data.
+- 22 of 23 development captures were analysed. CTU-Normal-28 was skipped: fewer than 60
+  calibration windows.
+
+### Rule outcome: **no policy passes. Nothing is selected; defaults are unchanged.**
+
+| policy | budget met (rule 1) | non-degenerate (rule 2) | attackers detected (device) | pooled device window recall |
+|---|---|---|---|---|
+| Z never alert | yes | **no** (the guard works) | 0/10 | 0.00 |
+| A deployed | no | yes | 9/10 (Wilson 95% [0.60, 0.98]) | 0.269 |
+| P per-population 1% | no | yes | 5/10 ([0.24, 0.76]) | 0.266 |
+| H FA/h budgets | no | yes | 5/10 | 0.266 |
+| HX H + abstain on external_transient | no | yes (median coverage 1.0) | 5/10 | 0.266 |
+
+**False alerts per hour.** Median / max over budget-eligible captures (≥ 1 h of evaluation
+and ≥ 30 benign windows):
+
+| population (budget) | eligible captures | A | P | H | HX |
+|---|---|---|---|---|---|
+| local (1.0) | 15 | 0.00 / **33.2** | 0.00 / **19.0** | 0.00 / **19.0** | 0.00 / **19.0** |
+| external_transient (0.5) | 2 | **5.63** / **11.3** | 0.06 / 0.11 | 0.06 / 0.11 | 0 / 0 (abstained) |
+| external_profiled (0.5) | 1 | **1.69** | **6.53** | **6.53** | **6.53** |
+| global (0.5) | 14 | 0.00 / **4.55** | 0.00 / **4.55** | 0.00 / **4.55** | 0.00 / **4.55** |
+| service (1.0) | 17 | 0.09 / **13.3** | 0.09 / **13.3** | 0.09 / **13.3** | 0.09 / **13.3** |
+
+### What the numbers show
+
+1. **The overruns come from calibration → evaluation shift, not from the threshold
+   allocation.**
+   - On NF-UNSW-NB15 (development part), the realised local FPR at a 1% target was **39%**
+     under A and 22% under H.
+   - The global and service maxima come from single captures: 42-1 (global 4.55/h, service
+     12.0/h under A, 1.44/h under H) and the NF-UNSW services (13.3/h).
+   - No threshold rule set on calibration scores can hold a budget when the evaluation
+     distribution moves this far. This matches Phase 8d (FPR doubles within hours) and is
+     what `drift_detected` / `calibration_expired` are for (UNCERTAINTY_STATES.md).
+2. **The declared FA/h budgets were rarely stricter than the 1% FPR target**, so H ≈ P.
+   - A population with about 85–120 windows per hour gives alpha = B / (windows per hour)
+     ≈ 0.8–1.2%, and H takes min(1%, alpha).
+   - The stricter H thresholds that did apply were mostly unreliable: too few held-out
+     windows for the quantile (7 local, 8 global, 5 service thresholds flagged).
+3. **Population thresholds remove transient-external false alarms, but at a cost in
+   attackers.**
+   - P/H cut external_transient false alerts from a median of 5.6/h to 0.06/h.
+   - They lose the 4 NF-UNSW external attackers that A "detects".
+   - Those 4 detections came at a **25% FPR** in that population under A. A's 9/10 is
+     therefore partly bought with false alarms, and is not evidence that A is the better
+     policy.
+   - Excluding them, A and P/H both detect 5/6 attackers.
+4. **Abstention (HX) did not buy the budget by suppression.**
+   - Median coverage stayed 1.0.
+   - Coverage fell only where external transient sources exist (NF-UNSW 0.72, 3-1 0.79).
+   - HX still failed the budget on the other populations.
+5. **Detection delay** (median, first alerted attack window vs first attack window):
+   - local 0 s under every policy (the attackers are already anomalous in their first
+     window);
+   - global 0 s (A) vs 420 s (H);
+   - service 15 s.
+6. **Sample size.** 10 attackers over 7 captures; 4 of them come from NF-UNSW. Every
+   attacker-level difference above is within the Wilson intervals.
+
+### Interpretation (what is and is not claimed)
+
+- **[D]** On development data, per-population thresholds control the external-transient
+  burden that dominated the deployed policy (Phase 8c finding). They do not control
+  shift-driven overruns.
+- **[D]** No policy kept every population within budget. The negative result is the result.
+- **[H]** A shift-aware policy might meet the budgets: one that suppresses *normality claims*
+  (not alerts) when `drift_detected`. This was not tested, and per the rule it would need
+  fresh data.
+- **No default changed.** The deployed policy A stays the default. The new uncertainty states
+  make its weaknesses visible instead of silent.
