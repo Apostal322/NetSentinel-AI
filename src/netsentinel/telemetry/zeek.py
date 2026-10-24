@@ -22,6 +22,7 @@ from collections.abc import Callable, Iterator
 from dataclasses import dataclass, field
 from pathlib import Path
 
+IDLE = object()  # follow mode: 'no new data' marker, passed through parse_conn_lines
 PROTO = {"tcp": 6, "udp": 17, "icmp": 1}
 ORIG = {"S": 2, "A": 16, "D": 8, "F": 1, "R": 4}
 RESP = {"s": 2, "h": 18, "a": 16, "d": 8, "f": 1, "r": 4}
@@ -78,6 +79,9 @@ def parse_conn_lines(lines, stats: ZeekStats | None = None,
     fields: list[str] | None = None
     sep = "\t"
     for line in lines:
+        if line is IDLE:  # follow mode idle tick: let the consumer advance wall-clock time
+            yield IDLE
+            continue
         stats.lines += 1
         line = line.rstrip("\n\r")
         if not line:

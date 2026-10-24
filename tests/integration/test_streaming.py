@@ -121,7 +121,8 @@ def test_clock_resyncs_after_a_real_time_gap():
         s = gap + i * 1000
         ws.push({**base, "L4_SRC_PORT": 10_000 + i, START: s, END: s + 5})
     st = ws.stats
-    assert st.clock_resyncs == 1 and st.clock_skew == 100
+    assert st.clock_resyncs == 1 and st.clock_reverts == 0
+    assert st.accepted == st.records == 5500  # nothing lost: quarantined records replayed
     assert st.forced_closes == 0 and st.late == 0
     assert st.max_buffered < 600  # windows keep closing after the gap
     one = WindowStream(window_s=30, lateness_s=0, max_skew_s=60, resync_after=100)
@@ -153,13 +154,14 @@ def _forged_burst_stream(resync_after=1000):
     return ws.stats
 
 
-def test_forged_future_timestamps_are_reverted_with_bounded_loss():
-    """Phase 8d: without probation, 1,000 forged future records made 97% of the following
-    genuine records late (dropped) for as long as the forged time lay ahead."""
+def test_forged_future_timestamps_are_rejected_without_loss():
+    """Phase 8d: 1,000 forged future records made 97% of the following genuine records late;
+    Phase 8d probation bounded it to about 1,000; Phase 8e quarantine loses none."""
     st = _forged_burst_stream()
-    assert st.clock_resyncs == 1 and st.clock_reverts == 1 and st.health == "clock_anomaly"
-    assert st.late <= 1100  # bounded: about one probation period of genuine records
-    assert st.accepted >= 1800 + 1000 + 7200 - 1100
+    # Phase 8e: the forged jump is quarantined and rejected; it never moves the clock
+    assert st.clock_resyncs == 0 and st.clock_reverts == 1 and st.health == "clock_anomaly"
+    assert st.late == 0 and st.accepted == 1800 + 7200  # every genuine record, no forged one
+    assert st.quarantine_rejected == 1000
 
 
 def test_genuine_gap_is_confirmed_not_reverted():

@@ -341,7 +341,9 @@ def _cmd_monitor(args: argparse.Namespace) -> int:
                         utc_offset_hours=args.utc_offset)  # fmt: skip
     zs = ZeekStats()
     if args.follow:
-        recs = parse_conn_lines(follow_lines(path, idle_timeout_s=args.idle_timeout), zs)
+        recs = parse_conn_lines(
+            follow_lines(path, idle_timeout_s=args.idle_timeout, idle_marker=True), zs
+        )
     else:
         recs = read_conn_log(path, zs)
     try:

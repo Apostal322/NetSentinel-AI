@@ -12,19 +12,27 @@ Event time and windows
   after the watermark, unless it is late by more than `lateness_s`.
 * Late records (their window has closed) are counted and dropped, never silently merged.
 * Duplicates (same 5-tuple, start, end and byte counts) are dropped within their window.
-* A record whose start lies more than `max_skew_s` ahead of the watermark clock is processed
-  but does not advance the clock (one clock-skewed record cannot close every open window).
-  After `resync_after` CONSECUTIVE such records the jump is accepted as real time (a capture
-  gap or a quiet period) and the clock re-synchronises to the earliest of them (Phase 8c:
-  without this, a gap > max_skew_s froze the clock for the rest of the stream).
-* A resync is on PROBATION (Phase 8d): later records whose start lies more than `max_skew_s`
-  BEHIND the resynced clock count against the jump, records consistent with it count for it.
-  If `resync_after` records contradict it first, the jump was not real time - e.g. a burst of
-  malformed or forged future timestamps - and the clock reverts to the contradicting records'
-  time (`clock_reverts`, health `clock_anomaly`). Without this, 1,000 forged records 30 days
-  ahead made 97% of the genuine traffic that followed late and dropped indefinitely.
-  Residual risk: up to about `resync_after` genuine records (plus the windows open at the
-  jump) are lost per event.
+* Clock integrity (Phase 8e state machine). Relative to the committed clock a record is
+  IN RANGE, AHEAD (start > clock + max_skew_s) or BEHIND (start < clock - max_skew_s -
+  lateness_s). Out-of-range records never move the clock and never enter a window directly:
+  they go to a bounded QUARANTINE (`max_quarantine`; the oldest are evicted and counted).
+  - A PENDING jump opens only when >= 90% of the last `resync_after` records are out of range
+    in the same direction (a capture gap, a quiet period, a sensor clock reset - or a burst of
+    malformed / forged timestamps).
+  - While pending, the committed timeline is processed normally: in-range records vote
+    AGAINST the jump, records consistent with it vote FOR it.
+  - COMMIT (`resync_after` votes for): the open windows are emitted, the clock moves, and the
+    quarantined records consistent with the new time are replayed - a genuine gap or reset
+    loses nothing. A backward commit (`clock_reset`) can repeat window indices.
+  - REJECT (`resync_after` votes against, or the old timeline keeps interleaving: more than 2%
+    contradicting records by the time the jump has `resync_after` votes for - a flood of forged
+    timestamps among genuine traffic): the quarantined records are dropped and counted
+    (`quarantine_rejected`), health `clock_anomaly`; genuine records are not lost.
+  Health flags: `resynced` (informational), `clock_reset`, `clock_anomaly`,
+  `integrity_degraded` (out-of-range records evicted unconfirmed), `buffer_pressure` (forced
+  closes). `health` = the most severe flag, "ok" when none degrades monitoring.
+* `advance(now_ms)` closes windows by wall-clock time during idle periods (follow mode), so a
+  quiet network does not hold its last windows open until traffic resumes.
 * Memory is bounded: only the records of open windows (plus a context lookback of whole
   closed windows for the supervised context features) are held; above `max_buffer` records the
   oldest open window is force-closed (counted).
@@ -53,47 +61,70 @@ DEDUP_KEY = (START, END, "IPV4_SRC_ADDR", "L4_SRC_PORT", "IPV4_DST_ADDR", "L4_DS
              "PROTOCOL", "IN_BYTES", "OUT_BYTES")  # fmt: skip
 
 
+SEVERITY = {"resynced": 0, "buffer_pressure": 1, "integrity_degraded": 2, "clock_anomaly": 3,
+            "clock_reset": 4}  # fmt: skip
+DEGRADING = {f for f, v in SEVERITY.items() if v > 0}
+
+
 @dataclass
 class StreamStats:
     records: int = 0
     accepted: int = 0
     duplicates: int = 0
     late: int = 0
-    clock_skew: int = 0
-    clock_resyncs: int = 0
-    clock_reverts: int = 0
-    health: str = "ok"  # ok | clock_anomaly
+    clock_skew: int = 0  # out-of-range records quarantined (ahead or behind)
+    clock_resyncs: int = 0  # committed forward jumps (gaps)
+    clock_resets: int = 0  # committed backward jumps (sensor clock resets)
+    clock_reverts: int = 0  # rejected jumps (malformed / forged timestamps)
+    quarantine_rejected: int = 0  # quarantined records dropped after a rejected jump
+    quarantine_evicted: int = 0  # quarantined records dropped by the quarantine cap
+    replayed: int = 0  # quarantined records replayed after a committed jump
     forced_closes: int = 0
     windows_closed: int = 0
     max_buffered: int = 0
+    max_quarantined: int = 0
     watermark_ms: int | None = None
+    health: str = "ok"
+    health_flags: list[str] = field(default_factory=list)
+
+    def flag(self, f: str) -> None:
+        if f not in self.health_flags:
+            self.health_flags.append(f)
+            self.health_flags.sort(key=lambda x: SEVERITY[x])
+        worst = [x for x in self.health_flags if x in DEGRADING]
+        self.health = max(worst, key=lambda x: SEVERITY[x]) if worst else "ok"
 
     def as_dict(self) -> dict:
         return asdict(self)
 
 
 class WindowStream:
-    """Event-time tumbling windows over flow records (dicts with NF-style keys)."""
+    """Event-time tumbling windows over flow records (dicts with NF-style keys), with a clock
+    integrity state machine (module docstring)."""
 
     def __init__(self, window_s: int, lateness_s: float = 360.0, max_buffer: int = 2_000_000,
-                 max_skew_s: float = 3600.0, resync_after: int = 1000):  # fmt: skip
+                 max_skew_s: float = 3600.0, resync_after: int = 1000,
+                 max_quarantine: int | None = None, trigger_share: float = 0.9):  # fmt: skip
         self.w_ms = int(window_s * 1000)
         self.lateness_ms = int(lateness_s * 1000)
         self.max_buffer = max_buffer
         self.max_skew_ms = int(max_skew_s * 1000)
         self.resync_after = resync_after
-        self._skew_run, self._skew_min = 0, None
-        self._probation = False  # a resync is being verified
-        self._resync_clock: int | None = None
-        self._behind, self._behind_max, self._consistent = 0, None, 0
+        self.max_quarantine = max_quarantine or 4 * resync_after
+        self.trigger_share = trigger_share
+        self.interleave_limit = 0.02
         self.buf: dict[int, list[dict]] = {}
         self.keys: dict[int, set] = {}
         self.heap: list[int] = []
         self.closed_below: int | None = None  # windows < this index are closed
-        self.clock: int | None = None  # largest trusted flow start
+        self.clock: int | None = None  # committed clock: largest trusted flow start
         self.n_buffered = 0
+        self.quarantine: deque[tuple[str, dict]] = deque()  # (direction, record)
+        self._recent: deque[str] = deque(maxlen=resync_after)  # "in" | "ahead" | "behind"
+        self._pending: dict | None = None
         self.stats = StreamStats()
 
+    # ---------------------------------------------------------------- windows
     def _close(self, w: int) -> tuple[int, list[dict]]:
         recs = self.buf.pop(w)
         self.keys.pop(w, None)
@@ -102,39 +133,16 @@ class WindowStream:
         self.stats.windows_closed += 1
         return w, recs
 
-    def _probation_vote(self, start: int) -> None:
-        """After a resync: does real time continue near the new clock, or behind it?"""
-        if not self._probation:
-            return
-        if start < self._resync_clock - self.max_skew_ms:  # contradicts the jump
-            self._behind += 1
-            self._behind_max = start if self._behind_max is None else max(self._behind_max, start)
-            if self._behind >= self.resync_after:  # the jump was not real time: revert
-                self.clock = self._behind_max
-                self._probation = False
-                self.stats.clock_reverts += 1
-                self.stats.health = "clock_anomaly"
-        else:
-            self._consistent += 1
-            if self._consistent >= self.resync_after:  # the jump was real: confirmed
-                self._probation = False
-
-    def push(self, rec: dict) -> list[tuple[int, list[dict]]]:
-        """Add one record; returns the windows it closed, in window order."""
+    def _accept(self, rec: dict, start: int, w: int) -> bool:
         st = self.stats
-        st.records += 1
-        start, end = int(rec[START]), int(rec[END])
-        w = end // self.w_ms
         if self.closed_below is not None and w < self.closed_below:
             st.late += 1
-            self._probation_vote(start)
-            return []
-        self._probation_vote(start)
+            return False
         k = tuple(rec.get(c) for c in DEDUP_KEY)
         seen = self.keys.setdefault(w, set())
         if k in seen:
             st.duplicates += 1
-            return []
+            return False
         seen.add(k)
         if w not in self.buf:
             self.buf[w] = []
@@ -143,20 +151,11 @@ class WindowStream:
         self.n_buffered += 1
         st.accepted += 1
         st.max_buffered = max(st.max_buffered, self.n_buffered)
-        if self.clock is None or start <= self.clock + self.max_skew_ms:
-            self.clock = start if self.clock is None else max(self.clock, start)
-            self._skew_run, self._skew_min = 0, None
+        self.clock = start if self.clock is None else max(self.clock, start)
+        return True
 
-        else:
-            st.clock_skew += 1
-            self._skew_run += 1
-            self._skew_min = start if self._skew_min is None else min(self._skew_min, start)
-            if self._skew_run >= self.resync_after:
-                self.clock = self._skew_min  # sustained jump: real time moved on (probation)
-                self._skew_run, self._skew_min = 0, None
-                st.clock_resyncs += 1
-                self._probation, self._resync_clock = True, self.clock
-                self._behind, self._behind_max, self._consistent = 0, None, 0
+    def _drain(self) -> list[tuple[int, list[dict]]]:
+        st = self.stats
         out = []
         wm = self.clock - self.lateness_ms
         st.watermark_ms = wm
@@ -164,21 +163,136 @@ class WindowStream:
                              or self.n_buffered > self.max_buffer):  # fmt: skip
             if (self.heap[0] + 1) * self.w_ms > wm:
                 st.forced_closes += 1
+                st.flag("buffer_pressure")
             out.append(self._close(heapq.heappop(self.heap)))
         return out
+
+    # ---------------------------------------------------------------- clock integrity
+    def _side(self, start: int) -> str:
+        if start > self.clock + self.max_skew_ms:
+            return "ahead"
+        if start < self.clock - self.max_skew_ms - self.lateness_ms:
+            return "behind"
+        return "in"
+
+    def _quarantine(self, side: str, rec: dict) -> None:
+        st = self.stats
+        st.clock_skew += 1
+        self.quarantine.append((side, rec))
+        if len(self.quarantine) > self.max_quarantine:
+            self.quarantine.popleft()
+            st.quarantine_evicted += 1
+            st.flag("integrity_degraded")
+        st.max_quarantined = max(st.max_quarantined, len(self.quarantine))
+
+    def _consistent(self, start: int) -> bool:
+        a = self._pending["anchor"]
+        return a - self.max_skew_ms - self.lateness_ms <= start <= a + self.max_skew_ms * 2
+
+    def _maybe_open(self, side: str) -> None:
+        if self._pending is not None or side == "in" or len(self._recent) < self.resync_after:
+            return
+        if sum(x == side for x in self._recent) < self.trigger_share * self.resync_after:
+            return
+        starts = sorted(int(r[START]) for d, r in self.quarantine if d == side)
+        if not starts:
+            return
+        self._pending = {"side": side, "anchor": starts[len(starts) // 2], "for": 0, "against": 0}
+
+    def _commit(self) -> list[tuple[int, list[dict]]]:
+        st = self.stats
+        side = self._pending["side"]
+        out = [self._close(heapq.heappop(self.heap)) for _ in range(len(self.heap))]  # old timeline
+        if side == "behind":  # sensor clock reset: window indices may repeat
+            self.closed_below = None
+            st.clock_resets += 1
+            st.flag("clock_reset")
+        else:
+            st.clock_resyncs += 1
+            st.flag("resynced")
+        keep = [r for d, r in self.quarantine if d == side and self._consistent(int(r[START]))]
+        dropped = sum(1 for d, r in self.quarantine) - len(keep)
+        st.quarantine_rejected += dropped
+        self.quarantine.clear()
+        self._pending = None
+        self._recent.clear()
+        self.clock = min(int(r[START]) for r in keep) if keep else self.clock
+        for r in sorted(keep, key=lambda x: int(x[START])):
+            if self._accept(r, int(r[START]), int(r[END]) // self.w_ms):
+                st.replayed += 1
+        return out + self._drain()
+
+    def _reject(self) -> None:
+        st = self.stats
+        side = self._pending["side"]
+        n = sum(1 for d, _ in self.quarantine if d == side)
+        st.quarantine_rejected += n
+        self.quarantine = deque((d, r) for d, r in self.quarantine if d != side)
+        st.clock_reverts += 1
+        st.flag("clock_anomaly")
+        self._pending = None
+        self._recent.clear()
+
+    # ---------------------------------------------------------------- public
+    def push(self, rec: dict) -> list[tuple[int, list[dict]]]:
+        """Add one record; returns the windows it closed, in window order."""
+        st = self.stats
+        st.records += 1
+        start, end = int(rec[START]), int(rec[END])
+        if self.clock is None:
+            self.clock = start
+        side = self._side(start)
+        self._recent.append(side)
+        if side == "in":
+            self._accept(rec, start, end // self.w_ms)
+            if self._pending is not None:
+                self._pending["against"] += 1
+                if self._pending["against"] >= self.resync_after:
+                    self._reject()
+            return self._drain()
+        self._quarantine(side, rec)
+        if self._pending is not None and side == self._pending["side"] \
+                and self._consistent(start):  # fmt: skip
+            self._pending["for"] += 1
+            if self._pending["for"] >= self.resync_after:
+                # a genuine gap or reset silences the old timeline; if it keeps interleaving
+                # (> 2% contradicting records), two timelines coexist: integrity anomaly
+                if self._pending["against"] <= self.interleave_limit * self._pending["for"]:
+                    return self._commit()
+                self._reject()
+                return []
+        self._maybe_open(side)
+        return []
+
+    def advance(self, now_ms: int) -> list[tuple[int, list[dict]]]:
+        """Idle tick (wall-clock time in ms, follow mode): close windows that ended more than
+        `lateness_s` ago. Never moves the clock backwards or past `max_skew_s` ahead."""
+        if self.clock is None or self._pending is not None:
+            return []
+        if now_ms > self.clock and now_ms <= self.clock + self.max_skew_ms:
+            self.clock = now_ms
+        return self._drain()
 
     def flush(self) -> list[tuple[int, list[dict]]]:
         out = []
         while self.heap:
             out.append(self._close(heapq.heappop(self.heap)))
+        if self.quarantine:  # never confirmed: dropped and counted
+            self.stats.quarantine_rejected += len(self.quarantine)
+            if any(d == "ahead" for d, _ in self.quarantine):
+                self.stats.flag("integrity_degraded")
+            self.quarantine.clear()
         return out
 
 
 def follow_lines(path: str | Path, poll_s: float = 1.0,
                  stop: Callable[[], bool] | None = None,
-                 idle_timeout_s: float | None = None) -> Iterator[str]:  # fmt: skip
+                 idle_timeout_s: float | None = None,
+                 idle_marker: bool = False) -> Iterator[str]:  # fmt: skip
     """Yield lines of a growing local file (tail -f). Stops when `stop()` is true or no new
-    data arrived for `idle_timeout_s`. Reads only; never touches the file."""
+    data arrived for `idle_timeout_s`. Reads only; never touches the file. With
+    `idle_marker`, yields `telemetry.zeek.IDLE` after every idle poll so the monitor can close
+    windows by wall-clock time while the network is quiet."""
     idle = 0.0
     with Path(path).open(encoding="utf-8", errors="replace") as fh:
         partial = ""
@@ -196,6 +310,10 @@ def follow_lines(path: str | Path, poll_s: float = 1.0,
                 return
             time.sleep(poll_s)
             idle += poll_s
+            if idle_marker:
+                from netsentinel.telemetry.zeek import IDLE
+
+                yield IDLE
 
 
 @dataclass
@@ -298,9 +416,16 @@ class StreamMonitor:
 
     def feed(self, records: Iterable[dict]) -> MonitorResult:
         from netsentinel.resources import peak_rss_mb
+        from netsentinel.telemetry.zeek import IDLE
 
         t0 = time.perf_counter()
         for rec in records:
+            if rec is IDLE:  # quiet network: close windows by wall-clock time
+                closed = self.stream.advance(int(time.time() * 1000))
+                if closed:
+                    self.pending.extend(closed)
+                    self._maybe_flush(force=True)
+                continue
             closed = self.stream.push(rec)
             if closed:
                 # consecutive windows batch together; a gap in window indices is fine
