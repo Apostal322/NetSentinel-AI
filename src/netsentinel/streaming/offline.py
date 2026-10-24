@@ -134,6 +134,8 @@ def analyze_capture(
             baseline_status=pipe.profile.status)  # fmt: skip
         if store:
             store.upsert_incidents(incidents)
+    if store:
+        store.close()  # release the SQLite file (Windows keeps it locked otherwise)
     categories: Counter = Counter(p.threat.attack_category for p in preds
                                   if p.threat and p.threat.attack_category)  # fmt: skip
     alerts = [p for p in preds if p.verdict in ("attack", "suspicious")]

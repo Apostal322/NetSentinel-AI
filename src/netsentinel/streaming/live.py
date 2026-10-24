@@ -326,6 +326,8 @@ class MonitorResult:
     incidents: int = 0
     verdicts: dict[str, int] = field(default_factory=dict)
     assessment_states: dict[str, int] = field(default_factory=dict)
+    # Phase 8e: one assessment of the whole monitored period (also without a model bundle)
+    assessment: dict | None = None
     seconds: float = 0.0
     peak_rss_mb: float | None = None
 
@@ -451,6 +453,13 @@ class StreamMonitor:
         r = self.result
         r.stats = self.stream.stats.as_dict()
         r.incidents = len(self.tracker.all)
+        from netsentinel.inference.assessment import assess as assess_state
+
+        wm = self.stream.stats.watermark_ms
+        r.assessment = assess_state(
+            self.pipe.assessment_context(self.stream.stats.health),
+            "unusual" if r.anomalous_windows else "benign", None, None, None,
+            wm if wm and wm > 0 else None)  # fmt: skip
         r.seconds += time.perf_counter() - t0
         r.peak_rss_mb = rss()
         return r

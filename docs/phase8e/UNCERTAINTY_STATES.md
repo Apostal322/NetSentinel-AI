@@ -55,7 +55,15 @@ also carries an `assessment` that says what the system can and cannot claim.
    windowed into behaviour. They are never `normal_valid_baseline`.
 4. **Replay** of labelled research data has no local calibration. Quiet flows are
    `insufficient_calibration`.
-5. **Pre-8e events** have no state. The summary counts them as `not_recorded`, and the
+5. **Supervised domain check.** `unsupported_network` follows the threat mode.
+   - Under the default `unverified` policy, the supervised model never contributes to a
+     verdict, so its domain check does not change the state. Normality then rests on the local
+     behaviour baseline alone.
+   - With `--threat-policy auto` and a failed check, or with `unsupported`, quiet flows are
+     `unsupported_network`.
+6. **Behaviour-only monitoring** (`monitor` without a bundle) reports one `assessment` for the
+   whole monitored period.
+7. **Pre-8e events** have no state. The summary counts them as `not_recorded`, and the
    dashboard says that their absence of alerts is not evidence of normality.
 
 ## Where it is exposed

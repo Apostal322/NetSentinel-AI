@@ -1,0 +1,71 @@
+{
+ "bundles": {
+  "bundle-20261019T101720Z": {
+   "loads": true,
+   "bundle_id": "bundle-20261019T101720Z"
+  },
+  "bundle-20261019T202605Z": {
+   "loads": true,
+   "bundle_id": "bundle-20261019T202605Z"
+  }
+ },
+ "calibrations": {
+  "calibration-20261020T115014174720Z": {
+   "loads": false,
+   "schema": "behavior-1.0.0",
+   "refused_with": "calibration schema behavior-1.0.0 != behavior-1.1.0; recalibrate"
+  },
+  "calibration-20261020T181712311699Z": {
+   "loads": false,
+   "schema": "behavior-1.0.0",
+   "refused_with": "calibration schema behavior-1.0.0 != behavior-1.1.0; recalibrate"
+  }
+ },
+ "event_stores": {
+  "ctu26_phase6.sqlite": {
+   "rows_before": 10433,
+   "rows_after": 10433,
+   "had_assessment_column": false,
+   "assessment_states": {
+    "not_recorded": 10433
+   },
+   "payloads_checked": 200,
+   "payloads_failing_schema": 0
+  },
+  "events.sqlite": {
+   "rows_before": 134633,
+   "rows_after": 134633,
+   "had_assessment_column": false,
+   "assessment_states": {
+    "not_recorded": 134633
+   },
+   "payloads_checked": 200,
+   "payloads_failing_schema": 0
+  }
+ },
+ "current_calibration_end_to_end": {
+  "role": "in-sample engineering check (the calibration capture itself); not a claim",
+  "calibration": "calibration-20261024T130804488727Z",
+  "flows": 17268,
+  "verdicts": {
+   "benign": 17170,
+   "unusual": 98
+  },
+  "telemetry_health": "ok",
+  "assessment_states": {
+   "normal_valid_baseline": 17170,
+   "anomalous_behavior": 98
+  },
+  "normality_supported_share": 0.9943247625665972,
+  "baseline_state": {
+   "state": "monitoring",
+   "global_alert_rate": 0.006426735218508998,
+   "target_fpr": 0.01,
+   "score_ks": 0.07840616966580977,
+   "alert_rate_p_value": 0.8882689961831024,
+   "windows": 778,
+   "baseline_status": "baseline_ready"
+  }
+ },
+ "peak_rss_mb": 511.01953125
+}

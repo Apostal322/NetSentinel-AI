@@ -30,6 +30,9 @@ def test_monitor_reads_log_and_stores_incidents(tmp_path, capsys):
                  "--events-db", str(db), "--lateness", "7200"]) == 0  # fmt: skip
     out = json.loads(capsys.readouterr().out)
     assert out["flows"] == out["parse"]["records"] > 1000 and out["stats"]["late"] == 0
+    # Phase 8e: behaviour-only monitoring still reports an explicit assessment of the period
+    assert out["assessment"]["state"] == "anomalous_behavior" and out["stats"]["health"] == "ok"
+    assert out["assessment"]["evidence_present"] and not out["assessment"]["normality_supported"]
     con = sqlite3.connect(db)
     ents = [e for (e,) in con.execute("SELECT entity FROM incidents WHERE level = 'device'")]
     assert "10.0.0.1" in ents  # the scanning host
