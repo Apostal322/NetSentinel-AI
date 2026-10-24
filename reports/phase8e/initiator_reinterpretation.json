@@ -1,0 +1,96 @@
+{
+ "role": "retrospective reinterpretation; frozen X1-X5 unchanged",
+ "attack_involved_sources": 40,
+ "initiators": [
+  "192.168.1.30",
+  "192.168.1.31",
+  "192.168.1.32"
+ ],
+ "responders": 37,
+ "policies": {
+  "A": {
+   "initiators_detected": "3/3",
+   "initiator_window_recall": 0.42412451361867703,
+   "responders_alerted": "8/37",
+   "responder_window_alert_rate": 0.17555938037865748,
+   "fpr_benign_windows": 0.08859840232389252,
+   "per_initiator": {
+    "192.168.1.30": {
+     "attack_windows": 221,
+     "alerted_attack_windows": 78
+    },
+    "192.168.1.31": {
+     "attack_windows": 276,
+     "alerted_attack_windows": 110
+    },
+    "192.168.1.32": {
+     "attack_windows": 274,
+     "alerted_attack_windows": 139
+    }
+   }
+  },
+  "C2": {
+   "initiators_detected": "3/3",
+   "initiator_window_recall": 0.4254215304798962,
+   "responders_alerted": "7/37",
+   "responder_window_alert_rate": 0.16695352839931152,
+   "fpr_benign_windows": 0.08932461873638345,
+   "per_initiator": {
+    "192.168.1.30": {
+     "attack_windows": 221,
+     "alerted_attack_windows": 78
+    },
+    "192.168.1.31": {
+     "attack_windows": 276,
+     "alerted_attack_windows": 110
+    },
+    "192.168.1.32": {
+     "attack_windows": 274,
+     "alerted_attack_windows": 140
+    }
+   }
+  },
+  "E": {
+   "initiators_detected": "3/3",
+   "initiator_window_recall": 0.5590142671854734,
+   "responders_alerted": "6/37",
+   "responder_window_alert_rate": 0.043029259896729774,
+   "fpr_benign_windows": 0.002178649237472767,
+   "per_initiator": {
+    "192.168.1.30": {
+     "attack_windows": 221,
+     "alerted_attack_windows": 120
+    },
+    "192.168.1.31": {
+     "attack_windows": 276,
+     "alerted_attack_windows": 148
+    },
+    "192.168.1.32": {
+     "attack_windows": 274,
+     "alerted_attack_windows": 163
+    }
+   }
+  },
+  "E_source_threshold": {
+   "initiators_detected": "3/3",
+   "initiator_window_recall": 0.9546044098573282,
+   "responders_alerted": "12/37",
+   "responder_window_alert_rate": 0.7246127366609294,
+   "fpr_benign_windows": 0.026870007262164125,
+   "per_initiator": {
+    "192.168.1.30": {
+     "attack_windows": 221,
+     "alerted_attack_windows": 215
+    },
+    "192.168.1.31": {
+     "attack_windows": 276,
+     "alerted_attack_windows": 259
+    },
+    "192.168.1.32": {
+     "attack_windows": 274,
+     "alerted_attack_windows": 262
+    }
+   }
+  }
+ }
+}

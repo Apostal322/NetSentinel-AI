@@ -1,0 +1,1763 @@
+{
+ "role": "retrospective label audit of consumed ToN_IoT files 1-4",
+ "rows": 4000000,
+ "attack_rows": 3776528,
+ "label_by_type": [
+  {
+   "label": 1,
+   "type": "scanning",
+   "len": 3776528
+  },
+  {
+   "label": 0,
+   "type": "normal",
+   "len": 223472
+  }
+ ],
+ "documented_subnet_192_168_159": {
+  "as_source": 0,
+  "as_destination": 0
+ },
+ "attack_rows_by_address_class": {
+  "source": [
+   {
+    "c": "192.168.1.x",
+    "len": 3776498
+   },
+   {
+    "c": "169.254.x (link-local)",
+    "len": 23
+   },
+   {
+    "c": "public / other",
+    "len": 7
+   }
+  ],
+  "destination": [
+   {
+    "c": "192.168.1.x",
+    "len": 3327554
+   },
+   {
+    "c": "other private",
+    "len": 448715
+   },
+   {
+    "c": "public / other",
+    "len": 249
+   },
+   {
+    "c": "169.254.x (link-local)",
+    "len": 10
+   }
+  ]
+ },
+ "attack_rows_by_type_and_source_class": [
+  {
+   "type": "scanning",
+   "src_class": "192.168.1.x",
+   "dst_class": "192.168.1.x",
+   "len": 3327524
+  },
+  {
+   "type": "scanning",
+   "src_class": "192.168.1.x",
+   "dst_class": "other private",
+   "len": 448715
+  },
+  {
+   "type": "scanning",
+   "src_class": "192.168.1.x",
+   "dst_class": "public / other",
+   "len": 249
+  },
+  {
+   "type": "scanning",
+   "src_class": "169.254.x (link-local)",
+   "dst_class": "192.168.1.x",
+   "len": 23
+  },
+  {
+   "type": "scanning",
+   "src_class": "192.168.1.x",
+   "dst_class": "169.254.x (link-local)",
+   "len": 10
+  },
+  {
+   "type": "scanning",
+   "src_class": "public / other",
+   "dst_class": "192.168.1.x",
+   "len": 7
+  }
+ ],
+ "attack_sources": [
+  {
+   "address": "192.168.1.32",
+   "flows_as_source": 1719458,
+   "attack_flows_as_source": 1719458,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 38850,
+   "attack_flows_as_destination": 38850,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1719458
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     443,
+     128233
+    ],
+    [
+     80,
+     92780
+    ],
+    [
+     22,
+     9525
+    ],
+    [
+     53,
+     5768
+    ]
+   ],
+   "distinct_attack_destinations": 247,
+   "conn_states": [
+    [
+     "S0",
+     1208011
+    ],
+    [
+     "REJ",
+     375763
+    ],
+    [
+     "OTH",
+     83912
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1701812
+    ],
+    [
+     "ssl",
+     6173
+    ],
+    [
+     "http",
+     4572
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "192.168.1.30",
+   "flows_as_source": 1075254,
+   "attack_flows_as_source": 1075202,
+   "attack_share_as_source": 0.99995163933359,
+   "flows_as_destination": 53828,
+   "attack_flows_as_destination": 53813,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1075202
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     443,
+     64948
+    ],
+    [
+     80,
+     44009
+    ],
+    [
+     53,
+     3396
+    ],
+    [
+     993,
+     2603
+    ]
+   ],
+   "distinct_attack_destinations": 248,
+   "conn_states": [
+    [
+     "S0",
+     825375
+    ],
+    [
+     "REJ",
+     181445
+    ],
+    [
+     "OTH",
+     39441
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1060006
+    ],
+    [
+     "ssl",
+     5563
+    ],
+    [
+     "http",
+     3737
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "192.168.1.31",
+   "flows_as_source": 875752,
+   "attack_flows_as_source": 875752,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 13453,
+   "attack_flows_as_destination": 13453,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     875752
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     443,
+     94772
+    ],
+    [
+     80,
+     69826
+    ],
+    [
+     53,
+     4668
+    ],
+    [
+     22,
+     4349
+    ]
+   ],
+   "distinct_attack_destinations": 250,
+   "conn_states": [
+    [
+     "S0",
+     595750
+    ],
+    [
+     "REJ",
+     182961
+    ],
+    [
+     "OTH",
+     62797
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     857456
+    ],
+    [
+     "ssl",
+     5828
+    ],
+    [
+     "http",
+     5104
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "192.168.1.194",
+   "flows_as_source": 28379,
+   "attack_flows_as_source": 28192,
+   "attack_share_as_source": 0.9934106205292645,
+   "flows_as_destination": 104310,
+   "attack_flows_as_destination": 104309,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     28192
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     59820,
+     554
+    ],
+    [
+     59821,
+     536
+    ],
+    [
+     33005,
+     521
+    ],
+    [
+     50772,
+     515
+    ]
+   ],
+   "distinct_attack_destinations": 3,
+   "conn_states": [
+    [
+     "RSTOS0",
+     26975
+    ],
+    [
+     "REJ",
+     933
+    ],
+    [
+     "OTH",
+     264
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     28191
+    ],
+    [
+     "dns",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "192.168.1.193",
+   "flows_as_source": 23528,
+   "attack_flows_as_source": 22681,
+   "attack_share_as_source": 0.9640003400204012,
+   "flows_as_destination": 91482,
+   "attack_flows_as_destination": 91475,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     22681
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     33005,
+     433
+    ],
+    [
+     33006,
+     411
+    ],
+    [
+     51034,
+     252
+    ],
+    [
+     50772,
+     242
+    ]
+   ],
+   "distinct_attack_destinations": 3,
+   "conn_states": [
+    [
+     "RSTOS0",
+     22437
+    ],
+    [
+     "REJ",
+     176
+    ],
+    [
+     "OTH",
+     57
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     22681
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "192.168.1.152",
+   "flows_as_source": 110253,
+   "attack_flows_as_source": 17223,
+   "attack_share_as_source": 0.1562134363690784,
+   "flows_as_destination": 323847,
+   "attack_flows_as_destination": 264393,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     17223
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     36665,
+     94
+    ],
+    [
+     37573,
+     78
+    ],
+    [
+     34618,
+     74
+    ],
+    [
+     42231,
+     73
+    ]
+   ],
+   "distinct_attack_destinations": 3,
+   "conn_states": [
+    [
+     "RSTOS0",
+     17181
+    ],
+    [
+     "OTH",
+     21
+    ],
+    [
+     "REJ",
+     12
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     17223
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "192.168.1.190",
+   "flows_as_source": 56802,
+   "attack_flows_as_source": 17023,
+   "attack_share_as_source": 0.2996901517552199,
+   "flows_as_destination": 381464,
+   "attack_flows_as_destination": 309139,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     17023
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     48821,
+     210
+    ],
+    [
+     56212,
+     196
+    ],
+    [
+     58245,
+     151
+    ],
+    [
+     60020,
+     138
+    ]
+   ],
+   "distinct_attack_destinations": 3,
+   "conn_states": [
+    [
+     "RSTOS0",
+     16648
+    ],
+    [
+     "RSTR",
+     124
+    ],
+    [
+     "REJ",
+     118
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     17021
+    ],
+    [
+     "dns",
+     2
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "192.168.1.169",
+   "flows_as_source": 15922,
+   "attack_flows_as_source": 15838,
+   "attack_share_as_source": 0.9947242808692376,
+   "flows_as_destination": 364878,
+   "attack_flows_as_destination": 364877,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     15838
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     64449,
+     344
+    ],
+    [
+     44423,
+     225
+    ],
+    [
+     44855,
+     209
+    ],
+    [
+     44424,
+     16
+    ]
+   ],
+   "distinct_attack_destinations": 3,
+   "conn_states": [
+    [
+     "RSTOS0",
+     15511
+    ],
+    [
+     "RSTR",
+     238
+    ],
+    [
+     "SH",
+     41
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     15838
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "192.168.1.250",
+   "flows_as_source": 4015,
+   "attack_flows_as_source": 3002,
+   "attack_share_as_source": 0.7476961394769613,
+   "flows_as_destination": 104563,
+   "attack_flows_as_destination": 104563,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     3002
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     33006,
+     114
+    ],
+    [
+     33005,
+     96
+    ],
+    [
+     56062,
+     59
+    ],
+    [
+     56061,
+     53
+    ]
+   ],
+   "distinct_attack_destinations": 3,
+   "conn_states": [
+    [
+     "RSTOS0",
+     2967
+    ],
+    [
+     "REJ",
+     26
+    ],
+    [
+     "OTH",
+     9
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     3002
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "192.168.1.133",
+   "flows_as_source": 2394,
+   "attack_flows_as_source": 1378,
+   "attack_share_as_source": 0.5756056808688388,
+   "flows_as_destination": 41575,
+   "attack_flows_as_destination": 41575,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1378
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     39571,
+     111
+    ],
+    [
+     42205,
+     105
+    ],
+    [
+     34749,
+     56
+    ],
+    [
+     34893,
+     52
+    ]
+   ],
+   "distinct_attack_destinations": 3,
+   "conn_states": [
+    [
+     "RSTOS0",
+     1349
+    ],
+    [
+     "REJ",
+     22
+    ],
+    [
+     "OTH",
+     5
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1378
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "192.168.1.49",
+   "flows_as_source": 673,
+   "attack_flows_as_source": 623,
+   "attack_share_as_source": 0.9257057949479941,
+   "flows_as_destination": 92381,
+   "attack_flows_as_destination": 92381,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     623
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     34619,
+     18
+    ],
+    [
+     34701,
+     18
+    ],
+    [
+     34699,
+     16
+    ],
+    [
+     34618,
+     13
+    ]
+   ],
+   "distinct_attack_destinations": 3,
+   "conn_states": [
+    [
+     "RSTOS0",
+     623
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     623
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "192.168.1.1",
+   "flows_as_source": 980,
+   "attack_flows_as_source": 72,
+   "attack_share_as_source": 0.07346938775510205,
+   "flows_as_destination": 9018,
+   "attack_flows_as_destination": 8623,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     72
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     36210,
+     4
+    ],
+    [
+     53396,
+     4
+    ],
+    [
+     58856,
+     4
+    ],
+    [
+     52004,
+     4
+    ]
+   ],
+   "distinct_attack_destinations": 3,
+   "conn_states": [
+    [
+     "S0",
+     72
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     72
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "192.168.1.195",
+   "flows_as_source": 6158,
+   "attack_flows_as_source": 43,
+   "attack_share_as_source": 0.006982786619032153,
+   "flows_as_destination": 634658,
+   "attack_flows_as_destination": 634326,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     43
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     5060,
+     6
+    ],
+    [
+     50320,
+     1
+    ],
+    [
+     39600,
+     1
+    ],
+    [
+     63956,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 3,
+   "conn_states": [
+    [
+     "REJ",
+     23
+    ],
+    [
+     "RSTR",
+     6
+    ],
+    [
+     "SHR",
+     6
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     43
+    ]
+   ],
+   "median_dst_pkts": 1.0
+  },
+  {
+   "address": "103.13.80.89",
+   "flows_as_source": 7,
+   "attack_flows_as_source": 7,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 0,
+   "attack_flows_as_destination": 0,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     7
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     0,
+     7
+    ]
+   ],
+   "distinct_attack_destinations": 3,
+   "conn_states": [
+    [
+     "OTH",
+     7
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     7
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "192.168.1.180",
+   "flows_as_source": 6989,
+   "attack_flows_as_source": 6,
+   "attack_share_as_source": 0.0008584919158677923,
+   "flows_as_destination": 625276,
+   "attack_flows_as_destination": 625255,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     6
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     5060,
+     6
+    ]
+   ],
+   "distinct_attack_destinations": 3,
+   "conn_states": [
+    [
+     "SHR",
+     6
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     6
+    ]
+   ],
+   "median_dst_pkts": 2.0
+  },
+  {
+   "address": "192.168.1.79",
+   "flows_as_source": 21541,
+   "attack_flows_as_source": 4,
+   "attack_share_as_source": 0.00018569240053850796,
+   "flows_as_destination": 815,
+   "attack_flows_as_destination": 699,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     4
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     3,
+     1
+    ],
+    [
+     45994,
+     1
+    ],
+    [
+     45995,
+     1
+    ],
+    [
+     41117,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "RSTOS0",
+     3
+    ],
+    [
+     "OTH",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     4
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.215.15",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 1,
+   "attack_flows_as_destination": 1,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     2330,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.241.84",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 1,
+   "attack_flows_as_destination": 1,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     50559,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.181.23",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 1,
+   "attack_flows_as_destination": 1,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     34619,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.120.229",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 0,
+   "attack_flows_as_destination": 0,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     41202,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.157.139",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 0,
+   "attack_flows_as_destination": 0,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     60156,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.115.231",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 1,
+   "attack_flows_as_destination": 1,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     38044,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.31.39",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 0,
+   "attack_flows_as_destination": 0,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     14969,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.45.120",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 1,
+   "attack_flows_as_destination": 1,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     27093,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.14.128",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 1,
+   "attack_flows_as_destination": 1,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     37642,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.27.186",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 0,
+   "attack_flows_as_destination": 0,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     32944,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.239.49",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 1,
+   "attack_flows_as_destination": 1,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     55894,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.236.201",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 0,
+   "attack_flows_as_destination": 0,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     7596,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.18.174",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 1,
+   "attack_flows_as_destination": 1,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     22543,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.212.61",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 0,
+   "attack_flows_as_destination": 0,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     34268,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.85.240",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 0,
+   "attack_flows_as_destination": 0,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     1090,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.169.6",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 0,
+   "attack_flows_as_destination": 0,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     22197,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.156.208",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 0,
+   "attack_flows_as_destination": 0,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     25362,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "192.168.1.186",
+   "flows_as_source": 5,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 0.2,
+   "flows_as_destination": 316042,
+   "attack_flows_as_destination": 316042,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     5060,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "SHR",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 3.0
+  },
+  {
+   "address": "169.254.217.131",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 1,
+   "attack_flows_as_destination": 1,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     11446,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.61.208",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 0,
+   "attack_flows_as_destination": 0,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     2275,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.130.193",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 0,
+   "attack_flows_as_destination": 0,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     10900,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.126.65",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 0,
+   "attack_flows_as_destination": 0,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     28052,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.94.120",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 0,
+   "attack_flows_as_destination": 0,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     9470,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  },
+  {
+   "address": "169.254.64.172",
+   "flows_as_source": 1,
+   "attack_flows_as_source": 1,
+   "attack_share_as_source": 1.0,
+   "flows_as_destination": 1,
+   "attack_flows_as_destination": 1,
+   "attack_types_as_source": [
+    [
+     "scanning",
+     1
+    ]
+   ],
+   "top_dst_ports_in_attack_flows": [
+    [
+     15184,
+     1
+    ]
+   ],
+   "distinct_attack_destinations": 1,
+   "conn_states": [
+    [
+     "S0",
+     1
+    ]
+   ],
+   "services": [
+    [
+     "-",
+     1
+    ]
+   ],
+   "median_dst_pkts": 0.0
+  }
+ ],
+ "minutes": {
+  "total": 2903,
+  "all_attack": 0,
+  "all_benign": 2766,
+  "mixed": 137
+ },
+ "attack_labelled_infrastructure_like_flows": {
+  "rows": 15934,
+  "share_of_attack_rows": 0.0042192193464473185,
+  "by_type": [
+   {
+    "type": "scanning",
+    "len": 15934
+   }
+  ]
+ }
+}
