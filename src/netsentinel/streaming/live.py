@@ -325,6 +325,7 @@ class MonitorResult:
     anomalous_windows: int = 0
     incidents: int = 0
     verdicts: dict[str, int] = field(default_factory=dict)
+    assessment_states: dict[str, int] = field(default_factory=dict)
     seconds: float = 0.0
     peak_rss_mb: float | None = None
 
@@ -371,7 +372,8 @@ class StreamMonitor:
         if self.pipe.engine is not None:
             ctx = [r for _, rs in self.recent for r in rs]
             frame = records_to_frame(ctx + recs, self.utc_offset)
-            preds, windows = self.pipe.assess(frame, self.source)
+            health = self.stream.stats.health
+            preds, windows = self.pipe.assess(frame, self.source, telemetry_health=health)
             keep = (frame["flow_end_milliseconds"] >= lo_ms).to_numpy()
             preds = [p for p, k in zip(preds, keep, strict=True) if k]
         else:
@@ -388,6 +390,9 @@ class StreamMonitor:
         r.anomalous_windows += int(windows["anomalous"].sum()) if windows.height else 0
         for p in preds:
             r.verdicts[p.verdict] = r.verdicts.get(p.verdict, 0) + 1
+            if p.assessment:
+                r.assessment_states[p.assessment.state] = (
+                    r.assessment_states.get(p.assessment.state, 0) + 1)  # fmt: skip
         if self.keep_windows and windows.height:
             self.windows_out.append(windows)
         if self.store is not None:

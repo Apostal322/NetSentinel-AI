@@ -25,6 +25,18 @@ from netsentinel.telemetry.zeek import ZeekStats, read_conn_log
 
 log = logging.getLogger(__name__)
 
+# Skip reasons that are expected on healthy captures (non-IP frames, fragments); everything
+# else (truncated or malformed records, unparseable lines) counts towards parse health.
+BENIGN_SKIPS = {"not_ip", "non_ip_ethertype", "non_ip_sll", "ipv4_fragment", "empty"}
+PARSE_ERROR_SHARE = 0.01
+
+
+def parse_health(parse: dict) -> str:
+    """Phase 8e telemetry health of an offline capture: "ok" or "parse_errors"."""
+    total = parse.get("lines") or parse.get("packets") or 0
+    bad = sum(n for why, n in (parse.get("skipped") or {}).items() if why not in BENIGN_SKIPS)
+    return "parse_errors" if total and bad / total > PARSE_ERROR_SHARE else "ok"
+
 
 def detect_kind(path: Path) -> str:
     head = path.open("rb").read(4)
@@ -104,7 +116,8 @@ def analyze_capture(
                 "model_versions": pipe.versions()}  # fmt: skip
     source = f"{kind}:{name}"
     # Context and behaviour windows need the whole capture as one stream: one pass.
-    preds, windows = pipe.assess(frame, source)
+    health = parse_health(parse)
+    preds, windows = pipe.assess(frame, source, telemetry_health=health)
     store = EventStore(events_db) if events_db else None
     if store:
         store.add(preds)
@@ -132,6 +145,7 @@ def analyze_capture(
         "kind": kind,
         "flows": len(preds),
         "parse": parse,
+        "telemetry_health": health,
         **pipe.summary(preds, windows),
         "attack_categories": dict(categories),
         "missing_features": preds[0].missing_features if preds else [],

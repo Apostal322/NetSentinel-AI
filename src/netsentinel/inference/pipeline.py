@@ -98,7 +98,7 @@ class AnalysisPipeline:
     def __init__(self, bundle_dir: str | Path | None, calibration_dir: str | Path | None = None,
                  appid_dir: str | Path | None = None,
                  threat_policy: str = DEFAULT_THREAT_POLICY,
-                 engine: Engine | None = None):  # fmt: skip
+                 engine: Engine | None = None, max_age_h: float | None = None):  # fmt: skip
         if threat_policy not in THREAT_POLICIES:
             raise ValueError(f"threat_policy must be one of {THREAT_POLICIES}")
         self.engine = engine or (Engine(bundle_dir) if bundle_dir else None)
@@ -116,6 +116,9 @@ class AnalysisPipeline:
         self.threat_mode = threat_mode_for(threat_policy, self.engine.bundle_id if self.engine
                                            else None, check)  # fmt: skip
         self.threat_policy = threat_policy
+        from netsentinel.inference.assessment import DEFAULT_MAX_AGE_H
+
+        self.max_age_h = DEFAULT_MAX_AGE_H if max_age_h is None else max_age_h
 
     def versions(self) -> dict[str, str]:
         v = dict(self.engine.model_versions) if self.engine else {}
@@ -206,21 +209,48 @@ class AnalysisPipeline:
                 explanation=list(r["explanation"] or [])))  # fmt: skip
         return out, scored
 
+    def assessment_context(self, telemetry_health: str | None = None):
+        """Pipeline-level facts for the Phase 8e uncertainty states."""
+        from netsentinel.inference.assessment import Context
+
+        prof = self.profile
+        dev = prof.levels.get("device") if prof is not None else None
+        diag = (getattr(dev, "threshold_diag", None) or {}) if dev is not None else {}
+        tail = getattr(dev, "tail_fallback_share", None) if dev is not None else None
+        return Context(
+            has_profile=prof is not None, has_model=self.engine is not None,
+            profile_status=prof.status if prof is not None else None,
+            threshold_reliable=diag.get("reliable") if diag else None,
+            tail_dominated=bool(tail is not None and tail > 0.5 and dev is not None and dev.keys),
+            calibration_end_ms=(prof.period or {}).get("end_utc_ms") if prof is not None else None,
+            max_age_h=self.max_age_h, threat_mode=self.threat_mode,
+            telemetry_health=telemetry_health)  # fmt: skip
+
     # ------------------------------------------------------------------ main entry
-    def assess(self, frame: pl.DataFrame, source: str,
-               context: str = "compute") -> tuple[list[Prediction], pl.DataFrame]:  # fmt: skip
+    def assess(self, frame: pl.DataFrame, source: str, context: str = "compute",
+               telemetry_health: str | None = None,
+               ) -> tuple[list[Prediction], pl.DataFrame]:  # fmt: skip
         if self.engine is None:
             raise ValueError("a model bundle is required for flow assessment")
         preds = self.engine.predict(frame, source=source, context=context)
         apps = self._application(frame)
         behs, windows = self._behavior(frame)
+        from netsentinel.inference.assessment import assess as assess_state
+        from netsentinel.inference.schema import AssessmentOut
+
+        ctx = self.assessment_context(telemetry_health)
+        ends = (frame["flow_end_milliseconds"].to_list() if "flow_end_milliseconds" in frame.columns
+                else [None] * frame.height)  # fmt: skip
         out = []
-        for p, a, b in zip(preds, apps, behs, strict=True):
+        for p, a, b, t_ms in zip(preds, apps, behs, ends, strict=True):
             ts = threat_status_for(self.threat_mode, p.threat)
             verdict = decide_verdict(ts, b.behavior_status,
                                      bool(p.anomaly and p.anomaly.is_anomalous))  # fmt: skip
+            asm = AssessmentOut(**assess_state(ctx, verdict, ts, b.behavior_status,
+                                               b.baseline_status, t_ms))  # fmt: skip
             out.append(p.model_copy(update={"application": a, "behavior": b,
                                              "threat_status": ts, "verdict": verdict,
+                                             "assessment": asm,
                                              "model_versions": self.versions()}))  # fmt: skip
         return out, windows
 
@@ -228,6 +258,10 @@ class AnalysisPipeline:
         s: dict[str, Any] = {
             "verdicts": dict(Counter(p.verdict for p in preds)),
             "threat_status": dict(Counter(p.threat_status for p in preds)),
+            "assessment_states": dict(Counter(p.assessment.state for p in preds if p.assessment)),
+            "normality_supported_share": (
+                sum(bool(p.assessment and p.assessment.normality_supported) for p in preds)
+                / len(preds)) if preds else None,
             "threat_mode": self.threat_mode,
             "threat_policy": self.threat_policy,
             "behavior_status": dict(Counter(p.behavior.behavior_status for p in preds

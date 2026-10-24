@@ -70,8 +70,14 @@ CREATE INDEX IF NOT EXISTS idx_inc_status ON incidents (status, last_seen);
 SEVERITIES = ("low", "medium", "high")
 # Phase 6 columns on `events`, added to older databases on open (indexed copies of payload
 # fields; the payload JSON remains the source of truth).
-EVENT_COLUMNS_V2 = {"threat_status": "TEXT", "behavior_status": "TEXT", "behavior_score": "REAL",
-                    "app_protocol": "TEXT", "app_status": "TEXT"}  # fmt: skip
+EVENT_COLUMNS_V2 = {
+    "threat_status": "TEXT",
+    "behavior_status": "TEXT",
+    "behavior_score": "REAL",
+    "app_protocol": "TEXT",
+    "app_status": "TEXT",
+    "assessment_state": "TEXT",
+}  # fmt: skip  (assessment_state: Phase 8e)
 VERDICTS = ("benign", "unusual", "suspicious", "attack", "insufficient_data")
 
 
@@ -104,12 +110,13 @@ class EventStore:
                 p.model_versions.get("bundle"), p.model_dump_json(), p.threat_status,
                 b.behavior_status if b else None, b.anomaly_score if b else None,
                 a.app_protocol if a else None, a.app_status if a else None,
+                p.assessment.state if p.assessment else None,
             ))  # fmt: skip
         cols = ("observation_id, ts, source, verdict, service, anomaly_score, p_malicious, "
                 "attack_category, bundle, payload, " + ", ".join(EVENT_COLUMNS_V2))  # fmt: skip
         with self._lock, self._conn:
             cur = self._conn.executemany(
-                f"INSERT OR IGNORE INTO events ({cols}) VALUES ({','.join('?' * 15)})", rows
+                f"INSERT OR IGNORE INTO events ({cols}) VALUES ({','.join('?' * 16)})", rows
             )
         return cur.rowcount
 
@@ -274,7 +281,12 @@ class EventStore:
         source: str | None = None,
         limit: int = 100,
         offset: int = 0,
+        states: list[str] | None = None,
     ) -> list[dict[str, Any]]:
+        from netsentinel.inference.assessment import STATES
+
+        if states and not set(states) <= set(STATES):
+            raise ValueError(f"unknown assessment states {sorted(set(states) - set(STATES))}")
         if verdicts and not set(verdicts) <= set(VERDICTS):
             raise ValueError(f"unknown verdicts {sorted(set(verdicts) - set(VERDICTS))}")
         limit = max(1, min(int(limit), 1000))
@@ -291,6 +303,9 @@ class EventStore:
         if source:
             where.append("source = ?")
             args.append(source)
+        if states:
+            where.append(f"assessment_state IN ({','.join('?' * len(states))})")
+            args += states
         sql = "SELECT payload FROM events"
         if where:
             sql += " WHERE " + " AND ".join(where)
@@ -308,8 +323,12 @@ class EventStore:
             f"SELECT attack_category, COUNT(*) FROM events {where + (' AND' if where else 'WHERE')}"
             " attack_category IS NOT NULL GROUP BY attack_category", args
         ).fetchall())  # fmt: skip
+        states = dict(self._conn.execute(
+            f"SELECT COALESCE(assessment_state, 'not_recorded'), COUNT(*) FROM events {where} "
+            "GROUP BY 1", args).fetchall())  # fmt: skip
         return {"counts": {v: counts.get(v, 0) for v in VERDICTS}, "first_ts": span[0],
-                "last_ts": span[1], "attack_categories": cats}  # fmt: skip
+                "last_ts": span[1], "attack_categories": cats,
+                "assessment_states": states}  # fmt: skip
 
     def timeline(self, bucket_seconds: int = 60, source: str | None = None) -> list[dict]:
         """Per-bucket verdict counts (bucketed on ISO timestamps via SQLite strftime)."""

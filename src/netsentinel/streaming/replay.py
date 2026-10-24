@@ -26,6 +26,16 @@ from netsentinel.storage.events import EventStore
 log = logging.getLogger(__name__)
 
 
+def _replay_assessment(p):
+    """Replay has a supervised model but no local behaviour calibration, so a quiet flow is
+    `insufficient_calibration`, never `normal_valid_baseline` (Phase 8e)."""
+    from netsentinel.inference.assessment import Context, assess
+    from netsentinel.inference.schema import AssessmentOut
+
+    ctx = Context(has_profile=False, has_model=True)
+    return AssessmentOut(**assess(ctx, p.verdict, p.threat_status, "not_calibrated", None, None))
+
+
 @dataclass
 class ReplayStatus:
     state: str = "idle"  # idle | running | finished | failed | cancelled
@@ -111,6 +121,7 @@ class Replayer:
                     if delay > 0:
                         self._cancel.wait(delay)
                 preds = self.engine.predict(batch, source=source, context="provided")
+                preds = [p.model_copy(update={"assessment": _replay_assessment(p)}) for p in preds]
                 self.store.add(preds)
                 for p in preds:
                     st.verdict_counts[p.verdict] = st.verdict_counts.get(p.verdict, 0) + 1

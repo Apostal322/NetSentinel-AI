@@ -70,6 +70,12 @@ def test_bundle_replay_store_and_api(trained, monkeypatch):
     assert body["threat_status"] == "unverified_domain"
     assert body["verdict"] in {"unusual", "insufficient_data"}
     assert "fwd_pkt_len_max" in body["missing_features"]  # not supplied -> reported
+    # Phase 8e: API flows have no local baseline -> never a supported claim of normality
+    assert body["assessment"]["normality_supported"] is False
+    assert body["assessment"]["state"] in {"insufficient_calibration", "anomalous_behavior"}
+    assert ev["assessment"]["state"] != "normal_valid_baseline"  # replay path, no calibration
+    assert "not_recorded" not in client.get("/metrics/summary").json()["assessment_states"]
+    assert client.get("/events", params={"state": "bogus"}).status_code == 422
     # Validation: unknown fields, bad ports and oversized batches are rejected.
     assert client.post("/predict/flow", json={**flow, "evil": 1}).status_code == 422
     assert client.post("/predict/flow", json={**flow, "dst_port": 70000}).status_code == 422

@@ -12,6 +12,7 @@ from streamlit.testing.v1 import AppTest  # noqa: E402
 from netsentinel.inference.schema import (  # noqa: E402
     AnomalyOut,
     ApplicationOut,
+    AssessmentOut,
     BehaviorOut,
     Prediction,
     ServiceOut,
@@ -37,6 +38,9 @@ def _pred(i: int, verdict: str) -> Prediction:
                              anomaly_score=99.0, baseline_status="baseline_ready",
                              calibration="calibration-test"),
         threat_status="unverified_domain",
+        assessment=AssessmentOut(
+            state="anomalous_behavior" if verdict == "unusual" else "insufficient_calibration",
+            normality_supported=False, evidence_present=verdict == "unusual"),
     )  # fmt: skip
 
 
@@ -71,3 +75,5 @@ def test_all_pages_render(tmp_path, monkeypatch):
         if page == "Live traffic":
             values = {m.label: m.value for m in at.metric}
             assert values["unusual"] == "6" and values["benign"] == "54"
+            # Phase 8e: quiet flows without a valid baseline are flagged, not shown as normal
+            assert any("No alert does not mean normal" in w.value for w in at.warning)

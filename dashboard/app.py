@@ -40,7 +40,7 @@ def load_events(db: str, limit: int = 200_000) -> pd.DataFrame:
     with sqlite3.connect(f"file:{db}?mode=ro", uri=True) as conn:
         have = {r[1] for r in conn.execute("PRAGMA table_info(events)")}
         v2 = [c for c in ("threat_status", "behavior_status", "behavior_score", "app_protocol",
-                          "app_status") if c in have]  # fmt: skip
+                          "app_status", "assessment_state") if c in have]  # fmt: skip
         cols = "".join(", " + c for c in v2)
         df = pd.read_sql_query(
             "SELECT observation_id, ts, source, verdict, service, anomaly_score, p_malicious, "
@@ -48,6 +48,23 @@ def load_events(db: str, limit: int = 200_000) -> pd.DataFrame:
             params=(limit,))  # fmt: skip
     df["ts"] = pd.to_datetime(df["ts"], format="ISO8601")  # mixed with/without fractions
     return df
+
+
+def assessment_banner(df: pd.DataFrame) -> None:
+    """Phase 8e: a missing alert is a claim of normality only under `normal_valid_baseline`."""
+    if "assessment_state" not in df.columns or df["assessment_state"].isna().all():
+        st.caption("No assessment states recorded for these events (stored before Phase 8e): "
+                   "no alert is NOT evidence of normality.")  # fmt: skip
+        return
+    states = df["assessment_state"].fillna("not_recorded").value_counts()
+    quiet = df[~df["assessment_state"].isin(["suspicious_evidence", "anomalous_behavior"])]
+    uncertain = quiet[quiet["assessment_state"] != "normal_valid_baseline"]
+    if len(quiet) and len(uncertain):
+        top = uncertain["assessment_state"].fillna("not_recorded").value_counts()
+        st.warning(f"No alert does not mean normal: {len(uncertain) / len(quiet):.0%} of the flows "
+                   "without evidence are in an uncertainty state ("
+                   + ", ".join(f"{k} {v:,}" for k, v in top.items()) + ").")  # fmt: skip
+    st.write("**Assessment states**", states.to_dict())
 
 
 @st.cache_data(ttl=10)
@@ -160,6 +177,13 @@ if page == "Analyze capture":
             col.metric(v, summary.get("verdicts", {}).get(v, 0))
         keys = ("threat_mode", "threat_status", "behavior_status", "app_status", "baseline_state")
         st.write("**Evidence sources**", {k: summary.get(k) for k in keys})
+        if summary.get("telemetry_health", "ok") != "ok":
+            st.error(f"Telemetry degraded: {summary['telemetry_health']}")
+        if (summary.get("normality_supported_share") or 0) < 1:
+            st.warning("No alert does not mean normal: only "
+                       f"{summary.get('normality_supported_share') or 0:.0%} of flows are "
+                       "assessed under a valid baseline.")  # fmt: skip
+        st.write("**Assessment states**", summary.get("assessment_states", {}))
         st.write("**Parsing**", summary["parse"])
         if summary.get("missing_features"):
             st.warning(f"{len(summary['missing_features'])} model features missing from this "
@@ -312,6 +336,7 @@ if page == "Live traffic":
     span = (events["ts"].max() - events["ts"].min()).total_seconds() / 3600
     st.caption(f"{len(events):,} replayed flows over {span:.2f} h of capture time; bundle(s): "
                f"{', '.join(events['bundle'].dropna().unique())}")  # fmt: skip
+    assessment_banner(events)
     tl = hhmm(events.set_index("ts").groupby("verdict").resample(bucket).size()
               .unstack(0).fillna(0))  # fmt: skip
     st.subheader("Flows per bucket by verdict")
@@ -322,7 +347,8 @@ if page == "Live traffic":
     st.caption("Consecutive alert flows less than 60 s apart are grouped into one episode, so a "
                "single incident is not counted as thousands of alerts.")  # fmt: skip
     if alerts.empty:
-        st.write("No alerts in the selected window.")
+        st.write("No alerts in the selected window (see the assessment states above before "
+                 "reading this as normal).")  # fmt: skip
     else:
         a = alerts.sort_values("ts").copy()
         a["episode"] = (a["ts"].diff().dt.total_seconds().fillna(1e9) > 60).cumsum()

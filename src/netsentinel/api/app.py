@@ -211,15 +211,22 @@ def create_app(settings: Settings) -> FastAPI:
 
     def _assess_records(frame, source: str, context: str) -> list[Prediction]:
         """Flow records (CICFlowMeter-style, no endpoints) cannot be windowed into behaviour,
-        so behaviour is `not_calibrated`; the supervised threat policy still applies."""
+        so behaviour is `not_calibrated` and the assessment is at best
+        `insufficient_calibration` (never `normal_valid_baseline`); the supervised threat
+        policy still applies."""
+        from netsentinel.inference.assessment import assess as assess_state
         from netsentinel.inference.pipeline import decide_verdict, threat_status_for
+        from netsentinel.inference.schema import AssessmentOut
 
         pipe = pipeline()
+        ctx = pipe.assessment_context()
         out = []
         for p in engine().predict(frame, source=source, context=context):
             ts = threat_status_for(pipe.threat_mode, p.threat)
             v = decide_verdict(ts, "not_calibrated", bool(p.anomaly and p.anomaly.is_anomalous))
-            out.append(p.model_copy(update={"threat_status": ts, "verdict": v}))
+            asm = AssessmentOut(**assess_state(ctx, v, ts, "not_calibrated", None, None))
+            out.append(p.model_copy(update={"threat_status": ts, "verdict": v,
+                                             "assessment": asm}))  # fmt: skip
         return out
 
     @app.post("/predict/flow", response_model=Prediction)
@@ -242,9 +249,11 @@ def create_app(settings: Settings) -> FastAPI:
         source: str | None = None,
         limit: int = Query(100, ge=1, le=1000),
         offset: int = Query(0, ge=0),
+        state: Annotated[list[str] | None, Query()] = None,
     ) -> list[dict]:
+        """`state` filters by Phase 8e assessment state (events stored before 8e have none)."""
         try:
-            return store.query(verdict, since, until, source, limit, offset)
+            return store.query(verdict, since, until, source, limit, offset, states=state)
         except ValueError as exc:
             raise HTTPException(422, str(exc)) from exc
 

@@ -38,6 +38,10 @@ AppStatus = Literal["predicted", "low_confidence", "out_of_distribution", "missi
                     "unsupported_protocol", "port_ml_conflict", "class_transport_mismatch",
                     "class_port_mismatch", "no_classifier"]  # fmt: skip
 AppMethod = Literal["ml", "ml_port_agree", "port_estimate"]
+AssessmentState = Literal[
+    "suspicious_evidence", "anomalous_behavior", "model_unavailable", "telemetry_degraded",
+    "insufficient_calibration", "calibration_expired", "drift_detected", "unsupported_network",
+    "normal_valid_baseline"]  # fmt: skip
 
 
 class FlowRecord(BaseModel):
@@ -119,6 +123,18 @@ class BehaviorOut(BaseModel):
     explanation: list[str] = Field(default_factory=list)
 
 
+class AssessmentOut(BaseModel):
+    """Phase 8e explicit uncertainty (netsentinel.inference.assessment). `verdict` keeps its
+    meaning for compatibility; `assessment.state` says whether a missing alert is a supported
+    claim of normality (`normality_supported`) or an uncertainty."""
+
+    state: AssessmentState
+    qualifiers: list[AssessmentState] = Field(default_factory=list)
+    normality_supported: bool
+    evidence_present: bool
+    reasons: list[str] = Field(default_factory=list)
+
+
 class Prediction(BaseModel):
     observation_id: str
     timestamp: datetime
@@ -133,3 +149,4 @@ class Prediction(BaseModel):
     application: ApplicationOut | None = None
     behavior: BehaviorOut | None = None
     threat_status: ThreatStatus | None = None
+    assessment: AssessmentOut | None = None  # Phase 8e

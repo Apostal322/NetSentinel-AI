@@ -163,6 +163,10 @@ def test_offline_app_end_to_end(app_ws, capsys, monkeypatch):
     assert sum(s["verdicts"].values()) == 2
     # inference fallback: no calibration / classifier loaded -> explicit statuses
     assert s["behavior_status"] == {"not_calibrated": 2} and s["app_status"] == {"no_classifier": 2}
+    # Phase 8e: without a calibration a quiet flow is never "normal"
+    # (1 of 10 packets in the fixture is a truncated IPv4 packet -> degraded telemetry)
+    assert s["normality_supported_share"] == 0 and s["telemetry_health"] == "parse_errors"
+    assert "normal_valid_baseline" not in s["assessment_states"]
     assert main(["analyze", str(pcap), "--bundle", bundle, "--calibration", "missing-dir"]) == 2
     conn = app_ws / "conn.log"
     conn.write_text(ZEEK_TSV, encoding="utf-8")
@@ -209,6 +213,8 @@ def test_offline_app_end_to_end(app_ws, capsys, monkeypatch):
     assert m["flows"] > 100 and set(m["behavior_status"]) <= {"normal", "anomalous",
                                                               "insufficient_history"}  # fmt: skip
     assert m["behavior_windows"]["device"]["anomalous"] >= 1  # the injected scan
+    assert m["assessment_states"].get("anomalous_behavior", 0) >= 1
+    assert sum(m["assessment_states"].values()) == m["flows"]
     assert m["threat_mode"] == "unverified_domain"  # Phase 7 default: never escalate
     assert m["threat_policy"] == "unverified" and "suspicious" not in m["verdicts"]
     assert set(m["app_status"]) <= {"predicted", "low_confidence", "out_of_distribution",
