@@ -49,5 +49,12 @@
  ],
  "total_bytes": 2322539243,
  "contents_opened": false,
- "frozen_evaluation_code_sha": null
+ "frozen_evaluation_code_sha": "dfaf2065e237ad0844c4065b4a8183fafa6637dc",
+ "frozen_paths": [
+  "scripts/phase8g",
+  "configs/phase8g",
+  "src"
+ ],
+ "frozen_recorded_utc": "2026-10-27T22:28:14+00:00",
+ "frozen_tests": "tests/integration/test_phase8g_protocol.py (synthetic Zeek/binetflow only; 234 passed full suite)"
 }
