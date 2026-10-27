@@ -28,7 +28,7 @@ recorded with a link.
 
 | candidate | why it might qualify | open questions |
 |---|---|---|
-| CTU-13 (Stratosphere Lab, CVUT) | 13 botnet scenarios on a university network; infected-host addresses documented per scenario; bidirectional NetFlow | licence text; per-scenario size; Argus field mapping (directional bytes from total minus source bytes); the same lab as IoT-23, though a different network and period |
+| CTU-13 (Stratosphere Lab, CVUT) | 13 botnet scenarios on a university network; infected-host addresses documented per scenario; Zeek conn.log available | **checked 2026-10-28: [CTU13_ELIGIBILITY.md](CTU13_ELIGIBILITY.md).** Attribution-only use, no formal licence; only scenarios 9/10 have ≥ 5 initiators; the calibration rule needs an amendment |
 | The operator's own network with a scheduled, authorised red-team exercise | initiators known by construction; the target environment itself | needs written authorisation, scope and an exercise plan; the strongest evidence for a deployment decision |
 | CIC-IDS2017 | documented attacker addresses and schedule | the same lab and testbed design as CSE-CIC-IDS2018 (consumed): weak independence; known labelling errors |
 
