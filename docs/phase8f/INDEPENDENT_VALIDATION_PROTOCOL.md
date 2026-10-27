@@ -1,6 +1,7 @@
 # Independent validation protocol (Phase 8f, Mission 6)
 
-**Status: prepared, not run.**
+**Status: prepared, not run.** Amendment A1 (2026-10-28): CTU-13 scenarios 9 and 10 with
+calibration option (a), registered in [PREREG_CTU13.md](PREREG_CTU13.md).
 - No data has been downloaded or opened.
 - Running it needs explicit approval of a named dataset (download size, licence) under the
   project's approval gates.
