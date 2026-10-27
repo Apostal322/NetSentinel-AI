@@ -1,0 +1,5824 @@
+{
+ "role": "development (no consumed capture)",
+ "target_fpr": 0.01,
+ "features": [
+  "log_flows",
+  "log_up_bytes",
+  "log_down_bytes",
+  "log_pkts",
+  "log_dst_hosts",
+  "log_dst_ports",
+  "no_reply_frac",
+  "rst_frac",
+  "udp_share",
+  "med_log_dur",
+  "upload_share",
+  "new_dst_frac"
+ ],
+ "skipped": [
+  "CTU-Normal-28"
+ ],
+ "pooled": {
+  "device_false_alerts": 428.0,
+  "lofo_all": {
+   "pooled_fpr_all_features": 0.025123268372857478,
+   "features": {
+    "log_flows": {
+     "pooled_fpr": 0.025181967598027703,
+     "false_alerts_change": 0.9999999999999432
+    },
+    "log_up_bytes": {
+     "pooled_fpr": 0.03111058934022071,
+     "false_alerts_change": 102.0
+    },
+    "log_down_bytes": {
+     "pooled_fpr": 0.023831885419112468,
+     "false_alerts_change": -22.0
+    },
+    "log_pkts": {
+     "pooled_fpr": 0.028703921108241368,
+     "false_alerts_change": 60.99999999999994
+    },
+    "log_dst_hosts": {
+     "pooled_fpr": 0.025123268372857478,
+     "false_alerts_change": 0.0
+    },
+    "log_dst_ports": {
+     "pooled_fpr": 0.02905611645926274,
+     "false_alerts_change": 67.0
+    },
+    "no_reply_frac": {
+     "pooled_fpr": 0.025181967598027707,
+     "false_alerts_change": 1.0
+    },
+    "rst_frac": {
+     "pooled_fpr": 0.025240666823197935,
+     "false_alerts_change": 2.0
+    },
+    "udp_share": {
+     "pooled_fpr": 0.025123268372857478,
+     "false_alerts_change": 0.0
+    },
+    "med_log_dur": {
+     "pooled_fpr": 0.023831885419112464,
+     "false_alerts_change": -22.000000000000057
+    },
+    "upload_share": {
+     "pooled_fpr": 0.025123268372857478,
+     "false_alerts_change": 0.0
+    },
+    "new_dst_frac": {
+     "pooled_fpr": 0.02506456914768725,
+     "false_alerts_change": -1.0
+    }
+   }
+  },
+  "false_alert_attribution_all": {
+   "log_up_bytes": 0.7616822429906542,
+   "log_down_bytes": 0.17289719626168223,
+   "med_log_dur": 0.053738317757009345,
+   "log_pkts": 0.011682242990654205,
+   "log_flows": 0.0,
+   "log_dst_hosts": 0.0,
+   "log_dst_ports": 0.0,
+   "no_reply_frac": 0.0,
+   "rst_frac": 0.0,
+   "udp_share": 0.0,
+   "upload_share": 0.0,
+   "new_dst_frac": 0.0
+  },
+  "false_alerts_by_entity_all": {
+   "own_profile": 39,
+   "pooled_seen_in_calibration": 385,
+   "never_seen_in_calibration": 4
+  },
+  "lofo_excluding_nf_unsw": {
+   "pooled_fpr_all_features": 0.003530103941949402,
+   "features": {
+    "log_flows": {
+     "pooled_fpr": 0.003530103941949402,
+     "false_alerts_change": 0.0
+    },
+    "log_up_bytes": {
+     "pooled_fpr": 0.003530103941949402,
+     "false_alerts_change": 0.0
+    },
+    "log_down_bytes": {
+     "pooled_fpr": 0.00451068837026868,
+     "false_alerts_change": 5.0
+    },
+    "log_pkts": {
+     "pooled_fpr": 0.003530103941949402,
+     "false_alerts_change": 0.0
+    },
+    "log_dst_hosts": {
+     "pooled_fpr": 0.003530103941949402,
+     "false_alerts_change": 0.0
+    },
+    "log_dst_ports": {
+     "pooled_fpr": 0.003530103941949402,
+     "false_alerts_change": 0.0
+    },
+    "no_reply_frac": {
+     "pooled_fpr": 0.0037262208276132576,
+     "false_alerts_change": 1.0
+    },
+    "rst_frac": {
+     "pooled_fpr": 0.003922337713277113,
+     "false_alerts_change": 2.0
+    },
+    "udp_share": {
+     "pooled_fpr": 0.003530103941949402,
+     "false_alerts_change": 0.0
+    },
+    "med_log_dur": {
+     "pooled_fpr": 0.002745636399293979,
+     "false_alerts_change": -4.0
+    },
+    "upload_share": {
+     "pooled_fpr": 0.003530103941949402,
+     "false_alerts_change": 0.0
+    },
+    "new_dst_frac": {
+     "pooled_fpr": 0.003333987056285546,
+     "false_alerts_change": -1.0
+    }
+   }
+  },
+  "false_alert_attribution_excluding_nf_unsw": {
+   "log_down_bytes": 0.6111111111111112,
+   "med_log_dur": 0.2777777777777778,
+   "log_up_bytes": 0.1111111111111111,
+   "log_flows": 0.0,
+   "log_pkts": 0.0,
+   "log_dst_hosts": 0.0,
+   "log_dst_ports": 0.0,
+   "no_reply_frac": 0.0,
+   "rst_frac": 0.0,
+   "udp_share": 0.0,
+   "upload_share": 0.0,
+   "new_dst_frac": 0.0
+  },
+  "false_alerts_by_entity_excluding_nf_unsw": {
+   "own_profile": 6,
+   "pooled_seen_in_calibration": 8,
+   "never_seen_in_calibration": 4
+  },
+  "fpr_excess_spearman": {
+   "holdout_windows": {
+    "rho": 0.014656833601216486,
+    "p": 0.9497216571122903,
+    "n": 21
+   },
+   "fold_threshold_cv": {
+    "rho": -0.18077006129703696,
+    "p": 0.4329459204680095,
+    "n": 21
+   },
+   "share_eval_windows_never_seen": {
+    "rho": 0.5401660542132668,
+    "p": 0.011478036510447693,
+    "n": 21
+   },
+   "max_abs_median_z_shift": {
+    "rho": -0.21666583308165477,
+    "p": 0.34549572730432715,
+    "n": 21
+   },
+   "flow_intensity_shift_z": {
+    "rho": 0.047600184854346736,
+    "p": 0.8376579763307777,
+    "n": 21
+   },
+   "eval_hours": {
+    "rho": 0.12372862587046406,
+    "p": 0.5931081147859851,
+    "n": 21
+   }
+  },
+  "age_first_vs_second_half": {
+   "captures": 21,
+   "median_first": 0.0,
+   "median_second": 0.0,
+   "second_higher": 5
+  },
+  "global_acf_median_by_lag": [
+   0.32084731727415006,
+   0.192009766928186,
+   0.09959231131623433,
+   0.11274255497081068,
+   0.04175233372106853,
+   0.027814127099685886,
+   -0.012061022440790908,
+   -0.021907117254107968,
+   -0.0027664588786187163,
+   -0.02851025321885723,
+   0.004711167145732654,
+   0.0029804029417325843,
+   -0.001693546480145542,
+   -0.006009194705115372,
+   -0.0013834261086062194,
+   -0.004804458895044505,
+   -0.001997741640306412,
+   0.020654784054353156,
+   0.018897956562688237,
+   0.03142184102175267,
+   0.02271767384472361,
+   0.0050495762164379,
+   -0.006058613951965761,
+   0.00048373898423622003,
+   -0.009747138427333837,
+   0.022366922923538972,
+   0.02775678365968722,
+   0.016570557498015205,
+   0.005664848178145929,
+   0.002268340226205833
+  ],
+  "acf_below_0.2_at_lag_windows": 2,
+  "acf_below_0.1_at_lag_windows": 3,
+  "contamination": {
+   "CTU-IoT-Malware-Capture-20-1": {
+    "calibration_attack_flows": 15,
+    "fpr_unlabelled_cal": 0.0,
+    "recall_unlabelled_cal": 1.0,
+    "threshold_ratio_unlabelled_vs_clean": 1.0
+   },
+   "CTU-IoT-Malware-Capture-21-1": {
+    "calibration_attack_flows": 12,
+    "fpr_unlabelled_cal": 0.0,
+    "recall_unlabelled_cal": 0.0,
+    "threshold_ratio_unlabelled_vs_clean": 1.0
+   },
+   "CTU-IoT-Malware-Capture-3-1": {
+    "calibration_attack_flows": 75161,
+    "fpr_unlabelled_cal": 0.0,
+    "recall_unlabelled_cal": 0.0032287822878228783,
+    "threshold_ratio_unlabelled_vs_clean": 3.3955206311444384
+   },
+   "CTU-IoT-Malware-Capture-34-1": {
+    "calibration_attack_flows": 3539,
+    "fpr_unlabelled_cal": 0.0,
+    "recall_unlabelled_cal": 0.0,
+    "threshold_ratio_unlabelled_vs_clean": 0.7976592773200507
+   },
+   "CTU-IoT-Malware-Capture-42-1": {
+    "calibration_attack_flows": 6,
+    "fpr_unlabelled_cal": 0.007407407407407408,
+    "recall_unlabelled_cal": null,
+    "threshold_ratio_unlabelled_vs_clean": 1.0
+   },
+   "CTU-IoT-Malware-Capture-44-1": {
+    "calibration_attack_flows": 24,
+    "fpr_unlabelled_cal": 0.0,
+    "recall_unlabelled_cal": 0.5,
+    "threshold_ratio_unlabelled_vs_clean": 1.266683260646611
+   },
+   "NF-UNSW-NB15-v3-dev": {
+    "calibration_attack_flows": 17795,
+    "fpr_unlabelled_cal": 0.026304766691798608,
+    "recall_unlabelled_cal": 0.0,
+    "threshold_ratio_unlabelled_vs_clean": 0.9723416916028493
+   }
+  }
+ },
+ "captures": {
+  "CTU-Honeypot-Capture-4-1": {
+   "eval_hours": 10.935576944444444,
+   "benign_windows": 87,
+   "attack_windows": 0,
+   "holdout_windows": 117,
+   "device_fpr": 0.022988505747126436,
+   "device_recall": null,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.022988505747126436,
+     "recall": null
+    },
+    "log_up_bytes": {
+     "fpr": 0.034482758620689655,
+     "recall": null
+    },
+    "log_down_bytes": {
+     "fpr": 0.022988505747126436,
+     "recall": null
+    },
+    "log_pkts": {
+     "fpr": 0.022988505747126436,
+     "recall": null
+    },
+    "log_dst_hosts": {
+     "fpr": 0.022988505747126436,
+     "recall": null
+    },
+    "log_dst_ports": {
+     "fpr": 0.022988505747126436,
+     "recall": null
+    },
+    "no_reply_frac": {
+     "fpr": 0.022988505747126436,
+     "recall": null
+    },
+    "rst_frac": {
+     "fpr": 0.022988505747126436,
+     "recall": null
+    },
+    "udp_share": {
+     "fpr": 0.022988505747126436,
+     "recall": null
+    },
+    "med_log_dur": {
+     "fpr": 0.022988505747126436,
+     "recall": null
+    },
+    "upload_share": {
+     "fpr": 0.022988505747126436,
+     "recall": null
+    },
+    "new_dst_frac": {
+     "fpr": 0.022988505747126436,
+     "recall": null
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 2,
+    "log_down_bytes": 0,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 0,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": 1.621860432432658,
+    "log_up_bytes": 4.463120369161899,
+    "log_down_bytes": 6.766704042684289,
+    "log_pkts": 4.394449154672439,
+    "log_dst_hosts": 1.621860432432658,
+    "log_dst_ports": 1.621860432432658,
+    "no_reply_frac": 0.0,
+    "rst_frac": 0.0,
+    "udp_share": -2.5,
+    "med_log_dur": -0.512404642477145,
+    "upload_share": 0.0,
+    "new_dst_frac": 0.0
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.12643678160919541,
+    "log_up_bytes": 0.5632183908045977,
+    "log_down_bytes": 0.5747126436781609,
+    "log_pkts": 0.5517241379310345,
+    "log_dst_hosts": 0.11494252873563218,
+    "log_dst_ports": 0.011494252873563218,
+    "no_reply_frac": 0.022988505747126436,
+    "rst_frac": 0.011494252873563218,
+    "udp_share": 0.41379310344827586,
+    "med_log_dur": 0.034482758620689655,
+    "upload_share": 0.022988505747126436,
+    "new_dst_frac": 0.022988505747126436
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.09401709401709402,
+    "log_up_bytes": 0.3418803418803419,
+    "log_down_bytes": 0.4017094017094017,
+    "log_pkts": 0.3504273504273504,
+    "log_dst_hosts": 0.09401709401709402,
+    "log_dst_ports": 0.008547008547008548,
+    "no_reply_frac": 0.10256410256410256,
+    "rst_frac": 0.0,
+    "udp_share": 0.27350427350427353,
+    "med_log_dur": 0.10256410256410256,
+    "upload_share": 0.10256410256410256,
+    "new_dst_frac": 0.05982905982905983
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 2,
+    "pooled_seen_in_calibration": 0,
+    "never_seen_in_calibration": 0
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 87,
+    "pooled_seen": 0,
+    "never_seen": 0
+   },
+   "device_fpr_first_half": 0.0,
+   "device_fpr_second_half": 0.046511627906976744,
+   "threshold": 22.12114626191318,
+   "fold_thresholds": [],
+   "fold_threshold_cv": null,
+   "threshold_reliable": true,
+   "global_fpr": 0.003067484662576687,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 0.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 0.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 1.0,
+     "eval": 1.0
+    },
+    "median_z_shift_log_flows": 0.0
+   },
+   "global_acf": {
+    "log_flows": [
+     0.0016197199022966683,
+     -0.0005841639483323441,
+     -0.035885733416299435,
+     -0.009577304927312423,
+     -0.010102112884106035,
+     -0.009703139595853822,
+     0.024926317786347595,
+     -0.02730419281889252,
+     -0.043709836837981096,
+     -0.04624196815436436,
+     -0.010723820693583998,
+     -0.02313947453352974,
+     -0.022065301856336275,
+     -0.027180452002882927,
+     -0.008603143046590675,
+     -0.010956662773929367,
+     -0.03586785066353516,
+     -0.017295139849027627,
+     -0.014464279496640581,
+     -0.04721494927143938,
+     -0.032557381257743635,
+     -0.03424483899975813,
+     -0.008779688247967765,
+     -0.014767370813532263,
+     -0.020064334853736078,
+     -0.017181508804249297,
+     -0.03701944336965474,
+     0.03365594948325261,
+     -0.03255487696849071,
+     0.5833723138471142
+    ]
+   },
+   "service_fpr": 0.007633587786259542,
+   "service_false_alerts": {
+    "web": 1
+   }
+  },
+  "CTU-Honeypot-Capture-5-1": {
+   "eval_hours": 2.7421266666666666,
+   "benign_windows": 295,
+   "attack_windows": 0,
+   "holdout_windows": 269,
+   "device_fpr": 0.010169491525423728,
+   "device_recall": null,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.010169491525423728,
+     "recall": null
+    },
+    "log_up_bytes": {
+     "fpr": 0.010169491525423728,
+     "recall": null
+    },
+    "log_down_bytes": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_pkts": {
+     "fpr": 0.010169491525423728,
+     "recall": null
+    },
+    "log_dst_hosts": {
+     "fpr": 0.010169491525423728,
+     "recall": null
+    },
+    "log_dst_ports": {
+     "fpr": 0.010169491525423728,
+     "recall": null
+    },
+    "no_reply_frac": {
+     "fpr": 0.010169491525423728,
+     "recall": null
+    },
+    "rst_frac": {
+     "fpr": 0.01694915254237288,
+     "recall": null
+    },
+    "udp_share": {
+     "fpr": 0.010169491525423728,
+     "recall": null
+    },
+    "med_log_dur": {
+     "fpr": 0.010169491525423728,
+     "recall": null
+    },
+    "upload_share": {
+     "fpr": 0.010169491525423728,
+     "recall": null
+    },
+    "new_dst_frac": {
+     "fpr": 0.010169491525423728,
+     "recall": null
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 0,
+    "log_down_bytes": 3,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 0,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": 0.0,
+    "log_up_bytes": -0.35851367673078993,
+    "log_down_bytes": 0.0,
+    "log_pkts": -0.22709861630269335,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.0,
+    "rst_frac": 0.0,
+    "udp_share": 0.0,
+    "med_log_dur": -0.012097799694828382,
+    "upload_share": 0.0,
+    "new_dst_frac": 0.0
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.003389830508474576,
+    "log_up_bytes": 0.0,
+    "log_down_bytes": 0.013559322033898305,
+    "log_pkts": 0.003389830508474576,
+    "log_dst_hosts": 0.003389830508474576,
+    "log_dst_ports": 0.003389830508474576,
+    "no_reply_frac": 0.006779661016949152,
+    "rst_frac": 0.03389830508474576,
+    "udp_share": 0.03389830508474576,
+    "med_log_dur": 0.003389830508474576,
+    "upload_share": 0.006779661016949152,
+    "new_dst_frac": 0.061016949152542375
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.007434944237918215,
+    "log_up_bytes": 0.011152416356877323,
+    "log_down_bytes": 0.12267657992565056,
+    "log_pkts": 0.01486988847583643,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.0,
+    "rst_frac": 0.10037174721189591,
+    "udp_share": 0.01486988847583643,
+    "med_log_dur": 0.022304832713754646,
+    "upload_share": 0.06691449814126393,
+    "new_dst_frac": 0.12267657992565056
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 0,
+    "pooled_seen_in_calibration": 0,
+    "never_seen_in_calibration": 3
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 149,
+    "pooled_seen": 96,
+    "never_seen": 50
+   },
+   "device_fpr_first_half": 0.0,
+   "device_fpr_second_half": 0.02040816326530612,
+   "threshold": 6.666666666666667,
+   "fold_thresholds": [
+    7.270464715255605,
+    6.666666666666667,
+    6.666666666666667,
+    6.666666666666667,
+    6.666666666666667
+   ],
+   "fold_threshold_cv": 0.03558332858448787,
+   "threshold_reliable": true,
+   "global_fpr": 0.0,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 1.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 0.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 1.3865979381443299,
+     "eval": 1.8322981366459627
+    },
+    "median_z_shift_log_flows": -0.6744907594765953
+   },
+   "global_acf": {
+    "log_flows": [
+     0.2063131818505398,
+     -0.008508374365175571,
+     -0.056075588310740505,
+     -0.10626742678661662,
+     -0.1599599469257573,
+     -0.1821960084899993,
+     -0.11093271441405762,
+     -0.0864458175490416,
+     0.10087760425270609,
+     0.5142439921507007,
+     0.09824028643660239,
+     -0.09898970360475698,
+     -0.0404940140420379,
+     -0.1943837205321577,
+     -0.2100607507582567,
+     -0.16720518529958442,
+     -0.031420038316484565,
+     -0.09799496131086,
+     0.05543880756251212,
+     0.4637454824172676,
+     0.14652475878324686,
+     -0.08747724464926357,
+     -0.06640001126558463,
+     -0.18895117342623172,
+     -0.1964722023604947,
+     -0.12307251024437177,
+     -0.10669453022987914,
+     -0.08338905843898423,
+     0.0721124234703255,
+     0.5117636607776512
+    ]
+   },
+   "service_fpr": 0.03908794788273615,
+   "service_false_alerts": {
+    "dns": 4,
+    "no_port": 4,
+    "other_wellknown": 1,
+    "time_mgmt": 3
+   }
+  },
+  "CTU-IoT-Malware-Capture-20-1": {
+   "eval_hours": 11.9962,
+   "benign_windows": 834,
+   "attack_windows": 1,
+   "holdout_windows": 953,
+   "device_fpr": 0.0,
+   "device_recall": 1.0,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.0,
+     "recall": 1.0
+    },
+    "log_up_bytes": {
+     "fpr": 0.0,
+     "recall": 1.0
+    },
+    "log_down_bytes": {
+     "fpr": 0.0,
+     "recall": 1.0
+    },
+    "log_pkts": {
+     "fpr": 0.0,
+     "recall": 1.0
+    },
+    "log_dst_hosts": {
+     "fpr": 0.0,
+     "recall": 1.0
+    },
+    "log_dst_ports": {
+     "fpr": 0.0,
+     "recall": 1.0
+    },
+    "no_reply_frac": {
+     "fpr": 0.001199040767386091,
+     "recall": 1.0
+    },
+    "rst_frac": {
+     "fpr": 0.0,
+     "recall": 1.0
+    },
+    "udp_share": {
+     "fpr": 0.0,
+     "recall": 1.0
+    },
+    "med_log_dur": {
+     "fpr": 0.0,
+     "recall": 1.0
+    },
+    "upload_share": {
+     "fpr": 0.0,
+     "recall": 1.0
+    },
+    "new_dst_frac": {
+     "fpr": 0.0,
+     "recall": 1.0
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 0,
+    "log_down_bytes": 0,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 0,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": 0.0,
+    "log_up_bytes": 0.0,
+    "log_down_bytes": 0.0,
+    "log_pkts": 0.0,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.0,
+    "rst_frac": 0.0,
+    "udp_share": 0.0,
+    "med_log_dur": 0.0,
+    "upload_share": -0.010857530626093848,
+    "new_dst_frac": 0.0
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.09232613908872901,
+    "log_up_bytes": 0.13189448441247004,
+    "log_down_bytes": 0.21223021582733814,
+    "log_pkts": 0.05755395683453238,
+    "log_dst_hosts": 0.013189448441247002,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.31894484412470026,
+    "rst_frac": 0.0,
+    "udp_share": 0.0,
+    "med_log_dur": 0.04436450839328537,
+    "upload_share": 0.1366906474820144,
+    "new_dst_frac": 0.007194244604316547
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.12381951731374606,
+    "log_up_bytes": 0.22350472193074503,
+    "log_down_bytes": 0.2728226652675761,
+    "log_pkts": 0.11857292759706191,
+    "log_dst_hosts": 0.08919202518363065,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.33473242392444913,
+    "rst_frac": 0.0,
+    "udp_share": 0.001049317943336831,
+    "med_log_dur": 0.03672612801678909,
+    "upload_share": 0.1458551941238195,
+    "new_dst_frac": 0.016789087093389297
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 0,
+    "pooled_seen_in_calibration": 0,
+    "never_seen_in_calibration": 0
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 835,
+    "pooled_seen": 0,
+    "never_seen": 0
+   },
+   "device_fpr_first_half": 0.0,
+   "device_fpr_second_half": 0.0,
+   "threshold": 12.020944177040702,
+   "fold_thresholds": [
+    13.044185596340304,
+    12.020944177040702,
+    12.020944177040702,
+    12.020944177040702,
+    12.020944177040702
+   ],
+   "fold_threshold_cv": 0.033478669359283474,
+   "threshold_reliable": true,
+   "contamination": {
+    "calibration_attack_flows": 15,
+    "fpr_unlabelled_cal": 0.0,
+    "recall_unlabelled_cal": 1.0,
+    "threshold_ratio_unlabelled_vs_clean": 1.0
+   },
+   "global_fpr": 0.0,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 1.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 1.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 1.0021030494216614,
+     "eval": 1.0
+    },
+    "median_z_shift_log_flows": 0.0
+   },
+   "global_acf": {
+    "log_flows": [
+     -0.024588226981410916,
+     0.5195839367548969,
+     0.03187991315071857,
+     0.387789460228773,
+     0.20536498957050778,
+     0.15378374180713178,
+     0.28541796652499074,
+     0.11982788137151323,
+     0.5831694479742734,
+     -0.03983408334627664,
+     0.4456776688264405,
+     -0.10663580404606501,
+     0.4707486311328474,
+     -0.024974775497725043,
+     0.27462204459391637,
+     0.11327014770683241,
+     0.2850111590599605,
+     0.36515701606146017,
+     0.06822938154051535,
+     0.29262755977542476,
+     -0.019904879717387608,
+     0.43206970890325963,
+     -0.0932769206270757,
+     0.3596707093613967,
+     -0.029705619185366877,
+     0.4121551863385039,
+     0.12787721775320812,
+     0.17901284769373157,
+     0.10891148942341232,
+     0.10600835879461634
+    ]
+   },
+   "service_fpr": 0.0,
+   "service_false_alerts": {}
+  },
+  "CTU-IoT-Malware-Capture-21-1": {
+   "eval_hours": 11.999514722222223,
+   "benign_windows": 331,
+   "attack_windows": 2,
+   "holdout_windows": 806,
+   "device_fpr": 0.0,
+   "device_recall": 0.0,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.0,
+     "recall": 0.0
+    },
+    "log_up_bytes": {
+     "fpr": 0.0,
+     "recall": 0.0
+    },
+    "log_down_bytes": {
+     "fpr": 0.0,
+     "recall": 0.0
+    },
+    "log_pkts": {
+     "fpr": 0.0,
+     "recall": 0.0
+    },
+    "log_dst_hosts": {
+     "fpr": 0.0,
+     "recall": 0.0
+    },
+    "log_dst_ports": {
+     "fpr": 0.0,
+     "recall": 0.0
+    },
+    "no_reply_frac": {
+     "fpr": 0.0,
+     "recall": 0.0
+    },
+    "rst_frac": {
+     "fpr": 0.0,
+     "recall": 0.0
+    },
+    "udp_share": {
+     "fpr": 0.0,
+     "recall": 0.0
+    },
+    "med_log_dur": {
+     "fpr": 0.0030211480362537764,
+     "recall": 1.0
+    },
+    "upload_share": {
+     "fpr": 0.0,
+     "recall": 0.0
+    },
+    "new_dst_frac": {
+     "fpr": 0.0,
+     "recall": 0.0
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 0,
+    "log_down_bytes": 0,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 0,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": -0.6744907594765952,
+    "log_up_bytes": -0.6864259153447447,
+    "log_down_bytes": -4.880100555351066,
+    "log_pkts": -0.7059414063272614,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.6744907594765952,
+    "rst_frac": 0.0,
+    "udp_share": 0.0,
+    "med_log_dur": -0.6744907594765953,
+    "upload_share": 0.9017646283065408,
+    "new_dst_frac": 0.0
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.0,
+    "log_up_bytes": 0.0,
+    "log_down_bytes": 0.6646525679758308,
+    "log_pkts": 0.0,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.0,
+    "rst_frac": 0.0,
+    "udp_share": 0.0030211480362537764,
+    "med_log_dur": 0.054380664652567974,
+    "upload_share": 0.0,
+    "new_dst_frac": 0.0
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.0,
+    "log_up_bytes": 0.0,
+    "log_down_bytes": 0.32754342431761785,
+    "log_pkts": 0.0,
+    "log_dst_hosts": 0.05583126550868486,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.0,
+    "rst_frac": 0.0,
+    "udp_share": 0.0012406947890818859,
+    "med_log_dur": 0.23821339950372208,
+    "upload_share": 0.0,
+    "new_dst_frac": 0.02729528535980149
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 0,
+    "pooled_seen_in_calibration": 0,
+    "never_seen_in_calibration": 0
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 332,
+    "pooled_seen": 0,
+    "never_seen": 1
+   },
+   "device_fpr_first_half": 0.0,
+   "device_fpr_second_half": 0.0,
+   "threshold": 18.703451610650106,
+   "fold_thresholds": [
+    23.589872854371023,
+    4.8200679330059595,
+    5.854257879625282,
+    6.253323857854492,
+    6.1127521125661755
+   ],
+   "fold_threshold_cv": 0.7666217385263999,
+   "threshold_reliable": true,
+   "contamination": {
+    "calibration_attack_flows": 12,
+    "fpr_unlabelled_cal": 0.0,
+    "recall_unlabelled_cal": 0.0,
+    "threshold_ratio_unlabelled_vs_clean": 1.0
+   },
+   "global_fpr": 0.0,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 1.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 0.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 1.0012422360248447,
+     "eval": 1.0030120481927711
+    },
+    "median_z_shift_log_flows": -0.6744907594765953
+   },
+   "global_acf": {
+    "log_flows": [
+     0.5309032179517239,
+     0.758120712462269,
+     0.5817872941439878,
+     0.6784705467397605,
+     0.5995194678219907,
+     0.6088231594743659,
+     0.6261619751495784,
+     0.5339658055241421,
+     0.6963293498021677,
+     0.5084003922630893,
+     0.6531923823665738,
+     0.4986175366571594,
+     0.6547822077361187,
+     0.5031175091940598,
+     0.5909606088807257,
+     0.5505155653132572,
+     0.571230612024528,
+     0.6336774198466656,
+     0.4957790479366846,
+     0.602803864212645,
+     0.4571448217064496,
+     0.6102531886470702,
+     0.44026778988433474,
+     0.5577706245953657,
+     0.4380948569559387,
+     0.5415195957275103,
+     0.46986987299127053,
+     0.4634296372461078,
+     0.4914193629019431,
+     0.431857037313758
+    ]
+   },
+   "service_fpr": 0.01928374655647383,
+   "service_false_alerts": {
+    "time_mgmt": 7
+   }
+  },
+  "CTU-IoT-Malware-Capture-3-1": {
+   "eval_hours": 18.059172222222223,
+   "benign_windows": 569,
+   "attack_windows": 2168,
+   "holdout_windows": 1459,
+   "device_fpr": 0.0,
+   "device_recall": 0.5101476014760148,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.0,
+     "recall": 0.49907749077490776
+    },
+    "log_up_bytes": {
+     "fpr": 0.0,
+     "recall": 0.507380073800738
+    },
+    "log_down_bytes": {
+     "fpr": 0.0,
+     "recall": 0.5101476014760148
+    },
+    "log_pkts": {
+     "fpr": 0.0,
+     "recall": 0.5115313653136532
+    },
+    "log_dst_hosts": {
+     "fpr": 0.0,
+     "recall": 0.5101476014760148
+    },
+    "log_dst_ports": {
+     "fpr": 0.0,
+     "recall": 0.5101476014760148
+    },
+    "no_reply_frac": {
+     "fpr": 0.0,
+     "recall": 0.5096863468634686
+    },
+    "rst_frac": {
+     "fpr": 0.0,
+     "recall": 0.5101476014760148
+    },
+    "udp_share": {
+     "fpr": 0.0,
+     "recall": 0.5101476014760148
+    },
+    "med_log_dur": {
+     "fpr": 0.0,
+     "recall": 0.5101476014760148
+    },
+    "upload_share": {
+     "fpr": 0.0,
+     "recall": 0.5101476014760148
+    },
+    "new_dst_frac": {
+     "fpr": 0.0,
+     "recall": 0.5101476014760148
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 0,
+    "log_down_bytes": 0,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 0,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": 0.0,
+    "log_up_bytes": -0.6744907594765952,
+    "log_down_bytes": -1.2401268575643702,
+    "log_pkts": -0.6744907594765952,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 6.666666666666667,
+    "rst_frac": 0.0,
+    "udp_share": 0.0,
+    "med_log_dur": -0.6744907594765952,
+    "upload_share": 2.5078267283303988,
+    "new_dst_frac": 0.0
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.0,
+    "log_up_bytes": 0.005272407732864675,
+    "log_down_bytes": 0.0,
+    "log_pkts": 0.0035149384885764497,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 1.0,
+    "rst_frac": 0.0,
+    "udp_share": 0.0,
+    "med_log_dur": 0.0,
+    "upload_share": 0.0,
+    "new_dst_frac": 0.0
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.0788211103495545,
+    "log_up_bytes": 0.10006854009595613,
+    "log_down_bytes": 0.03495544893762851,
+    "log_pkts": 0.0993831391363948,
+    "log_dst_hosts": 0.07128169979437972,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.4420836189170665,
+    "rst_frac": 0.1501028101439342,
+    "udp_share": 0.18574366004112405,
+    "med_log_dur": 0.027416038382453736,
+    "upload_share": 0.0,
+    "new_dst_frac": 0.14256339958875944
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 0,
+    "pooled_seen_in_calibration": 0,
+    "never_seen_in_calibration": 0
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 2168,
+    "pooled_seen": 36,
+    "never_seen": 533
+   },
+   "device_fpr_first_half": 0.0,
+   "device_fpr_second_half": 0.0,
+   "threshold": 7.076256972538699,
+   "fold_thresholds": [
+    11.709414802151338,
+    7.195687971185993,
+    6.21065349191049,
+    5.019560232024822,
+    6.144532331111176
+   ],
+   "fold_threshold_cv": 0.321243898172792,
+   "threshold_reliable": true,
+   "contamination": {
+    "calibration_attack_flows": 75161,
+    "fpr_unlabelled_cal": 0.0,
+    "recall_unlabelled_cal": 0.0032287822878228783,
+    "threshold_ratio_unlabelled_vs_clean": 3.3955206311444384
+   },
+   "global_fpr": null,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 0.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 24.5,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 1.4948770491803278,
+     "eval": 1.2624538745387455
+    },
+    "median_z_shift_log_flows": null
+   },
+   "global_acf": {
+    "log_flows": [
+     0.6547485513643931,
+     0.6356944921314602,
+     0.6357806938584043,
+     0.6212083567552124,
+     0.6154929226600088,
+     0.5937035606049238,
+     0.5985929332792344,
+     0.5784135807412519,
+     0.5834653384060146,
+     0.543647536654071,
+     0.5383134584998185,
+     0.5292099730107759,
+     0.5494417687239594,
+     0.5141611998623032,
+     0.5231933097947632,
+     0.5207236724543772,
+     0.5102308308730222,
+     0.49047951875103396,
+     0.46860003376478654,
+     0.4828955102711341,
+     0.4547949743837072,
+     0.45658882864575484,
+     0.4518138701185355,
+     0.44916712914564144,
+     0.4543024037055594,
+     0.44618138937002183,
+     0.43427883184706556,
+     0.44701056357664165,
+     0.4384219809232538,
+     0.4241573093988294
+    ]
+   },
+   "service_fpr": 0.009915014164305949,
+   "service_false_alerts": {
+    "no_port": 3,
+    "other_wellknown": 4
+   }
+  },
+  "CTU-IoT-Malware-Capture-34-1": {
+   "eval_hours": 11.999144722222223,
+   "benign_windows": 177,
+   "attack_windows": 943,
+   "holdout_windows": 912,
+   "device_fpr": 0.0,
+   "device_recall": 0.009544008483563097,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.0,
+     "recall": 0.008483563096500531
+    },
+    "log_up_bytes": {
+     "fpr": 0.0,
+     "recall": 0.008483563096500531
+    },
+    "log_down_bytes": {
+     "fpr": 0.0,
+     "recall": 0.012725344644750796
+    },
+    "log_pkts": {
+     "fpr": 0.0,
+     "recall": 0.008483563096500531
+    },
+    "log_dst_hosts": {
+     "fpr": 0.0,
+     "recall": 0.009544008483563097
+    },
+    "log_dst_ports": {
+     "fpr": 0.0,
+     "recall": 0.009544008483563097
+    },
+    "no_reply_frac": {
+     "fpr": 0.0,
+     "recall": 0.009544008483563097
+    },
+    "rst_frac": {
+     "fpr": 0.0,
+     "recall": 0.009544008483563097
+    },
+    "udp_share": {
+     "fpr": 0.0,
+     "recall": 0.009544008483563097
+    },
+    "med_log_dur": {
+     "fpr": 0.0,
+     "recall": 0.009544008483563097
+    },
+    "upload_share": {
+     "fpr": 0.0,
+     "recall": 0.009544008483563097
+    },
+    "new_dst_frac": {
+     "fpr": 0.0,
+     "recall": 0.009544008483563097
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 0,
+    "log_down_bytes": 0,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 0,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": 0.0,
+    "log_up_bytes": 0.0,
+    "log_down_bytes": -17.375221687414736,
+    "log_pkts": 0.0,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 6.666666666666667,
+    "rst_frac": 0.0,
+    "udp_share": 0.0,
+    "med_log_dur": -0.6744907594765952,
+    "upload_share": 3.2685397391279745,
+    "new_dst_frac": 0.0
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.005649717514124294,
+    "log_up_bytes": 0.062146892655367235,
+    "log_down_bytes": 0.5536723163841808,
+    "log_pkts": 0.05649717514124294,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.6045197740112994,
+    "rst_frac": 0.0,
+    "udp_share": 0.0,
+    "med_log_dur": 0.02824858757062147,
+    "upload_share": 0.5084745762711864,
+    "new_dst_frac": 0.0
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.06140350877192982,
+    "log_up_bytes": 0.10964912280701754,
+    "log_down_bytes": 0.2982456140350877,
+    "log_pkts": 0.0756578947368421,
+    "log_dst_hosts": 0.025219298245614034,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.34868421052631576,
+    "rst_frac": 0.0,
+    "udp_share": 0.03508771929824561,
+    "med_log_dur": 0.03508771929824561,
+    "upload_share": 0.18969298245614036,
+    "new_dst_frac": 0.01644736842105263
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 0,
+    "pooled_seen_in_calibration": 0,
+    "never_seen_in_calibration": 0
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 1120,
+    "pooled_seen": 0,
+    "never_seen": 0
+   },
+   "device_fpr_first_half": 0.0,
+   "device_fpr_second_half": 0.0,
+   "threshold": 21.798811296741516,
+   "fold_thresholds": [
+    26.762048704900533,
+    12.417180052193258,
+    12.020944177040702,
+    10.06087584278487,
+    10.206100724773828
+   ],
+   "fold_threshold_cv": 0.4411190914258697,
+   "threshold_reliable": true,
+   "contamination": {
+    "calibration_attack_flows": 3539,
+    "fpr_unlabelled_cal": 0.0,
+    "recall_unlabelled_cal": 0.0,
+    "threshold_ratio_unlabelled_vs_clean": 0.7976592773200507
+   },
+   "global_fpr": 0.0,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 1.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 2.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 1.0010976948408343,
+     "eval": 1.0
+    },
+    "median_z_shift_log_flows": -1.1530495692374574
+   },
+   "global_acf": {
+    "log_flows": [
+     -0.05310123932431463,
+     0.5626423215273788,
+     0.057444397967777255,
+     0.4283637303016577,
+     0.22247590762500383,
+     0.23696366610218977,
+     0.2951708551929077,
+     0.08018454644134536,
+     0.4762445248914928,
+     -0.03014378382859441,
+     0.5221659085919733,
+     -0.09780889801010482,
+     0.5091514438794054,
+     -0.03299120281014891,
+     0.3626751037665419,
+     0.06628998296477055,
+     0.2415089737190421,
+     0.2134075030705326,
+     0.09485485997020554,
+     0.2889189715859162,
+     -0.029772403751585186,
+     0.3927237007301601,
+     -0.1266271153074949,
+     0.40684134653635917,
+     -0.1340566454404545,
+     0.35847133033911394,
+     -0.04015680428537465,
+     0.21566883953218888,
+     0.05918657643163883,
+     0.10177202485932724
+    ]
+   },
+   "service_fpr": 0.007444168734491315,
+   "service_false_alerts": {
+    "dns": 3
+   }
+  },
+  "CTU-IoT-Malware-Capture-42-1": {
+   "eval_hours": 4.176415833333333,
+   "benign_windows": 270,
+   "attack_windows": 0,
+   "holdout_windows": 379,
+   "device_fpr": 0.007407407407407408,
+   "device_recall": null,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.007407407407407408,
+     "recall": null
+    },
+    "log_up_bytes": {
+     "fpr": 0.007407407407407408,
+     "recall": null
+    },
+    "log_down_bytes": {
+     "fpr": 0.007407407407407408,
+     "recall": null
+    },
+    "log_pkts": {
+     "fpr": 0.007407407407407408,
+     "recall": null
+    },
+    "log_dst_hosts": {
+     "fpr": 0.007407407407407408,
+     "recall": null
+    },
+    "log_dst_ports": {
+     "fpr": 0.007407407407407408,
+     "recall": null
+    },
+    "no_reply_frac": {
+     "fpr": 0.007407407407407408,
+     "recall": null
+    },
+    "rst_frac": {
+     "fpr": 0.007407407407407408,
+     "recall": null
+    },
+    "udp_share": {
+     "fpr": 0.007407407407407408,
+     "recall": null
+    },
+    "med_log_dur": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "upload_share": {
+     "fpr": 0.007407407407407408,
+     "recall": null
+    },
+    "new_dst_frac": {
+     "fpr": 0.003703703703703704,
+     "recall": null
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 0,
+    "log_down_bytes": 0,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 2,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": -2.3063054790218853,
+    "log_up_bytes": -1.967900316509362,
+    "log_down_bytes": -4.182554172106923,
+    "log_pkts": -1.9620635681256455,
+    "log_dst_hosts": -0.9506413325598342,
+    "log_dst_ports": -0.9506413325598342,
+    "no_reply_frac": 2.697963037906381,
+    "rst_frac": 0.0,
+    "udp_share": 2.9227932910652465,
+    "med_log_dur": -1.3489815189531904,
+    "upload_share": 3.1770004327610164,
+    "new_dst_frac": 0.0
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.0,
+    "log_up_bytes": 0.0,
+    "log_down_bytes": 0.5481481481481482,
+    "log_pkts": 0.0,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.0,
+    "rst_frac": 0.0,
+    "udp_share": 0.0,
+    "med_log_dur": 0.17777777777777778,
+    "upload_share": 0.5481481481481482,
+    "new_dst_frac": 0.3037037037037037
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.39313984168865435,
+    "log_up_bytes": 0.38522427440633245,
+    "log_down_bytes": 0.36147757255936674,
+    "log_pkts": 0.38522427440633245,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.010554089709762533,
+    "no_reply_frac": 0.1662269129287599,
+    "rst_frac": 0.0,
+    "udp_share": 0.7889182058047494,
+    "med_log_dur": 0.036939313984168866,
+    "upload_share": 0.17678100263852242,
+    "new_dst_frac": 0.013192612137203167
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 1,
+    "pooled_seen_in_calibration": 0,
+    "never_seen_in_calibration": 1
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 268,
+    "pooled_seen": 1,
+    "never_seen": 1
+   },
+   "device_fpr_first_half": 0.0,
+   "device_fpr_second_half": 0.014814814814814815,
+   "threshold": 8.460759823686415,
+   "fold_thresholds": [
+    8.460759823686415,
+    4.653773495565071,
+    2.7124523105241813,
+    6.695506001474005,
+    8.973171159287585
+   ],
+   "fold_threshold_cv": 0.372656342354452,
+   "threshold_reliable": true,
+   "contamination": {
+    "calibration_attack_flows": 6,
+    "fpr_unlabelled_cal": 0.007407407407407408,
+    "recall_unlabelled_cal": null,
+    "threshold_ratio_unlabelled_vs_clean": 1.0
+   },
+   "global_fpr": 0.03792415169660679,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 2.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 1.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 1.0079787234042554,
+     "eval": 1.007462686567164
+    },
+    "median_z_shift_log_flows": -0.24893447081380188
+   },
+   "global_acf": {
+    "log_flows": [
+     0.8760970388070108,
+     0.9217316381828039,
+     0.8731877120574832,
+     0.8988936499702245,
+     0.8744820715053365,
+     0.8680713154874106,
+     0.8730755741218095,
+     0.8430702249505054,
+     0.8833250717280032,
+     0.8206238362216123,
+     0.8643346339163995,
+     0.814549484301202,
+     0.8605505511323456,
+     0.806535292217502,
+     0.8293437927426727,
+     0.8114331070923222,
+     0.8111331749797916,
+     0.8179653158304463,
+     0.7926908716875372,
+     0.8041302919751746,
+     0.7748208290692332,
+     0.803872711445446,
+     0.7599158663426892,
+     0.7896509434006012,
+     0.7493175016814884,
+     0.7729170044891692,
+     0.7463463110970191,
+     0.7507428340943777,
+     0.7355007860421574,
+     0.7358473225542097
+    ]
+   },
+   "service_fpr": 0.14836795252225518,
+   "service_false_alerts": {
+    "dns": 33,
+    "time_mgmt": 17
+   }
+  },
+  "CTU-IoT-Malware-Capture-44-1": {
+   "eval_hours": 0.9548355555555555,
+   "benign_windows": 45,
+   "attack_windows": 2,
+   "holdout_windows": 94,
+   "device_fpr": 0.0,
+   "device_recall": 0.5,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.0,
+     "recall": 0.5
+    },
+    "log_up_bytes": {
+     "fpr": 0.0,
+     "recall": 0.5
+    },
+    "log_down_bytes": {
+     "fpr": 0.0,
+     "recall": 1.0
+    },
+    "log_pkts": {
+     "fpr": 0.0,
+     "recall": 0.5
+    },
+    "log_dst_hosts": {
+     "fpr": 0.0,
+     "recall": 0.5
+    },
+    "log_dst_ports": {
+     "fpr": 0.0,
+     "recall": 0.5
+    },
+    "no_reply_frac": {
+     "fpr": 0.0,
+     "recall": 0.5
+    },
+    "rst_frac": {
+     "fpr": 0.0,
+     "recall": 0.5
+    },
+    "udp_share": {
+     "fpr": 0.0,
+     "recall": 0.5
+    },
+    "med_log_dur": {
+     "fpr": 0.0,
+     "recall": 0.5
+    },
+    "upload_share": {
+     "fpr": 0.0,
+     "recall": 0.5
+    },
+    "new_dst_frac": {
+     "fpr": 0.0,
+     "recall": 0.5
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 0,
+    "log_down_bytes": 0,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 0,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": 0.0,
+    "log_up_bytes": 0.0,
+    "log_down_bytes": -17.375221687414736,
+    "log_pkts": 0.0,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 6.666666666666667,
+    "rst_frac": 0.0,
+    "udp_share": 0.0,
+    "med_log_dur": -1.429977848262695,
+    "upload_share": 3.2685397391279745,
+    "new_dst_frac": 0.0
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.0,
+    "log_up_bytes": 0.022222222222222223,
+    "log_down_bytes": 0.6222222222222222,
+    "log_pkts": 0.0,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.7111111111111111,
+    "rst_frac": 0.0,
+    "udp_share": 0.0,
+    "med_log_dur": 0.0,
+    "upload_share": 0.6222222222222222,
+    "new_dst_frac": 0.0
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.0,
+    "log_up_bytes": 0.18085106382978725,
+    "log_down_bytes": 0.0851063829787234,
+    "log_pkts": 0.07446808510638298,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.2127659574468085,
+    "rst_frac": 0.0,
+    "udp_share": 0.02127659574468085,
+    "med_log_dur": 0.02127659574468085,
+    "upload_share": 0.010638297872340425,
+    "new_dst_frac": 0.0425531914893617
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 0,
+    "pooled_seen_in_calibration": 0,
+    "never_seen_in_calibration": 0
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 47,
+    "pooled_seen": 0,
+    "never_seen": 0
+   },
+   "device_fpr_first_half": 0.0,
+   "device_fpr_second_half": 0.0,
+   "threshold": 22.506783083908296,
+   "fold_thresholds": [],
+   "fold_threshold_cv": null,
+   "threshold_reliable": false,
+   "contamination": {
+    "calibration_attack_flows": 24,
+    "fpr_unlabelled_cal": 0.0,
+    "recall_unlabelled_cal": 0.5,
+    "threshold_ratio_unlabelled_vs_clean": 1.266683260646611
+   },
+   "global_fpr": 0.0,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 1.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 0.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 1.0217391304347827,
+     "eval": 1.0
+    },
+    "median_z_shift_log_flows": -1.1530495692374574
+   },
+   "global_acf": {
+    "log_flows": [
+     -0.12392761180600988,
+     -0.29503591533066054,
+     -0.0028972060330949684,
+     0.3366503767114018,
+     0.10160957374042517,
+     -0.1536425203184329,
+     -0.1851001299523567,
+     -0.021401968356298658,
+     0.45170599517810994,
+     -0.0902025291101442,
+     -0.34339148770242395,
+     -0.13793956256877102,
+     0.5187360674899909,
+     -0.05395182592990241,
+     -0.3042635070171826,
+     -0.09650802717012107,
+     0.18744367926720373,
+     0.1668705780799509,
+     -0.08115820811409977,
+     -0.19685961458978304,
+     -0.12010275542191474,
+     0.44214907861600655,
+     0.002176643779157145,
+     -0.28981957470661224,
+     -0.06376729928986791,
+     0.33579239659124765,
+     0.07000209164844605,
+     -0.22281838922401215,
+     -0.11096501739397766,
+     -0.002159135846134075
+    ]
+   },
+   "service_fpr": 0.0,
+   "service_false_alerts": {}
+  },
+  "CTU-IoT-Malware-Capture-8-1": {
+   "eval_hours": 11.99934111111111,
+   "benign_windows": 0,
+   "attack_windows": 1441,
+   "holdout_windows": 874,
+   "device_fpr": null,
+   "device_recall": 0.8299791811242193,
+   "lofo": {
+    "log_flows": {
+     "fpr": null,
+     "recall": 0.8299791811242193
+    },
+    "log_up_bytes": {
+     "fpr": null,
+     "recall": 0.8278972935461485
+    },
+    "log_down_bytes": {
+     "fpr": null,
+     "recall": 0.926439972241499
+    },
+    "log_pkts": {
+     "fpr": null,
+     "recall": 0.8299791811242193
+    },
+    "log_dst_hosts": {
+     "fpr": null,
+     "recall": 0.8299791811242193
+    },
+    "log_dst_ports": {
+     "fpr": null,
+     "recall": 0.8299791811242193
+    },
+    "no_reply_frac": {
+     "fpr": null,
+     "recall": 0.8299791811242193
+    },
+    "rst_frac": {
+     "fpr": null,
+     "recall": 0.8299791811242193
+    },
+    "udp_share": {
+     "fpr": null,
+     "recall": 0.8299791811242193
+    },
+    "med_log_dur": {
+     "fpr": null,
+     "recall": 0.8299791811242193
+    },
+    "upload_share": {
+     "fpr": null,
+     "recall": 0.8299791811242193
+    },
+    "new_dst_frac": {
+     "fpr": null,
+     "recall": 0.8299791811242193
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 0,
+    "log_down_bytes": 0,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 0,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": null,
+    "log_up_bytes": null,
+    "log_down_bytes": null,
+    "log_pkts": null,
+    "log_dst_hosts": null,
+    "log_dst_ports": null,
+    "no_reply_frac": null,
+    "rst_frac": null,
+    "udp_share": null,
+    "med_log_dur": null,
+    "upload_share": null,
+    "new_dst_frac": null
+   },
+   "tail_rate_eval": {
+    "log_flows": null,
+    "log_up_bytes": null,
+    "log_down_bytes": null,
+    "log_pkts": null,
+    "log_dst_hosts": null,
+    "log_dst_ports": null,
+    "no_reply_frac": null,
+    "rst_frac": null,
+    "udp_share": null,
+    "med_log_dur": null,
+    "upload_share": null,
+    "new_dst_frac": null
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.0011441647597254005,
+    "log_up_bytes": 0.04233409610983982,
+    "log_down_bytes": 0.04576659038901602,
+    "log_pkts": 0.04004576659038902,
+    "log_dst_hosts": 0.0011441647597254005,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.009153318077803204,
+    "rst_frac": 0.0,
+    "udp_share": 0.002288329519450801,
+    "med_log_dur": 0.05148741418764302,
+    "upload_share": 0.008009153318077803,
+    "new_dst_frac": 0.006864988558352402
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 0,
+    "pooled_seen_in_calibration": 0,
+    "never_seen_in_calibration": 0
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 1441,
+    "pooled_seen": 0,
+    "never_seen": 0
+   },
+   "device_fpr_first_half": null,
+   "device_fpr_second_half": null,
+   "threshold": 5.506025419014911,
+   "fold_thresholds": [
+    12.020944177040702,
+    4.359666326802223,
+    4.359666326802223,
+    5.506025419014911,
+    12.020944177040702
+   ],
+   "fold_threshold_cv": 0.46913856704218,
+   "threshold_reliable": true,
+   "contamination": {
+    "calibration_attack_flows": 3904,
+    "fpr_unlabelled_cal": null,
+    "recall_unlabelled_cal": 0.015267175572519083,
+    "threshold_ratio_unlabelled_vs_clean": 1.8479591056661009
+   },
+   "global_fpr": null,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 1.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 4.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 1.0022935779816513,
+     "eval": 1.0
+    },
+    "median_z_shift_log_flows": null
+   },
+   "global_acf": {
+    "log_flows": [
+     -0.41863877656806814,
+     0.4435866515613682,
+     -0.17635880831075826,
+     0.2509312933828968,
+     -0.02556470204704554,
+     0.09370887826376771,
+     0.14426857008426133,
+     -0.1064871097407078,
+     0.47360882307628843,
+     -0.32243912895629334,
+     0.5327426162638135,
+     -0.4009313743060947,
+     0.5088122211645644,
+     -0.31185192541128065,
+     0.32740999042240065,
+     -0.11460120529708855,
+     0.1757002002793925,
+     0.1579334778814643,
+     -0.06126612973977171,
+     0.27145621017007276,
+     -0.2537755904144231,
+     0.42563221865956463,
+     -0.3615960264537599,
+     0.49320635718919026,
+     -0.35141631460758027,
+     0.4553193827657531,
+     -0.16250749438578574,
+     0.19181483322527437,
+     0.018573191037059705,
+     0.024084160557556265
+    ]
+   },
+   "service_fpr": 0.0012300123001230013,
+   "service_false_alerts": {
+    "time_mgmt": 1
+   }
+  },
+  "NF-UNSW-NB15-v3-dev": {
+   "eval_hours": 8.880166666666666,
+   "benign_windows": 11937,
+   "attack_windows": 4091,
+   "holdout_windows": 14057,
+   "device_fpr": 0.034346988355533216,
+   "device_recall": 0.0029332681495966755,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.03443076149786378,
+     "recall": 0.0029332681495966755
+    },
+    "log_up_bytes": {
+     "fpr": 0.04289184887325124,
+     "recall": 0.002199951112197507
+    },
+    "log_down_bytes": {
+     "fpr": 0.03208511351260786,
+     "recall": 0.0046443412368614035
+    },
+    "log_pkts": {
+     "fpr": 0.03945715003769791,
+     "recall": 0.0031777071620630653
+    },
+    "log_dst_hosts": {
+     "fpr": 0.034346988355533216,
+     "recall": 0.0029332681495966755
+    },
+    "log_dst_ports": {
+     "fpr": 0.03995978889168133,
+     "recall": 0.0034221461745294547
+    },
+    "no_reply_frac": {
+     "fpr": 0.034346988355533216,
+     "recall": 0.0029332681495966755
+    },
+    "rst_frac": {
+     "fpr": 0.034346988355533216,
+     "recall": 0.0029332681495966755
+    },
+    "udp_share": {
+     "fpr": 0.034346988355533216,
+     "recall": 0.0029332681495966755
+    },
+    "med_log_dur": {
+     "fpr": 0.032839071793582975,
+     "recall": 0.0029332681495966755
+    },
+    "upload_share": {
+     "fpr": 0.034346988355533216,
+     "recall": 0.0029332681495966755
+    },
+    "new_dst_frac": {
+     "fpr": 0.034346988355533216,
+     "recall": 0.0029332681495966755
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 324,
+    "log_down_bytes": 63,
+    "log_pkts": 5,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 18,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": 0.0,
+    "log_up_bytes": 0.0,
+    "log_down_bytes": 0.0,
+    "log_pkts": 0.0,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.0,
+    "rst_frac": 0.0,
+    "udp_share": 0.013610997686130388,
+    "med_log_dur": 0.0,
+    "upload_share": 0.0,
+    "new_dst_frac": 0.0
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.06760492586076904,
+    "log_up_bytes": 0.09231800284828684,
+    "log_down_bytes": 0.08226522576861858,
+    "log_pkts": 0.0903074474323532,
+    "log_dst_hosts": 0.0830191840495937,
+    "log_dst_ports": 0.09047499371701433,
+    "no_reply_frac": 0.052944625952919495,
+    "rst_frac": 0.0,
+    "udp_share": 0.03962469632235905,
+    "med_log_dur": 0.08637010974281645,
+    "upload_share": 0.0545363156572003,
+    "new_dst_frac": 0.00025131942699170643
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.06381162410187095,
+    "log_up_bytes": 0.06779540442484172,
+    "log_down_bytes": 0.0603969552536103,
+    "log_pkts": 0.06032581631927154,
+    "log_dst_hosts": 0.05605748025894572,
+    "log_dst_ports": 0.06964501671764957,
+    "no_reply_frac": 0.022835597922743117,
+    "rst_frac": 7.113893433876361e-05,
+    "udp_share": 0.02312015366009817,
+    "med_log_dur": 0.05015294870882834,
+    "upload_share": 0.02333357046311446,
+    "new_dst_frac": 0.0022764458988404354
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 33,
+    "pooled_seen_in_calibration": 377,
+    "never_seen_in_calibration": 0
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 11262,
+    "pooled_seen": 675,
+    "never_seen": 4091
+   },
+   "device_fpr_first_half": 0.03255579795267662,
+   "device_fpr_second_half": 0.036132485781197723,
+   "threshold": 11.522538465630948,
+   "fold_thresholds": [
+    13.086310194929862,
+    10.531650983701393,
+    10.338525520511801,
+    10.462514251257709,
+    11.861065422502698
+   ],
+   "fold_threshold_cv": 0.09495812014618951,
+   "threshold_reliable": true,
+   "contamination": {
+    "calibration_attack_flows": 17795,
+    "fpr_unlabelled_cal": 0.026304766691798608,
+    "recall_unlabelled_cal": 0.0,
+    "threshold_ratio_unlabelled_vs_clean": 0.9723416916028493
+   },
+   "global_fpr": 0.08333333333333333,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 781.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 892.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 11.72393661384487,
+     "eval": 15.078080903104421
+    },
+    "median_z_shift_log_flows": -17.055837870987762
+   },
+   "global_acf": {
+    "log_flows": [
+     0.8437881662051137,
+     0.7595282992509728,
+     0.6733787522299473,
+     0.6327783982067144,
+     0.601945760221329,
+     0.5829947399535765,
+     0.5598562414187429,
+     0.5308052977578422,
+     0.49846468953178125,
+     0.4706570829619833,
+     0.43938319038161144,
+     0.4096452698057207,
+     0.3789543221390191,
+     0.3494719759853129,
+     0.31291409303918283,
+     0.28769906909873605,
+     0.2546894802874739,
+     0.22213226835170352,
+     0.19050695355262412,
+     0.16225271214542894,
+     0.1305185202335008,
+     0.1015557807806069,
+     0.07444346369525646,
+     0.04335981162705076,
+     0.015062796116181863,
+     0.0045117268527058866,
+     -0.01346169508563116,
+     -0.009863796568682798,
+     -0.025809563667959556,
+     -0.012759120629009149
+    ]
+   },
+   "service_fpr": 0.059386009058882736,
+   "service_false_alerts": {
+    "dns": 1,
+    "ephemeral": 3,
+    "file_transfer": 2,
+    "mail": 2,
+    "no_port": 107,
+    "web": 3
+   }
+  },
+  "CTU-Normal-20": {
+   "eval_hours": 1.5775675,
+   "benign_windows": 198,
+   "attack_windows": 0,
+   "holdout_windows": 200,
+   "device_fpr": 0.0,
+   "device_recall": null,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_up_bytes": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_down_bytes": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_pkts": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_dst_hosts": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_dst_ports": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "no_reply_frac": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "rst_frac": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "udp_share": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "med_log_dur": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "upload_share": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "new_dst_frac": {
+     "fpr": 0.0,
+     "recall": null
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 0,
+    "log_down_bytes": 0,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 0,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": 0.10644074681212172,
+    "log_up_bytes": 0.34419857535227877,
+    "log_down_bytes": 0.17893271900568913,
+    "log_pkts": 0.23253799193885152,
+    "log_dst_hosts": 0.4576134658224482,
+    "log_dst_ports": 0.6744907594765952,
+    "no_reply_frac": 0.0,
+    "rst_frac": -0.00918075818866745,
+    "udp_share": -0.14432833807658454,
+    "med_log_dur": 0.39267360328057216,
+    "upload_share": -0.09943797350850483,
+    "new_dst_frac": 1.1803588290840417
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.0,
+    "log_up_bytes": 0.015151515151515152,
+    "log_down_bytes": 0.06060606060606061,
+    "log_pkts": 0.0,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.06060606060606061,
+    "rst_frac": 0.010101010101010102,
+    "udp_share": 0.04040404040404041,
+    "med_log_dur": 0.23737373737373738,
+    "upload_share": 0.06060606060606061,
+    "new_dst_frac": 0.0
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.0,
+    "log_up_bytes": 0.04,
+    "log_down_bytes": 0.095,
+    "log_pkts": 0.005,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.09,
+    "rst_frac": 0.0,
+    "udp_share": 0.04,
+    "med_log_dur": 0.27,
+    "upload_share": 0.09,
+    "new_dst_frac": 0.04
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 0,
+    "pooled_seen_in_calibration": 0,
+    "never_seen_in_calibration": 0
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 186,
+    "pooled_seen": 12,
+    "never_seen": 0
+   },
+   "device_fpr_first_half": 0.0,
+   "device_fpr_second_half": 0.0,
+   "threshold": 19.607686413482373,
+   "fold_thresholds": [
+    17.63456910996481,
+    11.48890725639326,
+    15.465328252810812,
+    20.862678660146837,
+    19.607686413482373
+   ],
+   "fold_threshold_cv": 0.1946932102565692,
+   "threshold_reliable": true,
+   "global_fpr": 0.0,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 30.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 37.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 1.0869565217391304,
+     "eval": 1.053191489361702
+    },
+    "median_z_shift_log_flows": 0.1748211712215153
+   },
+   "global_acf": {
+    "log_flows": [
+     0.4119399073982946,
+     0.3929334595658715,
+     0.22108804024831596,
+     0.21844413063387227,
+     0.16036541792358247,
+     0.20874488189607054,
+     0.16803928669463178,
+     0.2004063573611262,
+     0.10269255556921837,
+     0.1947211607724862,
+     0.1163473759615331,
+     0.045799058720755424,
+     0.0561789886128608,
+     0.023263552948860088,
+     0.005156185602137267,
+     -0.022841121171566905,
+     -0.005951222468418913,
+     -0.049471393189328694,
+     -0.04952559602745357,
+     -0.01305814850269836,
+     -0.06778525695683935,
+     -0.05020319255437413,
+     -0.04093832023817117,
+     -0.01832886949123927,
+     -0.007902304562115553,
+     0.03454849746168784,
+     0.00012261225557087224,
+     -0.0321045245414131,
+     -0.02720433744008175,
+     -0.042871406838653994
+    ]
+   },
+   "service_fpr": 0.0,
+   "service_false_alerts": {}
+  },
+  "CTU-Normal-21": {
+   "eval_hours": 0.15726805555555556,
+   "benign_windows": 72,
+   "attack_windows": 0,
+   "holdout_windows": 68,
+   "device_fpr": 0.1111111111111111,
+   "device_recall": null,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.1111111111111111,
+     "recall": null
+    },
+    "log_up_bytes": {
+     "fpr": 0.1111111111111111,
+     "recall": null
+    },
+    "log_down_bytes": {
+     "fpr": 0.09722222222222222,
+     "recall": null
+    },
+    "log_pkts": {
+     "fpr": 0.1111111111111111,
+     "recall": null
+    },
+    "log_dst_hosts": {
+     "fpr": 0.1111111111111111,
+     "recall": null
+    },
+    "log_dst_ports": {
+     "fpr": 0.1111111111111111,
+     "recall": null
+    },
+    "no_reply_frac": {
+     "fpr": 0.1111111111111111,
+     "recall": null
+    },
+    "rst_frac": {
+     "fpr": 0.1111111111111111,
+     "recall": null
+    },
+    "udp_share": {
+     "fpr": 0.1111111111111111,
+     "recall": null
+    },
+    "med_log_dur": {
+     "fpr": 0.1111111111111111,
+     "recall": null
+    },
+    "upload_share": {
+     "fpr": 0.1111111111111111,
+     "recall": null
+    },
+    "new_dst_frac": {
+     "fpr": 0.1111111111111111,
+     "recall": null
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 0,
+    "log_down_bytes": 8,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 0,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": 0.0,
+    "log_up_bytes": 0.0,
+    "log_down_bytes": 0.0,
+    "log_pkts": 0.0,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.0,
+    "rst_frac": 0.0,
+    "udp_share": 0.0,
+    "med_log_dur": 0.3276698856952264,
+    "upload_share": 0.0,
+    "new_dst_frac": 0.0
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.2777777777777778,
+    "log_up_bytes": 0.027777777777777776,
+    "log_down_bytes": 0.2777777777777778,
+    "log_pkts": 0.3055555555555556,
+    "log_dst_hosts": 0.2777777777777778,
+    "log_dst_ports": 0.027777777777777776,
+    "no_reply_frac": 0.2777777777777778,
+    "rst_frac": 0.0,
+    "udp_share": 0.2638888888888889,
+    "med_log_dur": 0.013888888888888888,
+    "upload_share": 0.2777777777777778,
+    "new_dst_frac": 0.2777777777777778
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.2647058823529412,
+    "log_up_bytes": 0.0,
+    "log_down_bytes": 0.27941176470588236,
+    "log_pkts": 0.2647058823529412,
+    "log_dst_hosts": 0.27941176470588236,
+    "log_dst_ports": 0.014705882352941176,
+    "no_reply_frac": 0.27941176470588236,
+    "rst_frac": 0.0,
+    "udp_share": 0.19117647058823528,
+    "med_log_dur": 0.014705882352941176,
+    "upload_share": 0.27941176470588236,
+    "new_dst_frac": 0.25
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 0,
+    "pooled_seen_in_calibration": 8,
+    "never_seen_in_calibration": 0
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 0,
+    "pooled_seen": 68,
+    "never_seen": 4
+   },
+   "device_fpr_first_half": 0.02631578947368421,
+   "device_fpr_second_half": 0.20588235294117646,
+   "threshold": 41.070915276847245,
+   "fold_thresholds": [],
+   "fold_threshold_cv": null,
+   "threshold_reliable": false,
+   "service_fpr": 0.07352941176470588,
+   "service_false_alerts": {
+    "web": 5
+   }
+  },
+  "CTU-Normal-22": {
+   "eval_hours": 0.7294658333333334,
+   "benign_windows": 293,
+   "attack_windows": 0,
+   "holdout_windows": 378,
+   "device_fpr": 0.0,
+   "device_recall": null,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_up_bytes": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_down_bytes": {
+     "fpr": 0.006825938566552901,
+     "recall": null
+    },
+    "log_pkts": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_dst_hosts": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_dst_ports": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "no_reply_frac": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "rst_frac": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "udp_share": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "med_log_dur": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "upload_share": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "new_dst_frac": {
+     "fpr": 0.0,
+     "recall": null
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 0,
+    "log_down_bytes": 0,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 0,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": -0.6744907594765952,
+    "log_up_bytes": -0.4401625685261393,
+    "log_down_bytes": 0.0,
+    "log_pkts": -0.43993597016622854,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.0,
+    "rst_frac": 0.0,
+    "udp_share": 0.0,
+    "med_log_dur": 0.10168238706249666,
+    "upload_share": 4.156373148767045e-05,
+    "new_dst_frac": 0.0
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.0,
+    "log_up_bytes": 0.017064846416382253,
+    "log_down_bytes": 0.013651877133105802,
+    "log_pkts": 0.010238907849829351,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.010238907849829351,
+    "rst_frac": 0.0,
+    "udp_share": 0.034129692832764506,
+    "med_log_dur": 0.12286689419795221,
+    "upload_share": 0.010238907849829351,
+    "new_dst_frac": 0.0034129692832764505
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.0,
+    "log_up_bytes": 0.026455026455026454,
+    "log_down_bytes": 0.026455026455026454,
+    "log_pkts": 0.013227513227513227,
+    "log_dst_hosts": 0.013227513227513227,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.013227513227513227,
+    "rst_frac": 0.0,
+    "udp_share": 0.0582010582010582,
+    "med_log_dur": 0.16666666666666666,
+    "upload_share": 0.013227513227513227,
+    "new_dst_frac": 0.047619047619047616
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 0,
+    "pooled_seen_in_calibration": 0,
+    "never_seen_in_calibration": 0
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 176,
+    "pooled_seen": 116,
+    "never_seen": 1
+   },
+   "device_fpr_first_half": 0.0,
+   "device_fpr_second_half": 0.0,
+   "threshold": 15.037738292882283,
+   "fold_thresholds": [
+    8.01480171350878,
+    5.018878762907796,
+    16.308701370302554,
+    16.365719485419262,
+    4.800304845315751
+   ],
+   "fold_threshold_cv": 0.5164000463290366,
+   "threshold_reliable": true,
+   "global_fpr": 0.011235955056179775,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 363.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 418.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 4.295454545454546,
+     "eval": 3.292134831460674
+    },
+    "median_z_shift_log_flows": 0.1592957249710742
+   },
+   "global_acf": {
+    "log_flows": [
+     0.5773229862908668,
+     0.3192052610277648,
+     0.052808718869388954,
+     -0.02307208855083206,
+     0.03619582193606127,
+     0.0593639195935002,
+     0.036318142421410494,
+     0.016504567454708068,
+     0.021512640557744645,
+     -0.0015866338288543932,
+     -0.051790250541531864,
+     -0.13487467803826692,
+     -0.1622605104689964,
+     -0.14387609469976154,
+     -0.08662971344780633,
+     -0.09835812833084158,
+     -0.05604073019359549,
+     0.030569823788791743,
+     0.041298643082114665,
+     0.02718420691653997,
+     -0.010815805504246523,
+     -0.05959734679031834,
+     -0.11304691858753904,
+     -0.03899457744300896,
+     -0.02223528356754327,
+     0.007158004828387443,
+     0.0799341568132646,
+     0.06249757104622361,
+     0.06789095980670953,
+     -0.04978870719117056
+    ],
+    "log_up_bytes": [
+     0.6450423500568406,
+     0.4243292545848722,
+     0.2820640639775035,
+     0.13551319062372896,
+     -0.010061631292646702,
+     -0.07446630521347045,
+     -0.025734182190550674,
+     -0.008353241074863653,
+     0.03410209681224515,
+     -0.015300884287067988,
+     -0.029292461424931405,
+     -0.08510146733026538,
+     -0.135194903885533,
+     -0.16550103688883533,
+     -0.09731018962799584,
+     -0.06719464742740229,
+     -0.03399065286949272,
+     0.0630274119246936,
+     0.08694678943778114,
+     0.08507883334443163,
+     0.07643003695830548,
+     0.03665851520457757,
+     -0.016992538338291195,
+     0.016153602379199525,
+     0.02864778338088541,
+     0.022540835860622332,
+     0.002318782891841729,
+     0.06460321084726639,
+     0.0726098269251395,
+     0.02022070001737364
+    ],
+    "log_down_bytes": [
+     0.4513396103661291,
+     0.23008039006800324,
+     0.2800263134150026,
+     0.14934367046500113,
+     -0.07046086288837297,
+     -0.07922798138592002,
+     -0.08509349371089184,
+     -0.06576606537114275,
+     -0.04468914845290965,
+     -0.08365810978483779,
+     -0.09107436907565993,
+     -0.07288065450619255,
+     -0.1461840204067496,
+     -0.1333649142033784,
+     -0.06510589875087339,
+     -0.01069243742126501,
+     -0.025700166304876433,
+     0.011532517634997184,
+     0.052032881486469146,
+     0.08756013856353041,
+     0.061088859633931424,
+     0.0247999518357244,
+     0.0002066543939719326,
+     -0.001916827722655392,
+     0.010200454036140987,
+     0.04710943529388997,
+     -0.04825787281376482,
+     0.009028228859703776,
+     0.027794494691611958,
+     0.047691787461713674
+    ],
+    "log_pkts": [
+     0.5526965300101342,
+     0.3316875008340056,
+     0.2866504634891464,
+     0.15070646161612322,
+     -0.050040182348414036,
+     -0.08036130116001841,
+     -0.0674948231758274,
+     -0.05910204617608982,
+     -0.010008550904765719,
+     -0.06267256065441673,
+     -0.07866371469666916,
+     -0.0767110144418028,
+     -0.13400674179002217,
+     -0.14672829894503422,
+     -0.07215579242862796,
+     -0.04140904565049595,
+     -0.0458464888304499,
+     0.030037223802837906,
+     0.07728555218182963,
+     0.08253541903434651,
+     0.07193954958584768,
+     0.038759353069899936,
+     -0.020554422291011912,
+     0.004653780573483946,
+     0.016546221971840903,
+     0.028802269210724915,
+     -0.04477720245432658,
+     0.025640138587487545,
+     0.0420169175216911,
+     0.04604977823038197
+    ],
+    "log_dst_hosts": [
+     0.6561623853812625,
+     0.3823728407822872,
+     0.17588436524137166,
+     0.07788730273491089,
+     -0.0008261246579800638,
+     -0.023714786912193392,
+     -0.05010854063271443,
+     -0.04910565919672177,
+     -0.028088090743070653,
+     -0.04081513883019139,
+     -0.047420210292464224,
+     -0.11144309808020883,
+     -0.15436414757215844,
+     -0.15850091786122883,
+     -0.08118354194701757,
+     -0.07938148440153844,
+     -0.024105211048480492,
+     0.029775619591137604,
+     0.04399648041448892,
+     0.03420267937816679,
+     0.0239498986592591,
+     -0.013812210895409209,
+     -0.029899604445088667,
+     0.019817073702041898,
+     0.020705127854826637,
+     0.014294828864116045,
+     0.06943093306778832,
+     0.09470032887088618,
+     0.11469510445213382,
+     0.00021426768192718033
+    ],
+    "log_dst_ports": [
+     0.07923451369626146,
+     -0.014194836272534005,
+     -0.016218093363968785,
+     0.19554324012269664,
+     0.07337494386081907,
+     0.06233958734219091,
+     0.010479487448964682,
+     0.10193708221630116,
+     0.20148123744508556,
+     -0.15498767494511206,
+     -0.058707754078707354,
+     -0.07714067214376817,
+     0.09632182230331299,
+     -0.06282554111069805,
+     0.06289072971317393,
+     -0.008873310116483764,
+     -0.0031829096511548074,
+     0.03842373900722859,
+     -0.016370394810097656,
+     0.07753610871941893,
+     -0.1610654631064718,
+     -0.011659195572446646,
+     9.178925227248934e-05,
+     0.08708930158250895,
+     -0.19692489871589203,
+     -0.1651106872381937,
+     0.05674580122974298,
+     0.058993628982317955,
+     0.07123825507775686,
+     -0.077388179990518
+    ],
+    "no_reply_frac": [
+     0.30574594770918495,
+     0.13878459484077912,
+     0.008073373726447253,
+     -0.05824902920128996,
+     -0.07835579020807881,
+     0.042209728125784086,
+     0.09315539711867821,
+     0.047517199042280175,
+     -0.05641304888824312,
+     0.03807270007498655,
+     -0.053111151015222534,
+     -0.07246388245132346,
+     -0.0625448722934584,
+     -0.028867879626155363,
+     -0.06137079875246813,
+     0.04770173022579685,
+     -0.028292405524196814,
+     0.005764829431319682,
+     -0.05624671177442133,
+     -0.05808218147300802,
+     -0.10058616259454267,
+     -0.03591657058802508,
+     -0.06793937871765265,
+     -0.06310277609568046,
+     -0.044973823029423994,
+     0.17523988149036576,
+     0.10745906791579846,
+     0.05628771114533131,
+     0.06370547010321628,
+     -0.02555604533415303
+    ],
+    "rst_frac": [
+     0.3450324695619791,
+     0.14461645201676143,
+     0.0992188819401361,
+     0.03384742109840352,
+     -0.019107437895071362,
+     -0.14062559374908692,
+     -0.17441532501544332,
+     -0.030401304521142595,
+     -0.0010760034416641587,
+     -0.12344551840178411,
+     -0.1881700079063928,
+     -0.07351045653606256,
+     -0.06363286755464917,
+     -0.09024116237072151,
+     -0.11267850219891679,
+     -0.04290176841927808,
+     0.05523816291416109,
+     -0.023987754923548724,
+     -0.05204776144486896,
+     0.08918317629838504,
+     0.11499315728758423,
+     0.04607510776711115,
+     0.032863575699729274,
+     -0.0901082064813201,
+     -0.009691292697936853,
+     -0.052984102524592465,
+     -0.12786551366573723,
+     -0.015957761018461233,
+     -0.011723791896836536,
+     0.003426558858566352
+    ],
+    "udp_share": [
+     0.18546872141338044,
+     0.111142184304184,
+     0.2536539585630251,
+     0.036881162466916625,
+     0.1277230455881629,
+     0.054389725891937295,
+     -0.12168676384972202,
+     -0.009366019723602619,
+     -0.0421175476441988,
+     -0.01005605892298817,
+     -0.012184931401837141,
+     -0.00884061390121294,
+     0.017862089075313854,
+     0.006941975042169378,
+     -0.20899912686455044,
+     0.059792698064618864,
+     0.0610475960546925,
+     0.02055464744545289,
+     0.018116652852548397,
+     -0.07837259150345481,
+     0.03367957787803092,
+     0.05858031661625029,
+     0.07536114268849088,
+     0.05714380563120682,
+     -0.0710748631424291,
+     -0.02124738066240514,
+     0.11918409499217149,
+     0.015697606716447526,
+     0.03675783584050034,
+     0.04565043582653251
+    ],
+    "med_log_dur": [
+     0.1971745949635957,
+     -0.0611893568554219,
+     -0.010989171758433286,
+     -0.060499556398015776,
+     0.13318148576473793,
+     0.0874132958871003,
+     0.05558958429987716,
+     0.06337998473419412,
+     0.021902156127878082,
+     0.06812538492475391,
+     0.06698774755905129,
+     -0.035617770521419165,
+     0.07417551402370283,
+     0.010300035046845735,
+     -0.15789979157741352,
+     0.04951300938557973,
+     0.07455873816705634,
+     0.08745411579502564,
+     -0.018957431431902608,
+     -0.11765031993604991,
+     0.016863182805827978,
+     -0.01793040569411881,
+     -0.0003118363675859154,
+     -0.0848524097668855,
+     -0.19394013090195306,
+     -0.04896839415968758,
+     0.06535480642100874,
+     0.01620206613926656,
+     -0.03748638772837191,
+     0.00556754477657781
+    ],
+    "upload_share": [
+     0.15771988207965557,
+     -0.05103366313005722,
+     0.1871201116335564,
+     0.0938188464833044,
+     -0.08529807385788686,
+     -0.025042769733538733,
+     -0.05966710360590622,
+     -0.011439279692805731,
+     -0.06979585805117992,
+     -0.07694556550369099,
+     -0.0785078292117416,
+     -0.07944819559773983,
+     -0.14495162904265305,
+     -0.06560990423653552,
+     -0.0009130800374689941,
+     0.06645077552728415,
+     0.039732608044739666,
+     -0.014672102072508318,
+     -0.004790640030521968,
+     0.11745117795905806,
+     0.01970448702155903,
+     -0.04212643818040646,
+     0.0353098042641599,
+     -0.008768348521943472,
+     -0.060760462420102766,
+     0.016306834432422073,
+     -0.039342244670301785,
+     -0.04839008503946519,
+     -0.06527617556244851,
+     -0.0492118996014774
+    ],
+    "new_dst_frac": [
+     0.7450107598848614,
+     0.6291874776707036,
+     0.5778129910405224,
+     0.5437109956459665,
+     0.5549208113862837,
+     0.4484195314919682,
+     0.36766365046025296,
+     0.32659167456109456,
+     0.3337945676129583,
+     0.27364129053573344,
+     0.22594614180981412,
+     0.19761163324452682,
+     0.23213411135722561,
+     0.175702274710184,
+     0.12427419794062654,
+     0.12163118251057407,
+     0.11595684748984411,
+     0.12021929045392082,
+     0.06744321170660936,
+     0.042295414925516986,
+     0.08041960515616557,
+     0.05728077119723207,
+     0.04343527850647978,
+     0.028752156249101084,
+     -0.018333036882595615,
+     0.05500207565248276,
+     0.03625332523433748,
+     -0.04151754151691761,
+     -0.04127275406591692,
+     -0.005600034026028774
+    ]
+   },
+   "service_fpr": 0.010101010101010102,
+   "service_false_alerts": {
+    "ephemeral": 3
+   }
+  },
+  "CTU-Normal-23": {
+   "eval_hours": 1.0967144444444445,
+   "benign_windows": 134,
+   "attack_windows": 0,
+   "holdout_windows": 136,
+   "device_fpr": 0.0,
+   "device_recall": null,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_up_bytes": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_down_bytes": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_pkts": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_dst_hosts": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_dst_ports": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "no_reply_frac": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "rst_frac": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "udp_share": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "med_log_dur": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "upload_share": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "new_dst_frac": {
+     "fpr": 0.0,
+     "recall": null
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 0,
+    "log_down_bytes": 0,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 0,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": 0.5037946310638568,
+    "log_up_bytes": 0.43669845701497645,
+    "log_down_bytes": 0.24842311208499085,
+    "log_pkts": 0.294028737370845,
+    "log_dst_hosts": 0.7523790755564118,
+    "log_dst_ports": 0.6744907594765952,
+    "no_reply_frac": 0.0,
+    "rst_frac": 0.182009272355807,
+    "udp_share": -0.28562910694906984,
+    "med_log_dur": -1.8973378467774205,
+    "upload_share": -0.09084313408029131,
+    "new_dst_frac": 1.8267458069157785
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.0,
+    "log_up_bytes": 0.0,
+    "log_down_bytes": 0.06716417910447761,
+    "log_pkts": 0.0,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.06716417910447761,
+    "rst_frac": 0.029850746268656716,
+    "udp_share": 0.11194029850746269,
+    "med_log_dur": 0.47761194029850745,
+    "upload_share": 0.06716417910447761,
+    "new_dst_frac": 0.0
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.0,
+    "log_up_bytes": 0.058823529411764705,
+    "log_down_bytes": 0.0661764705882353,
+    "log_pkts": 0.007352941176470588,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.09558823529411764,
+    "rst_frac": 0.04411764705882353,
+    "udp_share": 0.125,
+    "med_log_dur": 0.34558823529411764,
+    "upload_share": 0.09558823529411764,
+    "new_dst_frac": 0.007352941176470588
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 0,
+    "pooled_seen_in_calibration": 0,
+    "never_seen_in_calibration": 0
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 125,
+    "pooled_seen": 9,
+    "never_seen": 0
+   },
+   "device_fpr_first_half": 0.0,
+   "device_fpr_second_half": 0.0,
+   "threshold": 21.185827360448368,
+   "fold_thresholds": [],
+   "fold_threshold_cv": null,
+   "threshold_reliable": true,
+   "global_fpr": 0.0,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 25.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 69.5,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 1.096774193548387,
+     "eval": 1.072
+    },
+    "median_z_shift_log_flows": 0.6090066528204152
+   },
+   "global_acf": {
+    "log_flows": [
+     0.5473697242682537,
+     0.41608509289260204,
+     0.3604677763230312,
+     0.38062698334357487,
+     0.3014378592447088,
+     0.21421828975021232,
+     0.24826052192482534,
+     0.2116023924236428,
+     0.20171453751085192,
+     0.17879918097811706,
+     0.1334999112881685,
+     0.15284410184429348,
+     0.11421004419895538,
+     0.16464717879546098,
+     0.09052178698567959,
+     0.04840258280168254,
+     0.06743891067204501,
+     0.08805235257252003,
+     0.06582391717004518,
+     0.048150895436132185,
+     0.0234541355794636,
+     0.061141721139475684,
+     0.09539104113336302,
+     0.14132799793441314,
+     0.062212757282433286,
+     0.08735090640502768,
+     0.08653713314860646,
+     0.05226366241839639,
+     -0.0024575230794820708,
+     -0.0675018631885738
+    ]
+   },
+   "service_fpr": 0.0,
+   "service_false_alerts": {}
+  },
+  "CTU-Normal-24": {
+   "eval_hours": 2.127034722222222,
+   "benign_windows": 148,
+   "attack_windows": 0,
+   "holdout_windows": 139,
+   "device_fpr": 0.0,
+   "device_recall": null,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_up_bytes": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_down_bytes": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_pkts": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_dst_hosts": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_dst_ports": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "no_reply_frac": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "rst_frac": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "udp_share": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "med_log_dur": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "upload_share": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "new_dst_frac": {
+     "fpr": 0.0,
+     "recall": null
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 0,
+    "log_down_bytes": 0,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 0,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": 0.0,
+    "log_up_bytes": -0.060398212008176605,
+    "log_down_bytes": 0.15898138144236124,
+    "log_pkts": 0.02962319277095694,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.0,
+    "rst_frac": 0.0,
+    "udp_share": 0.0009526815824144504,
+    "med_log_dur": 0.7000746872166247,
+    "upload_share": -0.09379391880366728,
+    "new_dst_frac": 0.0
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.0,
+    "log_up_bytes": 0.0,
+    "log_down_bytes": 0.13513513513513514,
+    "log_pkts": 0.006756756756756757,
+    "log_dst_hosts": 0.06756756756756757,
+    "log_dst_ports": 0.006756756756756757,
+    "no_reply_frac": 0.11486486486486487,
+    "rst_frac": 0.006756756756756757,
+    "udp_share": 0.0,
+    "med_log_dur": 0.42567567567567566,
+    "upload_share": 0.11486486486486487,
+    "new_dst_frac": 0.3783783783783784
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.007194244604316547,
+    "log_up_bytes": 0.0,
+    "log_down_bytes": 0.1510791366906475,
+    "log_pkts": 0.0,
+    "log_dst_hosts": 0.15827338129496402,
+    "log_dst_ports": 0.02158273381294964,
+    "no_reply_frac": 0.15827338129496402,
+    "rst_frac": 0.007194244604316547,
+    "udp_share": 0.014388489208633094,
+    "med_log_dur": 0.3669064748201439,
+    "upload_share": 0.1223021582733813,
+    "new_dst_frac": 0.1510791366906475
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 0,
+    "pooled_seen_in_calibration": 0,
+    "never_seen_in_calibration": 0
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 131,
+    "pooled_seen": 17,
+    "never_seen": 0
+   },
+   "device_fpr_first_half": 0.0,
+   "device_fpr_second_half": 0.0,
+   "threshold": 8.797879209574097,
+   "fold_thresholds": [
+    8.797879209574097
+   ],
+   "fold_threshold_cv": null,
+   "threshold_reliable": true,
+   "global_fpr": 0.0,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 0.5,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 1.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 1.0859375,
+     "eval": 1.064748201438849
+    },
+    "median_z_shift_log_flows": 0.6744907594765953
+   },
+   "global_acf": {
+    "log_flows": [
+     0.33940806439000376,
+     0.3077443952750593,
+     0.30696783095282637,
+     0.3318562732828102,
+     0.22078809963568227,
+     0.2431952018964317,
+     0.2391748533551473,
+     0.13297369096446884,
+     0.07889894214305411,
+     0.08621367409295007,
+     0.18800501415809007,
+     0.050655234491687115,
+     0.047812971211291806,
+     0.08521518350034542,
+     0.0220464204453534,
+     0.026330340202925764,
+     -0.0043012892772227454,
+     0.08452511225615272,
+     -0.006283793715153435,
+     0.01778686558342579,
+     0.04010502294061862,
+     0.19333771178270756,
+     0.05152928954694657,
+     0.03086699756687606,
+     0.01383440121104085,
+     0.036788075828734806,
+     0.032513730105616055,
+     -0.046521277837202404,
+     -0.008141656512767204,
+     0.020989914219876324
+    ]
+   },
+   "service_fpr": 0.0,
+   "service_false_alerts": {}
+  },
+  "CTU-Normal-25": {
+   "eval_hours": 0.7260505555555555,
+   "benign_windows": 94,
+   "attack_windows": 0,
+   "holdout_windows": 90,
+   "device_fpr": 0.0,
+   "device_recall": null,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_up_bytes": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_down_bytes": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_pkts": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_dst_hosts": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_dst_ports": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "no_reply_frac": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "rst_frac": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "udp_share": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "med_log_dur": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "upload_share": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "new_dst_frac": {
+     "fpr": 0.0,
+     "recall": null
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 0,
+    "log_down_bytes": 0,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 0,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": -0.2085395782881606,
+    "log_up_bytes": -0.45410776030673033,
+    "log_down_bytes": -0.4849522850912256,
+    "log_pkts": -0.3812100694438824,
+    "log_dst_hosts": -0.6744907594765952,
+    "log_dst_ports": -0.6744907594765952,
+    "no_reply_frac": 0.0,
+    "rst_frac": 0.0,
+    "udp_share": 0.4847838140371804,
+    "med_log_dur": -0.29349625690035525,
+    "upload_share": 0.26252433880799075,
+    "new_dst_frac": -0.6744907594765952
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.0,
+    "log_up_bytes": 0.010638297872340425,
+    "log_down_bytes": 0.07446808510638298,
+    "log_pkts": 0.02127659574468085,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.06382978723404255,
+    "rst_frac": 0.0,
+    "udp_share": 0.010638297872340425,
+    "med_log_dur": 0.10638297872340426,
+    "upload_share": 0.06382978723404255,
+    "new_dst_frac": 0.02127659574468085
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.022222222222222223,
+    "log_up_bytes": 0.03333333333333333,
+    "log_down_bytes": 0.1,
+    "log_pkts": 0.011111111111111112,
+    "log_dst_hosts": 0.011111111111111112,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.1,
+    "rst_frac": 0.0,
+    "udp_share": 0.08888888888888889,
+    "med_log_dur": 0.2777777777777778,
+    "upload_share": 0.1111111111111111,
+    "new_dst_frac": 0.14444444444444443
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 0,
+    "pooled_seen_in_calibration": 0,
+    "never_seen_in_calibration": 0
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 88,
+    "pooled_seen": 6,
+    "never_seen": 0
+   },
+   "device_fpr_first_half": 0.0,
+   "device_fpr_second_half": 0.0,
+   "threshold": 20.292845411977535,
+   "fold_thresholds": [],
+   "fold_threshold_cv": null,
+   "threshold_reliable": false,
+   "global_fpr": 0.0,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 32.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 32.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 1.0975609756097562,
+     "eval": 1.0681818181818181
+    },
+    "median_z_shift_log_flows": 0.0
+   },
+   "global_acf": {
+    "log_flows": [
+     0.45625031882717704,
+     0.40088341988266535,
+     0.1348693507503629,
+     0.14873009591446273,
+     -0.02414309990190152,
+     -0.0978645691385318,
+     -0.06881284067838098,
+     -0.1568396772340985,
+     -0.19600940899504138,
+     -0.16078834748060322,
+     -0.11972841306456346,
+     0.022442159373848535,
+     0.020998287982904672,
+     0.05385951225270402,
+     -0.021689190740194632,
+     0.0926037502779528,
+     0.00378731935667616,
+     0.11586149282155246,
+     0.18825418535371422,
+     0.2740549058038933,
+     0.23569456396718672,
+     0.09015765566404535,
+     0.17596492314920745,
+     0.07791681110755347,
+     0.12197234085787752,
+     -0.054120828274548685,
+     -0.08816610421844812,
+     -0.1237197232790102,
+     -0.15883650125184318,
+     -0.17436561486537513
+    ]
+   },
+   "service_fpr": 0.0,
+   "service_false_alerts": {}
+  },
+  "CTU-Normal-27": {
+   "eval_hours": 2.064218888888889,
+   "benign_windows": 265,
+   "attack_windows": 0,
+   "holdout_windows": 267,
+   "device_fpr": 0.0,
+   "device_recall": null,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_up_bytes": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_down_bytes": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_pkts": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_dst_hosts": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_dst_ports": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "no_reply_frac": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "rst_frac": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "udp_share": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "med_log_dur": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "upload_share": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "new_dst_frac": {
+     "fpr": 0.0,
+     "recall": null
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 0,
+    "log_down_bytes": 0,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 0,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": -0.17850484090155808,
+    "log_up_bytes": -0.2700139522246405,
+    "log_down_bytes": -0.10581482105799209,
+    "log_pkts": -0.2309126059091413,
+    "log_dst_hosts": -0.1253254590014888,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.0,
+    "rst_frac": -0.08641975308641979,
+    "udp_share": -0.010168032651208117,
+    "med_log_dur": -0.10077974205692493,
+    "upload_share": -0.004489128961599106,
+    "new_dst_frac": 1.2140833670578712
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.07924528301886792,
+    "log_up_bytes": 0.08679245283018867,
+    "log_down_bytes": 0.06792452830188679,
+    "log_pkts": 0.0830188679245283,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.06415094339622641,
+    "rst_frac": 0.0037735849056603774,
+    "udp_share": 0.06415094339622641,
+    "med_log_dur": 0.23773584905660378,
+    "upload_share": 0.06792452830188679,
+    "new_dst_frac": 0.05660377358490566
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.10861423220973783,
+    "log_up_bytes": 0.09737827715355805,
+    "log_down_bytes": 0.07865168539325842,
+    "log_pkts": 0.09737827715355805,
+    "log_dst_hosts": 0.011235955056179775,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.07865168539325842,
+    "rst_frac": 0.011235955056179775,
+    "udp_share": 0.07865168539325842,
+    "med_log_dur": 0.2209737827715356,
+    "upload_share": 0.07865168539325842,
+    "new_dst_frac": 0.04119850187265917
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 0,
+    "pooled_seen_in_calibration": 0,
+    "never_seen_in_calibration": 0
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 249,
+    "pooled_seen": 16,
+    "never_seen": 0
+   },
+   "device_fpr_first_half": 0.0,
+   "device_fpr_second_half": 0.0,
+   "threshold": 12.139418240821243,
+   "fold_thresholds": [
+    10.811425537615747,
+    12.293887188806488,
+    11.158522749818555,
+    10.556839062236294,
+    11.640543975593921
+   ],
+   "fold_threshold_cv": 0.054797572827346326,
+   "threshold_reliable": true,
+   "global_fpr": 0.0,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 62.5,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 59.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 1.0766129032258065,
+     "eval": 1.0642570281124497
+    },
+    "median_z_shift_log_flows": -0.07451277708629772
+   },
+   "global_acf": {
+    "log_flows": [
+     0.5353837123069396,
+     0.3372997803690844,
+     0.21793596857119535,
+     0.19781953706657499,
+     0.10088351249137809,
+     0.028561840808502405,
+     -0.03248524355158451,
+     -0.09671741856896791,
+     -0.09163095651529095,
+     -0.07821270624737328,
+     0.027892765847131393,
+     0.0291435495197633,
+     0.03767457998572811,
+     0.055694262031134256,
+     0.08155431860233779,
+     0.05930807416840037,
+     0.045459997421888027,
+     0.029790644777019204,
+     0.11273197154089304,
+     0.017265883946335863,
+     -0.03302494175741868,
+     -0.0712496065972536,
+     -0.10343470147808762,
+     -0.08341802291045267,
+     -0.1222929417243058,
+     -0.15804548598666807,
+     -0.12104780267726799,
+     -0.07172604681361286,
+     -0.09650914039987016,
+     -0.05605272319633509
+    ],
+    "log_up_bytes": [
+     0.3502098196017798,
+     0.103134722856785,
+     0.0969300766549656,
+     0.13166626345831697,
+     0.1545323999350806,
+     0.10162987585654627,
+     0.04121751522238251,
+     0.011105740524807563,
+     -0.00878037493501331,
+     -0.022175874475149803,
+     -0.02096983142075731,
+     -0.05077025513725525,
+     -0.057961043365092814,
+     -0.020626186143330696,
+     0.027473063918851015,
+     -0.003957700011699368,
+     0.04104313157830662,
+     -0.0027502228293175674,
+     -0.0219013239146103,
+     0.012241490834351903,
+     0.0841795653565092,
+     0.03587328786645679,
+     0.06904563674152905,
+     0.0761841960092324,
+     0.01723048272616993,
+     0.03053829073505607,
+     0.022005721790241555,
+     0.024654884936446936,
+     -0.0682718723610178,
+     -0.03758499409218558
+    ],
+    "log_down_bytes": [
+     0.2165518063663405,
+     -0.06261378870989241,
+     -0.021848411088266854,
+     -0.023315975076333668,
+     0.042223567273185915,
+     0.1902087059435221,
+     -0.04172840926013557,
+     -0.07492673932996441,
+     -0.029492550773429264,
+     -0.07612726336475671,
+     0.0013001930915961476,
+     0.021058646656101992,
+     -0.09956839517179687,
+     -0.007274881957691092,
+     0.000800262330582967,
+     -0.028028279636977696,
+     0.008265439493759656,
+     -0.020793176289505753,
+     -0.055087797606443084,
+     0.019174702882461658,
+     0.06628932486427315,
+     -0.0038656536854858687,
+     0.02260474554410034,
+     0.028948193449809766,
+     -0.013652384989713603,
+     0.023791038766929878,
+     0.04673210742171347,
+     -0.02373464156257981,
+     -0.055378658401442814,
+     -0.04893776018415865
+    ],
+    "log_pkts": [
+     0.25664081052531595,
+     0.005892708306821341,
+     -0.0067569520418021235,
+     0.0411700838026608,
+     0.07664868750146993,
+     0.09475671365580181,
+     0.015620243861811212,
+     -0.06008691178542265,
+     -0.05941232545522659,
+     -0.08459146742768431,
+     -0.01826194489885479,
+     -0.010110964429203896,
+     -0.09183036091999519,
+     -0.03434958094759476,
+     -0.00847299811604229,
+     -0.009905795656311089,
+     0.021399116431607752,
+     -0.04358020857713805,
+     -0.03330026864162192,
+     0.01353708292282738,
+     0.0664252212064094,
+     0.004796630864952885,
+     0.04548635856125925,
+     0.05678552589456234,
+     0.002346097762840102,
+     0.039747973507214894,
+     0.022999837213758388,
+     0.004828682144054696,
+     -0.0681722239958122,
+     -0.04303387545255496
+    ],
+    "log_dst_hosts": [
+     0.5017367373645792,
+     0.33137473694763236,
+     0.2607267256637797,
+     0.3186142954024151,
+     0.189846782498234,
+     0.1178501609697611,
+     -0.0026046546516177906,
+     -0.05469110905546861,
+     -0.05413279543420243,
+     -0.001678426788912203,
+     0.014252318844086606,
+     -0.02017915137735554,
+     1.215197318986596e-05,
+     0.05362220208463421,
+     0.110395011983132,
+     0.14126219844142565,
+     0.06470831858528794,
+     0.040963224328104696,
+     0.04328061896235228,
+     0.039815473086702136,
+     0.01775467922226915,
+     -0.045494537321002275,
+     -0.08622343172776341,
+     -0.07657959070547504,
+     -0.07365939430369975,
+     -0.04968033198973383,
+     -0.06129991739144025,
+     -0.10284946621976757,
+     -0.11804562246292653,
+     -0.09958940896664428
+    ],
+    "log_dst_ports": [
+     0.27614503220382053,
+     0.15776360183774965,
+     0.05300750649303643,
+     0.1623888225167649,
+     -0.05247065129215,
+     -0.020654743494572882,
+     -0.07684619891206779,
+     -0.04931134959604069,
+     -0.08027588866132153,
+     -0.06409403094458051,
+     -0.01869307507746982,
+     -0.036136459124658744,
+     -0.026326974971286367,
+     0.09514216185829295,
+     0.1622180676934822,
+     0.18085234506981387,
+     0.04775075351039484,
+     0.025184362978217734,
+     0.014077190408157919,
+     0.06216283821966733,
+     -0.0074580711119654995,
+     -0.009988376650791473,
+     -0.062024423857900565,
+     -0.07839942299938649,
+     -0.05933776298710082,
+     -0.07112024438484009,
+     -0.0909498141245258,
+     -0.032833817221156206,
+     -0.04428993149842155,
+     0.012411263899533698
+    ],
+    "no_reply_frac": [
+     0.25137095598990306,
+     0.005663566056912815,
+     0.048917632451954,
+     -0.007994679594348202,
+     0.2307329580113413,
+     0.4317832951773095,
+     0.01858399234616985,
+     -0.005692642338760254,
+     -0.0056567634184493615,
+     -0.0047856168049828065,
+     -0.0033537576157027108,
+     0.03688160663311594,
+     -0.0060183124803070325,
+     -0.006101083534609331,
+     -0.000248791031282332,
+     -0.0047355570000291195,
+     0.01708383227501275,
+     0.03644298089636275,
+     -0.005328793252041549,
+     -0.003479283364014028,
+     -0.005533543218205622,
+     -0.0060069506989988445,
+     -0.006042317529639618,
+     -0.006162868147483782,
+     -0.005326557448779819,
+     -0.0007002901460021435,
+     0.0047734952889617235,
+     -0.006420529917635289,
+     -0.006319953831929241,
+     -0.004603761166816348
+    ],
+    "rst_frac": [
+     0.075268593634997,
+     0.01762681922131889,
+     0.013937852417237008,
+     0.03406032823109851,
+     -0.05622739657690623,
+     -0.020452681644755583,
+     -0.0435149564246305,
+     0.021830862009583826,
+     -0.06267747853341442,
+     0.05076969911308079,
+     0.052556996678021106,
+     0.009151995979164194,
+     -0.051167503766534644,
+     -0.01910189653257072,
+     0.04718317260221426,
+     -0.013714605714732682,
+     -0.027101251478949134,
+     -0.08544325688471135,
+     -0.07197287478348187,
+     0.005616890849205794,
+     0.02321739701621277,
+     -0.04819459843815299,
+     0.0716735301308756,
+     0.004344012781529516,
+     0.023420500463958688,
+     -0.03216204890901196,
+     0.0219848556577775,
+     -0.00979457779086221,
+     0.05130269697694945,
+     0.08220380812256675
+    ],
+    "udp_share": [
+     0.3646404961356216,
+     0.15912303656550258,
+     0.020538857608164596,
+     -0.13283672164957824,
+     -0.14036935995189484,
+     -0.11910630067712814,
+     -0.03600331072012518,
+     -0.03873947482321004,
+     0.008221067006826477,
+     0.010264417675821503,
+     0.05207882513846174,
+     0.07670473580650264,
+     0.046028707766355044,
+     -0.010729242972784186,
+     0.011909020115855977,
+     -0.004009968742551065,
+     -0.026627445466504997,
+     0.0336407931525546,
+     0.09220789864009335,
+     0.11988313725257481,
+     0.09501698246102164,
+     0.04929722053079566,
+     0.010030083294776703,
+     -0.0008668869343086561,
+     -0.0820297081759494,
+     -0.10775967067648556,
+     -0.07199353411723988,
+     -0.05170490858676343,
+     -0.028442325386128512,
+     0.002799827813946487
+    ],
+    "med_log_dur": [
+     0.4633198539882947,
+     0.19069518415239162,
+     0.02554950626734357,
+     -0.15757563447957393,
+     -0.12328041784071704,
+     -0.12894779406283632,
+     -0.10418284295356442,
+     -0.03830652124394563,
+     0.04299436141021325,
+     0.04822853252944322,
+     0.051392057068687894,
+     0.15653981860812952,
+     0.14096034476689018,
+     0.06955584595731873,
+     0.022501519225238985,
+     -0.03990102358102578,
+     -0.03437841578546376,
+     0.019839192901015053,
+     0.0827094665835331,
+     0.0423482759884538,
+     0.13961041888633272,
+     0.09415823691507076,
+     0.007538153385079063,
+     -0.018716631833522637,
+     -0.051373436472527054,
+     -0.08971079010260714,
+     -0.1023296830885786,
+     -0.08309718770280669,
+     -0.05150259280194338,
+     -0.01759316646355822
+    ],
+    "upload_share": [
+     0.14184081015928135,
+     -0.030758100376695553,
+     -0.05154067391346378,
+     -0.025429706737778397,
+     0.03420680599166199,
+     0.20242039358612587,
+     -0.07901234712591293,
+     -0.08528782976997572,
+     -0.010249039170685967,
+     -0.03653616479127811,
+     0.06361115211684222,
+     0.06810133451673821,
+     -0.05284201831440846,
+     -0.0035194091500955916,
+     0.031071252456766695,
+     -0.00487336079005989,
+     0.00769848065043806,
+     -0.05343806992962252,
+     -0.07496827774816664,
+     0.051609484277681236,
+     0.022217950673234454,
+     -0.03771791082492047,
+     -0.054604783246869286,
+     -0.03513095321054657,
+     -0.03569706622196778,
+     0.018133587766547606,
+     0.053889303753042045,
+     -0.06927004095522366,
+     -0.060974443903392704,
+     -0.05554609997713982
+    ],
+    "new_dst_frac": [
+     0.33594868683911516,
+     0.14005641989007436,
+     0.17120812654558984,
+     -0.020983642084938605,
+     0.04128110016895114,
+     0.14836304834275313,
+     0.03548170630291894,
+     0.08165585852408877,
+     0.11688028182065212,
+     0.023935363500656705,
+     0.06174383919459214,
+     0.1358541105273211,
+     0.12542037191500016,
+     0.08905157471593553,
+     0.16028877254133694,
+     0.09872231190611523,
+     0.03182989591604647,
+     0.020696575263771094,
+     0.07401077526880197,
+     0.06086671580081563,
+     0.13353941526412175,
+     0.12250042307171793,
+     0.09676143333886723,
+     0.06740458857629297,
+     0.051183012534529344,
+     0.03940393574596163,
+     0.12055168798139554,
+     0.13426091459095718,
+     0.04364799303572762,
+     0.06487566489820147
+    ]
+   },
+   "service_fpr": 0.0,
+   "service_false_alerts": {}
+  },
+  "CTU-Normal-29": {
+   "eval_hours": 0.97563,
+   "benign_windows": 126,
+   "attack_windows": 0,
+   "holdout_windows": 128,
+   "device_fpr": 0.0,
+   "device_recall": null,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_up_bytes": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_down_bytes": {
+     "fpr": 0.023809523809523808,
+     "recall": null
+    },
+    "log_pkts": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_dst_hosts": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_dst_ports": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "no_reply_frac": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "rst_frac": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "udp_share": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "med_log_dur": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "upload_share": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "new_dst_frac": {
+     "fpr": 0.0,
+     "recall": null
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 0,
+    "log_down_bytes": 0,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 0,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": -0.19071569606184394,
+    "log_up_bytes": -0.2556340940520132,
+    "log_down_bytes": -0.17823994162347304,
+    "log_pkts": -0.08083102696772025,
+    "log_dst_hosts": 0.04926050392345202,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.0,
+    "rst_frac": -0.11357972119136203,
+    "udp_share": 0.1143371878665996,
+    "med_log_dur": 0.1178609063082367,
+    "upload_share": -0.06133648455702394,
+    "new_dst_frac": 1.8596379465944683
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.10317460317460317,
+    "log_up_bytes": 0.07936507936507936,
+    "log_down_bytes": 0.07142857142857142,
+    "log_pkts": 0.07936507936507936,
+    "log_dst_hosts": 0.07142857142857142,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.06349206349206349,
+    "rst_frac": 0.0,
+    "udp_share": 0.03968253968253968,
+    "med_log_dur": 0.2619047619047619,
+    "upload_share": 0.06349206349206349,
+    "new_dst_frac": 0.09523809523809523
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.1171875,
+    "log_up_bytes": 0.1171875,
+    "log_down_bytes": 0.109375,
+    "log_pkts": 0.1015625,
+    "log_dst_hosts": 0.1015625,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.09375,
+    "rst_frac": 0.0,
+    "udp_share": 0.046875,
+    "med_log_dur": 0.2734375,
+    "upload_share": 0.1015625,
+    "new_dst_frac": 0.078125
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 0,
+    "pooled_seen_in_calibration": 0,
+    "never_seen_in_calibration": 0
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 118,
+    "pooled_seen": 8,
+    "never_seen": 0
+   },
+   "device_fpr_first_half": 0.0,
+   "device_fpr_second_half": 0.0,
+   "threshold": 16.09081211495914,
+   "fold_thresholds": [],
+   "fold_threshold_cv": null,
+   "threshold_reliable": true,
+   "global_fpr": 0.0,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 126.5,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 125.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 1.0847457627118644,
+     "eval": 1.0677966101694916
+    },
+    "median_z_shift_log_flows": -0.02048651767822308
+   },
+   "global_acf": {
+    "log_flows": [
+     0.4114204622268563,
+     0.14895454307140807,
+     0.09034368732243811,
+     0.135505946793547,
+     0.03363590000565668,
+     -0.047631548987133225,
+     -0.14533119884627288,
+     -0.11097328087919428,
+     -0.1747705033898214,
+     -0.11557823533080507,
+     -0.053882932340350895,
+     -0.10555339655057218,
+     -0.06542740819841829,
+     -0.007200849908454247,
+     -0.053078193092322846,
+     -0.10669218185003275,
+     -0.03619131892358178,
+     0.09367885924956217,
+     0.046652495074794575,
+     -0.030006720093395813,
+     -0.052010961745479665,
+     -0.021796422217112258,
+     0.006388885728724683,
+     -0.043761332295261336,
+     -0.029180095174289978,
+     0.009049708192278565,
+     0.02157829661737786,
+     0.03541044771838979,
+     -0.010941841799596246,
+     -0.003235186499778106
+    ],
+    "log_up_bytes": [
+     0.5676627715797918,
+     0.35372420729903414,
+     0.19658852815987646,
+     0.14931486890885454,
+     0.10121427631773589,
+     0.015122115956490358,
+     -0.03843917921708919,
+     -0.059328884113055994,
+     -0.08349051006694778,
+     -0.1358324067521473,
+     -0.1345875978397092,
+     -0.1179932928529388,
+     -0.0925283604435873,
+     -0.14303633341697297,
+     -0.1529757195453384,
+     -0.12865294215237785,
+     -0.08600267039569374,
+     -0.03576282765354312,
+     0.019679260272828077,
+     0.0335097273133561,
+     0.058962861934200896,
+     0.005302521567922915,
+     -0.006074910374291904,
+     -0.01228339266373429,
+     0.024249472614011173,
+     0.06179663520935703,
+     0.0806605079486869,
+     0.11136696787037906,
+     0.10628349474323148,
+     0.0893038866675074
+    ],
+    "log_down_bytes": [
+     0.3898378210687874,
+     0.3771942174276546,
+     0.0776669196071619,
+     0.15597959872139078,
+     0.1417949601277387,
+     0.04483593963742044,
+     -0.036452904396709465,
+     -0.07033476656002964,
+     -0.05994308743132804,
+     -0.043662963315986854,
+     -0.05566192791011302,
+     -0.038540318725293725,
+     -0.06883890012778536,
+     -0.06355794108957717,
+     -0.07040646586732711,
+     -0.07741002404898223,
+     -0.0594257186961659,
+     -0.021586385492015015,
+     0.024799938910316663,
+     0.029333954730149235,
+     0.0398798352985891,
+     0.05245916810106243,
+     -0.03920813904484092,
+     -0.016661567366314543,
+     0.0048609957059908395,
+     0.053002407373078965,
+     0.04914823486070196,
+     0.06760751846576217,
+     0.010663191156350203,
+     0.054638885289004915
+    ],
+    "log_pkts": [
+     0.5073509961091859,
+     0.2854029791271722,
+     0.10794177105611738,
+     0.17658139751950117,
+     0.15981214952643186,
+     0.018553351792456832,
+     -0.07208528915363756,
+     -0.08686092934835284,
+     -0.08997541027097969,
+     -0.1109335650314244,
+     -0.1263856883857977,
+     -0.08731528323986665,
+     -0.1107015645827193,
+     -0.11865878672330016,
+     -0.13730400192953762,
+     -0.13059945404274334,
+     -0.0880099413395954,
+     -0.026505546635775947,
+     0.016128862885597853,
+     0.04002150278356897,
+     0.058005209343409664,
+     0.0647765813307604,
+     0.006649127036933386,
+     -0.003803645863799415,
+     0.05200657428373504,
+     0.09646004459532523,
+     0.10400945709844439,
+     0.11348314165983261,
+     0.04659635480383075,
+     0.0659802243838567
+    ],
+    "log_dst_hosts": [
+     0.5381417593578423,
+     0.34466235990250593,
+     0.3101411922604278,
+     0.24663466166638542,
+     0.07415451081356338,
+     -0.05848723584037801,
+     -0.1164393837243299,
+     -0.1757753851713694,
+     -0.278043719161955,
+     -0.2775230981465534,
+     -0.1840170296176497,
+     -0.18131113794111428,
+     -0.12502443072461236,
+     -0.11335743424820853,
+     -0.1392553285656205,
+     -0.1836086962814955,
+     -0.11610449212496343,
+     -0.047649647425241776,
+     -0.09495479373681873,
+     -0.13410596522951979,
+     -0.13158712000016357,
+     -0.11241837552600836,
+     -0.046369245877711796,
+     -0.017281313667525135,
+     0.03070328467550047,
+     0.11401919166953231,
+     0.0982400634179374,
+     0.16406344105049167,
+     0.1779973849152286,
+     0.09972207869075406
+    ],
+    "log_dst_ports": [
+     0.1387390919193968,
+     0.12389469489973762,
+     0.23065240598161998,
+     0.07415886474996303,
+     -0.10270312246604546,
+     0.02706641339086937,
+     -0.01422147686387483,
+     0.01419026597462094,
+     0.037579206798182184,
+     -0.026876722609120048,
+     -0.1054746054830343,
+     -0.013136692805691404,
+     -0.02519190342215431,
+     -0.02549192098654546,
+     0.0494424897266265,
+     -0.01766924251480732,
+     -0.007453881572256012,
+     -0.03388078765939488,
+     -0.027739616379913318,
+     -0.08021061073107986,
+     0.02751212362605063,
+     0.014412156262011097,
+     -0.01459962170526698,
+     0.03178181469315556,
+     -0.02436997800598183,
+     -0.09966722194842857,
+     -0.026714335991904408,
+     -0.04284373627143704,
+     -0.043143753835828205,
+     0.016926754432950535
+    ],
+    "no_reply_frac": [
+     0.24967360984019069,
+     0.4825759442357229,
+     -0.0015778615384779789,
+     -0.0018065977294232601,
+     -0.0020055881734438027,
+     -0.002133716683880661,
+     -0.0023200754977156014,
+     -0.0024692627633474467,
+     -0.0027254475933980735,
+     -0.0030005403935465234,
+     -0.0030012640454398637,
+     -0.0031911900956990247,
+     -0.00339924493348095,
+     -0.0035982353775014992,
+     -0.0001690904225661761,
+     -0.003094180777514556,
+     -0.0008125736294580167,
+     -0.004314649821255361,
+     -0.004525288011259284,
+     -0.004724278455279829,
+     -0.004892013520450229,
+     -0.0050702188343962245,
+     -0.0052832602158264345,
+     -0.0054904633294193895,
+     -0.005719230675382547,
+     -0.00587964781354177,
+     -0.0060320472736287885,
+     -0.006277628701582859,
+     -0.006476619145603399,
+     -0.0010200000044763755
+    ],
+    "rst_frac": [
+     0.20679456608992802,
+     0.03102965915191535,
+     0.09996574069233255,
+     0.08886002355819479,
+     -0.002800864393363362,
+     -0.15235455427908332,
+     0.046909875072048544,
+     0.030695681731135585,
+     0.013517378831550454,
+     -0.06436685543156953,
+     0.026894220578764293,
+     0.0906143726556442,
+     -0.07715000989435737,
+     -0.047743208299083205,
+     -0.028093166751043556,
+     0.03713089272976063,
+     -0.04937035995632874,
+     0.013974064638282262,
+     -0.02536148466940769,
+     -0.051107645448393635,
+     0.06928857615728794,
+     -0.11137501524274804,
+     -0.06019809085345247,
+     -0.0900128718786859,
+     -0.0567877087497378,
+     -0.036896087514270044,
+     -0.07731995833841625,
+     0.07406057406338738,
+     0.10239159426280034,
+     0.0656531554977743
+    ],
+    "udp_share": [
+     0.3419293453048256,
+     0.06952617211491718,
+     0.05108796888575201,
+     -0.142782232166969,
+     -0.07489513969041328,
+     -0.027988688152385047,
+     -0.16081374565893922,
+     -0.051822446985088914,
+     -0.07929371639193762,
+     -0.0464187050345619,
+     0.10146251853174462,
+     0.05078299106598484,
+     0.023439138367733103,
+     0.010526428409599364,
+     -0.17344039549081747,
+     -0.03159289676674503,
+     -0.034067913062737,
+     -0.09322281563197547,
+     -0.005211602781516261,
+     -0.0692393218360194,
+     -0.14398723463666557,
+     -0.003017914045004371,
+     0.05502173411914598,
+     0.04443966842485991,
+     0.11426795056326527,
+     0.059107338612003374,
+     0.14496599036561528,
+     0.19052238305259736,
+     0.1619649150352755,
+     0.09165124106305277
+    ],
+    "med_log_dur": [
+     0.22129663214269768,
+     0.0025953377828098903,
+     0.10373481124141529,
+     -0.04356956983799972,
+     -0.07251563457898869,
+     -0.09313733234007433,
+     -0.16232478715531876,
+     -0.07982781926757289,
+     -0.14452766071666662,
+     -0.10521815219203835,
+     0.03840781594111367,
+     0.0335936238641051,
+     0.04674256804637431,
+     0.040583461889926994,
+     -0.05525481993125549,
+     0.016912402480527996,
+     -0.032308376133586586,
+     0.0604013786615069,
+     0.05794421670896416,
+     -0.04894966034038293,
+     -0.14976696730516803,
+     -0.017719240147558598,
+     -0.06050009327187307,
+     0.08018588300741476,
+     0.09934820157586591,
+     0.03454239358316373,
+     0.18294187118493557,
+     0.06266752029937714,
+     0.025282771619213766,
+     -0.006200935379024646
+    ],
+    "upload_share": [
+     0.16201969663208726,
+     0.285716956708995,
+     0.0016311429472083386,
+     0.15470046673088467,
+     0.11191754325222962,
+     0.05826050975648849,
+     -0.02412591140968868,
+     -0.07135487914925101,
+     -0.050787222533419184,
+     -0.00681665628137123,
+     -0.019885312862173442,
+     -0.03234754841490806,
+     0.004748577000374705,
+     0.03632301158027929,
+     -0.02829749129127103,
+     -0.01818386714371576,
+     0.015109064889598955,
+     -0.05058610415801368,
+     0.027340335693789776,
+     -0.02599947471736744,
+     0.04298627238212939,
+     -0.00918304125258688,
+     -0.051738854789357795,
+     -0.05385671432128975,
+     -0.07417454171847569,
+     0.02219300998645561,
+     0.017800593293028057,
+     -0.024522985603392205,
+     -0.07451437100774379,
+     -0.011569836253554825
+    ],
+    "new_dst_frac": [
+     0.5180335867033489,
+     0.3933228069179533,
+     0.2691933955305145,
+     0.2348350979966904,
+     0.20668244642912081,
+     0.22053028494583732,
+     0.1705736043859992,
+     0.1409884015802037,
+     0.13077458013968865,
+     0.10413612341858366,
+     0.2664118789312339,
+     0.12224114376969471,
+     0.10116017184761011,
+     0.10452097298712561,
+     0.05465257156656204,
+     -0.02949167205208287,
+     -0.04870334928054044,
+     -0.11142335215705546,
+     -0.11263705252729161,
+     -0.0624692204245677,
+     -0.07166059820350514,
+     0.04077885163129268,
+     -0.006136174692636883,
+     0.037867282043370046,
+     -0.029911500513692187,
+     0.07581083435901448,
+     0.06863982543328988,
+     0.01693904885676385,
+     -0.008445209599892265,
+     -0.03269014205411564
+    ]
+   },
+   "service_fpr": 0.0,
+   "service_false_alerts": {}
+  },
+  "CTU-Normal-30": {
+   "eval_hours": 2.020435,
+   "benign_windows": 258,
+   "attack_windows": 0,
+   "holdout_windows": 267,
+   "device_fpr": 0.0,
+   "device_recall": null,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_up_bytes": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_down_bytes": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_pkts": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_dst_hosts": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_dst_ports": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "no_reply_frac": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "rst_frac": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "udp_share": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "med_log_dur": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "upload_share": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "new_dst_frac": {
+     "fpr": 0.0,
+     "recall": null
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 0,
+    "log_down_bytes": 0,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 0,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": -0.47922067654604955,
+    "log_up_bytes": -0.45999205613570193,
+    "log_down_bytes": -0.3887184982879408,
+    "log_pkts": -0.6017370520010212,
+    "log_dst_hosts": -0.5427740021205713,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.0,
+    "rst_frac": -0.012168507535608188,
+    "udp_share": 0.11934281737007887,
+    "med_log_dur": 0.0,
+    "upload_share": 0.038391691495314184,
+    "new_dst_frac": 0.9333413798897623
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.14728682170542637,
+    "log_up_bytes": 0.09302325581395349,
+    "log_down_bytes": 0.09689922480620156,
+    "log_pkts": 0.10077519379844961,
+    "log_dst_hosts": 0.08139534883720931,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.06201550387596899,
+    "rst_frac": 0.003875968992248062,
+    "udp_share": 0.08139534883720931,
+    "med_log_dur": 0.31007751937984496,
+    "upload_share": 0.07751937984496124,
+    "new_dst_frac": 0.007751937984496124
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.1198501872659176,
+    "log_up_bytes": 0.10486891385767791,
+    "log_down_bytes": 0.10112359550561797,
+    "log_pkts": 0.10486891385767791,
+    "log_dst_hosts": 0.0898876404494382,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.0898876404494382,
+    "rst_frac": 0.0,
+    "udp_share": 0.0299625468164794,
+    "med_log_dur": 0.299625468164794,
+    "upload_share": 0.09363295880149813,
+    "new_dst_frac": 0.026217228464419477
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 0,
+    "pooled_seen_in_calibration": 0,
+    "never_seen_in_calibration": 0
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 242,
+    "pooled_seen": 16,
+    "never_seen": 0
+   },
+   "device_fpr_first_half": 0.0,
+   "device_fpr_second_half": 0.0,
+   "threshold": 16.406932427285142,
+   "fold_thresholds": [
+    11.979277902059575,
+    14.774709913062612,
+    14.723407870985099,
+    16.684544057717357,
+    13.897227051672477
+   ],
+   "fold_threshold_cv": 0.1055789242843799,
+   "threshold_reliable": true,
+   "global_fpr": 0.0,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 102.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 81.5,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 1.0987654320987654,
+     "eval": 1.0661157024793388
+    },
+    "median_z_shift_log_flows": -0.349881913595264
+   },
+   "global_acf": {
+    "log_flows": [
+     0.4584017380281569,
+     0.2542948170427775,
+     0.22767138297737674,
+     0.1762073005706673,
+     0.15885645602203485,
+     0.13297783611936725,
+     0.024849119704967382,
+     -0.031723455912864545,
+     -0.08197875986061523,
+     -0.07460445724545153,
+     -0.028028562751249656,
+     0.019555021640999003,
+     0.012392507065960252,
+     -0.00646519169621287,
+     -0.02461172686416366,
+     0.06103520325373116,
+     0.027331937118684143,
+     0.0836156399542841,
+     0.08833078339511896,
+     0.12607861466266568,
+     0.1257037580587017,
+     0.1435625603267116,
+     0.0784258662239705,
+     0.10276505480359899,
+     0.14024386750620957,
+     0.12649052723739374,
+     0.08104829414734473,
+     0.04519675809437025,
+     0.021174561983340043,
+     -0.017180820958160772
+    ],
+    "log_up_bytes": [
+     0.2265069991585372,
+     0.2444988888933636,
+     0.10831354993496499,
+     0.058823705793702684,
+     0.017045025301604504,
+     -0.002201049423695385,
+     0.0038144252611501343,
+     -0.09516021571654758,
+     0.07250963122310493,
+     -0.03548503507053415,
+     0.06417761690766928,
+     0.03767097810763588,
+     0.061221434392783027,
+     -0.005367860237502902,
+     -0.004403522221559117,
+     0.026846027465289836,
+     -0.07172574377754445,
+     0.021278740604188395,
+     -0.015368207381941827,
+     0.06907521573634673,
+     -0.03110307353910131,
+     -0.014141847060390308,
+     0.02568027296749207,
+     -0.04274344137638822,
+     -0.025985254252356496,
+     -0.04672635154968705,
+     0.010196021819418054,
+     -0.056131099974852446,
+     0.0016996963211231954,
+     0.0017368526384651786
+    ],
+    "log_down_bytes": [
+     0.08083793826447522,
+     0.1248787179819791,
+     0.057700470657719966,
+     -0.0699429305697101,
+     -0.029310714154330245,
+     0.008397304283273925,
+     -0.0339404343745231,
+     -0.07516126955507316,
+     0.09717852053809858,
+     -0.07965168411060788,
+     0.03015727411791816,
+     -0.003519714521491404,
+     -0.07607710898188849,
+     -0.026964992641909238,
+     -0.09462690369130097,
+     -0.038069949216910454,
+     -0.07889146330570318,
+     0.0041379873864439845,
+     0.008905957985967959,
+     0.043518749405365965,
+     -0.08482511928303656,
+     0.002995288468384551,
+     -0.052564490651109026,
+     0.002881850436366185,
+     -0.034714735861009524,
+     -0.024733928263426658,
+     0.059958715347299796,
+     0.015458249164921159,
+     0.03628168322250941,
+     -0.03209219887931427
+    ],
+    "log_pkts": [
+     0.12106386319075545,
+     0.1529515538022379,
+     0.09160722256283603,
+     -0.04138552296812868,
+     -0.0348390049570066,
+     -0.003717075898967589,
+     -0.025947028583548897,
+     -0.10598094322190721,
+     0.05633889085695489,
+     -0.08224513312170763,
+     -0.005056888431170872,
+     0.013170171137337861,
+     -0.04337269129741869,
+     -0.02928388034065565,
+     -0.0725542841446503,
+     -0.011818355871155945,
+     -0.08760726185018572,
+     0.006445705125651258,
+     0.010819075436686835,
+     0.07869111405405403,
+     -0.04543745005070368,
+     -0.0017847324923581417,
+     -0.021360293216424825,
+     0.028064879724408718,
+     -0.009802984156730823,
+     -0.0169551240687582,
+     0.05934667361649777,
+     -0.024128846362128756,
+     0.027326335307098604,
+     -0.02248542704809122
+    ],
+    "log_dst_hosts": [
+     0.49335216898397205,
+     0.42431002367080506,
+     0.4140398259032131,
+     0.3737995110577895,
+     0.2289021902567222,
+     0.2021246044522758,
+     0.15974255537541374,
+     0.02152599346424871,
+     0.04201012840261496,
+     0.012866971638324709,
+     0.02855892893306605,
+     0.04585740087793339,
+     0.06508966666189459,
+     0.07182275569470686,
+     0.08329196028460771,
+     0.09351186586609857,
+     0.14281245931469658,
+     0.1634685613583147,
+     0.10963831538495589,
+     0.11120174271534979,
+     0.09189526698286202,
+     0.1295562904568835,
+     0.08218356416733234,
+     0.0828419479257953,
+     0.07110960540192643,
+     0.03938031409862346,
+     0.01300324182475903,
+     -0.008620993784967125,
+     0.04188756999400033,
+     -0.015946828162685573
+    ],
+    "log_dst_ports": [
+     0.06748090070350445,
+     -0.01549076679650374,
+     0.13554897086115125,
+     0.029743137041769677,
+     0.003311030920960616,
+     -0.052753719019540034,
+     -0.003687652856623335,
+     -0.059358657205813355,
+     -0.0028074701638393595,
+     -0.04736888253658176,
+     -0.12345459297427082,
+     -0.04694425870123631,
+     -0.17881154675907665,
+     -0.005917305875621413,
+     0.15883753271717146,
+     -0.0879978168863943,
+     -0.027079905224810772,
+     -0.03158012823162587,
+     -0.05447428115463649,
+     -0.014624309710030198,
+     -0.020486161331082945,
+     -0.1142426702394097,
+     -0.0919722804433277,
+     -0.0024571790199697002,
+     0.012074702370493937,
+     -0.10172477165896697,
+     -0.031707399482720625,
+     -0.022227833566951412,
+     0.009630000035168661,
+     0.21942028801666025
+    ],
+    "no_reply_frac": [
+     0.10664661722357376,
+     0.05848566358566434,
+     0.019206781137563567,
+     -0.01356450599902456,
+     -0.014583484302076788,
+     -0.018981919084299748,
+     -0.01781685403745065,
+     -0.024951094906552108,
+     -0.019386576433152704,
+     -0.014492240288257643,
+     0.025982268745036646,
+     0.02913385293639395,
+     -0.012865207130138825,
+     -0.012281139076020237,
+     -0.0018537721797434448,
+     -0.015015399703068531,
+     0.038858224122616844,
+     -0.012103449938778932,
+     -0.018058891208380896,
+     -0.006764105653046974,
+     -0.014834948318247247,
+     -0.0223521683205434,
+     -0.023678063009208588,
+     -0.014349282947942915,
+     -0.003435356086715667,
+     -0.01244787155994427,
+     -0.011906513219835853,
+     -0.0051384461030116076,
+     -0.011315027483965338,
+     0.00527748882792879
+    ],
+    "rst_frac": [
+     0.121355081400524,
+     0.0800237909215883,
+     -0.009480427454292603,
+     -0.041924961873706285,
+     -0.13657674966467442,
+     -0.010196034708873758,
+     0.024024321721455664,
+     -0.03528772836415777,
+     -0.09101436172207156,
+     0.0159163885813095,
+     0.05804440857013491,
+     0.05464440675989286,
+     0.010773587648975591,
+     0.0748849147241736,
+     -0.003071447003267165,
+     -0.03294577678622728,
+     -0.00848665604377178,
+     0.10629806189999601,
+     -0.02220820484464469,
+     -0.09809515624477318,
+     -0.047780343935593134,
+     -0.039041707697849246,
+     -0.03210486029270136,
+     0.0018343649027810962,
+     0.07091991377962241,
+     0.12353954344262982,
+     -0.132021444502993,
+     0.09997690670996008,
+     0.02755556728564033,
+     -0.043410002017275996
+    ],
+    "udp_share": [
+     0.2637317422274308,
+     0.12374186879386065,
+     0.004837159991238161,
+     -0.12747982878674835,
+     -0.030093662922670114,
+     -0.08565068194996768,
+     -0.11276815674665856,
+     -0.06705178282412645,
+     -0.21429403833963198,
+     -0.07245631314373328,
+     0.023384547675579577,
+     0.08302941854818671,
+     0.042261537338508445,
+     0.13454395865951327,
+     0.011244523579399363,
+     0.10250361394172341,
+     0.009985301824647904,
+     0.020712686181306946,
+     0.06207910271435803,
+     -0.0850387875734908,
+     -0.010626148198721432,
+     0.03311642313159454,
+     -0.08490553273053193,
+     -0.030018265503976915,
+     -0.11781343670902568,
+     0.09459577070662106,
+     0.04002642715071806,
+     0.11049381585278353,
+     -0.0027283790999628648,
+     0.06412149895269113
+    ],
+    "med_log_dur": [
+     0.2512920762439857,
+     0.12028332654397902,
+     0.028325209521792242,
+     -0.07873961035195644,
+     0.004300017235068547,
+     -0.060087006651248796,
+     -0.03662853058975116,
+     -0.021225747437549857,
+     -0.11863147459716984,
+     -0.06609217368646995,
+     0.00812214119986916,
+     0.021861355938411996,
+     0.061317761946436025,
+     0.0938826008068511,
+     0.041554807334881365,
+     0.06700507185427963,
+     0.029288961212149633,
+     0.007527958707165981,
+     0.04186362490682262,
+     -0.0791091657064853,
+     0.02625893812339362,
+     0.01740424989607611,
+     -0.05302001379100895,
+     -0.022230117520891306,
+     -0.09414556555537225,
+     0.03676742561649436,
+     0.04206538313669947,
+     0.10005314083012955,
+     0.01821198802694419,
+     0.03486145118582564
+    ],
+    "upload_share": [
+     -0.02822511231307344,
+     0.07576850871747816,
+     0.08957814074291096,
+     -0.01851948168716618,
+     0.07203915670814268,
+     0.004369818575204653,
+     -0.04356392334168854,
+     -0.02241226615191728,
+     0.06275262038462165,
+     -0.025275314678510352,
+     -0.004064631331588685,
+     -0.021304760190153524,
+     -0.1351197767871958,
+     0.035563870904166815,
+     -0.06401361625875837,
+     -0.06354279612621525,
+     -0.006994344018490651,
+     0.009160834802490641,
+     0.1381474336377401,
+     -0.03129458501503678,
+     -0.05014831550584315,
+     0.05935751684996845,
+     -0.05337741327083335,
+     -0.030448259310770994,
+     -0.060376048575307234,
+     -0.0072170830859292455,
+     0.052824659797030486,
+     0.0977900379639263,
+     0.010849282249653754,
+     -0.0422995216905162
+    ],
+    "new_dst_frac": [
+     0.26986766328009737,
+     0.19332434970398035,
+     0.12234249317393377,
+     0.05297162287434344,
+     0.10065725169297579,
+     0.11936719956563027,
+     -0.009900568017706989,
+     -0.005249734065390353,
+     0.08010448353311807,
+     -0.03755545125802824,
+     -0.02326614502826875,
+     0.06053230393087451,
+     0.054780926457786275,
+     0.0704898169622674,
+     0.08320955798408786,
+     0.058533822704711753,
+     0.024232902988265758,
+     0.07767078912394454,
+     0.10697464285883312,
+     0.06644135419869683,
+     0.14126226950356902,
+     0.11915654327008995,
+     0.08203882851198423,
+     0.08937963303258473,
+     0.09643429088343708,
+     0.042885898047701744,
+     0.03851435914528475,
+     0.02332772806869713,
+     -0.06643177043467693,
+     0.009467145111367073
+    ]
+   },
+   "service_fpr": 0.0,
+   "service_false_alerts": {}
+  },
+  "CTU-Normal-31": {
+   "eval_hours": 1.8726886111111112,
+   "benign_windows": 240,
+   "attack_windows": 0,
+   "holdout_windows": 240,
+   "device_fpr": 0.0,
+   "device_recall": null,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_up_bytes": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_down_bytes": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_pkts": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_dst_hosts": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_dst_ports": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "no_reply_frac": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "rst_frac": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "udp_share": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "med_log_dur": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "upload_share": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "new_dst_frac": {
+     "fpr": 0.0,
+     "recall": null
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 0,
+    "log_down_bytes": 0,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 0,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": -0.13526497428101114,
+    "log_up_bytes": -0.03517670495145174,
+    "log_down_bytes": 0.13827628360121516,
+    "log_pkts": 0.05271364448175209,
+    "log_dst_hosts": 0.05482840935043973,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.0,
+    "rst_frac": 0.0905640223376284,
+    "udp_share": -0.2469729730682276,
+    "med_log_dur": 0.8537317129588435,
+    "upload_share": -0.047180773189934765,
+    "new_dst_frac": 1.4814814814814814
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.10833333333333334,
+    "log_up_bytes": 0.07916666666666666,
+    "log_down_bytes": 0.0625,
+    "log_pkts": 0.07083333333333333,
+    "log_dst_hosts": 0.07083333333333333,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.06666666666666667,
+    "rst_frac": 0.0,
+    "udp_share": 0.06666666666666667,
+    "med_log_dur": 0.3375,
+    "upload_share": 0.06666666666666667,
+    "new_dst_frac": 0.041666666666666664
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.15833333333333333,
+    "log_up_bytes": 0.11666666666666667,
+    "log_down_bytes": 0.0875,
+    "log_pkts": 0.1,
+    "log_dst_hosts": 0.12083333333333333,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.075,
+    "rst_frac": 0.004166666666666667,
+    "udp_share": 0.09583333333333334,
+    "med_log_dur": 0.2833333333333333,
+    "upload_share": 0.075,
+    "new_dst_frac": 0.03333333333333333
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 0,
+    "pooled_seen_in_calibration": 0,
+    "never_seen_in_calibration": 0
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 225,
+    "pooled_seen": 15,
+    "never_seen": 0
+   },
+   "device_fpr_first_half": 0.0,
+   "device_fpr_second_half": 0.0,
+   "threshold": 18.25040016129543,
+   "fold_thresholds": [
+    19.089140517509236,
+    15.570518227126556,
+    17.42942584684805,
+    12.126392185967472,
+    17.603127803729425
+   ],
+   "fold_threshold_cv": 0.14636997077084726,
+   "threshold_reliable": true,
+   "global_fpr": 0.0,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 118.5,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 117.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 1.0810810810810811,
+     "eval": 1.0666666666666667
+    },
+    "median_z_shift_log_flows": -0.02210485659565886
+   },
+   "global_acf": {
+    "log_flows": [
+     0.6821720340290278,
+     0.5001699320857999,
+     0.39106799704807943,
+     0.32871868044439145,
+     0.2863489392460734,
+     0.29273546029133907,
+     0.2522979976070883,
+     0.21512274159052233,
+     0.11573080006787767,
+     0.07097391123227838,
+     0.01116297870047317,
+     -0.04836903507485396,
+     -0.08466840111185635,
+     -0.0447394907748217,
+     -0.06057531826029167,
+     -0.06906280359127556,
+     -0.09866697446372134,
+     -0.09933866197748266,
+     -0.11907989135179628,
+     -0.16983677324540178,
+     -0.1712811648564999,
+     -0.14559319720019992,
+     -0.13221330512675045,
+     -0.11084500323610914,
+     -0.10032737880457011,
+     -0.14265048245745984,
+     -0.18503551439935018,
+     -0.2339161462474027,
+     -0.17935659897495693,
+     -0.17808587245764768
+    ]
+   },
+   "service_fpr": 0.010416666666666666,
+   "service_false_alerts": {
+    "dns": 5
+   }
+  },
+  "CTU-Normal-32": {
+   "eval_hours": 1.9774694444444445,
+   "benign_windows": 254,
+   "attack_windows": 0,
+   "holdout_windows": 254,
+   "device_fpr": 0.0,
+   "device_recall": null,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_up_bytes": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_down_bytes": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_pkts": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_dst_hosts": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "log_dst_ports": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "no_reply_frac": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "rst_frac": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "udp_share": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "med_log_dur": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "upload_share": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "new_dst_frac": {
+     "fpr": 0.0,
+     "recall": null
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 0,
+    "log_down_bytes": 0,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 0,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": 0.13061565617052817,
+    "log_up_bytes": 0.24307495735235315,
+    "log_down_bytes": 0.05804549359289772,
+    "log_pkts": 0.12214664538682207,
+    "log_dst_hosts": 0.19051810475289632,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.0,
+    "rst_frac": -0.26982863834278936,
+    "udp_share": 0.3618182396985083,
+    "med_log_dur": -0.9048617917874591,
+    "upload_share": 0.017594369502363188,
+    "new_dst_frac": 1.2121212121212124
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.06692913385826772,
+    "log_up_bytes": 0.07086614173228346,
+    "log_down_bytes": 0.06692913385826772,
+    "log_pkts": 0.07086614173228346,
+    "log_dst_hosts": 0.07480314960629922,
+    "log_dst_ports": 0.003937007874015748,
+    "no_reply_frac": 0.06299212598425197,
+    "rst_frac": 0.0,
+    "udp_share": 0.0,
+    "med_log_dur": 0.0,
+    "upload_share": 0.06299212598425197,
+    "new_dst_frac": 0.0
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.16141732283464566,
+    "log_up_bytes": 0.14566929133858267,
+    "log_down_bytes": 0.11811023622047244,
+    "log_pkts": 0.12992125984251968,
+    "log_dst_hosts": 0.1732283464566929,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.08267716535433071,
+    "rst_frac": 0.003937007874015748,
+    "udp_share": 0.04330708661417323,
+    "med_log_dur": 0.0,
+    "upload_share": 0.08267716535433071,
+    "new_dst_frac": 0.04330708661417323
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 0,
+    "pooled_seen_in_calibration": 0,
+    "never_seen_in_calibration": 0
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 238,
+    "pooled_seen": 16,
+    "never_seen": 0
+   },
+   "device_fpr_first_half": 0.0,
+   "device_fpr_second_half": 0.0,
+   "threshold": 11.846208585155406,
+   "fold_thresholds": [
+    12.466272108857838,
+    8.774334299960202,
+    8.457267371339794,
+    8.942384973765794,
+    8.451494283272895
+   ],
+   "fold_threshold_cv": 0.16303843932893305,
+   "threshold_reliable": true,
+   "global_fpr": 0.0,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 137.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 150.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 1.0808510638297872,
+     "eval": 1.0672268907563025
+    },
+    "median_z_shift_log_flows": 0.17520610083219937
+   },
+   "global_acf": {
+    "log_flows": [
+     0.6055812691206626,
+     0.5932360404204357,
+     0.46518985145008285,
+     0.48834924275576724,
+     0.40494487834807935,
+     0.3897699971860545,
+     0.303993106744218,
+     0.2984058110858091,
+     0.25040401052239314,
+     0.2634876283141958,
+     0.19641801917499063,
+     0.27368415912272853,
+     0.25194079989049745,
+     0.22355038324435722,
+     0.1780498213634387,
+     0.08202752897788702,
+     0.06975656571708938,
+     0.07043508522506454,
+     0.07083473558173893,
+     0.021546928475532696,
+     0.01883816202436452,
+     0.01931696071406729,
+     0.04087124378600815,
+     0.06755319004907152,
+     0.06551984384381378,
+     0.11041068700350797,
+     0.132742990463633,
+     0.10968344292002084,
+     0.09426870451267032,
+     0.06384522703684392
+    ]
+   },
+   "service_fpr": 0.01764705882352941,
+   "service_false_alerts": {
+    "other_wellknown": 8,
+    "web": 1
+   }
+  },
+  "CTU-Normal-26": {
+   "eval_hours": 3.2382138888888887,
+   "benign_windows": 409,
+   "attack_windows": 0,
+   "holdout_windows": 405,
+   "device_fpr": 0.007334963325183374,
+   "device_recall": null,
+   "lofo": {
+    "log_flows": {
+     "fpr": 0.007334963325183374,
+     "recall": null
+    },
+    "log_up_bytes": {
+     "fpr": 0.004889975550122249,
+     "recall": null
+    },
+    "log_down_bytes": {
+     "fpr": 0.017114914425427872,
+     "recall": null
+    },
+    "log_pkts": {
+     "fpr": 0.007334963325183374,
+     "recall": null
+    },
+    "log_dst_hosts": {
+     "fpr": 0.007334963325183374,
+     "recall": null
+    },
+    "log_dst_ports": {
+     "fpr": 0.007334963325183374,
+     "recall": null
+    },
+    "no_reply_frac": {
+     "fpr": 0.007334963325183374,
+     "recall": null
+    },
+    "rst_frac": {
+     "fpr": 0.007334963325183374,
+     "recall": null
+    },
+    "udp_share": {
+     "fpr": 0.007334963325183374,
+     "recall": null
+    },
+    "med_log_dur": {
+     "fpr": 0.0,
+     "recall": null
+    },
+    "upload_share": {
+     "fpr": 0.007334963325183374,
+     "recall": null
+    },
+    "new_dst_frac": {
+     "fpr": 0.007334963325183374,
+     "recall": null
+    }
+   },
+   "false_alert_top_feature": {
+    "log_flows": 0,
+    "log_up_bytes": 0,
+    "log_down_bytes": 0,
+    "log_pkts": 0,
+    "log_dst_hosts": 0,
+    "log_dst_ports": 0,
+    "no_reply_frac": 0,
+    "rst_frac": 0,
+    "udp_share": 0,
+    "med_log_dur": 3,
+    "upload_share": 0,
+    "new_dst_frac": 0
+   },
+   "median_z_shift": {
+    "log_flows": 0.527674255375653,
+    "log_up_bytes": 0.2695842492501181,
+    "log_down_bytes": 0.05560597498996758,
+    "log_pkts": 0.0,
+    "log_dst_hosts": 0.0,
+    "log_dst_ports": 0.0,
+    "no_reply_frac": 0.0,
+    "rst_frac": 0.0,
+    "udp_share": 0.0,
+    "med_log_dur": 1.5655186784992647,
+    "upload_share": -0.16286949815095264,
+    "new_dst_frac": 0.0
+   },
+   "tail_rate_eval": {
+    "log_flows": 0.1271393643031785,
+    "log_up_bytes": 0.3056234718826406,
+    "log_down_bytes": 0.3374083129584352,
+    "log_pkts": 0.3056234718826406,
+    "log_dst_hosts": 0.22493887530562348,
+    "log_dst_ports": 0.012224938875305624,
+    "no_reply_frac": 0.05623471882640587,
+    "rst_frac": 0.0,
+    "udp_share": 0.07090464547677261,
+    "med_log_dur": 0.16136919315403422,
+    "upload_share": 0.05623471882640587,
+    "new_dst_frac": 0.28117359413202936
+   },
+   "tail_rate_holdout": {
+    "log_flows": 0.06666666666666667,
+    "log_up_bytes": 0.17530864197530865,
+    "log_down_bytes": 0.23950617283950618,
+    "log_pkts": 0.17530864197530865,
+    "log_dst_hosts": 0.1037037037037037,
+    "log_dst_ports": 0.0024691358024691358,
+    "no_reply_frac": 0.0691358024691358,
+    "rst_frac": 0.0024691358024691358,
+    "udp_share": 0.03950617283950617,
+    "med_log_dur": 0.10864197530864197,
+    "upload_share": 0.0691358024691358,
+    "new_dst_frac": 0.06172839506172839
+   },
+   "false_alerts_by_entity": {
+    "own_profile": 3,
+    "pooled_seen_in_calibration": 0,
+    "never_seen_in_calibration": 0
+   },
+   "eval_windows_by_entity": {
+    "own_profile": 386,
+    "pooled_seen": 23,
+    "never_seen": 0
+   },
+   "device_fpr_first_half": 0.00975609756097561,
+   "device_fpr_second_half": 0.004901960784313725,
+   "threshold": 21.940067999205933,
+   "fold_thresholds": [
+    27.237113131338205,
+    24.064963420144107,
+    20.39614036564288,
+    20.349399394868286,
+    20.913829041830716
+   ],
+   "fold_threshold_cv": 0.11945078953659642,
+   "threshold_reliable": true,
+   "global_fpr": 0.005141388174807198,
+   "intensity": {
+    "cal": {
+     "median_flows_per_window": 8.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "eval": {
+     "median_flows_per_window": 12.0,
+     "share_windows_without_bytes": 0.0
+    },
+    "entities_per_window": {
+     "cal": 1.062992125984252,
+     "eval": 1.0595854922279793
+    },
+    "median_z_shift_log_flows": 0.6744907594765951
+   },
+   "global_acf": {
+    "log_flows": [
+     0.11319319948375568,
+     0.2959244886805007,
+     0.04078638771968708,
+     0.19901502853540382,
+     0.0022938845105767826,
+     0.13582193306275794,
+     0.11547703909494014,
+     0.16151188417132095,
+     -0.022935032554613648,
+     0.24605263866437857,
+     -0.04744528058216193,
+     0.07293040472817872,
+     -0.06006578582312032,
+     0.13465547296095837,
+     -0.13888770716144214,
+     0.013718590476607583,
+     -0.06668748021594698,
+     0.02061299284493522,
+     -0.1760548808905643,
+     0.09883829288793043,
+     -0.09372118110998573,
+     -0.005763576162532649,
+     -0.1381132986877342,
+     0.018005632802860935,
+     -0.08617752520523304,
+     -0.042944246143289344,
+     -0.08392657171530932,
+     0.0682295180530779,
+     -0.14621438319739885,
+     0.07132973073658234
+    ]
+   },
+   "service_fpr": 0.0,
+   "service_false_alerts": {}
+  }
+ },
+ "peak_rss_mb": 185.0234375
+}
