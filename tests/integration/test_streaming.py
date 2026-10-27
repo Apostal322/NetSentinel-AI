@@ -82,7 +82,7 @@ def test_out_of_order_and_duplicates_within_lateness(setup):
 
 
 def test_late_records_are_counted_not_merged():
-    ws = WindowStream(window_s=10, lateness_s=0)
+    ws = WindowStream(window_s=10, lateness_s=0, clock_quorum=1)  # max-start clock (pre-8f)
     base = {"IPV4_SRC_ADDR": "a", "IPV4_DST_ADDR": "b", "L4_SRC_PORT": 1, "L4_DST_PORT": 2,
             "PROTOCOL": 6, "IN_BYTES": 1, "OUT_BYTES": 1}  # fmt: skip
     closed = []

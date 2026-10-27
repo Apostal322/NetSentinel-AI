@@ -66,6 +66,9 @@ class LevelProfile:
     # Phase 8c: share of the held-out windows above the threshold that were scored against the
     # POOLED fallback (keys without an own profile - e.g. transient external sources)
     tail_fallback_share: float | None = None
+    # Phase 8f: block summaries of the held-out windows for the calibration-validity test
+    # (behavior.validity); None for calibrations made before Phase 8f
+    validity_ref: dict | None = None
 
     def scope_for(self, key: str) -> str:
         return key if key in self.keys else POOLED
@@ -248,11 +251,22 @@ def fit_level(fit: pl.DataFrame, holdout: pl.DataFrame, level: str, target_fpr: 
     if prof.pooled is None:
         prof.warnings.append("no fit windows")
         return prof
-    hs = window_scores(_zs(prof, holdout), top_k) if holdout.height else np.array([])
+    zh = _zs(prof, holdout) if holdout.height else np.zeros((0, len(WINDOW_FEATURES)))
+    hs = window_scores(zh, top_k) if holdout.height else np.array([])
     fb = (
         np.array([k not in prof.keys for k in holdout["key"].to_list()]) if holdout.height else None
     )
-    return _finish(prof, hs, level, target_fpr, min_windows, mode, fb)
+    prof = _finish(prof, hs, level, target_fpr, min_windows, mode, fb)
+    if holdout.height:
+        _validity_ref(prof, holdout["win"].to_numpy(), zh, fb)
+    return prof
+
+
+def _validity_ref(prof: LevelProfile, win: np.ndarray, z: np.ndarray, fb) -> None:
+    from netsentinel.behavior.validity import block_summary
+
+    fb = np.zeros(len(win), bool) if fb is None or prof.level == "global" else fb
+    prof.validity_ref = block_summary(win, z, fb)
 
 
 def fit_level_crossfit(windows: pl.DataFrame, level: str, target_fpr: float, min_windows: int,
@@ -268,7 +282,7 @@ def fit_level_crossfit(windows: pl.DataFrame, level: str, target_fpr: float, min
         return prof
     wins = np.sort(windows["win"].unique().to_numpy())
     edges = np.array_split(wins, folds)
-    scores, fallback = [], []
+    scores, fallback, zs, wins_h = [], [], [], []
     for block in edges:
         if not len(block):
             continue
@@ -277,8 +291,11 @@ def fit_level_crossfit(windows: pl.DataFrame, level: str, target_fpr: float, min
         tmp = LevelProfile(level=level)
         tmp.keys, tmp.pooled, _, _ = _fit_stats(train, min_windows, mode, top_k, trim_passes)
         if tmp.pooled is not None and test.height:
-            scores.append(window_scores(_zs(tmp, test), top_k))
+            z = _zs(tmp, test)
+            scores.append(window_scores(z, top_k))
             fallback.append(np.array([k not in tmp.keys for k in test["key"].to_list()]))
+            zs.append(z)
+            wins_h.append(test["win"].to_numpy())
     prof.keys, prof.pooled, prof.trimmed_windows, prof.n_fit_windows = _fit_stats(
         windows, min_windows, mode, top_k, trim_passes)  # fmt: skip
     if prof.pooled is None:
@@ -286,7 +303,10 @@ def fit_level_crossfit(windows: pl.DataFrame, level: str, target_fpr: float, min
         return prof
     hs = np.concatenate(scores) if scores else np.array([])
     fb = np.concatenate(fallback) if fallback else None
-    return _finish(prof, hs, level, target_fpr, min_windows, mode, fb)
+    prof = _finish(prof, hs, level, target_fpr, min_windows, mode, fb)
+    if zs:
+        _validity_ref(prof, np.concatenate(wins_h), np.vstack(zs), fb)
+    return prof
 
 
 def explain_row(z: np.ndarray, top: int = 3, min_abs: float = 3.0) -> list[str]:

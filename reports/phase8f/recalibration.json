@@ -1,0 +1,4280 @@
+{
+ "rule": "docs/phase8f/PLAN.md sections 3-4",
+ "role": "development (no consumed capture)",
+ "summary": {
+  "S1": {
+   "captures": 22,
+   "false_alerts": 428,
+   "pooled_false_alerts_per_h": 3.8110417340853298,
+   "median_false_alerts_per_h": 0.0,
+   "max_false_alerts_per_h": 46.17030461139994,
+   "window_recall": 0.2688482886216466,
+   "attackers_detected": "9/10",
+   "attacker_recall_ci95": [
+    0.5958436145024278,
+    0.9821242504842788
+   ],
+   "median_delay_s": 510.0,
+   "absorbed_attack_windows": 0,
+   "absorbed_share": 0.0,
+   "activations": 0,
+   "reviews_required": 0,
+   "valid_segment_share": 0.40816326530612246,
+   "cost": {
+    "10": 63658,
+    "100": 632728
+   },
+   "max_refit_seconds": 2.599999788799323e-06,
+   "success_vs_S1": {
+    "lower_false_alerts": false,
+    "no_attacker_lost": true,
+    "window_recall_ge_0.9x": true,
+    "absorbed_le_1pct": true
+   },
+   "succeeds": false
+  },
+  "S2": {
+   "captures": 22,
+   "false_alerts": 220,
+   "pooled_false_alerts_per_h": 1.9589466857447957,
+   "median_false_alerts_per_h": 0.0,
+   "max_false_alerts_per_h": 22.296878812334604,
+   "window_recall": 0.04671600370027752,
+   "attackers_detected": "8/10",
+   "attacker_recall_ci95": [
+    0.49015684672072335,
+    0.9433190520193067
+   ],
+   "median_delay_s": 0.0,
+   "absorbed_attack_windows": 8224,
+   "absorbed_share": 0.9509713228492137,
+   "activations": 45,
+   "reviews_required": 0,
+   "valid_segment_share": 0.6020408163265306,
+   "cost": {
+    "10": 82660,
+    "100": 824620
+   },
+   "max_refit_seconds": 0.21886739999990823,
+   "success_vs_S1": {
+    "lower_false_alerts": true,
+    "no_attacker_lost": false,
+    "window_recall_ge_0.9x": false,
+    "absorbed_le_1pct": false
+   },
+   "succeeds": false
+  },
+  "S3": {
+   "captures": 22,
+   "false_alerts": 93,
+   "pooled_false_alerts_per_h": 0.8281001898830272,
+   "median_false_alerts_per_h": 0.0,
+   "max_false_alerts_per_h": 8.445787428914624,
+   "window_recall": 0.030064754856614247,
+   "attackers_detected": "7/10",
+   "attacker_recall_ci95": [
+    0.39677321997956516,
+    0.892210712513788
+   ],
+   "median_delay_s": 0.0,
+   "absorbed_attack_windows": 1753,
+   "absorbed_share": 0.2027058279370953,
+   "activations": 19,
+   "reviews_required": 0,
+   "valid_segment_share": 0.7857142857142857,
+   "cost": {
+    "10": 83973,
+    "100": 838893
+   },
+   "max_refit_seconds": 0.176411299999927,
+   "success_vs_S1": {
+    "lower_false_alerts": true,
+    "no_attacker_lost": false,
+    "window_recall_ge_0.9x": false,
+    "absorbed_le_1pct": false
+   },
+   "succeeds": false
+  },
+  "S4": {
+   "captures": 22,
+   "false_alerts": 251,
+   "pooled_false_alerts_per_h": 2.2349800823724713,
+   "median_false_alerts_per_h": 0.04166835172709415,
+   "max_false_alerts_per_h": 24.6616992924307,
+   "window_recall": 0.24768732654949122,
+   "attackers_detected": "8/10",
+   "attacker_recall_ci95": [
+    0.49015684672072335,
+    0.9433190520193067
+   ],
+   "median_delay_s": 0.0,
+   "absorbed_attack_windows": 5841,
+   "absorbed_share": 0.6754162812210915,
+   "activations": 39,
+   "reviews_required": 0,
+   "valid_segment_share": 0.5918367346938775,
+   "cost": {
+    "10": 65311,
+    "100": 650851
+   },
+   "max_refit_seconds": 0.2213095000006433,
+   "success_vs_S1": {
+    "lower_false_alerts": true,
+    "no_attacker_lost": false,
+    "window_recall_ge_0.9x": true,
+    "absorbed_le_1pct": false
+   },
+   "succeeds": false
+  },
+  "S4o": {
+   "captures": 22,
+   "false_alerts": 211,
+   "pooled_false_alerts_per_h": 1.8788079576915995,
+   "median_false_alerts_per_h": 0.08333798831994298,
+   "max_false_alerts_per_h": 20.83294232465607,
+   "window_recall": 0.28769657724329323,
+   "attackers_detected": "9/10",
+   "attacker_recall_ci95": [
+    0.5958436145024278,
+    0.9821242504842788
+   ],
+   "median_delay_s": 0.0,
+   "absorbed_attack_windows": 0,
+   "absorbed_share": 0.0,
+   "activations": 29,
+   "reviews_required": 0,
+   "valid_segment_share": 0.42857142857142855,
+   "cost": {
+    "10": 61811,
+    "100": 616211
+   },
+   "max_refit_seconds": 0.1732929999998305,
+   "success_vs_S1": {
+    "lower_false_alerts": true,
+    "no_attacker_lost": true,
+    "window_recall_ge_0.9x": true,
+    "absorbed_le_1pct": true
+   },
+   "succeeds": false
+  },
+  "S5": {
+   "captures": 22,
+   "false_alerts": 427,
+   "pooled_false_alerts_per_h": 3.802137430968308,
+   "median_false_alerts_per_h": 0.0,
+   "max_false_alerts_per_h": 46.17030461139994,
+   "window_recall": 0.26861702127659576,
+   "attackers_detected": "9/10",
+   "attacker_recall_ci95": [
+    0.5958436145024278,
+    0.9821242504842788
+   ],
+   "median_delay_s": 510.0,
+   "absorbed_attack_windows": 505,
+   "absorbed_share": 0.0583950046253469,
+   "activations": 13,
+   "reviews_required": 32,
+   "valid_segment_share": 0.5,
+   "cost": {
+    "10": 63677,
+    "100": 632927
+   },
+   "max_refit_seconds": 0.3379229000001942,
+   "success_vs_S1": {
+    "lower_false_alerts": true,
+    "no_attacker_lost": true,
+    "window_recall_ge_0.9x": true,
+    "absorbed_le_1pct": false
+   },
+   "succeeds": false
+  },
+  "S1u": {
+   "captures": 22,
+   "false_alerts": 332,
+   "pooled_false_alerts_per_h": 2.956228634851237,
+   "median_false_alerts_per_h": 0.0,
+   "max_false_alerts_per_h": 35.35969670238922,
+   "window_recall": 0.005550416281221091,
+   "attackers_detected": "4/10",
+   "attacker_recall_ci95": [
+    0.16817758120350967,
+    0.6873304525498135
+   ],
+   "median_delay_s": 75.0,
+   "absorbed_attack_windows": 0,
+   "absorbed_share": 0.0,
+   "activations": 0,
+   "reviews_required": 0,
+   "valid_segment_share": 0.673469387755102,
+   "cost": {
+    "10": 86332,
+    "100": 860332
+   },
+   "max_refit_seconds": 2.7999994927085936e-06,
+   "success_vs_S1": {
+    "lower_false_alerts": true,
+    "no_attacker_lost": false,
+    "window_recall_ge_0.9x": false,
+    "absorbed_le_1pct": true
+   },
+   "succeeds": false
+  },
+  "S5u": {
+   "captures": 22,
+   "false_alerts": 274,
+   "pooled_false_alerts_per_h": 2.4397790540639726,
+   "median_false_alerts_per_h": 0.0,
+   "max_false_alerts_per_h": 28.94089825641411,
+   "window_recall": 0.024629972247918595,
+   "attackers_detected": "5/10",
+   "attacker_recall_ci95": [
+    0.23658959361548731,
+    0.7634104063845126
+   ],
+   "median_delay_s": 150.0,
+   "absorbed_attack_windows": 4256,
+   "absorbed_share": 0.4921369102682701,
+   "activations": 23,
+   "reviews_required": 22,
+   "valid_segment_share": 0.6326530612244898,
+   "cost": {
+    "10": 84624,
+    "100": 843774
+   },
+   "max_refit_seconds": 0.2330480999999054,
+   "success_vs_S1": {
+    "lower_false_alerts": true,
+    "no_attacker_lost": false,
+    "window_recall_ge_0.9x": false,
+    "absorbed_le_1pct": false
+   },
+   "succeeds": false
+  }
+ },
+ "captures": {
+  "CTU-Honeypot-Capture-4-1": {
+   "S1": {
+    "false_alerts": 2,
+    "false_alerts_per_h": 0.18288929886008912,
+    "benign_windows": 87,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 2.599999788799323e-06,
+    "cost": {
+     "10": 2,
+     "100": 2
+    },
+    "hours": 10.935576944444444
+   },
+   "S2": {
+    "false_alerts": 2,
+    "false_alerts_per_h": 0.18288929886008912,
+    "benign_windows": 87,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 5,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 0.0005395000007410999,
+    "cost": {
+     "10": 2,
+     "100": 2
+    },
+    "hours": 10.935576944444444
+   },
+   "S3": {
+    "false_alerts": 2,
+    "false_alerts_per_h": 0.18288929886008912,
+    "benign_windows": 87,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.5000005078036338e-06,
+    "cost": {
+     "10": 2,
+     "100": 2
+    },
+    "hours": 10.935576944444444
+   },
+   "S4": {
+    "false_alerts": 2,
+    "false_alerts_per_h": 0.18288929886008912,
+    "benign_windows": 87,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 5,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 0.0008386999998037936,
+    "cost": {
+     "10": 2,
+     "100": 2
+    },
+    "hours": 10.935576944444444
+   },
+   "S4o": {
+    "false_alerts": 2,
+    "false_alerts_per_h": 0.18288929886008912,
+    "benign_windows": 87,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 5,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 0.0013718999998673098,
+    "cost": {
+     "10": 2,
+     "100": 2
+    },
+    "hours": 10.935576944444444
+   },
+   "S5": {
+    "false_alerts": 2,
+    "false_alerts_per_h": 0.18288929886008912,
+    "benign_windows": 87,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 5,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 0.0008246000006693066,
+    "cost": {
+     "10": 2,
+     "100": 2
+    },
+    "hours": 10.935576944444444
+   },
+   "S1u": {
+    "false_alerts": 2,
+    "false_alerts_per_h": 0.18288929886008912,
+    "benign_windows": 87,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.5999994502635673e-06,
+    "cost": {
+     "10": 2,
+     "100": 2
+    },
+    "hours": 10.935576944444444
+   },
+   "S5u": {
+    "false_alerts": 2,
+    "false_alerts_per_h": 0.18288929886008912,
+    "benign_windows": 87,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 5,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 0.0009458000004087808,
+    "cost": {
+     "10": 2,
+     "100": 2
+    },
+    "hours": 10.935576944444444
+   }
+  },
+  "CTU-Honeypot-Capture-5-1": {
+   "S1": {
+    "false_alerts": 3,
+    "false_alerts_per_h": 1.0940413644883897,
+    "benign_windows": 295,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 1,
+    "refit_seconds_max": 1.4000006558489986e-06,
+    "cost": {
+     "10": 3,
+     "100": 3
+    },
+    "hours": 2.7421266666666666
+   },
+   "S2": {
+    "false_alerts": 4,
+    "false_alerts_per_h": 1.458721819317853,
+    "benign_windows": 295,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 1,
+    "refit_seconds_max": 0.03463060000012774,
+    "cost": {
+     "10": 4,
+     "100": 4
+    },
+    "hours": 2.7421266666666666
+   },
+   "S3": {
+    "false_alerts": 1,
+    "false_alerts_per_h": 0.36468045482946326,
+    "benign_windows": 295,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 2,
+    "activations": 2,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 0,
+    "refit_seconds_max": 0.01862489999984973,
+    "cost": {
+     "10": 1,
+     "100": 1
+    },
+    "hours": 2.7421266666666666
+   },
+   "S4": {
+    "false_alerts": 4,
+    "false_alerts_per_h": 1.458721819317853,
+    "benign_windows": 295,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 1,
+    "refit_seconds_max": 0.0388345000001209,
+    "cost": {
+     "10": 4,
+     "100": 4
+    },
+    "hours": 2.7421266666666666
+   },
+   "S4o": {
+    "false_alerts": 4,
+    "false_alerts_per_h": 1.458721819317853,
+    "benign_windows": 295,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 1,
+    "refit_seconds_max": 0.03325859999949898,
+    "cost": {
+     "10": 4,
+     "100": 4
+    },
+    "hours": 2.7421266666666666
+   },
+   "S5": {
+    "false_alerts": 4,
+    "false_alerts_per_h": 1.458721819317853,
+    "benign_windows": 295,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 1,
+    "refit_seconds_max": 0.03629180000007182,
+    "cost": {
+     "10": 4,
+     "100": 4
+    },
+    "hours": 2.7421266666666666
+   },
+   "S1u": {
+    "false_alerts": 3,
+    "false_alerts_per_h": 1.0940413644883897,
+    "benign_windows": 295,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 1,
+    "refit_seconds_max": 1.2999998943996616e-06,
+    "cost": {
+     "10": 3,
+     "100": 3
+    },
+    "hours": 2.7421266666666666
+   },
+   "S5u": {
+    "false_alerts": 4,
+    "false_alerts_per_h": 1.458721819317853,
+    "benign_windows": 295,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 1,
+    "refit_seconds_max": 0.03477969999948982,
+    "cost": {
+     "10": 4,
+     "100": 4
+    },
+    "hours": 2.7421266666666666
+   }
+  },
+  "CTU-IoT-Malware-Capture-20-1": {
+   "S1": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 834,
+    "attack_windows": 1,
+    "attack_windows_detected": 1,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 11,
+    "refit_seconds_max": 1.7000002117129043e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 11.9962
+   },
+   "S2": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 834,
+    "attack_windows": 1,
+    "attack_windows_detected": 1,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 1,
+    "refits": 6,
+    "activations": 6,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 11,
+    "refit_seconds_max": 0.027692499999830034,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 11.9962
+   },
+   "S3": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 834,
+    "attack_windows": 1,
+    "attack_windows_detected": 1,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 11,
+    "refit_seconds_max": 0.027735300000131247,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 11.9962
+   },
+   "S4": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 834,
+    "attack_windows": 1,
+    "attack_windows_detected": 1,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 6,
+    "activations": 6,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 11,
+    "refit_seconds_max": 0.026819600000635546,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 11.9962
+   },
+   "S4o": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 834,
+    "attack_windows": 1,
+    "attack_windows_detected": 1,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 6,
+    "activations": 6,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 11,
+    "refit_seconds_max": 0.028880699999717763,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 11.9962
+   },
+   "S5": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 834,
+    "attack_windows": 1,
+    "attack_windows_detected": 1,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 6,
+    "activations": 1,
+    "reviews_required": 5,
+    "segments_tested": 12,
+    "segments_valid": 11,
+    "refit_seconds_max": 0.02802010000050359,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 11.9962
+   },
+   "S1u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 834,
+    "attack_windows": 1,
+    "attack_windows_detected": 1,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 11,
+    "refit_seconds_max": 1.8999999156221747e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 11.9962
+   },
+   "S5u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 834,
+    "attack_windows": 1,
+    "attack_windows_detected": 1,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 6,
+    "activations": 1,
+    "reviews_required": 5,
+    "segments_tested": 12,
+    "segments_valid": 11,
+    "refit_seconds_max": 0.059296700000231795,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 11.9962
+   }
+  },
+  "CTU-IoT-Malware-Capture-21-1": {
+   "S1": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 331,
+    "attack_windows": 2,
+    "attack_windows_detected": 0,
+    "attackers": 1,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 12,
+    "refit_seconds_max": 2.099999619531445e-06,
+    "cost": {
+     "10": 20,
+     "100": 200
+    },
+    "hours": 11.999514722222223
+   },
+   "S2": {
+    "false_alerts": 1,
+    "false_alerts_per_h": 0.0833367034541883,
+    "benign_windows": 331,
+    "attack_windows": 2,
+    "attack_windows_detected": 2,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 1,
+    "refits": 6,
+    "activations": 2,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 12,
+    "refit_seconds_max": 0.022941599999285245,
+    "cost": {
+     "10": 1,
+     "100": 1
+    },
+    "hours": 11.999514722222223
+   },
+   "S3": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 331,
+    "attack_windows": 2,
+    "attack_windows_detected": 0,
+    "attackers": 1,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 12,
+    "refit_seconds_max": 1.4700000065204222e-05,
+    "cost": {
+     "10": 20,
+     "100": 200
+    },
+    "hours": 11.999514722222223
+   },
+   "S4": {
+    "false_alerts": 1,
+    "false_alerts_per_h": 0.0833367034541883,
+    "benign_windows": 331,
+    "attack_windows": 2,
+    "attack_windows_detected": 2,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 6,
+    "activations": 2,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 12,
+    "refit_seconds_max": 0.025076199999602977,
+    "cost": {
+     "10": 1,
+     "100": 1
+    },
+    "hours": 11.999514722222223
+   },
+   "S4o": {
+    "false_alerts": 1,
+    "false_alerts_per_h": 0.0833367034541883,
+    "benign_windows": 331,
+    "attack_windows": 2,
+    "attack_windows_detected": 2,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 6,
+    "activations": 2,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 12,
+    "refit_seconds_max": 0.027162999999745807,
+    "cost": {
+     "10": 1,
+     "100": 1
+    },
+    "hours": 11.999514722222223
+   },
+   "S5": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 331,
+    "attack_windows": 2,
+    "attack_windows_detected": 0,
+    "attackers": 1,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 6,
+    "activations": 0,
+    "reviews_required": 2,
+    "segments_tested": 12,
+    "segments_valid": 12,
+    "refit_seconds_max": 0.030533199999808858,
+    "cost": {
+     "10": 20,
+     "100": 200
+    },
+    "hours": 11.999514722222223
+   },
+   "S1u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 331,
+    "attack_windows": 2,
+    "attack_windows_detected": 0,
+    "attackers": 1,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 12,
+    "refit_seconds_max": 2.7999994927085936e-06,
+    "cost": {
+     "10": 20,
+     "100": 200
+    },
+    "hours": 11.999514722222223
+   },
+   "S5u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 331,
+    "attack_windows": 2,
+    "attack_windows_detected": 0,
+    "attackers": 1,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 6,
+    "activations": 0,
+    "reviews_required": 2,
+    "segments_tested": 12,
+    "segments_valid": 12,
+    "refit_seconds_max": 0.02606160000050295,
+    "cost": {
+     "10": 20,
+     "100": 200
+    },
+    "hours": 11.999514722222223
+   }
+  },
+  "CTU-IoT-Malware-Capture-3-1": {
+   "S1": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 569,
+    "attack_windows": 2168,
+    "attack_windows_detected": 1106,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     840.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 18,
+    "segments_valid": 0,
+    "refit_seconds_max": 2.100000529026147e-06,
+    "cost": {
+     "10": 10620,
+     "100": 106200
+    },
+    "hours": 18.059172222222223
+   },
+   "S2": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 569,
+    "attack_windows": 2168,
+    "attack_windows_detected": 173,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     840.0
+    ],
+    "absorbed_attack_windows": 2160,
+    "refits": 9,
+    "activations": 9,
+    "reviews_required": 0,
+    "segments_tested": 18,
+    "segments_valid": 0,
+    "refit_seconds_max": 0.11314839999977266,
+    "cost": {
+     "10": 19950,
+     "100": 199500
+    },
+    "hours": 18.059172222222223
+   },
+   "S3": {
+    "false_alerts": 1,
+    "false_alerts_per_h": 0.05537352364187973,
+    "benign_windows": 569,
+    "attack_windows": 2168,
+    "attack_windows_detected": 150,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     840.0
+    ],
+    "absorbed_attack_windows": 720,
+    "refits": 6,
+    "activations": 6,
+    "reviews_required": 0,
+    "segments_tested": 18,
+    "segments_valid": 12,
+    "refit_seconds_max": 0.02897659999962343,
+    "cost": {
+     "10": 20181,
+     "100": 201801
+    },
+    "hours": 18.059172222222223
+   },
+   "S4": {
+    "false_alerts": 10,
+    "false_alerts_per_h": 0.5537352364187973,
+    "benign_windows": 569,
+    "attack_windows": 2168,
+    "attack_windows_detected": 911,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     840.0
+    ],
+    "absorbed_attack_windows": 1250,
+    "refits": 9,
+    "activations": 9,
+    "reviews_required": 0,
+    "segments_tested": 18,
+    "segments_valid": 6,
+    "refit_seconds_max": 0.08422040000004927,
+    "cost": {
+     "10": 12580,
+     "100": 125710
+    },
+    "hours": 18.059172222222223
+   },
+   "S4o": {
+    "false_alerts": 3,
+    "false_alerts_per_h": 0.1661205709256392,
+    "benign_windows": 569,
+    "attack_windows": 2168,
+    "attack_windows_detected": 1003,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     840.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 9,
+    "activations": 4,
+    "reviews_required": 0,
+    "segments_tested": 18,
+    "segments_valid": 0,
+    "refit_seconds_max": 0.08107819999986532,
+    "cost": {
+     "10": 11653,
+     "100": 116503
+    },
+    "hours": 18.059172222222223
+   },
+   "S5": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 569,
+    "attack_windows": 2168,
+    "attack_windows_detected": 1106,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     840.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 9,
+    "activations": 0,
+    "reviews_required": 9,
+    "segments_tested": 18,
+    "segments_valid": 0,
+    "refit_seconds_max": 0.04814310000074329,
+    "cost": {
+     "10": 10620,
+     "100": 106200
+    },
+    "hours": 18.059172222222223
+   },
+   "S1u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 569,
+    "attack_windows": 2168,
+    "attack_windows_detected": 7,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     10110.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 18,
+    "segments_valid": 17,
+    "refit_seconds_max": 1.8999999156221747e-06,
+    "cost": {
+     "10": 21610,
+     "100": 216100
+    },
+    "hours": 18.059172222222223
+   },
+   "S5u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 569,
+    "attack_windows": 2168,
+    "attack_windows_detected": 164,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     44400.0
+    ],
+    "absorbed_attack_windows": 1200,
+    "refits": 9,
+    "activations": 5,
+    "reviews_required": 4,
+    "segments_tested": 18,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.03257650000068679,
+    "cost": {
+     "10": 20040,
+     "100": 200400
+    },
+    "hours": 18.059172222222223
+   }
+  },
+  "CTU-IoT-Malware-Capture-34-1": {
+   "S1": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 177,
+    "attack_windows": 943,
+    "attack_windows_detected": 9,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     510.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 1,
+    "refit_seconds_max": 1.7000002117129043e-06,
+    "cost": {
+     "10": 9340,
+     "100": 93400
+    },
+    "hours": 11.999144722222223
+   },
+   "S2": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 177,
+    "attack_windows": 943,
+    "attack_windows_detected": 6,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     510.0
+    ],
+    "absorbed_attack_windows": 943,
+    "refits": 6,
+    "activations": 6,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 8,
+    "refit_seconds_max": 0.038362700000107,
+    "cost": {
+     "10": 9370,
+     "100": 93700
+    },
+    "hours": 11.999144722222223
+   },
+   "S3": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 177,
+    "attack_windows": 943,
+    "attack_windows_detected": 9,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     510.0
+    ],
+    "absorbed_attack_windows": 455,
+    "refits": 6,
+    "activations": 5,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 6,
+    "refit_seconds_max": 0.027409900000748166,
+    "cost": {
+     "10": 9340,
+     "100": 93400
+    },
+    "hours": 11.999144722222223
+   },
+   "S4": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 177,
+    "attack_windows": 943,
+    "attack_windows_detected": 29,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     510.0
+    ],
+    "absorbed_attack_windows": 914,
+    "refits": 6,
+    "activations": 6,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 8,
+    "refit_seconds_max": 0.028390200000103505,
+    "cost": {
+     "10": 9140,
+     "100": 91400
+    },
+    "hours": 11.999144722222223
+   },
+   "S4o": {
+    "false_alerts": 1,
+    "false_alerts_per_h": 0.08333927318569766,
+    "benign_windows": 177,
+    "attack_windows": 943,
+    "attack_windows_detected": 281,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     510.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 6,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 1,
+    "refit_seconds_max": 0.028002200000628363,
+    "cost": {
+     "10": 6621,
+     "100": 66201
+    },
+    "hours": 11.999144722222223
+   },
+   "S5": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 177,
+    "attack_windows": 943,
+    "attack_windows_detected": 7,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     510.0
+    ],
+    "absorbed_attack_windows": 505,
+    "refits": 6,
+    "activations": 3,
+    "reviews_required": 3,
+    "segments_tested": 12,
+    "segments_valid": 8,
+    "refit_seconds_max": 0.0312882999996873,
+    "cost": {
+     "10": 9360,
+     "100": 93600
+    },
+    "hours": 11.999144722222223
+   },
+   "S1u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 177,
+    "attack_windows": 943,
+    "attack_windows_detected": 0,
+    "attackers": 1,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 9,
+    "refit_seconds_max": 1.8000000636675395e-06,
+    "cost": {
+     "10": 9430,
+     "100": 94300
+    },
+    "hours": 11.999144722222223
+   },
+   "S5u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 177,
+    "attack_windows": 943,
+    "attack_windows_detected": 2,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     21870.0
+    ],
+    "absorbed_attack_windows": 505,
+    "refits": 6,
+    "activations": 3,
+    "reviews_required": 3,
+    "segments_tested": 12,
+    "segments_valid": 11,
+    "refit_seconds_max": 0.02982350000002043,
+    "cost": {
+     "10": 9410,
+     "100": 94100
+    },
+    "hours": 11.999144722222223
+   }
+  },
+  "CTU-IoT-Malware-Capture-42-1": {
+   "S1": {
+    "false_alerts": 2,
+    "false_alerts_per_h": 0.47887951770447507,
+    "benign_windows": 270,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 4,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.8000000636675395e-06,
+    "cost": {
+     "10": 2,
+     "100": 2
+    },
+    "hours": 4.176415833333333
+   },
+   "S2": {
+    "false_alerts": 1,
+    "false_alerts_per_h": 0.23943975885223753,
+    "benign_windows": 270,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 2,
+    "activations": 2,
+    "reviews_required": 0,
+    "segments_tested": 4,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.025725800000145682,
+    "cost": {
+     "10": 1,
+     "100": 1
+    },
+    "hours": 4.176415833333333
+   },
+   "S3": {
+    "false_alerts": 4,
+    "false_alerts_per_h": 0.9577590354089501,
+    "benign_windows": 270,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 2,
+    "activations": 2,
+    "reviews_required": 0,
+    "segments_tested": 4,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.02702320000025793,
+    "cost": {
+     "10": 4,
+     "100": 4
+    },
+    "hours": 4.176415833333333
+   },
+   "S4": {
+    "false_alerts": 1,
+    "false_alerts_per_h": 0.23943975885223753,
+    "benign_windows": 270,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 2,
+    "activations": 2,
+    "reviews_required": 0,
+    "segments_tested": 4,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.02784960000008141,
+    "cost": {
+     "10": 1,
+     "100": 1
+    },
+    "hours": 4.176415833333333
+   },
+   "S4o": {
+    "false_alerts": 1,
+    "false_alerts_per_h": 0.23943975885223753,
+    "benign_windows": 270,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 2,
+    "activations": 2,
+    "reviews_required": 0,
+    "segments_tested": 4,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.028340099999695667,
+    "cost": {
+     "10": 1,
+     "100": 1
+    },
+    "hours": 4.176415833333333
+   },
+   "S5": {
+    "false_alerts": 1,
+    "false_alerts_per_h": 0.23943975885223753,
+    "benign_windows": 270,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 2,
+    "activations": 1,
+    "reviews_required": 1,
+    "segments_tested": 4,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.027860800000780728,
+    "cost": {
+     "10": 1,
+     "100": 1
+    },
+    "hours": 4.176415833333333
+   },
+   "S1u": {
+    "false_alerts": 2,
+    "false_alerts_per_h": 0.47887951770447507,
+    "benign_windows": 270,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 4,
+    "segments_valid": 1,
+    "refit_seconds_max": 1.5000005078036338e-06,
+    "cost": {
+     "10": 2,
+     "100": 2
+    },
+    "hours": 4.176415833333333
+   },
+   "S5u": {
+    "false_alerts": 1,
+    "false_alerts_per_h": 0.23943975885223753,
+    "benign_windows": 270,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 2,
+    "activations": 1,
+    "reviews_required": 1,
+    "segments_tested": 4,
+    "segments_valid": 3,
+    "refit_seconds_max": 0.02853400000003603,
+    "cost": {
+     "10": 1,
+     "100": 1
+    },
+    "hours": 4.176415833333333
+   }
+  },
+  "CTU-IoT-Malware-Capture-44-1": {
+   "S1": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 45,
+    "attack_windows": 2,
+    "attack_windows_detected": 1,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.2999998943996616e-06,
+    "cost": {
+     "10": 10,
+     "100": 100
+    },
+    "hours": 0.9548355555555555
+   },
+   "S2": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 45,
+    "attack_windows": 2,
+    "attack_windows_detected": 1,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.2999998943996616e-06,
+    "cost": {
+     "10": 10,
+     "100": 100
+    },
+    "hours": 0.9548355555555555
+   },
+   "S3": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 45,
+    "attack_windows": 2,
+    "attack_windows_detected": 1,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 0,
+    "refit_seconds_max": 0.0002890999994633603,
+    "cost": {
+     "10": 10,
+     "100": 100
+    },
+    "hours": 0.9548355555555555
+   },
+   "S4": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 45,
+    "attack_windows": 2,
+    "attack_windows_detected": 1,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.2999998943996616e-06,
+    "cost": {
+     "10": 10,
+     "100": 100
+    },
+    "hours": 0.9548355555555555
+   },
+   "S4o": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 45,
+    "attack_windows": 2,
+    "attack_windows_detected": 1,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.2000000424450263e-06,
+    "cost": {
+     "10": 10,
+     "100": 100
+    },
+    "hours": 0.9548355555555555
+   },
+   "S5": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 45,
+    "attack_windows": 2,
+    "attack_windows_detected": 1,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.3999997463542968e-06,
+    "cost": {
+     "10": 10,
+     "100": 100
+    },
+    "hours": 0.9548355555555555
+   },
+   "S1u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 45,
+    "attack_windows": 2,
+    "attack_windows_detected": 1,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 0,
+    "refit_seconds_max": 9.99999429041054e-07,
+    "cost": {
+     "10": 10,
+     "100": 100
+    },
+    "hours": 0.9548355555555555
+   },
+   "S5u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 45,
+    "attack_windows": 2,
+    "attack_windows_detected": 1,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.5000005078036338e-06,
+    "cost": {
+     "10": 10,
+     "100": 100
+    },
+    "hours": 0.9548355555555555
+   }
+  },
+  "CTU-IoT-Malware-Capture-8-1": {
+   "S1": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 0,
+    "attack_windows": 1441,
+    "attack_windows_detected": 1196,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.600000359758269e-06,
+    "cost": {
+     "10": 2450,
+     "100": 24500
+    },
+    "hours": 11.99934111111111
+   },
+   "S2": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 0,
+    "attack_windows": 1441,
+    "attack_windows_detected": 219,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 1440,
+    "refits": 6,
+    "activations": 6,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 8,
+    "refit_seconds_max": 0.026785000000018044,
+    "cost": {
+     "10": 12220,
+     "100": 122200
+    },
+    "hours": 11.99934111111111
+   },
+   "S3": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 0,
+    "attack_windows": 1441,
+    "attack_windows_detected": 97,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 120,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 11,
+    "refit_seconds_max": 0.028325399999630463,
+    "cost": {
+     "10": 13440,
+     "100": 134400
+    },
+    "hours": 11.99934111111111
+   },
+   "S4": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 0,
+    "attack_windows": 1441,
+    "attack_windows_detected": 1196,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 6,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 0,
+    "refit_seconds_max": 0.0018484000001990353,
+    "cost": {
+     "10": 2450,
+     "100": 24500
+    },
+    "hours": 11.99934111111111
+   },
+   "S4o": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 0,
+    "attack_windows": 1441,
+    "attack_windows_detected": 1196,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 0,
+    "refit_seconds_max": 0.00912400000015623,
+    "cost": {
+     "10": 2450,
+     "100": 24500
+    },
+    "hours": 11.99934111111111
+   },
+   "S5": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 0,
+    "attack_windows": 1441,
+    "attack_windows_detected": 1196,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     0.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 6,
+    "activations": 0,
+    "reviews_required": 6,
+    "segments_tested": 12,
+    "segments_valid": 0,
+    "refit_seconds_max": 0.04408770000009099,
+    "cost": {
+     "10": 2450,
+     "100": 24500
+    },
+    "hours": 11.99934111111111
+   },
+   "S1u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 0,
+    "attack_windows": 1441,
+    "attack_windows_detected": 39,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     150.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 12,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.8000000636675395e-06,
+    "cost": {
+     "10": 14020,
+     "100": 140200
+    },
+    "hours": 11.99934111111111
+   },
+   "S5u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 0,
+    "attack_windows": 1441,
+    "attack_windows_detected": 45,
+    "attackers": 1,
+    "attackers_detected": 1,
+    "delays_s": [
+     150.0
+    ],
+    "absorbed_attack_windows": 720,
+    "refits": 6,
+    "activations": 3,
+    "reviews_required": 3,
+    "segments_tested": 12,
+    "segments_valid": 7,
+    "refit_seconds_max": 0.030305899999802932,
+    "cost": {
+     "10": 13960,
+     "100": 139600
+    },
+    "hours": 11.99934111111111
+   }
+  },
+  "NF-UNSW-NB15-v3-dev": {
+   "S1": {
+    "false_alerts": 410,
+    "false_alerts_per_h": 46.17030461139994,
+    "benign_windows": 11937,
+    "attack_windows": 4091,
+    "attack_windows_detected": 12,
+    "attackers": 4,
+    "attackers_detected": 4,
+    "delays_s": [
+     0.0,
+     24210.0,
+     540.0,
+     23340.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 9,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.8000000636675395e-06,
+    "cost": {
+     "10": 41200,
+     "100": 408310
+    },
+    "hours": 8.880166666666666
+   },
+   "S2": {
+    "false_alerts": 198,
+    "false_alerts_per_h": 22.296878812334604,
+    "benign_windows": 11937,
+    "attack_windows": 4091,
+    "attack_windows_detected": 2,
+    "attackers": 4,
+    "attackers_detected": 2,
+    "delays_s": [
+     0.0,
+     540.0
+    ],
+    "absorbed_attack_windows": 3679,
+    "refits": 4,
+    "activations": 4,
+    "reviews_required": 0,
+    "segments_tested": 9,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.21886739999990823,
+    "cost": {
+     "10": 41088,
+     "100": 409098
+    },
+    "hours": 8.880166666666666
+   },
+   "S3": {
+    "false_alerts": 75,
+    "false_alerts_per_h": 8.445787428914624,
+    "benign_windows": 11937,
+    "attack_windows": 4091,
+    "attack_windows_detected": 2,
+    "attackers": 4,
+    "attackers_detected": 2,
+    "delays_s": [
+     0.0,
+     540.0
+    ],
+    "absorbed_attack_windows": 458,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 9,
+    "segments_valid": 8,
+    "refit_seconds_max": 0.176411299999927,
+    "cost": {
+     "10": 40965,
+     "100": 408975
+    },
+    "hours": 8.880166666666666
+   },
+   "S4": {
+    "false_alerts": 219,
+    "false_alerts_per_h": 24.6616992924307,
+    "benign_windows": 11937,
+    "attack_windows": 4091,
+    "attack_windows_detected": 2,
+    "attackers": 4,
+    "attackers_detected": 2,
+    "delays_s": [
+     0.0,
+     540.0
+    ],
+    "absorbed_attack_windows": 3677,
+    "refits": 4,
+    "activations": 4,
+    "reviews_required": 0,
+    "segments_tested": 9,
+    "segments_valid": 3,
+    "refit_seconds_max": 0.2213095000006433,
+    "cost": {
+     "10": 41109,
+     "100": 409119
+    },
+    "hours": 8.880166666666666
+   },
+   "S4o": {
+    "false_alerts": 185,
+    "false_alerts_per_h": 20.83294232465607,
+    "benign_windows": 11937,
+    "attack_windows": 4091,
+    "attack_windows_detected": 4,
+    "attackers": 4,
+    "attackers_detected": 3,
+    "delays_s": [
+     0.0,
+     24210.0,
+     540.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 4,
+    "activations": 4,
+    "reviews_required": 0,
+    "segments_tested": 9,
+    "segments_valid": 0,
+    "refit_seconds_max": 0.1732929999998305,
+    "cost": {
+     "10": 41055,
+     "100": 408885
+    },
+    "hours": 8.880166666666666
+   },
+   "S5": {
+    "false_alerts": 410,
+    "false_alerts_per_h": 46.17030461139994,
+    "benign_windows": 11937,
+    "attack_windows": 4091,
+    "attack_windows_detected": 12,
+    "attackers": 4,
+    "attackers_detected": 4,
+    "delays_s": [
+     0.0,
+     24210.0,
+     540.0,
+     23340.0
+    ],
+    "absorbed_attack_windows": 0,
+    "refits": 4,
+    "activations": 0,
+    "reviews_required": 4,
+    "segments_tested": 9,
+    "segments_valid": 0,
+    "refit_seconds_max": 0.3379229000001942,
+    "cost": {
+     "10": 41200,
+     "100": 408310
+    },
+    "hours": 8.880166666666666
+   },
+   "S1u": {
+    "false_alerts": 314,
+    "false_alerts_per_h": 35.35969670238922,
+    "benign_windows": 11937,
+    "attack_windows": 4091,
+    "attack_windows_detected": 0,
+    "attackers": 4,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 9,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.8999999156221747e-06,
+    "cost": {
+     "10": 41224,
+     "100": 409414
+    },
+    "hours": 8.880166666666666
+   },
+   "S5u": {
+    "false_alerts": 257,
+    "false_alerts_per_h": 28.94089825641411,
+    "benign_windows": 11937,
+    "attack_windows": 4091,
+    "attack_windows_detected": 0,
+    "attackers": 4,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 1831,
+    "refits": 4,
+    "activations": 2,
+    "reviews_required": 2,
+    "segments_tested": 9,
+    "segments_valid": 0,
+    "refit_seconds_max": 0.2330480999999054,
+    "cost": {
+     "10": 41167,
+     "100": 409357
+    },
+    "hours": 8.880166666666666
+   }
+  },
+  "CTU-Normal-20": {
+   "S1": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 198,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 1.4000006558489986e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.5775675
+   },
+   "S2": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 198,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 0.027079399999820453,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.5775675
+   },
+   "S3": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 198,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 1.499999598308932e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.5775675
+   },
+   "S4": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 198,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 0.028160700000626093,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.5775675
+   },
+   "S4o": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 198,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 0.028342899999188376,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.5775675
+   },
+   "S5": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 198,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 0.028747999999723106,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.5775675
+   },
+   "S1u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 198,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 1.0000003385357559e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.5775675
+   },
+   "S5u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 198,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 0.027172500000233413,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.5775675
+   }
+  },
+  "CTU-Normal-21": {
+   "S1": {
+    "false_alerts": 8,
+    "false_alerts_per_h": 50.86856305140727,
+    "benign_windows": 72,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.0000003385357559e-06,
+    "cost": {
+     "10": 8,
+     "100": 8
+    },
+    "hours": 0.15726805555555556
+   },
+   "S2": {
+    "false_alerts": 8,
+    "false_alerts_per_h": 50.86856305140727,
+    "benign_windows": 72,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.2999998943996616e-06,
+    "cost": {
+     "10": 8,
+     "100": 8
+    },
+    "hours": 0.15726805555555556
+   },
+   "S3": {
+    "false_alerts": 8,
+    "false_alerts_per_h": 50.86856305140727,
+    "benign_windows": 72,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.2999998943996616e-06,
+    "cost": {
+     "10": 8,
+     "100": 8
+    },
+    "hours": 0.15726805555555556
+   },
+   "S4": {
+    "false_alerts": 8,
+    "false_alerts_per_h": 50.86856305140727,
+    "benign_windows": 72,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.0000003385357559e-06,
+    "cost": {
+     "10": 8,
+     "100": 8
+    },
+    "hours": 0.15726805555555556
+   },
+   "S4o": {
+    "false_alerts": 8,
+    "false_alerts_per_h": 50.86856305140727,
+    "benign_windows": 72,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 9.99999429041054e-07,
+    "cost": {
+     "10": 8,
+     "100": 8
+    },
+    "hours": 0.15726805555555556
+   },
+   "S5": {
+    "false_alerts": 8,
+    "false_alerts_per_h": 50.86856305140727,
+    "benign_windows": 72,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 2.0000006770715117e-06,
+    "cost": {
+     "10": 8,
+     "100": 8
+    },
+    "hours": 0.15726805555555556
+   },
+   "S1u": {
+    "false_alerts": 8,
+    "false_alerts_per_h": 50.86856305140727,
+    "benign_windows": 72,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.3999997463542968e-06,
+    "cost": {
+     "10": 8,
+     "100": 8
+    },
+    "hours": 0.15726805555555556
+   },
+   "S5u": {
+    "false_alerts": 8,
+    "false_alerts_per_h": 50.86856305140727,
+    "benign_windows": 72,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.2000000424450263e-06,
+    "cost": {
+     "10": 8,
+     "100": 8
+    },
+    "hours": 0.15726805555555556
+   }
+  },
+  "CTU-Normal-22": {
+   "S1": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 293,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.2999998943996616e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.7294658333333334
+   },
+   "S2": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 293,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.5999994502635673e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.7294658333333334
+   },
+   "S3": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 293,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.3999997463542968e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.7294658333333334
+   },
+   "S4": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 293,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 9.99999429041054e-07,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.7294658333333334
+   },
+   "S4o": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 293,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.100000190490391e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.7294658333333334
+   },
+   "S5": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 293,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.2999998943996616e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.7294658333333334
+   },
+   "S1u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 293,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.100000190490391e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.7294658333333334
+   },
+   "S5u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 293,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.2000000424450263e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.7294658333333334
+   }
+  },
+  "CTU-Normal-23": {
+   "S1": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 134,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 1.7000002117129043e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.0967144444444445
+   },
+   "S2": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 134,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 0.02676100000007864,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.0967144444444445
+   },
+   "S3": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 134,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 1.5999994502635673e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.0967144444444445
+   },
+   "S4": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 134,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 0.028022899999996298,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.0967144444444445
+   },
+   "S4o": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 134,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 0.026206900000033784,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.0967144444444445
+   },
+   "S5": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 134,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 0,
+    "reviews_required": 1,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 0.0262271999999939,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.0967144444444445
+   },
+   "S1u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 134,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 1.2999998943996616e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.0967144444444445
+   },
+   "S5u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 134,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 0,
+    "reviews_required": 1,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 0.02802979999978561,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.0967144444444445
+   }
+  },
+  "CTU-Normal-24": {
+   "S1": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 148,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 1.3999997463542968e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.127034722222222
+   },
+   "S2": {
+    "false_alerts": 4,
+    "false_alerts_per_h": 1.8805522816388232,
+    "benign_windows": 148,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.024873899999874993,
+    "cost": {
+     "10": 4,
+     "100": 4
+    },
+    "hours": 2.127034722222222
+   },
+   "S3": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 148,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 1.8000000636675395e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.127034722222222
+   },
+   "S4": {
+    "false_alerts": 4,
+    "false_alerts_per_h": 1.8805522816388232,
+    "benign_windows": 148,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.025817700000516197,
+    "cost": {
+     "10": 4,
+     "100": 4
+    },
+    "hours": 2.127034722222222
+   },
+   "S4o": {
+    "false_alerts": 4,
+    "false_alerts_per_h": 1.8805522816388232,
+    "benign_windows": 148,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.03568399999949179,
+    "cost": {
+     "10": 4,
+     "100": 4
+    },
+    "hours": 2.127034722222222
+   },
+   "S5": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 148,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 0,
+    "reviews_required": 1,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.027070000000094296,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.127034722222222
+   },
+   "S1u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 148,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 2.0000006770715117e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.127034722222222
+   },
+   "S5u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 148,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 0,
+    "reviews_required": 1,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.028879999999844586,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.127034722222222
+   }
+  },
+  "CTU-Normal-25": {
+   "S1": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 94,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.2999998943996616e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.7260505555555555
+   },
+   "S2": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 94,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.100000190490391e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.7260505555555555
+   },
+   "S3": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 94,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.2000000424450263e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.7260505555555555
+   },
+   "S4": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 94,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.2000000424450263e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.7260505555555555
+   },
+   "S4o": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 94,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.100000190490391e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.7260505555555555
+   },
+   "S5": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 94,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.2000000424450263e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.7260505555555555
+   },
+   "S1u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 94,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.100000190490391e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.7260505555555555
+   },
+   "S5u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 94,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 0,
+    "segments_valid": 0,
+    "refit_seconds_max": 1.2999998943996616e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.7260505555555555
+   }
+  },
+  "CTU-Normal-27": {
+   "S1": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 265,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 1.2999998943996616e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.064218888888889
+   },
+   "S2": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 265,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.02670510000007198,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.064218888888889
+   },
+   "S3": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 265,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 1.8999999156221747e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.064218888888889
+   },
+   "S4": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 265,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.02780330000041431,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.064218888888889
+   },
+   "S4o": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 265,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.024765000000115833,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.064218888888889
+   },
+   "S5": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 265,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.02812030000040977,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.064218888888889
+   },
+   "S1u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 265,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 1.2999998943996616e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.064218888888889
+   },
+   "S5u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 265,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.029474399999344314,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.064218888888889
+   }
+  },
+  "CTU-Normal-29": {
+   "S1": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 126,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 1.2999998943996616e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.97563
+   },
+   "S2": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 126,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 1.3999997463542968e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.97563
+   },
+   "S3": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 126,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 1.3999997463542968e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.97563
+   },
+   "S4": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 126,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 1.4000006558489986e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.97563
+   },
+   "S4o": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 126,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 1.0999992809956893e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.97563
+   },
+   "S5": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 126,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 1.499999598308932e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.97563
+   },
+   "S1u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 126,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 1.4000006558489986e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.97563
+   },
+   "S5u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 126,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 1,
+    "segments_valid": 1,
+    "refit_seconds_max": 1.0999992809956893e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 0.97563
+   }
+  },
+  "CTU-Normal-30": {
+   "S1": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 258,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 1.2999998943996616e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.020435
+   },
+   "S2": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 258,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.02826219999951718,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.020435
+   },
+   "S3": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 258,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 1.5000005078036338e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.020435
+   },
+   "S4": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 258,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.029079099999762548,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.020435
+   },
+   "S4o": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 258,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.02744390000043495,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.020435
+   },
+   "S5": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 258,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.030206899999939196,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.020435
+   },
+   "S1u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 258,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 1.2999998943996616e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.020435
+   },
+   "S5u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 258,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.030145099999572267,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 2.020435
+   }
+  },
+  "CTU-Normal-31": {
+   "S1": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 240,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 1.3999997463542968e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.8726886111111112
+   },
+   "S2": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 240,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.027159399999618472,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.8726886111111112
+   },
+   "S3": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 240,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 1.5000005078036338e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.8726886111111112
+   },
+   "S4": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 240,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.028152400000180933,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.8726886111111112
+   },
+   "S4o": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 240,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.029572899999948277,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.8726886111111112
+   },
+   "S5": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 240,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.0279011000002356,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.8726886111111112
+   },
+   "S1u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 240,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 1.3999997463542968e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.8726886111111112
+   },
+   "S5u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 240,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.02904370000032941,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.8726886111111112
+   }
+  },
+  "CTU-Normal-32": {
+   "S1": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 254,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 1.7000002117129043e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.9774694444444445
+   },
+   "S2": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 254,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.027953599999818834,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.9774694444444445
+   },
+   "S3": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 254,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 1.8999999156221747e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.9774694444444445
+   },
+   "S4": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 254,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.02759299999979703,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.9774694444444445
+   },
+   "S4o": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 254,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.029616200000418758,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.9774694444444445
+   },
+   "S5": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 254,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.030170199999702163,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.9774694444444445
+   },
+   "S1u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 254,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 1.2999998943996616e-06,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.9774694444444445
+   },
+   "S5u": {
+    "false_alerts": 0,
+    "false_alerts_per_h": 0.0,
+    "benign_windows": 254,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 2,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.029064000000289525,
+    "cost": {
+     "10": 0,
+     "100": 0
+    },
+    "hours": 1.9774694444444445
+   }
+  },
+  "CTU-Normal-26": {
+   "S1": {
+    "false_alerts": 3,
+    "false_alerts_per_h": 0.9264366415985493,
+    "benign_windows": 409,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 3,
+    "segments_valid": 2,
+    "refit_seconds_max": 1.5000005078036338e-06,
+    "cost": {
+     "10": 3,
+     "100": 3
+    },
+    "hours": 3.2382138888888887
+   },
+   "S2": {
+    "false_alerts": 2,
+    "false_alerts_per_h": 0.6176244277323663,
+    "benign_windows": 409,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 2,
+    "activations": 2,
+    "reviews_required": 0,
+    "segments_tested": 3,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.027847400000609923,
+    "cost": {
+     "10": 2,
+     "100": 2
+    },
+    "hours": 3.2382138888888887
+   },
+   "S3": {
+    "false_alerts": 2,
+    "false_alerts_per_h": 0.6176244277323663,
+    "benign_windows": 409,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 1,
+    "activations": 1,
+    "reviews_required": 0,
+    "segments_tested": 3,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.024823599999763246,
+    "cost": {
+     "10": 2,
+     "100": 2
+    },
+    "hours": 3.2382138888888887
+   },
+   "S4": {
+    "false_alerts": 2,
+    "false_alerts_per_h": 0.6176244277323663,
+    "benign_windows": 409,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 2,
+    "activations": 2,
+    "reviews_required": 0,
+    "segments_tested": 3,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.029319999999643187,
+    "cost": {
+     "10": 2,
+     "100": 2
+    },
+    "hours": 3.2382138888888887
+   },
+   "S4o": {
+    "false_alerts": 2,
+    "false_alerts_per_h": 0.6176244277323663,
+    "benign_windows": 409,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 2,
+    "activations": 2,
+    "reviews_required": 0,
+    "segments_tested": 3,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.028427100000044447,
+    "cost": {
+     "10": 2,
+     "100": 2
+    },
+    "hours": 3.2382138888888887
+   },
+   "S5": {
+    "false_alerts": 2,
+    "false_alerts_per_h": 0.6176244277323663,
+    "benign_windows": 409,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 2,
+    "activations": 2,
+    "reviews_required": 0,
+    "segments_tested": 3,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.0294039000000339,
+    "cost": {
+     "10": 2,
+     "100": 2
+    },
+    "hours": 3.2382138888888887
+   },
+   "S1u": {
+    "false_alerts": 3,
+    "false_alerts_per_h": 0.9264366415985493,
+    "benign_windows": 409,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 0,
+    "activations": 0,
+    "reviews_required": 0,
+    "segments_tested": 3,
+    "segments_valid": 2,
+    "refit_seconds_max": 1.600000359758269e-06,
+    "cost": {
+     "10": 3,
+     "100": 3
+    },
+    "hours": 3.2382138888888887
+   },
+   "S5u": {
+    "false_alerts": 2,
+    "false_alerts_per_h": 0.6176244277323663,
+    "benign_windows": 409,
+    "attack_windows": 0,
+    "attack_windows_detected": 0,
+    "attackers": 0,
+    "attackers_detected": 0,
+    "delays_s": [],
+    "absorbed_attack_windows": 0,
+    "refits": 2,
+    "activations": 2,
+    "reviews_required": 0,
+    "segments_tested": 3,
+    "segments_valid": 2,
+    "refit_seconds_max": 0.028489499999523105,
+    "cost": {
+     "10": 2,
+     "100": 2
+    },
+    "hours": 3.2382138888888887
+   }
+  }
+ },
+ "peak_rss_mb": 172.32421875
+}

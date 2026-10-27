@@ -214,6 +214,11 @@ def test_offline_app_end_to_end(app_ws, capsys, monkeypatch):
                                                               "insufficient_history"}  # fmt: skip
     assert m["behavior_windows"]["device"]["anomalous"] >= 1  # the injected scan
     assert m["assessment_states"].get("anomalous_behavior", 0) >= 1
+    assert "calibration_validity_shadow" not in m  # Phase 8f shift test is opt-in only
+    assert main([*args[:-1], "mon_shadow.json", "--validity-shadow"]) == 0
+    ms = json.loads((app_ws / "mon_shadow.json").read_text())
+    assert ms["calibration_validity_shadow"]["adopted"] is False
+    assert ms["verdicts"] == m["verdicts"] and ms["assessment_states"] == m["assessment_states"]
     assert sum(m["assessment_states"].values()) == m["flows"]
     assert m["threat_mode"] == "unverified_domain"  # Phase 7 default: never escalate
     assert m["threat_policy"] == "unverified" and "suspicious" not in m["verdicts"]

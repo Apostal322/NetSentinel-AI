@@ -30,7 +30,10 @@ from netsentinel.behavior.profile import BehaviorProfile, fit_level, fit_level_c
 from netsentinel.behavior.windows import LEVELS, WINDOW_FEATURES, aggregate, prepare_flows
 from netsentinel.ledger import file_sha256, git_sha
 
-BEHAVIOR_SCHEMA_VERSION = "behavior-1.1.0"  # 1.1: cross-fit thresholds, diagnostics, statuses
+BEHAVIOR_SCHEMA_VERSION = "behavior-1.2.0"  # 1.2: validity reference (Phase 8f)
+# 1.1 (cross-fit thresholds, diagnostics, statuses) loads unchanged; it has no validity
+# reference, so its shift test is reported as untestable
+COMPATIBLE_SCHEMAS = ("behavior-1.1.0", BEHAVIOR_SCHEMA_VERSION)
 THRESHOLD_METHODS = ("crossfit", "split")
 
 
@@ -173,6 +176,8 @@ def save_profile(profile: BehaviorProfile, out_dir: str | Path, *, sources: list
                    "trimmed_windows": p.trimmed_windows,
                    "trimmed_holdout_windows": p.trimmed_holdout_windows,
                    "tail_fallback_share": getattr(p, "tail_fallback_share", None),
+                   "validity_reference_blocks": (len(p.validity_ref["block"])
+                                                 if getattr(p, "validity_ref", None) else 0),
                    "warnings": p.warnings}
               for lv, p in profile.levels.items()}  # fmt: skip
     manifest = {
@@ -191,6 +196,11 @@ def save_profile(profile: BehaviorProfile, out_dir: str | Path, *, sources: list
         "diagnostics": profile.diagnostics,
         "threat_model_domain_check": threat_check,
         "update_check": update_check,
+        # Phase 8f lineage: the baseline this one was checked against (rollback target)
+        "parent_calibration": (update_check or {}).get("previous"),
+        "validity_reference": {"block_windows": 10, "levels": {
+            lv: len(p.validity_ref["block"]) if getattr(p, "validity_ref", None) else 0
+            for lv, p in profile.levels.items()}},
         "evaluation_status": "not evaluated (thresholds set on held-out calibration windows "
                              "only; no attack-labelled evaluation)",
         "domain_assumption": "valid only for the network and period it was calibrated on",
@@ -208,9 +218,9 @@ def load_profile(path: str | Path) -> tuple[BehaviorProfile, dict]:
     if not mf.exists():
         raise FileNotFoundError(f"{mf} missing: not a calibration artifact")
     manifest = json.loads(mf.read_text("utf-8"))
-    if manifest.get("schema_version") != BEHAVIOR_SCHEMA_VERSION:
-        raise ValueError(f"calibration schema {manifest.get('schema_version')} != "
-                         f"{BEHAVIOR_SCHEMA_VERSION}; recalibrate")  # fmt: skip
+    if manifest.get("schema_version") not in COMPATIBLE_SCHEMAS:
+        raise ValueError(f"calibration schema {manifest.get('schema_version')} not in "
+                         f"{list(COMPATIBLE_SCHEMAS)}; recalibrate")  # fmt: skip
     if manifest.get("features") != list(WINDOW_FEATURES):
         raise ValueError("calibration feature list differs from this code version; recalibrate")
     got = file_sha256(path / "profile.joblib")

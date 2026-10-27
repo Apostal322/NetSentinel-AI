@@ -31,6 +31,15 @@ BENIGN_SKIPS = {"not_ip", "non_ip_ethertype", "non_ip_sll", "ipv4_fragment", "em
 PARSE_ERROR_SHARE = 0.01
 
 
+def _validity_shadow(pipe, frame: pl.DataFrame, health: str) -> dict:
+    """Phase 8f calibration-validity shift test, opt-in and not adopted (validity.SHADOW_NOTE)."""
+    from netsentinel.behavior import validity
+
+    end = int(frame["flow_end_milliseconds"].max())
+    return validity.shadow(pipe.profile, validity.frame_blocks(pipe.profile, frame), now_ms=end,
+                           telemetry_health=health, max_age_h=pipe.max_age_h)  # fmt: skip
+
+
 def parse_health(parse: dict) -> str:
     """Phase 8e telemetry health of an offline capture: "ok" or "parse_errors"."""
     total = parse.get("lines") or parse.get("packets") or 0
@@ -102,6 +111,7 @@ def analyze_capture(
     since=None,
     until=None,
     incident_gap_s: int = 300,
+    validity_shadow: bool = False,
 ) -> dict[str, Any]:
     """Capture -> flows -> evidence-aware assessment (supervised bundle; optional local
     behaviour calibration and application classifier) -> events (+ behaviour windows)."""
@@ -159,6 +169,8 @@ def analyze_capture(
                       "by_level": dict(Counter(i.level for i in incidents)),
                       "top": [i.to_dict() for i in sorted(
                           incidents, key=lambda i: (-i.max_ratio, i.incident_id))[:10]]},
+        **({"calibration_validity_shadow": _validity_shadow(pipe, frame, health)}
+           if validity_shadow and pipe.profile is not None else {}),
         "note": "Detection-only offline analysis. 'unusual' = deviation from the local "
                 "baseline (or, uncalibrated, from the training reference), not an attack "
                 "verdict; semantics in inference/schema.py and inference/pipeline.py.",

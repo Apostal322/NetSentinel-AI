@@ -1,0 +1,4807 @@
+{
+ "rule": "docs/phase8f/PLAN.md section 2",
+ "role": "development (no consumed capture)",
+ "skipped": [
+  "CTU-Normal-28"
+ ],
+ "A3_full_assessor": {
+  "C1_null_confirmed_share": 0.0,
+  "C1_pass": true,
+  "C1_captures": 16,
+  "C2_valid_pooled_fpr": 0.001984126984126984,
+  "C2_valid_fpr_ci95": [
+   0.0007718379066799395,
+   0.005090800034829928
+  ],
+  "C2_pass": true,
+  "C3_shift_to_valid_fpr_ratio": 0.37168141592920356,
+  "C3_pass": false,
+  "C4_benign_only_valid_share": 0.36,
+  "C4_pass": false,
+  "table": {
+   "unreliable_threshold": {
+    "segments": 33,
+    "benign": 13316,
+    "false_alerts": 412,
+    "with_attacks": 10,
+    "benign_only_segments": 12,
+    "pooled_fpr": 0.03094022228897567,
+    "fpr_ci95": [
+     0.02813174317305667,
+     0.034019266190297916
+    ]
+   },
+   "confirmed_shift": {
+    "segments": 49,
+    "benign": 1356,
+    "false_alerts": 1,
+    "with_attacks": 41,
+    "benign_only_segments": 1,
+    "pooled_fpr": 0.0007374631268436578,
+    "fpr_ci95": [
+     0.00013018886490723984,
+     0.004165605586446505
+    ]
+   },
+   "valid": {
+    "segments": 37,
+    "benign": 2016,
+    "false_alerts": 4,
+    "with_attacks": 5,
+    "benign_only_segments": 9,
+    "pooled_fpr": 0.001984126984126984,
+    "fpr_ci95": [
+     0.0007718379066799395,
+     0.005090800034829928
+    ]
+   },
+   "possible_shift": {
+    "segments": 3,
+    "benign": 276,
+    "false_alerts": 3,
+    "with_attacks": 0,
+    "benign_only_segments": 2,
+    "pooled_fpr": 0.010869565217391304,
+    "fpr_ci95": [
+     0.003703321451570884,
+     0.031465145281037846
+    ]
+   },
+   "insufficient_history": {
+    "segments": 1,
+    "benign": 72,
+    "false_alerts": 8,
+    "with_attacks": 0,
+    "benign_only_segments": 1,
+    "pooled_fpr": 0.1111111111111111,
+    "fpr_ci95": [
+     0.05738751060073767,
+     0.20423144258590392
+    ]
+   }
+  }
+ },
+ "A3s_shift_test_only": {
+  "C1_null_confirmed_share": 0.0,
+  "C1_pass": true,
+  "C1_captures": 16,
+  "C2_valid_pooled_fpr": 0.0009082652134423251,
+  "C2_valid_fpr_ci95": [
+   0.00024910921374922857,
+   0.0033058151289596946
+  ],
+  "C2_pass": true,
+  "C3_shift_to_valid_fpr_ratio": 32.99868737694159,
+  "C3_pass": true,
+  "C4_benign_only_valid_share": 0.36,
+  "C4_pass": false,
+  "table": {
+   "valid": {
+    "segments": 43,
+    "benign": 2202,
+    "false_alerts": 2,
+    "with_attacks": 2,
+    "benign_only_segments": 9,
+    "pooled_fpr": 0.0009082652134423251,
+    "fpr_ci95": [
+     0.00024910921374922857,
+     0.0033058151289596946
+    ]
+   },
+   "confirmed_shift": {
+    "segments": 62,
+    "benign": 13713,
+    "false_alerts": 411,
+    "with_attacks": 51,
+    "benign_only_segments": 4,
+    "pooled_fpr": 0.029971559833734413,
+    "fpr_ci95": [
+     0.02724667620046884,
+     0.03295972000082578
+    ]
+   },
+   "untestable": {
+    "segments": 14,
+    "benign": 721,
+    "false_alerts": 12,
+    "with_attacks": 3,
+    "benign_only_segments": 9,
+    "pooled_fpr": 0.016643550624133148,
+    "fpr_ci95": [
+     0.009545906706567018,
+     0.028864692243603607
+    ]
+   },
+   "possible_shift": {
+    "segments": 4,
+    "benign": 400,
+    "false_alerts": 3,
+    "with_attacks": 0,
+    "benign_only_segments": 3,
+    "pooled_fpr": 0.0075,
+    "fpr_ci95": [
+     0.0025538429629852373,
+     0.02181610802770022
+    ]
+   }
+  }
+ },
+ "A2_existing_baseline_state": {
+  "C1_null_confirmed_share": 0.0,
+  "C1_pass": true,
+  "C1_captures": 16,
+  "C2_valid_pooled_fpr": 0.0014766686355581807,
+  "C2_valid_fpr_ci95": [
+   0.0006308950540080704,
+   0.003452363585569661
+  ],
+  "C2_pass": true,
+  "C3_shift_to_valid_fpr_ratio": 20.762852699400135,
+  "C3_pass": true,
+  "C4_benign_only_valid_share": 0.64,
+  "C4_pass": true,
+  "table": {
+   "monitoring": {
+    "segments": 47,
+    "benign": 3386,
+    "false_alerts": 5,
+    "with_attacks": 4,
+    "benign_only_segments": 16,
+    "pooled_fpr": 0.0014766686355581807,
+    "fpr_ci95": [
+     0.0006308950540080704,
+     0.003452363585569661
+    ]
+   },
+   "drift_suspected": {
+    "segments": 66,
+    "benign": 13503,
+    "false_alerts": 414,
+    "with_attacks": 49,
+    "benign_only_segments": 3,
+    "pooled_fpr": 0.030659853365918685,
+    "fpr_ci95": [
+     0.027882896262157397,
+     0.033703788814537367
+    ]
+   },
+   "untested": {
+    "segments": 10,
+    "benign": 147,
+    "false_alerts": 9,
+    "with_attacks": 3,
+    "benign_only_segments": 6,
+    "pooled_fpr": 0.061224489795918366,
+    "fpr_ci95": [
+     0.032541132146123544,
+     0.11225711979498555
+    ]
+   }
+  }
+ },
+ "A1_age_only": {
+  "C1_null_confirmed_share": 0.0,
+  "C1_pass": true,
+  "C1_captures": 16,
+  "C2_valid_pooled_fpr": 0.025123268372857478,
+  "C2_valid_fpr_ci95": [
+   0.022878062060650243,
+   0.027582594803671787
+  ],
+  "C2_pass": false,
+  "C3_shift_to_valid_fpr_ratio": null,
+  "C3_pass": false,
+  "C4_benign_only_valid_share": 1.0,
+  "C4_pass": true,
+  "table": {
+   "valid": {
+    "segments": 123,
+    "benign": 17036,
+    "false_alerts": 428,
+    "with_attacks": 56,
+    "benign_only_segments": 25,
+    "pooled_fpr": 0.025123268372857478,
+    "fpr_ci95": [
+     0.022878062060650243,
+     0.027582594803671787
+    ]
+   }
+  }
+ },
+ "assessor_seconds_per_segment": {
+  "median": 0.14403949999996257,
+  "max": 0.23071540000000823
+ },
+ "captures": {
+  "CTU-Honeypot-Capture-4-1": {
+   "null": {
+    "levels_tested": 3,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 6,
+     "benign": 6,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "valid",
+     "A3_conditions": [
+      "unreliable_threshold"
+     ],
+     "seconds": 0.054412000000411354,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.906,
+       "p_holm": 0.906,
+       "top": "no_reply_frac"
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    },
+    {
+     "segment": 1,
+     "windows": 9,
+     "benign": 9,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "valid",
+     "A3_conditions": [
+      "unreliable_threshold"
+     ],
+     "seconds": 0.04853949999960605,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.886,
+       "p_holm": 0.886,
+       "top": "no_reply_frac"
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    },
+    {
+     "segment": 2,
+     "windows": 8,
+     "benign": 8,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "valid",
+     "A3_conditions": [
+      "unreliable_threshold"
+     ],
+     "seconds": 0.05001079999965441,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.891,
+       "p_holm": 0.891,
+       "top": "no_reply_frac"
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    },
+    {
+     "segment": 3,
+     "windows": 8,
+     "benign": 8,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "valid",
+     "A3_conditions": [
+      "unreliable_threshold"
+     ],
+     "seconds": 0.05026180000004388,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.881,
+       "p_holm": 0.881,
+       "top": "no_reply_frac"
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    },
+    {
+     "segment": 4,
+     "windows": 8,
+     "benign": 8,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "valid",
+     "A3_conditions": [
+      "unreliable_threshold"
+     ],
+     "seconds": 0.04813300000023446,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.895,
+       "p_holm": 0.895,
+       "top": "no_reply_frac"
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    },
+    {
+     "segment": 5,
+     "windows": 7,
+     "benign": 7,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "valid",
+     "A3_conditions": [
+      "unreliable_threshold"
+     ],
+     "seconds": 0.05158159999973577,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.897,
+       "p_holm": 0.897,
+       "top": "no_reply_frac"
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    },
+    {
+     "segment": 6,
+     "windows": 5,
+     "benign": 5,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "valid",
+     "A3_conditions": [
+      "unreliable_threshold"
+     ],
+     "seconds": 0.050004700000499724,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.337,
+       "p_holm": 0.337,
+       "top": "log_dst_ports"
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    },
+    {
+     "segment": 7,
+     "windows": 8,
+     "benign": 8,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "valid",
+     "A3_conditions": [
+      "unreliable_threshold"
+     ],
+     "seconds": 0.05244159999983822,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.905,
+       "p_holm": 0.905,
+       "top": "med_log_dur"
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    },
+    {
+     "segment": 8,
+     "windows": 9,
+     "benign": 9,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "valid",
+     "A3_conditions": [
+      "unreliable_threshold"
+     ],
+     "seconds": 0.04971119999936491,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.893,
+       "p_holm": 0.893,
+       "top": "no_reply_frac"
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    },
+    {
+     "segment": 9,
+     "windows": 8,
+     "benign": 8,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "valid",
+     "A3_conditions": [
+      "unreliable_threshold"
+     ],
+     "seconds": 0.049563300000045274,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.897,
+       "p_holm": 0.897,
+       "top": "no_reply_frac"
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    },
+    {
+     "segment": 10,
+     "windows": 11,
+     "benign": 11,
+     "false_alerts": 2,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "valid",
+     "A3_conditions": [
+      "unreliable_threshold"
+     ],
+     "seconds": 0.04937010000048758,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.134,
+       "p_holm": 0.134,
+       "top": "rst_frac"
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    }
+   ],
+   "benign_only": false,
+   "device_threshold_reliable": false,
+   "reference_blocks": {
+    "device": 78,
+    "global": 132,
+    "service": 78
+   }
+  },
+  "CTU-Honeypot-Capture-5-1": {
+   "null": {
+    "levels_tested": 3,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 102,
+     "benign": 102,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.12654209999982413,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.004,
+       "p_holm": 0.008,
+       "top": "log_down_bytes"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.078,
+       "p_holm": 0.078,
+       "top": "no_reply_frac"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "fallback_share"
+      }
+     }
+    },
+    {
+     "segment": 1,
+     "windows": 80,
+     "benign": 80,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.1524663000000146,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.014,
+       "p_holm": 0.028,
+       "top": "log_down_bytes"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.019,
+       "p_holm": 0.028,
+       "top": "log_up_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "fallback_share"
+      }
+     }
+    },
+    {
+     "segment": 2,
+     "windows": 113,
+     "benign": 113,
+     "false_alerts": 3,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "untestable",
+     "A3_conditions": [],
+     "seconds": 0.000539099999514292,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    }
+   ],
+   "benign_only": false,
+   "device_threshold_reliable": true,
+   "reference_blocks": {
+    "device": 33,
+    "global": 33,
+    "service": 33
+   }
+  },
+  "CTU-IoT-Malware-Capture-20-1": {
+   "null": {
+    "levels_tested": 3,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 69,
+     "benign": 69,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.1497374000000491,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.13,
+       "p_holm": 0.339,
+       "top": "log_up_bytes"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.134,
+       "p_holm": 0.339,
+       "top": "log_up_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.113,
+       "p_holm": 0.339,
+       "top": "log_up_bytes"
+      }
+     }
+    },
+    {
+     "segment": 1,
+     "windows": 68,
+     "benign": 68,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.15252179999970394,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.156,
+       "p_holm": 0.42000000000000004,
+       "top": "log_up_bytes"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.166,
+       "p_holm": 0.42000000000000004,
+       "top": "log_up_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.14,
+       "p_holm": 0.42000000000000004,
+       "top": "log_up_bytes"
+      }
+     }
+    },
+    {
+     "segment": 2,
+     "windows": 77,
+     "benign": 77,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.14917349999996077,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.566,
+       "p_holm": 0.652,
+       "top": "no_reply_frac"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.326,
+       "p_holm": 0.652,
+       "top": "no_reply_frac"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.172,
+       "p_holm": 0.516,
+       "top": "log_up_bytes"
+      }
+     }
+    },
+    {
+     "segment": 3,
+     "windows": 72,
+     "benign": 72,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.16884289999961766,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.145,
+       "p_holm": 0.405,
+       "top": "log_up_bytes"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.148,
+       "p_holm": 0.405,
+       "top": "log_up_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.135,
+       "p_holm": 0.405,
+       "top": "log_up_bytes"
+      }
+     }
+    },
+    {
+     "segment": 4,
+     "windows": 61,
+     "benign": 61,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.15777720000005502,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.081,
+       "p_holm": 0.162,
+       "top": "log_down_bytes"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.052,
+       "p_holm": 0.156,
+       "top": "log_down_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.086,
+       "p_holm": 0.162,
+       "top": "log_down_bytes"
+      }
+     }
+    },
+    {
+     "segment": 5,
+     "windows": 67,
+     "benign": 67,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.14956189999975322,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.419,
+       "p_holm": 0.8819999999999999,
+       "top": "log_flows"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.294,
+       "p_holm": 0.8819999999999999,
+       "top": "log_down_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.352,
+       "p_holm": 0.8819999999999999,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 6,
+     "windows": 63,
+     "benign": 63,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.14626489999955083,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.279,
+       "p_holm": 0.48,
+       "top": "log_up_bytes"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.16,
+       "p_holm": 0.48,
+       "top": "log_down_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.205,
+       "p_holm": 0.48,
+       "top": "log_up_bytes"
+      }
+     }
+    },
+    {
+     "segment": 7,
+     "windows": 63,
+     "benign": 63,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.15089119999993272,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.093,
+       "p_holm": 0.186,
+       "top": "log_down_bytes"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.056,
+       "p_holm": 0.168,
+       "top": "log_down_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.101,
+       "p_holm": 0.186,
+       "top": "log_down_bytes"
+      }
+     }
+    },
+    {
+     "segment": 8,
+     "windows": 62,
+     "benign": 62,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.22693039999921893,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.102,
+       "p_holm": 0.237,
+       "top": "log_down_bytes"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.079,
+       "p_holm": 0.237,
+       "top": "log_down_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.105,
+       "p_holm": 0.237,
+       "top": "log_up_bytes"
+      }
+     }
+    },
+    {
+     "segment": 9,
+     "windows": 70,
+     "benign": 70,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.14769739999974263,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.479,
+       "p_holm": 0.784,
+       "top": "log_dst_hosts"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.392,
+       "p_holm": 0.784,
+       "top": "log_dst_hosts"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.156,
+       "p_holm": 0.46799999999999997,
+       "top": "log_up_bytes"
+      }
+     }
+    },
+    {
+     "segment": 10,
+     "windows": 98,
+     "benign": 98,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.14912580000054731,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_up_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.668,
+       "p_holm": 0.668,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 11,
+     "windows": 65,
+     "benign": 64,
+     "false_alerts": 0,
+     "attack_windows": 1,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.14888359999986278,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.116,
+       "p_holm": 0.34800000000000003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.159,
+       "p_holm": 0.34800000000000003,
+       "top": "log_up_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.128,
+       "p_holm": 0.34800000000000003,
+       "top": "log_up_bytes"
+      }
+     }
+    }
+   ],
+   "benign_only": false,
+   "device_threshold_reliable": true,
+   "reference_blocks": {
+    "device": 145,
+    "global": 145,
+    "service": 145
+   }
+  },
+  "CTU-IoT-Malware-Capture-21-1": {
+   "null": {
+    "levels_tested": 3,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 26,
+     "benign": 26,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.14599710000038613,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.073,
+       "p_holm": 0.21899999999999997,
+       "top": "log_down_bytes"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.136,
+       "p_holm": 0.272,
+       "top": "med_log_dur"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.22,
+       "p_holm": 0.272,
+       "top": "log_up_bytes"
+      }
+     }
+    },
+    {
+     "segment": 1,
+     "windows": 24,
+     "benign": 24,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "possible_shift",
+     "A3s": "possible_shift",
+     "A3_conditions": [
+      "possible_shift"
+     ],
+     "seconds": 0.15161890000035783,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.011,
+       "p_holm": 0.033,
+       "top": "log_down_bytes"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.111,
+       "p_holm": 0.222,
+       "top": "med_log_dur"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.258,
+       "p_holm": 0.258,
+       "top": "log_up_bytes"
+      }
+     }
+    },
+    {
+     "segment": 2,
+     "windows": 44,
+     "benign": 44,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.14035549999971408,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.354,
+       "p_holm": 0.708,
+       "top": "log_down_bytes"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.155,
+       "p_holm": 0.46499999999999997,
+       "top": "med_log_dur"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.784,
+       "p_holm": 0.784,
+       "top": "log_up_bytes"
+      }
+     }
+    },
+    {
+     "segment": 3,
+     "windows": 25,
+     "benign": 25,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.14384060000065801,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.066,
+       "p_holm": 0.198,
+       "top": "log_down_bytes"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.116,
+       "p_holm": 0.232,
+       "top": "med_log_dur"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.221,
+       "p_holm": 0.232,
+       "top": "log_up_bytes"
+      }
+     }
+    },
+    {
+     "segment": 4,
+     "windows": 42,
+     "benign": 42,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.13994470000034198,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.268,
+       "p_holm": 0.45899999999999996,
+       "top": "med_log_dur"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.153,
+       "p_holm": 0.45899999999999996,
+       "top": "med_log_dur"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.223,
+       "p_holm": 0.45899999999999996,
+       "top": "log_up_bytes"
+      }
+     }
+    },
+    {
+     "segment": 5,
+     "windows": 55,
+     "benign": 54,
+     "false_alerts": 0,
+     "attack_windows": 1,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.14301500000055967,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.085,
+       "p_holm": 0.255,
+       "top": "log_up_bytes"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.369,
+       "p_holm": 0.369,
+       "top": "med_log_dur"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.139,
+       "p_holm": 0.278,
+       "top": "udp_share"
+      }
+     }
+    },
+    {
+     "segment": 6,
+     "windows": 22,
+     "benign": 22,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.14047280000067985,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.472,
+       "p_holm": 0.472,
+       "top": "med_log_dur"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.179,
+       "p_holm": 0.358,
+       "top": "med_log_dur"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.118,
+       "p_holm": 0.354,
+       "top": "upload_share"
+      }
+     }
+    },
+    {
+     "segment": 7,
+     "windows": 21,
+     "benign": 21,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.14132749999953376,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.194,
+       "p_holm": 0.336,
+       "top": "med_log_dur"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.112,
+       "p_holm": 0.336,
+       "top": "med_log_dur"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.163,
+       "p_holm": 0.336,
+       "top": "no_reply_frac"
+      }
+     }
+    },
+    {
+     "segment": 8,
+     "windows": 16,
+     "benign": 16,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.13935459999993327,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.45,
+       "p_holm": 0.45,
+       "top": "med_log_dur"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.127,
+       "p_holm": 0.254,
+       "top": "log_down_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.081,
+       "p_holm": 0.243,
+       "top": "log_down_bytes"
+      }
+     }
+    },
+    {
+     "segment": 9,
+     "windows": 17,
+     "benign": 17,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.14815249999992375,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.091,
+       "p_holm": 0.273,
+       "top": "log_down_bytes"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.109,
+       "p_holm": 0.273,
+       "top": "med_log_dur"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.325,
+       "p_holm": 0.325,
+       "top": "no_reply_frac"
+      }
+     }
+    },
+    {
+     "segment": 10,
+     "windows": 21,
+     "benign": 21,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.1393841999997676,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.344,
+       "p_holm": 0.477,
+       "top": "log_down_bytes"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.159,
+       "p_holm": 0.477,
+       "top": "med_log_dur"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.202,
+       "p_holm": 0.477,
+       "top": "upload_share"
+      }
+     }
+    },
+    {
+     "segment": 11,
+     "windows": 19,
+     "benign": 19,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.14084150000053342,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.717,
+       "p_holm": 0.717,
+       "top": "log_dst_hosts"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.329,
+       "p_holm": 0.658,
+       "top": "med_log_dur"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.121,
+       "p_holm": 0.363,
+       "top": "upload_share"
+      }
+     }
+    },
+    {
+     "segment": 12,
+     "windows": 1,
+     "benign": 0,
+     "false_alerts": 0,
+     "attack_windows": 1,
+     "A1": "valid",
+     "A2": "untested",
+     "A3": "valid",
+     "A3s": "untestable",
+     "A3_conditions": [],
+     "seconds": 0.00028920000022480963,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    }
+   ],
+   "benign_only": false,
+   "device_threshold_reliable": true,
+   "reference_blocks": {
+    "device": 144,
+    "global": 145,
+    "service": 144
+   }
+  },
+  "CTU-IoT-Malware-Capture-3-1": {
+   "null": {
+    "levels_tested": 3,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 190,
+     "benign": 70,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.16705160000037722,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_up_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 1,
+     "windows": 149,
+     "benign": 29,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.16344260000005306,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "no_reply_frac"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 2,
+     "windows": 159,
+     "benign": 39,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.15857729999970616,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_up_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 3,
+     "windows": 135,
+     "benign": 15,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.1604686999999103,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_down_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 4,
+     "windows": 163,
+     "benign": 43,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.1654300999998668,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_up_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 5,
+     "windows": 127,
+     "benign": 7,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.16510120000020834,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_down_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 6,
+     "windows": 174,
+     "benign": 54,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.16647529999954713,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_up_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 7,
+     "windows": 134,
+     "benign": 14,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.1584460999993098,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_down_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 8,
+     "windows": 123,
+     "benign": 3,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.1603703000000678,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_up_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 9,
+     "windows": 120,
+     "benign": 0,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.16062379999948462,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_down_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 10,
+     "windows": 124,
+     "benign": 4,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.15759450000041397,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_up_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 11,
+     "windows": 120,
+     "benign": 0,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.15573160000076314,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_down_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 12,
+     "windows": 194,
+     "benign": 74,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.15988460000062332,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_up_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 13,
+     "windows": 149,
+     "benign": 29,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.16008899999997084,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_down_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 14,
+     "windows": 232,
+     "benign": 112,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.16089449999981298,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_up_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 15,
+     "windows": 151,
+     "benign": 31,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.16341680000005,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_down_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 16,
+     "windows": 157,
+     "benign": 37,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.16206209999927523,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_up_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 17,
+     "windows": 128,
+     "benign": 8,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.16269539999939298,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_down_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 18,
+     "windows": 8,
+     "benign": 0,
+     "false_alerts": 0,
+     "attack_windows": 8,
+     "A1": "valid",
+     "A2": "untested",
+     "A3": "valid",
+     "A3s": "untestable",
+     "A3_conditions": [],
+     "seconds": 0.0002824000002874527,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    }
+   ],
+   "benign_only": false,
+   "device_threshold_reliable": true,
+   "reference_blocks": {
+    "device": 183,
+    "global": 218,
+    "service": 183
+   }
+  },
+  "CTU-IoT-Malware-Capture-34-1": {
+   "null": {
+    "levels_tested": 3,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 63,
+     "benign": 63,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.15601619999961258,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.326,
+       "p_holm": 0.8340000000000001,
+       "top": "log_down_bytes"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.295,
+       "p_holm": 0.8340000000000001,
+       "top": "log_down_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.278,
+       "p_holm": 0.8340000000000001,
+       "top": "med_log_dur"
+      }
+     }
+    },
+    {
+     "segment": 1,
+     "windows": 48,
+     "benign": 46,
+     "false_alerts": 0,
+     "attack_windows": 2,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.15704829999958747,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_down_bytes"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.837,
+       "p_holm": 0.837,
+       "top": "med_log_dur"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.002,
+       "p_holm": 0.004,
+       "top": "log_down_bytes"
+      }
+     }
+    },
+    {
+     "segment": 2,
+     "windows": 65,
+     "benign": 17,
+     "false_alerts": 0,
+     "attack_windows": 48,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.16323689999990165,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_down_bytes"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_down_bytes"
+      }
+     }
+    },
+    {
+     "segment": 3,
+     "windows": 118,
+     "benign": 3,
+     "false_alerts": 0,
+     "attack_windows": 115,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.1507011000003331,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "med_log_dur"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "med_log_dur"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_pkts"
+      }
+     }
+    },
+    {
+     "segment": 4,
+     "windows": 84,
+     "benign": 11,
+     "false_alerts": 0,
+     "attack_windows": 73,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.15225139999984094,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      }
+     }
+    },
+    {
+     "segment": 5,
+     "windows": 102,
+     "benign": 11,
+     "false_alerts": 0,
+     "attack_windows": 91,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.14956450000045152,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_pkts"
+      }
+     }
+    },
+    {
+     "segment": 6,
+     "windows": 107,
+     "benign": 2,
+     "false_alerts": 0,
+     "attack_windows": 105,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.14817239999956655,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      }
+     }
+    },
+    {
+     "segment": 7,
+     "windows": 83,
+     "benign": 10,
+     "false_alerts": 0,
+     "attack_windows": 73,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.15130750000025728,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_pkts"
+      }
+     }
+    },
+    {
+     "segment": 8,
+     "windows": 114,
+     "benign": 5,
+     "false_alerts": 0,
+     "attack_windows": 109,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.23071540000000823,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_pkts"
+      }
+     }
+    },
+    {
+     "segment": 9,
+     "windows": 110,
+     "benign": 3,
+     "false_alerts": 0,
+     "attack_windows": 107,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.14929920000031416,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_pkts"
+      }
+     }
+    },
+    {
+     "segment": 10,
+     "windows": 115,
+     "benign": 1,
+     "false_alerts": 0,
+     "attack_windows": 114,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.14900780000061786,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_pkts"
+      }
+     }
+    },
+    {
+     "segment": 11,
+     "windows": 111,
+     "benign": 5,
+     "false_alerts": 0,
+     "attack_windows": 106,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.15194210000026942,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      }
+     }
+    }
+   ],
+   "benign_only": false,
+   "device_threshold_reliable": true,
+   "reference_blocks": {
+    "device": 145,
+    "global": 145,
+    "service": 145
+   }
+  },
+  "CTU-IoT-Malware-Capture-42-1": {
+   "null": {
+    "levels_tested": 3,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 103,
+     "benign": 103,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.12851409999984753,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_up_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.011,
+       "p_holm": 0.011,
+       "top": "no_reply_frac"
+      }
+     }
+    },
+    {
+     "segment": 1,
+     "windows": 90,
+     "benign": 90,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.1309160000000702,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_up_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_up_bytes"
+      }
+     }
+    },
+    {
+     "segment": 2,
+     "windows": 55,
+     "benign": 55,
+     "false_alerts": 1,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.12907559999985097,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_up_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "new_dst_frac"
+      }
+     }
+    },
+    {
+     "segment": 3,
+     "windows": 19,
+     "benign": 19,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.12516580000010435,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "log_up_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.117,
+       "p_holm": 0.117,
+       "top": "new_dst_frac"
+      }
+     }
+    },
+    {
+     "segment": 4,
+     "windows": 3,
+     "benign": 3,
+     "false_alerts": 1,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "untested",
+     "A3": "valid",
+     "A3s": "untestable",
+     "A3_conditions": [],
+     "seconds": 0.00045589999990625074,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    }
+   ],
+   "benign_only": false,
+   "device_threshold_reliable": true,
+   "reference_blocks": {
+    "device": 51,
+    "global": 51,
+    "service": 51
+   }
+  },
+  "CTU-IoT-Malware-Capture-44-1": {
+   "null": {
+    "levels_tested": 0,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 47,
+     "benign": 45,
+     "false_alerts": 0,
+     "attack_windows": 2,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift",
+      "unreliable_threshold"
+     ],
+     "seconds": 0.11323489999995218,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "upload_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "upload_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "upload_share"
+      }
+     }
+    }
+   ],
+   "benign_only": false,
+   "device_threshold_reliable": false,
+   "reference_blocks": {
+    "device": 12,
+    "global": 12,
+    "service": 12
+   }
+  },
+  "CTU-IoT-Malware-Capture-8-1": {
+   "null": {
+    "levels_tested": 3,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 120,
+     "benign": 0,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.14949040000010427,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      }
+     }
+    },
+    {
+     "segment": 1,
+     "windows": 120,
+     "benign": 0,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.1495084999996834,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      }
+     }
+    },
+    {
+     "segment": 2,
+     "windows": 120,
+     "benign": 0,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.1550784000000931,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      }
+     }
+    },
+    {
+     "segment": 3,
+     "windows": 120,
+     "benign": 0,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.20588950000001205,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      }
+     }
+    },
+    {
+     "segment": 4,
+     "windows": 120,
+     "benign": 0,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.1540311999997357,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      }
+     }
+    },
+    {
+     "segment": 5,
+     "windows": 120,
+     "benign": 0,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.14771309999923687,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      }
+     }
+    },
+    {
+     "segment": 6,
+     "windows": 120,
+     "benign": 0,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.14403949999996257,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      }
+     }
+    },
+    {
+     "segment": 7,
+     "windows": 120,
+     "benign": 0,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.14831730000059906,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      }
+     }
+    },
+    {
+     "segment": 8,
+     "windows": 120,
+     "benign": 0,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.14310329999989335,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      }
+     }
+    },
+    {
+     "segment": 9,
+     "windows": 120,
+     "benign": 0,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.14677610000035202,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      }
+     }
+    },
+    {
+     "segment": 10,
+     "windows": 120,
+     "benign": 0,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.15012690000003204,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      }
+     }
+    },
+    {
+     "segment": 11,
+     "windows": 120,
+     "benign": 0,
+     "false_alerts": 0,
+     "attack_windows": 120,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.16439639999953215,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "udp_share"
+      }
+     }
+    },
+    {
+     "segment": 12,
+     "windows": 1,
+     "benign": 0,
+     "false_alerts": 0,
+     "attack_windows": 1,
+     "A1": "valid",
+     "A2": "untested",
+     "A3": "valid",
+     "A3s": "untestable",
+     "A3_conditions": [],
+     "seconds": 0.0004425000006449409,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    }
+   ],
+   "benign_only": false,
+   "device_threshold_reliable": true,
+   "reference_blocks": {
+    "device": 144,
+    "global": 144,
+    "service": 144
+   }
+  },
+  "NF-UNSW-NB15-v3-dev": {
+   "null": {
+    "levels_tested": 3,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 1784,
+     "benign": 1326,
+     "false_alerts": 46,
+     "attack_windows": 458,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "unreliable_threshold",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift",
+      "unreliable_threshold"
+     ],
+     "seconds": 0.14495979999992414,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "new_dst_frac"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.707,
+       "p_holm": 0.707,
+       "top": "log_flows"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "fallback_share"
+      }
+     }
+    },
+    {
+     "segment": 1,
+     "windows": 1806,
+     "benign": 1344,
+     "false_alerts": 43,
+     "attack_windows": 462,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "unreliable_threshold",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift",
+      "unreliable_threshold"
+     ],
+     "seconds": 0.14383840000027703,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "new_dst_frac"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.611,
+       "p_holm": 0.611,
+       "top": "log_flows"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "fallback_share"
+      }
+     }
+    },
+    {
+     "segment": 2,
+     "windows": 1808,
+     "benign": 1346,
+     "false_alerts": 44,
+     "attack_windows": 462,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "unreliable_threshold",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift",
+      "unreliable_threshold"
+     ],
+     "seconds": 0.14289470000039728,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "new_dst_frac"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.52,
+       "p_holm": 0.52,
+       "top": "log_flows"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "fallback_share"
+      }
+     }
+    },
+    {
+     "segment": 3,
+     "windows": 1825,
+     "benign": 1359,
+     "false_alerts": 44,
+     "attack_windows": 466,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "unreliable_threshold",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift",
+      "unreliable_threshold"
+     ],
+     "seconds": 0.1445981999995638,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "new_dst_frac"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.365,
+       "p_holm": 0.365,
+       "top": "log_pkts"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "fallback_share"
+      }
+     }
+    },
+    {
+     "segment": 4,
+     "windows": 1809,
+     "benign": 1348,
+     "false_alerts": 39,
+     "attack_windows": 461,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "unreliable_threshold",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift",
+      "unreliable_threshold"
+     ],
+     "seconds": 0.13950419999946462,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "new_dst_frac"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.603,
+       "p_holm": 0.603,
+       "top": "log_flows"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "fallback_share"
+      }
+     }
+    },
+    {
+     "segment": 5,
+     "windows": 1785,
+     "benign": 1330,
+     "false_alerts": 44,
+     "attack_windows": 455,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "unreliable_threshold",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift",
+      "unreliable_threshold"
+     ],
+     "seconds": 0.14375879999988683,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "new_dst_frac"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.709,
+       "p_holm": 0.709,
+       "top": "log_pkts"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "fallback_share"
+      }
+     }
+    },
+    {
+     "segment": 6,
+     "windows": 1800,
+     "benign": 1344,
+     "false_alerts": 53,
+     "attack_windows": 456,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "unreliable_threshold",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift",
+      "unreliable_threshold"
+     ],
+     "seconds": 0.14706309999928635,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "new_dst_frac"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.122,
+       "p_holm": 0.122,
+       "top": "new_dst_frac"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "fallback_share"
+      }
+     }
+    },
+    {
+     "segment": 7,
+     "windows": 1804,
+     "benign": 1345,
+     "false_alerts": 49,
+     "attack_windows": 459,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "unreliable_threshold",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift",
+      "unreliable_threshold"
+     ],
+     "seconds": 0.14592480000010255,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "new_dst_frac"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.335,
+       "p_holm": 0.335,
+       "top": "log_up_bytes"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "fallback_share"
+      }
+     }
+    },
+    {
+     "segment": 8,
+     "windows": 1607,
+     "benign": 1195,
+     "false_alerts": 48,
+     "attack_windows": 412,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "unreliable_threshold",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift",
+      "unreliable_threshold"
+     ],
+     "seconds": 0.148607300000549,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "new_dst_frac"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.691,
+       "p_holm": 0.691,
+       "top": "log_flows"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "fallback_share"
+      }
+     }
+    }
+   ],
+   "benign_only": false,
+   "device_threshold_reliable": true,
+   "reference_blocks": {
+    "device": 125,
+    "global": 127,
+    "service": 125
+   }
+  },
+  "CTU-Normal-20": {
+   "null": {
+    "levels_tested": 3,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 124,
+     "benign": 124,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "possible_shift",
+     "A3_conditions": [
+      "possible_shift",
+      "unreliable_threshold"
+     ],
+     "seconds": 0.12228419999973994,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.392,
+       "p_holm": 0.692,
+       "top": "rst_frac"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.346,
+       "p_holm": 0.692,
+       "top": "rst_frac"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.004,
+       "p_holm": 0.012,
+       "top": "med_log_dur"
+      }
+     }
+    },
+    {
+     "segment": 1,
+     "windows": 74,
+     "benign": 74,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "untestable",
+     "A3_conditions": [
+      "unreliable_threshold"
+     ],
+     "seconds": 0.0003449000005275593,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    }
+   ],
+   "benign_only": true,
+   "device_threshold_reliable": false,
+   "reference_blocks": {
+    "device": 20,
+    "global": 20,
+    "service": 20
+   }
+  },
+  "CTU-Normal-21": {
+   "null": {
+    "levels_tested": 0,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 72,
+     "benign": 72,
+     "false_alerts": 8,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "untested",
+     "A3": "insufficient_history",
+     "A3s": "untestable",
+     "A3_conditions": [
+      "insufficient_history",
+      "unreliable_threshold"
+     ],
+     "seconds": 0.0003704999999172287,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    }
+   ],
+   "benign_only": true,
+   "device_threshold_reliable": false,
+   "reference_blocks": {
+    "device": 3,
+    "service": 3
+   }
+  },
+  "CTU-Normal-22": {
+   "null": {
+    "levels_tested": 0,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 293,
+     "benign": 293,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "untestable",
+     "A3_conditions": [
+      "unreliable_threshold"
+     ],
+     "seconds": 0.0003381000005902024,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    }
+   ],
+   "benign_only": true,
+   "device_threshold_reliable": true,
+   "reference_blocks": {
+    "device": 10,
+    "global": 10,
+    "service": 10
+   }
+  },
+  "CTU-Normal-23": {
+   "null": {
+    "levels_tested": 0,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 121,
+     "benign": 121,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "unreliable_threshold",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift",
+      "unreliable_threshold"
+     ],
+     "seconds": 0.11821440000039729,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.531,
+       "p_holm": 1.0,
+       "top": "log_up_bytes"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.678,
+       "p_holm": 1.0,
+       "top": "med_log_dur"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "med_log_dur"
+      }
+     }
+    },
+    {
+     "segment": 1,
+     "windows": 13,
+     "benign": 13,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "untested",
+     "A3": "unreliable_threshold",
+     "A3s": "untestable",
+     "A3_conditions": [
+      "unreliable_threshold"
+     ],
+     "seconds": 0.000315000000227883,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    }
+   ],
+   "benign_only": true,
+   "device_threshold_reliable": false,
+   "reference_blocks": {
+    "device": 14,
+    "global": 14,
+    "service": 14
+   }
+  },
+  "CTU-Normal-24": {
+   "null": {
+    "levels_tested": 3,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 72,
+     "benign": 72,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "valid",
+     "A3_conditions": [
+      "unreliable_threshold"
+     ],
+     "seconds": 0.11522280000008323,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.447,
+       "p_holm": 0.856,
+       "top": "log_dst_hosts"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.177,
+       "p_holm": 0.5309999999999999,
+       "top": "med_log_dur"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.428,
+       "p_holm": 0.856,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 1,
+     "windows": 61,
+     "benign": 61,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "valid",
+     "A3_conditions": [
+      "unreliable_threshold"
+     ],
+     "seconds": 0.11321129999942059,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.262,
+       "p_holm": 0.524,
+       "top": "new_dst_frac"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.154,
+       "p_holm": 0.46199999999999997,
+       "top": "med_log_dur"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.591,
+       "p_holm": 0.591,
+       "top": "new_dst_frac"
+      }
+     }
+    },
+    {
+     "segment": 2,
+     "windows": 15,
+     "benign": 15,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "untested",
+     "A3": "unreliable_threshold",
+     "A3s": "untestable",
+     "A3_conditions": [
+      "unreliable_threshold"
+     ],
+     "seconds": 0.00034049999976559775,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    }
+   ],
+   "benign_only": true,
+   "device_threshold_reliable": false,
+   "reference_blocks": {
+    "device": 26,
+    "global": 26,
+    "service": 26
+   }
+  },
+  "CTU-Normal-25": {
+   "null": {
+    "levels_tested": 0,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 94,
+     "benign": 94,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "untestable",
+     "A3_conditions": [
+      "unreliable_threshold"
+     ],
+     "seconds": 0.000340699999469507,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    }
+   ],
+   "benign_only": true,
+   "device_threshold_reliable": false,
+   "reference_blocks": {
+    "device": 10,
+    "global": 10,
+    "service": 10
+   }
+  },
+  "CTU-Normal-27": {
+   "null": {
+    "levels_tested": 3,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 128,
+     "benign": 128,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.12043660000017553,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.847,
+       "p_holm": 1.0,
+       "top": "log_dst_hosts"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.797,
+       "p_holm": 1.0,
+       "top": "upload_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.352,
+       "p_holm": 1.0,
+       "top": "med_log_dur"
+      }
+     }
+    },
+    {
+     "segment": 1,
+     "windows": 128,
+     "benign": 128,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.11491680000017368,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.775,
+       "p_holm": 1.0,
+       "top": "rst_frac"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.706,
+       "p_holm": 1.0,
+       "top": "log_flows"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.699,
+       "p_holm": 1.0,
+       "top": "udp_share"
+      }
+     }
+    },
+    {
+     "segment": 2,
+     "windows": 9,
+     "benign": 9,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "untested",
+     "A3": "valid",
+     "A3s": "untestable",
+     "A3_conditions": [],
+     "seconds": 0.0003178000006300863,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    }
+   ],
+   "benign_only": true,
+   "device_threshold_reliable": true,
+   "reference_blocks": {
+    "device": 25,
+    "global": 25,
+    "service": 25
+   }
+  },
+  "CTU-Normal-29": {
+   "null": {
+    "levels_tested": 0,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 126,
+     "benign": 126,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "valid",
+     "A3_conditions": [
+      "unreliable_threshold"
+     ],
+     "seconds": 0.11444209999990562,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.806,
+       "p_holm": 1.0,
+       "top": "upload_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.65,
+       "p_holm": 1.0,
+       "top": "upload_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.168,
+       "p_holm": 0.504,
+       "top": "med_log_dur"
+      }
+     }
+    }
+   ],
+   "benign_only": true,
+   "device_threshold_reliable": false,
+   "reference_blocks": {
+    "device": 12,
+    "global": 12,
+    "service": 12
+   }
+  },
+  "CTU-Normal-30": {
+   "null": {
+    "levels_tested": 3,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 127,
+     "benign": 127,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.11361279999982798,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.65,
+       "p_holm": 1.0,
+       "top": "no_reply_frac"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.11,
+       "p_holm": 0.33,
+       "top": "log_flows"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.518,
+       "p_holm": 1.0,
+       "top": "fallback_share"
+      }
+     }
+    },
+    {
+     "segment": 1,
+     "windows": 127,
+     "benign": 127,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.11656250000032742,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.166,
+       "p_holm": 0.498,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.19,
+       "p_holm": 0.498,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.414,
+       "p_holm": 0.498,
+       "top": "log_pkts"
+      }
+     }
+    },
+    {
+     "segment": 2,
+     "windows": 4,
+     "benign": 4,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "untested",
+     "A3": "valid",
+     "A3s": "untestable",
+     "A3_conditions": [],
+     "seconds": 0.0003478999997241772,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    }
+   ],
+   "benign_only": true,
+   "device_threshold_reliable": true,
+   "reference_blocks": {
+    "device": 25,
+    "global": 25,
+    "service": 25
+   }
+  },
+  "CTU-Normal-31": {
+   "null": {
+    "levels_tested": 3,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 128,
+     "benign": 128,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.11818119999952614,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.913,
+       "p_holm": 1.0,
+       "top": "log_dst_hosts"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.803,
+       "p_holm": 1.0,
+       "top": "upload_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.563,
+       "p_holm": 1.0,
+       "top": "udp_share"
+      }
+     }
+    },
+    {
+     "segment": 1,
+     "windows": 112,
+     "benign": 112,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "valid",
+     "A3s": "valid",
+     "A3_conditions": [],
+     "seconds": 0.1143923999998151,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.332,
+       "p_holm": 0.664,
+       "top": "new_dst_frac"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.207,
+       "p_holm": 0.621,
+       "top": "new_dst_frac"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.393,
+       "p_holm": 0.664,
+       "top": "log_up_bytes"
+      }
+     }
+    }
+   ],
+   "benign_only": true,
+   "device_threshold_reliable": true,
+   "reference_blocks": {
+    "device": 23,
+    "global": 23,
+    "service": 23
+   }
+  },
+  "CTU-Normal-32": {
+   "null": {
+    "levels_tested": 3,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 128,
+     "benign": 128,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift",
+      "unreliable_threshold"
+     ],
+     "seconds": 0.11453729999993811,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.16,
+       "p_holm": 0.32,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.283,
+       "p_holm": 0.32,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.002,
+       "p_holm": 0.006,
+       "top": "fallback_share"
+      }
+     }
+    },
+    {
+     "segment": 1,
+     "windows": 126,
+     "benign": 126,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "unreliable_threshold",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift",
+      "unreliable_threshold"
+     ],
+     "seconds": 0.10868980000032025,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.166,
+       "p_holm": 0.332,
+       "top": "udp_share"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.266,
+       "p_holm": 0.332,
+       "top": "udp_share"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.001,
+       "p_holm": 0.003,
+       "top": "no_reply_frac"
+      }
+     }
+    }
+   ],
+   "benign_only": true,
+   "device_threshold_reliable": true,
+   "reference_blocks": {
+    "device": 24,
+    "global": 24,
+    "service": 24
+   }
+  },
+  "CTU-Normal-26": {
+   "null": {
+    "levels_tested": 3,
+    "confirmed": false
+   },
+   "segments": [
+    {
+     "segment": 0,
+     "windows": 127,
+     "benign": 127,
+     "false_alerts": 2,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "possible_shift",
+     "A3s": "possible_shift",
+     "A3_conditions": [
+      "possible_shift"
+     ],
+     "seconds": 0.12156159999994998,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.008,
+       "p_holm": 0.016,
+       "top": "log_pkts"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.004,
+       "p_holm": 0.012,
+       "top": "log_pkts"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.057,
+       "p_holm": 0.057,
+       "top": "log_flows"
+      }
+     }
+    },
+    {
+     "segment": 1,
+     "windows": 126,
+     "benign": 126,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "monitoring",
+     "A3": "confirmed_shift",
+     "A3s": "confirmed_shift",
+     "A3_conditions": [
+      "confirmed_shift"
+     ],
+     "seconds": 0.11966989999928046,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.003,
+       "p_holm": 0.009000000000000001,
+       "top": "new_dst_frac"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.006,
+       "p_holm": 0.009000000000000001,
+       "top": "new_dst_frac"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.004,
+       "p_holm": 0.009000000000000001,
+       "top": "new_dst_frac"
+      }
+     }
+    },
+    {
+     "segment": 2,
+     "windows": 125,
+     "benign": 125,
+     "false_alerts": 1,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "drift_suspected",
+     "A3": "possible_shift",
+     "A3s": "possible_shift",
+     "A3_conditions": [
+      "possible_shift"
+     ],
+     "seconds": 0.11936040000000503,
+     "levels": {
+      "device": {
+       "status": "tested",
+       "p": 0.039,
+       "p_holm": 0.093,
+       "top": "new_dst_frac"
+      },
+      "global": {
+       "status": "tested",
+       "p": 0.031,
+       "p_holm": 0.093,
+       "top": "new_dst_frac"
+      },
+      "service": {
+       "status": "tested",
+       "p": 0.13,
+       "p_holm": 0.13,
+       "top": "new_dst_frac"
+      }
+     }
+    },
+    {
+     "segment": 3,
+     "windows": 31,
+     "benign": 31,
+     "false_alerts": 0,
+     "attack_windows": 0,
+     "A1": "valid",
+     "A2": "untested",
+     "A3": "valid",
+     "A3s": "untestable",
+     "A3_conditions": [],
+     "seconds": 0.00034640000012586825,
+     "levels": {
+      "device": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "global": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      },
+      "service": {
+       "status": "untestable",
+       "p": null,
+       "p_holm": null,
+       "top": null
+      }
+     }
+    }
+   ],
+   "benign_only": true,
+   "device_threshold_reliable": true,
+   "reference_blocks": {
+    "device": 40,
+    "global": 40,
+    "service": 40
+   }
+  }
+ },
+ "peak_rss_mb": 169.91015625
+}

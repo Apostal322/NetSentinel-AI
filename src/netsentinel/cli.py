@@ -191,7 +191,8 @@ def _cmd_analyze(args: argparse.Namespace) -> int:
     summary = analyze_capture(args.capture, args.bundle, args.events_db, args.utc_offset,
                               args.kind, calibration_dir=_resolve_cal(args.calibration),
                               appid_dir=args.appid, threat_policy=args.threat_policy,
-                              since=args.since, until=args.until)  # fmt: skip
+                              since=args.since, until=args.until,
+                              validity_shadow=args.validity_shadow)  # fmt: skip
     text = json.dumps(summary, indent=2, default=str)
     if args.out:
         Path(args.out).write_text(text, encoding="utf-8")
@@ -209,6 +210,7 @@ def _cmd_analyze(args: argparse.Namespace) -> int:
         "app_status",
         "app_protocols",
         "baseline_state",
+        "calibration_validity_shadow",
         "parse",
     )
     print(json.dumps({k: summary[k] for k in keys if k in summary}, indent=2, default=str))
@@ -302,9 +304,16 @@ def _cmd_calibration(args: argparse.Namespace) -> int:
         rows = []
         for d in sorted(Path(args.root).glob("calibration-*/manifest.json")):
             m = json.loads(d.read_text("utf-8"))
+            dev = (m.get("levels") or {}).get("device") or {}
             rows.append({"id": m["calibration_id"], "status": m["status"], "mode": m["mode"],
                          "schema": m.get("schema_version"),
                          "review_required": (m.get("update_check") or {}).get("review_required"),
+                         "parent": m.get("parent_calibration"),
+                         "period_end_utc_ms": (m.get("period") or {}).get("end_utc_ms"),
+                         "device_threshold_reliable": (dev.get("threshold_diagnostics") or {})
+                         .get("reliable"),
+                         "validity_reference_blocks": (m.get("validity_reference") or {})
+                         .get("levels"),
                          "active": m["calibration_id"] == reg.get("active")})  # fmt: skip
         print(json.dumps({"active": reg.get("active"), "calibrations": rows}, indent=2))
     elif args.action == "show":
@@ -341,7 +350,8 @@ def _cmd_monitor(args: argparse.Namespace) -> int:
     store = EventStore(args.events_db)
     mon = StreamMonitor(pipe, store, source=f"zeek-stream:{path.name}",
                         lateness_s=args.lateness, max_buffer=args.max_buffer,
-                        utc_offset_hours=args.utc_offset)  # fmt: skip
+                        utc_offset_hours=args.utc_offset,
+                        validity_shadow=args.validity_shadow)  # fmt: skip
     zs = ZeekStats()
     if args.follow:
         recs = parse_conn_lines(
@@ -576,6 +586,9 @@ def build_parser() -> argparse.ArgumentParser:
         "verdict; auto: escalate only if the calibration's domain check v2 passed; trust: "
         "operator asserts the traffic is in the model's training domain",
     )
+    p.add_argument("--validity-shadow", action="store_true",
+                   help="also report the Phase 8f calibration-validity shift test (shadow "
+                        "evaluation only; not adopted, changes nothing)")  # fmt: skip
     p.set_defaults(func=_cmd_analyze)
 
     p = sub.add_parser("monitor", help="opt-in streaming of a local Zeek conn.log (read-only, "
@@ -595,6 +608,11 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--utc-offset", type=float, default=0.0)
     p.add_argument("--threat-policy", choices=("unverified", "auto", "trust", "unsupported"),
                    default="unverified")  # fmt: skip
+    p.add_argument(
+        "--validity-shadow",
+        action="store_true",
+        help="report the Phase 8f shift test over the last 2 h (shadow only)",
+    )
     p.set_defaults(func=_cmd_monitor)
 
     p = sub.add_parser("demo", help="offline synthetic end-to-end demonstration (no downloads)")

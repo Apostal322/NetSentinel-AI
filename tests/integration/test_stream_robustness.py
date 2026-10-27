@@ -70,3 +70,47 @@ def test_follow_mode_idle_marker_passes_through_the_parser():
     out = list(parse_conn_lines(lines))
     assert out[0] is IDLE and out[2] is IDLE and out[1][START] == 1_600_000_000_000
     assert out[1][END] == 1_600_000_000_000
+
+
+# ---------------------------------------------------------------- Phase 8f (near the boundaries)
+spec8f = importlib.util.spec_from_file_location(
+    "stream_near_trigger", ROOT / "scripts/phase8f/stream_near_trigger.py"
+)
+nt = importlib.util.module_from_spec(spec8f)
+spec8f.loader.exec_module(nt)
+
+EXPECTED_8F = {
+    "future_share_85": "integrity_degraded", "future_share_89": "integrity_degraded",
+    "future_share_90": "clock_anomaly", "future_share_91": "clock_anomaly",
+    "future_share_95": "clock_anomaly", "oscillating_88_92": "clock_anomaly",
+    "repeated_cycles_then_clean": "clock_anomaly", "sustained_89_long": "integrity_degraded",
+    "backward_share_89": "integrity_degraded", "backward_share_95": "clock_anomaly",
+    "in_skew_future_2pct": "ok", "in_skew_single_record": "ok",
+}  # fmt: skip
+
+
+@pytest.fixture(scope="module")
+def results_8f():
+    return nt.run_all()
+
+
+@pytest.mark.parametrize("name", sorted(EXPECTED_8F))
+def test_near_trigger_and_in_skew_scenarios_lose_nothing(results_8f, name):
+    r = results_8f[name]
+    assert r["genuine_lost"] == 0 and r["windows_differing"] == 0, r
+    assert r["peak_held"] <= 50_000 + 4 * 1000  # window buffer + quarantine cap
+    assert r["health"] == EXPECTED_8F[name], r
+    if not name.startswith("in_skew"):
+        assert r["forged_emitted"] == 0, r
+
+
+def test_in_skew_forgery_is_counted_and_cannot_pull_the_watermark(results_8f):
+    r = results_8f["in_skew_single_record"]
+    assert r["stats"]["late"] == 0 and r["stats"]["uncorroborated_ahead"] == 1
+    old = sr.run(nt.scenarios()["in_skew_single_record"], clock_quorum=1)  # pre-8f clock
+    assert old["genuine_lost"] > 8000 and old["health"] == "ok"  # the silent failure fixed
+
+
+def test_quarantine_memory_stays_bounded_under_sustained_near_trigger_forgery(results_8f):
+    st = results_8f["sustained_89_long"]["stats"]
+    assert st["max_quarantined"] <= 4 * 1000 and st["quarantine_evicted"] > 200_000

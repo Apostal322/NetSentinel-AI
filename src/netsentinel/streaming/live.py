@@ -28,6 +28,13 @@ Event time and windows
     contradicting records by the time the jump has `resync_after` votes for - a flood of forged
     timestamps among genuine traffic): the quarantined records are dropped and counted
     (`quarantine_rejected`), health `clock_anomaly`; genuine records are not lost.
+* Corroborated clock (Phase 8f). Inside the skew range the committed clock advances to the
+  MEDIAN start of the last `clock_quorum` accepted records, not to the largest start: one
+  record stamped just inside `max_skew_s` used to pull the watermark ahead and drop the
+  genuine traffic as late (82% loss, health "ok"). An attacker now needs a majority of the
+  recent records; records accepted more than `lateness_s` ahead of the clock are counted
+  (`uncorroborated_ahead`). Cost: windows close about half the time span of the last
+  `clock_quorum` records later.
   Health flags: `resynced` (informational), `clock_reset`, `clock_anomaly`,
   `integrity_degraded` (out-of-range records evicted unconfirmed), `buffer_pressure` (forced
   closes). `health` = the most severe flag, "ok" when none degrades monitoring.
@@ -45,6 +52,7 @@ test_streaming.py).
 
 from __future__ import annotations
 
+import bisect
 import heapq
 import logging
 import math
@@ -79,6 +87,7 @@ class StreamStats:
     quarantine_rejected: int = 0  # quarantined records dropped after a rejected jump
     quarantine_evicted: int = 0  # quarantined records dropped by the quarantine cap
     replayed: int = 0  # quarantined records replayed after a committed jump
+    uncorroborated_ahead: int = 0  # accepted > lateness ahead of the corroborated clock
     forced_closes: int = 0
     windows_closed: int = 0
     max_buffered: int = 0
@@ -104,7 +113,8 @@ class WindowStream:
 
     def __init__(self, window_s: int, lateness_s: float = 360.0, max_buffer: int = 2_000_000,
                  max_skew_s: float = 3600.0, resync_after: int = 1000,
-                 max_quarantine: int | None = None, trigger_share: float = 0.9):  # fmt: skip
+                 max_quarantine: int | None = None, trigger_share: float = 0.9,
+                 clock_quorum: int = 101):  # fmt: skip
         self.w_ms = int(window_s * 1000)
         self.lateness_ms = int(lateness_s * 1000)
         self.max_buffer = max_buffer
@@ -113,6 +123,10 @@ class WindowStream:
         self.max_quarantine = max_quarantine or 4 * resync_after
         self.trigger_share = trigger_share
         self.interleave_limit = 0.02
+        self.clock_quorum = max(1, clock_quorum)
+        self._starts: deque[int] = deque()  # last accepted starts, arrival order
+        self._sorted: list[int] = []  # the same starts, sorted (median = corroborated clock)
+        self._replaying = False
         self.buf: dict[int, list[dict]] = {}
         self.keys: dict[int, set] = {}
         self.heap: list[int] = []
@@ -151,8 +165,19 @@ class WindowStream:
         self.n_buffered += 1
         st.accepted += 1
         st.max_buffered = max(st.max_buffered, self.n_buffered)
-        self.clock = start if self.clock is None else max(self.clock, start)
+        self._corroborate(start, count=not self._replaying)
         return True
+
+    def _corroborate(self, start: int, count: bool = True) -> None:
+        if count and self.clock is not None and start > self.clock + self.lateness_ms:
+            self.stats.uncorroborated_ahead += 1
+        self._starts.append(start)
+        bisect.insort(self._sorted, start)
+        if len(self._starts) > self.clock_quorum:
+            old = self._starts.popleft()
+            del self._sorted[bisect.bisect_left(self._sorted, old)]
+        med = self._sorted[(len(self._sorted) - 1) // 2]
+        self.clock = med if self.clock is None else max(self.clock, med)
 
     def _drain(self) -> list[tuple[int, list[dict]]]:
         st = self.stats
@@ -216,10 +241,14 @@ class WindowStream:
         self.quarantine.clear()
         self._pending = None
         self._recent.clear()
+        self._starts.clear()  # the old timeline no longer corroborates the clock
+        self._sorted.clear()
         self.clock = min(int(r[START]) for r in keep) if keep else self.clock
+        self._replaying = True  # confirmed by the commit: not counted as uncorroborated
         for r in sorted(keep, key=lambda x: int(x[START])):
             if self._accept(r, int(r[START]), int(r[END]) // self.w_ms):
                 st.replayed += 1
+        self._replaying = False
         return out + self._drain()
 
     def _reject(self) -> None:
@@ -328,6 +357,8 @@ class MonitorResult:
     assessment_states: dict[str, int] = field(default_factory=dict)
     # Phase 8e: one assessment of the whole monitored period (also without a model bundle)
     assessment: dict | None = None
+    # Phase 8f: opt-in shadow shift test over the last `validity_blocks` blocks (not adopted)
+    calibration_validity_shadow: dict | None = None
     seconds: float = 0.0
     peak_rss_mb: float | None = None
 
@@ -339,7 +370,8 @@ class StreamMonitor:
     def __init__(self, pipeline, store=None, source: str = "zeek-stream",
                  lateness_s: float = 360.0, max_buffer: int = 2_000_000, batch_flows: int = 20_000,
                  context_lookback_s: int = 300, incident_gap_s: int = 300,
-                 utc_offset_hours: float = 0.0):  # fmt: skip
+                 utc_offset_hours: float = 0.0, validity_shadow: bool = False,
+                 validity_blocks: int = 24):  # fmt: skip
         from netsentinel.incidents import IncidentTracker
 
         if pipeline.profile is None:
@@ -359,6 +391,9 @@ class StreamMonitor:
         self.result = MonitorResult(source=source, stats={})
         self.windows_out: list = []  # scored behaviour windows (kept only if keep_windows)
         self.keep_windows = False
+        self.validity_shadow = validity_shadow
+        self.validity_keep = validity_blocks  # 24 blocks of 5 min = the last 2 h
+        self._vblocks: dict[str, dict] = {}
 
     def _process(self, closed: list[tuple[int, list[dict]]]) -> None:
         import polars as pl
@@ -369,6 +404,12 @@ class StreamMonitor:
         recs = [r for _, rs in closed for r in rs]
         if not recs:
             return
+        if self.validity_shadow:
+            from netsentinel.behavior import validity
+
+            vb = validity.frame_blocks(self.pipe.profile, records_to_frame(recs, self.utc_offset))
+            for lv, b in vb.items():
+                self._vblocks[lv] = validity.merge(self._vblocks.get(lv), b, self.validity_keep)
         lo_ms = closed[0][0] * self.stream.w_ms
         hi_ms = (closed[-1][0] + 1) * self.stream.w_ms
         if self.pipe.engine is not None:
@@ -460,6 +501,13 @@ class StreamMonitor:
             self.pipe.assessment_context(self.stream.stats.health),
             "unusual" if r.anomalous_windows else "benign", None, None, None,
             wm if wm and wm > 0 else None)  # fmt: skip
+        if self.validity_shadow:
+            from netsentinel.behavior import validity
+
+            r.calibration_validity_shadow = validity.shadow(
+                self.pipe.profile, self._vblocks, now_ms=wm if wm and wm > 0 else None,
+                telemetry_health=self.stream.stats.health,
+                max_age_h=self.pipe.max_age_h)  # fmt: skip
         r.seconds += time.perf_counter() - t0
         r.peak_rss_mb = rss()
         return r
