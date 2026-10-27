@@ -1,0 +1,53 @@
+{
+ "registration": "docs/phase8f/PREREG_CTU13.md",
+ "dataset": "CTU-13 scenarios 9 and 10",
+ "source": "official server mcfp.felk.cvut.cz (no mirrors)",
+ "licence": "attribution only (accepted by the operator 2026-10-28)",
+ "recorded_utc": "2026-10-27T22:06:23+00:00",
+ "git_at_download": "6f6e4f4",
+ "files": [
+  {
+   "url": "https://mcfp.felk.cvut.cz/publicDatasets/CTU-Malware-Capture-Botnet-50/bro/conn.log",
+   "path": "data/raw/ctu13/CTU-Malware-Capture-Botnet-50/conn.log",
+   "expected_bytes": 338374507,
+   "bytes": 338374507,
+   "size_ok": true,
+   "sha256": "86f87f447b541c82099dbc5f2617dfe6984a6c8044cd86bead1b7525bc30fafe"
+  },
+  {
+   "url": "https://mcfp.felk.cvut.cz/publicDatasets/CTU-Malware-Capture-Botnet-50/detailed-bidirectional-flow-labels/capture20110817.binetflow",
+   "path": "data/raw/ctu13/CTU-Malware-Capture-Botnet-50/capture20110817.binetflow",
+   "expected_bytes": 285841002,
+   "bytes": 285841002,
+   "size_ok": true,
+   "sha256": "c8de257b6207ec3624467da62e91841073256fbdad5434db5eb5667588178bab"
+  },
+  {
+   "url": "https://mcfp.felk.cvut.cz/publicDatasets/CTU-Malware-Capture-Botnet-51/bro/conn.log",
+   "path": "data/raw/ctu13/CTU-Malware-Capture-Botnet-51/conn.log",
+   "expected_bytes": 1326633149,
+   "bytes": 1326633149,
+   "size_ok": true,
+   "sha256": "2b3c12d69149b1800ddff1158abd5415e1068071788dabff22e95d9c3bc2c755"
+  },
+  {
+   "url": "https://mcfp.felk.cvut.cz/publicDatasets/CTU-Malware-Capture-Botnet-51/detailed-bidirectional-flow-labels/capture20110818.binetflow",
+   "path": "data/raw/ctu13/CTU-Malware-Capture-Botnet-51/capture20110818.binetflow",
+   "expected_bytes": 179074339,
+   "bytes": 179074339,
+   "size_ok": true,
+   "sha256": "840a7030d57cb965a4e6e19c61e89b20647a4aefe5608c2da90623710e7cd74f"
+  },
+  {
+   "url": "https://mcfp.felk.cvut.cz/publicDatasets/CTU-Malware-Capture-Botnet-51/detailed-bidirectional-flow-labels/capture20110818.binetflow.labeled",
+   "path": "data/raw/ctu13/CTU-Malware-Capture-Botnet-51/capture20110818.binetflow.labeled",
+   "expected_bytes": 192616246,
+   "bytes": 192616246,
+   "size_ok": true,
+   "sha256": "c57d9bad30b7386d9740862a410e737b97e4d8f7d549a62ab1621867fa891ed0"
+  }
+ ],
+ "total_bytes": 2322539243,
+ "contents_opened": false,
+ "frozen_evaluation_code_sha": null
+}
