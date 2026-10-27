@@ -1,0 +1,65 @@
+# Phase 8g: CTU-13 scenarios 9 and 10 (registered in docs/phase8f/PREREG_CTU13.md).
+# Populations and times come from the scenario README design documents (read 2026-10-28),
+# never from flow labels. README times are CEST (UTC+2); stored here in UTC.
+window_s: 30
+target_fpr: 0.01
+min_windows: 30
+calibration_hours: 2.5
+segment_hours: 1.0
+bootstrap_block_minutes: 15
+bootstrap_resamples: 2000
+seed: 0
+time_alignment_tolerance_s: 600   # first conn.log record vs README capture start
+refit_every_segments: 2           # S5: 2 h cadence (Phase 8f PLAN.md)
+costs: [10, 100]
+data_root: data/raw/ctu13
+derived_root: data/derived/phase8g
+reports_root: reports/phase8g
+initiator_names:                  # README: infected hosts (name -> address)
+  saruman: 147.32.84.165
+  saruman1: 147.32.84.191
+  saruman2: 147.32.84.192
+  saruman3: 147.32.84.193
+  saruman4: 147.32.84.204
+  saruman5: 147.32.84.205
+  saruman6: 147.32.84.206
+  saruman7: 147.32.84.207
+  saruman8: 147.32.84.208
+  saruman9: 147.32.84.209
+scenarios:
+  scenario_9:
+    id: CTU-Malware-Capture-Botnet-50
+    botnet: Neris
+    conn_log: conn.log
+    label_files: [capture20110817.binetflow]
+    capture_start_utc: "2011-08-17T10:01:01Z"   # README 12:01:01 CEST "started the overall pcap capture"
+    infected_utc:                                 # README "We infected <name>"
+      saruman: "2011-08-17T12:24:08Z"
+      saruman1: "2011-08-17T12:43:20Z"
+      saruman2: "2011-08-17T12:48:20Z"
+      saruman3: "2011-08-17T12:54:45Z"
+      saruman4: "2011-08-17T12:56:07Z"
+      saruman5: "2011-08-17T12:57:58Z"
+      saruman6: "2011-08-17T13:00:42Z"
+      saruman7: "2011-08-17T13:01:56Z"
+      saruman8: "2011-08-17T13:03:13Z"
+      saruman9: "2011-08-17T13:04:54Z"
+    benign: [147.32.84.170, 147.32.84.134, 147.32.84.164, 147.32.87.36, 147.32.80.9, 147.32.87.11]
+  scenario_10:
+    id: CTU-Malware-Capture-Botnet-51
+    botnet: Rbot
+    conn_log: conn.log
+    label_files: [capture20110818.binetflow, capture20110818.binetflow.labeled]
+    capture_start_utc: "2011-08-18T08:19:02Z"   # README 10:19:02 CEST "started the overall capture"
+    infected_utc:
+      saruman9: "2011-08-18T09:03:05Z"
+      saruman8: "2011-08-18T09:03:52Z"
+      saruman7: "2011-08-18T09:04:20Z"
+      saruman6: "2011-08-18T09:04:46Z"
+      saruman4: "2011-08-18T09:05:13Z"
+      saruman2: "2011-08-18T09:05:41Z"
+      saruman: "2011-08-18T09:06:10Z"
+      saruman1: "2011-08-18T09:06:32Z"
+      saruman3: "2011-08-18T09:06:52Z"
+      saruman5: "2011-08-18T09:07:15Z"
+    benign: [147.32.84.170, 147.32.84.134, 147.32.84.164, 147.32.87.36, 147.32.80.9, 147.32.87.11]
