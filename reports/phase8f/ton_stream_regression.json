@@ -1,0 +1,41 @@
+{
+ "role": "post-hoc regression on consumed ToN_IoT input",
+ "stats": {
+  "records": 4000000,
+  "accepted": 3981394,
+  "duplicates": 18606,
+  "late": 0,
+  "clock_skew": 3800,
+  "clock_resyncs": 2,
+  "clock_resets": 0,
+  "clock_reverts": 0,
+  "quarantine_rejected": 0,
+  "quarantine_evicted": 0,
+  "replayed": 3791,
+  "uncorroborated_ahead": 0,
+  "forced_closes": 140,
+  "windows_closed": 5820,
+  "max_buffered": 1500001,
+  "max_quarantined": 1900,
+  "watermark_ms": 1556072351000,
+  "health": "buffer_pressure",
+  "health_flags": [
+   "resynced",
+   "buffer_pressure"
+  ]
+ },
+ "close_kinds": {
+  "watermark": 5662,
+  "forced": 140,
+  "flush": 18
+ },
+ "vs_reference": {
+  "windows_a": 5820,
+  "windows_b": 5820,
+  "only_in_a": 0,
+  "only_in_b": 0,
+  "membership_differs": 0,
+  "examples": []
+ },
+ "peak_rss_mb": 1360.77734375
+}

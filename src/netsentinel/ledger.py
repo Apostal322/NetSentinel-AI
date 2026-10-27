@@ -45,6 +45,15 @@ def git_sha() -> str:
         return "no-git"
 
 
+def platform_string() -> str:
+    """platform.platform(), tolerating a Windows WMI timeout: CPython 3.12 then falls back to
+    an environment lookup that can raise KeyError (the intermittent test_demo failure)."""
+    try:
+        return platform.platform()
+    except (OSError, KeyError):
+        return f"{sys.platform} (platform details unavailable)"
+
+
 def package_versions() -> dict[str, str]:
     found = {}
     for name in TRACKED_PACKAGES:
@@ -84,7 +93,7 @@ class Run:
         self.env = {
             "git": git_sha(),
             "python": sys.version.split()[0],
-            "platform": platform.platform(),
+            "platform": platform_string(),
             "packages": package_versions(),
         }
         (self.dir / "env.json").write_text(json.dumps(self.env, indent=2), "utf-8")

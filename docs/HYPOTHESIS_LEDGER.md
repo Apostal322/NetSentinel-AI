@@ -110,3 +110,15 @@ not solved.
 | The Phase 8d probation resync survives adversarial timestamps | **refuted, then fixed** | before: up to 83% genuine loss, silent loss after a backward reset; quarantine state machine: 0 loss and 0 forged records in 10 scenarios; identical ToN_IoT windows |
 | A per-population threshold policy meets FA/h budgets without degenerating (development) | **not found** | no policy passes the pre-declared rule; overruns are driven by shift (NF-UNSW local FPR 39% at 1%); never-alert rejected by the guard |
 | Frozen 49-1 and ToN_IoT bootstrap intervals support inference | **reinterpreted as descriptive** | 4 blocks = 35 distinct resamples; verdicts unchanged (EVALUATION_METHODOLOGY.md) |
+
+## Phase 8f (drift-aware calibration; docs/phase8f/REPORT.md; development data unless stated)
+
+| Claim | Status | Evidence |
+|---|---|---|
+| Calibration shift inflates FPR through time-since-calibration drift | **not supported as the main mechanism** | 385/428 false alerts come from pooled-fallback sources; no within-capture age effect; the excess is concentrated in NF-UNSW (pooled 2.5% vs 0.35% without it) |
+| A block-permutation feature-tail / composition test identifies periods where the calibration is invalid (pre-declared C1-C4) | **not adopted** | C1-C3 pass (null 0/16, 33x FPR separation); C4 fails (36% of benign-only segments valid); the full assessor also fails C3 (precedence); shadow-only diagnostic |
+| The existing `baseline_state` drift rule separates reliable from unreliable periods | **supported (development)** | C2-C4 pass (valid-segment FPR 0.15%, 20.8x separation, 64% benign valid); C1 not measured |
+| Periodic / drift-triggered recalibration makes detection more reliable | **refuted** | false alerts fall by learning attacks: window recall 0.27 -> 0.05 / 0.03; 95% / 20% of attack windows absorbed |
+| A candidate-plus-gate refresh is safe | **refuted (absorption)** | behaves like the fixed baseline; still absorbs 5.8% of attack windows (a sustained sub-threshold attack) |
+| Vetted refresh improves reliability without hiding attacks | **supported only with oracle vetting** | false alerts 3.81 -> 1.88/h, 9/10 attackers kept, recall 0.27 -> 0.29; not deployable without operator vetting |
+| The stream clock resists in-skew forged timestamps | **refuted, then fixed** | 1 forged record dropped 82% of genuine traffic silently; median-of-101 clock: 0 loss, 244k records/s |

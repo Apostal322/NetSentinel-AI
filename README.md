@@ -37,7 +37,7 @@ The main contribution is *evaluation honesty*, not a new model. The repository m
 | Supervised attack detection (LightGBM, CIC-IDS2018 / NetFlow v3) | **Research**: in-domain only | `docs/RESULTS.md` |
 | Unknown-attack detection by anomaly models | **Research, negative result** | `docs/phase6/REPORT.md` |
 | Explicit uncertainty states (Phase 8e): every prediction says whether "no alert" is a supported claim of normality or an uncertainty (insufficient or expired calibration, drift, degraded telemetry, unsupported network, no model) | **Implemented and tested**; evidence is never silenced by uncertainty, verdicts unchanged | [`docs/phase8e/UNCERTAINTY_STATES.md`](docs/phase8e/UNCERTAINTY_STATES.md) |
-| Streaming timestamp security (Phase 8e): quarantine of out-of-range records, verified clock jumps, explicit health flags | **Tested** on 10 adversarial scenarios (0 genuine records lost, 0 forged records emitted) and real ToN_IoT data (identical windows) | [`docs/phase8e/STREAMING_ROBUSTNESS.md`](docs/phase8e/STREAMING_ROBUSTNESS.md) |
+| Streaming timestamp security (Phase 8e/8f): quarantine of out-of-range records, verified clock jumps, a corroborated (median) clock, explicit health flags | **Tested** on 22 adversarial scenarios, including near the 90% trigger and in-skew forgery (0 genuine records lost), and on real ToN_IoT data | [`docs/phase8e/STREAMING_ROBUSTNESS.md`](docs/phase8e/STREAMING_ROBUSTNESS.md), [`docs/phase8f/STREAMING_8F.md`](docs/phase8f/STREAMING_8F.md) |
 | Packet capture, blocking, multi-network deployment | **Not implemented** (by design) | — |
 
 ## Headline results
@@ -55,6 +55,7 @@ Full tables with sources and data roles: [`docs/RESULTS.md`](docs/RESULTS.md).
 | External network (ToN_IoT, UNSW testbed; pre-registered, Phase 8c) | The deployed baseline **failed** its FPR promise (8.9% at 1%). A cross-network supervised window model (trained without UNSW data) ranked far better (PR-AUC 0.97 vs 0.70) and beyond the scan signature. One dataset, a 4-hour evaluation, IP-tagged labels: [`docs/phase8c/EXTERNAL_RESULTS.md`](docs/phase8c/EXTERNAL_RESULTS.md) |
 | Can thresholds make detections reliable? (Phase 8d, development data) | No policy tested is both within the false-alert budget and sensitive. Only selective abstention (no decision where calibration is unreliable) kept the budget, covering 11 of 22 captures. Every LightGBM operating point broke it (up to 29% FPR), so it stays research-only: [`docs/phase8d/REPORT.md`](docs/phase8d/REPORT.md) |
 | Can per-population false-alert budgets fix the alert burden? (Phase 8e, development data, pre-declared rule) | **No.** No policy kept every population within budget; overruns come from calibration-to-evaluation shift (39% realised FPR at a 1% target on one dataset), not from how thresholds are allocated. ToN_IoT labels mark 3 scanners plus 37 responders as "attack sources" (retrospective): [`docs/phase8e/REPORT.md`](docs/phase8e/REPORT.md) |
+| Can drift detection or automatic recalibration make calibration reliable? (Phase 8f, development data, pre-declared rules) | **Not automatically.** False positives come mainly from transient sources scored by the pooled fallback, not from calibration age. A new block-permutation shift test separated unreliable periods (33x) but failed its pre-declared adoption criterion, so it ships only as `--validity-shadow`. Periodic or drift-triggered refits cut false alerts by learning the attacks (recall 0.27 -> 0.03-0.05). Only vetted refresh helped, and only with oracle vetting: [`docs/phase8f/REPORT.md`](docs/phase8f/REPORT.md) |
 | ML protocol ID vs port lookup | Better in-dataset (macro-F1 0.945 vs 0.840). Confidently wrong under shift (HTTP on port 80 called TLS), so the product combines it with port evidence and abstains on conflicts |
 
 ## Quick start
@@ -232,6 +233,8 @@ peak memory are recorded in the development logs.
 - Protocol labels are nDPI proxy labels (nDPI version of the training data undocumented). On
   standard ports the policy is mostly a port lookup confirmed by the ML.
 - Zeek logs a connection only when it ends: long-lived C&C appears hours late.
+- Recalibrate only on traffic you have vetted. Phase 8f: refreshing a baseline from unvetted
+  traffic learns attacks, and the update gate cannot catch sustained low-signal attacks.
 - `normal_valid_baseline` means the validated conditions hold, not that traffic is benign.
   The 24 h calibration-expiry and 1% parse-error limits are pre-declared defaults, not
   validated ones.
