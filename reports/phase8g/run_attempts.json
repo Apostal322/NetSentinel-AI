@@ -1,0 +1,33 @@
+[
+ {
+  "attempt": 1,
+  "started": "2026-10-28 05:33 local",
+  "frozen_code_sha": "dfaf2065e237ad0844c4065b4a8183fafa6637dc",
+  "outcome": "aborted: scenario_10 window build killed by the 3.4 GB watchdog; evaluate failed on the missing metadata before computing anything; no results written; flow labels not opened",
+  "scenario_9_windows": {
+   "records": 2625792,
+   "test_hours": 2.6867022222222223,
+   "flows": {
+    "cal_kept": 1094811,
+    "cal_excluded_initiator": 530,
+    "test": 1529406
+   },
+   "telemetry_health": "ok",
+   "peak_rss_mb": 2179.55078125,
+   "seconds": 156.41216649999933,
+   "stream": {
+    "late": 0,
+    "duplicates": 6,
+    "clock_skew": 1039,
+    "quarantine_rejected": 1039,
+    "forced_closes": 0,
+    "max_buffered": 639784,
+    "health": "ok"
+   }
+  },
+  "scenario_10_windows": "killed at 3.41 GB (WindowStream buffer at lateness 3700 s; about 4x the scenario 9 record rate)",
+  "observations": [
+   "scenario 9: 1,039 records quarantined as out of range and dropped at flush with health 'ok'; hypothesis (unverified): connections longer than about max_skew + lateness, classified by START time"
+  ]
+ }
+]
