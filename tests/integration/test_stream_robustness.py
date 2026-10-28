@@ -27,7 +27,7 @@ EXPECTED_HEALTH = {
     "out_of_order_and_duplicates": ("ok", []),
     "repeated_resync_attempts": ("clock_anomaly", ["clock_anomaly"]),
     "forged_flood_dominant": ("clock_anomaly", ["clock_anomaly"]),
-    "buffer_exhaustion": ("buffer_pressure", ["buffer_pressure"]),
+    "buffer_exhaustion": ("ok", ["buffer_spill"]),  # Phase 8g: spilled, not force-closed
 }  # fmt: skip
 
 
@@ -114,3 +114,62 @@ def test_in_skew_forgery_is_counted_and_cannot_pull_the_watermark(results_8f):
 def test_quarantine_memory_stays_bounded_under_sustained_near_trigger_forgery(results_8f):
     st = results_8f["sustained_89_long"]["stats"]
     assert st["max_quarantined"] <= 4 * 1000 and st["quarantine_evicted"] > 200_000
+
+
+# ---------------------------------------------------------------- Phase 8g (CTU-13 findings)
+def _long_connections():
+    g = sr.genuine_stream(0, 3 * 3600)  # 3 h, 3 hosts at 1 record/s
+    out = []
+    for i, r in enumerate(g):
+        out.append(r)
+        if i > 5 * 3600 and i % 100 == 0:  # a connection that lasted 2.5 h, logged when it ends
+            out.append(sr.rec(r[START] - 9_000_000, "10.0.0.5", 5_000_000 + i, dur=9_000_000))
+    return out
+
+
+def test_long_lived_connections_are_not_dropped(monkeypatch):
+    recs = _long_connections()
+    r = sr.run(recs, lateness_s=360)
+    assert r["genuine_lost"] == 0 and r["windows_differing"] == 0, r
+    assert r["stats"]["clock_skew"] == 0 and r["health"] == "ok"
+    orig = WindowStream._side  # the pre-8g rule (BEHIND by start) drops them silently
+    monkeypatch.setattr(WindowStream, "_side", lambda self, s, e=None: orig(self, s, None))
+    old = sr.run(recs, lateness_s=360)
+    assert old["genuine_lost"] == 143 and old["health"] == "ok"
+
+
+def _dense_out_of_order(n_s=600):
+    import random
+
+    rng = random.Random(3)
+    g = sr.genuine_stream(0, n_s)
+    return sorted(g, key=lambda r: r[START] + rng.uniform(-20_000, 20_000))
+
+
+def test_dense_traffic_spills_to_disk_without_loss():
+    recs = _dense_out_of_order()
+    old = sr.run(recs, max_buffer=100, max_spill=0)  # pre-8g behaviour: forced closes
+    assert old["genuine_lost"] > 0 and old["health"] == "buffer_pressure"
+    new = sr.run(recs, max_buffer=100)
+    assert new["genuine_lost"] == 0 and new["windows_differing"] == 0, new
+    assert new["stats"]["forced_closes"] == 0 and new["health_flags"] == ["buffer_spill"]
+    assert new["peak_held"] <= 100 + 4 * 1000
+
+
+def test_exhausted_spill_budget_degrades_explicitly():
+    r = sr.run(_dense_out_of_order(), max_buffer=100, max_spill=200)
+    assert r["stats"]["forced_closes"] > 0 and r["health"] == "buffer_pressure"
+    assert r["stats"]["max_spilled"] <= 200 + 1000  # budget + one pending flush per window
+
+
+def test_spilled_windows_deduplicate_and_clean_up(tmp_path):
+    ws = WindowStream(30, lateness_s=600, max_buffer=50, max_spill=10_000, spill_dir=tmp_path)
+    recs = sr.genuine_stream(0, 120)
+    for r in recs:
+        ws.push(r)
+    for r in recs[:90]:  # duplicates arriving while their windows are on disk
+        ws.push(dict(r))
+    assert ws.stats.spilled_windows > 0 and any(tmp_path.iterdir())
+    out = [x for _, rs in ws.flush() for x in rs]
+    assert len(out) == len(recs) and ws.stats.duplicates == 90
+    assert ws.stats.accepted == len(recs) and not any(tmp_path.iterdir())

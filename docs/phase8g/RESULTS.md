@@ -85,6 +85,8 @@ below), so there is no second environment.
   - any adoption decision for the shift test (V2 not evaluable on these data).
 - **Consumed.** CTU-13 scenarios 9 and 10 are now consumed. Scenario 10 was opened by the
   frozen build, although it was not evaluated.
-- **Product follow-ups found by this run:**
+- **Product follow-ups found by this run:** both are now fixed after the run
+  ([STREAMING_FIXES.md](STREAMING_FIXES.md)). The results above remain those of the frozen
+  code 121acbf.
   1. long connections dropped by the START-based out-of-range rule (1,039 records, silent);
   2. buffer exhaustion under dense attack traffic (scenario 10).

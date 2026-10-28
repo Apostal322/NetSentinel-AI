@@ -95,11 +95,17 @@ def test_late_records_are_counted_not_merged():
 
 
 def test_buffer_is_bounded_and_clock_skew_ignored():
-    ws = WindowStream(window_s=10, lateness_s=3600, max_buffer=100)
+    ws = WindowStream(window_s=10, lateness_s=3600, max_buffer=100, max_spill=10_000)
     base = {"IPV4_SRC_ADDR": "a", "IPV4_DST_ADDR": "b", "L4_DST_PORT": 2, "PROTOCOL": 6}
     for i in range(1000):
         ws.push({**base, "L4_SRC_PORT": i, START: i * 100, END: i * 100 + 5})
-    assert ws.stats.max_buffered <= 101 and ws.stats.forced_closes > 0
+    # Phase 8g: the oldest windows go to disk instead of being force-closed
+    assert ws.stats.max_buffered <= 101 and ws.stats.forced_closes == 0
+    assert ws.stats.spilled_windows > 0 and ws.stats.health_flags == ["buffer_spill"]
+    old = WindowStream(window_s=10, lateness_s=3600, max_buffer=100, max_spill=0)  # pre-8g
+    for i in range(1000):
+        old.push({**base, "L4_SRC_PORT": i, START: i * 100, END: i * 100 + 5})
+    assert old.stats.max_buffered <= 101 and old.stats.forced_closes > 0
     ws2 = WindowStream(window_s=10, lateness_s=0, max_skew_s=60)
     ws2.push({**base, START: 0, END: 5})
     ws2.push({**base, START: 10**10, END: 10**10 + 5})  # skewed sensor clock

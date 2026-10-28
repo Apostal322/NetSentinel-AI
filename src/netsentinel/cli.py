@@ -351,7 +351,8 @@ def _cmd_monitor(args: argparse.Namespace) -> int:
     mon = StreamMonitor(pipe, store, source=f"zeek-stream:{path.name}",
                         lateness_s=args.lateness, max_buffer=args.max_buffer,
                         utc_offset_hours=args.utc_offset,
-                        validity_shadow=args.validity_shadow)  # fmt: skip
+                        validity_shadow=args.validity_shadow,
+                        max_spill=args.max_spill)  # fmt: skip
     zs = ZeekStats()
     if args.follow:
         recs = parse_conn_lines(
@@ -605,6 +606,9 @@ def build_parser() -> argparse.ArgumentParser:
                    help="allowed lateness in seconds (Zeek logs a connection after its "
                         "inactivity timeout, 300 s for TCP by default)")  # fmt: skip
     p.add_argument("--max-buffer", type=int, default=2_000_000, help="max buffered records")
+    p.add_argument("--max-spill", type=int, default=None,
+                   help="records kept on disk when the buffer is full (default 4 x "
+                        "--max-buffer; 0 = force-close windows instead)")  # fmt: skip
     p.add_argument("--utc-offset", type=float, default=0.0)
     p.add_argument("--threat-policy", choices=("unverified", "auto", "trust", "unsupported"),
                    default="unverified")  # fmt: skip

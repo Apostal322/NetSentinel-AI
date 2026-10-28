@@ -28,6 +28,15 @@ Event time and windows
     contradicting records by the time the jump has `resync_after` votes for - a flood of forged
     timestamps among genuine traffic): the quarantined records are dropped and counted
     (`quarantine_rejected`), health `clock_anomaly`; genuine records are not lost.
+* Long-lived connections (Phase 8g). BEHIND is decided by the flow END: Zeek writes a
+  connection when it ends, so a connection that lasted hours has an old start but a current
+  end. Classifying by start used to drop such records silently (1,039 in CTU-13 scenario 9).
+* Disk spill (Phase 8g). When more than `max_buffer` records are held, the oldest open windows
+  are spilled to a private temporary directory (JSON lines, at most `max_spill` records)
+  instead of being force-closed; records arriving for a spilled window are appended and
+  duplicates are removed when it closes. Only when the spill budget is exhausted are windows
+  force-closed (`buffer_pressure`; later records for them count as late). Dense attack
+  traffic exhausted a 1.5M-record buffer in CTU-13 scenario 10 (6,030 late records).
 * Corroborated clock (Phase 8f). Inside the skew range the committed clock advances to the
   MEDIAN start of the last `clock_quorum` accepted records, not to the largest start: one
   record stamped just inside `max_skew_s` used to pull the watermark ahead and drop the
@@ -54,8 +63,11 @@ from __future__ import annotations
 
 import bisect
 import heapq
+import json
 import logging
 import math
+import shutil
+import tempfile
 import time
 from collections import deque
 from collections.abc import Callable, Iterable, Iterator
@@ -69,8 +81,8 @@ DEDUP_KEY = (START, END, "IPV4_SRC_ADDR", "L4_SRC_PORT", "IPV4_DST_ADDR", "L4_DS
              "PROTOCOL", "IN_BYTES", "OUT_BYTES")  # fmt: skip
 
 
-SEVERITY = {"resynced": 0, "buffer_pressure": 1, "integrity_degraded": 2, "clock_anomaly": 3,
-            "clock_reset": 4}  # fmt: skip
+SEVERITY = {"resynced": 0, "buffer_spill": 0, "buffer_pressure": 1, "integrity_degraded": 2,
+            "clock_anomaly": 3, "clock_reset": 4}  # fmt: skip
 DEGRADING = {f for f, v in SEVERITY.items() if v > 0}
 
 
@@ -89,6 +101,9 @@ class StreamStats:
     replayed: int = 0  # quarantined records replayed after a committed jump
     uncorroborated_ahead: int = 0  # accepted > lateness ahead of the corroborated clock
     forced_closes: int = 0
+    spilled_windows: int = 0  # windows moved to disk instead of being force-closed
+    spilled_records: int = 0  # records written to disk (including later arrivals)
+    max_spilled: int = 0
     windows_closed: int = 0
     max_buffered: int = 0
     max_quarantined: int = 0
@@ -107,6 +122,51 @@ class StreamStats:
         return asdict(self)
 
 
+class _Spill:
+    """Records of open windows kept on disk (JSON lines; never pickle), one file per window."""
+
+    FLUSH = 1000
+
+    def __init__(self, root: str | Path | None = None):
+        self.root, self.dir = root, None
+        self.files: set[int] = set()
+        self.pending: dict[int, list[dict]] = {}
+        self.count = 0
+
+    def has(self, w: int) -> bool:
+        return w in self.files or w in self.pending
+
+    def _path(self, w: int) -> Path:
+        if self.dir is None:
+            self.dir = Path(tempfile.mkdtemp(prefix="netsentinel-spill-", dir=self.root))
+        return self.dir / f"{w}.jsonl"
+
+    def add(self, w: int, recs: list[dict], now: bool = False) -> None:
+        self.pending.setdefault(w, []).extend(recs)
+        self.count += len(recs)
+        if now or len(self.pending[w]) >= self.FLUSH:
+            with self._path(w).open("a", encoding="utf-8") as f:
+                f.writelines(json.dumps(r) + "\n" for r in self.pending.pop(w))
+            self.files.add(w)
+
+    def take(self, w: int) -> list[dict]:
+        recs: list[dict] = []
+        if w in self.files:
+            path = self._path(w)
+            with path.open(encoding="utf-8") as f:
+                recs = [json.loads(line) for line in f]
+            path.unlink()
+            self.files.discard(w)
+        recs += self.pending.pop(w, [])
+        self.count -= len(recs)
+        return recs
+
+    def cleanup(self) -> None:
+        if self.dir is not None:
+            shutil.rmtree(self.dir, ignore_errors=True)
+            self.dir = None
+
+
 class WindowStream:
     """Event-time tumbling windows over flow records (dicts with NF-style keys), with a clock
     integrity state machine (module docstring)."""
@@ -114,10 +174,14 @@ class WindowStream:
     def __init__(self, window_s: int, lateness_s: float = 360.0, max_buffer: int = 2_000_000,
                  max_skew_s: float = 3600.0, resync_after: int = 1000,
                  max_quarantine: int | None = None, trigger_share: float = 0.9,
-                 clock_quorum: int = 101):  # fmt: skip
+                 clock_quorum: int = 101, max_spill: int | None = None,
+                 spill_dir: str | Path | None = None):  # fmt: skip
         self.w_ms = int(window_s * 1000)
         self.lateness_ms = int(lateness_s * 1000)
         self.max_buffer = max_buffer
+        # spill budget in records (0 = no spill); JSON lines take roughly 350 bytes per record
+        self.max_spill = 4 * max_buffer if max_spill is None else max_spill
+        self.spill = _Spill(spill_dir)
         self.max_skew_ms = int(max_skew_s * 1000)
         self.resync_after = resync_after
         self.max_quarantine = max_quarantine or 4 * resync_after
@@ -140,9 +204,20 @@ class WindowStream:
 
     # ---------------------------------------------------------------- windows
     def _close(self, w: int) -> tuple[int, list[dict]]:
-        recs = self.buf.pop(w)
+        recs = self.buf.pop(w, [])
         self.keys.pop(w, None)
         self.n_buffered -= len(recs)
+        if self.spill.has(w):  # deduplicate what arrived while the window was on disk
+            seen, kept, every = set(), [], self.spill.take(w) + recs
+            for r in every:
+                k = tuple(r.get(c) for c in DEDUP_KEY)
+                if k not in seen:
+                    seen.add(k)
+                    kept.append(r)
+            dup = len(every) - len(kept)
+            self.stats.duplicates += dup
+            self.stats.accepted -= dup
+            recs = kept
         self.closed_below = w + 1 if self.closed_below is None else max(self.closed_below, w + 1)
         self.stats.windows_closed += 1
         return w, recs
@@ -152,6 +227,13 @@ class WindowStream:
         if self.closed_below is not None and w < self.closed_below:
             st.late += 1
             return False
+        if self.spill.has(w):  # the window is on disk: append (deduplicated on close)
+            self.spill.add(w, [rec])
+            st.accepted += 1
+            st.spilled_records += 1
+            st.max_spilled = max(st.max_spilled, self.spill.count)
+            self._corroborate(start, count=not self._replaying)
+            return True
         k = tuple(rec.get(c) for c in DEDUP_KEY)
         seen = self.keys.setdefault(w, set())
         if k in seen:
@@ -186,17 +268,35 @@ class WindowStream:
         st.watermark_ms = wm
         while self.heap and ((self.heap[0] + 1) * self.w_ms <= wm
                              or self.n_buffered > self.max_buffer):  # fmt: skip
-            if (self.heap[0] + 1) * self.w_ms > wm:
-                st.forced_closes += 1
-                st.flag("buffer_pressure")
+            if (self.heap[0] + 1) * self.w_ms <= wm:
+                out.append(self._close(heapq.heappop(self.heap)))
+                continue
+            w = min(self.buf) if self.buf else None
+            if w is not None and self.spill.count + len(self.buf[w]) <= self.max_spill:
+                self._spill(w)  # keep the window open on disk instead of closing it early
+                continue
+            st.forced_closes += 1
+            st.flag("buffer_pressure")
             out.append(self._close(heapq.heappop(self.heap)))
         return out
 
+    def _spill(self, w: int) -> None:
+        st = self.stats
+        recs = self.buf.pop(w)
+        self.keys.pop(w, None)
+        self.n_buffered -= len(recs)
+        self.spill.add(w, recs, now=True)
+        st.spilled_windows += 1
+        st.spilled_records += len(recs)
+        st.max_spilled = max(st.max_spilled, self.spill.count)
+        st.flag("buffer_spill")
+
     # ---------------------------------------------------------------- clock integrity
-    def _side(self, start: int) -> str:
+    def _side(self, start: int, end: int | None = None) -> str:
+        """AHEAD by start; BEHIND by end (a long connection is logged when it ENDS)."""
         if start > self.clock + self.max_skew_ms:
             return "ahead"
-        if start < self.clock - self.max_skew_ms - self.lateness_ms:
+        if (start if end is None else end) < self.clock - self.max_skew_ms - self.lateness_ms:
             return "behind"
         return "in"
 
@@ -270,7 +370,7 @@ class WindowStream:
         start, end = int(rec[START]), int(rec[END])
         if self.clock is None:
             self.clock = start
-        side = self._side(start)
+        side = self._side(start, end)
         self._recent.append(side)
         if side == "in":
             self._accept(rec, start, end // self.w_ms)
@@ -306,6 +406,7 @@ class WindowStream:
         out = []
         while self.heap:
             out.append(self._close(heapq.heappop(self.heap)))
+        self.spill.cleanup()
         if self.quarantine:  # never confirmed: dropped and counted
             self.stats.quarantine_rejected += len(self.quarantine)
             if any(d == "ahead" for d, _ in self.quarantine):
@@ -371,7 +472,7 @@ class StreamMonitor:
                  lateness_s: float = 360.0, max_buffer: int = 2_000_000, batch_flows: int = 20_000,
                  context_lookback_s: int = 300, incident_gap_s: int = 300,
                  utc_offset_hours: float = 0.0, validity_shadow: bool = False,
-                 validity_blocks: int = 24):  # fmt: skip
+                 validity_blocks: int = 24, max_spill: int | None = None):  # fmt: skip
         from netsentinel.incidents import IncidentTracker
 
         if pipeline.profile is None:
@@ -379,7 +480,7 @@ class StreamMonitor:
                              "(netsentinel calibrate / calibration activate)")  # fmt: skip
         self.pipe, self.store, self.source = pipeline, store, source
         self.window_s = pipeline.profile.window_s
-        self.stream = WindowStream(self.window_s, lateness_s, max_buffer)
+        self.stream = WindowStream(self.window_s, lateness_s, max_buffer, max_spill=max_spill)
         self.batch_flows = batch_flows
         self.utc_offset = utc_offset_hours
         self.lookback_windows = math.ceil(context_lookback_s / self.window_s)
