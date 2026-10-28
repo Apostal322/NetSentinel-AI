@@ -133,7 +133,7 @@ def analyze_capture(
         store.add(preds)
         if windows.height and pipe.calibration:
             store.add_behavior(windows, source, pipe.calibration["calibration_id"],
-                               pipe.profile.window_s)  # fmt: skip
+                               pipe.profile.window_s, telemetry_health=health)  # fmt: skip
     incidents = []
     if windows.height and pipe.calibration:
         from netsentinel.incidents import aggregate_incidents

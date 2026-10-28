@@ -205,6 +205,14 @@ class _Spill:
         self.count = 0
         self.failed: str | None = None
         self._finalizer = None
+        self._keys: dict[str, str] = {}  # restored records share their key strings
+
+    def _restore(self, r: dict) -> dict:
+        """JSON gives every decoded dict its own key strings (1,592 vs 753 bytes per record on
+        CTU-13): reuse one copy of each key (at most 256 distinct keys are shared)."""
+        if len(self._keys) < 256:
+            return {self._keys.setdefault(k, k): v for k, v in r.items()}
+        return r
 
     def has(self, w: int) -> bool:
         return w in self.written or w in self.pending
@@ -240,6 +248,9 @@ class _Spill:
             self.failed = self.failed or f"{type(e).__name__}: {e}"
             return False
         self.written[w] = self.written.get(w, 0) + len(recs)
+        if recs and len(self._keys) < 256:  # restored dicts reuse the original key objects
+            for k in recs[0]:
+                self._keys.setdefault(k, k)
         return True
 
     def _flush_pending(self) -> None:
@@ -291,7 +302,7 @@ class _Spill:
                     except ValueError:
                         r = None
                     if r is not None and valid(r):
-                        recs.append(r)
+                        recs.append(self._restore(r))
                     else:
                         bad += 1
                 path.unlink()
@@ -572,16 +583,19 @@ class WindowStream:
         return self._drain()
 
     def flush(self) -> list[tuple[int, list[dict]]]:
-        out = []
+        return list(self.flush_iter())
+
+    def flush_iter(self) -> Iterator[tuple[int, list[dict]]]:
+        """`flush` one window at a time: a spilled window is read back from disk only when it
+        is consumed, so closing the stream does not hold every spilled record at once."""
         while self.heap:
-            out.append(self._close(heapq.heappop(self.heap)))
+            yield self._close(heapq.heappop(self.heap))
         self.spill.cleanup()
         if self.quarantine:  # never confirmed: dropped and counted
             self.stats.quarantine_rejected += len(self.quarantine)
             if any(d == "ahead" for d, _ in self.quarantine):
                 self.stats.flag("integrity_degraded")
             self.quarantine.clear()
-        return out
 
 
 def follow_lines(path: str | Path, poll_s: float = 1.0,
@@ -713,7 +727,8 @@ class StreamMonitor:
                 self.store.add(preds)
             if windows.height:
                 cid = self.pipe.calibration["calibration_id"]
-                self.store.add_behavior(windows, self.source, cid, self.window_s)
+                self.store.add_behavior(windows, self.source, cid, self.window_s,
+                                        telemetry_health=self.stream.stats.health)  # fmt: skip
                 hot = windows.filter(pl.col("anomalous")).iter_rows(named=True)
                 touched = {
                     self.tracker._by_window[(r_["level"], str(r_["key"]), int(r_["window_end_ms"]))]
@@ -755,7 +770,9 @@ class StreamMonitor:
         from netsentinel.resources import peak_rss_mb
 
         t0 = time.perf_counter()
-        self.pending.extend(self.stream.flush())
+        for item in self.stream.flush_iter():  # spilled windows are read back one by one
+            self.pending.append(item)
+            self._maybe_flush()
         self._maybe_flush(force=True)
         return self._finish(t0, peak_rss_mb)
 

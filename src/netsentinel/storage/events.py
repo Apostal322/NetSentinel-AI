@@ -78,6 +78,9 @@ EVENT_COLUMNS_V2 = {
     "app_status": "TEXT",
     "assessment_state": "TEXT",
 }  # fmt: skip  (assessment_state: Phase 8e)
+# Phase 8g: telemetry health when a behaviour window was stored ("ok", or the degrading
+# stream/parse condition at that time); NULL for rows stored before the column existed.
+BEHAVIOR_COLUMNS_V2 = {"telemetry_health": "TEXT"}
 VERDICTS = ("benign", "unusual", "suspicious", "attack", "insufficient_data")
 
 
@@ -89,11 +92,13 @@ class EventStore:
         self._conn = sqlite3.connect(self.path, check_same_thread=False)
         self._conn.executescript(SCHEMA)
         self._conn.execute("PRAGMA journal_mode=WAL")
-        have = {r[1] for r in self._conn.execute("PRAGMA table_info(events)")}
         with self._conn:
-            for col, typ in EVENT_COLUMNS_V2.items():
-                if col not in have:
-                    self._conn.execute(f"ALTER TABLE events ADD COLUMN {col} {typ}")
+            for table, extra in (("events", EVENT_COLUMNS_V2),
+                                 ("behavior_events", BEHAVIOR_COLUMNS_V2)):  # fmt: skip
+                have = {r[1] for r in self._conn.execute(f"PRAGMA table_info({table})")}
+                for col, typ in extra.items():
+                    if col not in have:
+                        self._conn.execute(f"ALTER TABLE {table} ADD COLUMN {col} {typ}")
 
     def close(self) -> None:
         self._conn.close()
@@ -120,9 +125,11 @@ class EventStore:
             )
         return cur.rowcount
 
-    def add_behavior(self, windows, source: str, calibration: str, window_s: int) -> int:
+    def add_behavior(self, windows, source: str, calibration: str, window_s: int,
+                     telemetry_health: str | None = None) -> int:  # fmt: skip
         """Store scored entity-windows (behaviour.profile.score output). Idempotent per
-        (calibration, source, level, entity, window)."""
+        (calibration, source, level, entity, window). `telemetry_health`: "ok" or the degrading
+        condition when the windows were closed (a quiet window is then no sign of normality)."""
         import hashlib
 
         rows = []
@@ -136,11 +143,15 @@ class EventStore:
                 str(r["key"]), window_s, int(r["n_flows"] or 0), float(r["score"]),
                 None if sev is None or sev != sev else float(sev), float(r["threshold"]),
                 int(bool(r["anomalous"])), r["model_scope"],
-                json.dumps(list(r["explanation"] or [])), calibration,
+                json.dumps(list(r["explanation"] or [])), calibration, telemetry_health,
             ))  # fmt: skip
+        cols = ("event_id, window_end, source, level, entity, window_s, n_flows, score, "
+                "severity, threshold, anomalous, model_scope, explanation, calibration, "
+                "telemetry_health")  # fmt: skip
         with self._lock, self._conn:
             cur = self._conn.executemany(
-                f"INSERT OR IGNORE INTO behavior_events VALUES ({','.join('?' * 14)})", rows
+                f"INSERT OR IGNORE INTO behavior_events ({cols}) VALUES ({','.join('?' * 15)})",
+                rows,
             )
         return cur.rowcount
 

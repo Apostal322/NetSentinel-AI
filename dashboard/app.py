@@ -425,6 +425,14 @@ elif page == "Behavior intelligence":
         "baseline. Severity is a percentile among held-out calibration windows: a "
         "normalized non-probability, not an attack probability."
     )
+    if "telemetry_health" in beh.columns:  # Phase 8g: stream / parse health at storage time
+        bad = beh[beh["telemetry_health"].notna() & (beh["telemetry_health"] != "ok")]
+        if len(bad):
+            st.error(f"Telemetry degraded for {len(bad):,} of {len(beh):,} windows ("
+                     + ", ".join(f"{k} {v:,}" for k, v in
+                                 bad["telemetry_health"].value_counts().items())
+                     + "): records may be missing, so windows without an alert are not "
+                     "evidence of normality.")  # fmt: skip
     lv = st.radio("Level", ["global", "device", "service"], horizontal=True)
     d = beh[beh["level"] == lv]
     c = st.columns(4)

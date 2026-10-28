@@ -270,3 +270,38 @@ def test_records_are_conserved_in_every_robustness_scenario():
         out = _drive(ws, recs)
         assert _conserved(ws, len(out)), ws.stats.as_dict()
         assert ws.stats.emitted == len(out)
+
+
+# ----------------------------------------------------------------------------- memory on close
+def _spilled_stream(n_s: int = 1200) -> WindowStream:
+    ws = WindowStream(30, lateness_s=7200, max_buffer=100, max_spill=10**7)
+    for r in sr.genuine_stream(0, n_s):
+        ws.push(r)
+    assert ws.stats.spilled_windows > 0
+    return ws
+
+
+def test_restored_records_share_key_strings():
+    # CTU-13 scenario 9 (100k buffer): restored dicts took 1,592 bytes vs 753 for the originals
+    ws = _spilled_stream(120)
+    out = [x for _, rs in ws.flush() for x in rs]
+    first = out[0]
+    assert all(k1 is k2 for x in out for k1, k2 in zip(x, first, strict=True))
+
+
+def test_flush_iter_does_not_materialise_every_spilled_window():
+    import tracemalloc
+
+    peaks = []
+    for lazy in (False, True):
+        ws = _spilled_stream()
+        tracemalloc.start()
+        n = 0
+        windows = ws.flush_iter() if lazy else ws.flush()
+        for _, rs in windows:
+            n += len(rs)
+            del rs
+        peaks.append(tracemalloc.get_traced_memory()[1])
+        tracemalloc.stop()
+        assert n == 3600 and _conserved(ws, n)
+    assert peaks[1] < peaks[0] / 5, peaks  # d67f061/9e526ca: no lazy close

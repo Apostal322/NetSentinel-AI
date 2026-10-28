@@ -55,7 +55,7 @@ def test_all_pages_render(tmp_path, monkeypatch):
         "window_end_ms": [1_767_268_830_000] * 2, "n_flows": [5, 3], "score": [2.0, 9.0],
         "severity": [40.0, 99.0], "threshold": [5.0, 5.0], "anomalous": [False, True],
         "model_scope": ["global", "10.0.0.1"], "explanation": [[], ["connection_rate_above"]],
-    }), "pcap:demo.pcap", "calibration-test", 30)  # fmt: skip
+    }), "pcap:demo.pcap", "calibration-test", 30, telemetry_health="buffer_pressure")  # fmt: skip
     from netsentinel.incidents import aggregate_incidents
 
     w = {"level": "device", "key": "10.0.0.1", "win": 1, "window_start_ms": 1_767_268_800_000,
@@ -70,6 +70,8 @@ def test_all_pages_render(tmp_path, monkeypatch):
         assert not at.exception, at.exception
         at.sidebar.radio[0].set_value(page).run()
         assert not at.exception, (page, at.exception)
+        if page == "Behavior intelligence":  # Phase 8g: degraded telemetry is shown
+            assert any("Telemetry degraded" in e.value for e in at.error)
         if page == "Incident explorer":
             assert at.dataframe and "10.0.0.1" in at.dataframe[0].value["entity"].tolist()
         if page == "Live traffic":
