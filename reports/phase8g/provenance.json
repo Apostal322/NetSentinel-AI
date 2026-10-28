@@ -1,0 +1,208 @@
+{
+ "scenario_9": [
+  {
+   "file": "capture20110817.binetflow",
+   "has_label_column": true,
+   "families": {
+    "From-Normal": 29893,
+    "other": 6,
+    "Background": 1872554,
+    "To-Normal": 68,
+    "From-Botnet": 184987
+   },
+   "from_botnet_sources_not_documented": [],
+   "documented_initiators_without_from_botnet": [],
+   "to_botnet_destinations_not_documented": [],
+   "from_normal_sources": [
+    "147.32.1.20",
+    "147.32.80.9",
+    "147.32.84.134",
+    "147.32.84.164",
+    "147.32.84.170",
+    "147.32.87.11",
+    "147.32.87.36"
+   ],
+   "from_normal_not_in_documented_benign": [
+    "147.32.1.20"
+   ],
+   "documented_benign_without_from_normal": [],
+   "initiators": {
+    "147.32.84.193": {
+     "from_botnet_flows": 17961,
+     "first_start_time": "2011/08/17 12:32:48.798049",
+     "last_start_time": "2011/08/17 17:08:41.368743",
+     "documented_infection_utc": "2011-08-17T12:54:45Z"
+    },
+    "147.32.84.206": {
+     "from_botnet_flows": 18553,
+     "first_start_time": "2011/08/17 12:38:18.662006",
+     "last_start_time": "2011/08/17 17:10:17.301136",
+     "documented_infection_utc": "2011-08-17T13:00:42Z"
+    },
+    "147.32.84.209": {
+     "from_botnet_flows": 16376,
+     "first_start_time": "2011/08/17 12:42:45.164650",
+     "last_start_time": "2011/08/17 17:09:53.462181",
+     "documented_infection_utc": "2011-08-17T13:04:54Z"
+    },
+    "147.32.84.191": {
+     "from_botnet_flows": 18774,
+     "first_start_time": "2011/08/17 12:30:07.610705",
+     "last_start_time": "2011/08/17 17:06:50.768194",
+     "documented_infection_utc": "2011-08-17T12:43:20Z"
+    },
+    "147.32.84.208": {
+     "from_botnet_flows": 17909,
+     "first_start_time": "2011/08/17 12:41:21.256037",
+     "last_start_time": "2011/08/17 17:10:02.510420",
+     "documented_infection_utc": "2011-08-17T13:03:13Z"
+    },
+    "147.32.84.207": {
+     "from_botnet_flows": 15999,
+     "first_start_time": "2011/08/17 12:39:48.058550",
+     "last_start_time": "2011/08/17 17:09:29.575732",
+     "documented_infection_utc": "2011-08-17T13:01:56Z"
+    },
+    "147.32.84.205": {
+     "from_botnet_flows": 17535,
+     "first_start_time": "2011/08/17 12:35:37.442455",
+     "last_start_time": "2011/08/17 17:09:29.938996",
+     "documented_infection_utc": "2011-08-17T12:57:58Z"
+    },
+    "147.32.84.192": {
+     "from_botnet_flows": 20305,
+     "first_start_time": "2011/08/17 12:31:29.770631",
+     "last_start_time": "2011/08/17 17:07:25.032312",
+     "documented_infection_utc": "2011-08-17T12:48:20Z"
+    },
+    "147.32.84.165": {
+     "from_botnet_flows": 22792,
+     "first_start_time": "2011/08/17 12:28:41.718300",
+     "last_start_time": "2011/08/17 17:07:12.801296",
+     "documented_infection_utc": "2011-08-17T12:24:08Z"
+    },
+    "147.32.84.204": {
+     "from_botnet_flows": 18783,
+     "first_start_time": "2011/08/17 12:34:11.100907",
+     "last_start_time": "2011/08/17 17:08:55.966870",
+     "documented_infection_utc": "2011-08-17T12:56:07Z"
+    }
+   },
+   "time_zone_note": "StartTime strings as written; the file's time zone is not assumed (README times are CEST = UTC+2)"
+  }
+ ],
+ "scenario_10": [
+  {
+   "file": "capture20110818.binetflow",
+   "has_label_column": true,
+   "families": {
+    "other": 5,
+    "Background": 1187592,
+    "From-Botnet": 106352,
+    "To-Normal": 37,
+    "From-Normal": 15805
+   },
+   "from_botnet_sources_not_documented": [],
+   "documented_initiators_without_from_botnet": [],
+   "to_botnet_destinations_not_documented": [],
+   "from_normal_sources": [
+    "147.32.1.20",
+    "147.32.80.9",
+    "147.32.84.134",
+    "147.32.84.164",
+    "147.32.84.170",
+    "147.32.87.11",
+    "147.32.87.36"
+   ],
+   "from_normal_not_in_documented_benign": [
+    "147.32.1.20"
+   ],
+   "documented_benign_without_from_normal": [],
+   "initiators": {
+    "147.32.84.165": {
+     "from_botnet_flows": 9579,
+     "first_start_time": "2011/08/18 10:37:58.448307",
+     "last_start_time": "2011/08/18 15:04:54.494449",
+     "documented_infection_utc": "2011-08-18T09:06:10Z"
+    },
+    "147.32.84.204": {
+     "from_botnet_flows": 11159,
+     "first_start_time": "2011/08/18 10:56:56.682311",
+     "last_start_time": "2011/08/18 15:04:43.327065",
+     "documented_infection_utc": "2011-08-18T09:05:13Z"
+    },
+    "147.32.84.193": {
+     "from_botnet_flows": 10009,
+     "first_start_time": "2011/08/18 10:55:56.975808",
+     "last_start_time": "2011/08/18 15:03:21.141772",
+     "documented_infection_utc": "2011-08-18T09:06:52Z"
+    },
+    "147.32.84.191": {
+     "from_botnet_flows": 10454,
+     "first_start_time": "2011/08/18 10:43:13.001890",
+     "last_start_time": "2011/08/18 15:04:59.710810",
+     "documented_infection_utc": "2011-08-18T09:06:32Z"
+    },
+    "147.32.84.192": {
+     "from_botnet_flows": 10397,
+     "first_start_time": "2011/08/18 10:55:03.872662",
+     "last_start_time": "2011/08/18 15:04:59.738400",
+     "documented_infection_utc": "2011-08-18T09:05:41Z"
+    },
+    "147.32.84.207": {
+     "from_botnet_flows": 10581,
+     "first_start_time": "2011/08/18 11:00:27.003141",
+     "last_start_time": "2011/08/18 15:03:59.933342",
+     "documented_infection_utc": "2011-08-18T09:04:20Z"
+    },
+    "147.32.84.206": {
+     "from_botnet_flows": 11287,
+     "first_start_time": "2011/08/18 10:59:35.578081",
+     "last_start_time": "2011/08/18 15:02:24.962985",
+     "documented_infection_utc": "2011-08-18T09:04:46Z"
+    },
+    "147.32.84.205": {
+     "from_botnet_flows": 11874,
+     "first_start_time": "2011/08/18 10:57:54.820892",
+     "last_start_time": "2011/08/18 15:04:59.744388",
+     "documented_infection_utc": "2011-08-18T09:07:15Z"
+    },
+    "147.32.84.209": {
+     "from_botnet_flows": 9894,
+     "first_start_time": "2011/08/18 11:01:39.314035",
+     "last_start_time": "2011/08/18 15:03:28.059759",
+     "documented_infection_utc": "2011-08-18T09:03:05Z"
+    },
+    "147.32.84.208": {
+     "from_botnet_flows": 11118,
+     "first_start_time": "2011/08/18 11:01:02.018002",
+     "last_start_time": "2011/08/18 15:04:59.741823",
+     "documented_infection_utc": "2011-08-18T09:03:52Z"
+    }
+   },
+   "time_zone_note": "StartTime strings as written; the file's time zone is not assumed (README times are CEST = UTC+2)"
+  },
+  {
+   "file": "capture20110818.binetflow.labeled",
+   "has_label_column": false,
+   "header": [
+    "#StartTime",
+    "Dur",
+    "Proto",
+    "SrcAddr",
+    "Sport",
+    "Dir",
+    "DstAddr",
+    "Dport",
+    "State",
+    "sTos",
+    "dTos",
+    "TotPkts",
+    "TotBytes",
+    "SrcBytes",
+    "Label(Normal:CC:Background)",
+    "CCDetector(Normal:CC:Unknown)"
+   ]
+  }
+ ]
+}

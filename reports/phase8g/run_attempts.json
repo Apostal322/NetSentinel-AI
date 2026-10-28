@@ -29,5 +29,20 @@
   "observations": [
    "scenario 9: 1,039 records quarantined as out of range and dropped at flush with health 'ok'; hypothesis (unverified): connections longer than about max_skew + lateness, classified by START time"
   ]
+ },
+ {
+  "attempt": 2,
+  "started": "2026-10-28 06:26 local",
+  "frozen_code_sha": "121acbfe208ef7637f6d2fe8e048f4cea65d92e4",
+  "outcome": "complete: scenario 9 evaluated; scenario 10 declared failed under amendment A2 (failed (late 6030, forced_closes 57)); provenance audit run after results.json was written",
+  "scenario_10_stream": {
+   "records": 11618416,
+   "late": 6030,
+   "forced_closes": 57,
+   "max_buffered": 1500001,
+   "quarantine_rejected": 1692,
+   "health": "buffer_pressure"
+  },
+  "peak_rss_gb": 2.56
  }
 ]

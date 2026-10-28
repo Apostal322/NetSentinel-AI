@@ -122,3 +122,17 @@ not solved.
 | A candidate-plus-gate refresh is safe | **refuted (absorption)** | behaves like the fixed baseline; still absorbs 5.8% of attack windows (a sustained sub-threshold attack) |
 | Vetted refresh improves reliability without hiding attacks | **supported only with oracle vetting** | false alerts 3.81 -> 1.88/h, 9/10 attackers kept, recall 0.27 -> 0.29; not deployable without operator vetting |
 | The stream clock resists in-skew forged timestamps | **refuted, then fixed** | 1 forged record dropped 82% of genuine traffic silently; median-of-101 clock: 0 loss, 244k records/s |
+
+## Phase 8g (independent validation: CTU-13 scenarios 9 and 10; docs/phase8g/RESULTS.md)
+
+Pre-registered in docs/phase8f/PREREG_CTU13.md (amendments A1, A2); frozen code 121acbf.
+CTU-13 scenarios 9 and 10 are now **consumed**. Scenario 10 was opened by the frozen build but
+declared failed under A2: 6,030 late records and 57 forced closes.
+
+| Claim | Status | Evidence |
+|---|---|---|
+| V3: the deployed detector finds confirmed initiators at its operating point | **10/10 detected (scenario 9), descriptive** | Wilson [0.72, 1.00]; attack-window recall 0.21 [0.15, 0.27]; median delay 47.5 s; 0/803 verified-benign false alerts; 2,563 alerts/h on unlabelled background |
+| V1: `baseline_state` is reliable on independent data | **not evaluable** | no monitoring segment (bots active throughout) |
+| V2: the shift test earns adoption | **not evaluable** | no benign-only segments |
+| V4: gated recalibration does not absorb attacks | **refuted** | S5 absorbed 71% of attack windows (1 activation) |
+| CTU-13 flow labels mark attack traffic only after infection | **refuted (provenance audit)** | From-Botnet labels start at VM start, about 2 h before documented infection; IP-based |
