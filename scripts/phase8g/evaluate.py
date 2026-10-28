@@ -215,7 +215,13 @@ def split_ref(ref: dict) -> tuple[dict, dict]:
 
 # ----------------------------------------------------------------------------- per scenario
 def scenario(cfg: dict, key: str, workdir: Path) -> dict:
-    meta = json.loads((Path(cfg["derived_root"]) / key / "meta.json").read_text("utf-8"))
+    mp = Path(cfg["derived_root"]) / key / "meta.json"
+    if not mp.exists():
+        return {"status": "declared failed: window build did not complete"}
+    meta = json.loads(mp.read_text("utf-8"))
+    if str(meta.get("acceptance", "")).startswith("failed"):  # amendment A2
+        return {"status": f"declared failed (A2): {meta['acceptance']}",
+                "lateness_s": meta.get("lateness_s")}  # fmt: skip
     sc = cfg["scenarios"][key]
     t0 = time.perf_counter()
     cal = {lv: load_windows(cfg, key, "cal", lv) for lv in LEVELS}
@@ -305,7 +311,9 @@ def scenario(cfg: dict, key: str, workdir: Path) -> dict:
 
 
 def pooled_segments(res: dict) -> dict:
-    """V1 and the descriptive V2 (C2/C3) over both scenarios' segments (primary mode)."""
+    """V1 and the descriptive V2 (C2/C3) over both scenarios' segments (primary mode);
+    scenarios declared failed (A2) contribute nothing."""
+    res = {k: r for k, r in res.items() if "modes" in r}
     segs = [s for r in res.values() for s in r["modes"][MODES[0]]["segments"]]
     out = {}
     for name, key, ok, flag in (("V1_baseline_state", "baseline_state", "monitoring",

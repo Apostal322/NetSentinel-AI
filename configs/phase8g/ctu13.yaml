@@ -30,6 +30,7 @@ scenarios:
   scenario_9:
     id: CTU-Malware-Capture-Botnet-50
     botnet: Neris
+    lateness_s: 3700                              # harness default (unchanged)
     conn_log: conn.log
     label_files: [capture20110817.binetflow]
     capture_start_utc: "2011-08-17T10:01:01Z"   # README 12:01:01 CEST "started the overall pcap capture"
@@ -48,6 +49,8 @@ scenarios:
   scenario_10:
     id: CTU-Malware-Capture-Botnet-51
     botnet: Rbot
+    lateness_s: 600                               # amendment A2 (memory); accepted only if
+                                                  # late == 0 and forced_closes == 0
     conn_log: conn.log
     label_files: [capture20110818.binetflow, capture20110818.binetflow.labeled]
     capture_start_utc: "2011-08-18T08:19:02Z"   # README 10:19:02 CEST "started the overall capture"

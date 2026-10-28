@@ -119,3 +119,30 @@ infection time.
 - Then: the provenance audit, the hypothesis-ledger entries, and marking CTU-13 scenarios 9
   and 10 as consumed.
 - Anything else is post hoc **[R]**.
+
+## Amendment A2 (2026-10-28, after aborted attempt 1; before any result)
+
+**Attempt 1** (`reports/phase8g/run_attempts.json`):
+- The frozen code (dfaf206) built scenario 9 (2.6M records, peak 2.18 GB).
+- Its scenario 10 window build was killed by the 3.4 GB watchdog: the 3,700 s harness lateness
+  buffers about an hour of records at about 550 records/s.
+- `evaluate` stopped on the missing metadata. **No result was computed and no flow label was
+  opened.**
+
+**Operator decision.** Amendment A2, lateness only.
+1. **Lateness becomes a per-scenario setting.** Scenario 9 keeps 3,700 s; scenario 10 uses
+   **600 s**.
+2. **Acceptance rule.** A non-default lateness is accepted only if the build reports
+   `late == 0` and `forced_closes == 0`. Then every record lands in its END window, exactly as
+   with unlimited lateness.
+   - Otherwise the scenario is **declared failed** and not evaluated.
+   - The failure is reported as such; it is not re-tuned.
+3. **Stale parts.** The builder removes the parts of an aborted attempt before writing.
+4. **Disclosed limitation, frozen behaviour unchanged.**
+   - The stream clock classifies records by flow START. In scenario 9, 1,039 records (0.04%)
+     were quarantined as out of range and dropped at flush with health `ok`.
+   - Hypothesis (not verified): connections longer than about `max_skew_s` + lateness.
+   - The drop applies equally to every population, and it is reported with the results.
+   - A product fix is out of scope for this protocol.
+5. **Rerun.** Both scenarios are rebuilt and evaluated with the re-frozen code. The new SHA is
+   recorded in `reports/phase8g/registry.json` before the run.

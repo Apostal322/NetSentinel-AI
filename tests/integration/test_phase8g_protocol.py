@@ -179,3 +179,25 @@ def test_provenance_audit_after_the_run(ws, results):
     assert out["documented_initiators_without_from_botnet"] == [INIT["vm2"]]
     assert out["from_normal_not_in_documented_benign"] == []
     assert set(out["documented_benign_without_from_normal"]) == set(BENIGN[1:])
+
+
+def test_amendment_a2_lateness_acceptance(ws):
+    from types import SimpleNamespace
+
+    assert W.acceptance(W.LATENESS_S, SimpleNamespace(late=5, forced_closes=5)).startswith(
+        "default"
+    )
+    assert W.acceptance(600, SimpleNamespace(late=0, forced_closes=0)).startswith("passed")
+    assert W.acceptance(600, SimpleNamespace(late=1, forced_closes=0)).startswith("failed")
+    tmp, cfg, _ = ws
+    c = copy.deepcopy(cfg)
+    c["scenarios"]["synthetic"]["lateness_s"] = 600
+    c["derived_root"], c["reports_root"] = str(tmp / "derived_a2"), str(tmp / "reports_a2")
+    meta = W.build(c, "synthetic", batch_flows=5_000)
+    assert meta["lateness_s"] == 600 and meta["acceptance"].startswith("passed")
+    meta = json.loads((tmp / "derived_a2" / "synthetic" / "meta.json").read_text())
+    meta["acceptance"] = "failed (late 3, forced_closes 0)"  # a failed build is not evaluated
+    (tmp / "derived_a2" / "synthetic" / "meta.json").write_text(json.dumps(meta))
+    r = E.run(c, allow_unfrozen=True)
+    assert r["scenarios"]["synthetic"]["status"].startswith("declared failed (A2)")
+    assert r["pooled"]["V1_verdict"].startswith("not evaluable")

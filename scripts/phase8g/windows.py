@@ -73,6 +73,15 @@ class Builder:
                 self._write("test", lv, aggregate(test, lv, self.w, known_dst=self.seen))
 
 
+def acceptance(lateness: float, stats) -> str:
+    """Amendment A2 rule for a scenario built with a non-default lateness."""
+    if lateness == LATENESS_S:
+        return "default lateness"
+    if stats.late == 0 and stats.forced_closes == 0:
+        return "passed (late == 0, forced_closes == 0)"
+    return f"failed (late {stats.late}, forced_closes {stats.forced_closes})"
+
+
 def build(cfg: dict, key: str, batch_flows: int = 200_000) -> dict:
     sc = cfg["scenarios"][key]
     path = Path(cfg["data_root"]) / sc["id"] / sc["conn_log"]
@@ -82,8 +91,15 @@ def build(cfg: dict, key: str, batch_flows: int = 200_000) -> dict:
     for r in read_conn_log(path):  # pass 0: time span only
         first, last, n = min(first, int(r[START])), max(last, int(r[END])), n + 1
     cut = int(first + cfg["calibration_hours"] * 3.6e6)
+    for old in out.glob("*.parquet") if out.exists() else ():  # parts of an aborted attempt
+        old.unlink()
+    (out / "meta.json").unlink(missing_ok=True)
     b = Builder(cut, initiators(cfg), cfg["window_s"], out)
-    ws = WindowStream(cfg["window_s"], lateness_s=LATENESS_S, max_buffer=MAX_BUFFER)
+    # Amendment A2: lateness per scenario (default = harness value); a non-default lateness
+    # is accepted only if no record was late and no window was force-closed (then every
+    # record is in its END window, exactly as with unlimited lateness)
+    lateness = sc.get("lateness_s", LATENESS_S)
+    ws = WindowStream(cfg["window_s"], lateness_s=lateness, max_buffer=MAX_BUFFER)
     zs = ZeekStats()
     pending: list[dict] = []
     for rec in read_conn_log(path, zs):
@@ -105,8 +121,9 @@ def build(cfg: dict, key: str, batch_flows: int = 200_000) -> dict:
                 f"{p}_{lv}": c for (p, lv), c in b.parts.items()},
             "parse": {"lines": zs.lines, "records": zs.records, "skipped": zs.skipped},
             "telemetry_health": parse_health({"lines": zs.lines, "skipped": zs.skipped}),
-            "stream": ws.stats.as_dict(), "seconds": time.perf_counter() - t0,
-            "peak_rss_mb": peak_rss_mb()}  # fmt: skip
+            "stream": ws.stats.as_dict(), "lateness_s": lateness,
+            "acceptance": acceptance(lateness, ws.stats),
+            "seconds": time.perf_counter() - t0, "peak_rss_mb": peak_rss_mb()}  # fmt: skip
     (out / "meta.json").write_text(json.dumps(meta, indent=1, default=str), "utf-8")
     return meta
 
