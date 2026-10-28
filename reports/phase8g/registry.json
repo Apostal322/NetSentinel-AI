@@ -49,12 +49,23 @@
  ],
  "total_bytes": 2322539243,
  "contents_opened": false,
- "frozen_evaluation_code_sha": "dfaf2065e237ad0844c4065b4a8183fafa6637dc",
+ "frozen_evaluation_code_sha": "121acbfe208ef7637f6d2fe8e048f4cea65d92e4",
  "frozen_paths": [
   "scripts/phase8g",
   "configs/phase8g",
   "src"
  ],
- "frozen_recorded_utc": "2026-10-27T22:28:14+00:00",
- "frozen_tests": "tests/integration/test_phase8g_protocol.py (synthetic Zeek/binetflow only; 234 passed full suite)"
+ "frozen_recorded_utc": "2026-10-28T03:26:45+00:00",
+ "frozen_tests": "tests/integration/test_phase8g_protocol.py (synthetic only, 6); full suite 235 passed",
+ "frozen_history": [
+  {
+   "sha": "dfaf2065e237ad0844c4065b4a8183fafa6637dc",
+   "superseded_by": "amendment A2",
+   "note": "attempt 1 aborted (memory); no results"
+  }
+ ],
+ "amendments": [
+  "A1 (6f6e4f4): CTU-13 scenarios 9/10, option (a)",
+  "A2: per-scenario lateness, scenario 10 = 600 s with late == 0 and forced_closes == 0 acceptance"
+ ]
 }
