@@ -37,6 +37,18 @@ Event time and windows
   duplicates are removed when it closes. Only when the spill budget is exhausted are windows
   force-closed (`buffer_pressure`; later records for them count as late). Dense attack
   traffic exhausted a 1.5M-record buffer in CTU-13 scenario 10 (6,030 late records).
+  Bounded (Phase 8g finalization): at most `_Spill.FLUSH` records wait in memory for a write
+  and appends to spilled windows count against `max_spill` (beyond it they stay in memory and
+  the oldest window is force-closed). A failed write (disk full) is undone, disables spilling
+  (`spill_failed`, `spill_error`) and keeps the records in memory; Ctrl+C during a write loses
+  nothing. Spill files are read back as JSON only, at most as many records as were written,
+  each checked against its window: anything else is counted (`spill_invalid`, `spill_lost`,
+  health `integrity_degraded`). The directory is removed on `flush`, when the stream is
+  garbage-collected or at interpreter exit, and directories of dead processes are swept when
+  a new one is created.
+* Impossible timestamps (Phase 8g finalization): a record that ends before it starts is
+  dropped and counted (`invalid_time`, health `integrity_degraded`). Classified BEHIND by its
+  end, a flood of them could force a backward clock commit and be emitted into old windows.
 * Corroborated clock (Phase 8f). Inside the skew range the committed clock advances to the
   MEDIAN start of the last `clock_quorum` accepted records, not to the largest start: one
   record stamped just inside `max_skew_s` used to pull the watermark ahead and drop the
@@ -51,7 +63,9 @@ Event time and windows
   quiet network does not hold its last windows open until traffic resumes.
 * Memory is bounded: only the records of open windows (plus a context lookback of whole
   closed windows for the supervised context features) are held; above `max_buffer` records the
-  oldest open window is force-closed (counted).
+  oldest open window is spilled, or force-closed (counted) once the spill budget is used.
+* Conservation: records = emitted + duplicates + late + quarantine_rejected +
+  quarantine_evicted + invalid_time + spill_lost (after `flush`).
 
 Equivalence: behaviour windows use the profile's frozen destination set, so a window's features
 depend only on its own flows. In-order (or within-lateness out-of-order) streaming therefore
@@ -66,9 +80,12 @@ import heapq
 import json
 import logging
 import math
+import os
 import shutil
+import sys
 import tempfile
 import time
+import weakref
 from collections import deque
 from collections.abc import Callable, Iterable, Iterator
 from dataclasses import asdict, dataclass, field
@@ -81,8 +98,8 @@ DEDUP_KEY = (START, END, "IPV4_SRC_ADDR", "L4_SRC_PORT", "IPV4_DST_ADDR", "L4_DS
              "PROTOCOL", "IN_BYTES", "OUT_BYTES")  # fmt: skip
 
 
-SEVERITY = {"resynced": 0, "buffer_spill": 0, "buffer_pressure": 1, "integrity_degraded": 2,
-            "clock_anomaly": 3, "clock_reset": 4}  # fmt: skip
+SEVERITY = {"resynced": 0, "buffer_spill": 0, "spill_failed": 0, "buffer_pressure": 1,
+            "integrity_degraded": 2, "clock_anomaly": 3, "clock_reset": 4}  # fmt: skip
 DEGRADING = {f for f, v in SEVERITY.items() if v > 0}
 
 
@@ -104,6 +121,11 @@ class StreamStats:
     spilled_windows: int = 0  # windows moved to disk instead of being force-closed
     spilled_records: int = 0  # records written to disk (including later arrivals)
     max_spilled: int = 0
+    spill_lost: int = 0  # spilled records that did not read back intact
+    spill_invalid: int = 0  # spill file lines rejected on read (truncated, edited, extra)
+    spill_error: str | None = None  # first failed spill write; spilling is then disabled
+    invalid_time: int = 0  # records ending before they start (dropped)
+    emitted: int = 0  # records in emitted windows
     windows_closed: int = 0
     max_buffered: int = 0
     max_quarantined: int = 0
@@ -122,49 +144,171 @@ class StreamStats:
         return asdict(self)
 
 
+SPILL_PREFIX = "netsentinel-spill-"
+STALE_LEGACY_S = 86_400  # a spill directory without an owner file (d67f061) older than this
+
+
+def _pid_alive(pid: int) -> bool:
+    if pid == os.getpid():
+        return True
+    if sys.platform == "win32":
+        import ctypes
+
+        k32 = ctypes.WinDLL("kernel32")
+        h = k32.OpenProcess(0x1000, False, pid)  # PROCESS_QUERY_LIMITED_INFORMATION
+        if not h:
+            return False
+        code = ctypes.c_ulong()
+        ok = k32.GetExitCodeProcess(h, ctypes.byref(code))
+        k32.CloseHandle(h)
+        return bool(ok) and code.value == 259  # STILL_ACTIVE
+    try:
+        os.kill(pid, 0)  # POSIX only: signal 0 tests existence
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    return True
+
+
+def sweep_stale_spills(root: str | Path | None = None) -> int:
+    """Remove spill directories left by processes that died without cleaning up (killed,
+    crashed). Directories of live processes and recent legacy ones are kept."""
+    removed = 0
+    for d in Path(root or tempfile.gettempdir()).glob(SPILL_PREFIX + "*"):
+        try:
+            owner = d / "owner"
+            if owner.exists():
+                stale = not _pid_alive(int(owner.read_text("utf-8").split()[0]))
+            else:
+                stale = time.time() - d.stat().st_mtime > STALE_LEGACY_S
+        except (OSError, ValueError, IndexError):
+            continue
+        if stale and d.is_dir():
+            shutil.rmtree(d, ignore_errors=True)
+            removed += 1
+    return removed
+
+
 class _Spill:
-    """Records of open windows kept on disk (JSON lines; never pickle), one file per window."""
+    """Records of open windows kept on disk (JSON lines; never pickle), one file per window.
+    `count` = records on disk plus those waiting in memory (at most FLUSH) for a write."""
 
     FLUSH = 1000
+    MAX_LINE = 65_536  # a record is about 350 bytes; longer lines are rejected unread
 
     def __init__(self, root: str | Path | None = None):
         self.root, self.dir = root, None
-        self.files: set[int] = set()
+        self.written: dict[int, int] = {}  # window -> records on disk
         self.pending: dict[int, list[dict]] = {}
+        self.n_pending = 0
         self.count = 0
+        self.failed: str | None = None
+        self._finalizer = None
 
     def has(self, w: int) -> bool:
-        return w in self.files or w in self.pending
+        return w in self.written or w in self.pending
 
     def _path(self, w: int) -> Path:
         if self.dir is None:
-            self.dir = Path(tempfile.mkdtemp(prefix="netsentinel-spill-", dir=self.root))
+            sweep_stale_spills(self.root)
+            d = Path(tempfile.mkdtemp(prefix=SPILL_PREFIX, dir=self.root))
+            self._finalizer = weakref.finalize(self, shutil.rmtree, str(d), True)
+            self.dir = d
+            (d / "owner").write_text(f"{os.getpid()} {time.time():.0f}", "utf-8")
         return self.dir / f"{w}.jsonl"
 
-    def add(self, w: int, recs: list[dict], now: bool = False) -> None:
-        self.pending.setdefault(w, []).extend(recs)
-        self.count += len(recs)
-        if now or len(self.pending[w]) >= self.FLUSH:
-            with self._path(w).open("a", encoding="utf-8") as f:
-                f.writelines(json.dumps(r) + "\n" for r in self.pending.pop(w))
-            self.files.add(w)
-
-    def take(self, w: int) -> list[dict]:
-        recs: list[dict] = []
-        if w in self.files:
+    def _write(self, w: int, recs: list[dict]) -> bool:
+        """Append records; on failure the file is cut back, so it never holds half a record."""
+        try:
             path = self._path(w)
-            with path.open(encoding="utf-8") as f:
-                recs = [json.loads(line) for line in f]
-            path.unlink()
-            self.files.discard(w)
-        recs += self.pending.pop(w, [])
-        self.count -= len(recs)
-        return recs
+            pos = path.stat().st_size if path.exists() else 0
+            data = "".join(json.dumps(r) + "\n" for r in recs).encode("utf-8")
+        except (OSError, TypeError, ValueError) as e:
+            self.failed = self.failed or f"{type(e).__name__}: {e}"
+            return False
+        try:
+            with path.open("ab") as f:
+                f.write(data)
+        except BaseException as e:  # disk full, or Ctrl+C mid-write
+            try:
+                os.truncate(path, pos)
+            except OSError:
+                pass  # read back by count, so a torn tail is never accepted as a record
+            if not isinstance(e, OSError):
+                raise
+            self.failed = self.failed or f"{type(e).__name__}: {e}"
+            return False
+        self.written[w] = self.written.get(w, 0) + len(recs)
+        return True
+
+    def _flush_pending(self) -> None:
+        for w in list(self.pending):
+            if not self._write(w, self.pending[w]):
+                return  # kept in memory; spilling is now disabled
+            self.n_pending -= len(self.pending.pop(w))
+
+    def add(self, w: int, recs: list[dict], now: bool = False) -> bool:
+        """Spill records of window w: written at once (`now`), or queued in memory until FLUSH
+        records wait. False if spilling failed now or before: the caller keeps `recs`."""
+        if self.failed:
+            return False
+        if now:
+            if not self._write(w, self.pending.get(w, []) + recs):
+                return False
+            self.n_pending -= len(self.pending.pop(w, []))
+        else:
+            self.pending.setdefault(w, []).extend(recs)
+            self.n_pending += len(recs)
+            if self.n_pending >= self.FLUSH:
+                self._flush_pending()
+        self.count += len(recs)
+        return True
+
+    def _lines(self, path: Path) -> Iterator[bytes | None]:
+        """Lines of a spill file; None for a line longer than MAX_LINE (skipped unread)."""
+        with path.open("rb") as f:
+            while line := f.readline(self.MAX_LINE):
+                if line.endswith(b"\n") or len(line) < self.MAX_LINE:
+                    yield line
+                    continue
+                while (rest := f.readline(self.MAX_LINE)) and not rest.endswith(b"\n"):
+                    pass
+                yield None
+
+    def take(self, w: int, valid: Callable[[Any], bool]) -> tuple[list[dict], int, int]:
+        """All records of window w -> (records, lost, invalid lines). At most as many records
+        are accepted from disk as were written; each must pass `valid`."""
+        recs: list[dict] = []
+        n = self.written.pop(w, 0)
+        bad = 0
+        if n:
+            path = self.dir / f"{w}.jsonl"
+            try:
+                for line in self._lines(path):
+                    try:
+                        r = json.loads(line) if line is not None and len(recs) < n else None
+                    except ValueError:
+                        r = None
+                    if r is not None and valid(r):
+                        recs.append(r)
+                    else:
+                        bad += 1
+                path.unlink()
+            except OSError:
+                pass
+        lost = n - len(recs)
+        mem = self.pending.pop(w, [])
+        self.n_pending -= len(mem)
+        self.count -= n + len(mem)
+        return recs + mem, lost, bad
 
     def cleanup(self) -> None:
-        if self.dir is not None:
-            shutil.rmtree(self.dir, ignore_errors=True)
-            self.dir = None
+        if self._finalizer is not None:
+            self._finalizer()  # removes the directory once (also at exit / garbage collection)
+            self._finalizer = None
+        self.dir = None
+        self.written.clear()
 
 
 class WindowStream:
@@ -208,7 +352,13 @@ class WindowStream:
         self.keys.pop(w, None)
         self.n_buffered -= len(recs)
         if self.spill.has(w):  # deduplicate what arrived while the window was on disk
-            seen, kept, every = set(), [], self.spill.take(w) + recs
+            disk, lost, bad = self.spill.take(w, lambda r: self._valid_spilled(r, w))
+            if lost or bad:
+                self.stats.spill_lost += lost
+                self.stats.spill_invalid += bad
+                self.stats.accepted -= lost
+                self.stats.flag("integrity_degraded")
+            seen, kept, every = set(), [], disk + recs
             for r in every:
                 k = tuple(r.get(c) for c in DEDUP_KEY)
                 if k not in seen:
@@ -218,6 +368,7 @@ class WindowStream:
             self.stats.duplicates += dup
             self.stats.accepted -= dup
             recs = kept
+        self.stats.emitted += len(recs)
         self.closed_below = w + 1 if self.closed_below is None else max(self.closed_below, w + 1)
         self.stats.windows_closed += 1
         return w, recs
@@ -227,8 +378,9 @@ class WindowStream:
         if self.closed_below is not None and w < self.closed_below:
             st.late += 1
             return False
-        if self.spill.has(w):  # the window is on disk: append (deduplicated on close)
-            self.spill.add(w, [rec])
+        spilled = self.spill.has(w)
+        if spilled and self.spill.count < self.max_spill and self.spill.add(w, [rec]):
+            # the window is on disk: append (deduplicated on close)
             st.accepted += 1
             st.spilled_records += 1
             st.max_spilled = max(st.max_spilled, self.spill.count)
@@ -242,7 +394,8 @@ class WindowStream:
         seen.add(k)
         if w not in self.buf:
             self.buf[w] = []
-            heapq.heappush(self.heap, w)
+            if not spilled:  # a spilled window is already on the heap
+                heapq.heappush(self.heap, w)
         self.buf[w].append(rec)
         self.n_buffered += 1
         st.accepted += 1
@@ -272,24 +425,36 @@ class WindowStream:
                 out.append(self._close(heapq.heappop(self.heap)))
                 continue
             w = min(self.buf) if self.buf else None
-            if w is not None and self.spill.count + len(self.buf[w]) <= self.max_spill:
-                self._spill(w)  # keep the window open on disk instead of closing it early
-                continue
+            if w is not None and self.spill.count + len(self.buf[w]) <= self.max_spill \
+                    and self._spill(w):  # fmt: skip
+                continue  # the window stays open on disk instead of being closed early
             st.forced_closes += 1
             st.flag("buffer_pressure")
             out.append(self._close(heapq.heappop(self.heap)))
         return out
 
-    def _spill(self, w: int) -> None:
+    def _spill(self, w: int) -> bool:
         st = self.stats
-        recs = self.buf.pop(w)
+        recs = self.buf[w]
+        if not self.spill.add(w, recs, now=True):
+            if st.spill_error is None:
+                st.spill_error = self.spill.failed
+                st.flag("spill_failed")
+                log.warning("spilling disabled: %s", self.spill.failed)
+            return False
+        del self.buf[w]
         self.keys.pop(w, None)
         self.n_buffered -= len(recs)
-        self.spill.add(w, recs, now=True)
         st.spilled_windows += 1
         st.spilled_records += len(recs)
         st.max_spilled = max(st.max_spilled, self.spill.count)
         st.flag("buffer_spill")
+        return True
+
+    def _valid_spilled(self, r: Any, w: int) -> bool:
+        return (isinstance(r, dict) and isinstance(r.get(START), int)
+                and isinstance(r.get(END), int) and r[END] >= r[START]
+                and r[END] // self.w_ms == w)  # fmt: skip
 
     # ---------------------------------------------------------------- clock integrity
     def _side(self, start: int, end: int | None = None) -> str:
@@ -368,6 +533,10 @@ class WindowStream:
         st = self.stats
         st.records += 1
         start, end = int(rec[START]), int(rec[END])
+        if end < start:  # impossible: never a vote, never a window
+            st.invalid_time += 1
+            st.flag("integrity_degraded")
+            return []
         if self.clock is None:
             self.clock = start
         side = self._side(start, end)
