@@ -1,0 +1,669 @@
+{
+ "scenario": "scenario_9",
+ "run": "spill800k",
+ "audit": {
+  "code": "current",
+  "code_sha": "de8610c1ac4c425044da860fe6b0ca8f83055fae",
+  "lateness_s": 3700,
+  "max_buffer": 200000,
+  "max_spill": 800000,
+  "build": true,
+  "wall_s": 315.40006300000005,
+  "cpu_s": 84.71875,
+  "cpu_share_of_one_core": 0.2686072703796511,
+  "stream_s": 175.37221460016008,
+  "build_s": 121.32498759999999,
+  "stream_records_per_s": 14972.679714324615,
+  "end_to_end_records_per_s": 8325.274177259755,
+  "peak_spill_disk_bytes_sampled": 168861891,
+  "spill_take_s": 81.59223140000358,
+  "spill_takes": 575,
+  "spill_dirs_removed_after_flush": true,
+  "peak_rss_mb": 1106.17578125
+ },
+ "stream": {
+  "records": 2625792,
+  "accepted": 2625786,
+  "duplicates": 6,
+  "late": 0,
+  "clock_skew": 0,
+  "clock_resyncs": 0,
+  "clock_resets": 0,
+  "clock_reverts": 0,
+  "quarantine_rejected": 0,
+  "quarantine_evicted": 0,
+  "replayed": 0,
+  "uncorroborated_ahead": 0,
+  "forced_closes": 0,
+  "spilled_windows": 575,
+  "spilled_records": 2425793,
+  "max_spilled": 444721,
+  "spill_lost": 0,
+  "spill_invalid": 0,
+  "spill_error": null,
+  "invalid_time": 0,
+  "emitted": 2625786,
+  "windows_closed": 623,
+  "max_buffered": 200001,
+  "max_quarantined": 0,
+  "watermark_ms": 1313590231092,
+  "health": "ok",
+  "health_flags": [
+   "buffer_spill"
+  ]
+ },
+ "acceptance": "default lateness",
+ "records": {
+  "input": 2625792,
+  "reference_members": 2625786,
+  "reference_duplicates_removed": 6,
+  "run_members": 2625786,
+  "missing": 0,
+  "extra": 0,
+  "moved_to_another_window": 0,
+  "repeated_in_run": 0,
+  "missing_by_fate": {},
+  "missing_longer_than_skew_plus_lateness": 0,
+  "missing_duration_ms_quantiles": null
+ },
+ "windows": {
+  "reference": 623,
+  "run": 623,
+  "flow_count_differing": 0,
+  "packet_sum_differing": 0,
+  "emitted_more_than_once": 0,
+  "only_in_reference": 0,
+  "only_in_run": 0
+ },
+ "features": {
+  "cal_global": {
+   "windows_reference": 301,
+   "windows_run": 301,
+   "repeated_windows_reference": 0,
+   "repeated_windows_run": 0,
+   "only_in_reference": 0,
+   "only_in_run": 0,
+   "windows_with_any_feature_difference": 0,
+   "per_feature": {
+    "n_flows": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "up": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "down": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "pkts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "dst_hosts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "dst_ports": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_flows": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_up_bytes": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_down_bytes": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_pkts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_dst_hosts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_dst_ports": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "no_reply_frac": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "rst_frac": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "udp_share": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "med_log_dur": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "upload_share": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "new_dst_frac": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "window_start_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "window_end_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    }
+   },
+   "example_differing": []
+  },
+  "cal_device": {
+   "windows_reference": 431713,
+   "windows_run": 431713,
+   "repeated_windows_reference": 0,
+   "repeated_windows_run": 0,
+   "only_in_reference": 0,
+   "only_in_run": 0,
+   "windows_with_any_feature_difference": 0,
+   "per_feature": {
+    "n_flows": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "up": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "down": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "pkts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "dst_hosts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "dst_ports": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_flows": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_up_bytes": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_down_bytes": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_pkts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_dst_hosts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_dst_ports": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "no_reply_frac": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "rst_frac": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "udp_share": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "med_log_dur": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "upload_share": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "new_dst_frac": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "window_start_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "window_end_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    }
+   },
+   "example_differing": []
+  },
+  "cal_service": {
+   "windows_reference": 2681,
+   "windows_run": 2681,
+   "repeated_windows_reference": 0,
+   "repeated_windows_run": 0,
+   "only_in_reference": 0,
+   "only_in_run": 0,
+   "windows_with_any_feature_difference": 0,
+   "per_feature": {
+    "n_flows": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "up": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "down": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "pkts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "dst_hosts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "dst_ports": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_flows": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_up_bytes": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_down_bytes": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_pkts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_dst_hosts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_dst_ports": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "no_reply_frac": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "rst_frac": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "udp_share": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "med_log_dur": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "upload_share": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "new_dst_frac": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "window_start_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "window_end_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    }
+   },
+   "example_differing": []
+  },
+  "test_global": {
+   "windows_reference": 323,
+   "windows_run": 323,
+   "repeated_windows_reference": 0,
+   "repeated_windows_run": 0,
+   "only_in_reference": 0,
+   "only_in_run": 0,
+   "windows_with_any_feature_difference": 0,
+   "per_feature": {
+    "n_flows": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "up": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "down": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "pkts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "dst_hosts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "dst_ports": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_flows": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_up_bytes": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_down_bytes": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_pkts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_dst_hosts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_dst_ports": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "no_reply_frac": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "rst_frac": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "udp_share": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "med_log_dur": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "upload_share": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "new_dst_frac": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "window_start_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "window_end_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    }
+   },
+   "example_differing": []
+  },
+  "test_device": {
+   "windows_reference": 534796,
+   "windows_run": 534796,
+   "repeated_windows_reference": 0,
+   "repeated_windows_run": 0,
+   "only_in_reference": 0,
+   "only_in_run": 0,
+   "windows_with_any_feature_difference": 0,
+   "per_feature": {
+    "n_flows": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "up": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "down": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "pkts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "dst_hosts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "dst_ports": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_flows": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_up_bytes": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_down_bytes": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_pkts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_dst_hosts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_dst_ports": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "no_reply_frac": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "rst_frac": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "udp_share": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "med_log_dur": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "upload_share": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "new_dst_frac": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "window_start_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "window_end_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    }
+   },
+   "example_differing": []
+  },
+  "test_service": {
+   "windows_reference": 2896,
+   "windows_run": 2896,
+   "repeated_windows_reference": 0,
+   "repeated_windows_run": 0,
+   "only_in_reference": 0,
+   "only_in_run": 0,
+   "windows_with_any_feature_difference": 0,
+   "per_feature": {
+    "n_flows": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "up": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "down": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "pkts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "dst_hosts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "dst_ports": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_flows": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_up_bytes": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_down_bytes": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_pkts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_dst_hosts": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "log_dst_ports": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "no_reply_frac": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "rst_frac": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "udp_share": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "med_log_dur": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "upload_share": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "new_dst_frac": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "window_start_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "window_end_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    }
+   },
+   "example_differing": []
+  }
+ },
+ "calibration_destinations": {
+  "reference": 57326,
+  "run": 57326,
+  "only_reference": 0,
+  "only_run": 0
+ },
+ "scores": {
+  "thresholds_reference": {
+   "global": 5.908080454404689,
+   "device": 28.040419709951657,
+   "service": 20.991341669276792
+  },
+  "thresholds_run": {
+   "global": 5.908080454404689,
+   "device": 28.040419709951657,
+   "service": 20.991341669276792
+  },
+  "scored_windows_reference": 538015,
+  "scored_windows_run": 538015,
+  "only_in_reference": 0,
+  "only_in_run": 0,
+  "score_differing": 0,
+  "max_abs_score_diff": 0.0,
+  "alert_decisions_differing": 0,
+  "alerts_reference": 8041,
+  "alerts_run": 8041,
+  "alert_flips_by_level": {
+   "global": 0,
+   "device": 0,
+   "service": 0
+  },
+  "alerts_gained_run": 0,
+  "alerts_lost_run": 0,
+  "alert_flip_keys": []
+ },
+ "equivalent": true,
+ "peak_rss_mb": 2305.6875
+}

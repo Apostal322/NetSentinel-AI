@@ -1,0 +1,270 @@
+{
+ "label": "[R] retrospective, exploratory: consumed data; not confirmatory",
+ "scenario": "scenario_10",
+ "run": "reference",
+ "result": {
+  "id": "CTU-Malware-Capture-Botnet-51",
+  "botnet": "Rbot",
+  "test_hours": 2.262893611111111,
+  "calibration_flows": {
+   "cal_kept": 718005,
+   "cal_excluded_initiator": 6831791,
+   "test": 4068613
+  },
+  "telemetry_health": "ok",
+  "time_alignment_s": 11.328,
+  "time_aligned": true,
+  "calibration_has_initiator_keys": false,
+  "modes": {
+   "vetted_benign": {
+    "profile_status": "baseline_provisional",
+    "levels": {
+     "global": {
+      "threshold": 6.461281389086771,
+      "threshold_reliable": false,
+      "own_profiles": 1,
+      "tail_fallback_share": null,
+      "validity_reference_blocks": 31
+     },
+     "device": {
+      "threshold": 27.940873588225646,
+      "threshold_reliable": true,
+      "own_profiles": 609,
+      "tail_fallback_share": 0.9488898198575618,
+      "validity_reference_blocks": 31
+     },
+     "service": {
+      "threshold": 18.724284153265504,
+      "threshold_reliable": true,
+      "own_profiles": 10,
+      "tail_fallback_share": 0.0,
+      "validity_reference_blocks": 31
+     }
+    },
+    "V3": {
+     "initiators_with_attack_windows": 10,
+     "initiators_detected": 10,
+     "initiators_ci95": [
+      0.7224598312333834,
+      1.0
+     ],
+     "attack_windows": 286,
+     "attack_windows_detected": 164,
+     "attack_window_recall": 0.5734265734265734,
+     "delay_s_from_infection": {
+      "147.32.84.165": 10370.0,
+      "147.32.84.191": 10348.0,
+      "147.32.84.192": 10399.0,
+      "147.32.84.193": 10328.0,
+      "147.32.84.204": 10427.0,
+      "147.32.84.205": 10305.0,
+      "147.32.84.206": 10454.0,
+      "147.32.84.207": 10480.0,
+      "147.32.84.208": 10508.0,
+      "147.32.84.209": 10555.0
+     },
+     "median_delay_s": 10413.0,
+     "benign_windows": 606,
+     "benign_false_alerts": 4,
+     "benign_fpr": 0.006600660066006601,
+     "benign_false_alerts_per_h": 1.7676482802193898,
+     "unverified_windows": 253651,
+     "unverified_alerts_per_h": 1475.1024898430808,
+     "cost": {
+      "10": 1224,
+      "100": 12204
+     }
+    },
+    "Z_never_alert": {
+     "initiators_with_attack_windows": 10,
+     "initiators_detected": 0,
+     "initiators_ci95": [
+      0.0,
+      0.2775401687666166
+     ],
+     "attack_windows": 286,
+     "attack_windows_detected": 0,
+     "attack_window_recall": 0.0,
+     "delay_s_from_infection": {},
+     "median_delay_s": null,
+     "benign_windows": 606,
+     "benign_false_alerts": 0,
+     "benign_fpr": 0.0,
+     "benign_false_alerts_per_h": 0.0,
+     "unverified_windows": 253651,
+     "unverified_alerts_per_h": 0.0,
+     "cost": {
+      "10": 2860,
+      "100": 28600
+     }
+    },
+    "global_alerts_per_h": 12.373537961535728,
+    "service_alerts_per_h": 32.70149318405871,
+    "bootstrap": {
+     "blocks": 10,
+     "status": "inference",
+     "attack_window_recall_ci95": [
+      0.391792589376176,
+      0.850751650401837
+     ],
+     "benign_fpr_ci95": [
+      0.0014593807189886199,
+      0.01342338277592916
+     ]
+    },
+    "segments": [
+     {
+      "segment": 0,
+      "baseline_state": "monitoring",
+      "validity": "unreliable_threshold",
+      "shift_test_only": "confirmed_shift",
+      "benign": 281,
+      "benign_false_alerts": 3,
+      "attack_windows": 3,
+      "normality_supported": 0,
+      "device_windows": 104095
+     },
+     {
+      "segment": 1,
+      "baseline_state": "drift_suspected",
+      "validity": "unreliable_threshold",
+      "shift_test_only": "possible_shift",
+      "benign": 265,
+      "benign_false_alerts": 1,
+      "attack_windows": 181,
+      "normality_supported": 0,
+      "device_windows": 115783
+     },
+     {
+      "segment": 2,
+      "baseline_state": "monitoring",
+      "validity": "unreliable_threshold",
+      "shift_test_only": "untestable",
+      "benign": 60,
+      "benign_false_alerts": 0,
+      "attack_windows": 102,
+      "normality_supported": 0,
+      "device_windows": 34665
+     }
+    ],
+    "normality_supported_share": 0.0,
+    "C1_null": {
+     "levels_tested": 3,
+     "confirmed": false
+    },
+    "V4": {
+     "S1": {
+      "initiators_detected": 10,
+      "initiators": 10,
+      "benign_false_alerts_per_h": 1.7676482802193898,
+      "attack_window_recall": 0.5734265734265734,
+      "absorbed_attack_windows": 0,
+      "absorbed_share": 0.0,
+      "activations": 0,
+      "reviews_required": 0
+     },
+     "S5": {
+      "initiators_detected": 10,
+      "initiators": 10,
+      "benign_false_alerts_per_h": 1.7676482802193898,
+      "attack_window_recall": 0.44755244755244755,
+      "absorbed_attack_windows": 184,
+      "absorbed_share": 0.6433566433566433,
+      "activations": 1,
+      "reviews_required": 0
+     },
+     "V4_success": false
+    },
+    "seconds": 34.203944999999294
+   },
+   "unlabelled": {
+    "profile_status": "baseline_provisional",
+    "levels": {
+     "global": {
+      "threshold": 6.433993927738991,
+      "threshold_reliable": false,
+      "own_profiles": 1,
+      "tail_fallback_share": null,
+      "validity_reference_blocks": 31
+     },
+     "device": {
+      "threshold": 31.30756826743771,
+      "threshold_reliable": true,
+      "own_profiles": 522,
+      "tail_fallback_share": 0.9656472559698366,
+      "validity_reference_blocks": 31
+     },
+     "service": {
+      "threshold": 19.67331229179506,
+      "threshold_reliable": true,
+      "own_profiles": 10,
+      "tail_fallback_share": 0.0,
+      "validity_reference_blocks": 31
+     }
+    },
+    "V3": {
+     "initiators_with_attack_windows": 10,
+     "initiators_detected": 10,
+     "initiators_ci95": [
+      0.7224598312333834,
+      1.0
+     ],
+     "attack_windows": 286,
+     "attack_windows_detected": 76,
+     "attack_window_recall": 0.26573426573426573,
+     "delay_s_from_infection": {
+      "147.32.84.165": 10370.0,
+      "147.32.84.191": 10348.0,
+      "147.32.84.192": 10399.0,
+      "147.32.84.193": 10328.0,
+      "147.32.84.204": 10427.0,
+      "147.32.84.205": 10305.0,
+      "147.32.84.206": 10454.0,
+      "147.32.84.207": 10480.0,
+      "147.32.84.208": 10508.0,
+      "147.32.84.209": 10555.0
+     },
+     "median_delay_s": 10413.0,
+     "benign_windows": 606,
+     "benign_false_alerts": 5,
+     "benign_fpr": 0.00825082508250825,
+     "benign_false_alerts_per_h": 2.2095603502742374,
+     "unverified_windows": 253651,
+     "unverified_alerts_per_h": 1551.5532779625694,
+     "cost": {
+      "10": 2105,
+      "100": 21005
+     }
+    },
+    "Z_never_alert": {
+     "initiators_with_attack_windows": 10,
+     "initiators_detected": 0,
+     "initiators_ci95": [
+      0.0,
+      0.2775401687666166
+     ],
+     "attack_windows": 286,
+     "attack_windows_detected": 0,
+     "attack_window_recall": 0.0,
+     "delay_s_from_infection": {},
+     "median_delay_s": null,
+     "benign_windows": 606,
+     "benign_false_alerts": 0,
+     "benign_fpr": 0.0,
+     "benign_false_alerts_per_h": 0.0,
+     "unverified_windows": 253651,
+     "unverified_alerts_per_h": 0.0,
+     "cost": {
+      "10": 2860,
+      "100": 28600
+     }
+    },
+    "global_alerts_per_h": 12.373537961535728,
+    "service_alerts_per_h": 32.70149318405871,
+    "seconds": 31.35224439999911
+   }
+  },
+  "seconds": 66.55138230000011,
+  "peak_rss_mb": 1208.50390625
+ }
+}

@@ -1,0 +1,60 @@
+{
+ "label": "[R] engineering micro-benchmark on consumed CTU-13 scenario 9 data",
+ "records": 500000,
+ "max_buffer": 20000,
+ "max_spill": 2000000,
+ "runs": {
+  "9e526ca": [
+   {
+    "total_s": 14.942686800000956,
+    "push_s": 8.993921600000249,
+    "flush_s": 5.948765200000707,
+    "take_s": 5.7156001000093966,
+    "takes": 140,
+    "records_per_s": 33461.184503978766,
+    "emitted": 500000,
+    "spilled_windows": 140,
+    "late": 0,
+    "forced_closes": 0
+   },
+   {
+    "total_s": 12.596720300000015,
+    "push_s": 6.61848960000134,
+    "flush_s": 5.978230699998676,
+    "take_s": 5.731414499981838,
+    "takes": 140,
+    "records_per_s": 39692.87148496894,
+    "emitted": 500000,
+    "spilled_windows": 140,
+    "late": 0,
+    "forced_closes": 0
+   }
+  ],
+  "current": [
+   {
+    "total_s": 13.128609999999753,
+    "push_s": 6.862727599998834,
+    "flush_s": 6.265882400000919,
+    "take_s": 6.433006299988847,
+    "takes": 140,
+    "records_per_s": 38084.762971861404,
+    "emitted": 500000,
+    "spilled_windows": 140,
+    "late": 0,
+    "forced_closes": 0
+   },
+   {
+    "total_s": 13.42830160000085,
+    "push_s": 6.867537600001015,
+    "flush_s": 6.5607639999998355,
+    "take_s": 6.651956000003338,
+    "takes": 140,
+    "records_per_s": 37234.79073481402,
+    "emitted": 500000,
+    "spilled_windows": 140,
+    "late": 0,
+    "forced_closes": 0
+   }
+  ]
+ }
+}

@@ -1,0 +1,4 @@
+script scripts/phase8g_post/sc9_diagnostics.py
+script scripts/phase8g_post/v4_synthetic.py --cells known_ramp
+script scripts/phase8g_post/spill_bench.py
+script scripts/phase8g_post/interrupt_check.py

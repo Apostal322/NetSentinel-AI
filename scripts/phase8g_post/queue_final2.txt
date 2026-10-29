@@ -1,0 +1,3 @@
+script scripts/phase8g_post/sc9_diagnostics.py
+script scripts/phase8g_post/sc9_product_gate.py
+script scripts/phase8g_post/interrupt_check.py

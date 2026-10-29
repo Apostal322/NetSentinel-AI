@@ -1,0 +1,2 @@
+script scripts/phase8g_post/entity_gate_dev.py
+script scripts/phase8g_post/sc9_product_gate.py

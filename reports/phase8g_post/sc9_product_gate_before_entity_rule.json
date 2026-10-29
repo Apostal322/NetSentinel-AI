@@ -1,0 +1,36 @@
+{
+ "label": "[R] diagnosis on consumed data",
+ "candidate_period_ms": [
+  1313584261781,
+  1313591461781
+ ],
+ "candidate_period": {
+  "previous": "calibration-20261028T125657393155Z",
+  "global_windows": 241,
+  "alerts": 4,
+  "alert_rate_under_previous": 0.016597510373443983,
+  "previous_target_fpr": 0.01,
+  "p_value": 0.22274493497993542,
+  "rate_review": false,
+  "outlier_factor": 2.0,
+  "strong_outliers": [],
+  "review_required": false,
+  "reason": "consistent with the current baseline",
+  "flows": 1176615
+ },
+ "candidate_period_without_initiators": {
+  "previous": "calibration-20261028T125657393155Z",
+  "global_windows": 241,
+  "alerts": 3,
+  "alert_rate_under_previous": 0.012448132780082987,
+  "previous_target_fpr": 0.01,
+  "p_value": 0.433438489051365,
+  "rate_review": false,
+  "outlier_factor": 2.0,
+  "strong_outliers": [],
+  "review_required": false,
+  "reason": "consistent with the current baseline",
+  "flows": 1080455
+ },
+ "peak_rss_mb": 2102.70703125
+}

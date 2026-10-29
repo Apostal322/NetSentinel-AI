@@ -1,0 +1,80 @@
+{
+ "scenario": "scenario_10",
+ "run": "frozen",
+ "audit": {
+  "code": "frozen",
+  "code_sha": "121acbfe208ef7637f6d2fe8e048f4cea65d92e4",
+  "lateness_s": 600,
+  "max_buffer": 1500000,
+  "max_spill": null,
+  "build": false,
+  "wall_s": 112.51049160000002,
+  "cpu_s": 47.015625,
+  "cpu_share_of_one_core": 0.41787769594991253,
+  "stream_s": 65.0821471007348,
+  "build_s": 0.0,
+  "stream_records_per_s": 178519.24863537305,
+  "end_to_end_records_per_s": 103265.17851602737,
+  "peak_spill_disk_bytes_sampled": 0,
+  "spill_take_s": 0.0,
+  "spill_takes": 0,
+  "spill_dirs_removed_after_flush": true,
+  "peak_rss_mb": 1657.94140625
+ },
+ "stream": {
+  "records": 11618416,
+  "accepted": 11610687,
+  "duplicates": 7,
+  "late": 6030,
+  "clock_skew": 1692,
+  "clock_resyncs": 0,
+  "clock_resets": 0,
+  "clock_reverts": 0,
+  "quarantine_rejected": 1692,
+  "quarantine_evicted": 0,
+  "replayed": 0,
+  "uncorroborated_ahead": 0,
+  "forced_closes": 57,
+  "windows_closed": 572,
+  "max_buffered": 1500001,
+  "max_quarantined": 1692,
+  "watermark_ms": 1313672097623,
+  "health": "buffer_pressure",
+  "health_flags": [
+   "buffer_pressure"
+  ]
+ },
+ "acceptance": "failed (late 6030, forced_closes 57)",
+ "records": {
+  "input": 11618416,
+  "reference_members": 11618409,
+  "reference_duplicates_removed": 7,
+  "run_members": 11610687,
+  "missing": 7722,
+  "extra": 0,
+  "moved_to_another_window": 0,
+  "repeated_in_run": 0,
+  "missing_by_fate": {
+   "late": 6030,
+   "quarantined": 1692
+  },
+  "missing_longer_than_skew_plus_lateness": 1671,
+  "missing_duration_ms_quantiles": [
+   0.0,
+   1289.5,
+   8530275.100000015,
+   17145530.0
+  ]
+ },
+ "windows": {
+  "reference": 572,
+  "run": 572,
+  "flow_count_differing": 353,
+  "packet_sum_differing": 353,
+  "emitted_more_than_once": 0,
+  "only_in_reference": 0,
+  "only_in_run": 0
+ },
+ "equivalent": false,
+ "peak_rss_mb": 1928.62890625
+}

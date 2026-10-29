@@ -1,0 +1,18 @@
+script scripts\phase8g_post\sc9_diagnostics.py
+script scripts\phase8g_post\v4_synthetic.py
+stream scenario_9 --run spill100k_lazy --max-buffer 100000
+compare scenario_9 --run spill100k_lazy
+stream scenario_9 --run spill800k --max-buffer 200000 --max-spill 800000
+compare scenario_9 --run spill800k
+cache scenario_10
+reference scenario_10
+stream scenario_10 --run frozen --code frozen --no-build
+stream scenario_10 --run current
+stream scenario_10 --run spill200k --max-buffer 200000 --max-spill 3000000
+stream scenario_10 --run lateness3700 --lateness 3700 --max-buffer 500000 --max-spill 8000000
+compare scenario_10 --run frozen --no-scores
+compare scenario_10 --run current
+compare scenario_10 --run spill200k
+compare scenario_10 --run lateness3700
+evaluate scenario_10 --run reference
+evaluate scenario_10 --run current

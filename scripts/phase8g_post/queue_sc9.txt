@@ -1,0 +1,8 @@
+stream scenario_9 --run frozen --code frozen --no-build
+stream scenario_9 --run current
+stream scenario_9 --run spill100k --max-buffer 100000
+compare scenario_9 --run frozen --no-scores
+compare scenario_9 --run current
+compare scenario_9 --run spill100k
+evaluate scenario_9 --run reference
+evaluate scenario_9 --run current

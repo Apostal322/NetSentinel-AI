@@ -1,0 +1,26 @@
+{
+ "label": "[R] engineering check on consumed CTU-13 scenario 9 data",
+ "killed_after_s": 5.117281436920166,
+ "killed_pid": 16052,
+ "spill_dir_bytes_at_kill": 55173482,
+ "spill_files_at_kill": 45,
+ "left_behind_after_kill": true,
+ "owner_pid_alive_after_kill": false,
+ "sweep_removed": 1,
+ "killed_dir_removed_by_sweep": true,
+ "other_spill_dirs_before_sweep": [
+  "netsentinel-spill-1nn1urez",
+  "netsentinel-spill-aa1ib4c1",
+  "netsentinel-spill-g6vp4r9x",
+  "netsentinel-spill-quhxhwt1",
+  "netsentinel-spill-xgd0_eay"
+ ],
+ "spill_dirs_after_sweep": [
+  "netsentinel-spill-1nn1urez",
+  "netsentinel-spill-aa1ib4c1",
+  "netsentinel-spill-g6vp4r9x",
+  "netsentinel-spill-quhxhwt1",
+  "netsentinel-spill-xgd0_eay"
+ ],
+ "partial_run_dir_removed": true
+}

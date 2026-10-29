@@ -1,0 +1,9 @@
+{
+ "label": "[R] retrospective, exploratory: consumed data; not confirmatory",
+ "scenario": "scenario_10",
+ "run": "current",
+ "result": {
+  "status": "declared failed (A2): failed (late 90, forced_closes 0)",
+  "lateness_s": 600
+ }
+}

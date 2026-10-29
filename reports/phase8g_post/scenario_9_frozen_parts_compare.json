@@ -1,0 +1,765 @@
+{
+ "scenario": "scenario_9",
+ "frozen_parts": "data/derived/phase8g/scenario_9",
+ "features": {
+  "cal_global": {
+   "windows_reference": 301,
+   "windows_run": 301,
+   "repeated_windows_reference": 0,
+   "repeated_windows_run": 0,
+   "only_in_reference": 0,
+   "only_in_run": 0,
+   "windows_with_any_feature_difference": 32,
+   "per_feature": {
+    "n_flows": {
+     "windows_differing": 32,
+     "max_abs_diff": 4.0
+    },
+    "up": {
+     "windows_differing": 32,
+     "max_abs_diff": 991094.0
+    },
+    "down": {
+     "windows_differing": 32,
+     "max_abs_diff": 3377992.0
+    },
+    "pkts": {
+     "windows_differing": 32,
+     "max_abs_diff": 9746.0
+    },
+    "dst_hosts": {
+     "windows_differing": 14,
+     "max_abs_diff": 2.0
+    },
+    "dst_ports": {
+     "windows_differing": 12,
+     "max_abs_diff": 3.0
+    },
+    "log_flows": {
+     "windows_differing": 32,
+     "max_abs_diff": 0.0009015100903546625
+    },
+    "log_up_bytes": {
+     "windows_differing": 32,
+     "max_abs_diff": 0.024971491738522644
+    },
+    "log_down_bytes": {
+     "windows_differing": 32,
+     "max_abs_diff": 0.09742858234213969
+    },
+    "log_pkts": {
+     "windows_differing": 32,
+     "max_abs_diff": 0.09326113435752958
+    },
+    "log_dst_hosts": {
+     "windows_differing": 14,
+     "max_abs_diff": 0.0023337233462203955
+    },
+    "log_dst_ports": {
+     "windows_differing": 12,
+     "max_abs_diff": 0.004743091896012963
+    },
+    "no_reply_frac": {
+     "windows_differing": 32,
+     "max_abs_diff": 0.0002354971502903716
+    },
+    "rst_frac": {
+     "windows_differing": 32,
+     "max_abs_diff": 0.0005159675154179644
+    },
+    "udp_share": {
+     "windows_differing": 32,
+     "max_abs_diff": 0.000751495622644649
+    },
+    "med_log_dur": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "upload_share": {
+     "windows_differing": 32,
+     "max_abs_diff": 0.018029402942255857
+    },
+    "new_dst_frac": {
+     "windows_differing": 15,
+     "max_abs_diff": 0.0018556005398110698
+    },
+    "window_start_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "window_end_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    }
+   },
+   "example_differing": [
+    {
+     "key": "*",
+     "win": 43786080
+    },
+    {
+     "key": "*",
+     "win": 43786082
+    },
+    {
+     "key": "*",
+     "win": 43786085
+    },
+    {
+     "key": "*",
+     "win": 43786087
+    },
+    {
+     "key": "*",
+     "win": 43786088
+    }
+   ]
+  },
+  "cal_device": {
+   "windows_reference": 431713,
+   "windows_run": 431685,
+   "repeated_windows_reference": 0,
+   "repeated_windows_run": 0,
+   "only_in_reference": 28,
+   "only_in_run": 0,
+   "windows_with_any_feature_difference": 18,
+   "per_feature": {
+    "n_flows": {
+     "windows_differing": 17,
+     "max_abs_diff": 2.0
+    },
+    "up": {
+     "windows_differing": 17,
+     "max_abs_diff": 991094.0
+    },
+    "down": {
+     "windows_differing": 17,
+     "max_abs_diff": 3377992.0
+    },
+    "pkts": {
+     "windows_differing": 17,
+     "max_abs_diff": 9336.0
+    },
+    "dst_hosts": {
+     "windows_differing": 12,
+     "max_abs_diff": 2.0
+    },
+    "dst_ports": {
+     "windows_differing": 14,
+     "max_abs_diff": 2.0
+    },
+    "log_flows": {
+     "windows_differing": 17,
+     "max_abs_diff": 0.4054651081081645
+    },
+    "log_up_bytes": {
+     "windows_differing": 17,
+     "max_abs_diff": 4.631588950197602
+    },
+    "log_down_bytes": {
+     "windows_differing": 17,
+     "max_abs_diff": 11.007485313480576
+    },
+    "log_pkts": {
+     "windows_differing": 17,
+     "max_abs_diff": 4.9440914468861115
+    },
+    "log_dst_hosts": {
+     "windows_differing": 12,
+     "max_abs_diff": 0.4054651081081645
+    },
+    "log_dst_ports": {
+     "windows_differing": 14,
+     "max_abs_diff": 0.4054651081081645
+    },
+    "no_reply_frac": {
+     "windows_differing": 11,
+     "max_abs_diff": 0.5
+    },
+    "rst_frac": {
+     "windows_differing": 7,
+     "max_abs_diff": 0.5
+    },
+    "udp_share": {
+     "windows_differing": 13,
+     "max_abs_diff": 0.5
+    },
+    "med_log_dur": {
+     "windows_differing": 11,
+     "max_abs_diff": 4.543294782270004
+    },
+    "upload_share": {
+     "windows_differing": 17,
+     "max_abs_diff": 0.5415420571376324
+    },
+    "new_dst_frac": {
+     "windows_differing": 10,
+     "max_abs_diff": 0.3333333333333333
+    },
+    "window_start_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "window_end_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    }
+   },
+   "example_differing": [
+    {
+     "key": "147.32.84.189",
+     "win": 43786085
+    },
+    {
+     "key": "147.32.84.229",
+     "win": 43786088
+    },
+    {
+     "key": "147.32.84.229",
+     "win": 43786102
+    },
+    {
+     "key": "147.32.85.60",
+     "win": 43786104
+    },
+    {
+     "key": "2001:718:2:1638:dcbf:990a:6f87:c55e",
+     "win": 43786106
+    }
+   ]
+  },
+  "cal_service": {
+   "windows_reference": 2681,
+   "windows_run": 2681,
+   "repeated_windows_reference": 0,
+   "repeated_windows_run": 0,
+   "only_in_reference": 0,
+   "only_in_run": 0,
+   "windows_with_any_feature_difference": 38,
+   "per_feature": {
+    "n_flows": {
+     "windows_differing": 37,
+     "max_abs_diff": 3.0
+    },
+    "up": {
+     "windows_differing": 37,
+     "max_abs_diff": 975050.0
+    },
+    "down": {
+     "windows_differing": 37,
+     "max_abs_diff": 3363866.0
+    },
+    "pkts": {
+     "windows_differing": 37,
+     "max_abs_diff": 9336.0
+    },
+    "dst_hosts": {
+     "windows_differing": 16,
+     "max_abs_diff": 3.0
+    },
+    "dst_ports": {
+     "windows_differing": 12,
+     "max_abs_diff": 3.0
+    },
+    "log_flows": {
+     "windows_differing": 37,
+     "max_abs_diff": 0.25131442828090633
+    },
+    "log_up_bytes": {
+     "windows_differing": 37,
+     "max_abs_diff": 1.027658531058238
+    },
+    "log_down_bytes": {
+     "windows_differing": 37,
+     "max_abs_diff": 2.228594603577023
+    },
+    "log_pkts": {
+     "windows_differing": 37,
+     "max_abs_diff": 1.5075985271748529
+    },
+    "log_dst_hosts": {
+     "windows_differing": 16,
+     "max_abs_diff": 0.2231435513142097
+    },
+    "log_dst_ports": {
+     "windows_differing": 12,
+     "max_abs_diff": 0.004897968975546618
+    },
+    "no_reply_frac": {
+     "windows_differing": 36,
+     "max_abs_diff": 0.009090909090909094
+    },
+    "rst_frac": {
+     "windows_differing": 36,
+     "max_abs_diff": 0.125
+    },
+    "udp_share": {
+     "windows_differing": 34,
+     "max_abs_diff": 0.0013389288569144453
+    },
+    "med_log_dur": {
+     "windows_differing": 16,
+     "max_abs_diff": 0.4065323443724802
+    },
+    "upload_share": {
+     "windows_differing": 37,
+     "max_abs_diff": 0.25208875411509957
+    },
+    "new_dst_frac": {
+     "windows_differing": 15,
+     "max_abs_diff": 0.007713498622589535
+    },
+    "window_start_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "window_end_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    }
+   },
+   "example_differing": [
+    {
+     "key": "ephemeral",
+     "win": 43786080
+    },
+    {
+     "key": "web",
+     "win": 43786082
+    },
+    {
+     "key": "web",
+     "win": 43786085
+    },
+    {
+     "key": "ephemeral",
+     "win": 43786087
+    },
+    {
+     "key": "ephemeral",
+     "win": 43786088
+    }
+   ]
+  },
+  "test_global": {
+   "windows_reference": 323,
+   "windows_run": 323,
+   "repeated_windows_reference": 0,
+   "repeated_windows_run": 0,
+   "only_in_reference": 0,
+   "only_in_run": 0,
+   "windows_with_any_feature_difference": 223,
+   "per_feature": {
+    "n_flows": {
+     "windows_differing": 223,
+     "max_abs_diff": 182.0
+    },
+    "up": {
+     "windows_differing": 223,
+     "max_abs_diff": 340278293.0
+    },
+    "down": {
+     "windows_differing": 219,
+     "max_abs_diff": 12210546237.0
+    },
+    "pkts": {
+     "windows_differing": 223,
+     "max_abs_diff": 13137582.0
+    },
+    "dst_hosts": {
+     "windows_differing": 96,
+     "max_abs_diff": 64.0
+    },
+    "dst_ports": {
+     "windows_differing": 94,
+     "max_abs_diff": 42.0
+    },
+    "log_flows": {
+     "windows_differing": 223,
+     "max_abs_diff": 0.09865973234186765
+    },
+    "log_up_bytes": {
+     "windows_differing": 223,
+     "max_abs_diff": 1.3564313942989585
+    },
+    "log_down_bytes": {
+     "windows_differing": 219,
+     "max_abs_diff": 1.9753105684055292
+    },
+    "log_pkts": {
+     "windows_differing": 223,
+     "max_abs_diff": 1.7783889301203608
+    },
+    "log_dst_hosts": {
+     "windows_differing": 96,
+     "max_abs_diff": 0.1692684345493749
+    },
+    "log_dst_ports": {
+     "windows_differing": 94,
+     "max_abs_diff": 0.18392283816092814
+    },
+    "no_reply_frac": {
+     "windows_differing": 223,
+     "max_abs_diff": 0.015481581049421655
+    },
+    "rst_frac": {
+     "windows_differing": 223,
+     "max_abs_diff": 0.003566617108960453
+    },
+    "udp_share": {
+     "windows_differing": 223,
+     "max_abs_diff": 0.05671432991802394
+    },
+    "med_log_dur": {
+     "windows_differing": 12,
+     "max_abs_diff": 1.1526795099383853
+    },
+    "upload_share": {
+     "windows_differing": 223,
+     "max_abs_diff": 0.2875202273584332
+    },
+    "new_dst_frac": {
+     "windows_differing": 96,
+     "max_abs_diff": 0.04746933596503594
+    },
+    "window_start_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "window_end_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    }
+   },
+   "example_differing": [
+    {
+     "key": "*",
+     "win": 43786143
+    },
+    {
+     "key": "*",
+     "win": 43786144
+    },
+    {
+     "key": "*",
+     "win": 43786148
+    },
+    {
+     "key": "*",
+     "win": 43786152
+    },
+    {
+     "key": "*",
+     "win": 43786153
+    }
+   ]
+  },
+  "test_device": {
+   "windows_reference": 534796,
+   "windows_run": 534205,
+   "repeated_windows_reference": 0,
+   "repeated_windows_run": 0,
+   "only_in_reference": 591,
+   "only_in_run": 0,
+   "windows_with_any_feature_difference": 224,
+   "per_feature": {
+    "n_flows": {
+     "windows_differing": 222,
+     "max_abs_diff": 24.0
+    },
+    "up": {
+     "windows_differing": 222,
+     "max_abs_diff": 25325010.0
+    },
+    "down": {
+     "windows_differing": 215,
+     "max_abs_diff": 272346900.0
+    },
+    "pkts": {
+     "windows_differing": 222,
+     "max_abs_diff": 283980.0
+    },
+    "dst_hosts": {
+     "windows_differing": 180,
+     "max_abs_diff": 20.0
+    },
+    "dst_ports": {
+     "windows_differing": 155,
+     "max_abs_diff": 20.0
+    },
+    "log_flows": {
+     "windows_differing": 222,
+     "max_abs_diff": 0.6931471805599453
+    },
+    "log_up_bytes": {
+     "windows_differing": 222,
+     "max_abs_diff": 11.634780199996666
+    },
+    "log_down_bytes": {
+     "windows_differing": 215,
+     "max_abs_diff": 12.189811141051353
+    },
+    "log_pkts": {
+     "windows_differing": 222,
+     "max_abs_diff": 7.778477922946781
+    },
+    "log_dst_hosts": {
+     "windows_differing": 180,
+     "max_abs_diff": 0.6931471805599453
+    },
+    "log_dst_ports": {
+     "windows_differing": 155,
+     "max_abs_diff": 0.6931471805599453
+    },
+    "no_reply_frac": {
+     "windows_differing": 118,
+     "max_abs_diff": 0.5
+    },
+    "rst_frac": {
+     "windows_differing": 116,
+     "max_abs_diff": 0.6666666666666667
+    },
+    "udp_share": {
+     "windows_differing": 182,
+     "max_abs_diff": 0.6666666666666667
+    },
+    "med_log_dur": {
+     "windows_differing": 169,
+     "max_abs_diff": 16.738217626806403
+    },
+    "upload_share": {
+     "windows_differing": 222,
+     "max_abs_diff": 0.9212646772750346
+    },
+    "new_dst_frac": {
+     "windows_differing": 125,
+     "max_abs_diff": 0.5
+    },
+    "window_start_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "window_end_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    }
+   },
+   "example_differing": [
+    {
+     "key": "147.32.84.59",
+     "win": 43786143
+    },
+    {
+     "key": "147.32.85.87",
+     "win": 43786143
+    },
+    {
+     "key": "147.229.67.76",
+     "win": 43786148
+    },
+    {
+     "key": "147.32.84.229",
+     "win": 43786148
+    },
+    {
+     "key": "147.32.85.117",
+     "win": 43786148
+    }
+   ]
+  },
+  "test_service": {
+   "windows_reference": 2896,
+   "windows_run": 2896,
+   "repeated_windows_reference": 0,
+   "repeated_windows_run": 0,
+   "only_in_reference": 0,
+   "only_in_run": 0,
+   "windows_with_any_feature_difference": 315,
+   "per_feature": {
+    "n_flows": {
+     "windows_differing": 315,
+     "max_abs_diff": 120.0
+    },
+    "up": {
+     "windows_differing": 315,
+     "max_abs_diff": 285921217.0
+    },
+    "down": {
+     "windows_differing": 300,
+     "max_abs_diff": 12092807459.0
+    },
+    "pkts": {
+     "windows_differing": 315,
+     "max_abs_diff": 12605132.0
+    },
+    "dst_hosts": {
+     "windows_differing": 153,
+     "max_abs_diff": 38.0
+    },
+    "dst_ports": {
+     "windows_differing": 105,
+     "max_abs_diff": 38.0
+    },
+    "log_flows": {
+     "windows_differing": 315,
+     "max_abs_diff": 0.4054651081081646
+    },
+    "log_up_bytes": {
+     "windows_differing": 315,
+     "max_abs_diff": 7.4351390315452495
+    },
+    "log_down_bytes": {
+     "windows_differing": 300,
+     "max_abs_diff": 8.909417988541044
+    },
+    "log_pkts": {
+     "windows_differing": 315,
+     "max_abs_diff": 6.133069011067302
+    },
+    "log_dst_hosts": {
+     "windows_differing": 153,
+     "max_abs_diff": 0.5596157879354227
+    },
+    "log_dst_ports": {
+     "windows_differing": 105,
+     "max_abs_diff": 0.4054651081081645
+    },
+    "no_reply_frac": {
+     "windows_differing": 307,
+     "max_abs_diff": 0.08712121212121213
+    },
+    "rst_frac": {
+     "windows_differing": 302,
+     "max_abs_diff": 0.30000000000000004
+    },
+    "udp_share": {
+     "windows_differing": 285,
+     "max_abs_diff": 0.1111111111111111
+    },
+    "med_log_dur": {
+     "windows_differing": 194,
+     "max_abs_diff": 4.1015607558686416
+    },
+    "upload_share": {
+     "windows_differing": 315,
+     "max_abs_diff": 0.7042422852724116
+    },
+    "new_dst_frac": {
+     "windows_differing": 149,
+     "max_abs_diff": 0.3333333333333333
+    },
+    "window_start_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    },
+    "window_end_ms": {
+     "windows_differing": 0,
+     "max_abs_diff": 0.0
+    }
+   },
+   "example_differing": [
+    {
+     "key": "web",
+     "win": 43786143
+    },
+    {
+     "key": "ephemeral",
+     "win": 43786144
+    },
+    {
+     "key": "ephemeral",
+     "win": 43786148
+    },
+    {
+     "key": "ephemeral",
+     "win": 43786152
+    },
+    {
+     "key": "ephemeral",
+     "win": 43786153
+    }
+   ]
+  }
+ },
+ "scores": {
+  "thresholds_reference": {
+   "global": 5.908080454404689,
+   "device": 28.040419709951657,
+   "service": 20.991341669276792
+  },
+  "thresholds_run": {
+   "global": 5.908080454404689,
+   "device": 28.017650437132666,
+   "service": 20.991341669276792
+  },
+  "scored_windows_reference": 538015,
+  "scored_windows_run": 537424,
+  "only_in_reference": 591,
+  "only_in_run": 0,
+  "score_differing": 1642,
+  "max_abs_score_diff": 30.54766424921341,
+  "alert_decisions_differing": 65,
+  "alerts_reference": 8041,
+  "alerts_run": 7515,
+  "alert_flips_by_level": {
+   "global": 2,
+   "device": 62,
+   "service": 1
+  },
+  "alerts_gained_run": 43,
+  "alerts_lost_run": 22,
+  "alert_flip_keys": [
+   {
+    "level": "device",
+    "key": "147.32.84.205",
+    "len": 3
+   },
+   {
+    "level": "device",
+    "key": "147.32.84.193",
+    "len": 2
+   },
+   {
+    "level": "device",
+    "key": "147.32.84.206",
+    "len": 2
+   },
+   {
+    "level": "device",
+    "key": "147.32.84.204",
+    "len": 2
+   },
+   {
+    "level": "global",
+    "key": "*",
+    "len": 2
+   },
+   {
+    "level": "device",
+    "key": "84.91.32.229",
+    "len": 1
+   },
+   {
+    "level": "device",
+    "key": "151.63.236.19",
+    "len": 1
+   },
+   {
+    "level": "device",
+    "key": "76.11.80.241",
+    "len": 1
+   },
+   {
+    "level": "device",
+    "key": "147.32.84.13",
+    "len": 1
+   },
+   {
+    "level": "device",
+    "key": "188.146.204.207",
+    "len": 1
+   }
+  ]
+ },
+ "peak_rss_mb": 1996.6015625
+}

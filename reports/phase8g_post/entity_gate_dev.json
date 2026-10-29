@@ -1,0 +1,264 @@
+{
+ "label": "[E] development data (CTU-Normal, inspected in Phases 6-8)",
+ "captures": {
+  "CTU-Normal-26": {
+   "clean": {
+    "review_required": false,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "consistent with the current baseline",
+    "strong_outliers": 0,
+    "excess_entities": []
+   },
+   "contaminated": {
+    "review_required": false,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "consistent with the current baseline",
+    "strong_outliers": 0,
+    "excess_entities": []
+   },
+   "phase8f_clean_review": false,
+   "phase8f_contaminated_review": false
+  },
+  "CTU-Normal-20": {
+   "clean": {
+    "review_required": false,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "consistent with the current baseline",
+    "strong_outliers": 0,
+    "excess_entities": []
+   },
+   "contaminated": {
+    "review_required": true,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "3 window(s) score >= 2.0x the largest held-out calibration score (top: service ephemeral, 3.18x): a short burst that would be absorbed into the new baseline",
+    "strong_outliers": 3,
+    "excess_entities": []
+   },
+   "phase8f_clean_review": false,
+   "phase8f_contaminated_review": true
+  },
+  "CTU-Normal-22": {
+   "clean": {
+    "review_required": false,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "consistent with the current baseline",
+    "strong_outliers": 0,
+    "excess_entities": []
+   },
+   "contaminated": {
+    "review_required": true,
+    "rate_review": false,
+    "excess_entity_count": 1,
+    "reason": "1 entity alert persistently under the current baseline (top: service ephemeral, 6/88 windows): a refresh would learn their behaviour",
+    "strong_outliers": 0,
+    "excess_entities": [
+     {
+      "level": "service",
+      "entity": "ephemeral",
+      "windows": 88,
+      "alerts": 6,
+      "alert_rate": 0.0682,
+      "p_value": 0.0002689837094895471
+     }
+    ]
+   },
+   "phase8f_clean_review": false,
+   "phase8f_contaminated_review": false
+  },
+  "CTU-Normal-23": {
+   "clean": {
+    "review_required": false,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "consistent with the current baseline",
+    "strong_outliers": 0,
+    "excess_entities": []
+   },
+   "contaminated": {
+    "review_required": true,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "2 window(s) score >= 2.0x the largest held-out calibration score (top: service ephemeral, 3.17x): a short burst that would be absorbed into the new baseline",
+    "strong_outliers": 2,
+    "excess_entities": []
+   },
+   "phase8f_clean_review": false,
+   "phase8f_contaminated_review": true
+  },
+  "CTU-Normal-24": {
+   "clean": {
+    "review_required": false,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "consistent with the current baseline",
+    "strong_outliers": 0,
+    "excess_entities": []
+   },
+   "contaminated": {
+    "review_required": true,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "1 window(s) score >= 2.0x the largest held-out calibration score (top: service ephemeral, 2.267x): a short burst that would be absorbed into the new baseline",
+    "strong_outliers": 1,
+    "excess_entities": []
+   },
+   "phase8f_clean_review": false,
+   "phase8f_contaminated_review": true
+  },
+  "CTU-Normal-25": {
+   "clean": {
+    "review_required": false,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "consistent with the current baseline",
+    "strong_outliers": 0,
+    "excess_entities": []
+   },
+   "contaminated": {
+    "review_required": true,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "3 window(s) score >= 2.0x the largest held-out calibration score (top: service ephemeral, 3.18x): a short burst that would be absorbed into the new baseline",
+    "strong_outliers": 3,
+    "excess_entities": []
+   },
+   "phase8f_clean_review": false,
+   "phase8f_contaminated_review": true
+  },
+  "CTU-Normal-27": {
+   "clean": {
+    "review_required": false,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "consistent with the current baseline",
+    "strong_outliers": 0,
+    "excess_entities": []
+   },
+   "contaminated": {
+    "review_required": false,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "consistent with the current baseline",
+    "strong_outliers": 0,
+    "excess_entities": []
+   },
+   "phase8f_clean_review": false,
+   "phase8f_contaminated_review": false
+  },
+  "CTU-Normal-28": {
+   "clean": {
+    "review_required": false,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "consistent with the current baseline",
+    "strong_outliers": 0,
+    "excess_entities": []
+   },
+   "contaminated": {
+    "review_required": false,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "consistent with the current baseline",
+    "strong_outliers": 0,
+    "excess_entities": []
+   },
+   "phase8f_clean_review": false,
+   "phase8f_contaminated_review": false
+  },
+  "CTU-Normal-29": {
+   "clean": {
+    "review_required": false,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "consistent with the current baseline",
+    "strong_outliers": 0,
+    "excess_entities": []
+   },
+   "contaminated": {
+    "review_required": true,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "2 window(s) score >= 2.0x the largest held-out calibration score (top: service ephemeral, 2.727x): a short burst that would be absorbed into the new baseline",
+    "strong_outliers": 2,
+    "excess_entities": []
+   },
+   "phase8f_clean_review": false,
+   "phase8f_contaminated_review": true
+  },
+  "CTU-Normal-30": {
+   "clean": {
+    "review_required": false,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "consistent with the current baseline",
+    "strong_outliers": 0,
+    "excess_entities": []
+   },
+   "contaminated": {
+    "review_required": true,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "2 window(s) score >= 2.0x the largest held-out calibration score (top: service ephemeral, 3.089x): a short burst that would be absorbed into the new baseline",
+    "strong_outliers": 2,
+    "excess_entities": []
+   },
+   "phase8f_clean_review": false,
+   "phase8f_contaminated_review": true
+  },
+  "CTU-Normal-31": {
+   "clean": {
+    "review_required": false,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "consistent with the current baseline",
+    "strong_outliers": 0,
+    "excess_entities": []
+   },
+   "contaminated": {
+    "review_required": true,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "3 window(s) score >= 2.0x the largest held-out calibration score (top: service ephemeral, 2.776x): a short burst that would be absorbed into the new baseline",
+    "strong_outliers": 3,
+    "excess_entities": []
+   },
+   "phase8f_clean_review": false,
+   "phase8f_contaminated_review": true
+  },
+  "CTU-Normal-32": {
+   "clean": {
+    "review_required": false,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "consistent with the current baseline",
+    "strong_outliers": 0,
+    "excess_entities": []
+   },
+   "contaminated": {
+    "review_required": false,
+    "rate_review": false,
+    "excess_entity_count": 0,
+    "reason": "consistent with the current baseline",
+    "strong_outliers": 0,
+    "excess_entities": []
+   },
+   "phase8f_clean_review": false,
+   "phase8f_contaminated_review": false
+  }
+ },
+ "summary": {
+  "captures": 12,
+  "clean_review": 0,
+  "clean_review_new": 0,
+  "contaminated_review": 8,
+  "contaminated_lost": 0,
+  "adopt": true
+ },
+ "seconds": 68.2284555999995,
+ "peak_rss_mb": 554.26953125
+}

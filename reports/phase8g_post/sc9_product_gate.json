@@ -1,0 +1,306 @@
+{
+ "label": "[R] diagnosis on consumed data",
+ "candidate_period_ms": [
+  1313584261781,
+  1313591461781
+ ],
+ "candidate_period": {
+  "previous": "calibration-20261028T130310877032Z",
+  "global_windows": 241,
+  "alerts": 4,
+  "alert_rate_under_previous": 0.016597510373443983,
+  "previous_target_fpr": 0.01,
+  "p_value": 0.22274493497993542,
+  "rate_review": false,
+  "outlier_factor": 2.0,
+  "strong_outliers": [],
+  "excess_entities": [
+   {
+    "level": "device",
+    "entity": "186.198.158.69",
+    "windows": 87,
+    "alerts": 78,
+    "alert_rate": 0.8966,
+    "p_value": 4.690980816216139e-145
+   },
+   {
+    "level": "device",
+    "entity": "147.32.84.205",
+    "windows": 189,
+    "alerts": 77,
+    "alert_rate": 0.4074,
+    "p_value": 5.85122047294501e-101
+   },
+   {
+    "level": "device",
+    "entity": "147.32.84.193",
+    "windows": 194,
+    "alerts": 69,
+    "alert_rate": 0.3557,
+    "p_value": 1.196194578321063e-85
+   },
+   {
+    "level": "device",
+    "entity": "41.134.169.249",
+    "windows": 42,
+    "alerts": 40,
+    "alert_rate": 0.9524,
+    "p_value": 8.442820000000006e-78
+   },
+   {
+    "level": "device",
+    "entity": "147.32.84.207",
+    "windows": 181,
+    "alerts": 62,
+    "alert_rate": 0.3425,
+    "p_value": 6.389862790212139e-76
+   },
+   {
+    "level": "device",
+    "entity": "147.32.84.208",
+    "windows": 180,
+    "alerts": 57,
+    "alert_rate": 0.3167,
+    "p_value": 1.2114669817066783e-67
+   },
+   {
+    "level": "device",
+    "entity": "147.32.84.191",
+    "windows": 216,
+    "alerts": 54,
+    "alert_rate": 0.25,
+    "p_value": 7.141351689534902e-58
+   },
+   {
+    "level": "device",
+    "entity": "147.32.84.209",
+    "windows": 175,
+    "alerts": 48,
+    "alert_rate": 0.2743,
+    "p_value": 8.615162274138916e-54
+   },
+   {
+    "level": "device",
+    "entity": "147.32.84.204",
+    "windows": 192,
+    "alerts": 40,
+    "alert_rate": 0.2083,
+    "p_value": 7.481192768555339e-40
+   },
+   {
+    "level": "device",
+    "entity": "147.32.84.192",
+    "windows": 206,
+    "alerts": 38,
+    "alert_rate": 0.1845,
+    "p_value": 8.188835681551112e-36
+   },
+   {
+    "level": "device",
+    "entity": "194.108.204.22",
+    "windows": 37,
+    "alerts": 22,
+    "alert_rate": 0.5946,
+    "p_value": 8.10712756266966e-35
+   },
+   {
+    "level": "device",
+    "entity": "188.40.95.41",
+    "windows": 56,
+    "alerts": 23,
+    "alert_rate": 0.4107,
+    "p_value": 2.305251203879009e-31
+   },
+   {
+    "level": "device",
+    "entity": "147.32.86.176",
+    "windows": 101,
+    "alerts": 26,
+    "alert_rate": 0.2574,
+    "p_value": 4.5611692574396545e-29
+   },
+   {
+    "level": "device",
+    "entity": "201.229.12.88",
+    "windows": 30,
+    "alerts": 17,
+    "alert_rate": 0.5667,
+    "p_value": 1.0586336724221732e-26
+   },
+   {
+    "level": "device",
+    "entity": "147.32.85.40",
+    "windows": 56,
+    "alerts": 20,
+    "alert_rate": 0.3571,
+    "p_value": 5.567400112414049e-26
+   },
+   {
+    "level": "service",
+    "entity": "windows_directory",
+    "windows": 212,
+    "alerts": 25,
+    "alert_rate": 0.1179,
+    "p_value": 3.503201588208548e-19
+   },
+   {
+    "level": "device",
+    "entity": "147.32.84.206",
+    "windows": 183,
+    "alerts": 23,
+    "alert_rate": 0.1257,
+    "p_value": 2.1331763265565893e-18
+   },
+   {
+    "level": "device",
+    "entity": "74.109.125.79",
+    "windows": 32,
+    "alerts": 13,
+    "alert_rate": 0.4062,
+    "p_value": 2.9097156794018224e-18
+   },
+   {
+    "level": "device",
+    "entity": "188.40.100.89",
+    "windows": 43,
+    "alerts": 12,
+    "alert_rate": 0.2791,
+    "p_value": 1.1509097537567635e-14
+   },
+   {
+    "level": "device",
+    "entity": "188.40.45.214",
+    "windows": 45,
+    "alerts": 12,
+    "alert_rate": 0.2667,
+    "p_value": 2.1183706442823847e-14
+   }
+  ],
+  "excess_entity_count": 23,
+  "review_required": true,
+  "reason": "23 entities alert persistently under the current baseline (top: device 186.198.158.69, 78/87 windows): a refresh would learn their behaviour",
+  "flows": 1176615
+ },
+ "candidate_period_without_initiators": {
+  "previous": "calibration-20261028T130310877032Z",
+  "global_windows": 241,
+  "alerts": 3,
+  "alert_rate_under_previous": 0.012448132780082987,
+  "previous_target_fpr": 0.01,
+  "p_value": 0.433438489051365,
+  "rate_review": false,
+  "outlier_factor": 2.0,
+  "strong_outliers": [],
+  "excess_entities": [
+   {
+    "level": "device",
+    "entity": "186.198.158.69",
+    "windows": 87,
+    "alerts": 78,
+    "alert_rate": 0.8966,
+    "p_value": 4.690980816216139e-145
+   },
+   {
+    "level": "device",
+    "entity": "41.134.169.249",
+    "windows": 42,
+    "alerts": 40,
+    "alert_rate": 0.9524,
+    "p_value": 8.442820000000006e-78
+   },
+   {
+    "level": "device",
+    "entity": "194.108.204.22",
+    "windows": 37,
+    "alerts": 22,
+    "alert_rate": 0.5946,
+    "p_value": 8.10712756266966e-35
+   },
+   {
+    "level": "device",
+    "entity": "188.40.95.41",
+    "windows": 56,
+    "alerts": 23,
+    "alert_rate": 0.4107,
+    "p_value": 2.305251203879009e-31
+   },
+   {
+    "level": "device",
+    "entity": "147.32.86.176",
+    "windows": 101,
+    "alerts": 26,
+    "alert_rate": 0.2574,
+    "p_value": 4.5611692574396545e-29
+   },
+   {
+    "level": "device",
+    "entity": "201.229.12.88",
+    "windows": 30,
+    "alerts": 17,
+    "alert_rate": 0.5667,
+    "p_value": 1.0586336724221732e-26
+   },
+   {
+    "level": "device",
+    "entity": "147.32.85.40",
+    "windows": 56,
+    "alerts": 20,
+    "alert_rate": 0.3571,
+    "p_value": 5.567400112414049e-26
+   },
+   {
+    "level": "device",
+    "entity": "74.109.125.79",
+    "windows": 32,
+    "alerts": 13,
+    "alert_rate": 0.4062,
+    "p_value": 2.9097156794018224e-18
+   },
+   {
+    "level": "device",
+    "entity": "188.40.100.89",
+    "windows": 43,
+    "alerts": 12,
+    "alert_rate": 0.2791,
+    "p_value": 1.1509097537567635e-14
+   },
+   {
+    "level": "device",
+    "entity": "188.40.45.214",
+    "windows": 45,
+    "alerts": 12,
+    "alert_rate": 0.2667,
+    "p_value": 2.1183706442823847e-14
+   },
+   {
+    "level": "device",
+    "entity": "109.115.39.190",
+    "windows": 33,
+    "alerts": 8,
+    "alert_rate": 0.2424,
+    "p_value": 1.1109910210192955e-09
+   },
+   {
+    "level": "service",
+    "entity": "windows_directory",
+    "windows": 212,
+    "alerts": 15,
+    "alert_rate": 0.0708,
+    "p_value": 5.696848464591299e-09
+   },
+   {
+    "level": "device",
+    "entity": "66.249.66.41",
+    "windows": 119,
+    "alerts": 10,
+    "alert_rate": 0.084,
+    "p_value": 3.9490046158600635e-07
+   }
+  ],
+  "excess_entity_count": 13,
+  "review_required": true,
+  "reason": "13 entities alert persistently under the current baseline (top: device 186.198.158.69, 78/87 windows): a refresh would learn their behaviour",
+  "flows": 1080455
+ },
+ "peak_rss_mb": 2111.8125
+}

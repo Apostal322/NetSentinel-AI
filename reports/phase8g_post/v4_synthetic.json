@@ -1,0 +1,301 @@
+{
+ "label": "[E] synthetic design study; not evidence about any real network",
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
+ "results": {
+  "new_delta1.5": {
+   "S1": {
+    "activations": 0.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 0.0,
+    "absorbed_share": 0.0,
+    "recall_after_first_refresh": 0.0001666666666666667,
+    "recall_all": 0.00016666666666666666,
+    "attackers_detected_last_segment": 0.0,
+    "known_device_fpr_after_drift": 0.0022277777777777777
+   },
+   "S5": {
+    "activations": 3.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 3600.0,
+    "absorbed_share": 1.0,
+    "recall_after_first_refresh": 0.0001666666666666667,
+    "recall_all": 0.00016666666666666666,
+    "attackers_detected_last_segment": 0.0,
+    "known_device_fpr_after_drift": 0.0013833333333333332
+   },
+   "Q": {
+    "activations": 3.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 3600.0,
+    "absorbed_share": 1.0,
+    "recall_after_first_refresh": 0.0001666666666666667,
+    "recall_all": 0.00016666666666666666,
+    "attackers_detected_last_segment": 0.0,
+    "known_device_fpr_after_drift": 0.0013833333333333332
+   },
+   "QC": {
+    "activations": 3.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 3600.0,
+    "absorbed_share": 1.0,
+    "recall_after_first_refresh": 0.0001666666666666667,
+    "recall_all": 0.00016666666666666666,
+    "attackers_detected_last_segment": 0.0,
+    "known_device_fpr_after_drift": 0.0013833333333333332
+   },
+   "QKC": {
+    "activations": 3.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 0.0,
+    "absorbed_share": 0.0,
+    "recall_after_first_refresh": 0.0008333333333333333,
+    "recall_all": 0.0006111111111111111,
+    "attackers_detected_last_segment": 0.2,
+    "known_device_fpr_after_drift": 0.0012222222222222222
+   },
+   "QKCD": {
+    "activations": 2.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 0.0,
+    "absorbed_share": 0.0,
+    "recall_after_first_refresh": 0.0003333333333333333,
+    "recall_all": 0.0002777777777777778,
+    "attackers_detected_last_segment": 0.2,
+    "known_device_fpr_after_drift": 0.0017805555555555556
+   },
+   "V": {
+    "activations": 3.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 0.0,
+    "absorbed_share": 0.0,
+    "recall_after_first_refresh": 0.0001666666666666667,
+    "recall_all": 0.00016666666666666666,
+    "attackers_detected_last_segment": 0.0,
+    "known_device_fpr_after_drift": 0.0020777777777777778
+   }
+  },
+  "new_delta3.0": {
+   "S1": {
+    "activations": 0.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 0.0,
+    "absorbed_share": 0.0,
+    "recall_after_first_refresh": 0.12308333333333332,
+    "recall_all": 0.12205555555555554,
+    "attackers_detected_last_segment": 2.8,
+    "known_device_fpr_after_drift": 0.0022277777777777777
+   },
+   "S5": {
+    "activations": 3.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 3600.0,
+    "absorbed_share": 1.0,
+    "recall_after_first_refresh": 0.0001666666666666667,
+    "recall_all": 0.04011111111111111,
+    "attackers_detected_last_segment": 0.0,
+    "known_device_fpr_after_drift": 0.0014555555555555556
+   },
+   "Q": {
+    "activations": 3.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 2592.0,
+    "absorbed_share": 0.72,
+    "recall_after_first_refresh": 0.10700000000000001,
+    "recall_all": 0.11133333333333333,
+    "attackers_detected_last_segment": 1.2,
+    "known_device_fpr_after_drift": 0.0013611111111111111
+   },
+   "QC": {
+    "activations": 3.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 2592.0,
+    "absorbed_share": 0.72,
+    "recall_after_first_refresh": 0.10700000000000001,
+    "recall_all": 0.11133333333333333,
+    "attackers_detected_last_segment": 1.2,
+    "known_device_fpr_after_drift": 0.0013611111111111111
+   },
+   "QKC": {
+    "activations": 3.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 0.0,
+    "absorbed_share": 0.0,
+    "recall_after_first_refresh": 0.12891666666666668,
+    "recall_all": 0.12594444444444447,
+    "attackers_detected_last_segment": 3.0,
+    "known_device_fpr_after_drift": 0.0012222222222222222
+   },
+   "QKCD": {
+    "activations": 1.8,
+    "refusals": 0.2,
+    "absorbed_attack_windows": 0.0,
+    "absorbed_share": 0.0,
+    "recall_after_first_refresh": 0.13244444444444445,
+    "recall_all": 0.12616666666666668,
+    "attackers_detected_last_segment": 3.0,
+    "known_device_fpr_after_drift": 0.0018111111111111112
+   },
+   "V": {
+    "activations": 3.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 0.0,
+    "absorbed_share": 0.0,
+    "recall_after_first_refresh": 0.12308333333333332,
+    "recall_all": 0.12205555555555554,
+    "attackers_detected_last_segment": 2.8,
+    "known_device_fpr_after_drift": 0.0020777777777777778
+   }
+  },
+  "known_delta1.5": {
+   "S1": {
+    "activations": 0.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 0.0,
+    "absorbed_share": 0.0,
+    "recall_after_first_refresh": 0.36433333333333334,
+    "recall_all": 0.3620555555555556,
+    "attackers_detected_last_segment": 5.0,
+    "known_device_fpr_after_drift": 0.002605555555555556
+   },
+   "S5": {
+    "activations": 0.6,
+    "refusals": 2.4,
+    "absorbed_attack_windows": 720.0,
+    "absorbed_share": 0.2,
+    "recall_after_first_refresh": 0.3015833333333333,
+    "recall_all": 0.3202222222222222,
+    "attackers_detected_last_segment": 4.0,
+    "known_device_fpr_after_drift": 0.0023444444444444446
+   },
+   "Q": {
+    "activations": 3.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 2400.0,
+    "absorbed_share": 0.6666666666666666,
+    "recall_after_first_refresh": 8.333333333333334e-05,
+    "recall_all": 0.11922222222222223,
+    "attackers_detected_last_segment": 0.0,
+    "known_device_fpr_after_drift": 0.0011777777777777776
+   },
+   "QC": {
+    "activations": 3.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 0.0,
+    "absorbed_share": 0.0,
+    "recall_after_first_refresh": 0.341,
+    "recall_all": 0.3464999999999999,
+    "attackers_detected_last_segment": 5.0,
+    "known_device_fpr_after_drift": 0.0011666666666666665
+   },
+   "QKC": {
+    "activations": 3.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 0.0,
+    "absorbed_share": 0.0,
+    "recall_after_first_refresh": 0.341,
+    "recall_all": 0.3464999999999999,
+    "attackers_detected_last_segment": 5.0,
+    "known_device_fpr_after_drift": 0.0011666666666666665
+   },
+   "QKCD": {
+    "activations": 2.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 0.0,
+    "absorbed_share": 0.0,
+    "recall_after_first_refresh": 0.3413333333333333,
+    "recall_all": 0.3508888888888889,
+    "attackers_detected_last_segment": 5.0,
+    "known_device_fpr_after_drift": 0.0018583333333333334
+   },
+   "V": {
+    "activations": 3.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 0.0,
+    "absorbed_share": 0.0,
+    "recall_after_first_refresh": 0.36433333333333334,
+    "recall_all": 0.3620555555555556,
+    "attackers_detected_last_segment": 5.0,
+    "known_device_fpr_after_drift": 0.0024000000000000002
+   }
+  },
+  "known_delta3.0": {
+   "S1": {
+    "activations": 0.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 0.0,
+    "absorbed_share": 0.0,
+    "recall_after_first_refresh": 1.0,
+    "recall_all": 1.0,
+    "attackers_detected_last_segment": 5.0,
+    "known_device_fpr_after_drift": 0.002605555555555556
+   },
+   "S5": {
+    "activations": 0.0,
+    "refusals": 3.0,
+    "absorbed_attack_windows": 0.0,
+    "absorbed_share": 0.0,
+    "recall_after_first_refresh": 1.0,
+    "recall_all": 1.0,
+    "attackers_detected_last_segment": 5.0,
+    "known_device_fpr_after_drift": 0.002605555555555556
+   },
+   "Q": {
+    "activations": 3.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 1632.0,
+    "absorbed_share": 0.4533333333333333,
+    "recall_after_first_refresh": 0.11674999999999999,
+    "recall_all": 0.4111666666666666,
+    "attackers_detected_last_segment": 1.8,
+    "known_device_fpr_after_drift": 0.001172222222222222
+   },
+   "QC": {
+    "activations": 3.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 0.0,
+    "absorbed_share": 0.0,
+    "recall_after_first_refresh": 1.0,
+    "recall_all": 1.0,
+    "attackers_detected_last_segment": 5.0,
+    "known_device_fpr_after_drift": 0.0011666666666666665
+   },
+   "QKC": {
+    "activations": 3.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 0.0,
+    "absorbed_share": 0.0,
+    "recall_after_first_refresh": 1.0,
+    "recall_all": 1.0,
+    "attackers_detected_last_segment": 5.0,
+    "known_device_fpr_after_drift": 0.0011666666666666665
+   },
+   "QKCD": {
+    "activations": 2.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 0.0,
+    "absorbed_share": 0.0,
+    "recall_after_first_refresh": 1.0,
+    "recall_all": 1.0,
+    "attackers_detected_last_segment": 5.0,
+    "known_device_fpr_after_drift": 0.0018583333333333334
+   },
+   "V": {
+    "activations": 3.0,
+    "refusals": 0.0,
+    "absorbed_attack_windows": 0.0,
+    "absorbed_share": 0.0,
+    "recall_after_first_refresh": 1.0,
+    "recall_all": 1.0,
+    "attackers_detected_last_segment": 5.0,
+    "known_device_fpr_after_drift": 0.0024000000000000002
+   }
+  }
+ },
+ "seconds": 791.7379777000006
+}

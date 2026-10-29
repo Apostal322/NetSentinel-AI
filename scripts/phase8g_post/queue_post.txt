@@ -1,0 +1,3 @@
+script scripts/phase8g_post/sc9_diagnostics.py
+compare-frozen scenario_9
+script scripts/phase8g_post/v4_synthetic.py

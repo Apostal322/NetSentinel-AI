@@ -1,0 +1,4 @@
+stream scenario_9 --run spill100k_lazy --max-buffer 100000
+compare scenario_9 --run spill100k_lazy
+stream scenario_9 --run spill800k --max-buffer 200000 --max-spill 800000
+compare scenario_9 --run spill800k

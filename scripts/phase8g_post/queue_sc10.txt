@@ -1,0 +1,12 @@
+cache scenario_10
+reference scenario_10
+stream scenario_10 --run frozen --code frozen --no-build
+stream scenario_10 --run current
+stream scenario_10 --run spill200k --max-buffer 200000
+stream scenario_10 --run lateness3700 --lateness 3700 --max-buffer 500000
+compare scenario_10 --run frozen --no-scores
+compare scenario_10 --run current
+compare scenario_10 --run spill200k
+compare scenario_10 --run lateness3700
+evaluate scenario_10 --run reference
+evaluate scenario_10 --run current
