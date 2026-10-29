@@ -305,3 +305,51 @@ def test_flush_iter_does_not_materialise_every_spilled_window():
         tracemalloc.stop()
         assert n == 3600 and _conserved(ws, n)
     assert peaks[1] < peaks[0] / 5, peaks  # d67f061/9e526ca: no lazy close
+
+
+# ----------------------------------------------------------------------------- lazy close
+def test_flush_iter_interrupted_by_the_consumer_resumes_without_loss(tmp_path):
+    # StreamMonitor.close() writes each window while iterating: Ctrl+C there stops the
+    # generator between windows; closing again must deliver the rest exactly once
+    recs = sr.genuine_stream(0, 1200)
+    ws = WindowStream(30, lateness_s=7200, max_buffer=100, max_spill=10**7, spill_dir=tmp_path)
+    out = [x for r in recs for _, rs in ws.push(r) for x in rs]
+    it = ws.flush_iter()
+    for _, rs in it:
+        out += rs
+        if len(out) > 1000:
+            break
+    it.close()  # GeneratorExit at the yield: no window is half-taken
+    assert any(tmp_path.iterdir())  # the remaining spilled windows are still on disk
+    out += [x for _, rs in ws.flush_iter() for x in rs]
+    assert sorted(map(_key, out)) == sorted(map(_key, recs))
+    assert _conserved(ws, len(out)) and ws.stats.spill_lost == 0
+    assert not any(tmp_path.iterdir())
+
+
+def test_stream_abandoned_during_flush_iter_removes_its_spill_directory(tmp_path):
+    ws = WindowStream(30, lateness_s=7200, max_buffer=100, max_spill=10**7, spill_dir=tmp_path)
+    for r in sr.genuine_stream(0, 1200):
+        ws.push(r)
+    it = ws.flush_iter()
+    next(it)
+    d = ws.spill.dir
+    assert d is not None and d.exists()
+    del it, ws  # an exception in the caller after the first window
+    gc.collect()
+    assert not d.exists()
+
+
+def test_spill_file_lost_during_flush_iter_is_counted_and_flagged(tmp_path):
+    ws = WindowStream(30, lateness_s=7200, max_buffer=100, max_spill=10**7, spill_dir=tmp_path)
+    recs = sr.genuine_stream(0, 1200)
+    out = [x for r in recs for _, rs in ws.push(r) for x in rs]
+    it = ws.flush_iter()
+    out += next(it)[1]
+    victim = sorted(ws.spill.dir.glob("*.jsonl"))[-1]  # removed by a temp cleaner mid-close
+    n_victim = len(victim.read_bytes().splitlines())
+    victim.unlink()
+    out += [x for _, rs in it for x in rs]
+    st = ws.stats
+    assert st.spill_lost >= n_victim > 0 and st.health == "integrity_degraded"
+    assert _conserved(ws, len(out)) and not any(tmp_path.iterdir())

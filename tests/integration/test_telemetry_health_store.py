@@ -53,6 +53,19 @@ def test_behaviour_only_monitor_stores_degraded_health(setup, tmp_path):
     assert not res.assessment["normality_supported"]
 
 
+def test_api_reports_the_stored_health_of_each_window(setup, tmp_path):
+    from fastapi.testclient import TestClient
+
+    from netsentinel.api.app import Settings, create_app
+
+    cal_dir, rest = setup
+    _monitor(cal_dir, rest, tmp_path / "e.sqlite", max_buffer=5, max_spill=0)
+    api = TestClient(create_app(Settings(bundle_dir=tmp_path / "no_bundle",
+                                         events_db=tmp_path / "e.sqlite")))  # fmt: skip
+    rows = api.get("/behavior", params={"limit": 5000}).json()
+    assert rows and "buffer_pressure" in {r["telemetry_health"] for r in rows}
+
+
 def test_healthy_monitor_stores_ok(setup, tmp_path):
     cal_dir, rest = setup
     res, rows = _monitor(cal_dir, rest, tmp_path / "e.sqlite")
