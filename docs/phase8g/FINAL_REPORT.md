@@ -1,6 +1,6 @@
 # Phase 8g final report: CTU-13 independent validation, closure
 
-**Date:** 2026-10-28.
+**Date:** 2026-10-28. **Status: formally closed on 2026-10-29** (decision A, section 10).
 
 **Frozen evaluation.**
 - Code: 121acbf (registry `reports/phase8g/registry.json`).
@@ -117,7 +117,8 @@ botnet family. Recall per window is low.
   - Peak stream RSS 0.83–2.81 GB; whole queue 2.74 GB (watchdog 3.4 GB, never fired).
   - The lazy flush cut a spilling run from 2.71 GB to 0.99 GB.
 - **Disk.** Peak spill 154–169 MB (scenario 9) and 1.1–2.5 GB (scenario 10). Every directory
-  was removed after success. After a hard kill, the next spilling run sweeps it.
+  was removed after success. After a hard kill, the directory stays until a later stream
+  spills and its sweep runs (§8a). Nothing removes it on a timer.
 - **Throughput.**
   - 141–179k records/s without spilling; 13–40k records/s with spilling (234k synthetic).
   - Not at parity. It still exceeds scenario 10's mean arrival rate (about 1.4k records/s).
@@ -158,18 +159,30 @@ unchanged. The system remains detection-only.
 |---|---|
 | background jobs (queues, watchdogs, test runs) | none running; every queue ended with `done`, and the watchdog never killed a process (peak 2.74 GB) |
 | spill directories of the audit runs | removed after every successful run; the hard-killed one was removed by the sweep |
-| 5 legacy spill directories from d67f061 test runs (0.8 MB, 10/28 07:17–07:26, no owner file) | kept as evidence; the product sweep removes them once they are older than 24 h |
+| 5 orphaned spill directories `netsentinel-spill-{xgd0_eay, 1nn1urez, quhxhwt1, aa1ib4c1, g6vp4r9x}` in the user temp directory | **Data:** 658,664 bytes (804 KB on disk) of `<window>.jsonl` files; modified 10/28 07:17–07:26. **Source:** probably d67f061 test runs, inferred from their times; no `owner` file, so the creating process cannot be identified. **Action:** left in place, not deleted by hand. They are now over 24 h old, so the sweep **will** remove them the next time any stream spills; until then they stay. |
 | `ns-8g-entity-*` temp directories (`entity_gate_dev.py` used `mkdtemp`, and one run was killed by a shell timeout) | removed; the script now uses `TemporaryDirectory` |
-| 3 `ns-8f-*` temp directories (4 KB each, 10/20–10/21) | from the Phase 8f study, not this phase; left untouched |
+| 3 Phase 8f temp directories `ns-8f-{rhbjrufn, x1dao730, 6ussj19v}` in the user temp directory | **Contents:** saved calibration profiles (`calibration-<timestamp>` subdirectories); about 4 KB each as reported by `du`; created 10/20 23:59 – 10/21 00:03. **Source:** `scripts/phase8/robust_normality.py`, which creates them with `mkdtemp` and never removes them. **Action:** not swept (different prefix), not deleted; they remain until removed by hand. Fixing that older script is outside this documentation-only correction. |
 | derived data | `data/derived/phase8g_post/` (cache, reference, runs; not in git). The frozen `data/derived/phase8g/` is untouched (157 parts, last written by the frozen run) |
+
+**How orphaned spill directories are cleaned up** (`sweep_stale_spills`, `src/netsentinel/streaming/live.py`):
+- There is **no background task and no timer**. The sweep runs only when a stream creates
+  its spill directory, i.e. at the first spill of a later stream run. Nothing is removed
+  while no stream spills.
+- When it runs, it removes `netsentinel-spill-*` directories in the same temp root:
+  - with an `owner` file whose process is no longer alive; or
+  - without an `owner` file (written before 9e526ca) whose modification time is more than
+    24 h old.
+- It keeps directories of live processes, younger directories without an owner file, and
+  anything not named `netsentinel-spill-*`.
+- "Older than 24 h" is therefore a condition checked by that sweep, not a deletion time.
 
 ## 9. Risks and open issues
 
 | risk | severity | handling |
 |---|---|---|
-| late records do not change `health` (scenario 10: 90 late records, 10 alerts lost, health `ok`) | medium | counted in `stats.late`; Phase 8h item 2 |
+| late records do not change `health` (scenario 10: 90 late records, 10 alerts lost, health `ok`) | medium | counted in `stats.late`; **open Phase 8h engineering task** (item 2): propagate late records into telemetry health |
 | spilling is about 10× slower than in-memory streaming | medium | sustained the CTU-13 rates; Phase 8h item 4 |
-| a crash leaves a spill directory until the next spilling run | low | disk bounded by `max_spill`; swept |
+| a crash leaves a spill directory until a later stream spills (no timer) | low | disk bounded by `max_spill`; removed by the next spill's sweep (§8a); Phase 8h item 4 adds a sweep at monitor start |
 | the per-entity review trigger fires on background entities (scenario 9 without bots: 13) | medium (review burden) | review-only; listed entities give the reviewer evidence |
 | any data-driven refresh learns a gradual attack | high (if refresh is automated) | refresh stays manual and review-gated; vetted-only recommended |
 | alert burden 2,563/h is not triageable | high for deployment | documented; Phase 8h item 3 |

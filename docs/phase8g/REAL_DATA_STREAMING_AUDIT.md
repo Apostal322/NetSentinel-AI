@@ -187,7 +187,7 @@ scenario 10) and cache reading.
 | interruption during a spill write | `test_spill_hardening::test_interrupted_spill_write_loses_nothing` | partial line truncated; no record lost or doubled |
 | disk full | `test_spill_hardening::test_disk_full_keeps_records_and_degrades_explicitly` | records kept in memory, `spill_failed` and then `buffer_pressure`; never silent |
 | invalid or truncated spill JSONL | `test_spill_hardening::test_truncated_or_edited_spill_files_are_counted_not_fatal` | `spill_lost` / `spill_invalid`, `integrity_degraded` |
-| stale spill directories | `test_spill_hardening::test_stale_spill_directories_of_dead_processes_are_removed`, `test_abandoned_stream_removes_its_spill_directory` | removed when the owner pid is dead; legacy directories after 24 h |
+| stale spill directories | `test_spill_hardening::test_stale_spill_directories_of_dead_processes_are_removed`, `test_abandoned_stream_removes_its_spill_directory` | removed by the sweep of a later spill when the owner pid is dead, or when a directory without an owner file is more than 24 h old (no timer) |
 | restart | `test_spill_hardening::test_restart_after_interruption_reproduces_the_reference` | the replay equals the reference |
 | conservation | `test_spill_hardening::test_records_are_conserved_in_every_robustness_scenario` | identity holds in every scenario |
 | bounded flush memory | `test_spill_hardening::test_flush_iter_does_not_materialise_every_spilled_window` | lazy peak < 1/5 of the list path |
@@ -202,8 +202,9 @@ scenario 10) and cache reading.
   - Every restored record is validated: a dict with int START and END, END ≥ START, in its
     window.
 - **Real-data interruption.** The queue process was killed once by the end of a session.
-  Five legacy directories from d67f061 test runs (0.66 MB, no owner file, 07:17–07:26) are
-  kept as evidence. The new sweep removes such directories after 24 h. Section 5.1 adds a
+  Five orphaned directories, probably from d67f061 test runs (658,664 bytes, no owner file,
+  10/28 07:17–07:26), are left in place. A sweep removes such a directory only when a later
+  stream spills and the directory is then more than 24 h old; there is no timer. Section 5.1 adds a
   measured real-data kill.
 
 ### 5.1 Hard kill on real data (`scripts/phase8g_post/interrupt_check.py`)
@@ -211,14 +212,17 @@ scenario 10) and cache reading.
 | step | result |
 |---|---|
 | scenario 9 replay, 100k buffer, killed by `TerminateProcess` after 5.1 s (no finalizer, `finally` or `atexit` ran) | spill directory left behind: 55.2 MB, 45 window files, owner pid dead |
-| next `sweep_stale_spills()` (run by every new spill) | removed it (1 directory) |
+| `sweep_stale_spills()`, called here directly; in the product it runs only when a stream creates its spill directory | removed it (1 directory) |
 | the five legacy test directories (no owner file, < 24 h old) | kept, as designed |
 | partial run directory | removed by the check |
 
 Output: `reports/phase8g_post/interrupt_check.json`.
-- Disk after a crash is reclaimed at the next spilling run, not immediately.
-- If no process ever spills again, the directory remains. A legacy directory without an owner
-  file waits 24 h.
+- Disk after a crash is reclaimed only when a later stream spills and triggers the sweep.
+  There is no background task or timer.
+- If no stream spills again, the directory remains indefinitely.
+- A directory without an owner file is removed by such a sweep only once it is more than
+  24 h old. The current inventory of orphaned directories is in
+  [FINAL_REPORT.md](FINAL_REPORT.md) §8a.
 
 ## 6. Verdicts
 

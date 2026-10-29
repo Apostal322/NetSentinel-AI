@@ -43,10 +43,13 @@
 
 ## Open issues (not blocking a prototype release)
 
-1. **Late records** are counted, but they do not change `health`. Scenario 10 had 90 late
+1. **Late records** (Phase 8h engineering task) are counted, but they do not change `health`. Scenario 10 had 90 late
    records at 600 s, which cost 10 alerts while health stayed `ok`.
 2. **Spilling is about 10× slower than in-memory streaming** (13–40k records/s).
-3. **A crashed process's spill directory** is reclaimed only by the next spilling run.
+3. **A crashed process's spill directory** is reclaimed only when a later stream spills and
+   triggers the sweep; no background task or timer deletes it. 5 orphaned spill directories
+   (658,664 bytes) and 3 Phase 8f temp directories are currently left in the user temp
+   directory ([FINAL_REPORT.md](FINAL_REPORT.md) §8a).
 4. **Alert burden on unlabelled background traffic** is about 2,563/h on CTU-13 scenario 9.
    It is not triageable as a raw stream.
 5. **Any data-driven baseline refresh can learn a gradual attack.** Refresh is manual and
