@@ -53,6 +53,10 @@ PRIMARY = {"netflow": ["nfcic_2018-02-14", "nfcic_2018-02-16", "nfcic_2018-02-20
            "zeek": ["CTU-IoT-Malware-Capture-3-1", "CTU-IoT-Malware-Capture-34-1",
                     "CTU-IoT-Malware-Capture-8-1"]}  # fmt: skip
 SECONDARY = {"netflow": ["nfcic_2018-02-22"], "zeek": []}
+# exploratory ablations of B-raw (pre-registration section 6; run after the primary tests)
+ABLATIONS = {"no_new_dst_frac": ["new_dst_frac"],
+             "no_volume": ["log_flows", "log_up_bytes", "log_down_bytes", "log_pkts"],
+             "no_udp_share": ["udp_share"]}  # fmt: skip
 
 
 # ----------------------------------------------------------------------------- data
@@ -338,8 +342,54 @@ def mean_dict(ds: list[dict]):
 
 
 # ----------------------------------------------------------------------------- fold
+def ablation_fold(tgt: dict, sources: dict, seeds: list[int], drop: list[str]) -> dict:
+    """B-raw retrained without the `drop` features (exploratory)."""
+    import lightgbm as lgb
+
+    keep = [i for i, f in enumerate(FEATS) if f not in drop]
+    per_seed = []
+    for seed in seeds:
+        xs, ys, ws = [], [], []
+        for d in sources.values():
+            a, _, y = train_matrix(d, seed)
+            xs.append(a[:, keep])
+            ys.append(y)
+            ws.append(np.where(y == 1, 0.5 / max(y.sum(), 1), 0.5 / max((y == 0).sum(), 1)))
+        X, y, w = np.vstack(xs), np.concatenate(ys), np.concatenate(ws)  # noqa: N806
+        m = lgb.LGBMClassifier(n_estimators=200, learning_rate=0.05, num_leaves=15,
+                               min_child_samples=20, subsample=0.8, subsample_freq=1,
+                               colsample_bytree=0.8, random_state=seed, n_jobs=2, verbose=-1)  # fmt: skip
+        m.fit(X, y, sample_weight=w * len(y))
+        se = m.predict_proba(S._x(tgt["ev"])[:, keep])[:, 1]
+        sc = m.predict_proba(S._x(tgt["cal"])[:, keep])[:, 1]
+        per_seed.append({"B-raw": operating(tgt, se, sc)})
+    return {"dropped": drop, "per_seed": per_seed}
+
+
+def calsize_fold(tgt: dict, minutes: list[int]) -> dict:
+    """B-rz with the calibration truncated to the last M minutes before evaluation
+    (exploratory, pre-registration section 6): T0 and the deployed cross-fit threshold."""
+    out = {}
+    last = int(tgt["cal"]["win"].max())
+    for m in minutes:
+        cal = tgt["cal"].filter(pl.col("win") > last - m * 2)  # 2 windows of 30 s per minute
+        if cal.height < 60:
+            out[str(m)] = {"status": "too few windows", "cal_windows": cal.height}
+            continue
+        sub = {**tgt, "cal": cal}
+        rz = robust_baseline(sub)
+        hm = hold_mask(sub)
+        t0 = conformal_threshold(rz["cal"], ALPHA)[0] if hm.any() else math.inf
+        s_dep, thr_dep = rz["deployed"]
+        out[str(m)] = {"cal_windows": cal.height,
+                       "T0": metrics(sub, rz["ev"], rz["ev"] > t0),
+                       "deployed_crossfit": metrics(sub, s_dep, s_dep > thr_dep)}  # fmt: skip
+    return out
+
+
 def run_fold(family: str, name: str, doms: dict, seeds: list[int], h2_only: bool,
-             ndis_strict: bool = False) -> dict:  # fmt: skip
+             ndis_strict: bool = False, ablate: str | None = None,
+             calsize: list[int] | None = None) -> dict:  # fmt: skip
     t0 = time.perf_counter()
     tgt = doms[name]
     out = {"family": family, "domain": name, "eval_windows": tgt["ev"].height,
@@ -348,6 +398,14 @@ def run_fold(family: str, name: str, doms: dict, seeds: list[int], h2_only: bool
            "attack_eligible": attack_eligible(tgt), "eval_hours": tgt["hours"],
            "role": "primary" if name in PRIMARY[family] else
                    "secondary" if name in SECONDARY[family] else "benign_unit"}  # fmt: skip
+    if calsize:
+        return {**out, "calsize": calsize_fold(tgt, calsize), "seconds": time.perf_counter() - t0}
+    if ablate:
+        if out["role"] == "benign_unit":
+            return {**out, "seconds": time.perf_counter() - t0}
+        sources = {k: v for k, v in doms.items() if k != name}
+        r = ablation_fold(tgt, sources, seeds, ABLATIONS[ablate])
+        return {**out, "ablation": ablate, **r, "seconds": time.perf_counter() - t0}
     if ndis_strict:  # amendment A3: N-dis with the registered (strict) screening only
         if out["role"] == "benign_unit":
             return {**out, "seconds": time.perf_counter() - t0}
@@ -400,6 +458,8 @@ def main() -> None:
     ap.add_argument("--seeds", default="0,1,2")
     ap.add_argument("--h2-only", action="store_true")
     ap.add_argument("--ndis-strict", action="store_true")
+    ap.add_argument("--ablate", choices=sorted(ABLATIONS))
+    ap.add_argument("--calsize", help="comma-separated calibration minutes, e.g. 15,30,60,120")
     ap.add_argument("--cap", type=int, default=CAP, help="smoke runs only; default = registered")
     ap.add_argument("--out", default=str(OUT))
     a = ap.parse_args()
@@ -410,7 +470,8 @@ def main() -> None:
         doms = domains(family)
         names = a.domains.split(",") if a.domains else list(doms)
         for name in (n for n in names if n in doms):
-            r = run_fold(family, name, doms, seeds, a.h2_only, a.ndis_strict)
+            cs = [int(x) for x in a.calsize.split(",")] if a.calsize else None
+            r = run_fold(family, name, doms, seeds, a.h2_only, a.ndis_strict, a.ablate, cs)
             r["peak_rss_mb"] = peak_rss_mb()
             (OUT / f"{family}__{name}.json").write_text(json.dumps(r, indent=1, default=str),
                                                         "utf-8")  # fmt: skip
