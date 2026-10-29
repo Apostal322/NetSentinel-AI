@@ -283,3 +283,27 @@ and 120 minutes.
 - Label-benign negatives are the evaluation windows of non-attacking entities, minus noisy
   windows.
 - Non-attack windows of attacking entities are excluded from both FPR and recall.
+
+## Amendment A2 (2026-10-29): after a timing smoke run, before the registered run
+
+**Finding.** The smoke run used one seed and a reduced training cap. Its outputs are not
+used, and no comparison between methods was looked at. It showed that IoT-23 34-1 and 8-1
+contain **only the attacking device**: 0 label-benign evaluation windows. IoT-23 20-1 and
+21-1 have the same property.
+
+**Change.**
+- H1's metric P1 (recall at FPR 1% on the domain's own label-benign windows) and every FPR
+  measure need label-benign windows. A domain with fewer than 60 is therefore excluded from
+  H1 and from FPR summaries.
+- It stays in H3: P3 is recall at the threshold set from its own calibration data, and is
+  defined there.
+- H1 primary domains (7): NF-CIC 02-14, 02-16, 02-20, 02-21, 03-02; NF-UNSW; IoT-23 3-1.
+  The smallest attainable sign-flip p is 1/128.
+- H3 primary domains (9): as amendment A1.
+- H3's FPR condition (median realised FPR ≤ 1.5α) is computed over the H3 domains that have
+  label-benign windows.
+
+**Implementation note.**
+- B-rz scores the hold-out and the evaluation windows in separate calls from one
+  deterministic fit, because the window spanning the midpoint exists in both.
+- The `--cap` option is for timing only. The registered run uses the default cap of 200,000.
