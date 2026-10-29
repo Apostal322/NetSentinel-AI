@@ -1,0 +1,203 @@
+{
+ "folds": {
+  "netflow__nfcic_2018-02-14": {
+   "as_run": [
+    "log_up_bytes",
+    "log_down_bytes",
+    "log_pkts",
+    "log_dst_hosts",
+    "no_reply_frac",
+    "new_dst_frac"
+   ],
+   "strict": [
+    "log_up_bytes",
+    "log_down_bytes",
+    "log_pkts",
+    "log_dst_hosts",
+    "no_reply_frac",
+    "new_dst_frac"
+   ],
+   "same": true
+  },
+  "netflow__nfcic_2018-02-16": {
+   "as_run": [
+    "log_up_bytes",
+    "log_down_bytes",
+    "log_pkts",
+    "no_reply_frac",
+    "udp_share",
+    "new_dst_frac"
+   ],
+   "strict": [
+    "log_up_bytes",
+    "log_down_bytes",
+    "log_pkts",
+    "log_dst_hosts",
+    "no_reply_frac",
+    "new_dst_frac"
+   ],
+   "same": false
+  },
+  "netflow__nfcic_2018-02-20": {
+   "as_run": [
+    "log_flows",
+    "log_up_bytes",
+    "log_down_bytes",
+    "log_pkts",
+    "no_reply_frac",
+    "new_dst_frac"
+   ],
+   "strict": [
+    "log_up_bytes",
+    "log_down_bytes",
+    "log_pkts",
+    "log_dst_hosts",
+    "no_reply_frac",
+    "new_dst_frac"
+   ],
+   "same": false
+  },
+  "netflow__nfcic_2018-02-21": {
+   "as_run": [
+    "log_flows",
+    "log_up_bytes",
+    "log_down_bytes",
+    "log_pkts",
+    "no_reply_frac",
+    "new_dst_frac"
+   ],
+   "strict": [
+    "log_up_bytes",
+    "log_down_bytes",
+    "log_pkts",
+    "log_dst_hosts",
+    "no_reply_frac",
+    "new_dst_frac"
+   ],
+   "same": false
+  },
+  "netflow__nfcic_2018-03-02": {
+   "as_run": [
+    "log_flows",
+    "log_up_bytes",
+    "log_down_bytes",
+    "log_pkts",
+    "no_reply_frac",
+    "new_dst_frac"
+   ],
+   "strict": [
+    "log_up_bytes",
+    "log_down_bytes",
+    "log_pkts",
+    "no_reply_frac",
+    "med_log_dur",
+    "new_dst_frac"
+   ],
+   "same": false
+  },
+  "netflow__NF-UNSW-NB15-v3-dev": {
+   "as_run": [
+    "log_up_bytes",
+    "log_down_bytes",
+    "log_pkts",
+    "log_dst_hosts",
+    "no_reply_frac",
+    "new_dst_frac"
+   ],
+   "strict": [
+    "log_up_bytes",
+    "log_down_bytes",
+    "log_pkts",
+    "log_dst_hosts",
+    "no_reply_frac",
+    "new_dst_frac"
+   ],
+   "same": true
+  },
+  "netflow__nfcic_2018-02-22": {
+   "as_run": [
+    "log_flows",
+    "log_up_bytes",
+    "log_down_bytes",
+    "log_pkts",
+    "no_reply_frac",
+    "new_dst_frac"
+   ],
+   "strict": [
+    "log_flows",
+    "log_up_bytes",
+    "log_down_bytes",
+    "log_pkts",
+    "no_reply_frac",
+    "new_dst_frac"
+   ],
+   "same": true
+  },
+  "zeek__CTU-IoT-Malware-Capture-3-1": {
+   "as_run": [
+    "log_up_bytes",
+    "log_pkts",
+    "log_dst_ports",
+    "rst_frac",
+    "upload_share",
+    "new_dst_frac"
+   ],
+   "strict": [
+    "log_up_bytes",
+    "log_dst_ports",
+    "no_reply_frac",
+    "rst_frac",
+    "upload_share",
+    "new_dst_frac"
+   ],
+   "same": false
+  },
+  "zeek__CTU-IoT-Malware-Capture-34-1": {
+   "as_run": [
+    "log_up_bytes",
+    "log_pkts",
+    "log_dst_ports",
+    "rst_frac",
+    "upload_share",
+    "new_dst_frac"
+   ],
+   "strict": [
+    "log_up_bytes",
+    "log_dst_ports",
+    "no_reply_frac",
+    "rst_frac",
+    "upload_share",
+    "new_dst_frac"
+   ],
+   "same": false
+  },
+  "zeek__CTU-IoT-Malware-Capture-8-1": {
+   "as_run": [
+    "log_up_bytes",
+    "log_pkts",
+    "log_dst_ports",
+    "rst_frac",
+    "upload_share",
+    "new_dst_frac"
+   ],
+   "strict": [
+    "log_up_bytes",
+    "log_dst_ports",
+    "no_reply_frac",
+    "rst_frac",
+    "upload_share",
+    "new_dst_frac"
+   ],
+   "same": false
+  }
+ },
+ "folds_changed": [
+  "netflow__nfcic_2018-02-16",
+  "netflow__nfcic_2018-02-20",
+  "netflow__nfcic_2018-02-21",
+  "netflow__nfcic_2018-03-02",
+  "zeek__CTU-IoT-Malware-Capture-3-1",
+  "zeek__CTU-IoT-Malware-Capture-34-1",
+  "zeek__CTU-IoT-Malware-Capture-8-1"
+ ]
+}

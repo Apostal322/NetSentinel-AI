@@ -102,14 +102,24 @@ def clip_local(sc, x: np.ndarray) -> np.ndarray:
     return np.clip(sc.transform(x), -10, 10)
 
 
-def screen(sources: dict[str, dict], rng_seed: int = 0) -> tuple[list[int], list[float]]:
-    """Domain-invariance screening on source BENIGN calibration windows only."""
+def strict_cal(d: dict) -> pl.DataFrame:
+    """Clean calibration windows of entities that never attack in the domain (A3, item 4)."""
+    return d["cal"].filter(~pl.col("key").is_in(list(d["attackers"])))
+
+
+def screen(sources: dict[str, dict], rng_seed: int = 0,
+           strict: bool = False) -> tuple[list[int], list[float]]:  # fmt: skip
+    """Domain-invariance screening on source BENIGN calibration windows only. `strict` =
+    the registered definition: windows of non-attacking entities only (amendment A3)."""
     from scipy.stats import wasserstein_distance
 
     rng = np.random.default_rng(rng_seed)
     zs = []
     for d in sources.values():
-        x = S._x(d["cal"])
+        cal = strict_cal(d) if strict else d["cal"]
+        if strict and cal.height < 60:
+            continue
+        x = S._x(cal)
         z = clip_local(S.local_scaler(d["cal"]), x)
         if len(z) > 5000:
             z = z[rng.choice(len(z), 5000, replace=False)]
@@ -137,7 +147,8 @@ def train_matrix(d: dict, seed: int) -> tuple[np.ndarray, np.ndarray, np.ndarray
     return x, clip_local(S.local_scaler(d["cal"]), x), y
 
 
-def fit_models(sources: dict[str, dict], seed: int, keep: list[int]) -> dict:
+def fit_models(sources: dict[str, dict], seed: int, keep: list[int],
+               only_ndis: bool = False) -> dict:  # fmt: skip
     import lightgbm as lgb
     from sklearn.linear_model import LogisticRegression
 
@@ -158,10 +169,13 @@ def fit_models(sources: dict[str, dict], seed: int, keep: list[int]) -> dict:
         return m.fit(X, y, sample_weight=w)
 
     t0 = time.perf_counter()
-    models = {"B-raw": (lgbm(Xr), "raw", None), "B-loc": (lgbm(Xl), "loc", None),
-              "N-dis": (lgbm(Xl[:, keep]), "loc", keep)}  # fmt: skip
-    lr = LogisticRegression(C=1.0, max_iter=2000).fit(Xl, y, sample_weight=w)
-    models["B-lr"] = (lr, "loc", None)
+    if only_ndis:
+        models = {"N-dis": (lgbm(Xl[:, keep]), "loc", keep)}
+    else:
+        models = {"B-raw": (lgbm(Xr), "raw", None), "B-loc": (lgbm(Xl), "loc", None),
+                  "N-dis": (lgbm(Xl[:, keep]), "loc", keep)}  # fmt: skip
+        lr = LogisticRegression(C=1.0, max_iter=2000).fit(Xl, y, sample_weight=w)
+        models["B-lr"] = (lr, "loc", None)
     models["_fit_s"] = time.perf_counter() - t0
     models["_train_rows"] = len(y)
     return models
@@ -324,7 +338,8 @@ def mean_dict(ds: list[dict]):
 
 
 # ----------------------------------------------------------------------------- fold
-def run_fold(family: str, name: str, doms: dict, seeds: list[int], h2_only: bool) -> dict:
+def run_fold(family: str, name: str, doms: dict, seeds: list[int], h2_only: bool,
+             ndis_strict: bool = False) -> dict:  # fmt: skip
     t0 = time.perf_counter()
     tgt = doms[name]
     out = {"family": family, "domain": name, "eval_windows": tgt["ev"].height,
@@ -333,6 +348,20 @@ def run_fold(family: str, name: str, doms: dict, seeds: list[int], h2_only: bool
            "attack_eligible": attack_eligible(tgt), "eval_hours": tgt["hours"],
            "role": "primary" if name in PRIMARY[family] else
                    "secondary" if name in SECONDARY[family] else "benign_unit"}  # fmt: skip
+    if ndis_strict:  # amendment A3: N-dis with the registered (strict) screening only
+        if out["role"] == "benign_unit":
+            return {**out, "seconds": time.perf_counter() - t0}
+        sources = {k: v for k, v in doms.items() if k != name}
+        keep, inst = screen(sources, strict=True)
+        out["screening"] = {"kept": [FEATS[i] for i in keep], "strict": True,
+                            "instability": dict(zip(FEATS, inst, strict=True))}  # fmt: skip
+        per_seed = []
+        for seed in seeds:
+            models = fit_models(sources, seed, keep, only_ndis=True)
+            se, scal = score_target(models, tgt)["N-dis"]
+            per_seed.append({"fit_s": models["_fit_s"], "N-dis": operating(tgt, se, scal)})
+        out.update(seeds=seeds, per_seed=per_seed, seconds=time.perf_counter() - t0)
+        return out
     rz = robust_baseline(tgt)
     out["B-rz"] = operating(tgt, rz["ev"], np.concatenate([np.full(int((~hold_mask(tgt)).sum()),
                                                                    np.nan), rz["cal"]]))  # fmt: skip
@@ -370,6 +399,7 @@ def main() -> None:
     ap.add_argument("--domains")
     ap.add_argument("--seeds", default="0,1,2")
     ap.add_argument("--h2-only", action="store_true")
+    ap.add_argument("--ndis-strict", action="store_true")
     ap.add_argument("--cap", type=int, default=CAP, help="smoke runs only; default = registered")
     ap.add_argument("--out", default=str(OUT))
     a = ap.parse_args()
@@ -380,7 +410,7 @@ def main() -> None:
         doms = domains(family)
         names = a.domains.split(",") if a.domains else list(doms)
         for name in (n for n in names if n in doms):
-            r = run_fold(family, name, doms, seeds, a.h2_only)
+            r = run_fold(family, name, doms, seeds, a.h2_only, a.ndis_strict)
             r["peak_rss_mb"] = peak_rss_mb()
             (OUT / f"{family}__{name}.json").write_text(json.dumps(r, indent=1, default=str),
                                                         "utf-8")  # fmt: skip

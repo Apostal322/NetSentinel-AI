@@ -22,6 +22,7 @@ MODELS = ("B-raw", "B-loc", "N-dis", "B-lr")
 
 
 SRC_H2 = Path("reports/phase8h/lodo_h2")  # B-rz with the registered T1 (amendment A3)
+SRC_NDIS = Path("reports/phase8h/lodo_ndis_strict")
 
 
 def load() -> dict[str, dict]:
@@ -31,6 +32,13 @@ def load() -> dict[str, dict]:
         r["B-rz_source"] = "lodo_h2" if h2.exists() else "lodo (T1 floored at T0)"
         if h2.exists():
             r["B-rz"] = json.loads(h2.read_text("utf-8"))["B-rz"]
+        nd = SRC_NDIS / f"{k}.json"  # N-dis with the registered strict screening (A3)
+        r["N-dis_source"] = "lodo_ndis_strict" if nd.exists() else "lodo (as run)"
+        if nd.exists() and r.get("per_seed"):
+            strict = json.loads(nd.read_text("utf-8"))
+            for mine, st in zip(r["per_seed"], strict["per_seed"], strict=True):
+                mine["N-dis"] = st["N-dis"]
+            r["screening"] = strict["screening"]
     return res
 
 
@@ -118,6 +126,7 @@ def main() -> None:
     n2, d1b = paired(h1_dom, lambda r: None if oracle("N-dis")(r) is None or oracle("B-loc")(r)
                      is None else oracle("N-dis")(r) - oracle("B-loc")(r))  # fmt: skip
     h1a, h1b = test_mean(n1, d1a, 0.05), test_mean(n2, d1b, 0.05)
+    h1b["n_dis_sources"] = sorted({h1_dom[k]["N-dis_source"] for k in n2})
     h1b["harmful_domains"] = [n for n, v in zip(n2, d1b, strict=True) if v < -0.20]
 
     # ------------------------------------------------------------------ H2 (B-rz primary)
