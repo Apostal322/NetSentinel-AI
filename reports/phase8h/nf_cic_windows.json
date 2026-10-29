@@ -1,0 +1,171 @@
+{
+ "label": "[E] development data",
+ "days": {
+  "2018-02-16": {
+   "flows_dev": 1551863,
+   "eval_flows": 694297,
+   "eval_labels": {
+    "benign": 594221,
+    "dos_hulk": 100076
+   },
+   "cal_windows_clean": 91328,
+   "eval_windows": 79554,
+   "attack_windows": 27,
+   "attack_entities": 1,
+   "noisy_windows": 0,
+   "entities": 11020,
+   "seconds": 36.08879639999941
+  },
+  "2018-02-14": {
+   "flows_dev": 2137465,
+   "eval_flows": 911315,
+   "eval_labels": {
+    "benign": 722841,
+    "ssh_bruteforce": 188474
+   },
+   "cal_windows_clean": 125797,
+   "eval_windows": 108481,
+   "attack_windows": 184,
+   "attack_entities": 1,
+   "noisy_windows": 0,
+   "entities": 14229,
+   "seconds": 5.114644799999951
+  },
+  "2018-02-15": {
+   "flows_dev": 1653077,
+   "eval_flows": 724725,
+   "eval_labels": {
+    "benign": 724725
+   },
+   "cal_windows_clean": 116915,
+   "eval_windows": 96042,
+   "attack_windows": 0,
+   "attack_entities": 0,
+   "noisy_windows": 0,
+   "entities": 12425,
+   "seconds": 4.189984900000127
+  },
+  "2018-02-20": {
+   "flows_dev": 1827843,
+   "eval_flows": 772189,
+   "eval_labels": {
+    "benign": 770036,
+    "ddos_loic_http": 2153
+   },
+   "cal_windows_clean": 119688,
+   "eval_windows": 113955,
+   "attack_windows": 106,
+   "attack_entities": 10,
+   "noisy_windows": 0,
+   "entities": 14626,
+   "seconds": 5.182033500000216
+  },
+  "2018-02-21": {
+   "flows_dev": 2711059,
+   "eval_flows": 1837582,
+   "eval_labels": {
+    "ddos_hoic": 1032311,
+    "benign": 805271
+   },
+   "cal_windows_clean": 127124,
+   "eval_windows": 117126,
+   "attack_windows": 1086,
+   "attack_entities": 10,
+   "noisy_windows": 0,
+   "entities": 13739,
+   "seconds": 33.01190099999985
+  },
+  "2018-02-22": {
+   "flows_dev": 1989174,
+   "eval_flows": 933694,
+   "eval_labels": {
+    "benign": 932453,
+    "web_bruteforce": 681,
+    "web_sql_injection": 305,
+    "web_xss": 255
+   },
+   "cal_windows_clean": 137405,
+   "eval_windows": 128221,
+   "attack_windows": 849,
+   "attack_entities": 291,
+   "noisy_windows": 0,
+   "entities": 13575,
+   "seconds": 5.247412799999438
+  },
+  "2018-02-23": {
+   "flows_dev": 1751857,
+   "eval_flows": 795383,
+   "eval_labels": {
+    "benign": 795383
+   },
+   "cal_windows_clean": 122950,
+   "eval_windows": 107815,
+   "attack_windows": 0,
+   "attack_entities": 0,
+   "noisy_windows": 0,
+   "entities": 12861,
+   "seconds": 6.922939000000042
+  },
+  "2018-02-27": {
+   "flows_dev": 922,
+   "eval_flows": 591,
+   "eval_labels": {
+    "benign": 591
+   },
+   "cal_windows_clean": 229,
+   "eval_windows": 304,
+   "attack_windows": 0,
+   "attack_entities": 0,
+   "noisy_windows": 0,
+   "entities": 91,
+   "seconds": 0.4551419999997961
+  },
+  "2018-02-28": {
+   "flows_dev": 1739309,
+   "eval_flows": 1738454,
+   "eval_labels": {
+    "benign": 1659089,
+    "infiltration": 79365
+   },
+   "cal_windows_clean": 392,
+   "eval_windows": 228871,
+   "attack_windows": 0,
+   "attack_entities": 0,
+   "noisy_windows": 5689,
+   "entities": 23634,
+   "seconds": 6.429537999999411
+  },
+  "2018-03-01": {
+   "flows_dev": 2076801,
+   "eval_flows": 1005648,
+   "eval_labels": {
+    "benign": 954676,
+    "infiltration": 50972
+   },
+   "cal_windows_clean": 137845,
+   "eval_windows": 131325,
+   "attack_windows": 0,
+   "attack_entities": 0,
+   "noisy_windows": 3038,
+   "entities": 13767,
+   "seconds": 9.142496600000413
+  },
+  "2018-03-02": {
+   "flows_dev": 1406244,
+   "eval_flows": 654822,
+   "eval_labels": {
+    "benign": 581852,
+    "bot": 72970
+   },
+   "cal_windows_clean": 98274,
+   "eval_windows": 94351,
+   "attack_windows": 2408,
+   "attack_entities": 7,
+   "noisy_windows": 0,
+   "entities": 10977,
+   "seconds": 5.40338040000006
+  }
+ },
+ "seconds": 81.31314419999944,
+ "peak_rss_mb": 1458.07421875
+}

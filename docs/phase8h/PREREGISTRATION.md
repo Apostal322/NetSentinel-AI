@@ -248,3 +248,38 @@ and 120 minutes.
   approval.
 - **Next step:** a separate pre-registration amendment, written before the download, will fix
   the data and the decision rule.
+
+## Amendment A1 (2026-10-29): after building the NF-CIC windows, before any model was run
+
+**Domain inventory, built** (`reports/phase8h/nf_cic_windows.json`):
+- Eligible NF-CIC attack domains: 02-14 SSH brute force (1 attacker), 02-16 DoS-Hulk (1),
+  02-20 DDoS LOIC-HTTP (10), 02-21 DDoS HOIC (10), 02-22 web attacks, 03-02 bot (7).
+- Benign units only: 02-15, 02-23, 02-28 and 03-01. On 02-28 and 03-01 the infiltration
+  windows are excluded as noisy: 5,689 and 3,038 windows.
+- Ineligible: 02-27 (304 windows).
+
+**Change 1: 02-22 (web attacks) is excluded from the primary analyses.**
+- Its 2,538 attack-labelled flows come from 562 sources aimed at one victim (172.31.69.28).
+- The top destination ports are 500 (IKE), 80 and 445.
+- So the labels mark the victim's traffic during the attack period, not the attacker. This
+  matches the documented CIC problem (41.7% of web brute force is non-HTTP).
+- 02-22 is reported as a secondary, label-noisy domain.
+- The decision uses label provenance only, not any model result.
+
+**Primary attack domains (9):**
+- NetFlow: NF-CIC 02-14, 02-16, 02-20, 02-21 and 03-02, plus NF-UNSW;
+- Zeek: IoT-23 3-1, 34-1 and 8-1.
+
+**Change 2: the H3 comparator, made operational.**
+- "Calibration hold-out separation" cannot be computed: clean calibration windows contain no
+  attacks.
+- H3 therefore compares F-or with **the better of B-loc@T0(α) and B-rz@T0(α) per held-out
+  domain, chosen with that domain's evaluation labels** (an oracle choice).
+- No deployable selection rule can beat this oracle, so the change makes the H3 test
+  stricter.
+
+**Change 3: definitions for windows of attacking entities.**
+- An entity is *attacking* if any of its evaluation windows is an attack window.
+- Label-benign negatives are the evaluation windows of non-attacking entities, minus noisy
+  windows.
+- Non-attack windows of attacking entities are excluded from both FPR and recall.
