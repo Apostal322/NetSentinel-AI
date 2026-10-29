@@ -177,9 +177,10 @@ unchanged. The system remains detection-only.
 
 ## 10. Closure decision
 
-**A: Phase 8g is complete, with its limitations documented.** This is conditional on all
-three GitHub CI jobs passing on the final commit; the status is recorded in
-[RELEASE_READINESS.md](RELEASE_READINESS.md).
+**A: Phase 8g is complete, with its limitations documented.** All three GitHub CI jobs
+(test, docker, security) passed on bf47e28
+([run 40817259525](https://github.com/Apostal322/NetSentinel-AI/actions/runs/40817259525));
+details in [RELEASE_READINESS.md](RELEASE_READINESS.md).
 
 - **Reliable software.**
   - The frozen run reproduces exactly.

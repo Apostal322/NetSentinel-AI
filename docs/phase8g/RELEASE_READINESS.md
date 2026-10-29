@@ -24,8 +24,8 @@
 | health indicators `buffer_spill`, `buffer_pressure`, `clock_anomaly`, `spill_failed`, `integrity_degraded` | **Verified** in stream stats, monitor summary and stored per window | `test_streaming.py`, `test_stream_robustness.py`, `test_spill_hardening.py` |
 | model and calibration loading, schema versions, integrity refusal | **Verified** (unchanged since v0.7.0; tests pass) | unit / integration tests |
 | update gate: per-entity review trigger | **Verified**: regression test; development data 0/12 new clean reviews, 8/12 scans caught | [V4_FAILURE_ANALYSIS.md](V4_FAILURE_ANALYSIS.md) §5 |
-| Docker image, container smoke tests, pip-audit, gitleaks | **Verified in CI for d67f061 only** (run 40632605039: test, docker, security all passed). **Unverified** for 9e526ca, de8610c and this phase: not pushed. No Docker locally. | https://github.com/Apostal322/NetSentinel-AI/actions/runs/40632605039 |
-| GitHub Actions for the Phase 8g finalization commits | **Unverified**: requires a push (operator approval) | — |
+| Docker image, container smoke tests, pip-audit, gitleaks | **Verified in CI** on bf47e28 (jobs `docker` and `security` passed). No Docker locally. | https://github.com/Apostal322/NetSentinel-AI/actions/runs/40817259525 |
+| GitHub Actions for the Phase 8g finalization commits | **Verified**: run 40817259525 on bf47e28 (push to `main`), all three jobs passed: `test`, `docker`, `security` | https://github.com/Apostal322/NetSentinel-AI/actions/runs/40817259525 |
 
 ## Backward compatibility
 
@@ -63,4 +63,4 @@
 | lockfile | `uv lock --check` consistent; `pyproject.toml` and `uv.lock` unchanged since the last CI-verified commit |
 | backward compatibility | old event store migrates (test); no artifact schema change |
 | frozen Phase 8g outputs | unchanged: `reports/phase8g/`, `configs/phase8g/`, `scripts/phase8g/` have no diff; the 157 frozen window parts were last written by the frozen run |
-| GitHub Actions on the final commit | see below |
+| GitHub Actions on the final commit | **passed** on bf47e28, the last code commit: [run 40817259525](https://github.com/Apostal322/NetSentinel-AI/actions/runs/40817259525). Jobs: [test](https://github.com/Apostal322/NetSentinel-AI/actions/runs/40817259525/job/123261135775), [docker](https://github.com/Apostal322/NetSentinel-AI/actions/runs/40817259525/job/123261135536), [security](https://github.com/Apostal322/NetSentinel-AI/actions/runs/40817259525/job/123261135645). The later commit that records this result changes documentation only. |
