@@ -21,8 +21,17 @@ FAMILY_ALPHA = 0.05
 MODELS = ("B-raw", "B-loc", "N-dis", "B-lr")
 
 
+SRC_H2 = Path("reports/phase8h/lodo_h2")  # B-rz with the registered T1 (amendment A3)
+
+
 def load() -> dict[str, dict]:
-    return {p.stem: json.loads(p.read_text("utf-8")) for p in sorted(SRC.glob("*.json"))}
+    res = {p.stem: json.loads(p.read_text("utf-8")) for p in sorted(SRC.glob("*.json"))}
+    for k, r in res.items():
+        h2 = SRC_H2 / f"{k}.json"
+        r["B-rz_source"] = "lodo_h2" if h2.exists() else "lodo (T1 floored at T0)"
+        if h2.exists():
+            r["B-rz"] = json.loads(h2.read_text("utf-8"))["B-rz"]
+    return res
 
 
 def sign_flip_p(d: np.ndarray) -> float:
@@ -54,8 +63,27 @@ def holm(pvals: dict[str, float]) -> dict[str, bool]:
     return out
 
 
+def seed_mean(vals: list):
+    """Mean over seeds of one leaf: numbers -> mean of the non-None values; booleans -> share
+    True; anything else -> the common value if all seeds agree, else None (amendment A3)."""
+    if all(isinstance(v, dict) for v in vals):
+        return {k: seed_mean([v.get(k) for v in vals]) for k in set().union(*vals)}
+    nums = [v for v in vals if isinstance(v, (int, float)) and not isinstance(v, bool)]
+    if nums and all(v is None or v in nums for v in vals):
+        return float(np.mean(nums))
+    if all(isinstance(v, bool) for v in vals):
+        return float(np.mean(vals))
+    return vals[0] if all(v == vals[0] for v in vals) else None
+
+
 def sup(r: dict, model: str, thr: str = "T0") -> dict:
-    return (r.get("supervised") or {}).get(model, {}).get(thr, {})
+    """Seed-mean metrics of a supervised model (recomputed from per_seed, not lodo's mean)."""
+    seeds = r.get("per_seed") or []
+    if not seeds:
+        return {}
+    if "_sup" not in r:
+        r["_sup"] = seed_mean([{k: v for k, v in s.items() if isinstance(v, dict)} for s in seeds])
+    return (r["_sup"].get(model) or {}).get(thr) or {}
 
 
 def paired(rows: dict, f) -> tuple[list[str], np.ndarray]:
@@ -93,7 +121,8 @@ def main() -> None:
     h1b["harmful_domains"] = [n for n, v in zip(n2, d1b, strict=True) if v < -0.20]
 
     # ------------------------------------------------------------------ H2 (B-rz primary)
-    units = {k: r for k, r in res.items() if r["benign_windows"] >= 60}
+    # amendment A1: the secondary (label-noisy) domain 02-22 is excluded from every primary test
+    units = {k: r for k, r in res.items() if r["benign_windows"] >= 60 and r["role"] != "secondary"}
     ex = {k: (r["B-rz"]["T0"]["fpr"] > 2 * ALPHA, r["B-rz"]["T1"]["fpr"] > 2 * ALPHA)
           for k, r in units.items() if r["B-rz"]["T0"].get("fpr") is not None}  # fmt: skip
     e0 = np.mean([a for a, _ in ex.values()]) if ex else None
@@ -102,7 +131,7 @@ def main() -> None:
     c = sum(c and not a for a, c in ex.values())
     loss = [r["B-rz"]["T0"]["window_recall"] - r["B-rz"]["T1"]["window_recall"]
             for r in primary.values() if r["B-rz"]["T0"].get("window_recall") is not None]  # fmt: skip
-    h2 = {"units": len(ex), "exceedance_T0": e0, "exceedance_T1": e1,
+    h2 = {"units": len(ex), "b_rz_sources": sorted({units[k]["B-rz_source"] for k in ex}), "exceedance_T0": e0, "exceedance_T1": e1,
           "only_T0_exceeds": b, "only_T1_exceeds": c, "p_one_sided": mcnemar_p(b, c),
           "median_recall_loss": float(np.median(loss)) if loss else None,
           "testable": bool(e0 is not None and e0 > 0.10),
@@ -135,7 +164,8 @@ def main() -> None:
             else (bb, "B-rz")  # fmt: skip
 
     def fuse(r):
-        return ((r.get("supervised") or {}).get("fusion") or {}).get("F-or", {})
+        sup(r, "B-loc")  # fills r["_sup"]
+        return ((r.get("_sup") or {}).get("fusion") or {}).get("F-or") or {}
 
     n3, d3 = paired(primary, lambda r: None if fuse(r).get("window_recall") is None else
                     fuse(r)["window_recall"] - (better(r)[0].get("window_recall") or 0))  # fmt: skip

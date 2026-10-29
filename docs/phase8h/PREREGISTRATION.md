@@ -307,3 +307,44 @@ contain **only the attacking device**: 0 label-benign evaluation windows. IoT-23
 - B-rz scores the hold-out and the evaluation windows in separate calls from one
   deterministic fit, because the window spanning the midpoint exists in both.
 - The `--cap` option is for timing only. The registered run uses the default cap of 200,000.
+
+## Amendment A3 (2026-10-29): after an independent code review, before any result was inspected
+
+**How the review was run.**
+- A read-only adversarial review compared `lodo.py` and `analyze.py` with this protocol:
+  3 reviewers, and 2 skeptics per finding.
+- It ran while the registered grid was running and did not read any result.
+- 8 findings survived and 6 were refuted. The changes below follow from them.
+- No result of the registered run had been looked at when they were made.
+
+**Fixed (code now matches the registration):**
+1. **H2 unit set.**
+   - The H2 units included the secondary domain 02-22, which amendment A1 excluded from all
+     primary tests.
+   - `analyze.py` now excludes secondary domains from H2.
+2. **T1 definition.**
+   - T1 was implemented as max(bootstrap q90, T0). The floor at T0 is not in the
+     registration: it made T1 ≥ T0 by construction and biased H2 toward success.
+   - T1 is now the bootstrap 90% bound itself. The floored value is kept only as a labelled
+     diagnostic.
+   - The grid stored only the floored T1. B-rz is therefore re-run alone for every domain,
+     with no supervised training, into `reports/phase8h/lodo_h2/`, and H2 uses those
+     results.
+   - The secondary B-loc T1 numbers from the grid still use the floored T1 and are labelled
+     so.
+3. **Seed means.**
+   - `mean_dict` replaced the seed mean with seed 0's value whenever a seed had a None value
+     (e.g. a delay when an entity was missed in one seed only).
+   - `analyze.py` recomputes every seed mean from the stored per-seed results: numbers →
+     mean of non-None values; booleans → share True.
+
+**Disclosed deviations (not fixed; none affects a primary metric):**
+4. **Feature screening input.**
+   - N-dis screening uses the sources' clean calibration windows. Those are made of
+     benign-labelled flows, but they include benign windows of attacking entities.
+   - A cheap check recomputes the kept feature sets with strictly non-attacking entities. If
+     a fold's kept set changes, that fold's N-dis result is flagged and re-run.
+5. **B-loc arm of H2 (secondary).** It covers only the label-benign windows of attack folds:
+   benign-only units have no supervised fold.
+6. **Micro metrics.** Micro PR-AUC and ROC-AUC were not computed (scores are not stored).
+   Micro window recall is reported.

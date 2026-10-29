@@ -224,7 +224,10 @@ def thresholds(s_hold: np.ndarray, slots: np.ndarray, own_hold: np.ndarray,
         out.update(T1=t0, T3_abstain=True, boot_width=None)
     else:
         q05, q90, q95 = np.quantile(bt, [0.05, 0.90, 0.95])
-        out.update(T1=float(max(q90, t0)), boot_width=float(q95 - q05),
+        # registered T1 = the bootstrap 90% bound itself (amendment A3: an unregistered floor at
+        # T0 was removed; it made T1 >= T0 by construction)
+        out.update(T1=float(q90), T1_floored_at_T0=float(max(q90, t0)),
+                   boot_width=float(q95 - q05),
                    T3_abstain=bool(t0 > 0 and (q95 - q05) > 0.5 * t0))  # fmt: skip
     pops = {}
     for name, m in (("own", own_hold), ("pooled", ~own_hold)):
