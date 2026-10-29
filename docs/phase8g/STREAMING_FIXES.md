@@ -34,8 +34,21 @@
 | throughput (synthetic, 210k records, no spill) | 244k records/s | 234k records/s (−4%) |
 | memory | bounded by `max_buffer` | unchanged, plus disk up to `max_spill` |
 
-## Not verified
+## Not verified (at the time of these fixes)
 
-- **Real data.** Neither fix has been re-run on CTU-13; that data is consumed. A post-hoc
+- **Real data.** Neither fix had been re-run on CTU-13; that data is consumed. A post-hoc
   engineering check on it would be labelled [R].
 - **Disk speed.** Spill throughput on slow disks has not been measured.
+
+**Update (Phase 8g finalization, [R]).** The fixes were re-run on CTU-13 against an exact
+non-streaming reference ([REAL_DATA_STREAMING_AUDIT.md](REAL_DATA_STREAMING_AUDIT.md)).
+- **Scenario 9:** exact; 0 of the 1,039 records lost.
+- **Scenario 10:**
+  - 0 forced closes;
+  - 90 records still late at A2's 600 s lateness;
+  - exact at 3,700 s.
+- **Hardening.** A review of these fixes found several gaps in the spill: the disk budget
+  ignored appends, failed writes, unreadable files, stale directories and records ending
+  before they start. All were fixed in 9e526ca and de8610c.
+- **Throughput.** With spilling, real data streams at 13–40k records/s, not the synthetic
+  234k.

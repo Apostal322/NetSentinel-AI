@@ -90,3 +90,22 @@ below), so there is no second environment.
   code 121acbf.
   1. long connections dropped by the START-based out-of-range rule (1,039 records, silent);
   2. buffer exhaustion under dense attack traffic (scenario 10).
+
+## Post-hoc audit trail (added 2026-10-28, after the run; the results above are unchanged)
+
+See [FINAL_REPORT.md](FINAL_REPORT.md). Everything below is [R]: consumed data, after the
+result.
+- **Scenario 9 on an exact non-streaming reference** (without the 1,039 dropped records):
+  - recall 0.211 instead of 0.209;
+  - unverified 2,755/h instead of 2,563/h;
+  - V3 and V4 otherwise identical.
+- **Scenario 10 with the fixed stream.**
+  - At 600 s it **still fails A2**: 90 late records, 0 forced closes.
+  - At 3,700 s it is exact. The exploratory result there: 10/10, recall 0.573.
+- **V4 root cause:** a population-level gate diluted by persistent bots, which the refit then
+  granted their own profiles ([V4_FAILURE_ANALYSIS.md](V4_FAILURE_ANALYSIS.md)).
+- **Registry.** The `contents_opened: false` field in `reports/phase8g/registry.json` is
+  stale: the files were opened by the frozen build.
+- **A2 acceptance.** The rule checked losses only at a non-default lateness, which is how
+  scenario 9's dropped records passed unnoticed.
+

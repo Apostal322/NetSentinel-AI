@@ -56,6 +56,7 @@ Full tables with sources and data roles: [`docs/RESULTS.md`](docs/RESULTS.md).
 | Can thresholds make detections reliable? (Phase 8d, development data) | No policy tested is both within the false-alert budget and sensitive. Only selective abstention (no decision where calibration is unreliable) kept the budget, covering 11 of 22 captures. Every LightGBM operating point broke it (up to 29% FPR), so it stays research-only: [`docs/phase8d/REPORT.md`](docs/phase8d/REPORT.md) |
 | Can per-population false-alert budgets fix the alert burden? (Phase 8e, development data, pre-declared rule) | **No.** No policy kept every population within budget; overruns come from calibration-to-evaluation shift (39% realised FPR at a 1% target on one dataset), not from how thresholds are allocated. ToN_IoT labels mark 3 scanners plus 37 responders as "attack sources" (retrospective): [`docs/phase8e/REPORT.md`](docs/phase8e/REPORT.md) |
 | Can drift detection or automatic recalibration make calibration reliable? (Phase 8f, development data, pre-declared rules) | **Not automatically.** False positives come mainly from transient sources scored by the pooled fallback, not from calibration age. A new block-permutation shift test separated unreliable periods (33x) but failed its pre-declared adoption criterion, so it ships only as `--validity-shadow`. Periodic or drift-triggered refits cut false alerts by learning the attacks (recall 0.27 -> 0.03-0.05). Only vetted refresh helped, and only with oracle vetting: [`docs/phase8f/REPORT.md`](docs/phase8f/REPORT.md) |
+| Does the baseline find real bots on an independent network? (Phase 8g, pre-registered, CTU-13 scenario 9) | **Yes, at its operating point:** all 10 documented bots within about a minute of infection (window recall 0.21), and 0 false alerts on the 6 verified-benign hosts. The unlabelled background drew 2,563 alerts/h, mostly what a 1% target gives at about 197k device windows/h, so it is a triage burden, not a measured false-positive rate. The gated refresh absorbed 71% of the attack, because a few persistent bots dilute a population-level gate. A post-hoc audit found and fixed silent record loss in the stream; scenario 10 was not evaluable. [`docs/phase8g/FINAL_REPORT.md`](docs/phase8g/FINAL_REPORT.md) |
 | ML protocol ID vs port lookup | Better in-dataset (macro-F1 0.945 vs 0.840). Confidently wrong under shift (HTTP on port 80 called TLS), so the product combines it with port evidence and abstains on conflicts |
 
 ## Quick start
@@ -240,8 +241,12 @@ peak memory are recorded in the development logs.
   validated ones.
 - Incidents turn each isolated false alert into its own incident. On the fresh Phase 8
   capture, 9 of 10 incidents were benign-only (2.5/h): rank by duration as well as severity.
-- The calibration update gate catches short bursts only partly (7 of 12 injected 60 s scans,
-  development data) and sustained attack periods only through the alert rate.
+- The calibration update gate catches short bursts only partly (8 of 12 injected 60 s scans,
+  development data). It flags persistently anomalous entities for review (Phase 8g), but a
+  gradually starting attack can still pass and be learned.
+- Streaming drops records that arrive after their window closed (the lateness policy). They
+  are counted (`late`) but do not mark telemetry as degraded. Dense traffic spills to disk,
+  at about a tenth of in-memory speed.
 - Temporal models (EWMA, GRU, TCN, lag-IForest) are research code; none beat the robust
   baseline.
 - The PCAP extractor matches Zeek, but its field-level agreement with nProbe is unverified.

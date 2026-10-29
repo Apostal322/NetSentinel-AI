@@ -67,6 +67,23 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 | Does the deployed baseline catch the attacker? | same | **No: 0/4 attacking devices**, despite PR-AUC 0.92-0.95; incidents (B6) refuted | C (secondary) |
 | Why incidents fail | 22 dev captures | 161/193 incidents single-window, 139 of them benign; persistence rules cost detection | E |
 
+## Phase 8g (independent validation; CTU-13 scenarios 9 and 10)
+
+- Results: [`docs/phase8g/RESULTS.md`](phase8g/RESULTS.md).
+- Closure and post-hoc audit: [`docs/phase8g/FINAL_REPORT.md`](phase8g/FINAL_REPORT.md).
+- **R**: retrospective (consumed data, after the result).
+
+| Question | Data | Result | Role |
+|---|---|---|---|
+| Does the deployed baseline find the documented bots? (V3) | scenario 9 (Neris), fresh | **10/10** initiators; window recall 0.209; median delay 47.5 s; 0/803 verified-benign false alerts; 2,563 alerts/h on unlabelled background | C |
+| Gated recalibration (V4) | same | **refuted**: absorbed 71% of attack windows | C |
+| V1 / V2; scenario 10 | same; scenario 10 (Rbot) | not evaluable; scenario 10 declared failed (A2) | C |
+| Frozen result vs an exact non-streaming reference | scenario 9 | 1,039 records had been dropped silently; recall 0.211, burden 2,755/h on the reference | R |
+| Fixed stream vs reference | scenarios 9 and 10 | exact (scenario 10 at 3,700 s); at A2's 600 s, 90 late records, 0 forced closes (was 57) | R |
+| Scenario 10, exploratory | scenario 10 at 3,700 s | 10/10; recall 0.573; 1.8 benign FA/h; 1,475 unverified/h; V4 absorbed 64% | R |
+| Why V4 failed | scenario 9; synthetic | population-level gate diluted (attack = 0.47% of windows); bots gained own profiles; the product gate passed it too; per-entity review trigger added | R / E |
+| Alert burden | scenario 9 | about 77% is what a 1% target gives at 197k device windows/h; 98% from pooled-fallback sources; incidents −18% only | R |
+
 ## Telemetry
 
 | Check | Result | Source |

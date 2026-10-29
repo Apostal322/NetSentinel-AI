@@ -136,3 +136,18 @@ declared failed under A2: 6,030 late records and 57 forced closes.
 | V2: the shift test earns adoption | **not evaluable** | no benign-only segments |
 | V4: gated recalibration does not absorb attacks | **refuted** | S5 absorbed 71% of attack windows (1 activation) |
 | CTU-13 flow labels mark attack traffic only after infection | **refuted (provenance audit)** | From-Botnet labels start at VM start, about 2 h before documented infection; IP-based |
+
+**Post-hoc finalization** ([FINAL_REPORT.md](phase8g/FINAL_REPORT.md)). These rows are [R]
+(consumed data) or [E] (synthetic or development data). None of them is confirmatory, and
+none changes a verdict above.
+
+| Claim | Status | Evidence |
+|---|---|---|
+| The frozen scenario 9 result survives the 1,039 silently dropped records | **confirmed [R]** | exact non-streaming reference: recall 0.209 → 0.211, unverified 2,563 → 2,755/h; V3 and V4 otherwise unchanged |
+| Current streaming code equals the non-streaming reference on real data | **confirmed [R] (scenario 9; scenario 10 at 3,700 s)**, **refuted at scenario 10's A2 lateness (600 s)** | every record, window, feature, score and alert; at 600 s, 90 late records (counted) cost 10 alerts; 0 forced closes (was 57) |
+| Scenario 10 becomes evaluable under A2 with the fixes | **refuted [R]** | A2 still fails (late 90). Exploratory at 3,700 s: 10/10, recall 0.573, 1.8 benign FA/h, 1,475 unverified/h |
+| V4 root cause: a population-level gate is diluted by a few persistent attackers, and the refit grants them own profiles | **confirmed [R]** | attack 0.47% of candidate windows; even full detection could not exceed the 2× rate limit; 10/10 bots gain own profiles; per-entity test flags all 10 |
+| The product update gate (`update_check`) would have caught it | **refuted [R]** | 4/241 global windows, p = 0.22, no outlier → no review |
+| A per-entity review trigger adds no false reviews | **supported [E]** | 0/12 clean CTU-Normal periods, 8/12 scans (was 7/12); adopted as review-only |
+| Entity quarantine or delayed activation makes data-driven refresh safe | **refuted [E]** | gradual-ramp attackers absorbed 67–100% (QC/QKC/QKCD at δ 1.5); only vetted-only refresh and refusal absorbed nothing |
+| Incident grouping makes the CTU-13 background burden practical | **refuted [R]** | 6,887 → 5,655 incidents (−18%); 81% of sources alert once |
