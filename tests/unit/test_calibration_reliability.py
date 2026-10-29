@@ -1,5 +1,6 @@
 """Phase 7 P2: threshold diagnostics, cross-fitting, statuses, safe updates and rollback."""
 
+import numpy as np
 import polars as pl
 import pytest
 
@@ -103,3 +104,33 @@ def test_update_gate_flags_a_short_burst_the_rate_test_misses(tmp_path):
     chk = update_check(first, pl.concat([normal, scan]).sort("flow_end_milliseconds"))
     assert chk["review_required"] and chk["strong_outliers"] and not chk["rate_review"]
     assert update_check(first, normal)["review_required"] is False
+
+
+def _persistent_host(minutes: int, start_ms: int, host: str = "10.0.0.99") -> pl.DataFrame:
+    """A host absent from the calibration that is active all period, 2 flows per minute."""
+    rng = np.random.default_rng(1)
+    rows = []
+    for m in range(minutes):
+        for _ in range(2):
+            t0 = start_ms + m * 60_000 + int(rng.integers(0, 60_000))
+            dur = int(rng.integers(1, 3000))
+            rows.append((t0, t0 + dur, host, f"93.184.0.{rng.integers(1, 20)}", 443, 6,
+                         int(rng.integers(100, 5000)), int(rng.integers(48_000, 72_000)),
+                         int(rng.integers(2, 20)), int(rng.integers(2, 40)), dur, 0,
+                         0))  # fmt: skip
+    return pl.DataFrame(rows, schema=synth(1).columns, orient="row")
+
+
+def test_update_gate_flags_a_persistently_anomalous_entity(tmp_path):
+    """Phase 8g (CTU-13 scenario 9, docs/phase8g/V4_FAILURE_ANALYSIS.md): one host alerting in
+    about 10% of its windows all period moves neither the global rate nor any single score past
+    the strong-outlier limit, so the refresh learned it. The per-entity test requires review."""
+    first = _save(tmp_path, synth(240, seed=35))
+    normal = synth(240, seed=36, start_ms=T0 + 240 * 60_000)
+    cand = pl.concat([normal, _persistent_host(240, T0 + 240 * 60_000)]).sort(
+        "flow_end_milliseconds")  # fmt: skip
+    chk = update_check(first, cand)
+    assert not chk["rate_review"] and not chk["strong_outliers"]
+    assert chk["review_required"] and "persistently" in chk["reason"]
+    assert [(e["level"], e["entity"]) for e in chk["excess_entities"]] == [("device", "10.0.0.99")]
+    assert update_check(first, normal)["excess_entities"] == []

@@ -103,7 +103,12 @@ def update_check(previous_dir: str | Path, frame: pl.DataFrame, alpha: float = 0
       The reference is the held-out maximum, not the threshold: the maximum of hundreds of
       normal windows routinely exceeds a 1%-FPR threshold. Factor 2.0 was chosen on
       development data (reports/phase8/robust_normality.json): no false review on 12 benign
-      CTU periods and 10 synthetic ones, 7 of 12 injected 60 s scans caught. Exploratory."""
+      CTU periods and 10 synthetic ones, 7 of 12 injected 60 s scans caught. Exploratory.
+    * persistent entity (Phase 8g): a device or service with at least `min_windows` windows
+      whose alert rate is above `rate_factor` x the target FPR and significant (one-sided
+      binomial, Holm over every entity tested, `alpha`). CTU-13 scenario 9: 10 bots alerting in
+      25% of their windows were 0.5% of the device windows, so neither rule above fired and the
+      refresh learned them (docs/phase8g/V4_FAILURE_ANALYSIS.md). Only adds reviews."""
     from scipy.stats import binom
 
     from netsentinel.behavior.calibrate import load_profile
@@ -133,7 +138,8 @@ def update_check(previous_dir: str | Path, frame: pl.DataFrame, alpha: float = 0
                       int(x["window_end_ms"]), "ratio_to_holdout_max": round(float(x["ratio"]), 3)}
                      for x in top.head(10).iter_rows(named=True)]  # fmt: skip
     outliers.sort(key=lambda o: -o["ratio_to_holdout_max"])
-    review = rate_review or bool(outliers)
+    excess = _excess_entities(s, prev, alpha, rate_factor) if s.height else []
+    review = rate_review or bool(outliers) or bool(excess)
     if rate_review:
         reason = ("new calibration period is anomalous under the current baseline (alert rate "
                   f"{rate:.2%} vs target {prev.target_fpr:.2%}); it may contain attack traffic "
@@ -144,9 +150,40 @@ def update_check(previous_dir: str | Path, frame: pl.DataFrame, alpha: float = 0
                   f"calibration score (top: {o['level']} {o['entity']}, "
                   f"{o['ratio_to_holdout_max']}x): a short burst that would be absorbed into "
                   "the new baseline")  # fmt: skip
+    elif excess:
+        e = excess[0]
+        reason = (f"{len(excess)} entit{'y' if len(excess) == 1 else 'ies'} alert persistently "
+                  f"under the current baseline (top: {e['level']} {e['entity']}, "
+                  f"{e['alerts']}/{e['windows']} windows): a refresh would learn their "
+                  "behaviour")  # fmt: skip
     else:
         reason = "consistent with the current baseline"
     return {"previous": manifest["calibration_id"], "global_windows": n, "alerts": alerts,
             "alert_rate_under_previous": rate, "previous_target_fpr": prev.target_fpr,
             "p_value": p_value, "rate_review": rate_review, "outlier_factor": outlier_factor,
-            "strong_outliers": outliers, "review_required": review, "reason": reason}  # fmt: skip
+            "strong_outliers": outliers, "excess_entities": excess[:20],
+            "excess_entity_count": len(excess), "review_required": review,
+            "reason": reason}  # fmt: skip
+
+
+def _excess_entities(s: pl.DataFrame, prev, alpha: float, rate_factor: float) -> list[dict]:
+    """Device / service entities alerting persistently under the current baseline: Holm over
+    every entity with >= min_windows windows, and an alert rate > rate_factor x target."""
+    from scipy.stats import binom
+
+    t = prev.target_fpr
+    per = (s.filter(pl.col("level").is_in(["device", "service"]))
+           .group_by("level", "key")
+           .agg(pl.len().alias("n"), pl.col("anomalous").sum().alias("x"))
+           .filter(pl.col("n") >= prev.min_windows))  # fmt: skip
+    rows = [(float(binom.sf(x - 1, n, t)) if x else 1.0, lv, str(k), n, x)
+            for lv, k, n, x in per.iter_rows()]  # fmt: skip
+    rows.sort()
+    out, m = [], len(rows)
+    for i, (p, lv, k, n, x) in enumerate(rows):
+        if p > alpha / (m - i):  # Holm step-down
+            break
+        if x / n > rate_factor * t:
+            out.append({"level": lv, "entity": k, "windows": n, "alerts": x,
+                        "alert_rate": round(x / n, 4), "p_value": p})  # fmt: skip
+    return out
