@@ -1,0 +1,54 @@
+{
+ "family": "zeek",
+ "domain": "CTU-Normal-26",
+ "eval_windows": 409,
+ "benign_windows": 409,
+ "attack_windows": 0,
+ "attackers": 0,
+ "attack_eligible": false,
+ "eval_hours": 3.2382138888888887,
+ "role": "benign_unit",
+ "B-rz": {
+  "thresholds": {
+   "T0": 20.412708108201723,
+   "T0_reliable": true,
+   "n_hold": 121,
+   "T1": 20.412708108201723,
+   "boot_width": 0.027982074554230962,
+   "T3_abstain": false,
+   "T2": {
+    "own": 19.631258991998617,
+    "pooled": 20.412708108201723
+   }
+  },
+  "T0": {
+   "fpr": 0.03667481662591687,
+   "false_alerts_per_h": 4.632183207992747,
+   "window_recall": null
+  },
+  "T1": {
+   "fpr": 0.03667481662591687,
+   "false_alerts_per_h": 4.632183207992747,
+   "window_recall": null
+  },
+  "T2": {
+   "fpr": 0.04156479217603912,
+   "false_alerts_per_h": 5.249807635725113,
+   "window_recall": null
+  },
+  "T3": {
+   "abstain": false,
+   "fpr": 0.03667481662591687,
+   "false_alerts_per_h": 4.632183207992747,
+   "window_recall": null
+  },
+  "deployed_crossfit": {
+   "threshold": 21.940067999205933,
+   "fpr": 0.007334963325183374,
+   "false_alerts_per_h": 0.9264366415985493,
+   "window_recall": null
+  }
+ },
+ "seconds": 0.16569880000042758,
+ "peak_rss_mb": 1783.1328125
+}

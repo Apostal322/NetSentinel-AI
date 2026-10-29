@@ -1,0 +1,51 @@
+{
+ "family": "zeek",
+ "domain": "CTU-Normal-24",
+ "eval_windows": 148,
+ "benign_windows": 148,
+ "attack_windows": 0,
+ "attackers": 0,
+ "attack_eligible": false,
+ "eval_hours": 2.127034722222222,
+ "role": "benign_unit",
+ "B-rz": {
+  "thresholds": {
+   "T0": 5.691943723622201,
+   "T0_reliable": false,
+   "n_hold": 33,
+   "T1": 5.691943723622201,
+   "T3_abstain": true,
+   "boot_width": null,
+   "T2": {
+    "own": 5.691943723622201,
+    "pooled": 5.691943723622201
+   }
+  },
+  "T0": {
+   "fpr": 0.23648648648648649,
+   "false_alerts_per_h": 16.454832464339702,
+   "window_recall": null
+  },
+  "T1": {
+   "fpr": 0.23648648648648649,
+   "false_alerts_per_h": 16.454832464339702,
+   "window_recall": null
+  },
+  "T2": {
+   "fpr": 0.23648648648648649,
+   "false_alerts_per_h": 16.454832464339702,
+   "window_recall": null
+  },
+  "T3": {
+   "abstain": true
+  },
+  "deployed_crossfit": {
+   "threshold": 8.797879209574097,
+   "fpr": 0.0,
+   "false_alerts_per_h": 0.0,
+   "window_recall": null
+  }
+ },
+ "seconds": 0.09548319999976229,
+ "peak_rss_mb": 1783.1328125
+}

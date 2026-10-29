@@ -1,0 +1,51 @@
+{
+ "family": "zeek",
+ "domain": "CTU-Honeypot-Capture-4-1",
+ "eval_windows": 87,
+ "benign_windows": 87,
+ "attack_windows": 0,
+ "attackers": 0,
+ "attack_eligible": false,
+ "eval_hours": 10.935576944444444,
+ "role": "benign_unit",
+ "B-rz": {
+  "thresholds": {
+   "T0": 16.27982104123447,
+   "T0_reliable": false,
+   "n_hold": 25,
+   "T1": 16.27982104123447,
+   "T3_abstain": true,
+   "boot_width": null,
+   "T2": {
+    "own": 16.27982104123447,
+    "pooled": 16.27982104123447
+   }
+  },
+  "T0": {
+   "fpr": 0.06896551724137931,
+   "false_alerts_per_h": 0.5486678965802674,
+   "window_recall": null
+  },
+  "T1": {
+   "fpr": 0.06896551724137931,
+   "false_alerts_per_h": 0.5486678965802674,
+   "window_recall": null
+  },
+  "T2": {
+   "fpr": 0.06896551724137931,
+   "false_alerts_per_h": 0.5486678965802674,
+   "window_recall": null
+  },
+  "T3": {
+   "abstain": true
+  },
+  "deployed_crossfit": {
+   "threshold": 22.12114626191318,
+   "fpr": 0.022988505747126436,
+   "false_alerts_per_h": 0.18288929886008912,
+   "window_recall": null
+  }
+ },
+ "seconds": 0.10329900000033376,
+ "peak_rss_mb": 1406.515625
+}

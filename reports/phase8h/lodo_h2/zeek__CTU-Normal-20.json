@@ -1,0 +1,55 @@
+{
+ "family": "zeek",
+ "domain": "CTU-Normal-20",
+ "eval_windows": 198,
+ "benign_windows": 198,
+ "attack_windows": 0,
+ "attackers": 0,
+ "attack_eligible": false,
+ "eval_hours": 1.5775675,
+ "role": "benign_unit",
+ "B-rz": {
+  "thresholds": {
+   "T0": 20.745286358011686,
+   "T0_reliable": false,
+   "n_hold": 59,
+   "T1": 20.745286358011686,
+   "T1_floored_at_T0": 20.745286358011686,
+   "boot_width": 2.1537315168673423,
+   "T3_abstain": false,
+   "T2": {
+    "own": 20.745286358011686,
+    "pooled": 20.745286358011686
+   }
+  },
+  "T0": {
+   "fpr": 0.0,
+   "false_alerts_per_h": 0.0,
+   "window_recall": null
+  },
+  "T1": {
+   "fpr": 0.0,
+   "false_alerts_per_h": 0.0,
+   "window_recall": null
+  },
+  "T2": {
+   "fpr": 0.0,
+   "false_alerts_per_h": 0.0,
+   "window_recall": null
+  },
+  "T3": {
+   "abstain": false,
+   "fpr": 0.0,
+   "false_alerts_per_h": 0.0,
+   "window_recall": null
+  },
+  "deployed_crossfit": {
+   "threshold": 19.607686413482373,
+   "fpr": 0.0,
+   "false_alerts_per_h": 0.0,
+   "window_recall": null
+  }
+ },
+ "seconds": 0.1183803000003536,
+ "peak_rss_mb": 1406.515625
+}

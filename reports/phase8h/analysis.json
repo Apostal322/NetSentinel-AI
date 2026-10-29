@@ -1,0 +1,773 @@
+{
+ "label": "[E] development data; decisions by the pre-registered rules",
+ "decisions": {
+  "H1a": "failure",
+  "H1b": "failure: harmful on netflow__nfcic_2018-02-21",
+  "H2": "failure",
+  "H3": "failure"
+ },
+ "holm_pass": {
+  "H1b": "False",
+  "H1a": "False",
+  "H2": "False",
+  "H3": "False"
+ },
+ "p_values": {
+  "H1a": 0.875,
+  "H1b": 0.609375,
+  "H2": 1.0,
+  "H3": 1.0
+ },
+ "H1a": {
+  "domains": [
+   "netflow__NF-UNSW-NB15-v3-dev",
+   "netflow__nfcic_2018-02-14",
+   "netflow__nfcic_2018-02-16",
+   "netflow__nfcic_2018-02-20",
+   "netflow__nfcic_2018-02-21",
+   "netflow__nfcic_2018-03-02",
+   "zeek__CTU-IoT-Malware-Capture-3-1"
+  ],
+  "deltas": [
+   -0.0244,
+   0.0,
+   0.0,
+   -0.9151,
+   0.0,
+   -0.9996,
+   0.1496
+  ],
+  "mean": -0.25563446182913885,
+  "ci95": [
+   -0.5711912672045563,
+   0.03926258148987185
+  ],
+  "p_one_sided": 0.875,
+  "min_effect": 0.05,
+  "effect_ok": false
+ },
+ "H1b": {
+  "domains": [
+   "netflow__NF-UNSW-NB15-v3-dev",
+   "netflow__nfcic_2018-02-14",
+   "netflow__nfcic_2018-02-16",
+   "netflow__nfcic_2018-02-20",
+   "netflow__nfcic_2018-02-21",
+   "netflow__nfcic_2018-03-02",
+   "zeek__CTU-IoT-Malware-Capture-3-1"
+  ],
+  "deltas": [
+   0.0232,
+   0.0,
+   -0.037,
+   -0.0755,
+   -0.9991,
+   0.3804,
+   0.1399
+  ],
+  "mean": -0.08115052120250359,
+  "ci95": [
+   -0.4209443855553885,
+   0.16145235945737327
+  ],
+  "p_one_sided": 0.609375,
+  "min_effect": 0.05,
+  "effect_ok": false,
+  "n_dis_sources": [
+   "lodo_ndis_strict"
+  ],
+  "harmful_domains": [
+   "netflow__nfcic_2018-02-21"
+  ]
+ },
+ "H2": {
+  "units": 27,
+  "b_rz_sources": [
+   "lodo_h2"
+  ],
+  "exceedance_T0": 0.2962962962962963,
+  "exceedance_T1": 0.2962962962962963,
+  "only_T0_exceeds": 0,
+  "only_T1_exceeds": 0,
+  "p_one_sided": 1.0,
+  "median_recall_loss": 0.0,
+  "testable": true,
+  "effect_ok": false
+ },
+ "H2_secondary": {
+  "B-rz/T0": {
+   "units": 27,
+   "exceedance": 0.2962962962962963,
+   "median_fpr": 0.010277292999806089,
+   "p90_fpr": 0.06568144499178982
+  },
+  "B-rz/T1": {
+   "units": 27,
+   "exceedance": 0.2962962962962963,
+   "median_fpr": 0.01007892380416901,
+   "p90_fpr": 0.06568144499178982
+  },
+  "B-rz/T2": {
+   "units": 27,
+   "exceedance": 0.37037037037037035,
+   "median_fpr": 0.010700768292529582,
+   "p90_fpr": 0.10158730158730161
+  },
+  "B-rz/T3": {
+   "units": 19,
+   "exceedance": 0.15789473684210525,
+   "median_fpr": 0.00961905727002736,
+   "p90_fpr": 0.03214116487557097
+  },
+  "B-rz/T3_coverage": 0.7037037037037037,
+  "B-loc/T0": {
+   "units": 7,
+   "exceedance": 0.2857142857142857,
+   "median_fpr": 0.017757438946909208
+  },
+  "B-loc/T1": {
+   "units": 7,
+   "exceedance": 0.2857142857142857,
+   "median_fpr": 0.016841240501129593
+  },
+  "B-loc/T2": {
+   "units": 7,
+   "exceedance": 0.2857142857142857,
+   "median_fpr": 0.017231045221539013
+  },
+  "B-rz/deployed_crossfit": {
+   "units": 27,
+   "exceedance": 0.1111111111111111,
+   "median_fpr": 0.007334963325183374
+  }
+ },
+ "H3": {
+  "domains": [
+   "netflow__NF-UNSW-NB15-v3-dev",
+   "netflow__nfcic_2018-02-14",
+   "netflow__nfcic_2018-02-16",
+   "netflow__nfcic_2018-02-20",
+   "netflow__nfcic_2018-02-21",
+   "netflow__nfcic_2018-03-02",
+   "zeek__CTU-IoT-Malware-Capture-3-1",
+   "zeek__CTU-IoT-Malware-Capture-34-1",
+   "zeek__CTU-IoT-Malware-Capture-8-1"
+  ],
+  "deltas": [
+   -0.052,
+   0.0,
+   0.0,
+   -0.5943,
+   0.0,
+   -0.0001,
+   -0.1934,
+   0.0,
+   0.0
+  ],
+  "mean": -0.0933201682538199,
+  "ci95": [
+   -0.231156262454212,
+   -6.152331733727083e-05
+  ],
+  "p_one_sided": 1.0,
+  "min_effect": 0.05,
+  "effect_ok": false,
+  "fusion_median_fpr": 0.015441505854245535,
+  "entity_recall_not_worse_share": 0.6666666666666666,
+  "better_component": {
+   "netflow__NF-UNSW-NB15-v3-dev": "B-loc",
+   "netflow__nfcic_2018-02-14": "B-loc",
+   "netflow__nfcic_2018-02-16": "B-loc",
+   "netflow__nfcic_2018-02-20": "B-loc",
+   "netflow__nfcic_2018-02-21": "B-loc",
+   "netflow__nfcic_2018-03-02": "B-loc",
+   "zeek__CTU-IoT-Malware-Capture-3-1": "B-rz",
+   "zeek__CTU-IoT-Malware-Capture-34-1": "B-loc",
+   "zeek__CTU-IoT-Malware-Capture-8-1": "B-loc"
+  }
+ },
+ "macro_table_primary": {
+  "B-raw": {
+   "pr_auc": 0.7492765985533841,
+   "roc_auc": 0.8889972613948057,
+   "oracle_recall_at_fpr1": 0.8175191678139406,
+   "oracle_entity_macro_recall": 0.8172786317251124,
+   "window_recall": 0.8562717430929765,
+   "entity_recall": 1.0,
+   "fpr": 0.02551298974776228,
+   "false_alerts_per_h": 340.18401502555145,
+   "median_delay_s": 12.222222222222221,
+   "micro_window_recall_T0": 0.643568331459772,
+   "per_domain": {
+    "netflow__NF-UNSW-NB15-v3-dev": {
+     "oracle_recall_at_fpr1": 0.027377169396235645,
+     "pr_auc": 0.2516507255095018,
+     "window_recall": 0.08946467856269862,
+     "fpr": 0.06101477199743096,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-02-14": {
+     "oracle_recall_at_fpr1": 1.0,
+     "pr_auc": 0.9993441853509303,
+     "window_recall": 1.0,
+     "fpr": 0.01817840444949229,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-02-16": {
+     "oracle_recall_at_fpr1": 1.0,
+     "pr_auc": 0.9624540752415941,
+     "window_recall": 1.0,
+     "fpr": 0.018945347701619156,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-02-20": {
+     "oracle_recall_at_fpr1": 0.9905660377358491,
+     "pr_auc": 0.10675079664741749,
+     "window_recall": 0.9905660377358491,
+     "fpr": 0.02319739303814702,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-02-21": {
+     "oracle_recall_at_fpr1": 0.9990791896869244,
+     "pr_auc": 0.9952913732349016,
+     "window_recall": 0.9990791896869244,
+     "fpr": 0.03547339997701942,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-03-02": {
+     "oracle_recall_at_fpr1": 0.9995847176079734,
+     "pr_auc": 0.972423854299523,
+     "window_recall": 1.0,
+     "fpr": 0.021781611070627094,
+     "entity_recall": 1.0
+    },
+    "zeek__CTU-IoT-Malware-Capture-3-1": {
+     "oracle_recall_at_fpr1": 0.7060270602706028,
+     "pr_auc": 0.9570211795898214,
+     "window_recall": 0.7060270602706028,
+     "fpr": 0.0,
+     "entity_recall": 1.0
+    },
+    "zeek__CTU-IoT-Malware-Capture-34-1": {
+     "oracle_recall_at_fpr1": null,
+     "pr_auc": null,
+     "window_recall": 0.9222340049487453,
+     "fpr": null,
+     "entity_recall": 1.0
+    },
+    "zeek__CTU-IoT-Malware-Capture-8-1": {
+     "oracle_recall_at_fpr1": null,
+     "pr_auc": null,
+     "window_recall": 0.9990747166319686,
+     "fpr": null,
+     "entity_recall": 1.0
+    }
+   }
+  },
+  "B-loc": {
+   "pr_auc": 0.62126760548317,
+   "roc_auc": 0.9334047452117203,
+   "oracle_recall_at_fpr1": 0.5618847059848019,
+   "oracle_entity_macro_recall": 0.5622672337853999,
+   "window_recall": 0.7035567104272435,
+   "entity_recall": 0.8957671957671958,
+   "fpr": 0.020598756040470522,
+   "false_alerts_per_h": 300.8975552539466,
+   "median_delay_s": 313.3333333333333,
+   "micro_window_recall_T0": 0.4247095979872598,
+   "per_domain": {
+    "netflow__NF-UNSW-NB15-v3-dev": {
+     "oracle_recall_at_fpr1": 0.0030147478204188057,
+     "pr_auc": 0.49957248696111817,
+     "window_recall": 0.05434694043836063,
+     "fpr": 0.0362737706291363,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-02-14": {
+     "oracle_recall_at_fpr1": 1.0,
+     "pr_auc": 0.9934568430097883,
+     "window_recall": 1.0,
+     "fpr": 0.013145947410054449,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-02-16": {
+     "oracle_recall_at_fpr1": 1.0,
+     "pr_auc": 0.9682160872705508,
+     "window_recall": 1.0,
+     "fpr": 0.017717253259899157,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-02-20": {
+     "oracle_recall_at_fpr1": 0.07547169811320754,
+     "pr_auc": 0.0341224249135095,
+     "window_recall": 0.6729559748427674,
+     "fpr": 0.017757438946909208,
+     "entity_recall": 0.9666666666666667
+    },
+    "netflow__nfcic_2018-02-21": {
+     "oracle_recall_at_fpr1": 0.9990791896869244,
+     "pr_auc": 0.7340287964207161,
+     "window_recall": 0.9990791896869244,
+     "fpr": 0.03717109042858784,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-03-02": {
+     "oracle_recall_at_fpr1": 0.0,
+     "pr_auc": 0.15331780685519822,
+     "window_recall": 0.0002768549280177187,
+     "fpr": 0.019196676201559664,
+     "entity_recall": 0.09523809523809523
+    },
+    "zeek__CTU-IoT-Malware-Capture-3-1": {
+     "oracle_recall_at_fpr1": 0.8556273062730627,
+     "pr_auc": 0.9661587929513091,
+     "window_recall": 0.6074723247232473,
+     "fpr": 0.0029291154071470413,
+     "entity_recall": 1.0
+    },
+    "zeek__CTU-IoT-Malware-Capture-34-1": {
+     "oracle_recall_at_fpr1": null,
+     "pr_auc": null,
+     "window_recall": 0.9978791092258749,
+     "fpr": null,
+     "entity_recall": 1.0
+    },
+    "zeek__CTU-IoT-Malware-Capture-8-1": {
+     "oracle_recall_at_fpr1": null,
+     "pr_auc": null,
+     "window_recall": 1.0,
+     "fpr": null,
+     "entity_recall": 1.0
+    }
+   }
+  },
+  "N-dis": {
+   "pr_auc": 0.4497733914585789,
+   "roc_auc": 0.9363598222792635,
+   "oracle_recall_at_fpr1": 0.48073418478229835,
+   "oracle_entity_macro_recall": 0.48073426646816037,
+   "window_recall": 0.7964043440246975,
+   "entity_recall": 1.0,
+   "fpr": 0.022925310360139402,
+   "false_alerts_per_h": 325.45139065771855,
+   "median_delay_s": 159.44444444444446,
+   "micro_window_recall_T0": 0.648412825865853,
+   "per_domain": {
+    "netflow__NF-UNSW-NB15-v3-dev": {
+     "oracle_recall_at_fpr1": 0.02623645400472582,
+     "pr_auc": 0.39232352123920383,
+     "window_recall": 0.12604905076183492,
+     "fpr": 0.04135600793052414,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-02-14": {
+     "oracle_recall_at_fpr1": 1.0,
+     "pr_auc": 0.5012235540723665,
+     "window_recall": 1.0,
+     "fpr": 0.014380207515751439,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-02-16": {
+     "oracle_recall_at_fpr1": 0.9629629629629629,
+     "pr_auc": 0.3195868695376717,
+     "window_recall": 0.9753086419753085,
+     "fpr": 0.022524844811615343,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-02-20": {
+     "oracle_recall_at_fpr1": 0.0,
+     "pr_auc": 0.04451303554269984,
+     "window_recall": 0.8459119496855346,
+     "fpr": 0.01734753928449086,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-02-21": {
+     "oracle_recall_at_fpr1": 0.0,
+     "pr_auc": 0.26231523571431076,
+     "window_recall": 0.9990791896869244,
+     "fpr": 0.03871366195564748,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-03-02": {
+     "oracle_recall_at_fpr1": 0.38039867109634545,
+     "pr_auc": 0.6290030881473714,
+     "window_recall": 0.9811738648947951,
+     "fpr": 0.0208825032900819,
+     "entity_recall": 1.0
+    },
+    "zeek__CTU-IoT-Malware-Capture-3-1": {
+     "oracle_recall_at_fpr1": 0.9955412054120542,
+     "pr_auc": 0.9994484359564284,
+     "window_recall": 0.9824723247232473,
+     "fpr": 0.005272407732864675,
+     "entity_recall": 1.0
+    },
+    "zeek__CTU-IoT-Malware-Capture-34-1": {
+     "oracle_recall_at_fpr1": null,
+     "pr_auc": null,
+     "window_recall": 0.2615765288087663,
+     "fpr": null,
+     "entity_recall": 1.0
+    },
+    "zeek__CTU-IoT-Malware-Capture-8-1": {
+     "oracle_recall_at_fpr1": null,
+     "pr_auc": null,
+     "window_recall": 0.9960675456858663,
+     "fpr": null,
+     "entity_recall": 1.0
+    }
+   }
+  },
+  "B-lr": {
+   "pr_auc": 0.5549030880776449,
+   "roc_auc": 0.8036503290878333,
+   "oracle_recall_at_fpr1": 0.6134385378818481,
+   "oracle_entity_macro_recall": 0.6142121071221982,
+   "window_recall": 0.7142061302263377,
+   "entity_recall": 0.8888888888888888,
+   "fpr": 0.014500751467940606,
+   "false_alerts_per_h": 184.280782098934,
+   "median_delay_s": 3.75,
+   "micro_window_recall_T0": 0.7128901022429207,
+   "per_domain": {
+    "netflow__NF-UNSW-NB15-v3-dev": {
+     "oracle_recall_at_fpr1": 0.31809663488959505,
+     "pr_auc": 0.6317035143500642,
+     "window_recall": 0.46207121323229855,
+     "fpr": 0.028566641534723967,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-02-14": {
+     "oracle_recall_at_fpr1": 1.0,
+     "pr_auc": 0.9993961352657005,
+     "window_recall": 1.0,
+     "fpr": 0.011542332659261106,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-02-16": {
+     "oracle_recall_at_fpr1": 0.9629629629629629,
+     "pr_auc": 0.2790896487644254,
+     "window_recall": 0.9629629629629629,
+     "fpr": 0.011518100770807399,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-02-20": {
+     "oracle_recall_at_fpr1": 0.09433962264150945,
+     "pr_auc": 0.0018287710182026088,
+     "window_recall": 0.09433962264150945,
+     "fpr": 0.008716223535853045,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-02-21": {
+     "oracle_recall_at_fpr1": 0.0,
+     "pr_auc": 0.07282056718045103,
+     "window_recall": 0.0,
+     "fpr": 0.020225784212340572,
+     "entity_recall": 0.0
+    },
+    "netflow__nfcic_2018-03-02": {
+     "oracle_recall_at_fpr1": 0.9721760797342193,
+     "pr_auc": 0.9116041094748818,
+     "window_recall": 0.9725913621262459,
+     "fpr": 0.012148831341157023,
+     "entity_recall": 1.0
+    },
+    "zeek__CTU-IoT-Malware-Capture-3-1": {
+     "oracle_recall_at_fpr1": 0.9464944649446494,
+     "pr_auc": 0.9878788704897884,
+     "window_recall": 0.9464944649446494,
+     "fpr": 0.008787346221441126,
+     "entity_recall": 1.0
+    },
+    "zeek__CTU-IoT-Malware-Capture-34-1": {
+     "oracle_recall_at_fpr1": null,
+     "pr_auc": null,
+     "window_recall": 0.9893955461293743,
+     "fpr": null,
+     "entity_recall": 1.0
+    },
+    "zeek__CTU-IoT-Malware-Capture-8-1": {
+     "oracle_recall_at_fpr1": null,
+     "pr_auc": null,
+     "window_recall": 1.0,
+     "fpr": null,
+     "entity_recall": 1.0
+    }
+   }
+  },
+  "B-rz": {
+   "pr_auc": 0.26721586710100714,
+   "roc_auc": 0.9442579544515046,
+   "oracle_recall_at_fpr1": 0.15343915343915343,
+   "oracle_entity_macro_recall": 0.15343915343915343,
+   "window_recall": 0.19364071375496028,
+   "entity_recall": 0.4444444444444444,
+   "fpr": 0.008940593820615208,
+   "false_alerts_per_h": 160.16332357778515,
+   "median_delay_s": 90.0,
+   "micro_window_recall_T0": 0.16227718002248273,
+   "per_domain": {
+    "netflow__NF-UNSW-NB15-v3-dev": {
+     "oracle_recall_at_fpr1": 0.0,
+     "pr_auc": 0.5970454761732543,
+     "window_recall": 0.0,
+     "fpr": 0.0025969674122476335,
+     "entity_recall": 0.0
+    },
+    "netflow__nfcic_2018-02-14": {
+     "oracle_recall_at_fpr1": 0.0,
+     "pr_auc": 0.016995757015410964,
+     "window_recall": 0.0,
+     "fpr": 0.010277292999806089,
+     "entity_recall": 0.0
+    },
+    "netflow__nfcic_2018-02-16": {
+     "oracle_recall_at_fpr1": 0.07407407407407407,
+     "pr_auc": 0.012011687712879183,
+     "window_recall": 0.5555555555555556,
+     "fpr": 0.013366529606297233,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-02-20": {
+     "oracle_recall_at_fpr1": 0.0,
+     "pr_auc": 0.006405827425222128,
+     "window_recall": 0.0,
+     "fpr": 0.010083531695491397,
+     "entity_recall": 0.0
+    },
+    "netflow__nfcic_2018-02-21": {
+     "oracle_recall_at_fpr1": 0.0,
+     "pr_auc": 0.05860838605204229,
+     "window_recall": 0.0,
+     "fpr": 0.009410548086866598,
+     "entity_recall": 0.0
+    },
+    "netflow__nfcic_2018-03-02": {
+     "oracle_recall_at_fpr1": 0.0,
+     "pr_auc": 0.17973208854830358,
+     "window_recall": 0.0,
+     "fpr": 0.013334348455021046,
+     "entity_recall": 0.0
+    },
+    "zeek__CTU-IoT-Malware-Capture-3-1": {
+     "oracle_recall_at_fpr1": 1.0,
+     "pr_auc": 0.9997118467799375,
+     "window_recall": 0.7126383763837638,
+     "fpr": 0.0035149384885764497,
+     "entity_recall": 1.0
+    },
+    "zeek__CTU-IoT-Malware-Capture-34-1": {
+     "oracle_recall_at_fpr1": null,
+     "pr_auc": null,
+     "window_recall": 0.44750795334040294,
+     "fpr": null,
+     "entity_recall": 1.0
+    },
+    "zeek__CTU-IoT-Malware-Capture-8-1": {
+     "oracle_recall_at_fpr1": null,
+     "pr_auc": null,
+     "window_recall": 0.027064538514920196,
+     "fpr": null,
+     "entity_recall": 1.0
+    }
+   }
+  },
+  "F-or": {
+   "pr_auc": 0.6274381275875262,
+   "roc_auc": 0.961671996137479,
+   "oracle_recall_at_fpr1": 0.5824046169404503,
+   "oracle_entity_macro_recall": 0.5827871471907743,
+   "window_recall": 0.6219216590245922,
+   "entity_recall": 0.8534391534391533,
+   "fpr": 0.014966810874791047,
+   "false_alerts_per_h": 268.1731257785078,
+   "median_delay_s": 925.5555555555555,
+   "micro_window_recall_T0": 0.3871848402119801,
+   "per_domain": {
+    "netflow__NF-UNSW-NB15-v3-dev": {
+     "oracle_recall_at_fpr1": 0.0022814307830196366,
+     "pr_auc": 0.5608878355506934,
+     "window_recall": 0.0023629104538417664,
+     "fpr": 0.01072296221831281,
+     "entity_recall": 0.8333333333333334
+    },
+    "netflow__nfcic_2018-02-14": {
+     "oracle_recall_at_fpr1": 1.0,
+     "pr_auc": 0.9934568430097883,
+     "window_recall": 1.0,
+     "fpr": 0.011413058533477382,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-02-16": {
+     "oracle_recall_at_fpr1": 1.0,
+     "pr_auc": 0.9682160872705508,
+     "window_recall": 1.0,
+     "fpr": 0.015537699984491641,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-02-20": {
+     "oracle_recall_at_fpr1": 0.07547169811320754,
+     "pr_auc": 0.01032992588005871,
+     "window_recall": 0.07861635220125786,
+     "fpr": 0.015441505854245535,
+     "entity_recall": 0.7999999999999999
+    },
+    "netflow__nfcic_2018-02-21": {
+     "oracle_recall_at_fpr1": 0.9990791896869244,
+     "pr_auc": 0.7339673513575956,
+     "window_recall": 0.9990791896869244,
+     "fpr": 0.032379639204871885,
+     "entity_recall": 1.0
+    },
+    "netflow__nfcic_2018-03-02": {
+     "oracle_recall_at_fpr1": 0.0,
+     "pr_auc": 0.1254970032640579,
+     "window_recall": 0.00013842746400885935,
+     "fpr": 0.019272810328138087,
+     "entity_recall": 0.047619047619047616
+    },
+    "zeek__CTU-IoT-Malware-Capture-3-1": {
+     "oracle_recall_at_fpr1": 1.0,
+     "pr_auc": 0.9997118467799376,
+     "window_recall": 0.5192189421894219,
+     "fpr": 0.0,
+     "entity_recall": 1.0
+    },
+    "zeek__CTU-IoT-Malware-Capture-34-1": {
+     "oracle_recall_at_fpr1": null,
+     "pr_auc": null,
+     "window_recall": 0.9978791092258749,
+     "fpr": null,
+     "entity_recall": 1.0
+    },
+    "zeek__CTU-IoT-Malware-Capture-8-1": {
+     "oracle_recall_at_fpr1": null,
+     "pr_auc": null,
+     "window_recall": 1.0,
+     "fpr": null,
+     "entity_recall": 1.0
+    }
+   }
+  }
+ },
+ "screening_kept": {
+  "netflow__NF-UNSW-NB15-v3-dev": [
+   "log_up_bytes",
+   "log_down_bytes",
+   "log_pkts",
+   "log_dst_hosts",
+   "no_reply_frac",
+   "new_dst_frac"
+  ],
+  "netflow__nfcic_2018-02-14": [
+   "log_up_bytes",
+   "log_down_bytes",
+   "log_pkts",
+   "log_dst_hosts",
+   "no_reply_frac",
+   "new_dst_frac"
+  ],
+  "netflow__nfcic_2018-02-16": [
+   "log_up_bytes",
+   "log_pkts",
+   "log_dst_hosts",
+   "no_reply_frac",
+   "upload_share",
+   "new_dst_frac"
+  ],
+  "netflow__nfcic_2018-02-20": [
+   "log_up_bytes",
+   "log_pkts",
+   "log_dst_hosts",
+   "no_reply_frac",
+   "upload_share",
+   "new_dst_frac"
+  ],
+  "netflow__nfcic_2018-02-21": [
+   "log_up_bytes",
+   "log_pkts",
+   "log_dst_hosts",
+   "no_reply_frac",
+   "upload_share",
+   "new_dst_frac"
+  ],
+  "netflow__nfcic_2018-03-02": [
+   "log_flows",
+   "log_up_bytes",
+   "log_pkts",
+   "no_reply_frac",
+   "upload_share",
+   "new_dst_frac"
+  ],
+  "zeek__CTU-IoT-Malware-Capture-3-1": [
+   "log_up_bytes",
+   "log_dst_ports",
+   "no_reply_frac",
+   "rst_frac",
+   "upload_share",
+   "new_dst_frac"
+  ],
+  "zeek__CTU-IoT-Malware-Capture-34-1": [
+   "log_up_bytes",
+   "log_pkts",
+   "log_dst_ports",
+   "rst_frac",
+   "upload_share",
+   "new_dst_frac"
+  ],
+  "zeek__CTU-IoT-Malware-Capture-8-1": [
+   "log_up_bytes",
+   "log_pkts",
+   "log_dst_ports",
+   "rst_frac",
+   "upload_share",
+   "new_dst_frac"
+  ]
+ },
+ "secondary_domains": {
+  "netflow__nfcic_2018-02-22": {
+   "B-loc": {
+    "fpr": 0.010436741478197495,
+    "entities": 291.0,
+    "entities_detected": 192.66666666666666,
+    "window_recall": 0.7051433058500196,
+    "false_alerts_per_h": 273.55022971398785,
+    "pr_auc": 0.32731035989455964,
+    "oracle_recall_at_fpr1": 0.6493914409108755,
+    "oracle_entity_macro_recall": 0.49411307049493525,
+    "entity_recall": 0.6620847651775487,
+    "roc_auc": 0.9708961791665406,
+    "oracle_entities_detected": 156.0,
+    "median_delay_s": 0.0
+   },
+   "B-rz": {
+    "fpr": 0.013611262347359415,
+    "false_alerts_per_h": 356.7554058511158,
+    "window_recall": 0.012956419316843345,
+    "pr_auc": 0.055289938890797335,
+    "roc_auc": 0.901053662916486,
+    "oracle_recall_at_fpr1": 0.012956419316843345,
+    "oracle_entity_macro_recall": 0.003436426116838488,
+    "oracle_entities_detected": 1,
+    "entities": 291,
+    "entities_detected": 1,
+    "entity_recall": 0.003436426116838488,
+    "median_delay_s": 0.0
+   },
+   "F-or": {
+    "fpr": 0.010065132410936253,
+    "entities": 291.0,
+    "entities_detected": 32.333333333333336,
+    "window_recall": 0.3333333333333333,
+    "false_alerts_per_h": 263.8102408558304,
+    "pr_auc": 0.19516373310104865,
+    "oracle_recall_at_fpr1": 0.3333333333333333,
+    "oracle_entity_macro_recall": 0.09196093445266758,
+    "entity_recall": 0.11111111111111112,
+    "roc_auc": 0.9652316899116501,
+    "oracle_entities_detected": 32.333333333333336,
+    "median_delay_s": 0.0
+   }
+  }
+ }
+}

@@ -1,0 +1,55 @@
+{
+ "family": "netflow",
+ "domain": "nfcic_2018-02-23",
+ "eval_windows": 107815,
+ "benign_windows": 107815,
+ "attack_windows": 0,
+ "attackers": 0,
+ "attack_eligible": false,
+ "eval_hours": 4.155228888888889,
+ "role": "benign_unit",
+ "B-rz": {
+  "thresholds": {
+   "T0": 23.59542843416303,
+   "T0_reliable": true,
+   "n_hold": 35108,
+   "T1": 23.626526727071823,
+   "T1_floored_at_T0": 23.626526727071823,
+   "boot_width": 0.18157491080986787,
+   "T3_abstain": false,
+   "T2": {
+    "own": 23.837247758387477,
+    "pooled": 6.666666666666667
+   }
+  },
+  "T0": {
+   "fpr": 0.011603209200946065,
+   "false_alerts_per_h": 301.0664474694,
+   "window_recall": null
+  },
+  "T1": {
+   "fpr": 0.010694244771135742,
+   "false_alerts_per_h": 277.4817057811496,
+   "window_recall": null
+  },
+  "T2": {
+   "fpr": 0.009265872095719519,
+   "false_alerts_per_h": 240.4199688424705,
+   "window_recall": null
+  },
+  "T3": {
+   "abstain": false,
+   "fpr": 0.010694244771135742,
+   "false_alerts_per_h": 277.4817057811496,
+   "window_recall": null
+  },
+  "deployed_crossfit": {
+   "threshold": 22.957630565529993,
+   "fpr": 0.012725502017344525,
+   "false_alerts_per_h": 330.186383635505,
+   "window_recall": null
+  }
+ },
+ "seconds": 19.593181999998706,
+ "peak_rss_mb": 1049.32421875
+}

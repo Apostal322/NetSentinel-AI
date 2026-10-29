@@ -1,0 +1,100 @@
+{
+ "family": "netflow",
+ "domain": "nfcic_2018-03-02",
+ "eval_windows": 94351,
+ "benign_windows": 91943,
+ "attack_windows": 2408,
+ "attackers": 7,
+ "attack_eligible": true,
+ "eval_hours": 2.8596552777777777,
+ "role": "primary",
+ "B-rz": {
+  "thresholds": {
+   "T0": 21.36214520134854,
+   "T0_reliable": true,
+   "n_hold": 29157,
+   "T1": 21.481376780815534,
+   "T1_floored_at_T0": 21.481376780815534,
+   "boot_width": 0.11923157946699448,
+   "T3_abstain": false,
+   "T2": {
+    "own": 22.541135703221112,
+    "pooled": 6.666666666666667
+   }
+  },
+  "T0": {
+   "fpr": 0.013334348455021046,
+   "false_alerts_per_h": 428.72300361766605,
+   "window_recall": 0.0,
+   "pr_auc": 0.17973208854830358,
+   "roc_auc": 0.9216160006761376,
+   "oracle_recall_at_fpr1": 0.0,
+   "oracle_entity_macro_recall": 0.0,
+   "oracle_entities_detected": 0,
+   "entities": 7,
+   "entities_detected": 0,
+   "entity_recall": 0.0,
+   "median_delay_s": null
+  },
+  "T1": {
+   "fpr": 0.012823162176565915,
+   "false_alerts_per_h": 412.28745617065925,
+   "window_recall": 0.0,
+   "pr_auc": 0.17973208854830358,
+   "roc_auc": 0.9216160006761376,
+   "oracle_recall_at_fpr1": 0.0,
+   "oracle_entity_macro_recall": 0.0,
+   "oracle_entities_detected": 0,
+   "entities": 7,
+   "entities_detected": 0,
+   "entity_recall": 0.0,
+   "median_delay_s": null
+  },
+  "T2": {
+   "fpr": 0.011876923746234079,
+   "false_alerts_per_h": 381.86420876875314,
+   "window_recall": 0.0,
+   "pr_auc": 0.17973208854830358,
+   "roc_auc": 0.9216160006761376,
+   "oracle_recall_at_fpr1": 0.0,
+   "oracle_entity_macro_recall": 0.0,
+   "oracle_entities_detected": 0,
+   "entities": 7,
+   "entities_detected": 0,
+   "entity_recall": 0.0,
+   "median_delay_s": null
+  },
+  "T3": {
+   "abstain": false,
+   "fpr": 0.012823162176565915,
+   "false_alerts_per_h": 412.28745617065925,
+   "window_recall": 0.0,
+   "pr_auc": 0.17973208854830358,
+   "roc_auc": 0.9216160006761376,
+   "oracle_recall_at_fpr1": 0.0,
+   "oracle_entity_macro_recall": 0.0,
+   "oracle_entities_detected": 0,
+   "entities": 7,
+   "entities_detected": 0,
+   "entity_recall": 0.0,
+   "median_delay_s": null
+  },
+  "deployed_crossfit": {
+   "threshold": 21.33846019639109,
+   "fpr": 0.015313835746060059,
+   "false_alerts_per_h": 492.3670384124582,
+   "window_recall": 0.0,
+   "pr_auc": 0.18598628997016248,
+   "roc_auc": 0.9264441423389465,
+   "oracle_recall_at_fpr1": 0.0,
+   "oracle_entity_macro_recall": 0.0,
+   "oracle_entities_detected": 0,
+   "entities": 7,
+   "entities_detected": 0,
+   "entity_recall": 0.0,
+   "median_delay_s": null
+  }
+ },
+ "seconds": 33.114944599999944,
+ "peak_rss_mb": 1406.515625
+}
