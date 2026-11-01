@@ -151,3 +151,19 @@ none changes a verdict above.
 | A per-entity review trigger adds no false reviews | **supported [E]** | 0/12 clean CTU-Normal periods, 8/12 scans (was 7/12); adopted as review-only |
 | Entity quarantine or delayed activation makes data-driven refresh safe | **refuted [E]** | gradual-ramp attackers absorbed 67–100% (QC/QKC/QKCD at δ 1.5); only vetted-only refresh and refusal absorbed nothing |
 | Incident grouping makes the CTU-13 background burden practical | **refuted [R]** | 6,887 → 5,655 incidents (−18%); 81% of sources alert once |
+
+## Phase 8h (shift-robust window detection; development data; docs/phase8h/FINAL_RESEARCH_REPORT.md)
+
+Pre-registered in docs/phase8h/PREREGISTRATION.md (amendments A1–A3). Every dataset was
+inspected before, so the status is **exploratory** even where the decision rule was
+pre-registered.
+
+| Claim | Status | Evidence |
+|---|---|---|
+| H1a: per-network robust standardisation transfers attack ranking better than raw features | **refuted (exploratory)** | Δ recall at FPR 1% = −0.256 [−0.57, +0.04] over 7 domains, p 0.875; collapses on DDoS-LOIC and Bot |
+| H1b: domain-invariance feature screening transfers better | **refuted (exploratory)** | Δ −0.081 [−0.42, +0.16]; harmful on DDoS-HOIC (−0.999); the registered strict screening changed the kept set in 5 of 10 folds compared with the as-run variant |
+| H2: block-bootstrap thresholds exceed twice the 1% target less often than split-conformal | **refuted (exploratory)** | 8/27 units vs 8/27. T0 is the hold-out maximum for n ≤ 198 (17 of 27 units, all 8 overruns), so the bound cannot exceed it there |
+| H3: conservative score fusion beats the better single score | **refuted (exploratory)** | Δ −0.093 [−0.23, 0.00]; median FPR 1.54% |
+| Raw-feature LightGBM ranks new attack days within one network | **supported (exploratory)** | oracle recall ≈ 1.0 at 1% FPR on 5 of 5 NF-CIC held-out days (4 families, 29 attacking sources); realised FPR at the calibrated threshold 1.8–3.5% |
+| It transfers across networks | **refuted (exploratory)** | NF-UNSW 0.03; benign windows identify the network at ROC-AUC 0.9999; without volume features NF-UNSW ROC-AUC rises from 0.39 to 0.93 but recall at 1% FPR does not |
+| Cross-fitted thresholds exceed twice the target less often than split-conformal | **suggestive (exploratory, untested)** | 3/27 vs 8/27 units over 2% (exact one-sided McNemar p = 0.0625); worse than split-conformal at 15 minutes |

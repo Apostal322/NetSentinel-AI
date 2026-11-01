@@ -84,6 +84,20 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 | Why V4 failed | scenario 9; synthetic | population-level gate diluted (attack = 0.47% of windows); bots gained own profiles; the product gate passed it too; per-entity review trigger added | R / E |
 | Alert burden | scenario 9 | about 77% is what a 1% target gives at 197k device windows/h; 98% from pooled-fallback sources; incidents −18% only | R |
 
+## Phase 8h (shift-robust window detection; development data)
+
+- Report: [`docs/phase8h/FINAL_RESEARCH_REPORT.md`](phase8h/FINAL_RESEARCH_REPORT.md).
+- Role **E** throughout: pre-registered decision rules, but data inspected in earlier phases.
+
+| Question | Data | Result | Role |
+|---|---|---|---|
+| Does per-network standardisation or invariance screening transfer better? (H1a, H1b) | 7 attack domains, NetFlow + Zeek | No: Δ −0.256 and −0.081 recall at 1% FPR | E |
+| Do block-bootstrap thresholds overrun less? (H2) | 27 benign units | No: 8/27 vs 8/27 | E |
+| Does fusion beat the better single score? (H3) | 9 attack domains | No: Δ −0.093 | E |
+| Within-network vs cross-network ranking of raw LightGBM | NF-CIC days vs NF-UNSW | oracle recall at 1% FPR ≈ 1.0 on 5/5 held-out days vs 0.03 across networks | E |
+| Why | benign windows, ablations | network identifiable at ROC-AUC 0.9999; within NF-CIC, removing volume (−0.60) or `new_dst_frac` (−0.39) costs recall; across networks, removing volume lifts ROC-AUC 0.39 → 0.93 | E |
+| Threshold rules | 27 benign units | units over twice the target: cross-fit 3/27, split-conformal 8/27 (untested, p = 0.06) | E |
+
 ## Telemetry
 
 | Check | Result | Source |

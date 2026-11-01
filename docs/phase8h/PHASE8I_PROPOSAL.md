@@ -3,8 +3,10 @@
 **Basis.** The Phase 8h findings ([FINAL_RESEARCH_REPORT.md](FINAL_RESEARCH_REPORT.md)):
 - Supervised window models transfer across attack families **within** one network but
   collapse **across** networks.
-- Operating thresholds overrun because of the shift between calibration and evaluation, not
-  sampling noise.
+- Operating thresholds overran on small calibration hold-outs. Small samples alone can
+  explain that. Whether shift contributes is untested (I2).
+- Removing volume features improved cross-network ranking (ROC-AUC 0.39 → 0.93) but not
+  recall at 1% FPR.
 - Fusion and invariance screening did not help.
 
 **Rules.** Each hypothesis below is meant to address one of those failure mechanisms. Each
@@ -46,7 +48,8 @@ opened yet for its confirmatory test.
 
 ### I2: a shift score predicts threshold overrun, so abstaining keeps the false-alert budget
 
-- **Mechanism.** H2 showed that overruns come from shift. A score computed from unlabelled
+- **Mechanism (hypothesis).** Overruns may come from shift as well as from small samples. A
+  score computed from unlabelled
   target calibration windows (domain-classifier AUC between source and target, or
   calibration/evaluation KS) should separate the units that will overrun.
 - **Design.**
