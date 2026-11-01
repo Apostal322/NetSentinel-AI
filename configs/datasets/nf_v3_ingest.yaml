@@ -55,3 +55,33 @@ datasets:
       web_sql_injection: web_attack
       infiltration: infiltration
       bot: botnet
+  # Phase 8i (configs/datasets/nf_v3_phase8i.yaml). Both are UNSW Canberra captures; the UTC
+  # offset (AEST/AEDT) only moves day boundaries, and Phase 8i windows use epoch time.
+  # NF-ToN-IoT-v3: DEVELOPMENT network. Family map from the ToN_IoT documentation
+  # (scanning, dos, ddos, injection, xss, password, backdoor, ransomware, mitm).
+  nf-ton-iot-v3:
+    archive: data/raw/nf_v3/NF-ToN-IoT-v3.zip
+    out_dir: data/interim/nf_ton_iot_v3
+    utc_offset_hours: 11
+    family_map:
+      scanning: recon
+      dos: dos
+      ddos: ddos
+      injection: web_attack
+      xss: web_attack
+      password: bruteforce
+      backdoor: exploit
+      ransomware: malware
+      mitm: mitm
+  # NF-BoT-IoT-v3: PROTECTED final test (docs/phase8i/PREREGISTRATION.md). Written before the
+  # archive was opened, from the published BoT-IoT categories (DDoS, DoS, Reconnaissance,
+  # Theft); any other label is reported as "unmapped" by ingest, never silently mixed.
+  nf-bot-iot-v3:
+    archive: data/raw/nf_v3/NF-BoT-IoT-v3.zip
+    out_dir: data/interim/nf_bot_iot_v3
+    utc_offset_hours: 10
+    family_map:
+      ddos: ddos
+      dos: dos
+      reconnaissance: recon
+      theft: theft

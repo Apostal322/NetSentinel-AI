@@ -1,0 +1,14 @@
+# Dataset manifest: NetFlow v3 archives added in Phase 8i (docs/phase8i/DATASET_AUDIT.md).
+# Same source, licence and citation as configs/datasets/nf_v3.yaml.
+# Sizes/ETags read from the S3 objects on 2026-11-02 (1-byte range request, before download).
+#   NF-ToN-IoT-v3: DEVELOPMENT network (ToN_IoT network inspected in Phase 8c; not fresh).
+#   NF-BoT-IoT-v3: PROTECTED final test. Never opened before the Phase 8i protocol is frozen;
+#                  only its archive hash may be checked until then.
+name: nf-v3-phase8i
+version: "uq-rdm-2025-02-28"
+base_url: "https://api.rdm.uq.edu.au/datasets/"
+local_dir: data/raw/nf_v3
+part_size_bytes: 5242880
+files:
+  - {name: NF-ToN-IoT-v3.zip, day: "nf-ton-iot-v3", size: 417476635, etag: "9ebf1540bc692856d525521ff0490fd8-80", rdm_uuid: 343e2e8c-6e6e-4a0c-813d-a46acea1b7f4}
+  - {name: NF-BoT-IoT-v3.zip, day: "nf-bot-iot-v3", size: 72956946, etag: "dbd6a0f81355da910d13536a7881c4ae-14", rdm_uuid: db0187cc-1f78-4215-8e34-303364498866}

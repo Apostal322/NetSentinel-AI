@@ -4,7 +4,7 @@ The UQ RDM API returns a pre-signed S3 URL valid for one hour; on any failure th
 for a fresh URL and resumes with an HTTP Range request. Verify afterwards with
 `uv run netsentinel data verify --manifest configs/datasets/nf_v3.yaml`.
 
-Usage: uv run python scripts/download_nf_v3.py
+Usage: uv run python scripts/download_nf_v3.py [manifest.yaml]
 """
 
 from __future__ import annotations
@@ -52,7 +52,8 @@ def fetch(uuid: str, dest: Path, size: int) -> None:
 
 
 def main() -> int:
-    m = yaml.safe_load(MANIFEST.read_text("utf-8"))
+    manifest = Path(sys.argv[1]) if len(sys.argv) > 1 else MANIFEST
+    m = yaml.safe_load(manifest.read_text("utf-8"))
     out = ROOT / m["local_dir"]
     out.mkdir(parents=True, exist_ok=True)
     for f in m["files"]:
