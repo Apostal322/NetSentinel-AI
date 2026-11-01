@@ -7,9 +7,9 @@ truth per evaluation window). Phase 8i adds `cal_truth.parquet`: whether each UN
 calibration window holds an attack flow. It is needed only for the label-budget experiment
 (the labelled target windows are drawn from the calibration period).
 
-Day files are streamed in time order; the flows of each file's last window are carried into the
-next file so that a window spanning a file boundary is aggregated once (the Phase 8b builder
-split such windows in two).
+Inputs are streamed in time order so that a window spanning a day-file boundary is aggregated
+once (the Phase 8b builder split such windows in two): development parts file by file with the
+last window carried forward; full captures in one-hour slices across all files (`chunks`).
 
 Networks
   nfcic   NF-CIC-IDS2018-v3, development part (first 78% of each day), one domain per day,
@@ -77,6 +77,10 @@ def read(path: Path, dev_cut: bool) -> pl.DataFrame:
         e = df["flow_end_milliseconds"]
         df = df.filter(pl.col("flow_end_milliseconds")
                        < int(e.min() + DEV_SHARE * (e.max() - e.min())))  # fmt: skip
+    return with_flags(df)
+
+
+def with_flags(df: pl.DataFrame) -> pl.DataFrame:
     return df.with_columns(
         ((pl.col("client_tcp_flags") & 4) > 0).cast(pl.Int8).alias("cli_rst"),
         ((pl.col("server_tcp_flags") & 4) > 0).cast(pl.Int8).alias("srv_rst"),
@@ -84,25 +88,51 @@ def read(path: Path, dev_cut: bool) -> pl.DataFrame:
     ).sort("flow_end_milliseconds")
 
 
+def chunks(files: list[Path], dev_cut: bool):
+    """Time-ordered frames of COMPLETE windows.
+    dev_cut: whole files (each cut at 78% of its own span), each file's last window carried
+    into the next. Otherwise: all files scanned together in one-hour slices aligned to the
+    window grid (bounded memory for multi-million-flow days)."""
+    if dev_cut:
+        carry = None
+        for i, f in enumerate(files):
+            df = read(f, dev_cut)
+            if carry is not None:
+                df = pl.concat([carry, df]).sort("flow_end_milliseconds")
+            if df.height and i < len(files) - 1:
+                last = int(df["flow_end_milliseconds"].max()) // (W * 1000)
+                cut = pl.col("flow_end_milliseconds") // (W * 1000) < last
+                carry, df = df.filter(~cut), df.filter(cut)
+            if df.height:
+                yield df
+        return
+    lf = pl.scan_parquet([str(f) for f in files]).select(COLS)
+    span = lf.select(pl.col("flow_end_milliseconds").min().alias("lo"),
+                     pl.col("flow_end_milliseconds").max().alias("hi")).collect()  # fmt: skip
+    step = 3_600_000  # a multiple of the 30 s window: no window spans two slices
+    t = int(span["lo"][0]) // step * step
+    while t <= int(span["hi"][0]):
+        e = pl.col("flow_end_milliseconds")
+        df = lf.filter((e >= t) & (e < t + step)).collect()
+        if df.height:
+            yield with_flags(df)
+        t += step
+
+
 def build(files: list[Path], dev_cut: bool, out: Path, source: str) -> dict:
-    """One domain from time-ordered files, carrying each file's last window forward."""
+    """One domain from time-ordered files (`chunks`)."""
     t0 = time.perf_counter()
-    ends = pl.concat([read(f, dev_cut).select("flow_end_milliseconds") for f in files])
+    if dev_cut:
+        ends = pl.concat([read(f, dev_cut).select("flow_end_milliseconds") for f in files])
+    else:
+        ends = pl.scan_parquet([str(f) for f in files]).select("flow_end_milliseconds").collect()
     if ends.height == 0:
         return {"status": "empty"}
     mid = int(ends["flow_end_milliseconds"].quantile(0.5))
+    del ends
     b = LabelledCalBuilder(mid)
-    carry, n, labels, noisy = None, 0, {}, []
-    for i, f in enumerate(files):
-        df = read(f, dev_cut)
-        if carry is not None:
-            df = pl.concat([carry, df]).sort("flow_end_milliseconds")
-        if df.height == 0:
-            continue
-        if i < len(files) - 1:
-            last = int(df["flow_end_milliseconds"].max()) // (W * 1000)
-            cut = pl.col("flow_end_milliseconds") // (W * 1000) < last
-            carry, df = df.filter(~cut), df.filter(cut)
+    n, labels, noisy = 0, {}, []
+    for df in chunks(files, dev_cut):
         b.add(df)
         n += df.height
         ev = df.filter(pl.col("flow_end_milliseconds") >= mid)
