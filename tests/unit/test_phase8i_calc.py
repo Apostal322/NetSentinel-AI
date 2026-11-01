@@ -192,3 +192,21 @@ def test_builder_carries_boundary_window_and_labels_calibration(tmp_path, monkey
     assert res["cal_attack_windows"] == 1 and res["cal_attack_entities"] == 1
     if not dev_cut:  # the development cut keeps the first 78% of each file's span
         assert res["flows"] == f1.height + f2.height
+
+
+def test_a4_margin_shortcut_equals_full_prediction():
+    """A4's score = stored source margin + the new trees' margin (exp_a.fit_corrections)."""
+    import lightgbm as lgb
+
+    A = _load("exp_a")
+    rng = np.random.default_rng(0)
+    X = rng.normal(size=(600, 12))  # noqa: N806
+    y = (X[:, 0] + 0.5 * rng.normal(size=600) > 0).astype(int)
+    src = lgb.LGBMClassifier(n_estimators=30, num_leaves=7, verbose=-1, random_state=0).fit(X, y)
+    a4 = lgb.LGBMClassifier(n_estimators=10, num_leaves=7, min_child_samples=5, verbose=-1,
+                            random_state=0).fit(X[:200], y[:200], init_model=src.booster_)  # fmt: skip
+    assert a4.booster_.num_trees() == 40  # the source trees are kept
+    full = a4.predict_proba(X)[:, 1]
+    short = A.expit(src.booster_.predict(X, raw_score=True)
+                    + a4.booster_.predict(X, raw_score=True, start_iteration=30))  # fmt: skip
+    assert np.allclose(full, short, atol=1e-9)

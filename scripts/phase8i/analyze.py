@@ -51,17 +51,20 @@ def unit_a(r: dict) -> dict:
     out["T0_reliable"] = all(s["T0_reliable"] for s in seeds)
     out["pool_windows"], out["pool_entities"] = r["pool_windows"], r["pool_entities"]
     out["attackers"] = len(r["attackers"])
-    for b in seeds[0]["budgets"]:
+    corr = [s for s in seeds if s["budgets"]]  # seeds with A3-A5 fitted (amendment A3)
+    for b in corr[0]["budgets"] if corr else []:
         out[b] = {}
         for m in METHODS:
-            per = [p for s in seeds for p in s["budgets"][b][m]["per_draw"]]
+            per = [p for s in corr for p in s["budgets"][b][m]["per_draw"]]
             rec = np.array([p["window_recall"] for p in per if p.get("window_recall") is not None])
             out[b][m] = {k: med(p.get(k) for p in per) for k in KEYS}
             out[b][m]["recall_p025"] = float(np.quantile(rec, 0.025)) if len(rec) else None
             out[b][m]["n"] = len(per)
-        info = seeds[0]["budgets"][b]["draw_info"]
+        info = corr[0]["budgets"][b]["draw_info"]
         out[b]["entities_per_draw_median"] = med(i["entities"] for i in info)
-        out[b]["pool_short"] = seeds[0]["budgets"][b]["pool_short"]
+        out[b]["pool_short"] = corr[0]["budgets"][b]["pool_short"]
+    out["A1_seed_spread"] = {k: [s["A1"].get(k) for s in seeds]
+                             for k in ("window_recall", "fpr", "roc_auc")}  # fmt: skip
     return out
 
 

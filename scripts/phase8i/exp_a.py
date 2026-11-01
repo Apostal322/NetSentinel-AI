@@ -31,6 +31,7 @@ from netsentinel.resources import peak_rss_mb  # noqa: E402
 
 BUDGETS = (5, 25, 100)
 OUT = Path("reports/phase8i/exp_a")
+_SRC_CACHE: dict = {}
 
 
 def logit(p: np.ndarray) -> np.ndarray:
@@ -59,12 +60,21 @@ def fit_corrections(src, tgt: dict, xpos: np.ndarray, xneg: np.ndarray, seed: in
     a5 = lgb.LGBMClassifier(n_estimators=100, learning_rate=0.05, num_leaves=7, min_child_samples=5,
                             random_state=seed, n_jobs=2, verbose=-1).fit(X, y, sample_weight=w)  # fmt: skip
     out = {}
+    n_src = src.booster_.num_trees()
     for name, part in (("ev", tgt["_xev"]), ("hold", tgt["_xhold"])):
         s = tgt[f"_src_{name}"]
         out[("A3", name)] = a3.predict_proba(a3_feats(part, s))[:, 1]
-        out[("A4", name)] = a4.predict_proba(part)[:, 1]
+        # A4 = the source trees + 50 new trees: add the stored source margin to the new trees'
+        # margin instead of re-evaluating the source trees (identical up to float rounding;
+        # checked against predict_proba in tests/unit/test_phase8i_calc.py)
+        new = a4.booster_.predict(part, raw_score=True, start_iteration=n_src)
+        out[("A4", name)] = expit(tgt[f"_src_{name}_raw"] + new)
         out[("A5", name)] = a5.predict_proba(part)[:, 1]
     return out
+
+
+def expit(z: np.ndarray) -> np.ndarray:
+    return 1.0 / (1.0 + np.exp(-z))
 
 
 def summarize(per: list[dict]) -> dict:
@@ -79,7 +89,8 @@ def summarize(per: list[dict]) -> dict:
     return out
 
 
-def run_target(name: str, tgt: dict, sources: dict, seeds: list[int], draws: int) -> dict:
+def run_target(name: str, tgt: dict, sources: dict, seeds: list[int], draws: int,
+               correction_seeds: tuple[int, ...] = (0,)) -> dict:
     t0 = time.perf_counter()
     C.prepare(tgt)
     btrain, hold = tgt["_btrain"], tgt["_hold"]
@@ -97,9 +108,13 @@ def run_target(name: str, tgt: dict, sources: dict, seeds: list[int], draws: int
            "pool_entities": int(len(np.unique(pkeys))), "sources": sorted(sources),
            "seeds": {}}  # fmt: skip
     for seed in seeds:
-        src, src_thr, n_train = C.fit_source(sources, seed, C.Rep("raw"))
-        tgt["_src_ev"] = src.predict_proba(tgt["_xev"])[:, 1]
-        tgt["_src_hold"] = src.predict_proba(tgt["_xhold"])[:, 1]
+        key = (tuple(sorted(sources)), seed)  # same sources and seed -> same model: fit once
+        if key not in _SRC_CACHE:
+            _SRC_CACHE[key] = C.fit_source(sources, seed, C.Rep("raw"))
+        src, src_thr, n_train = _SRC_CACHE[key]
+        for part in ("ev", "hold"):
+            tgt[f"_src_{part}_raw"] = src.booster_.predict(tgt[f"_x{part}"], raw_score=True)
+            tgt[f"_src_{part}"] = expit(tgt[f"_src_{part}_raw"])
         thr1, rel1 = C.t0(tgt["_src_hold"])
         sr = {"train_rows": n_train, "source_threshold": src_thr, "T0": thr1, "T0_reliable": rel1,
               "A0": C.evaluate(tgt, tgt["_src_ev"], src_thr),
@@ -112,6 +127,8 @@ def run_target(name: str, tgt: dict, sources: dict, seeds: list[int], draws: int
                    if len(xneg_all) > C.NEG_CAP else np.arange(len(xneg_all)))  # fmt: skip
         xneg = xneg_all[neg_idx]
         variants = [(ka, False) for ka in BUDGETS] + [(25, True)]
+        if seed not in correction_seeds:  # amendment A3: A3-A5 for seed 0 only
+            variants = []
         for ka, single in variants:
             per = {"A3": [], "A4": [], "A5": []}
             info = []
@@ -163,6 +180,7 @@ def main() -> None:
     ap.add_argument("--targets")
     ap.add_argument("--seeds", default="0,1,2")
     ap.add_argument("--draws", type=int, default=20)
+    ap.add_argument("--correction-seeds", default="0", help="seeds for A3-A5 (amendment A3)")
     ap.add_argument("--confirm", action="store_true")
     ap.add_argument("--out")
     a = ap.parse_args()
@@ -175,7 +193,8 @@ def main() -> None:
     for name, tgt, srcs in folds(a.confirm):
         if a.targets and name not in a.targets.split(","):
             continue
-        res = run_target(name, tgt, srcs, seeds, a.draws)
+        res = run_target(name, tgt, srcs, seeds, a.draws,
+                         tuple(int(x) for x in a.correction_seeds.split(",")))
         C.dump(OUT / f"{name.replace('/', '__')}.json", res)
 
 

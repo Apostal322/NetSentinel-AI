@@ -13,7 +13,9 @@ A chronological record of what was done, in what order, and every deviation. Tim
 | 01:18 | Both archives downloaded and verified (size + S3 ETag; SHA-256 in DATASET_AUDIT.md). NF-BoT-IoT-v3 not extracted. |
 | 01:2x | Late-record telemetry-health fix and tests (commit `1acb709`). |
 | 01:3x | Pre-registration, dataset audit, window builder and experiment code committed (`86b7daa`) **before any Phase 8i model was trained or scored**. |
-| 01:3x | NF-ToN-IoT-v3 ingest started (development network). |
+| 01:31–01:44 | NF-ToN-IoT-v3 ingested: 27,520,260 flows, 7 days (2019-04-24..30), peak 2.67 GB. |
+| 01:50 | NF-UNSW windows rebuilt: identical to Phase 8b (16,028 evaluation windows, 4,091 attack windows). |
+| 01:51 | NF-CIC build stopped: wrong split point (amendment A2). Split fixed and committed before any model ran; NF-CIC rebuilt, now identical to Phase 8h. |
 
 ## 2. Deviations and incidents
 
@@ -24,3 +26,8 @@ A chronological record of what was done, in what order, and every deviation. Tim
    corrected, and the watchdog restarted during the NF-ToN-IoT-v3 ingest. No frozen Phase 8h
    result file was touched (`git status reports/phase8h` is clean). The ingest ran briefly
    without a watchdog; its memory was checked manually (about 1 GB).
+2. **Stale build process (incident, no data effect).** After the wrong-split NF-CIC build was
+   stopped, the stopped shell loop started an `nfton` build at 01:51:33, possibly with the
+   pre-fix code. It ran alongside the corrected NF-CIC build for about a minute, until it was
+   killed. The builder writes outputs only when it finishes, so it left no files. The ToN
+   windows come from the later corrected run.

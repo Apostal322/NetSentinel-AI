@@ -271,3 +271,19 @@ unseen network while keeping false alerts within a 1% budget?
     Phases 8b/8h. Its time midpoint falls in the 26-day gap between its two capture sessions,
     which would make the whole January session calibration.
   - The rule applies unchanged to N3 and N4.
+
+### A3 (2026-11-02, before the full development runs): seeds of the label-budget models
+
+- **What changes.** A3–A5 are fitted for **source seed 0 only**, with 20 label draws per
+  budget, so 20 fits per budget and method instead of 60. A0 and A1 are still computed for
+  seeds {0, 1, 2}, and their spread is reported as the source-model seed variability. The
+  confirmatory run uses the same rule.
+- **Reason: compute only.** A timing run on one NF-CIC day (117,126 evaluation windows)
+  measured about 2 s per draw. The registered 3 seeds × 80 draws would put Experiment A alone
+  near 60 min, against the approved development envelope of about 20–40 min for all runs. The
+  label draw is the registered source of variation in I1. The seed changes only the source
+  model, which A0/A1 measure directly.
+- **What had been seen.** Code smoke runs, written to `reports/phase8i/smoke/` and never used
+  as results: NF-UNSW (seed 0, 2 draws) and NF-CIC 02-21 (seed 0, 3 draws). Both are
+  development data. They were run to test the code and measure time. The selection rules and
+  criteria are unchanged.
