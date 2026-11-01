@@ -1,8 +1,11 @@
 """Phase 8h figures from reports/phase8h/analysis.json and the per-domain outputs (no compute).
 
-fig1_oracle_recall.png   per-domain recall at FPR 1% (oracle threshold), models x domains
-fig2_h1_deltas.png       paired H1a / H1b / H3 differences per held-out domain
-fig3_threshold_fpr.png   realised label-benign FPR per unit under T0 / T1 / T2 / T3 / deployed
+fig1_oracle_recall.png        per-domain recall at FPR 1% (oracle threshold), models x domains
+fig2_paired_deltas.png        paired H1a / H1b / H3 differences per held-out domain
+fig3_threshold_fpr.png        realised label-benign FPR per unit under T0 / T1 / T2 / T3 / deployed
+fig4_ablations.png            B-raw feature ablations, recall at FPR 1% per domain
+fig5_calibration_length.png   calibration length vs units over twice the target (paired units)
+fig6_benign_shift.png         benign KS within NF-CIC vs between NF-CIC and NF-UNSW
 Usage: uv run python scripts/phase8h/figures.py -> docs/phase8h/figures/
 """
 

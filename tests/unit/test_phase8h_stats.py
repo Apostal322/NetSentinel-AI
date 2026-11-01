@@ -65,8 +65,10 @@ def test_t1_is_the_bootstrap_bound_not_floored():
     s = rng.normal(size=60)  # n < 99: T0 is the hold-out maximum
     th = L.thresholds(s, np.arange(60), np.ones(60, bool))
     assert th["T0"] == pytest.approx(s.max())
-    assert th["T1"] < th["T0"]  # a bootstrap quantile cannot exceed the sample maximum
-    assert th["T1_floored_at_T0"] == pytest.approx(th["T0"])
+    bt = L.boot_thresholds(s, np.arange(60), 0.01)  # same seed as inside thresholds()
+    assert th["T1"] == pytest.approx(float(np.quantile(bt, 0.90)))  # the bound itself
+    assert th["T1"] <= th["T0"]  # a bootstrap quantile cannot exceed the sample maximum
+    assert th["T1_floored_at_T0"] == pytest.approx(max(th["T1"], th["T0"]))
 
 
 def test_block_bootstrap_resamples_whole_slots():
