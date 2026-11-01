@@ -25,6 +25,9 @@ def test_monitor_reads_log_and_stores_incidents(tmp_path, capsys):
                  "--events-db", str(tmp_path / "a.sqlite")]) == 0  # fmt: skip
     out = json.loads(capsys.readouterr().out)
     assert out["stats"]["late"] == 800 and out["flows"] + 800 == out["parse"]["records"]
+    # Phase 8i: the dropped records degrade health, so normality is not claimed for the period
+    assert out["stats"]["health"] == "late_records" and out["stats"]["late_windows"] > 0
+    assert not out["assessment"]["normality_supported"]
     db = tmp_path / "ev.sqlite"
     assert main(["monitor", "--zeek-log", str(mon_log), "--calibration", str(cal),
                  "--events-db", str(db), "--lateness", "7200"]) == 0  # fmt: skip

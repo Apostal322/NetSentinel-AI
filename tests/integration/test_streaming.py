@@ -94,6 +94,34 @@ def test_late_records_are_counted_not_merged():
     assert [w for w, _ in ws.flush()] == [2]
 
 
+def test_late_records_degrade_health():
+    """Phase 8i: a dropped late record means an emitted window was assessed on incomplete
+    data, so health must not stay "ok" (zero tolerance; rationale in the live.py docstring)."""
+    ws = WindowStream(window_s=10, lateness_s=0, clock_quorum=1)
+    base = {"IPV4_SRC_ADDR": "a", "IPV4_DST_ADDR": "b", "L4_SRC_PORT": 1, "L4_DST_PORT": 2,
+            "PROTOCOL": 6, "IN_BYTES": 1, "OUT_BYTES": 1}  # fmt: skip
+    for t in (1_000, 12_000, 25_000):
+        ws.push({**base, START: t, END: t + 100})
+    assert ws.stats.health == "ok" and ws.stats.late == 0
+    for t in (2_000, 3_000, 13_000):  # two late records for window 0, one for window 1
+        ws.push({**base, "L4_SRC_PORT": t, START: t, END: t + 100})
+    st = ws.stats
+    assert st.late == 3 and st.late_windows == 2
+    assert st.health == "late_records" and "late_records" in st.health_flags
+    ws.flush()
+    assert st.health == "late_records"  # sticky for the run, like the other degrading flags
+
+
+def test_late_flag_ranks_below_integrity_faults():
+    from netsentinel.streaming.live import SEVERITY, StreamStats
+
+    st = StreamStats()
+    st.flag("late_records")
+    st.flag("integrity_degraded")
+    assert st.health == "integrity_degraded"
+    assert SEVERITY["late_records"] == SEVERITY["buffer_pressure"] == 1
+
+
 def test_buffer_is_bounded_and_clock_skew_ignored():
     ws = WindowStream(window_s=10, lateness_s=3600, max_buffer=100, max_spill=10_000)
     base = {"IPV4_SRC_ADDR": "a", "IPV4_DST_ADDR": "b", "L4_DST_PORT": 2, "PROTOCOL": 6}

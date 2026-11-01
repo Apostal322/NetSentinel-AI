@@ -108,7 +108,9 @@ def test_in_skew_forgery_is_counted_and_cannot_pull_the_watermark(results_8f):
     r = results_8f["in_skew_single_record"]
     assert r["stats"]["late"] == 0 and r["stats"]["uncorroborated_ahead"] == 1
     old = sr.run(nt.scenarios()["in_skew_single_record"], clock_quorum=1)  # pre-8f clock
-    assert old["genuine_lost"] > 8000 and old["health"] == "ok"  # the silent failure fixed
+    # the pre-8f clock still loses the genuine records (fixed by the corroborated clock), but
+    # since Phase 8i the loss is no longer silent: dropped late records degrade health
+    assert old["genuine_lost"] > 8000 and old["health"] == "late_records"
 
 
 def test_quarantine_memory_stays_bounded_under_sustained_near_trigger_forgery(results_8f):

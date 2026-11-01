@@ -58,7 +58,16 @@ Event time and windows
   `clock_quorum` records later.
   Health flags: `resynced` (informational), `clock_reset`, `clock_anomaly`,
   `integrity_degraded` (out-of-range records evicted unconfirmed), `buffer_pressure` (forced
-  closes). `health` = the most severe flag, "ok" when none degrades monitoring.
+  closes), `late_records` (Phase 8i: any record dropped as late). `health` = the most severe
+  flag, "ok" when none degrades monitoring.
+* Late-record policy (Phase 8i). A late record belongs to a window that was already emitted
+  and assessed, so that assessment used incomplete data. There is no tolerance threshold: in
+  the only measured case (CTU-13 scenario 10 at 600 s lateness) 90 late records out of 11.6M
+  (0.0008%) removed 10 of 3,608 alerts, so no rate threshold below which loss is harmless is
+  supported, and in-order replays at an adequate lateness produce zero late records
+  (docs/phase8g/REAL_DATA_STREAMING_AUDIT.md). Severity 1, like `buffer_pressure`: the loss is
+  counted and bounded, not a clock fault. `late_windows` counts the distinct windows affected.
+  Already-emitted assessments are not rewritten; every later assessment carries the flag.
 * `advance(now_ms)` closes windows by wall-clock time during idle periods (follow mode), so a
   quiet network does not hold its last windows open until traffic resumes.
 * Memory is bounded: only the records of open windows (plus a context lookback of whole
@@ -99,7 +108,8 @@ DEDUP_KEY = (START, END, "IPV4_SRC_ADDR", "L4_SRC_PORT", "IPV4_DST_ADDR", "L4_DS
 
 
 SEVERITY = {"resynced": 0, "buffer_spill": 0, "spill_failed": 0, "buffer_pressure": 1,
-            "integrity_degraded": 2, "clock_anomaly": 3, "clock_reset": 4}  # fmt: skip
+            "late_records": 1, "integrity_degraded": 2, "clock_anomaly": 3,
+            "clock_reset": 4}  # fmt: skip
 DEGRADING = {f for f, v in SEVERITY.items() if v > 0}
 
 
@@ -109,6 +119,7 @@ class StreamStats:
     accepted: int = 0
     duplicates: int = 0
     late: int = 0
+    late_windows: int = 0  # distinct already-closed windows that received late records
     clock_skew: int = 0  # out-of-range records quarantined (ahead or behind)
     clock_resyncs: int = 0  # committed forward jumps (gaps)
     clock_resets: int = 0  # committed backward jumps (sensor clock resets)
@@ -350,6 +361,7 @@ class WindowStream:
         self.keys: dict[int, set] = {}
         self.heap: list[int] = []
         self.closed_below: int | None = None  # windows < this index are closed
+        self._late_wins: set[int] = set()  # closed windows that received late records
         self.clock: int | None = None  # committed clock: largest trusted flow start
         self.n_buffered = 0
         self.quarantine: deque[tuple[str, dict]] = deque()  # (direction, record)
@@ -388,6 +400,10 @@ class WindowStream:
         st = self.stats
         if self.closed_below is not None and w < self.closed_below:
             st.late += 1
+            if w not in self._late_wins:
+                self._late_wins.add(w)
+                st.late_windows += 1
+            st.flag("late_records")
             return False
         spilled = self.spill.has(w)
         if spilled and self.spill.count < self.max_spill and self.spill.add(w, [rec]):
@@ -506,6 +522,7 @@ class WindowStream:
         out = [self._close(heapq.heappop(self.heap)) for _ in range(len(self.heap))]  # old timeline
         if side == "behind":  # sensor clock reset: window indices may repeat
             self.closed_below = None
+            self._late_wins.clear()  # a backward commit repeats window indices
             st.clock_resets += 1
             st.flag("clock_reset")
         else:
