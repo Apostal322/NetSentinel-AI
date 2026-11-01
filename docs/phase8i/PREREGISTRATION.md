@@ -258,3 +258,16 @@ unseen network while keeping false alerts within a 1% budget?
 4. **Attackers.** The entities excluded from benign calibration and benign evaluation
    ("attackers") are those with an attack window in either the calibration or the
    evaluation period.
+
+### A2 (2026-11-02, before any model run): calibration/evaluation split point
+
+- **The defect.** The first window build split every domain at the median flow-end time. That
+  is the Phase 8b NF-UNSW convention, not the "time midpoint" section 2 registers. NF-CIC
+  counts then differed from Phase 8h (02-14: 133,835 vs 108,481 evaluation windows). The
+  build was stopped and the windows discarded. No model had been trained or scored.
+- **The rule.** Every domain splits at the time midpoint of its span (as registered, and as
+  in Phase 8h).
+  - **Exception: NF-UNSW** keeps the Phase 8b median split, so its windows stay identical to
+    Phases 8b/8h. Its time midpoint falls in the 26-day gap between its two capture sessions,
+    which would make the whole January session calibration.
+  - The rule applies unchanged to N3 and N4.

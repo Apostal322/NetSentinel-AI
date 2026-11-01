@@ -2,7 +2,7 @@
 (docs/phase8i/PREREGISTRATION.md section 2).
 
 Same windows as Phase 8h (Phase 8b `WindowBuilder`: 30 s device windows by flow END time,
-calibration = flows ending before the time midpoint, clean and unlabelled calibration variants,
+calibration = flows ending before the time midpoint of the domain's span, clean and unlabelled calibration variants,
 truth per evaluation window). Phase 8i adds `cal_truth.parquet`: whether each UNLABELLED
 calibration window holds an attack flow. It is needed only for the label-budget experiment
 (the labelled target windows are drawn from the calibration period).
@@ -14,7 +14,8 @@ last window carried forward; full captures in one-hour slices across all files (
 Networks
   nfcic   NF-CIC-IDS2018-v3, development part (first 78% of each day), one domain per day,
           `infiltration` evaluation windows listed in noisy.parquet (as Phase 8h)
-  nfunsw  NF-UNSW-NB15-v3, development part, one domain, global midpoint (as Phase 8b)
+  nfunsw  NF-UNSW-NB15-v3, development part, one domain, split at the median flow end (as
+          Phase 8b; its time midpoint falls in the 26-day gap between its two sessions)
   nfton   NF-ToN-IoT-v3, all flows (development network; never a test set), one domain
   nfbot   NF-BoT-IoT-v3, all flows: PROTECTED. Refused unless --protected-confirm is given and
           docs/phase8i/FREEZE.md exists (written when the protocol and code are frozen).
@@ -119,7 +120,8 @@ def chunks(files: list[Path], dev_cut: bool):
         t += step
 
 
-def build(files: list[Path], dev_cut: bool, out: Path, source: str) -> dict:
+def build(files: list[Path], dev_cut: bool, out: Path, source: str,
+          split: str = "time") -> dict:
     """One domain from time-ordered files (`chunks`)."""
     t0 = time.perf_counter()
     if dev_cut:
@@ -128,8 +130,13 @@ def build(files: list[Path], dev_cut: bool, out: Path, source: str) -> dict:
         ends = pl.scan_parquet([str(f) for f in files]).select("flow_end_milliseconds").collect()
     if ends.height == 0:
         return {"status": "empty"}
-    mid = int(ends["flow_end_milliseconds"].quantile(0.5))
-    del ends
+    e = ends["flow_end_milliseconds"]
+    if split == "median":  # NF-UNSW: the Phase 8b split (its time midpoint lies between sessions)
+        mid = int(e.quantile(0.5))
+    else:  # the registered time midpoint of the domain's span (Phase 8h; amendment A2)
+        lo, hi = int(e.min()), int(e.max())
+        mid = lo + (hi - lo) // 2
+    del ends, e
     b = LabelledCalBuilder(mid)
     n, labels, noisy = 0, {}, []
     for df in chunks(files, dev_cut):
@@ -141,7 +148,7 @@ def build(files: list[Path], dev_cut: bool, out: Path, source: str) -> dict:
         noisy.append(ev.filter(pl.col("label") == NOISY)
                      .select(pl.col("ipv4_src_addr").alias("key"),
                              (pl.col("flow_end_milliseconds") // (W * 1000)).alias("win")))  # fmt: skip
-    b.save(out, {"source": source, "dev_share": DEV_SHARE if dev_cut else 1.0})
+    b.save(out, {"source": source, "dev_share": DEV_SHARE if dev_cut else 1.0, "split": split})
     nz = pl.concat(noisy).unique() if noisy else pl.DataFrame()
     if nz.height:
         nz.write_parquet(out / "noisy.parquet")
@@ -181,7 +188,8 @@ def main() -> None:
             res[f.stem] = build([f], dev_cut, OUT / a.network / f.stem, f"{a.network} {f.stem}")
             print(f.stem, json.dumps(res[f.stem], default=str), flush=True)
     else:
-        res["all"] = build(files, dev_cut, OUT / a.network / "all", a.network)
+        split = "median" if a.network == "nfunsw" else "time"
+        res["all"] = build(files, dev_cut, OUT / a.network / "all", a.network, split)
         print(json.dumps(res["all"], default=str), flush=True)
     REPORTS.mkdir(parents=True, exist_ok=True)
     rep = REPORTS / f"windows_{a.network}.json"
