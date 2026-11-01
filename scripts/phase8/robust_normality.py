@@ -63,7 +63,9 @@ def main() -> None:
     caps = [Path("data/raw/ctu_normal_26/bro/conn.log"),
             *sorted(Path("data/raw/ctu_normal").glob("CTU-Normal-*/conn.log"))]  # fmt: skip
     res: dict = {}
-    tmp = Path(tempfile.mkdtemp(prefix="ns-8f-"))
+    # removed at exit or on error (Phase 8h: mkdtemp left ns-8f-* directories behind)
+    tmp_dir = tempfile.TemporaryDirectory(prefix="ns-8f-", ignore_cleanup_errors=True)
+    tmp = Path(tmp_dir.name)
     for cap in caps:
         name = cap.parent.name if cap.parent.name != "bro" else "CTU-Normal-26"
         frame, _, _ = load_capture(cap, "zeek")
