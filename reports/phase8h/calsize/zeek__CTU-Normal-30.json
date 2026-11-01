@@ -1,0 +1,58 @@
+{
+ "family": "zeek",
+ "domain": "CTU-Normal-30",
+ "eval_windows": 258,
+ "benign_windows": 258,
+ "attack_windows": 0,
+ "attackers": 0,
+ "attack_eligible": false,
+ "eval_hours": 2.020435,
+ "role": "benign_unit",
+ "calsize": {
+  "15": {
+   "status": "too few windows",
+   "cal_windows": 32
+  },
+  "30": {
+   "cal_windows": 64,
+   "T0": {
+    "fpr": 0.06589147286821706,
+    "false_alerts_per_h": 8.41402965203038,
+    "window_recall": null
+   },
+   "deployed_crossfit": {
+    "fpr": 0.0,
+    "false_alerts_per_h": 0.0,
+    "window_recall": null
+   }
+  },
+  "60": {
+   "cal_windows": 128,
+   "T0": {
+    "fpr": 0.050387596899224806,
+    "false_alerts_per_h": 6.434257969199702,
+    "window_recall": null
+   },
+   "deployed_crossfit": {
+    "fpr": 0.0,
+    "false_alerts_per_h": 0.0,
+    "window_recall": null
+   }
+  },
+  "120": {
+   "cal_windows": 260,
+   "T0": {
+    "fpr": 0.031007751937984496,
+    "false_alerts_per_h": 3.959543365661355,
+    "window_recall": null
+   },
+   "deployed_crossfit": {
+    "fpr": 0.0,
+    "false_alerts_per_h": 0.0,
+    "window_recall": null
+   }
+  }
+ },
+ "seconds": 0.2823450000005323,
+ "peak_rss_mb": 2044.75
+}

@@ -1,0 +1,13 @@
+{
+ "family": "zeek",
+ "domain": "CTU-Honeypot-Capture-5-1",
+ "eval_windows": 295,
+ "benign_windows": 295,
+ "attack_windows": 0,
+ "attackers": 0,
+ "attack_eligible": false,
+ "eval_hours": 2.7421266666666666,
+ "role": "benign_unit",
+ "seconds": 3.04000004689442e-05,
+ "peak_rss_mb": 1447.68359375
+}

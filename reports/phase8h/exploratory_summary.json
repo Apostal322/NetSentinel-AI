@@ -1,0 +1,841 @@
+{
+ "label": "[E] exploratory, after the registered tests",
+ "ablations": {
+  "no_new_dst_frac": {
+   "macro_delta": {
+    "oracle_recall_at_fpr1": -0.28442106025962943,
+    "window_recall": -0.2194382821565821,
+    "entity_recall": -0.1111111111111111,
+    "fpr": -0.009844736203233603,
+    "pr_auc": -0.14334603520659872
+   },
+   "per_domain": {
+    "netflow__NF-UNSW-NB15-v3-dev": {
+     "oracle_recall_at_fpr1": {
+      "full": 0.027377169396235645,
+      "ablated": 0.001466634074798338,
+      "delta": -0.025910535321437306
+     },
+     "window_recall": {
+      "full": 0.08946467856269862,
+      "ablated": 0.04277682718161818,
+      "delta": -0.046687851381080434
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": 0.06101477199743096,
+      "ablated": 0.06246683979782749,
+      "delta": 0.0014520678003965282
+     },
+     "pr_auc": {
+      "full": 0.2516507255095018,
+      "ablated": 0.24383105110104272,
+      "delta": -0.00781967440845907
+     }
+    },
+    "netflow__nfcic_2018-02-14": {
+     "oracle_recall_at_fpr1": {
+      "full": 1.0,
+      "ablated": 0.9963768115942028,
+      "delta": -0.0036231884057972286
+     },
+     "window_recall": {
+      "full": 1.0,
+      "ablated": 0.9963768115942028,
+      "delta": -0.0036231884057972286
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": 0.01817840444949229,
+      "ablated": 0.011040625933005222,
+      "delta": -0.0071377785164870675
+     },
+     "pr_auc": {
+      "full": 0.9993441853509303,
+      "ablated": 0.9934477522207308,
+      "delta": -0.0058964331301994966
+     }
+    },
+    "netflow__nfcic_2018-02-16": {
+     "oracle_recall_at_fpr1": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "window_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": 0.018945347701619156,
+      "ablated": 0.010792980161873744,
+      "delta": -0.008152367539745412
+     },
+     "pr_auc": {
+      "full": 0.9624540752415941,
+      "ablated": 0.9707127236993145,
+      "delta": 0.008258648457720397
+     }
+    },
+    "netflow__nfcic_2018-02-20": {
+     "oracle_recall_at_fpr1": {
+      "full": 0.9905660377358491,
+      "ablated": 0.0,
+      "delta": -0.9905660377358491
+     },
+     "window_recall": {
+      "full": 0.9905660377358491,
+      "ablated": 0.0,
+      "delta": -0.9905660377358491
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 0.0,
+      "delta": -1.0
+     },
+     "fpr": {
+      "full": 0.02319739303814702,
+      "ablated": 0.00486609456385212,
+      "delta": -0.0183312984742949
+     },
+     "pr_auc": {
+      "full": 0.10675079664741749,
+      "ablated": 0.019440596316704275,
+      "delta": -0.08731020033071321
+     }
+    },
+    "netflow__nfcic_2018-02-21": {
+     "oracle_recall_at_fpr1": {
+      "full": 0.9990791896869244,
+      "ablated": 0.9972375690607734,
+      "delta": -0.0018416206261510082
+     },
+     "window_recall": {
+      "full": 0.9990791896869244,
+      "ablated": 0.9972375690607734,
+      "delta": -0.0018416206261510082
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": 0.03547339997701942,
+      "ablated": 0.010726186372515226,
+      "delta": -0.024747213604504194
+     },
+     "pr_auc": {
+      "full": 0.9952913732349016,
+      "ablated": 0.7461644869159317,
+      "delta": -0.24912688631896984
+     }
+    },
+    "netflow__nfcic_2018-03-02": {
+     "oracle_recall_at_fpr1": {
+      "full": 0.9995847176079734,
+      "ablated": 0.03488372093023256,
+      "delta": -0.9647009966777409
+     },
+     "window_recall": {
+      "full": 1.0,
+      "ablated": 0.0347452934662237,
+      "delta": -0.9652547065337763
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": 0.021781611070627094,
+      "ablated": 0.009785047982626917,
+      "delta": -0.011996563088000177
+     },
+     "pr_auc": {
+      "full": 0.972423854299523,
+      "ablated": 0.3107949576818558,
+      "delta": -0.6616288966176673
+     }
+    },
+    "zeek__CTU-IoT-Malware-Capture-3-1": {
+     "oracle_recall_at_fpr1": {
+      "full": 0.7060270602706028,
+      "ablated": 0.7017220172201721,
+      "delta": -0.004305043050430668
+     },
+     "window_recall": {
+      "full": 0.7060270602706028,
+      "ablated": 0.7017220172201721,
+      "delta": -0.004305043050430668
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": 0.0,
+      "ablated": 0.0,
+      "delta": 0.0
+     },
+     "pr_auc": {
+      "full": 0.9570211795898214,
+      "ablated": 0.957122375491919,
+      "delta": 0.00010119590209767271
+     }
+    },
+    "zeek__CTU-IoT-Malware-Capture-34-1": {
+     "oracle_recall_at_fpr1": {
+      "full": null,
+      "ablated": null,
+      "delta": null
+     },
+     "window_recall": {
+      "full": 0.9222340049487453,
+      "ablated": 0.95864262990456,
+      "delta": 0.03640862495581465
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": null,
+      "ablated": null,
+      "delta": null
+     },
+     "pr_auc": {
+      "full": null,
+      "ablated": null,
+      "delta": null
+     }
+    },
+    "zeek__CTU-IoT-Malware-Capture-8-1": {
+     "oracle_recall_at_fpr1": {
+      "full": null,
+      "ablated": null,
+      "delta": null
+     },
+     "window_recall": {
+      "full": 0.9990747166319686,
+      "ablated": 1.0,
+      "delta": 0.0009252833680314376
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": null,
+      "ablated": null,
+      "delta": null
+     },
+     "pr_auc": {
+      "full": null,
+      "ablated": null,
+      "delta": null
+     }
+    }
+   }
+  },
+  "no_udp_share": {
+   "macro_delta": {
+    "oracle_recall_at_fpr1": -0.10996270155758085,
+    "window_recall": -0.08330790772434181,
+    "entity_recall": 0.0,
+    "fpr": 0.0016246041555229925,
+    "pr_auc": -0.04470706050974836
+   },
+   "per_domain": {
+    "netflow__NF-UNSW-NB15-v3-dev": {
+     "oracle_recall_at_fpr1": {
+      "full": 0.027377169396235645,
+      "ablated": 0.023547624867595537,
+      "delta": -0.003829544528640108
+     },
+     "window_recall": {
+      "full": 0.08946467856269862,
+      "ablated": 0.14470789538010267,
+      "delta": 0.05524321681740406
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": 0.06101477199743096,
+      "ablated": 0.06676719443746335,
+      "delta": 0.005752422440032386
+     },
+     "pr_auc": {
+      "full": 0.2516507255095018,
+      "ablated": 0.28061837333951617,
+      "delta": 0.028967647830014376
+     }
+    },
+    "netflow__nfcic_2018-02-14": {
+     "oracle_recall_at_fpr1": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "window_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": 0.01817840444949229,
+      "ablated": 0.018793995524652884,
+      "delta": 0.0006155910751605952
+     },
+     "pr_auc": {
+      "full": 0.9993441853509303,
+      "ablated": 0.9965771945060632,
+      "delta": -0.00276699084486709
+     }
+    },
+    "netflow__nfcic_2018-02-16": {
+     "oracle_recall_at_fpr1": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "window_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": 0.018945347701619156,
+      "ablated": 0.020232122423830903,
+      "delta": 0.0012867747222117462
+     },
+     "pr_auc": {
+      "full": 0.9624540752415941,
+      "ablated": 0.877061727965804,
+      "delta": -0.08539234727579015
+     }
+    },
+    "netflow__nfcic_2018-02-20": {
+     "oracle_recall_at_fpr1": {
+      "full": 0.9905660377358491,
+      "ablated": 0.6069182389937108,
+      "delta": -0.3836477987421383
+     },
+     "window_recall": {
+      "full": 0.9905660377358491,
+      "ablated": 0.9905660377358491,
+      "delta": 0.0
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": 0.02319739303814702,
+      "ablated": 0.023724406889827753,
+      "delta": 0.0005270138516807327
+     },
+     "pr_auc": {
+      "full": 0.10675079664741749,
+      "ablated": 0.0710144222241971,
+      "delta": -0.03573637442322039
+     }
+    },
+    "netflow__nfcic_2018-02-21": {
+     "oracle_recall_at_fpr1": {
+      "full": 0.9990791896869244,
+      "ablated": 0.9990791896869244,
+      "delta": 0.0
+     },
+     "window_recall": {
+      "full": 0.9990791896869244,
+      "ablated": 0.9990791896869244,
+      "delta": 0.0
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": 0.03547339997701942,
+      "ablated": 0.03944329541537401,
+      "delta": 0.00396989543835459
+     },
+     "pr_auc": {
+      "full": 0.9952913732349016,
+      "ablated": 0.8670665143396006,
+      "delta": -0.128224858895301
+     }
+    },
+    "netflow__nfcic_2018-03-02": {
+     "oracle_recall_at_fpr1": {
+      "full": 0.9995847176079734,
+      "ablated": 0.9874031007751939,
+      "delta": -0.012181616832779518
+     },
+     "window_recall": {
+      "full": 1.0,
+      "ablated": 0.9995847176079734,
+      "delta": -0.00041528239202659467
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": 0.021781611070627094,
+      "ablated": 0.021002142631847992,
+      "delta": -0.0007794684387791018
+     },
+     "pr_auc": {
+      "full": 0.972423854299523,
+      "ablated": 0.9602188574452883,
+      "delta": -0.012204996854234706
+     }
+    },
+    "zeek__CTU-IoT-Malware-Capture-3-1": {
+     "oracle_recall_at_fpr1": {
+      "full": 0.7060270602706028,
+      "ablated": 0.3359471094710947,
+      "delta": -0.3700799507995081
+     },
+     "window_recall": {
+      "full": 0.7060270602706028,
+      "ablated": 0.3359471094710947,
+      "delta": -0.3700799507995081
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": 0.0,
+      "ablated": 0.0,
+      "delta": 0.0
+     },
+     "pr_auc": {
+      "full": 0.9570211795898214,
+      "ablated": 0.8794296764849818,
+      "delta": -0.07759150310483953
+     }
+    },
+    "zeek__CTU-IoT-Malware-Capture-34-1": {
+     "oracle_recall_at_fpr1": {
+      "full": null,
+      "ablated": null,
+      "delta": null
+     },
+     "window_recall": {
+      "full": 0.9222340049487453,
+      "ablated": 0.6086956521739131,
+      "delta": -0.3135383527748322
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": null,
+      "ablated": null,
+      "delta": null
+     },
+     "pr_auc": {
+      "full": null,
+      "ablated": null,
+      "delta": null
+     }
+    },
+    "zeek__CTU-IoT-Malware-Capture-8-1": {
+     "oracle_recall_at_fpr1": {
+      "full": null,
+      "ablated": null,
+      "delta": null
+     },
+     "window_recall": {
+      "full": 0.9990747166319686,
+      "ablated": 0.8780939162618552,
+      "delta": -0.12098080037011338
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": null,
+      "ablated": null,
+      "delta": null
+     },
+     "pr_auc": {
+      "full": null,
+      "ablated": null,
+      "delta": null
+     }
+    }
+   }
+  },
+  "no_volume": {
+   "macro_delta": {
+    "oracle_recall_at_fpr1": -0.47337856841868786,
+    "window_recall": -0.32316846662341453,
+    "entity_recall": -0.1111111111111111,
+    "fpr": -0.006221982457233669,
+    "pr_auc": -0.3420307203613249
+   },
+   "per_domain": {
+    "netflow__NF-UNSW-NB15-v3-dev": {
+     "oracle_recall_at_fpr1": {
+      "full": 0.027377169396235645,
+      "ablated": 0.005051739590972052,
+      "delta": -0.022325429805263593
+     },
+     "window_recall": {
+      "full": 0.08946467856269862,
+      "ablated": 0.38026562372688016,
+      "delta": 0.29080094516418153
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": 0.06101477199743096,
+      "ablated": 0.0438133534388875,
+      "delta": -0.017201418558543458
+     },
+     "pr_auc": {
+      "full": 0.2516507255095018,
+      "ablated": 0.6674533266462164,
+      "delta": 0.4158026011367146
+     }
+    },
+    "netflow__nfcic_2018-02-14": {
+     "oracle_recall_at_fpr1": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "window_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": 0.01817840444949229,
+      "ablated": 0.015460569852658276,
+      "delta": -0.0027178345968340133
+     },
+     "pr_auc": {
+      "full": 0.9993441853509303,
+      "ablated": 0.40647555424396925,
+      "delta": -0.5928686311069611
+     }
+    },
+    "netflow__nfcic_2018-02-16": {
+     "oracle_recall_at_fpr1": {
+      "full": 1.0,
+      "ablated": 0.012345679012345678,
+      "delta": -0.9876543209876543
+     },
+     "window_recall": {
+      "full": 1.0,
+      "ablated": 0.037037037037037035,
+      "delta": -0.962962962962963
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": 0.018945347701619156,
+      "ablated": 0.014058118626378463,
+      "delta": -0.004887229075240694
+     },
+     "pr_auc": {
+      "full": 0.9624540752415941,
+      "ablated": 0.0003507856942416448,
+      "delta": -0.9621032895473525
+     }
+    },
+    "netflow__nfcic_2018-02-20": {
+     "oracle_recall_at_fpr1": {
+      "full": 0.9905660377358491,
+      "ablated": 0.0,
+      "delta": -0.9905660377358491
+     },
+     "window_recall": {
+      "full": 0.9905660377358491,
+      "ablated": 0.0,
+      "delta": -0.9905660377358491
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 0.0,
+      "delta": -1.0
+     },
+     "fpr": {
+      "full": 0.02319739303814702,
+      "ablated": 0.01831373134590554,
+      "delta": -0.00488366169224148
+     },
+     "pr_auc": {
+      "full": 0.10675079664741749,
+      "ablated": 0.024466824463314357,
+      "delta": -0.08228397218410313
+     }
+    },
+    "netflow__nfcic_2018-02-21": {
+     "oracle_recall_at_fpr1": {
+      "full": 0.9990791896869244,
+      "ablated": 0.0,
+      "delta": -0.9990791896869244
+     },
+     "window_recall": {
+      "full": 0.9990791896869244,
+      "ablated": 0.027317372621240024,
+      "delta": -0.9717618170656844
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": 0.03547339997701942,
+      "ablated": 0.02661725841663794,
+      "delta": -0.008856141560381479
+     },
+     "pr_auc": {
+      "full": 0.9952913732349016,
+      "ablated": 0.03576948072181833,
+      "delta": -0.9595218925130833
+     }
+    },
+    "netflow__nfcic_2018-03-02": {
+     "oracle_recall_at_fpr1": {
+      "full": 0.9995847176079734,
+      "ablated": 0.9918327796234774,
+      "delta": -0.007751937984496027
+     },
+     "window_recall": {
+      "full": 1.0,
+      "ablated": 0.9998615725359912,
+      "delta": -0.00013842746400882788
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": 0.021781611070627094,
+      "ablated": 0.01501655010894431,
+      "delta": -0.006765060961682784
+     },
+     "pr_auc": {
+      "full": 0.972423854299523,
+      "ablated": 0.8319243630230694,
+      "delta": -0.14049949127645367
+     }
+    },
+    "zeek__CTU-IoT-Malware-Capture-3-1": {
+     "oracle_recall_at_fpr1": {
+      "full": 0.7060270602706028,
+      "ablated": 0.39975399753997537,
+      "delta": -0.30627306273062743
+     },
+     "window_recall": {
+      "full": 0.7060270602706028,
+      "ablated": 0.39975399753997537,
+      "delta": -0.30627306273062743
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": 0.0,
+      "ablated": 0.001757469244288225,
+      "delta": 0.001757469244288225
+     },
+     "pr_auc": {
+      "full": 0.9570211795898214,
+      "ablated": 0.8842808125517864,
+      "delta": -0.07274036703803499
+     }
+    },
+    "zeek__CTU-IoT-Malware-Capture-34-1": {
+     "oracle_recall_at_fpr1": {
+      "full": null,
+      "ablated": null,
+      "delta": null
+     },
+     "window_recall": {
+      "full": 0.9222340049487453,
+      "ablated": 0.9536938847649346,
+      "delta": 0.03145987981618925
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": null,
+      "ablated": null,
+      "delta": null
+     },
+     "pr_auc": {
+      "full": null,
+      "ablated": null,
+      "delta": null
+     }
+    },
+    "zeek__CTU-IoT-Malware-Capture-8-1": {
+     "oracle_recall_at_fpr1": {
+      "full": null,
+      "ablated": null,
+      "delta": null
+     },
+     "window_recall": {
+      "full": 0.9990747166319686,
+      "ablated": 1.0,
+      "delta": 0.0009252833680314376
+     },
+     "entity_recall": {
+      "full": 1.0,
+      "ablated": 1.0,
+      "delta": 0.0
+     },
+     "fpr": {
+      "full": null,
+      "ablated": null,
+      "delta": null
+     },
+     "pr_auc": {
+      "full": null,
+      "ablated": null,
+      "delta": null
+     }
+    }
+   }
+  }
+ },
+ "calibration_minutes": {
+  "15": {
+   "T0": {
+    "units": 11,
+    "exceedance": 0.18181818181818182,
+    "median_fpr": 0.014404831158757861,
+    "p90_fpr": 0.08532423208191127,
+    "attack_domains": 6,
+    "median_window_recall": 0.0
+   },
+   "deployed_crossfit": {
+    "units": 11,
+    "exceedance": 0.36363636363636365,
+    "median_fpr": 0.017214279427112806,
+    "p90_fpr": 0.027641148362655608,
+    "attack_domains": 6,
+    "median_window_recall": 0.0
+   }
+  },
+  "30": {
+   "T0": {
+    "units": 20,
+    "exceedance": 0.4,
+    "median_fpr": 0.014139255841339838,
+    "p90_fpr": 0.06763565891472871,
+    "attack_domains": 6,
+    "median_window_recall": 0.0
+   },
+   "deployed_crossfit": {
+    "units": 20,
+    "exceedance": 0.15,
+    "median_fpr": 0.01082814994140422,
+    "p90_fpr": 0.021931759059515665,
+    "attack_domains": 6,
+    "median_window_recall": 0.0
+   }
+  },
+  "60": {
+   "T0": {
+    "units": 23,
+    "exceedance": 0.34782608695652173,
+    "median_fpr": 0.014925373134328358,
+    "p90_fpr": 0.06329365079365079,
+    "attack_domains": 8,
+    "median_window_recall": 0.0
+   },
+   "deployed_crossfit": {
+    "units": 23,
+    "exceedance": 0.043478260869565216,
+    "median_fpr": 0.004889975550122249,
+    "p90_fpr": 0.015966023717337047,
+    "attack_domains": 8,
+    "median_window_recall": 0.0
+   }
+  },
+  "120": {
+   "T0": {
+    "units": 26,
+    "exceedance": 0.2692307692307692,
+    "median_fpr": 0.011159932569401693,
+    "p90_fpr": 0.06901606248327757,
+    "attack_domains": 9,
+    "median_window_recall": 0.0
+   },
+   "deployed_crossfit": {
+    "units": 26,
+    "exceedance": 0.11538461538461539,
+    "median_fpr": 0.0019356249941824208,
+    "p90_fpr": 0.02342426091726279,
+    "attack_domains": 9,
+    "median_window_recall": 0.0
+   }
+  }
+ }
+}

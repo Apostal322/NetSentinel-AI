@@ -1,0 +1,67 @@
+{
+ "family": "netflow",
+ "domain": "nfcic_2018-02-15",
+ "eval_windows": 96042,
+ "benign_windows": 96042,
+ "attack_windows": 0,
+ "attackers": 0,
+ "attack_eligible": false,
+ "eval_hours": 4.522483611111111,
+ "role": "benign_unit",
+ "calsize": {
+  "15": {
+   "cal_windows": 4724,
+   "T0": {
+    "fpr": 0.011130547052331272,
+    "false_alerts_per_h": 236.37454370727096,
+    "window_recall": null
+   },
+   "deployed_crossfit": {
+    "fpr": 0.018835509464609233,
+    "false_alerts_per_h": 400.0014495476643,
+    "window_recall": null
+   }
+  },
+  "30": {
+   "cal_windows": 9955,
+   "T0": {
+    "fpr": 0.01347327211011849,
+    "false_alerts_per_h": 286.12596778036357,
+    "window_recall": null
+   },
+   "deployed_crossfit": {
+    "fpr": 0.016648966077341162,
+    "false_alerts_per_h": 353.5667870794446,
+    "window_recall": null
+   }
+  },
+  "60": {
+   "cal_windows": 21145,
+   "T0": {
+    "fpr": 0.015472397492763582,
+    "false_alerts_per_h": 328.5805163227359,
+    "window_recall": null
+   },
+   "deployed_crossfit": {
+    "fpr": 0.010682826263509715,
+    "false_alerts_per_h": 226.86649377330215,
+    "window_recall": null
+   }
+  },
+  "120": {
+   "cal_windows": 45248,
+   "T0": {
+    "fpr": 0.01546198538139564,
+    "false_alerts_per_h": 328.359398882411,
+    "window_recall": null
+   },
+   "deployed_crossfit": {
+    "fpr": 0.00906894900147852,
+    "false_alerts_per_h": 192.5932905229495,
+    "window_recall": null
+   }
+  }
+ },
+ "seconds": 27.21786609999981,
+ "peak_rss_mb": 1241.796875
+}

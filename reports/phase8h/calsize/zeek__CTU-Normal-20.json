@@ -1,0 +1,58 @@
+{
+ "family": "zeek",
+ "domain": "CTU-Normal-20",
+ "eval_windows": 198,
+ "benign_windows": 198,
+ "attack_windows": 0,
+ "attackers": 0,
+ "attack_eligible": false,
+ "eval_hours": 1.5775675,
+ "role": "benign_unit",
+ "calsize": {
+  "15": {
+   "status": "too few windows",
+   "cal_windows": 32
+  },
+  "30": {
+   "cal_windows": 61,
+   "T0": {
+    "fpr": 0.005050505050505051,
+    "false_alerts_per_h": 0.6338872980078507,
+    "window_recall": null
+   },
+   "deployed_crossfit": {
+    "fpr": 0.0,
+    "false_alerts_per_h": 0.0,
+    "window_recall": null
+   }
+  },
+  "60": {
+   "cal_windows": 125,
+   "T0": {
+    "fpr": 0.010101010101010102,
+    "false_alerts_per_h": 1.2677745960157014,
+    "window_recall": null
+   },
+   "deployed_crossfit": {
+    "fpr": 0.0,
+    "false_alerts_per_h": 0.0,
+    "window_recall": null
+   }
+  },
+  "120": {
+   "cal_windows": 200,
+   "T0": {
+    "fpr": 0.0,
+    "false_alerts_per_h": 0.0,
+    "window_recall": null
+   },
+   "deployed_crossfit": {
+    "fpr": 0.0,
+    "false_alerts_per_h": 0.0,
+    "window_recall": null
+   }
+  }
+ },
+ "seconds": 0.2859456999995018,
+ "peak_rss_mb": 2044.75
+}

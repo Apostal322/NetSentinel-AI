@@ -1,0 +1,49 @@
+{
+ "family": "netflow",
+ "domain": "nfcic_2018-02-27",
+ "eval_windows": 304,
+ "benign_windows": 304,
+ "attack_windows": 0,
+ "attackers": 0,
+ "attack_eligible": false,
+ "eval_hours": 6.03956,
+ "role": "benign_unit",
+ "calsize": {
+  "15": {
+   "status": "too few windows",
+   "cal_windows": 25
+  },
+  "30": {
+   "status": "too few windows",
+   "cal_windows": 25
+  },
+  "60": {
+   "cal_windows": 81,
+   "T0": {
+    "fpr": 0.0,
+    "false_alerts_per_h": 0.0,
+    "window_recall": null
+   },
+   "deployed_crossfit": {
+    "fpr": 0.0,
+    "false_alerts_per_h": 0.0,
+    "window_recall": null
+   }
+  },
+  "120": {
+   "cal_windows": 136,
+   "T0": {
+    "fpr": 0.006578947368421052,
+    "false_alerts_per_h": 0.33114995132095715,
+    "window_recall": null
+   },
+   "deployed_crossfit": {
+    "fpr": 0.0,
+    "false_alerts_per_h": 0.0,
+    "window_recall": null
+   }
+  }
+ },
+ "seconds": 0.15865320000011707,
+ "peak_rss_mb": 1392.625
+}

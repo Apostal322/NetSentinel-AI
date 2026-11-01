@@ -1,0 +1,31 @@
+{
+ "family": "zeek",
+ "domain": "CTU-Honeypot-Capture-4-1",
+ "eval_windows": 87,
+ "benign_windows": 87,
+ "attack_windows": 0,
+ "attackers": 0,
+ "attack_eligible": false,
+ "eval_hours": 10.935576944444444,
+ "role": "benign_unit",
+ "calsize": {
+  "15": {
+   "status": "too few windows",
+   "cal_windows": 3
+  },
+  "30": {
+   "status": "too few windows",
+   "cal_windows": 4
+  },
+  "60": {
+   "status": "too few windows",
+   "cal_windows": 6
+  },
+  "120": {
+   "status": "too few windows",
+   "cal_windows": 14
+  }
+ },
+ "seconds": 0.002113199999257631,
+ "peak_rss_mb": 2044.75
+}

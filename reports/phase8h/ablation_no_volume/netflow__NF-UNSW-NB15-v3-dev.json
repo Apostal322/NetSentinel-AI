@@ -1,0 +1,220 @@
+{
+ "family": "netflow",
+ "domain": "NF-UNSW-NB15-v3-dev",
+ "eval_windows": 16028,
+ "benign_windows": 11937,
+ "attack_windows": 4091,
+ "attackers": 4,
+ "attack_eligible": true,
+ "eval_hours": 8.880166666666666,
+ "role": "primary",
+ "ablation": "no_volume",
+ "dropped": [
+  "log_flows",
+  "log_up_bytes",
+  "log_down_bytes",
+  "log_pkts"
+ ],
+ "per_seed": [
+  {
+   "B-raw": {
+    "thresholds": {
+     "T0": 0.008488092018791074,
+     "T0_reliable": true,
+     "n_hold": 443,
+     "T1": 0.005699056858552687,
+     "T1_floored_at_T0": 0.008488092018791074,
+     "boot_width": 0.005195389843302964,
+     "T3_abstain": true,
+     "T2": {
+      "own": 0.0032927021754881104,
+      "pooled": 0.008488092018791074
+     }
+    },
+    "T0": {
+     "fpr": 0.047248052274440816,
+     "false_alerts_per_h": 63.512321465437964,
+     "window_recall": 0.46321192862380833,
+     "pr_auc": 0.689792738236102,
+     "roc_auc": 0.9304243882681806,
+     "oracle_recall_at_fpr1": 0.004155463211928624,
+     "oracle_entity_macro_recall": 0.004154705980717698,
+     "oracle_entities_detected": 4,
+     "entities": 4,
+     "entities_detected": 4,
+     "entity_recall": 1.0,
+     "median_delay_s": 0.0
+    },
+    "T1": {
+     "fpr": 0.05344726480690291,
+     "false_alerts_per_h": 71.8454983953004,
+     "window_recall": 0.5739428012710829,
+     "pr_auc": 0.689792738236102,
+     "roc_auc": 0.9304243882681806,
+     "oracle_recall_at_fpr1": 0.004155463211928624,
+     "oracle_entity_macro_recall": 0.004154705980717698,
+     "oracle_entities_detected": 4,
+     "entities": 4,
+     "entities_detected": 4,
+     "entity_recall": 1.0,
+     "median_delay_s": 0.0
+    },
+    "T2": {
+     "fpr": 0.055038954511183714,
+     "false_alerts_per_h": 73.9850978772921,
+     "window_recall": 0.46321192862380833,
+     "pr_auc": 0.689792738236102,
+     "roc_auc": 0.9304243882681806,
+     "oracle_recall_at_fpr1": 0.004155463211928624,
+     "oracle_entity_macro_recall": 0.004154705980717698,
+     "oracle_entities_detected": 4,
+     "entities": 4,
+     "entities_detected": 4,
+     "entity_recall": 1.0,
+     "median_delay_s": 0.0
+    },
+    "T3": {
+     "abstain": true
+    }
+   }
+  },
+  {
+   "B-raw": {
+    "thresholds": {
+     "T0": 0.012044254108694268,
+     "T0_reliable": true,
+     "n_hold": 443,
+     "T1": 0.007589094352065292,
+     "T1_floored_at_T0": 0.012044254108694268,
+     "boot_width": 0.0050289144610623365,
+     "T3_abstain": false,
+     "T2": {
+      "own": 0.007015339647631931,
+      "pooled": 0.012044254108694268
+     }
+    },
+    "T0": {
+     "fpr": 0.04523749685850716,
+     "false_alerts_per_h": 60.809669488185286,
+     "window_recall": 0.27523832803715476,
+     "pr_auc": 0.6241183990745638,
+     "roc_auc": 0.9124981235000416,
+     "oracle_recall_at_fpr1": 0.008066487411390858,
+     "oracle_entity_macro_recall": 0.008062402835528039,
+     "oracle_entities_detected": 4,
+     "entities": 4,
+     "entities_detected": 4,
+     "entity_recall": 1.0,
+     "median_delay_s": 15.0
+    },
+    "T1": {
+     "fpr": 0.05168802881796096,
+     "false_alerts_per_h": 69.4806779152043,
+     "window_recall": 0.3749694451234417,
+     "pr_auc": 0.6241183990745638,
+     "roc_auc": 0.9124981235000416,
+     "oracle_recall_at_fpr1": 0.008066487411390858,
+     "oracle_entity_macro_recall": 0.008062402835528039,
+     "oracle_entities_detected": 4,
+     "entities": 4,
+     "entities_detected": 4,
+     "entity_recall": 1.0,
+     "median_delay_s": 0.0
+    },
+    "T2": {
+     "fpr": 0.048504649409399345,
+     "false_alerts_per_h": 65.20147895122089,
+     "window_recall": 0.27523832803715476,
+     "pr_auc": 0.6241183990745638,
+     "roc_auc": 0.9124981235000416,
+     "oracle_recall_at_fpr1": 0.008066487411390858,
+     "oracle_entity_macro_recall": 0.008062402835528039,
+     "oracle_entities_detected": 4,
+     "entities": 4,
+     "entities_detected": 4,
+     "entity_recall": 1.0,
+     "median_delay_s": 15.0
+    },
+    "T3": {
+     "abstain": false,
+     "fpr": 0.05168802881796096,
+     "false_alerts_per_h": 69.4806779152043,
+     "window_recall": 0.3749694451234417,
+     "pr_auc": 0.6241183990745638,
+     "roc_auc": 0.9124981235000416,
+     "oracle_recall_at_fpr1": 0.008066487411390858,
+     "oracle_entity_macro_recall": 0.008062402835528039,
+     "oracle_entities_detected": 4,
+     "entities": 4,
+     "entities_detected": 4,
+     "entity_recall": 1.0,
+     "median_delay_s": 0.0
+    }
+   }
+  },
+  {
+   "B-raw": {
+    "thresholds": {
+     "T0": 0.010466803817282119,
+     "T0_reliable": true,
+     "n_hold": 443,
+     "T1": 0.0057483317741390755,
+     "T1_floored_at_T0": 0.010466803817282119,
+     "boot_width": 0.00635763832869606,
+     "T3_abstain": true,
+     "T2": {
+      "own": 0.0030943841873660983,
+      "pooled": 0.010466803817282119
+     }
+    },
+    "T0": {
+     "fpr": 0.0389545111837145,
+     "false_alerts_per_h": 52.363882059270665,
+     "window_recall": 0.40234661451967735,
+     "pr_auc": 0.6884488426279833,
+     "roc_auc": 0.9329999260560212,
+     "oracle_recall_at_fpr1": 0.0029332681495966755,
+     "oracle_entity_macro_recall": 0.002931131555366945,
+     "oracle_entities_detected": 4,
+     "entities": 4,
+     "entities_detected": 4,
+     "entity_recall": 1.0,
+     "median_delay_s": 0.0
+    },
+    "T1": {
+     "fpr": 0.051436709390969254,
+     "false_alerts_per_h": 69.14284641804771,
+     "window_recall": 0.5455878758249817,
+     "pr_auc": 0.6884488426279833,
+     "roc_auc": 0.9329999260560212,
+     "oracle_recall_at_fpr1": 0.0029332681495966755,
+     "oracle_entity_macro_recall": 0.002931131555366945,
+     "oracle_entities_detected": 4,
+     "entities": 4,
+     "entities_detected": 4,
+     "entity_recall": 1.0,
+     "median_delay_s": 0.0
+    },
+    "T2": {
+     "fpr": 0.0494261539750356,
+     "false_alerts_per_h": 66.44019444079504,
+     "window_recall": 0.40234661451967735,
+     "pr_auc": 0.6884488426279833,
+     "roc_auc": 0.9329999260560212,
+     "oracle_recall_at_fpr1": 0.0029332681495966755,
+     "oracle_entity_macro_recall": 0.002931131555366945,
+     "oracle_entities_detected": 4,
+     "entities": 4,
+     "entities_detected": 4,
+     "entity_recall": 1.0,
+     "median_delay_s": 0.0
+    },
+    "T3": {
+     "abstain": true
+    }
+   }
+  }
+ ],
+ "seconds": 69.59637699999985,
+ "peak_rss_mb": 1402.40234375
+}

@@ -12,6 +12,7 @@ import json
 from pathlib import Path
 
 import matplotlib
+import matplotlib.ticker
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
@@ -109,9 +110,84 @@ def fig3() -> None:
     fig.savefig(OUT / "fig3_threshold_fpr.png", dpi=150)
 
 
+def fig4() -> None:
+    """Ablations of B-raw: recall at FPR 1% (oracle), full vs ablated, per H1 domain."""
+    ex = json.loads(Path("reports/phase8h/exploratory_summary.json").read_text("utf-8"))
+    abl = ex["ablations"]
+    names = ["no_volume", "no_new_dst_frac", "no_udp_share"]
+    doms = [k for k, v in abl[names[0]]["per_domain"].items()
+            if v["oracle_recall_at_fpr1"]["full"] is not None]  # fmt: skip
+    fig, ax = plt.subplots(figsize=(8.5, 3.6))
+    w = 0.2
+    full = [abl[names[0]]["per_domain"][d]["oracle_recall_at_fpr1"]["full"] for d in doms]
+    ax.bar(np.arange(len(doms)) - 1.5 * w, full, w, label="all 12 features", color="#264653")
+    for i, (n, c) in enumerate(zip(names, ("#e76f51", "#f4a261", "#e9c46a"), strict=True)):
+        v = [abl[n]["per_domain"][d]["oracle_recall_at_fpr1"]["ablated"] for d in doms]
+        ax.bar(np.arange(len(doms)) + (i - 0.5) * w, v, w, label=n.replace("_", " "), color=c)
+    ax.set_xticks(range(len(doms)), [short(d) + chr(10) + FAMILY.get(short(d), "") for d in doms],
+                  fontsize=8)  # fmt: skip
+    ax.set_ylabel("recall at FPR 1% (oracle)")
+    ax.set_ylim(0, 1.05)
+    ax.set_title("B-raw feature ablations (exploratory, 3 seeds, leave-one-domain-out)",
+                 fontsize=10)  # fmt: skip
+    ax.legend(fontsize=7, ncol=4, loc="lower left")
+    fig.tight_layout()
+    fig.savefig(OUT / "fig4_ablations.png", dpi=150)
+
+
+def fig5() -> None:
+    """Calibration length vs threshold exceedance, on the 11 units present at every length."""
+    import glob
+
+    res = {Path(p).stem: json.loads(Path(p).read_text("utf-8"))
+           for p in glob.glob("reports/phase8h/calsize/*.json")}  # fmt: skip
+    mins = ("15", "30", "60", "120")
+    units = [k for k, r in res.items() if r["benign_windows"] >= 60 and r["role"] != "secondary"
+             and all("T0" in r["calsize"].get(m, {}) for m in mins)]  # fmt: skip
+    fig, ax = plt.subplots(figsize=(6, 3.4))
+    for t, lab, c in (("T0", "split-conformal (T0)", "#e76f51"),
+                      ("deployed_crossfit", "deployed cross-fit", "#2a9d8f")):  # fmt: skip
+        e = [np.mean([res[k]["calsize"][m][t]["fpr"] > 2 * 0.01 for k in units]) for m in mins]
+        ax.plot([int(m) for m in mins], e, "o-", label=lab, color=c)
+    ax.set_xscale("log")
+    ax.set_xticks([15, 30, 60, 120], ["15", "30", "60", "120"])
+    ax.xaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
+    ax.set_xlabel("calibration length (minutes before evaluation)")
+    ax.set_ylabel("share of units with FPR > 2%")
+    ax.set_ylim(0, 0.6)
+    ax.set_title(f"Robust baseline: calibration length vs exceedance (n = {len(units)} units)",
+                 fontsize=9)  # fmt: skip
+    ax.legend(fontsize=8)
+    fig.tight_layout()
+    fig.savefig(OUT / "fig5_calibration_length.png", dpi=150)
+
+
+def fig6() -> None:
+    """Benign feature shift: within NF-CIC (median KS across days) vs NF-CIC vs NF-UNSW."""
+    d = json.loads(Path("reports/phase8h/shift_diagnostics.json").read_text("utf-8"))
+    feats = list(d["benign_shift_cic_vs_unsw"])
+    a = [d["benign_shift_within_cic_median_ks"][f] for f in feats]
+    b = [d["benign_shift_cic_vs_unsw"][f]["ks"] for f in feats]
+    fig, ax = plt.subplots(figsize=(8, 3.4))
+    x = np.arange(len(feats))
+    ax.bar(x - 0.2, a, 0.4, label="within NF-CIC (one day vs other days, median)", color="#2a9d8f")
+    ax.bar(x + 0.2, b, 0.4, label="NF-CIC vs NF-UNSW", color="#e76f51")
+    ax.set_xticks(x, feats, rotation=40, ha="right", fontsize=8)
+    ax.set_ylabel("KS statistic, label-benign windows")
+    auc = d["domain_identity_control"]["test_roc_auc"]
+    ax.set_title(f"Benign covariate shift; network identity from benign windows: ROC-AUC {auc:.4f}",
+                 fontsize=9)  # fmt: skip
+    ax.legend(fontsize=8)
+    fig.tight_layout()
+    fig.savefig(OUT / "fig6_benign_shift.png", dpi=150)
+
+
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
     fig1()
     fig2()
     fig3()
+    fig4()
+    fig5()
+    fig6()
     print(sorted(p.name for p in OUT.glob("*.png")))

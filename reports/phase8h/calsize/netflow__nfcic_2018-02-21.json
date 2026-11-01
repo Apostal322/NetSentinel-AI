@@ -1,0 +1,139 @@
+{
+ "family": "netflow",
+ "domain": "nfcic_2018-02-21",
+ "eval_windows": 117126,
+ "benign_windows": 116040,
+ "attack_windows": 1086,
+ "attackers": 10,
+ "attack_eligible": true,
+ "eval_hours": 4.7340913888888885,
+ "role": "primary",
+ "calsize": {
+  "15": {
+   "cal_windows": 6518,
+   "T0": {
+    "fpr": 0.016020337814546707,
+    "false_alerts_per_h": 392.68358958239617,
+    "window_recall": 0.0,
+    "pr_auc": 0.06867756747287376,
+    "roc_auc": 0.9363395441211293,
+    "oracle_recall_at_fpr1": 0.0,
+    "oracle_entity_macro_recall": 0.0,
+    "oracle_entities_detected": 0,
+    "entities": 10,
+    "entities_detected": 0,
+    "entity_recall": 0.0,
+    "median_delay_s": null
+   },
+   "deployed_crossfit": {
+    "fpr": 0.014891416752843847,
+    "false_alerts_per_h": 365.01196492650917,
+    "window_recall": 0.0,
+    "pr_auc": 0.06430661338527326,
+    "roc_auc": 0.9334001960332469,
+    "oracle_recall_at_fpr1": 0.0,
+    "oracle_entity_macro_recall": 0.0,
+    "oracle_entities_detected": 0,
+    "entities": 10,
+    "entities_detected": 0,
+    "entity_recall": 0.0,
+    "median_delay_s": null
+   }
+  },
+  "30": {
+   "cal_windows": 12341,
+   "T0": {
+    "fpr": 0.014805239572561186,
+    "false_alerts_per_h": 362.8996271665178,
+    "window_recall": 0.0,
+    "pr_auc": 0.06466679994283488,
+    "roc_auc": 0.934018648233955,
+    "oracle_recall_at_fpr1": 0.0,
+    "oracle_entity_macro_recall": 0.0,
+    "oracle_entities_detected": 0,
+    "entities": 10,
+    "entities_detected": 0,
+    "entity_recall": 0.0,
+    "median_delay_s": null
+   },
+   "deployed_crossfit": {
+    "fpr": 0.019932781799379524,
+    "false_alerts_per_h": 488.58372388600446,
+    "window_recall": 0.0,
+    "pr_auc": 0.052586423485528146,
+    "roc_auc": 0.9191803820109025,
+    "oracle_recall_at_fpr1": 0.0,
+    "oracle_entity_macro_recall": 0.0,
+    "oracle_entities_detected": 0,
+    "entities": 10,
+    "entities_detected": 0,
+    "entity_recall": 0.0,
+    "median_delay_s": null
+   }
+  },
+  "60": {
+   "cal_windows": 24970,
+   "T0": {
+    "fpr": 0.015055153395380903,
+    "false_alerts_per_h": 369.02540667049277,
+    "window_recall": 0.0,
+    "pr_auc": 0.044582843940819517,
+    "roc_auc": 0.9041108498815739,
+    "oracle_recall_at_fpr1": 0.0,
+    "oracle_entity_macro_recall": 0.0,
+    "oracle_entities_detected": 0,
+    "entities": 10,
+    "entities_detected": 0,
+    "entity_recall": 0.0,
+    "median_delay_s": null
+   },
+   "deployed_crossfit": {
+    "fpr": 0.015710099965529127,
+    "false_alerts_per_h": 385.0791736464272,
+    "window_recall": 0.0,
+    "pr_auc": 0.044463718679616654,
+    "roc_auc": 0.9034920405931022,
+    "oracle_recall_at_fpr1": 0.0,
+    "oracle_entity_macro_recall": 0.0,
+    "oracle_entities_detected": 0,
+    "entities": 10,
+    "entities_detected": 0,
+    "entity_recall": 0.0,
+    "median_delay_s": null
+   }
+  },
+  "120": {
+   "cal_windows": 52045,
+   "T0": {
+    "fpr": 0.007592209582902448,
+    "false_alerts_per_h": 186.09695665523992,
+    "window_recall": 0.0,
+    "pr_auc": 0.05490053939593887,
+    "roc_auc": 0.923526227382061,
+    "oracle_recall_at_fpr1": 0.0,
+    "oracle_entity_macro_recall": 0.0,
+    "oracle_entities_detected": 0,
+    "entities": 10,
+    "entities_detected": 0,
+    "entity_recall": 0.0,
+    "median_delay_s": null
+   },
+   "deployed_crossfit": {
+    "fpr": 0.011677007928300585,
+    "false_alerts_per_h": 286.22176647883094,
+    "window_recall": 0.0,
+    "pr_auc": 0.05516038837520458,
+    "roc_auc": 0.9238583269374947,
+    "oracle_recall_at_fpr1": 0.0,
+    "oracle_entity_macro_recall": 0.0,
+    "oracle_entities_detected": 0,
+    "entities": 10,
+    "entities_detected": 0,
+    "entity_recall": 0.0,
+    "median_delay_s": null
+   }
+  }
+ },
+ "seconds": 35.76063630000044,
+ "peak_rss_mb": 1333.8046875
+}

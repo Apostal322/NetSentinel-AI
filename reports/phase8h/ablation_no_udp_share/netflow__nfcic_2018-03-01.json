@@ -1,0 +1,13 @@
+{
+ "family": "netflow",
+ "domain": "nfcic_2018-03-01",
+ "eval_windows": 131325,
+ "benign_windows": 128287,
+ "attack_windows": 0,
+ "attackers": 0,
+ "attack_eligible": false,
+ "eval_hours": 4.396753611111111,
+ "role": "benign_unit",
+ "seconds": 8.679999973537633e-05,
+ "peak_rss_mb": 1308.64453125
+}

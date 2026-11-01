@@ -84,6 +84,12 @@ def seed_mean(vals: list):
     return vals[0] if all(v == vals[0] for v in vals) else None
 
 
+def h2_units(res: dict[str, dict]) -> dict[str, dict]:
+    """H2 evaluation units: >= 60 label-benign windows; the secondary (label-noisy) domain
+    02-22 is excluded from every primary test (amendment A1, review finding 1)."""
+    return {k: r for k, r in res.items() if r["benign_windows"] >= 60 and r["role"] != "secondary"}
+
+
 def sup(r: dict, model: str, thr: str = "T0") -> dict:
     """Seed-mean metrics of a supervised model (recomputed from per_seed, not lodo's mean)."""
     seeds = r.get("per_seed") or []
@@ -130,8 +136,7 @@ def main() -> None:
     h1b["harmful_domains"] = [n for n, v in zip(n2, d1b, strict=True) if v < -0.20]
 
     # ------------------------------------------------------------------ H2 (B-rz primary)
-    # amendment A1: the secondary (label-noisy) domain 02-22 is excluded from every primary test
-    units = {k: r for k, r in res.items() if r["benign_windows"] >= 60 and r["role"] != "secondary"}
+    units = h2_units(res)
     ex = {k: (r["B-rz"]["T0"]["fpr"] > 2 * ALPHA, r["B-rz"]["T1"]["fpr"] > 2 * ALPHA)
           for k, r in units.items() if r["B-rz"]["T0"].get("fpr") is not None}  # fmt: skip
     e0 = np.mean([a for a, _ in ex.values()]) if ex else None

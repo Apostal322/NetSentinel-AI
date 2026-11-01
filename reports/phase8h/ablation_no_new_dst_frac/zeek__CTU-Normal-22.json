@@ -1,0 +1,13 @@
+{
+ "family": "zeek",
+ "domain": "CTU-Normal-22",
+ "eval_windows": 293,
+ "benign_windows": 293,
+ "attack_windows": 0,
+ "attackers": 0,
+ "attack_eligible": false,
+ "eval_hours": 0.7294658333333334,
+ "role": "benign_unit",
+ "seconds": 4.260000059730373e-05,
+ "peak_rss_mb": 1447.68359375
+}
