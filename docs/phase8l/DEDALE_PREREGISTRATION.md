@@ -185,7 +185,7 @@ All at T0, seed-mean.
 | N3 | any calibration row with label ≠ 0 | NOT EVALUABLE (the documented benign period is not benign; no relabelling) |
 | N4 | fewer than 20 eligible primary hosts | NOT EVALUABLE |
 | N5 | Kish effective hosts over hold-out windows < 10, or top host share > 25 % | NOT EVALUABLE |
-| N6 | session-adjusted effective n of eligible hold-out windows < 590 (30 min gaps) | NOT EVALUABLE |
+| N6 | eligible hold-out windows < 590 (count form; amendment 2). The Kish effective number of 30 min sessions (the ρ = 1 bound) is reported, with no criterion | NOT EVALUABLE |
 
 **After the freeze, before Stage B is downloaded:**
 
@@ -210,7 +210,7 @@ All at T0, seed-mean.
   ≤ 2 % for n ≥ 313. The gate uses the stricter 590.
 - **The evaluation criterion** (upper bound ≤ 3 %) is a separate, looser test of a separate
   sample.
-- **The two checks.** N6 is a cheap count-based screen. N8 applies the score-based estimator, and
+- **The two checks.** N6 is a necessary-condition count screen: no dependence adjustment can lift a raw n below 590. N8 applies the score-based estimator, and
   runs before any evaluation data exists.
 
 ## 8. Leakage and independence controls
@@ -263,3 +263,19 @@ All at T0, seed-mean.
    - **The destination-memory asymmetry stated,** and its share of false alerts reported.
    - The disclosure of the evaluation-day metadata seen.
    - The HOLDS wording.
+2. **Before the Stage A gate was run** (2026-11-02). At this point the 28 Stage A members had been
+   downloaded and verified by CRC32, and no row had been parsed.
+   - **N6 takes its count form.** The session-adjusted effective n of Phase 8i weighs sessions
+     by the intraclass correlation of *scores*, and Stage A computes no scores.
+     - N6 therefore requires ≥ 590 eligible hold-out windows, a necessary condition.
+     - The dependence-adjusted check is N8, on hold-out scores, after the freeze and before
+       Stage B.
+     - The Kish effective number of sessions (ρ = 1, the most conservative bound) is reported,
+       with no criterion.
+   - **Adapter detail.** Flows are written in the Phase 6/8i NetFlow column set, so that
+     `build_windows.chunks` and `P1xBuilder` run unchanged:
+     - Zeek `history` 'R' / 'r' become bit 4 (RST) of the client / server TCP flags;
+     - label 0 / 1 / 2 become "benign" / "attack" / "attack_related";
+     - labels 1 and 2 both count as attack in the builder's calibration exclusion.
+   - **Clients 3–4 identification rule:** a DHCP host name ending in "client" plus its number.
+     It was written before the names were read.
