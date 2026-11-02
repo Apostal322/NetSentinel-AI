@@ -30,7 +30,7 @@ hosts, tap points or networks produced by one generator are not independent unit
 | CTU-13, IoT-23, CTU-Normal (Stratosphere, CTU Prague) | university network captures | Zeek | few hosts per capture | ✔ | – | ✔ | ✔ | – | – | consumed or inspected in Phases 5–8g (E7 for everything else) |
 | **AIT Netflow v2** (8 networks) | emulated small enterprises | ✔ Tstat | ✘ 3.6–7 effective hosts | ~ attacker role and step times documented; flow labels by time window | ✔ | ✔ | ✔ CC BY | ✔ | **1–2** (one generator) | development / demonstration only |
 | **UWF-ZeekData24** | cyber range | ✔ Zeek | ✘ benign pooled and reduced | flow labels | ✘ | ✘ | ✔ | ✔ | 0 | not eligible |
-| **DEDALE** (Inria/DGA, 2025; DOI 10.57745/Y5JLDG) | emulated enterprise (RESCOUSSE) | ✔ Zeek + PCAP | ~30 emulated clients (secondary source; unverified) | ✔ one documented APT campaign | ✔ weeks 1–2 benign only (verified) | ✔ | Zeek 0.4–4.4 GB zipped per tap (verified); licence CC BY 4.0 per the agent (unverified) | ✔ | **1** | the only clean confirmation-grade unit |
+| **DEDALE** (Inria/DGA; DOI 10.57745/Y5JLDG, V2.1) | emulated enterprise (RESCOUSSE), 55 VMs in 4 zones | ✔ Zeek + PCAP | ~ 30 documented internal clients, 28 not compromised by the timeline, 26 primary candidates (verified roster); *active, independently represented* calibration hosts unverified; one generator (AURA) | ✔ one documented APT campaign; flow labels 0/1/2 from a public deterministic script | ✔ weeks 1–2 benign (verified) | ✔ | ✔ CC BY 4.0 (verified); one tap needs 0.78 GB of selected members | ✔ | **1** | single-network longitudinal test only, conditional on the Stage A gate (DEDALE_FEASIBILITY.md) |
 | Corrected DARPA OpTC (Inria, 2026) | emulated enterprise, ~500 hosts | eCAR host logs; Zeek only in the original release | many | ✔ corrected labels | ✔ | ✔ | ✘ ~940 GB | ✔ | 1 | needs a separate large-data decision |
 | LITNET-2020 | real academic backbone | NetFlow v9, probably unidirectional | real, unverified | method undocumented | ? | archives per attack type | ✔ | ✔ | ≤ 1 | partial (development at most) |
 | UGR'16 | real ISP | unidirectional | unverified background | injected, documented | ✔ | ✔ | ~320 GB; site returned 403 | ✔ | ≤ 1 | partial |
@@ -42,8 +42,13 @@ hosts, tap points or networks produced by one generator are not independent unit
 ## 3. How many independent units exist
 
 - **Confirmation-grade: 0–1, pending verification** (DEDALE).
-  - Its E2 rests on a second-hand "~30 emulated clients" and its licence is unverified: the
-    project repository blocked automated access.
+  - **Corrected (DEDALE_FEASIBILITY.md):**
+    - the roster is now verified: 30 internal clients among about 55 VMs;
+    - 28 are not compromised according to the timeline, and 26 remain without clients 3–4;
+    - the licence is verified as CC BY 4.0.
+  - **Still open:** the number of *active, independently represented* benign calibration hosts
+    at the chosen tap. It is checked by the Stage A gate on the calibration fortnight only.
+  - 28 is already below E2's 30.
   - Emulated clients collapsed to 3.6–7 effective hosts on AIT.
   - Its single APT campaign gives the same 0/1-like entity recall.
   - Corrected OpTC would add 1 if its ~940 GB host logs, or the original Zeek logs, were
@@ -59,7 +64,7 @@ hosts, tap points or networks produced by one generator are not independent unit
 
 | candidate | download | processing | approval |
 |---|---|---|---|
-| DEDALE, Zeek logs only (3 internal tap points) | 3.4–4.4 GB zipped per tap; ~11 GB for internal + router + servers | streamed Zeek → canonical, under the 3.4 GiB cap | **required** (above 2 GB) |
+| DEDALE, green_internal tap, `conn_labeled.csv` + `dhcp.log` members only | **0.78 GB** in two stages: 384.0 MB calibration (Stage A), then 396.3 MB evaluation after the freeze. The earlier "~11 GB" was all four Zeek archives (11.76 GB) | streamed member by member, under the 3.4 GiB cap | **required** for each stage |
 | AIT, remaining 7 networks | 252.9 MB | minutes | required (but not recommended: section 2) |
 | LITNET / CIDDS (development) | 0.4–1.2 GB | minutes; unidirectional flows need stitching | required |
 | corrected OpTC | ~940 GB | beyond this machine | not feasible locally |

@@ -1,0 +1,527 @@
+{
+ "archive": "green_internal.zip",
+ "url": "https://dedale.inria.fr/data/network_logs/zeek/green_internal.zip",
+ "dataverse_file_id": 717875,
+ "archive_size": 3538305367,
+ "archive_md5": "db1e4c7a80545e758edb766d920a0400",
+ "stages": {
+  "A": {
+   "members": [
+    {
+     "name": "green_internal/D1_2024-12-23_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 1,
+     "date": "2024-12-23",
+     "offset": 3140382043,
+     "compressed": 37654099,
+     "uncompressed": 133503866,
+     "crc32": "b8f272e3"
+    },
+    {
+     "name": "green_internal/D1_2024-12-23_output_green_internal_Zeek/dhcp.log",
+     "day": 1,
+     "date": "2024-12-23",
+     "offset": 3029372455,
+     "compressed": 19916,
+     "uncompressed": 109317,
+     "crc32": "1584da76"
+    },
+    {
+     "name": "green_internal/D2_2024-12-24_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 2,
+     "date": "2024-12-24",
+     "offset": 669925180,
+     "compressed": 40079997,
+     "uncompressed": 142232159,
+     "crc32": "6710c534"
+    },
+    {
+     "name": "green_internal/D2_2024-12-24_output_green_internal_Zeek/dhcp.log",
+     "day": 2,
+     "date": "2024-12-24",
+     "offset": 544553039,
+     "compressed": 19869,
+     "uncompressed": 109360,
+     "crc32": "ec48efe6"
+    },
+    {
+     "name": "green_internal/D3_2024-12-25_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 3,
+     "date": "2024-12-25",
+     "offset": 1718683166,
+     "compressed": 37181094,
+     "uncompressed": 131900061,
+     "crc32": "71cf601e"
+    },
+    {
+     "name": "green_internal/D3_2024-12-25_output_green_internal_Zeek/dhcp.log",
+     "day": 3,
+     "date": "2024-12-25",
+     "offset": 1597486100,
+     "compressed": 19653,
+     "uncompressed": 108243,
+     "crc32": "abb6afc8"
+    },
+    {
+     "name": "green_internal/D4_2024-12-26_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 4,
+     "date": "2024-12-26",
+     "offset": 1029789663,
+     "compressed": 37689996,
+     "uncompressed": 133480518,
+     "crc32": "d43a7527"
+    },
+    {
+     "name": "green_internal/D4_2024-12-26_output_green_internal_Zeek/dhcp.log",
+     "day": 4,
+     "date": "2024-12-26",
+     "offset": 901974340,
+     "compressed": 19703,
+     "uncompressed": 108710,
+     "crc32": "e8c12488"
+    },
+    {
+     "name": "green_internal/D5_2024-12-27_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 5,
+     "date": "2024-12-27",
+     "offset": 316993627,
+     "compressed": 37432850,
+     "uncompressed": 132469129,
+     "crc32": "49bb3b01"
+    },
+    {
+     "name": "green_internal/D5_2024-12-27_output_green_internal_Zeek/dhcp.log",
+     "day": 5,
+     "date": "2024-12-27",
+     "offset": 187593423,
+     "compressed": 19761,
+     "uncompressed": 108557,
+     "crc32": "675d2d95"
+    },
+    {
+     "name": "green_internal/D6_2024-12-28_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 6,
+     "date": "2024-12-28",
+     "offset": 2110742022,
+     "compressed": 775770,
+     "uncompressed": 2762013,
+     "crc32": "3f1caff5"
+    },
+    {
+     "name": "green_internal/D6_2024-12-28_output_green_internal_Zeek/dhcp.log",
+     "day": 6,
+     "date": "2024-12-28",
+     "offset": 2107451368,
+     "compressed": 963,
+     "uncompressed": 3868,
+     "crc32": "601ed4fd"
+    },
+    {
+     "name": "green_internal/D7_2024-12-29_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 7,
+     "date": "2024-12-29",
+     "offset": 186280610,
+     "compressed": 1165850,
+     "uncompressed": 4124705,
+     "crc32": "f5cee847"
+    },
+    {
+     "name": "green_internal/D7_2024-12-29_output_green_internal_Zeek/dhcp.log",
+     "day": 7,
+     "date": "2024-12-29",
+     "offset": 182153291,
+     "compressed": 989,
+     "uncompressed": 4033,
+     "crc32": "2f805f28"
+    },
+    {
+     "name": "green_internal/D8_2024-12-30_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 8,
+     "date": "2024-12-30",
+     "offset": 2986608644,
+     "compressed": 37647243,
+     "uncompressed": 133256550,
+     "crc32": "44d40c65"
+    },
+    {
+     "name": "green_internal/D8_2024-12-30_output_green_internal_Zeek/dhcp.log",
+     "day": 8,
+     "date": "2024-12-30",
+     "offset": 2854596430,
+     "compressed": 19946,
+     "uncompressed": 109339,
+     "crc32": "8c9d3913"
+    },
+    {
+     "name": "green_internal/D9_2024-12-31_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 9,
+     "date": "2024-12-31",
+     "offset": 2806113277,
+     "compressed": 37328411,
+     "uncompressed": 132342182,
+     "crc32": "7820ae22"
+    },
+    {
+     "name": "green_internal/D9_2024-12-31_output_green_internal_Zeek/dhcp.log",
+     "day": 9,
+     "date": "2024-12-31",
+     "offset": 2674131401,
+     "compressed": 19800,
+     "uncompressed": 109153,
+     "crc32": "8a5d5b9d"
+    },
+    {
+     "name": "green_internal/D10_2025-01-01_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 10,
+     "date": "2025-01-01",
+     "offset": 1894449329,
+     "compressed": 36742017,
+     "uncompressed": 130104930,
+     "crc32": "90d9e2f4"
+    },
+    {
+     "name": "green_internal/D10_2025-01-01_output_green_internal_Zeek/dhcp.log",
+     "day": 10,
+     "date": "2025-01-01",
+     "offset": 1762181154,
+     "compressed": 19501,
+     "uncompressed": 107972,
+     "crc32": "39bacdb0"
+    },
+    {
+     "name": "green_internal/D11_2025-01-02_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 11,
+     "date": "2025-01-02",
+     "offset": 3314290870,
+     "compressed": 41287312,
+     "uncompressed": 151745885,
+     "crc32": "88fd1bc5"
+    },
+    {
+     "name": "green_internal/D11_2025-01-02_output_green_internal_Zeek/dhcp.log",
+     "day": 11,
+     "date": "2025-01-02",
+     "offset": 3178186064,
+     "compressed": 19727,
+     "uncompressed": 108953,
+     "crc32": "f718e18c"
+    },
+    {
+     "name": "green_internal/D12_2025-01-03_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 12,
+     "date": "2025-01-03",
+     "offset": 1389760415,
+     "compressed": 36122628,
+     "uncompressed": 130379589,
+     "crc32": "74f31b5c"
+    },
+    {
+     "name": "green_internal/D12_2025-01-03_output_green_internal_Zeek/dhcp.log",
+     "day": 12,
+     "date": "2025-01-03",
+     "offset": 1256994954,
+     "compressed": 19781,
+     "uncompressed": 108482,
+     "crc32": "51ec4789"
+    },
+    {
+     "name": "green_internal/D13_2025-01-04_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 13,
+     "date": "2025-01-04",
+     "offset": 2853089498,
+     "compressed": 1354680,
+     "uncompressed": 4842768,
+     "crc32": "cd431a9c"
+    },
+    {
+     "name": "green_internal/D13_2025-01-04_output_green_internal_Zeek/dhcp.log",
+     "day": 13,
+     "date": "2025-01-04",
+     "offset": 2848646442,
+     "compressed": 986,
+     "uncompressed": 4024,
+     "crc32": "04e43ee4"
+    },
+    {
+     "name": "green_internal/D14_2025-01-05_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 14,
+     "date": "2025-01-05",
+     "offset": 3536880525,
+     "compressed": 1330090,
+     "uncompressed": 4756638,
+     "crc32": "4852ccca"
+    },
+    {
+     "name": "green_internal/D14_2025-01-05_output_green_internal_Zeek/dhcp.log",
+     "day": 14,
+     "date": "2025-01-05",
+     "offset": 3532095952,
+     "compressed": 947,
+     "uncompressed": 3854,
+     "crc32": "7e3193f6"
+    }
+   ],
+   "compressed_bytes": 383993579,
+   "uncompressed_bytes": 1369004858,
+   "largest_uncompressed_member": 151745885
+  },
+  "B": {
+   "members": [
+    {
+     "name": "green_internal/D15_2025-01-06_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 15,
+     "date": "2025-01-06",
+     "offset": 1559278424,
+     "compressed": 38058940,
+     "uncompressed": 134563700,
+     "crc32": "d3719adb"
+    },
+    {
+     "name": "green_internal/D15_2025-01-06_output_green_internal_Zeek/dhcp.log",
+     "day": 15,
+     "date": "2025-01-06",
+     "offset": 1426034033,
+     "compressed": 20097,
+     "uncompressed": 110711,
+     "crc32": "2e1c8c29"
+    },
+    {
+     "name": "green_internal/D16_2025-01-07_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 16,
+     "date": "2025-01-07",
+     "offset": 142829913,
+     "compressed": 39292917,
+     "uncompressed": 139036902,
+     "crc32": "74dbbe92"
+    },
+    {
+     "name": "green_internal/D16_2025-01-07_output_green_internal_Zeek/dhcp.log",
+     "day": 16,
+     "date": "2025-01-07",
+     "offset": 154194,
+     "compressed": 19575,
+     "uncompressed": 107941,
+     "crc32": "f67ae776"
+    },
+    {
+     "name": "green_internal/D17_2025-01-08_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 17,
+     "date": "2025-01-08",
+     "offset": 2635293426,
+     "compressed": 38691841,
+     "uncompressed": 136796407,
+     "crc32": "24ffe50c"
+    },
+    {
+     "name": "green_internal/D17_2025-01-08_output_green_internal_Zeek/dhcp.log",
+     "day": 17,
+     "date": "2025-01-08",
+     "offset": 2498082325,
+     "compressed": 20077,
+     "uncompressed": 110005,
+     "crc32": "f948ad44"
+    },
+    {
+     "name": "green_internal/D18_2025-01-09_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 18,
+     "date": "2025-01-09",
+     "offset": 2068933927,
+     "compressed": 38490142,
+     "uncompressed": 136173977,
+     "crc32": "8bca2c6b"
+    },
+    {
+     "name": "green_internal/D18_2025-01-09_output_green_internal_Zeek/dhcp.log",
+     "day": 18,
+     "date": "2025-01-09",
+     "offset": 1931340006,
+     "compressed": 20103,
+     "uncompressed": 110715,
+     "crc32": "21e0926d"
+    },
+    {
+     "name": "green_internal/D19_2025-01-10_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 19,
+     "date": "2025-01-10",
+     "offset": 504767160,
+     "compressed": 39618095,
+     "uncompressed": 140351752,
+     "crc32": "bd50e1c1"
+    },
+    {
+     "name": "green_internal/D19_2025-01-10_output_green_internal_Zeek/dhcp.log",
+     "day": 19,
+     "date": "2025-01-10",
+     "offset": 354575291,
+     "compressed": 20143,
+     "uncompressed": 110531,
+     "crc32": "c59ac9a1"
+    },
+    {
+     "name": "green_internal/D20_2025-01-11_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 20,
+     "date": "2025-01-11",
+     "offset": 3028192653,
+     "compressed": 1030450,
+     "uncompressed": 3651199,
+     "crc32": "a2250ff0"
+    },
+    {
+     "name": "green_internal/D20_2025-01-11_output_green_internal_Zeek/dhcp.log",
+     "day": 20,
+     "date": "2025-01-11",
+     "offset": 3024280305,
+     "compressed": 980,
+     "uncompressed": 3928,
+     "crc32": "968ea3cf"
+    },
+    {
+     "name": "green_internal/D21_2025-01-12_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 21,
+     "date": "2025-01-12",
+     "offset": 900756241,
+     "compressed": 1073124,
+     "uncompressed": 3820542,
+     "crc32": "7c6d236a"
+    },
+    {
+     "name": "green_internal/D21_2025-01-12_output_green_internal_Zeek/dhcp.log",
+     "day": 21,
+     "date": "2025-01-12",
+     "offset": 896669456,
+     "compressed": 1017,
+     "uncompressed": 4125,
+     "crc32": "0544534b"
+    },
+    {
+     "name": "green_internal/D22_2025-01-13_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 22,
+     "date": "2025-01-13",
+     "offset": 3495906996,
+     "compressed": 36155937,
+     "uncompressed": 127894739,
+     "crc32": "0575286e"
+    },
+    {
+     "name": "green_internal/D22_2025-01-13_output_green_internal_Zeek/dhcp.log",
+     "day": 22,
+     "date": "2025-01-13",
+     "offset": 3355726924,
+     "compressed": 20031,
+     "uncompressed": 110164,
+     "crc32": "634c5b45"
+    },
+    {
+     "name": "green_internal/D23_2025-01-14_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 23,
+     "date": "2025-01-14",
+     "offset": 2256302582,
+     "compressed": 40016598,
+     "uncompressed": 141756382,
+     "crc32": "daffe8c3"
+    },
+    {
+     "name": "green_internal/D23_2025-01-14_output_green_internal_Zeek/dhcp.log",
+     "day": 23,
+     "date": "2025-01-14",
+     "offset": 2111663009,
+     "compressed": 19767,
+     "uncompressed": 108554,
+     "crc32": "517cd8c5"
+    },
+    {
+     "name": "green_internal/D24_2025-01-15_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 24,
+     "date": "2025-01-15",
+     "offset": 1216502975,
+     "compressed": 40344552,
+     "uncompressed": 142994371,
+     "crc32": "e8044710"
+    },
+    {
+     "name": "green_internal/D24_2025-01-15_output_green_internal_Zeek/dhcp.log",
+     "day": 24,
+     "date": "2025-01-15",
+     "offset": 1067623597,
+     "compressed": 19840,
+     "uncompressed": 108671,
+     "crc32": "ef97c2d5"
+    },
+    {
+     "name": "green_internal/D25_2025-01-16_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 25,
+     "date": "2025-01-16",
+     "offset": 2455437144,
+     "compressed": 42493628,
+     "uncompressed": 150576814,
+     "crc32": "3b448616"
+    },
+    {
+     "name": "green_internal/D25_2025-01-16_output_green_internal_Zeek/dhcp.log",
+     "day": 25,
+     "date": "2025-01-16",
+     "offset": 2296469017,
+     "compressed": 19890,
+     "uncompressed": 109773,
+     "crc32": "f290260b"
+    },
+    {
+     "name": "green_internal/D26_2025-01-17_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 26,
+     "date": "2025-01-17",
+     "offset": 858163042,
+     "compressed": 38478491,
+     "uncompressed": 136356139,
+     "crc32": "97ed50f9"
+    },
+    {
+     "name": "green_internal/D26_2025-01-17_output_green_internal_Zeek/dhcp.log",
+     "day": 26,
+     "date": "2025-01-17",
+     "offset": 710143610,
+     "compressed": 19500,
+     "uncompressed": 107010,
+     "crc32": "17637ec7"
+    },
+    {
+     "name": "green_internal/D27_2025-01-18_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 27,
+     "date": "2025-01-18",
+     "offset": 1760792041,
+     "compressed": 1244720,
+     "uncompressed": 4417661,
+     "crc32": "9dcb367d"
+    },
+    {
+     "name": "green_internal/D27_2025-01-18_output_green_internal_Zeek/dhcp.log",
+     "day": 27,
+     "date": "2025-01-18",
+     "offset": 1755899898,
+     "compressed": 987,
+     "uncompressed": 4041,
+     "crc32": "065eaabc"
+    },
+    {
+     "name": "green_internal/D28_2025-01-19_output_green_internal_Zeek/conn_labeled.csv",
+     "day": 28,
+     "date": "2025-01-19",
+     "offset": 2847555613,
+     "compressed": 1059336,
+     "uncompressed": 3801437,
+     "crc32": "37ccb06d"
+    },
+    {
+     "name": "green_internal/D28_2025-01-19_output_green_internal_Zeek/dhcp.log",
+     "day": 28,
+     "date": "2025-01-19",
+     "offset": 2843469708,
+     "compressed": 985,
+     "uncompressed": 4023,
+     "crc32": "b76d8885"
+    }
+   ],
+   "compressed_bytes": 396251763,
+   "uncompressed_bytes": 1403302214,
+   "largest_uncompressed_member": 150576814
+  }
+ }
+}

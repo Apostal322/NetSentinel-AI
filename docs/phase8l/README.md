@@ -21,6 +21,9 @@ calibration reliability and useful attack detection across previously unseen net
 | [POWER_ANALYSIS.md](POWER_ANALYSIS.md) | label noise; power and minimum N for network-level confirmation |
 | [PROSPECTIVE_DESIGN.md](PROSPECTIVE_DESIGN.md) | revised evaluation design, utility and controls, exact model comparison plan, data and compute needs |
 | [REVIEW.md](REVIEW.md) | independent skeptical review and dispositions |
+| [DEDALE_FEASIBILITY.md](DEDALE_FEASIBILITY.md) | DEDALE single-network feasibility: hosts, licence, taps, minimum download, labels, independence, memory plan, verdict |
+| [DEDALE_PREREGISTRATION.md](DEDALE_PREREGISTRATION.md) | draft pre-registration of the longitudinal test (not frozen) |
+| [DEDALE_MANIFEST.md](DEDALE_MANIFEST.md) | member-level download manifest with offsets, sizes and CRC32s |
 
 ## Findings
 
@@ -81,5 +84,19 @@ authorised red-team exercises, or a future multi-institution corpus. The revised
 - **It is not started.** First DEDALE's host count must be verified from its documentation
   (the repository blocked automated access), since emulated clients collapsed to 3.6–7
   effective hosts on AIT. Then it is a decision for the user.
+- **Update (DEDALE_FEASIBILITY.md, desk assessment, no data downloaded):**
+  - **Verified:**
+    - the roster: 30 internal clients among about 55 VMs (the user's count; the roster gives
+      about 56);
+    - CC BY 4.0;
+    - the label format (from code; no label file seen).
+  - **Candidates:** 28 internal clients are not compromised according to the timeline. 26
+    remain once clients 3–4 are excluded.
+  - **Download:** the minimum is 0.78 GB of selected members from one tap, not 11 GB.
+  - **Verdict:** conditionally eligible for the single-network test only, pending a gate on the
+    calibration fortnight. The active, independent benign hosts are unverified, and 28 is below
+    E2.
+  - The draft pre-registration is DEDALE_PREREGISTRATION.md.
+  - **The network-level NO-GO above is unchanged; a single-network result cannot revise it.**
 
 **Not recommended:** further method development on the same 4 development networks.

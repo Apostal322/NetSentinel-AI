@@ -44,3 +44,33 @@ named.
 - point labels give 16;
 - estimation with intervals needs about 80;
 - the order-of-magnitude gap to the 0–2 available networks holds.
+
+## DEDALE feasibility package: independent review
+
+**Reviewer:** a separate, read-only agent given the files, not my conclusions. It made no
+downloads.
+
+**Verified:**
+- 22 of 24 numeric claims, checked against the reports, the Dataverse API and the DEDALE pages;
+- the zip offsets;
+- the zip64 field order;
+- the validity of the gzip wrapper.
+
+**Decision:** "conditionally eligible, single-network only" is justified, and the Stage A
+request is minimal.
+
+| finding | severity | disposition |
+|---|---|---|
+| Evaluability rested on `neff_m3` of evaluation alerts, so a real failure (clustered alerts) could become NOT EVALUABLE | blocking | N9 now uses counts only; FAILS is possible at any n; the score-based check (N8) runs on the hold-out before Stage B |
+| "Week 4 is after the attack" was false: beacons continue to 13 January | blocking (fact) | the periods follow the timeline: attack period 6–13 January, post-attack period 14–19 January |
+| Assigning flows by folder could stop the study (long flows, CET folders) | should fix | assignment by flow end time, with a tolerance in N2 |
+| Hosts were keyed by IP although DHCP may move leases | should fix | hosts are keyed by MAC through DHCP leases when they exist; IP otherwise |
+| Clients 3–4 may be involved (the publisher's forensic artefacts cover clients 1–4) | should fix | excluded in the primary analysis, included in a sensitivity analysis; at most 26 candidates |
+| The meaning of the 590 gate was unclear; HOLDS was worded as "≤ 2 %" | should fix | explained (Clopper-Pearson claim rule vs the 313 conformal guarantee); the ledger wording corrected |
+| The destination-memory asymmetry was not stated | should fix | stated, and its share of false alerts reported |
+| Fetch checked only the header signature; `.part` was left on errors | should fix | checks name, Content-Range total and leftover data; `try/finally` cleanup; tests added |
+| An empty freeze file would unlock Stage B | minor | it must be tracked in git and hold the pre-registration's SHA-256 (LF-normalised) |
+| zip64 locator not found; 4-byte disk field | minor | explicit error; the field is ignored |
+| Arithmetic: 780.2 MB, 8.4 % by count, router 4.1 GB; "55 VMs verified"; labels "verified" | minor | corrected |
+| Evaluation-day archive metadata was read (sizes, `pe.log` on D17) | minor | disclosed in the pre-registration |
+| Use the repository's own citation; disk needs missing from the manifest | minor | both added |
