@@ -217,6 +217,24 @@ def auc(score: np.ndarray, y: np.ndarray) -> float | None:
     return float(roc_auc_score(y, score)) if 0 < y.sum() < len(y) else None
 
 
+def confirm_args(ap) -> None:
+    ap.add_argument("--confirm", action="store_true", help="the protected N4 evaluation")
+    ap.add_argument("--stand-in", help="code dry run of --confirm with a DEVELOPMENT network as the "
+                    "target (output must go under reports/phase8i/smoke)")  # fmt: skip
+    ap.add_argument("--out")
+
+
+def confirm_guard(a) -> None:
+    """--confirm on N4 requires FREEZE.md; a stand-in dry run must write to the smoke folder."""
+    if a.stand_in:
+        if not a.confirm or a.stand_in not in DEV_NETWORKS:
+            sys.exit("--stand-in needs --confirm and a development network")
+        if not a.out or not Path(a.out).as_posix().startswith("reports/phase8i/smoke"):
+            sys.exit("a stand-in dry run must write under reports/phase8i/smoke")
+    elif a.confirm and not Path("docs/phase8i/FREEZE.md").exists():
+        sys.exit("confirmatory run refused: docs/phase8i/FREEZE.md does not exist")
+
+
 def dump(path: Path, obj) -> None:
     """Write JSON atomically: a crash never leaves a truncated result that looks complete."""
     path.parent.mkdir(parents=True, exist_ok=True)

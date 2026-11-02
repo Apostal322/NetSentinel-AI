@@ -1,0 +1,471 @@
+{
+ "nfcic/2018-02-14": {
+  "eval_windows": 108481,
+  "benign_windows": 108297,
+  "attack_windows": 184,
+  "attack_entities": 1,
+  "top3_share": 1.0,
+  "top": [
+   {
+    "key": "13.58.98.64",
+    "len": 184,
+    "all": 184,
+    "attack_share": 1.0
+   }
+  ],
+  "pool_windows": 196,
+  "pool_entities": 1,
+  "benign_cal_windows": 125797
+ },
+ "nfcic/2018-02-15": {
+  "eval_windows": 96042,
+  "benign_windows": 96042,
+  "attack_windows": 0,
+  "attack_entities": 0,
+  "top3_share": null,
+  "top": [],
+  "pool_windows": 121,
+  "pool_entities": 2,
+  "benign_cal_windows": 116915
+ },
+ "nfcic/2018-02-16": {
+  "eval_windows": 79554,
+  "benign_windows": 79527,
+  "attack_windows": 27,
+  "attack_entities": 1,
+  "top3_share": 1.0,
+  "top": [
+   {
+    "key": "18.219.193.20",
+    "len": 27,
+    "all": 27,
+    "attack_share": 1.0
+   }
+  ],
+  "pool_windows": 107,
+  "pool_entities": 1,
+  "benign_cal_windows": 91328
+ },
+ "nfcic/2018-02-20": {
+  "eval_windows": 113955,
+  "benign_windows": 113849,
+  "attack_windows": 106,
+  "attack_entities": 10,
+  "top3_share": 0.2830188679245283,
+  "top": [
+   {
+    "key": "18.218.115.60",
+    "len": 13,
+    "all": 13,
+    "attack_share": 1.0
+   },
+   {
+    "key": "18.216.200.189",
+    "len": 8,
+    "all": 8,
+    "attack_share": 1.0
+   },
+   {
+    "key": "18.218.11.51",
+    "len": 9,
+    "all": 9,
+    "attack_share": 1.0
+   },
+   {
+    "key": "18.219.32.43",
+    "len": 16,
+    "all": 16,
+    "attack_share": 1.0
+   },
+   {
+    "key": "18.218.55.126",
+    "len": 12,
+    "all": 12,
+    "attack_share": 1.0
+   },
+   {
+    "key": "18.219.5.43",
+    "len": 10,
+    "all": 10,
+    "attack_share": 1.0
+   },
+   {
+    "key": "52.14.136.135",
+    "len": 13,
+    "all": 13,
+    "attack_share": 1.0
+   },
+   {
+    "key": "18.219.9.1",
+    "len": 8,
+    "all": 8,
+    "attack_share": 1.0
+   },
+   {
+    "key": "18.216.24.42",
+    "len": 9,
+    "all": 9,
+    "attack_share": 1.0
+   },
+   {
+    "key": "18.218.229.235",
+    "len": 8,
+    "all": 8,
+    "attack_share": 1.0
+   }
+  ],
+  "pool_windows": 906,
+  "pool_entities": 10,
+  "benign_cal_windows": 119688
+ },
+ "nfcic/2018-02-21": {
+  "eval_windows": 117126,
+  "benign_windows": 116040,
+  "attack_windows": 1086,
+  "attack_entities": 10,
+  "top3_share": 0.3011049723756906,
+  "top": [
+   {
+    "key": "18.219.9.1",
+    "len": 109,
+    "all": 109,
+    "attack_share": 1.0
+   },
+   {
+    "key": "52.14.136.135",
+    "len": 109,
+    "all": 109,
+    "attack_share": 1.0
+   },
+   {
+    "key": "18.218.55.126",
+    "len": 109,
+    "all": 109,
+    "attack_share": 1.0
+   },
+   {
+    "key": "18.218.229.235",
+    "len": 109,
+    "all": 109,
+    "attack_share": 1.0
+   },
+   {
+    "key": "18.218.11.51",
+    "len": 108,
+    "all": 108,
+    "attack_share": 1.0
+   },
+   {
+    "key": "18.216.24.42",
+    "len": 108,
+    "all": 108,
+    "attack_share": 1.0
+   },
+   {
+    "key": "18.216.200.189",
+    "len": 109,
+    "all": 109,
+    "attack_share": 1.0
+   },
+   {
+    "key": "18.219.5.43",
+    "len": 108,
+    "all": 108,
+    "attack_share": 1.0
+   },
+   {
+    "key": "18.218.115.60",
+    "len": 108,
+    "all": 108,
+    "attack_share": 1.0
+   },
+   {
+    "key": "18.219.32.43",
+    "len": 109,
+    "all": 109,
+    "attack_share": 1.0
+   }
+  ],
+  "pool_windows": 212,
+  "pool_entities": 10,
+  "benign_cal_windows": 127124
+ },
+ "nfcic/2018-02-22": {
+  "eval_windows": 128221,
+  "benign_windows": 114337,
+  "attack_windows": 849,
+  "attack_entities": 291,
+  "top3_share": 0.0035335689045936395,
+  "top": [
+   {
+    "key": "189.18.113.105",
+    "len": 1,
+    "all": 1,
+    "attack_share": 1.0
+   },
+   {
+    "key": "218.250.205.83",
+    "len": 1,
+    "all": 1,
+    "attack_share": 1.0
+   },
+   {
+    "key": "76.65.226.65",
+    "len": 1,
+    "all": 2,
+    "attack_share": 0.5
+   },
+   {
+    "key": "198.20.87.98",
+    "len": 1,
+    "all": 17,
+    "attack_share": 0.058823529411764705
+   },
+   {
+    "key": "187.74.25.174",
+    "len": 1,
+    "all": 1,
+    "attack_share": 1.0
+   },
+   {
+    "key": "109.236.86.40",
+    "len": 1,
+    "all": 81,
+    "attack_share": 0.012345679012345678
+   },
+   {
+    "key": "123.59.182.194",
+    "len": 1,
+    "all": 2,
+    "attack_share": 0.5
+   },
+   {
+    "key": "115.23.187.69",
+    "len": 2,
+    "all": 2,
+    "attack_share": 1.0
+   },
+   {
+    "key": "46.243.189.105",
+    "len": 2,
+    "all": 12,
+    "attack_share": 0.16666666666666666
+   },
+   {
+    "key": "185.222.211.46",
+    "len": 1,
+    "all": 161,
+    "attack_share": 0.006211180124223602
+   }
+  ],
+  "pool_windows": 869,
+  "pool_entities": 316,
+  "benign_cal_windows": 123763
+ },
+ "nfcic/2018-02-23": {
+  "eval_windows": 107815,
+  "benign_windows": 107815,
+  "attack_windows": 0,
+  "attack_entities": 0,
+  "top3_share": null,
+  "top": [],
+  "pool_windows": 0,
+  "pool_entities": 0,
+  "benign_cal_windows": 122950
+ },
+ "nfcic/2018-02-27": {
+  "eval_windows": 304,
+  "benign_windows": 304,
+  "attack_windows": 0,
+  "attack_entities": 0,
+  "top3_share": null,
+  "top": [],
+  "pool_windows": 0,
+  "pool_entities": 0,
+  "benign_cal_windows": 229
+ },
+ "nfcic/2018-02-28": {
+  "eval_windows": 228871,
+  "benign_windows": 223182,
+  "attack_windows": 0,
+  "attack_entities": 0,
+  "top3_share": null,
+  "top": [],
+  "pool_windows": 0,
+  "pool_entities": 0,
+  "benign_cal_windows": 392
+ },
+ "nfcic/2018-03-01": {
+  "eval_windows": 131325,
+  "benign_windows": 113095,
+  "attack_windows": 0,
+  "attack_entities": 0,
+  "top3_share": null,
+  "top": [],
+  "pool_windows": 2866,
+  "pool_entities": 190,
+  "benign_cal_windows": 119810
+ },
+ "nfcic/2018-03-02": {
+  "eval_windows": 94351,
+  "benign_windows": 91935,
+  "attack_windows": 2408,
+  "attack_entities": 7,
+  "top3_share": 0.42857142857142855,
+  "top": [
+   {
+    "key": "172.31.69.10",
+    "len": 344,
+    "all": 344,
+    "attack_share": 1.0
+   },
+   {
+    "key": "172.31.69.8",
+    "len": 344,
+    "all": 344,
+    "attack_share": 1.0
+   },
+   {
+    "key": "172.31.69.23",
+    "len": 344,
+    "all": 344,
+    "attack_share": 1.0
+   },
+   {
+    "key": "172.31.69.17",
+    "len": 344,
+    "all": 344,
+    "attack_share": 1.0
+   },
+   {
+    "key": "172.31.69.26",
+    "len": 344,
+    "all": 344,
+    "attack_share": 1.0
+   },
+   {
+    "key": "172.31.69.29",
+    "len": 344,
+    "all": 344,
+    "attack_share": 1.0
+   },
+   {
+    "key": "172.31.69.14",
+    "len": 344,
+    "all": 344,
+    "attack_share": 1.0
+   }
+  ],
+  "pool_windows": 1018,
+  "pool_entities": 8,
+  "benign_cal_windows": 97737
+ },
+ "nfunsw/all": {
+  "eval_windows": 16028,
+  "benign_windows": 11937,
+  "attack_windows": 4091,
+  "attack_entities": 4,
+  "top3_share": 0.7494500122219506,
+  "top": [
+   {
+    "key": "175.45.176.1",
+    "len": 1020,
+    "all": 1020,
+    "attack_share": 1.0
+   },
+   {
+    "key": "175.45.176.3",
+    "len": 1021,
+    "all": 1021,
+    "attack_share": 1.0
+   },
+   {
+    "key": "175.45.176.0",
+    "len": 1025,
+    "all": 1025,
+    "attack_share": 1.0
+   },
+   {
+    "key": "175.45.176.2",
+    "len": 1025,
+    "all": 1025,
+    "attack_share": 1.0
+   }
+  ],
+  "pool_windows": 937,
+  "pool_entities": 4,
+  "benign_cal_windows": 14057
+ },
+ "nfton/all": {
+  "eval_windows": 49156,
+  "benign_windows": 7447,
+  "attack_windows": 8785,
+  "attack_entities": 13,
+  "top3_share": 0.5405805350028458,
+  "top": [
+   {
+    "key": "192.168.1.32",
+    "len": 1512,
+    "all": 1515,
+    "attack_share": 0.998019801980198
+   },
+   {
+    "key": "192.168.1.34",
+    "len": 52,
+    "all": 67,
+    "attack_share": 0.7761194029850746
+   },
+   {
+    "key": "192.168.1.193",
+    "len": 3185,
+    "all": 5496,
+    "attack_share": 0.5795123726346434
+   },
+   {
+    "key": "192.168.1.33",
+    "len": 1454,
+    "all": 4576,
+    "attack_share": 0.31774475524475526
+   },
+   {
+    "key": "192.168.1.6",
+    "len": 1,
+    "all": 678,
+    "attack_share": 0.0014749262536873156
+   },
+   {
+    "key": "192.168.1.30",
+    "len": 213,
+    "all": 215,
+    "attack_share": 0.9906976744186047
+   },
+   {
+    "key": "192.168.1.35",
+    "len": 801,
+    "all": 801,
+    "attack_share": 1.0
+   },
+   {
+    "key": "192.168.1.37",
+    "len": 168,
+    "all": 3066,
+    "attack_share": 0.0547945205479452
+   },
+   {
+    "key": "192.168.1.38",
+    "len": 91,
+    "all": 91,
+    "attack_share": 1.0
+   },
+   {
+    "key": "192.168.1.31",
+    "len": 386,
+    "all": 392,
+    "attack_share": 0.9846938775510204
+   }
+  ],
+  "pool_windows": 11083,
+  "pool_entities": 24,
+  "benign_cal_windows": 26196
+ }
+}

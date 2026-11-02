@@ -1,0 +1,192 @@
+{
+ "domains": {
+  "2018-02-14": {
+   "flows": 2137465,
+   "mid_ms": 1518628186474,
+   "eval_labels": {
+    "benign": 722841,
+    "ssh_bruteforce": 188474
+   },
+   "cal_windows_clean": 125797,
+   "cal_attack_windows": 196,
+   "cal_attack_entities": 1,
+   "eval_windows": 108481,
+   "attack_windows": 184,
+   "attack_entities": 1,
+   "noisy_windows": 0,
+   "entities": 14229,
+   "seconds": 21.190352800000255
+  },
+  "2018-02-15": {
+   "flows": 1653077,
+   "mid_ms": 1518713681531,
+   "eval_labels": {
+    "benign": 724725
+   },
+   "cal_windows_clean": 116915,
+   "cal_attack_windows": 121,
+   "cal_attack_entities": 2,
+   "eval_windows": 96042,
+   "attack_windows": 0,
+   "attack_entities": 0,
+   "noisy_windows": 0,
+   "entities": 12425,
+   "seconds": 7.866656999998668
+  },
+  "2018-02-16": {
+   "flows": 1551863,
+   "mid_ms": 1518797904454,
+   "eval_labels": {
+    "benign": 594221,
+    "dos_hulk": 100076
+   },
+   "cal_windows_clean": 91328,
+   "cal_attack_windows": 107,
+   "cal_attack_entities": 1,
+   "eval_windows": 79554,
+   "attack_windows": 27,
+   "attack_entities": 1,
+   "noisy_windows": 0,
+   "entities": 11020,
+   "seconds": 9.103551699998206
+  },
+  "2018-02-20": {
+   "flows": 1827843,
+   "mid_ms": 1519146045844,
+   "eval_labels": {
+    "ddos_loic_http": 2153,
+    "benign": 770036
+   },
+   "cal_windows_clean": 119688,
+   "cal_attack_windows": 906,
+   "cal_attack_entities": 10,
+   "eval_windows": 113955,
+   "attack_windows": 106,
+   "attack_entities": 10,
+   "noisy_windows": 0,
+   "entities": 14626,
+   "seconds": 7.255170299999008
+  },
+  "2018-02-21": {
+   "flows": 2711059,
+   "mid_ms": 1519233147784,
+   "eval_labels": {
+    "benign": 805271,
+    "ddos_hoic": 1032311
+   },
+   "cal_windows_clean": 127124,
+   "cal_attack_windows": 212,
+   "cal_attack_entities": 10,
+   "eval_windows": 117126,
+   "attack_windows": 1086,
+   "attack_entities": 10,
+   "noisy_windows": 0,
+   "entities": 13739,
+   "seconds": 10.173730599999544
+  },
+  "2018-02-22": {
+   "flows": 1989174,
+   "mid_ms": 1519318027117,
+   "eval_labels": {
+    "web_bruteforce": 681,
+    "web_xss": 255,
+    "web_sql_injection": 305,
+    "benign": 932453
+   },
+   "cal_windows_clean": 137405,
+   "cal_attack_windows": 869,
+   "cal_attack_entities": 316,
+   "eval_windows": 128221,
+   "attack_windows": 849,
+   "attack_entities": 291,
+   "noisy_windows": 0,
+   "entities": 13575,
+   "seconds": 9.021824499999639
+  },
+  "2018-02-23": {
+   "flows": 1751857,
+   "mid_ms": 1519403066647,
+   "eval_labels": {
+    "benign": 795383
+   },
+   "cal_windows_clean": 122950,
+   "cal_attack_windows": 0,
+   "cal_attack_entities": 0,
+   "eval_windows": 107815,
+   "attack_windows": 0,
+   "attack_entities": 0,
+   "noisy_windows": 0,
+   "entities": 12861,
+   "seconds": 8.804627800000162
+  },
+  "2018-02-27": {
+   "flows": 922,
+   "mid_ms": 1519755990649,
+   "eval_labels": {
+    "benign": 591
+   },
+   "cal_windows_clean": 229,
+   "cal_attack_windows": 0,
+   "cal_attack_entities": 0,
+   "eval_windows": 304,
+   "attack_windows": 0,
+   "attack_entities": 0,
+   "noisy_windows": 0,
+   "entities": 91,
+   "seconds": 1.0729626000029384
+  },
+  "2018-02-28": {
+   "flows": 1739309,
+   "mid_ms": 1519819183974,
+   "eval_labels": {
+    "benign": 1659089,
+    "infiltration": 79365
+   },
+   "cal_windows_clean": 392,
+   "cal_attack_windows": 0,
+   "cal_attack_entities": 0,
+   "eval_windows": 228871,
+   "attack_windows": 0,
+   "attack_entities": 0,
+   "noisy_windows": 5689,
+   "entities": 23634,
+   "seconds": 9.287575700000161
+  },
+  "2018-03-01": {
+   "flows": 2076801,
+   "mid_ms": 1519922365110,
+   "eval_labels": {
+    "benign": 954676,
+    "infiltration": 50972
+   },
+   "cal_windows_clean": 137845,
+   "cal_attack_windows": 2866,
+   "cal_attack_entities": 190,
+   "eval_windows": 131325,
+   "attack_windows": 0,
+   "attack_entities": 0,
+   "noisy_windows": 3038,
+   "entities": 13767,
+   "seconds": 8.089940300000308
+  },
+  "2018-03-02": {
+   "flows": 1406244,
+   "mid_ms": 1520005082631,
+   "eval_labels": {
+    "benign": 581852,
+    "bot": 72970
+   },
+   "cal_windows_clean": 98274,
+   "cal_attack_windows": 1018,
+   "cal_attack_entities": 8,
+   "eval_windows": 94351,
+   "attack_windows": 2408,
+   "attack_entities": 7,
+   "noisy_windows": 0,
+   "entities": 10977,
+   "seconds": 7.102119399998628
+  }
+ },
+ "seconds": 98.9799389999971,
+ "peak_rss_mb": 1832.84765625
+}

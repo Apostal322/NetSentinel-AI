@@ -70,9 +70,9 @@ def domain_blocks(name: str, d: dict, s_ev: np.ndarray, s_hold: np.ndarray, thr:
     return rows
 
 
-def domains(confirm: bool) -> dict[str, dict]:
+def domains(confirm: bool, net: str = "nfbot") -> dict[str, dict]:
     if confirm:
-        return C.load_network("nfbot")
+        return C.load_network(net)
     out = {k: v for n in C.DEV_NETWORKS for k, v in C.load_network(n).items()}
     for d in sorted(Path("data/derived/phase8b").iterdir()):
         if d.name != "NF-UNSW-NB15-v3-dev" and (d / "meta.json").exists():
@@ -111,16 +111,14 @@ def summarize(rows: list[dict]) -> dict:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--confirm", action="store_true")
     ap.add_argument("--tau", type=float, help="confirmatory: the S_score cut fixed on development")
-    ap.add_argument("--out")
+    C.confirm_args(ap)
     a = ap.parse_args()
     out = Path(a.out) if a.out else OUT
-    if a.confirm and not Path("docs/phase8i/FREEZE.md").exists():
-        sys.exit("confirmatory run refused: docs/phase8i/FREEZE.md does not exist")
+    C.confirm_guard(a)
     t0 = time.perf_counter()
     rows = []
-    for name, d in domains(a.confirm).items():
+    for name, d in domains(a.confirm, a.stand_in or "nfbot").items():
         C.prepare(d)
         s_hold, _ = C.S.product(d["_btrain"], d["_hold"])
         s_ev, _ = C.S.product(d["_btrain"], d["ev"])

@@ -1,0 +1,27 @@
+{
+ "domains": {
+  "all": {
+   "flows": 27520260,
+   "mid_ms": 1556288873239,
+   "eval_labels": {
+    "benign": 2665973,
+    "password": 1544967,
+    "xss": 2834435,
+    "ransomware": 3971,
+    "backdoor": 203384,
+    "mitm": 6013
+   },
+   "cal_windows_clean": 64122,
+   "cal_attack_windows": 11083,
+   "cal_attack_entities": 24,
+   "eval_windows": 49156,
+   "attack_windows": 8785,
+   "attack_entities": 13,
+   "noisy_windows": 0,
+   "entities": 310,
+   "seconds": 56.804650899997796
+  }
+ },
+ "seconds": 56.809354399996664,
+ "peak_rss_mb": 2472.5234375
+}

@@ -1,0 +1,16 @@
+start ingest nf-ton-iot-v3 2026-11-02T01:30:57
+build nfunsw 2026-11-02T01:50:00+03:00
+build nfunsw exit 0 2026-11-02T01:50:10+03:00
+build nfcic 2026-11-02T01:50:10+03:00
+build nfcic exit 127 2026-11-02T01:51:32+03:00
+build nfton 2026-11-02T01:51:32+03:00
+build nfcic 2026-11-02T01:51:47+03:00
+build nfcic exit 0 2026-11-02T01:53:32+03:00
+build nfton 2026-11-02T01:53:32+03:00
+build nfton exit 0 2026-11-02T01:55:11+03:00
+dev exp_a start 2026-11-02T02:01:32+03:00 0871e64
+dev exp_a exit 0 2026-11-02T02:32:22+03:00
+dev exp_b start 2026-11-02T02:32:22+03:00 0871e64
+dev exp_b exit 0 2026-11-02T02:36:25+03:00
+dev exp_c start 2026-11-02T02:36:25+03:00 0871e64
+dev exp_c exit 0 2026-11-02T02:55:57+03:00

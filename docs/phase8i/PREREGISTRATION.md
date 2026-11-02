@@ -287,3 +287,20 @@ unseen network while keeping false alerts within a 1% budget?
   as results: NF-UNSW (seed 0, 2 draws) and NF-CIC 02-21 (seed 0, 3 draws). Both are
   development data. They were run to test the code and measure time. The selection rules and
   criteria are unchanged.
+
+### A4 (2026-11-02, before N4 was opened): I2 with no overrunning blocks
+
+A code dry run of the confirmatory pipeline, with NF-UNSW standing in for N4, produced a case
+the protocol did not anticipate: no block overran (exceedance 0 among all blocks). Read
+literally, the failure rule then fires (0 ≥ 0), although nothing was testable. **Rule:** if no
+eligible N4 block overruns, I2 is "not evaluable (no overrunning blocks)". The other criteria
+are unchanged.
+
+**Ceilings, same reasoning.**
+- **I1:** if N4's zero-label A1 already reaches recall ≥ 0.95 with FPR ≤ 2%, the success
+  criterion (2.5th percentile above A1) cannot be met by any method. I1 is then "not
+  evaluable (zero-label ceiling)".
+- **I3:** if B-raw's recall on N4 is > 0.90 with FPR ≤ 2%, a +0.10 gain is impossible. I3 is
+  then "not evaluable (raw-model ceiling)".
+
+Both are fixed before N4 is opened.

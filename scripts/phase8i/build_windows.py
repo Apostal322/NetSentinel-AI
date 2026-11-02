@@ -45,10 +45,12 @@ from netsentinel.resources import peak_rss_mb  # noqa: E402
 
 OUT = Path("data/derived/phase8i")
 REPORTS = Path("reports/phase8i")
-NETWORKS = {"nfcic": ("data/interim/nf_cicids2018_v3", True, True),
-            "nfunsw": ("data/interim/nf_unsw_nb15_v3", True, False),
-            "nfton": ("data/interim/nf_ton_iot_v3", False, False),
-            "nfbot": ("data/interim/nf_bot_iot_v3", False, False)}  # (dir, dev_cut, per_day)
+NETWORKS = {
+    "nfcic": ("data/interim/nf_cicids2018_v3", True, True),
+    "nfunsw": ("data/interim/nf_unsw_nb15_v3", True, False),
+    "nfton": ("data/interim/nf_ton_iot_v3", False, False),
+    "nfbot": ("data/interim/nf_bot_iot_v3", False, False),
+}  # (dir, dev_cut, per_day)
 NOISY = "infiltration"
 
 
@@ -120,8 +122,7 @@ def chunks(files: list[Path], dev_cut: bool):
         t += step
 
 
-def build(files: list[Path], dev_cut: bool, out: Path, source: str,
-          split: str = "time") -> dict:
+def build(files: list[Path], dev_cut: bool, out: Path, source: str, split: str = "time") -> dict:
     """One domain from time-ordered files (`chunks`)."""
     t0 = time.perf_counter()
     if dev_cut:
@@ -172,7 +173,9 @@ def main() -> None:
     ap.add_argument("--days")
     ap.add_argument("--protected-confirm", action="store_true")
     a = ap.parse_args()
-    if a.network == "nfbot" and not (a.protected_confirm and Path("docs/phase8i/FREEZE.md").exists()):
+    if a.network == "nfbot" and not (
+        a.protected_confirm and Path("docs/phase8i/FREEZE.md").exists()
+    ):
         sys.exit("nfbot is the protected Phase 8i test: freeze first (docs/phase8i/FREEZE.md) "
                  "and pass --protected-confirm")  # fmt: skip
     src, dev_cut, per_day = NETWORKS[a.network]

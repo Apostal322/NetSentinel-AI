@@ -22,7 +22,6 @@ import time
 from pathlib import Path
 
 import numpy as np
-import polars as pl
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import common as C  # noqa: E402, N812
@@ -89,8 +88,14 @@ def summarize(per: list[dict]) -> dict:
     return out
 
 
-def run_target(name: str, tgt: dict, sources: dict, seeds: list[int], draws: int,
-               correction_seeds: tuple[int, ...] = (0,)) -> dict:
+def run_target(
+    name: str,
+    tgt: dict,
+    sources: dict,
+    seeds: list[int],
+    draws: int,
+    correction_seeds: tuple[int, ...] = (0,),
+) -> dict:
     t0 = time.perf_counter()
     C.prepare(tgt)
     btrain, hold = tgt["_btrain"], tgt["_hold"]
@@ -156,13 +161,15 @@ def run_target(name: str, tgt: dict, sources: dict, seeds: list[int], draws: int
     return res
 
 
-def folds(confirm: bool) -> list[tuple[str, dict, dict]]:
-    """(target name, target domain, sources) for every cross-network unit."""
+def folds(confirm: bool, net: str = "nfbot") -> list[tuple[str, dict, dict]]:
+    """(target name, target domain, sources) for every cross-network unit. `confirm`: target
+    = `net` (nfbot; or a development network standing in for it in a code dry run), sources =
+    every other development network."""
     nets = {n: C.load_network(n) for n in C.DEV_NETWORKS}
     out = []
     if confirm:
-        tg = C.load_network("nfbot")
-        srcs = {k: v for n in C.DEV_NETWORKS for k, v in nets[n].items()}
+        tg = nets[net] if net in nets else C.load_network(net)
+        srcs = {k: v for n in C.DEV_NETWORKS if n != net for k, v in nets[n].items()}
         return [(k, v, srcs) for k, v in tg.items()]
     for tnet in C.DEV_NETWORKS:
         srcs = {k: v for n in C.DEV_NETWORKS if n != tnet for k, v in nets[n].items()}
@@ -181,20 +188,19 @@ def main() -> None:
     ap.add_argument("--seeds", default="0,1,2")
     ap.add_argument("--draws", type=int, default=20)
     ap.add_argument("--correction-seeds", default="0", help="seeds for A3-A5 (amendment A3)")
-    ap.add_argument("--confirm", action="store_true")
-    ap.add_argument("--out")
+    C.confirm_args(ap)
     a = ap.parse_args()
     global OUT
     if a.out:
         OUT = Path(a.out)
-    if a.confirm and not Path("docs/phase8i/FREEZE.md").exists():
-        sys.exit("confirmatory run refused: docs/phase8i/FREEZE.md does not exist")
+    C.confirm_guard(a)
     seeds = [int(s) for s in a.seeds.split(",")]
-    for name, tgt, srcs in folds(a.confirm):
+    for name, tgt, srcs in folds(a.confirm, a.stand_in or "nfbot"):
         if a.targets and name not in a.targets.split(","):
             continue
-        res = run_target(name, tgt, srcs, seeds, a.draws,
-                         tuple(int(x) for x in a.correction_seeds.split(",")))
+        res = run_target(
+            name, tgt, srcs, seeds, a.draws, tuple(int(x) for x in a.correction_seeds.split(","))
+        )
         C.dump(OUT / f"{name.replace('/', '__')}.json", res)
 
 

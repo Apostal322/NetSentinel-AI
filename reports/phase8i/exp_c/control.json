@@ -1,0 +1,32 @@
+{
+ "result": {
+  "ranking": [
+   "log_up_bytes",
+   "log_dst_ports",
+   "log_pkts",
+   "med_log_dur",
+   "rst_frac",
+   "log_down_bytes",
+   "log_flows",
+   "upload_share",
+   "udp_share",
+   "log_dst_hosts",
+   "no_reply_frac",
+   "new_dst_frac"
+  ],
+  "n": 55366,
+  "per_network": {
+   "nfcic": 45366,
+   "nfton": 5000,
+   "nfunsw": 5000
+  },
+  "raw": 0.9845605288254546,
+  "no_volume": 0.9816769678116396,
+  "C2": 0.9999867530802535,
+  "C1_k1": 0.9842751650459453,
+  "C1_k2": 0.9841180475926462,
+  "C1_k3": 0.983617200152854
+ },
+ "seconds": 17.275389399997948,
+ "peak_rss_mb": 1265.62890625
+}

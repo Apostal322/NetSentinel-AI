@@ -25,7 +25,9 @@ def audit(d: dict) -> dict:
     ev = d["ev"]
     att = ev.filter(pl.col("y")).group_by("key").len().sort("len", descending=True)
     tot = ev.group_by("key").len().rename({"len": "all"})
-    att = att.join(tot, on="key").with_columns((pl.col("len") / pl.col("all")).alias("attack_share"))
+    att = att.join(tot, on="key").with_columns(
+        (pl.col("len") / pl.col("all")).alias("attack_share")
+    )
     n = int(att["len"].sum()) if att.height else 0
     top = att.head(10)
     return {"eval_windows": ev.height, "benign_windows": int(ev["benign"].sum()),

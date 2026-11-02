@@ -115,8 +115,9 @@ def test_t0_threshold_resolution_limit():
 def _frame(keys, wins, **cols):
     base = {f: [0.0] * len(keys) for f in C.FEATS}
     base.update(cols)
-    return pl.DataFrame({"key": keys, "win": wins, "window_end_ms": [w * 30_000 for w in wins],
-                         **base})
+    return pl.DataFrame(
+        {"key": keys, "win": wins, "window_end_ms": [w * 30_000 for w in wins], **base}
+    )
 
 
 def test_load_domain_strict_benign_and_labels(tmp_path):
@@ -128,14 +129,16 @@ def test_load_domain_strict_benign_and_labels(tmp_path):
     cal.write_parquet(d / "cal_clean.parquet")
     cal.write_parquet(d / "cal_unlabelled.parquet")
     pl.DataFrame({"key": ["att_cal", "att_cal"], "win": [3, 4], "y": [True, True]}).write_parquet(
-        d / "cal_truth.parquet")
+        d / "cal_truth.parquet"
+    )
     ev = _frame(["h1", "h2", "att_cal", "att_ev", "noisy"] * 20,
                 [100 + w for w in range(20) for _ in range(5)])  # fmt: skip
     ev.write_parquet(d / "eval_clean.parquet")
     tr = ev.select("key", "win").with_columns((pl.col("key") == "att_ev").alias("y"))
     tr.write_parquet(d / "truth.parquet")
     pl.DataFrame({"key": ["noisy"] * 20, "win": list(range(100, 120))}).write_parquet(
-        d / "noisy.parquet")
+        d / "noisy.parquet"
+    )
     (d / "meta.json").write_text('{"eval_hours": 0.1, "first_attack_ms": {"att_ev": 1}}')
     dom = C.load_domain(d, "testnet")
     assert set(dom["cal"]["key"].unique()) == {"h1", "h2"}
@@ -157,13 +160,24 @@ def test_dump_is_atomic(tmp_path):
 
 def _flows(starts_s, src="10.0.0.1", label="benign"):
     n = len(starts_s)
-    return pl.DataFrame({
-        "flow_start_milliseconds": [int(s * 1000) for s in starts_s],
-        "flow_end_milliseconds": [int(s * 1000) + 500 for s in starts_s],
-        "ipv4_src_addr": [src] * n, "ipv4_dst_addr": ["10.0.0.9"] * n,
-        "dst_port": [80] * n, "protocol": [6] * n, "in_bytes": [100] * n, "out_bytes": [50] * n,
-        "in_pkts": [2] * n, "out_pkts": [1] * n, "flow_duration_milliseconds": [500] * n,
-        "client_tcp_flags": [2] * n, "server_tcp_flags": [18] * n, "label": [label] * n})
+    return pl.DataFrame(
+        {
+            "flow_start_milliseconds": [int(s * 1000) for s in starts_s],
+            "flow_end_milliseconds": [int(s * 1000) + 500 for s in starts_s],
+            "ipv4_src_addr": [src] * n,
+            "ipv4_dst_addr": ["10.0.0.9"] * n,
+            "dst_port": [80] * n,
+            "protocol": [6] * n,
+            "in_bytes": [100] * n,
+            "out_bytes": [50] * n,
+            "in_pkts": [2] * n,
+            "out_pkts": [1] * n,
+            "flow_duration_milliseconds": [500] * n,
+            "client_tcp_flags": [2] * n,
+            "server_tcp_flags": [18] * n,
+            "label": [label] * n,
+        }
+    )
 
 
 @pytest.mark.parametrize("dev_cut", [False, True])  # hourly slices / per-file carry
@@ -204,7 +218,8 @@ def test_a4_margin_shortcut_equals_full_prediction():
     y = (X[:, 0] + 0.5 * rng.normal(size=600) > 0).astype(int)
     src = lgb.LGBMClassifier(n_estimators=30, num_leaves=7, verbose=-1, random_state=0).fit(X, y)
     a4 = lgb.LGBMClassifier(n_estimators=10, num_leaves=7, min_child_samples=5, verbose=-1,
-                            random_state=0).fit(X[:200], y[:200], init_model=src.booster_)  # fmt: skip
+                            random_state=0)  # fmt: skip
+    a4.fit(X[:200], y[:200], init_model=src.booster_)
     assert a4.booster_.num_trees() == 40  # the source trees are kept
     full = a4.predict_proba(X)[:, 1]
     short = A.expit(src.booster_.predict(X, raw_score=True)

@@ -92,7 +92,7 @@ def analyze_a(root: Path) -> dict:
         elig[m] = {"median_recall": med(rec), "median_fpr": med(fpr),
                    "fpr_ok": (med(fpr) is not None and med(fpr) <= 0.02)}  # fmt: skip
     ok = [m for m in METHODS if elig[m]["fpr_ok"] and elig[m]["median_recall"] is not None]
-    chosen = (max(ok, key=lambda m: (elig[m]["median_recall"], -SIMPLICITY[m])) if ok else "A3")
+    chosen = max(ok, key=lambda m: (elig[m]["median_recall"], -SIMPLICITY[m])) if ok else "A3"
     return {"units": units, "networks": nets, "selection": {"candidates": elig, "chosen": chosen,
             "rule_met": bool(ok)}}  # fmt: skip
 

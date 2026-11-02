@@ -22,3 +22,7 @@ __pycache__/
 
 # local tool configuration
 /.claude/
+
+# Phase 8i: score arrays (reproducible) and code smoke outputs
+reports/phase8i/**/*.npz
+reports/phase8i/smoke/

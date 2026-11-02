@@ -1,0 +1,31 @@
+{
+ "domains": {
+  "all": {
+   "flows": 1829313,
+   "mid_ms": 1424221013826,
+   "eval_labels": {
+    "reconnaissance": 11163,
+    "fuzzers": 21083,
+    "analysis": 666,
+    "shellcode": 1694,
+    "backdoor": 2098,
+    "benign": 832147,
+    "exploits": 28235,
+    "dos": 4217,
+    "generic": 13245,
+    "worms": 109
+   },
+   "cal_windows_clean": 14057,
+   "cal_attack_windows": 937,
+   "cal_attack_entities": 4,
+   "eval_windows": 16028,
+   "attack_windows": 4091,
+   "attack_entities": 4,
+   "noisy_windows": 0,
+   "entities": 38,
+   "seconds": 6.772319399999105
+  }
+ },
+ "seconds": 6.773055300000124,
+ "peak_rss_mb": 1014.6875
+}

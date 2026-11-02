@@ -88,10 +88,10 @@ def robust(tgt: dict) -> dict:
     return {**C.evaluate(tgt, s_ev, thr), "T0_reliable": rel, "n_hold": hold.height}
 
 
-def cross(seeds: list[int], confirm: bool, only: set | None) -> dict:
+def cross(seeds: list[int], confirm: bool, only: set | None, net: str = "nfbot") -> dict:
     res = {}
     groups: dict[tuple, list] = {}
-    for name, tgt, srcs in folds(confirm):
+    for name, tgt, srcs in folds(confirm, net):
         groups.setdefault(tuple(sorted(srcs)), []).append((name, tgt, srcs))
     for _, units in groups.items():
         srcs = units[0][2]
@@ -146,8 +146,8 @@ def within(seeds: list[int]) -> dict:
 def control(seed: int = 0) -> dict:
     """Network identifiability of benign windows under each representation (3-fold CV)."""
     import lightgbm as lgb
-    from sklearn.model_selection import StratifiedKFold, cross_val_predict
     from sklearn.metrics import roc_auc_score
+    from sklearn.model_selection import StratifiedKFold, cross_val_predict
 
     alld = {k: v for n in C.DEV_NETWORKS for k, v in C.load_network(n).items()}
     rank = network_ranking(alld, seed)
@@ -171,17 +171,16 @@ def main() -> None:
     ap.add_argument("--part", default="cross,within,control")
     ap.add_argument("--seeds", default="0,1,2")
     ap.add_argument("--variants")
-    ap.add_argument("--confirm", action="store_true")
-    ap.add_argument("--out")
+    C.confirm_args(ap)
     a = ap.parse_args()
     out = Path(a.out) if a.out else OUT
-    if a.confirm and not Path("docs/phase8i/FREEZE.md").exists():
-        sys.exit("confirmatory run refused: docs/phase8i/FREEZE.md does not exist")
+    C.confirm_guard(a)
     seeds = [int(s) for s in a.seeds.split(",")]
     only = set(a.variants.split(",")) if a.variants else None
     for part in a.part.split(","):
         t = time.perf_counter()
-        r = {"cross": lambda: cross(seeds, a.confirm, only), "within": lambda: within(seeds),
+        r = {"cross": lambda: cross(seeds, a.confirm, only, a.stand_in or "nfbot"),
+             "within": lambda: within(seeds),
              "control": control}[part]()  # fmt: skip
         r = {"result": r, "seconds": time.perf_counter() - t, "peak_rss_mb": peak_rss_mb()}
         C.dump(out / f"{part}.json", r)

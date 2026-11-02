@@ -16,6 +16,11 @@ A chronological record of what was done, in what order, and every deviation. Tim
 | 01:31–01:44 | NF-ToN-IoT-v3 ingested: 27,520,260 flows, 7 days (2019-04-24..30), peak 2.67 GB. |
 | 01:50 | NF-UNSW windows rebuilt: identical to Phase 8b (16,028 evaluation windows, 4,091 attack windows). |
 | 01:51 | NF-CIC build stopped: wrong split point (amendment A2). Split fixed and committed before any model ran; NF-CIC rebuilt, now identical to Phase 8h. |
+| 01:55 | NF-ToN-IoT-v3 windows built (57 s). Label audit: attack windows attributed mainly to the documented attacker range 192.168.1.30–38; no exclusions. |
+| ~01:57 | Code smoke runs on development data (NF-UNSW: seed 0, 2 draws; NF-CIC 02-21: seed 0, 3 draws), written to `reports/phase8i/smoke/`, plus timing and profiling. They led to amendment A3 (compute) and an exact A4 speed-up. |
+| 02:01–02:56 | Development batch at commit `0871e64`: Experiment A (31 min), B (4 min), C (20 min); peak 2.67 GB. |
+| 02:5x | `analyze.py` applied the selection rules: A4, C1_k2, τ = 0.70095. |
+| 03:0x | Confirmatory pipeline dry run with NF-UNSW standing in for N4 (smoke folder). It revealed the unanticipated no-overrun and ceiling cases: amendment A4, written before N4 was opened. |
 
 ## 2. Deviations and incidents
 
@@ -31,3 +36,8 @@ A chronological record of what was done, in what order, and every deviation. Tim
    pre-fix code. It ran alongside the corrected NF-CIC build for about a minute, until it was
    killed. The builder writes outputs only when it finishes, so it left no files. The ToN
    windows come from the later corrected run.
+3. **Development batch over the estimate.** The approved development envelope was "about
+   20–40 min, < 2.5 GB". The batch took 55 min of wall time, with a peak of 2.67 GB (the
+   NF-ToN-IoT-v3 ingest also peaked at 2.67 GB). Amendment A3 had already reduced the
+   registered design to fit. The remaining overrun is recorded here, not hidden. No run came
+   near the 3.4 GB watchdog limit.
