@@ -143,6 +143,8 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 | How many independent networks would a powered confirmation need? | simulation | at least about 15–30, each with ≥ 1,000 effective benign windows, for a good rule (a lower bound) | design |
 | How many eligible independent networks does public data offer? | 15+ candidates surveyed | 0–1 confirmation-grade (DEDALE, pending verification), 3–6 development-grade | design |
 | Are AIT / UWF labels fit for confirmation? | spent probe networks | AIT: flow-level labels, attack entities ambiguous, attacker benign-labelled in calibration; UWF: benign pooled and heavily reduced | E |
+| Does a 1% conformal threshold calibrated on 2 benign weeks hold its budget over the next 2 weeks on an unseen network? | DEDALE green_internal, frozen pre-registration, one run | **HOLDS**: verified-benign FPR 0.55% [0.49, 0.62]% (26 hosts, 272,806 windows); attack and post-attack periods hold; sensitivity ≤ 1.2% | **confirmatory, n = 1** |
+| How useful is detection at that threshold? | same | window recall 7% (43 attack windows), both entities first detected 44–49 h after their first attack window; ~200 false alerts/day; 90% of false alerts from the frozen destination memory | descriptive |
 
 ## Telemetry
 

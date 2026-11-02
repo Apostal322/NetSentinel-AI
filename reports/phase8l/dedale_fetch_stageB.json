@@ -1,0 +1,146 @@
+{
+ "stage": "B",
+ "seconds": 105.6,
+ "members": {
+  "green_internal/D15_2025-01-06_output_green_internal_Zeek/conn_labeled.csv": {
+   "crc32": "d3719adb",
+   "uncompressed": 134563700,
+   "sha256_deflate": "c67a58cb183307d8a7d0afcd6431c49eccd17609ec86317b5280706f056763ae"
+  },
+  "green_internal/D15_2025-01-06_output_green_internal_Zeek/dhcp.log": {
+   "crc32": "2e1c8c29",
+   "uncompressed": 110711,
+   "sha256_deflate": "80416360f4e1181f0b731c3bb03e4ccd84c0724e393ef0b00e1e541d4efbb044"
+  },
+  "green_internal/D16_2025-01-07_output_green_internal_Zeek/conn_labeled.csv": {
+   "crc32": "74dbbe92",
+   "uncompressed": 139036902,
+   "sha256_deflate": "3b53cf2ecb8cf28f4b2a01dd5eecfa393fb2f2e84806752baee42b03b7db9fbb"
+  },
+  "green_internal/D16_2025-01-07_output_green_internal_Zeek/dhcp.log": {
+   "crc32": "f67ae776",
+   "uncompressed": 107941,
+   "sha256_deflate": "29b35b403c9fcbff4a7e2e6e58b860c1055c32411403b2e59cff27f5c15b499d"
+  },
+  "green_internal/D17_2025-01-08_output_green_internal_Zeek/conn_labeled.csv": {
+   "crc32": "24ffe50c",
+   "uncompressed": 136796407,
+   "sha256_deflate": "34d66d6a7768bc0740bd3c1c6ddcf609ddea4eee72833f36f0d727ac028114a0"
+  },
+  "green_internal/D17_2025-01-08_output_green_internal_Zeek/dhcp.log": {
+   "crc32": "f948ad44",
+   "uncompressed": 110005,
+   "sha256_deflate": "a264199201d9765c67421ffed47f8cd32149371054449b94ceeaebb6cd5f8f15"
+  },
+  "green_internal/D18_2025-01-09_output_green_internal_Zeek/conn_labeled.csv": {
+   "crc32": "8bca2c6b",
+   "uncompressed": 136173977,
+   "sha256_deflate": "ed71ae2657ed2e5eb8361f6c4dff0a65334f09972b26aa1392ae0d4fc15915c0"
+  },
+  "green_internal/D18_2025-01-09_output_green_internal_Zeek/dhcp.log": {
+   "crc32": "21e0926d",
+   "uncompressed": 110715,
+   "sha256_deflate": "25e68e0a10c1f052c8fcf2bf3af51979d81b2af94d7867432d06b7e3aab6f37d"
+  },
+  "green_internal/D19_2025-01-10_output_green_internal_Zeek/conn_labeled.csv": {
+   "crc32": "bd50e1c1",
+   "uncompressed": 140351752,
+   "sha256_deflate": "82bec258cbf361d2936c5a16727ba04bd8ad8f005a0a40a0fae755aac022bda5"
+  },
+  "green_internal/D19_2025-01-10_output_green_internal_Zeek/dhcp.log": {
+   "crc32": "c59ac9a1",
+   "uncompressed": 110531,
+   "sha256_deflate": "387c239c5c13c759678d07a28870629409e131052fb9ddaca9ac9363d40cc728"
+  },
+  "green_internal/D20_2025-01-11_output_green_internal_Zeek/conn_labeled.csv": {
+   "crc32": "a2250ff0",
+   "uncompressed": 3651199,
+   "sha256_deflate": "428c8f363dae4d48546ffebdcb542ae23dd0ea2b4cfe6eae2753d15699482754"
+  },
+  "green_internal/D20_2025-01-11_output_green_internal_Zeek/dhcp.log": {
+   "crc32": "968ea3cf",
+   "uncompressed": 3928,
+   "sha256_deflate": "c407ea77aae493f519d342bdf85e84bd6a1ef33beca031a546bb4495c37e92e5"
+  },
+  "green_internal/D21_2025-01-12_output_green_internal_Zeek/conn_labeled.csv": {
+   "crc32": "7c6d236a",
+   "uncompressed": 3820542,
+   "sha256_deflate": "54dcbb6a4184a0a2f3b7abbbe1efa54921d3e81734d08620abfae28d1fdc7e38"
+  },
+  "green_internal/D21_2025-01-12_output_green_internal_Zeek/dhcp.log": {
+   "crc32": "0544534b",
+   "uncompressed": 4125,
+   "sha256_deflate": "24d03c87d84688d00e3a20ef887454cb8bb2446ccb6d6acc2f8f97ab473fb2ab"
+  },
+  "green_internal/D22_2025-01-13_output_green_internal_Zeek/conn_labeled.csv": {
+   "crc32": "0575286e",
+   "uncompressed": 127894739,
+   "sha256_deflate": "2e275ea76861a2efa0590c13bb10f68a45d0bddb3168314390ba0dd7b947928f"
+  },
+  "green_internal/D22_2025-01-13_output_green_internal_Zeek/dhcp.log": {
+   "crc32": "634c5b45",
+   "uncompressed": 110164,
+   "sha256_deflate": "4bd9f38fcbc91c1b4171e08970526d241357af13ac74374afabb81eb34602496"
+  },
+  "green_internal/D23_2025-01-14_output_green_internal_Zeek/conn_labeled.csv": {
+   "crc32": "daffe8c3",
+   "uncompressed": 141756382,
+   "sha256_deflate": "85e88abb66ff4404bd122f1214201aa99c2f925c3a4c30f513b3eb4214f3985d"
+  },
+  "green_internal/D23_2025-01-14_output_green_internal_Zeek/dhcp.log": {
+   "crc32": "517cd8c5",
+   "uncompressed": 108554,
+   "sha256_deflate": "483222205edf93d3b0d9a9d7d0185caf114bcdc4df6842066d946d86b3810b6b"
+  },
+  "green_internal/D24_2025-01-15_output_green_internal_Zeek/conn_labeled.csv": {
+   "crc32": "e8044710",
+   "uncompressed": 142994371,
+   "sha256_deflate": "a81169cf5f891b348bd8ddcd7e2c70de90e9fa6392df53bece562d683f0e75f5"
+  },
+  "green_internal/D24_2025-01-15_output_green_internal_Zeek/dhcp.log": {
+   "crc32": "ef97c2d5",
+   "uncompressed": 108671,
+   "sha256_deflate": "d2c92669039844bd25bdd4051783d8fe3eef46f74397cfb185c0377754327f24"
+  },
+  "green_internal/D25_2025-01-16_output_green_internal_Zeek/conn_labeled.csv": {
+   "crc32": "3b448616",
+   "uncompressed": 150576814,
+   "sha256_deflate": "a8fdcc7966bc785fd4803caf626a883c6a8fad1af249fe49ad16a3693cf709bb"
+  },
+  "green_internal/D25_2025-01-16_output_green_internal_Zeek/dhcp.log": {
+   "crc32": "f290260b",
+   "uncompressed": 109773,
+   "sha256_deflate": "fb27e8f1b946a58c28de3a4253c779f0035580797d240c2dcaa44b82ed5aef57"
+  },
+  "green_internal/D26_2025-01-17_output_green_internal_Zeek/conn_labeled.csv": {
+   "crc32": "97ed50f9",
+   "uncompressed": 136356139,
+   "sha256_deflate": "53b4267055bb1f0992d5f7c8cf3cc8a23101ebbbdbd242e1da028ced5df87d7c"
+  },
+  "green_internal/D26_2025-01-17_output_green_internal_Zeek/dhcp.log": {
+   "crc32": "17637ec7",
+   "uncompressed": 107010,
+   "sha256_deflate": "ee79f929ff777a59c891623bfa0459091a63566352afd4a664d710fd13fb2423"
+  },
+  "green_internal/D27_2025-01-18_output_green_internal_Zeek/conn_labeled.csv": {
+   "crc32": "9dcb367d",
+   "uncompressed": 4417661,
+   "sha256_deflate": "544f8345d59f4960db8f64b01e6cc31daa09b6f43dd4c9bcaca88ec103cdf406"
+  },
+  "green_internal/D27_2025-01-18_output_green_internal_Zeek/dhcp.log": {
+   "crc32": "065eaabc",
+   "uncompressed": 4041,
+   "sha256_deflate": "9c47a3de16a36014e03b9c74197996ff18a847d755b1cb37e8ad722f7cd003d5"
+  },
+  "green_internal/D28_2025-01-19_output_green_internal_Zeek/conn_labeled.csv": {
+   "crc32": "37ccb06d",
+   "uncompressed": 3801437,
+   "sha256_deflate": "c3381311bbd6df0e15ce1f5f5b5e587914aebe583b41e0c4ad0097b9784a302f"
+  },
+  "green_internal/D28_2025-01-19_output_green_internal_Zeek/dhcp.log": {
+   "crc32": "b76d8885",
+   "uncompressed": 4023,
+   "sha256_deflate": "6c3f8cdc8c26f495199ec4be3821173f4304c8a39e58b20031faf31a8f77a92a"
+  }
+ }
+}

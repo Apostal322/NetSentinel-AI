@@ -1,0 +1,189 @@
+{
+ "days": {
+  "15": {
+   "rows": 789091,
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "dropped_ending_before_boundary": 0,
+   "dropped_ending_after_end": 0,
+   "evaluation_flows": 789091,
+   "unparseable_by_label": {},
+   "labels": {
+    "0": 789063,
+    "2": 22,
+    "1": 6
+   }
+  },
+  "16": {
+   "rows": 816098,
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "dropped_ending_before_boundary": 0,
+   "dropped_ending_after_end": 0,
+   "evaluation_flows": 816098,
+   "unparseable_by_label": {},
+   "labels": {
+    "0": 816096,
+    "1": 2
+   }
+  },
+  "17": {
+   "rows": 803164,
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "dropped_ending_before_boundary": 0,
+   "dropped_ending_after_end": 0,
+   "evaluation_flows": 803164,
+   "unparseable_by_label": {},
+   "labels": {
+    "1": 47,
+    "0": 803117
+   }
+  },
+  "18": {
+   "rows": 799497,
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "dropped_ending_before_boundary": 0,
+   "dropped_ending_after_end": 0,
+   "evaluation_flows": 799497,
+   "unparseable_by_label": {},
+   "labels": {
+    "1": 2,
+    "0": 799495
+   }
+  },
+  "19": {
+   "rows": 824032,
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "dropped_ending_before_boundary": 0,
+   "dropped_ending_after_end": 0,
+   "evaluation_flows": 824032,
+   "unparseable_by_label": {},
+   "labels": {
+    "1": 6,
+    "0": 824026
+   }
+  },
+  "20": {
+   "rows": 21483,
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "dropped_ending_before_boundary": 0,
+   "dropped_ending_after_end": 0,
+   "evaluation_flows": 21483,
+   "unparseable_by_label": {},
+   "labels": {
+    "1": 3,
+    "0": 21480
+   }
+  },
+  "21": {
+   "rows": 22496,
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "dropped_ending_before_boundary": 0,
+   "dropped_ending_after_end": 0,
+   "evaluation_flows": 22496,
+   "unparseable_by_label": {},
+   "labels": {
+    "1": 2,
+    "0": 22494
+   }
+  },
+  "22": {
+   "rows": 750265,
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "dropped_ending_before_boundary": 0,
+   "dropped_ending_after_end": 0,
+   "evaluation_flows": 750265,
+   "unparseable_by_label": {},
+   "labels": {
+    "0": 750262,
+    "1": 3
+   }
+  },
+  "23": {
+   "rows": 831994,
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "dropped_ending_before_boundary": 0,
+   "dropped_ending_after_end": 0,
+   "evaluation_flows": 831994,
+   "unparseable_by_label": {},
+   "labels": {
+    "0": 831994
+   }
+  },
+  "24": {
+   "rows": 839509,
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "dropped_ending_before_boundary": 0,
+   "dropped_ending_after_end": 0,
+   "evaluation_flows": 839509,
+   "unparseable_by_label": {},
+   "labels": {
+    "0": 839509
+   }
+  },
+  "25": {
+   "rows": 883802,
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "dropped_ending_before_boundary": 0,
+   "dropped_ending_after_end": 0,
+   "evaluation_flows": 883802,
+   "unparseable_by_label": {},
+   "labels": {
+    "0": 883802
+   }
+  },
+  "26": {
+   "rows": 800657,
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "dropped_ending_before_boundary": 0,
+   "dropped_ending_after_end": 0,
+   "evaluation_flows": 800657,
+   "unparseable_by_label": {},
+   "labels": {
+    "0": 800657
+   }
+  },
+  "27": {
+   "rows": 26013,
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "dropped_ending_before_boundary": 0,
+   "dropped_ending_after_end": 0,
+   "evaluation_flows": 26013,
+   "unparseable_by_label": {},
+   "labels": {
+    "0": 26013
+   }
+  },
+  "28": {
+   "rows": 22444,
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "dropped_ending_before_boundary": 0,
+   "dropped_ending_after_end": 0,
+   "evaluation_flows": 22444,
+   "unparseable_by_label": {},
+   "labels": {
+    "0": 22444
+   }
+  }
+ },
+ "label_addresses_outside_script": [],
+ "eval_windows": 321277,
+ "truth_windows": 54,
+ "label1_windows": 43,
+ "leases": 12495,
+ "calibration_windows_reproduced": true,
+ "peak_rss_mb": 1253.04296875,
+ "seconds": 119.3
+}
