@@ -1,2 +1,4 @@
 {"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8k/dev_experiments.py"], "exit": 0, "limit_mib": 3481.6, "peak_mib": 574.390625, "seconds": 523.2}
 {"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8k/confirm_analysis.py", "--stand-in", "--scores", "data/derived/phase8j/dev"], "exit": 0, "limit_mib": 3481.6, "peak_mib": 1142.7421875, "seconds": 91.7}
+{"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8k/confirm_analysis.py", "--stand-in", "--scores", "data/derived/phase8j/dev"], "exit": 0, "limit_mib": 3481.6, "peak_mib": 2877.47265625, "seconds": 198.8}
+{"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8k/confirm_analysis.py", "--stand-in", "--scores", "data/derived/phase8j/dev"], "exit": 0, "limit_mib": 3481.6, "peak_mib": 861.02734375, "seconds": 142.2}

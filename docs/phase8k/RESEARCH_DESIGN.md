@@ -33,7 +33,7 @@ asks the question again with a protocol that scores the decision and the detecti
 | id | Phase 8k method | decision-time information | threshold | origin |
 |---|---|---|---|---|
 | M0 | existing detector, no rejection | none | T0 (split-conformal on the P1x hold-out) | Phase 8i A1 / 8j M0 |
-| M1 | fixed eligibility checks 1–3 | session effective n ≥ 199; effective hosts ≥ 10 and top host ≤ 25%; host-grouped exceedance ≤ 2α | T0 | Phase 8i audit section 10.4 (= 8j M1) |
+| M1 | fixed eligibility checks 1–3 | session effective n ≥ 199; effective hosts ≥ 10 and top host ≤ 25%; host-grouped exceedance ≤ 2α | T0 | Phase 8i audit section 10.4: checks 1–3. 8j M1 also had check 4 (block recency), which Phase 8k reports separately as K4 |
 | M2 | dependence-aware calibration | ≥ 10 hosts and a PAC rank at the dependence-adjusted effective n | max(T0, PAC) | 8j M3 |
 | M3 | simple interpretable score | M2 and temporal self-consistency: T0 fitted on the first 70% of calibration, exceedance of the last 30% ≤ 2α | max(T0, PAC) | new |
 | M4 | source-diversity-aware | M2's decision | max(host-balanced threshold, PAC) | new |

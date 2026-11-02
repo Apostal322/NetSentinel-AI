@@ -43,7 +43,7 @@ learned network-level reliability classifier is not supportable: 4 units, 2 inst
 | licence | CC BY 4.0 (record page) | CC BY 4.0 per the portal statement; no licence file in the dataset folder |
 | files and sizes (verified on the listing pages) | 8 zips: 20.8 (russellmitchell), 25.7, 25.9, 31.2, 34.6, 37.8, 41.2, 56.4 MB = 273.7 MB | 7 weekly snappy parquet files: 3.7 (2024-03-03), 7.8, 12.3, 18.8, 27.8, 33.2, 36.6 MB = 140.2 MB; also a `csv/` copy |
 | telemetry | Tstat flows from server-side and attacker captures (README) | Zeek `conn` |
-| labels | per-flow labels from the attack logs; `label_info.txt`: 13 benign TCP, 39 malicious TCP, 1 malicious UDP category | flow-level label columns inside the parquet (expected; not yet seen). **No separate mission or attack logs are published** at the dataset root (`csv/`, `parquet/` only) |
+| labels | per-flow labels from the attack logs; `label_info.txt` (a 1 kB text file read online in Phase 8j, not a dataset file): 13 benign TCP, 39 malicious TCP, 1 malicious UDP category | flow-level label columns inside the parquet (expected; not yet seen). **No separate mission or attack logs are published** at the dataset root (`csv/`, `parquet/` only) |
 | environment | 8 separately generated emulated small enterprises; simulated users | VMware cyber range; VM background traffic; earlier reports suggest 50/50 benign sampling (unverified) |
 | decision units | 7 networks (russellmitchell is the probe) | 6 weeks (2024-03-03 is the probe); one environment |
 | independence | 1 family: its networks share a generator | 1 family: its weeks share hosts and range |
@@ -61,7 +61,7 @@ learned network-level reliability classifier is not supportable: 4 units, 2 inst
 | step | size / time | memory | approval |
 |---|---|---|---|
 | development experiments (done) | 523 s, re-thresholding only | 574 MiB | ran under the Phase 8k task |
-| confirmatory analysis, development dry run (done) | ~1 min | 1,143 MiB | – |
+| confirmatory analysis, development dry run (done) | 142 s (final version) | 861 MiB | – |
 | probes A1 + A2 | 20.8 + 3.7 MB | < 1 GiB | **required** |
 | Tstat / Zeek mapping on the probes, and probe feasibility checks | minutes | < 1 GiB | with A1/A2 |
 | source models for confirmation (4 NF-v3 networks × 3 seeds) | ~4–5 min | ~1.6 GiB | **required** (> 2 min) |

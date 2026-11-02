@@ -69,7 +69,7 @@ verified-benign FPR at the rule's own threshold ≤ 2%.
 | M4 PAC + host-balanced threshold | 1.0 | 0.0 | **1.0** | 0.0 | 3 / 0 |
 
 - **M1 separates all 4 networks, but this is circular:** its checks were proposed after looking
-  at these networks. It catches NF-ToN-IoT through the host-grouped exceedance (0.030 > 2α).
+  at these networks. It catches NF-ToN-IoT through the host-grouped exceedance (0.028 as a 3-seed mean, 0.030 at seed 0; > 2α).
 - **M2–M4 falsely accept NF-ToN-IoT.**
 - **The temporal self-consistency check (M3) does not see the turnover:** the internal
   exceedance is 0.1%. The change happens between calibration and evaluation, not within

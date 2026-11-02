@@ -124,6 +124,16 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 | Can an abstaining method keep the budget with ≥ 50% coverage on ≥ 2 of 4 development units? | 4 development units, 3 seeds | No-go: best method (M1) qualifies on NF-CIC only; the learned model (M2) is degenerate; Phase 8j stops before fresh data | E |
 | Are the proposed eligibility checks statistically safe? | simulation | Not individually; together very conservative; a PAC rank at a dependence-adjusted effective n is the registered alternative (simulation-only support) | E |
 
+## Phase 8k (calibration reliability and selective detection; preparation only)
+
+- Documents: [`docs/phase8k/`](phase8k/README.md). Recommendation: NOT EVALUABLE with current data; no fresh data opened.
+
+| Question | Data | Result | Role |
+|---|---|---|---|
+| Does host-balanced calibration help? | 4 development networks, 3 seeds | No: FPR rises on NF-CIC and NF-ToN-IoT; only NF-UNSW improves, with a recall loss | E |
+| Why do calibrations fail? | same | small calibration (NF-UNSW), population turnover (NF-ToN-IoT), dominant-host change (N4); only the first is visible at decision time | E |
+| Do calibration-only rules separate adequate from unsafe networks? | same | Fixed checks: 4/4 (circular); PAC rules: falsely accept NF-ToN-IoT; all reject ~94% of adequate small calibrations in stress tests | E |
+
 ## Telemetry
 
 | Check | Result | Source |

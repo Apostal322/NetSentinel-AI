@@ -52,19 +52,26 @@ def test_hypergeometric_control_and_exact_interval():
     assert CA.clopper(0, 0) is None
 
 
+def _fam(unsafe, fa, fpr):
+    return {"unsafe": unsafe, "false_accept": fa, "fpr_accepted_pooled": fpr}
+
+
 def _report(**kw):
-    base = {"far": 0.0, "frr": 0.0, "accepted_units": ["u1", "u2"], "fpr_accepted_pooled": 0.01,
+    base = {"far": 0.0, "frr": 0.0, "accepted_determinable": 2, "fpr_accepted_pooled": 0.01,
             "fpr_accepted_ucb95": 0.02, "random_selection_p": 0.01, "entity_recall_accepted": 0.8,
-            "coverage_attack_entities_on_adequate": 0.9}  # fmt: skip
+            "coverage_attack_entities_on_adequate": 0.9,
+            "per_family": {"F1": _fam(2, 0, 0.01)}}  # fmt: skip
     return {**base, **kw}
 
 
 def test_verdict_needs_every_criterion():
     assert CA.verdict(_report())["verdict"] == "success"
-    for bad in ({"far": 0.34}, {"frr": 0.6}, {"accepted_units": ["u1"]},
+    for bad in ({"far": 0.34}, {"frr": 0.6}, {"accepted_determinable": 1},
                 {"fpr_accepted_ucb95": 0.031}, {"random_selection_p": 0.06},
                 {"entity_recall_accepted": 0.49}, {"coverage_attack_entities_on_adequate": 0.4},
-                {"frr": None}):  # fmt: skip
+                {"frr": None},
+                {"per_family": {"F2": _fam(2, 1, 0.01)}},
+                {"per_family": {"F2": _fam(0, 0, 0.03)}}):  # fmt: skip
         assert CA.verdict(_report(**bad))["verdict"] == "failure", bad
 
 
@@ -82,3 +89,17 @@ def test_two_level_bound_covers_a_homogeneous_rate():
     ]
     fam = {f"u{i}": "F1" for i in range(4)}
     assert np.isclose(CA.two_level_ucb(units, fam, rng), 0.01)
+
+
+def test_e3_gate_is_the_best_possible_random_selection_p():
+    assert np.isclose(CA.best_possible_p(4, 2), 1 / 6)  # a perfect rule cannot reach 0.05
+    assert np.isclose(CA.best_possible_p(6, 3), 1 / 20)
+    assert CA.best_possible_p(5, 0) == 1.0
+
+
+def test_bootstrap_ignores_units_without_verified_benign_windows():
+    rng = np.random.default_rng(1)
+    units = [{"unit": "a", "host_fp": np.full(20, 1.0), "host_n": np.full(20, 100.0)},
+             {"unit": "b", "host_fp": np.zeros(0), "host_n": np.zeros(0)}]  # fmt: skip
+    assert np.isclose(CA.two_level_ucb(units, {"a": "F1", "b": "F1"}, rng), 0.01)
+    assert CA.two_level_ucb(units[1:], {"b": "F1"}, rng) is None
