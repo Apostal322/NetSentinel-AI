@@ -290,3 +290,22 @@ All at T0, seed-mean.
      - labels 1 and 2 both count as attack in the builder's calibration exclusion.
    - **Clients 3–4 identification rule:** a DHCP host name ending in "client" plus its number.
      It was written before the names were read.
+3. **Analysis details fixed in code before any scoring** (`dedale_analysis.py`,
+   `dedale_eval_build.py`, 2026-11-02).
+   - **N8:** the smallest of the three per-seed `neff_m3` values of the eligible hold-out scores
+     must be ≥ 590. All seeds must pass.
+   - **Design effect for the daily overrun tests:** the mean over seeds of hold-out n ÷
+     `neff_m3`.
+   - **Compromise times:** the first labelled event of each client in the official script.
+     Client 2 (`172.16.1.3`) at 2025-01-06 10:00:13 UTC; client 1 (`172.16.1.2`) at
+     2025-01-08 15:10:02 UTC.
+   - **Entity detection:** per seed (k of 2 per seed), with delays per seed.
+   - **Host-hours:** distinct (host, UTC hour) pairs of verified-benign evaluation windows.
+   - **Active calibration hours:** UTC hours with at least one window of an eligible host; the
+     sensitivity hold-out is the last ⌊0.3 × count⌋ of them.
+   - **Stage B parsing:** unparseable evaluation rows are dropped and counted, with no gate. The
+     evaluation windows come from one P1x run over calibration + evaluation flows. That run's
+     calibration windows must equal Stage A's exactly, or the analysis stops.
+   - **Host attribution:** each window goes to the MAC of its address's latest DHCP lease at or
+     before the window end (else the first later lease). Excluded hosts are every host that held
+     an excluded address on any of the 28 days.
