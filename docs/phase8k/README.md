@@ -1,5 +1,12 @@
 # Phase 8k: calibration reliability and selective detection
 
+> **Closed 2026-11-02: NOT EVALUABLE** (user decision after the feasibility gate).
+> - F2 (UWF-ZeekData24) failed F0 and is dropped.
+> - F1's 7 confirmation networks (AIT Netflow v2) were **not downloaded** and remain untouched,
+>   available for a future, separately registered study.
+> - `FREEZE.md` was never written, so the confirmatory analysis stays locked.
+> - The two probe units are spent.
+
 **Status (2026-11-02):** design, development experiments and a frozen-candidate confirmatory
 protocol are complete. The protocol was independently audited, and every finding was fixed before
 the freeze. **No fresh data has been downloaded or opened. Phase 8j's registered

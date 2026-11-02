@@ -86,7 +86,18 @@ Both are stored in `data/raw/phase8k_probes/` (git-ignored). The AIT zip holds `
    consistent with the registered definition ("a window holding a malicious flow"), but it
    inflates the attack-entity count with infrastructure.
 
-## 5. What the gate implies
+## 5. Decision (2026-11-02)
+
+The user chose to **stop**. Phase 8k is recorded as NOT EVALUABLE:
+- F1's 7 confirmation networks are not downloaded, and remain untouched;
+- no source models were trained for confirmation;
+- `FREEZE.md` was not written;
+- no amendment was made.
+
+The open F1 questions in section 4 stay open for any future registration: the gate wording,
+and role-based attacker exclusion.
+
+## 6. What the gate implies
 
 - **With F2 gone, at most one environment family is left.** Any K1 verdict would carry the
   "single environment family" label.

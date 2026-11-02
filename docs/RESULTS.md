@@ -126,7 +126,7 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 
 ## Phase 8k (calibration reliability and selective detection; preparation only)
 
-- Documents: [`docs/phase8k/`](phase8k/README.md). Recommendation: NOT EVALUABLE with current data; no fresh data opened.
+- Documents: [`docs/phase8k/`](phase8k/README.md). Closed NOT EVALUABLE: the feasibility probes dropped F2 (no benign calibration traffic), and F1's confirmation networks were left untouched.
 
 | Question | Data | Result | Role |
 |---|---|---|---|
