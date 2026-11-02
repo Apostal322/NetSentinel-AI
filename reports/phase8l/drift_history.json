@@ -1,0 +1,83 @@
+{
+ "nfbot__all": {
+  "hist_turnover": 0.012804097311139564,
+  "eval_turnover": 0.008064516129032258,
+  "hist_p95_shift_seen": -0.011781955764000271,
+  "eval_p95_shift_seen": 0.06796824456829635,
+  "hist_top_share": 0.6440460947503202,
+  "eval_top_share": 0.5241935483870968,
+  "fpr_t0": 0.11881720430107527
+ },
+ "nfcic__2018-02-14": {
+  "hist_turnover": 0.16779762073762808,
+  "eval_turnover": 0.20107666879045585,
+  "hist_p95_shift_seen": -0.0025364870088352893,
+  "eval_p95_shift_seen": 0.0,
+  "hist_top_share": 0.004826665909542603,
+  "eval_top_share": 0.004820078118507438,
+  "fpr_t0": 0.013339858598730036
+ },
+ "nfcic__2018-02-16": {
+  "hist_turnover": 0.17627994907210928,
+  "eval_turnover": 0.1839249563041483,
+  "hist_p95_shift_seen": -0.003112887732347166,
+  "eval_p95_shift_seen": 0.0,
+  "hist_top_share": 0.005131370809058991,
+  "eval_top_share": 0.005570435198108819,
+  "fpr_t0": 0.012306093108839346
+ },
+ "nfcic__2018-02-20": {
+  "hist_turnover": 0.18660948159235483,
+  "eval_turnover": 0.19351070277297122,
+  "hist_p95_shift_seen": -0.0008398695120146894,
+  "eval_p95_shift_seen": 0.0,
+  "hist_top_share": 0.004720647074062347,
+  "eval_top_share": 0.0047694753577106515,
+  "fpr_t0": 0.012967468606077642
+ },
+ "nfcic__2018-02-21": {
+  "hist_turnover": 0.16503430721558213,
+  "eval_turnover": 0.20675629093416062,
+  "hist_p95_shift_seen": -0.0058463118238819695,
+  "eval_p95_shift_seen": 0.0006364658531338628,
+  "hist_top_share": 0.0047310756972111555,
+  "eval_top_share": 0.004584625991037573,
+  "fpr_t0": 0.01572733540158566
+ },
+ "nfcic__2018-02-22": {
+  "hist_turnover": 0.14998760433022065,
+  "eval_turnover": 0.17013740084137244,
+  "hist_p95_shift_seen": -0.002964934995802503,
+  "eval_p95_shift_seen": 0.0,
+  "hist_top_share": 0.004407349254882517,
+  "eval_top_share": 0.004635419855339916,
+  "fpr_t0": 0.013113282081332668
+ },
+ "nfcic__2018-03-02": {
+  "hist_turnover": 0.16964745460162714,
+  "eval_turnover": 0.1673138630554196,
+  "hist_p95_shift_seen": -0.0021686894445301663,
+  "eval_p95_shift_seen": 0.0,
+  "hist_top_share": 0.0035700799835227076,
+  "eval_top_share": 0.0037417740795126996,
+  "fpr_t0": 0.009891046210184731
+ },
+ "nfton__all": {
+  "hist_turnover": 0.7869641294838146,
+  "eval_turnover": 0.3036121928293272,
+  "hist_p95_shift_seen": -0.0032540777260971795,
+  "eval_p95_shift_seen": 0.0003593585316522081,
+  "hist_top_share": 0.09251968503937008,
+  "eval_top_share": 0.4252719215791594,
+  "fpr_t0": 0.14842665950494607
+ },
+ "nfunsw__all": {
+  "hist_turnover": 0.045146726862302484,
+  "eval_turnover": 0.0,
+  "hist_p95_shift_seen": -0.04429876482076117,
+  "eval_p95_shift_seen": -0.006174583526165453,
+  "hist_top_share": 0.08803611738148982,
+  "eval_top_share": 0.08796179944709726,
+  "fpr_t0": 0.036636787579235434
+ }
+}

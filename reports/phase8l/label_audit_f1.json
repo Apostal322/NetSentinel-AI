@@ -1,0 +1,214 @@
+{
+ "flows": 377704,
+ "span_hours": 95.99864313700358,
+ "roles_cli": {
+  "attacker_0": 1,
+  "cloud_share": 1,
+  "davey_mail": 1,
+  "ext_user_0": 1,
+  "ext_user_1": 1,
+  "ext_user_2": 1,
+  "external": 17,
+  "inet-dns": 1,
+  "inet-firewall": 2,
+  "internal_employee_0": 1,
+  "internal_employee_1": 1,
+  "internal_employee_2": 1,
+  "internal_employee_3": 1,
+  "internal_share": 1,
+  "intranet_server": 1,
+  "mail": 1,
+  "monitoring": 1,
+  "morris_mail": 1,
+  "remote_employee_0": 1,
+  "remote_employee_1": 1,
+  "remote_employee_2": 1,
+  "vpn": 1,
+  "webserver": 1
+ },
+ "attacker_hosts": [
+  "192.168.230.122"
+ ],
+ "attacker_as_client_labels": {
+  "service_scan": 8958,
+  "NTP": 143,
+  "benign DNS - attacker requesting updates": 44,
+  "browsing/update": 14,
+  "broken flow - benign": 9,
+  "bootp": 6,
+  "OpenVPN": 2
+ },
+ "attacker_as_server_labels": {
+  "data exfiltration": 15778,
+  "broken flow - benign": 4,
+  "online_cracking": 3,
+  "update/command on unassigned port": 2,
+  "bootp": 1
+ },
+ "step_labelled_flows": 155250,
+ "step_labelled_flows_from_non_attacker_roles": 146292,
+ "non_attacker_hosts_with_step_labels": 3,
+ "non_attacker_roles_with_step_labels": {
+  "vpn": 146289,
+  "inet-firewall": 2,
+  "intranet_server": 1
+ },
+ "malicious_source_hosts": 5,
+ "malicious_flows_before_midpoint": 9909,
+ "malicious_flows_after_midpoint": 161119,
+ "step_flows_before_midpoint": 0,
+ "attack_step_first_last_hours": {
+  "dns_brute_force_start": [
+   75.02,
+   75.02
+  ],
+  "host_discover_dmz": [
+   75.02,
+   75.03
+  ],
+  "host_discover_local": [
+   75.61,
+   75.94
+  ],
+  "service_scan": [
+   75.95,
+   75.95
+  ],
+  "dirb_scan": [
+   75.96,
+   75.96
+  ],
+  "wpscan": [
+   75.96,
+   75.97
+  ],
+  "upload_rce_shell": [
+   75.97,
+   75.97
+  ],
+  "check_whoami": [
+   75.97,
+   75.97
+  ],
+  "check_uname_r": [
+   75.97,
+   75.97
+  ],
+  "read_profile": [
+   75.97,
+   75.97
+  ],
+  "check_who": [
+   75.97,
+   75.97
+  ],
+  "check_meminfo": [
+   75.97,
+   75.97
+  ],
+  "check_uname_a": [
+   75.98,
+   75.98
+  ],
+  "check_user_id": [
+   75.98,
+   75.98
+  ],
+  "check_df": [
+   75.98,
+   75.98
+  ],
+  "check_netstat_nat": [
+   75.98,
+   75.98
+  ],
+  "check_id": [
+   75.98,
+   75.98
+  ],
+  "read_resolv": [
+   75.98,
+   75.98
+  ],
+  "check_netstat_t": [
+   75.98,
+   75.98
+  ],
+  "list_home": [
+   75.98,
+   75.98
+  ],
+  "check_last": [
+   75.98,
+   75.98
+  ],
+  "list_web_dir": [
+   75.98,
+   75.98
+  ],
+  "check_date": [
+   75.98,
+   75.98
+  ],
+  "list_www": [
+   75.98,
+   75.98
+  ],
+  "check_netstat_l": [
+   75.98,
+   75.98
+  ],
+  "clear": [
+   75.98,
+   75.98
+  ],
+  "check_wp_config": [
+   75.98,
+   75.98
+  ],
+  "check_ps_a": [
+   75.98,
+   75.98
+  ],
+  "read_passwd": [
+   75.98,
+   75.98
+  ],
+  "check_release": [
+   75.99,
+   75.99
+  ],
+  "check_cpuinfo": [
+   75.99,
+   75.99
+  ],
+  "dump_wp_users": [
+   75.99,
+   75.99
+  ],
+  "read_group": [
+   75.99,
+   75.99
+  ],
+  "check_uptime": [
+   75.99,
+   75.99
+  ],
+  "check_network_config": [
+   75.99,
+   75.99
+  ],
+  "online_cracking": [
+   75.99,
+   76.0
+  ]
+ },
+ "hourly_flows_min_median_max": [
+  417,
+  2282.0,
+  156919
+ ],
+ "never_malicious_sources": 35,
+ "never_malicious_effective_sources_by_flows": 3.564158114371278,
+ "never_malicious_top5_flow_share": 0.8948194363866353
+}

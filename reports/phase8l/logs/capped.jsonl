@@ -1,0 +1,3 @@
+{"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "-I", "C:/Users/marke/projects/netsentinel-ai/scripts/phase8l/label_audit_f1.py"], "exit": 1, "limit_mib": 3481.6, "peak_mib": 435.546875, "seconds": 11.3}
+{"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "-I", "C:/Users/marke/projects/netsentinel-ai/scripts/phase8l/label_audit_f1.py"], "exit": 0, "limit_mib": 3481.6, "peak_mib": 442.3125, "seconds": 1.7}
+{"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8l/drift_history.py"], "exit": 0, "limit_mib": 3481.6, "peak_mib": 167.75390625, "seconds": 452.4}
