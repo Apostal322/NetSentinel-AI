@@ -28,12 +28,15 @@ It fits nothing; values are 3-seed means.
 | **NF-ToN-IoT** | **0.787** | 0.304 | −0.003 | 0.000 | 9.3% | **42.5%** | **14.8%** |
 | **N4** | 0.013 | 0.008 | −0.012 | **+0.068** | **64.4%** | 52.4% | **11.9%** |
 
-- **Turnover is foreshadowed.** On NF-ToN-IoT, 79% of hold-out windows come from hosts absent
-  earlier in the calibration period, against 15–19% on NF-CIC. That historical signal is
-  available at decision time, and it would have flagged the network whose failure came from new
-  hosts.
-  - Its evaluation-period counterpart is less extreme (30%). The point is that the population
-    was already unstable.
+- **Turnover was visible in history on NF-ToN-IoT (n = 1).** 79% of its hold-out windows come
+  from hosts absent earlier in the calibration period, against 15–19% on NF-CIC. That signal is
+  available at decision time. Hedges:
+  - only 1 of 3 unsafe networks is flagged;
+  - its evaluation-period turnover (0.30) is close to NF-CIC's (0.17–0.21);
+  - NF-ToN-IoT's evaluation is dominated by a new top host (42.5% vs 9.3%), so the failure is
+    a dominance shift as much as turnover;
+  - the historical and evaluation turnover use different reference sets (the first 70% of
+    calibration vs the whole calibration), so they are not directly comparable.
 - **Dominant-host behavioural change is not foreshadowed.** N4's dominant host was stable inside
   calibration (−0.012) and drifted only afterwards (+0.068). What history *does* show is the
   dominance itself (64% of the hold-out), which task A already catches through effective hosts.

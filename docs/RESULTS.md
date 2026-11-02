@@ -134,6 +134,16 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 | Why do calibrations fail? | same | small calibration (NF-UNSW), population turnover (NF-ToN-IoT), dominant-host change (N4); only the first is visible at decision time | E |
 | Do calibration-only rules separate adequate from unsafe networks? | same | Fixed checks: 4/4 (circular); PAC rules: falsely accept NF-ToN-IoT; all reject ~94% of adequate small calibrations in stress tests | E |
 
+## Phase 8l (data eligibility and statistical power; design only)
+
+- Documents: [`docs/phase8l/`](phase8l/README.md). Decision: NO-GO for network-level accept/reject confirmation; no protected data opened.
+
+| Question | Data | Result | Role |
+|---|---|---|---|
+| How many independent networks would a powered confirmation need? | simulation | at least about 15–30, each with ≥ 1,000 effective benign windows, for a good rule (a lower bound) | design |
+| How many eligible independent networks does public data offer? | 15+ candidates surveyed | 0–1 confirmation-grade (DEDALE, pending verification), 3–6 development-grade | design |
+| Are AIT / UWF labels fit for confirmation? | spent probe networks | AIT: flow-level labels, attack entities ambiguous, attacker benign-labelled in calibration; UWF: benign pooled and heavily reduced | E |
+
 ## Telemetry
 
 | Check | Result | Source |

@@ -27,6 +27,7 @@ hosts, tap points or networks produced by one generator are not independent unit
 | dataset | environment | E1 | E2 | E3 | E4 | E5 | E6 | E7 | independent units | role |
 |---|---|---|---|---|---|---|---|---|---|---|
 | NF-CIC, NF-UNSW, NF-ToN, NF-BoT (v3) | testbeds (UNB; UNSW ×3) | ✔ | CIC only | ✔ | ✔ | ✔ | ✔ | – | 4 (2 institutions) | **development (all inspected or consumed)** |
+| CTU-13, IoT-23, CTU-Normal (Stratosphere, CTU Prague) | university network captures | Zeek | few hosts per capture | ✔ | – | ✔ | ✔ | – | – | consumed or inspected in Phases 5–8g (E7 for everything else) |
 | **AIT Netflow v2** (8 networks) | emulated small enterprises | ✔ Tstat | ✘ 3.6–7 effective hosts | ~ attacker role and step times documented; flow labels by time window | ✔ | ✔ | ✔ CC BY | ✔ | **1–2** (one generator) | development / demonstration only |
 | **UWF-ZeekData24** | cyber range | ✔ Zeek | ✘ benign pooled and reduced | flow labels | ✘ | ✘ | ✔ | ✔ | 0 | not eligible |
 | **DEDALE** (Inria/DGA, 2025; DOI 10.57745/Y5JLDG) | emulated enterprise (RESCOUSSE) | ✔ Zeek + PCAP | ~30 emulated clients (secondary source; unverified) | ✔ one documented APT campaign | ✔ weeks 1–2 benign only (verified) | ✔ | Zeek 0.4–4.4 GB zipped per tap (verified); licence CC BY 4.0 per the agent (unverified) | ✔ | **1** | the only clean confirmation-grade unit |
@@ -40,8 +41,13 @@ hosts, tap points or networks produced by one generator are not independent unit
 
 ## 3. How many independent units exist
 
-- **Confirmation-grade** (E1–E7 met strictly): **1** (DEDALE). It would be **2** if corrected
-  OpTC's ~940 GB host logs, or the original OpTC Zeek logs, were workable.
+- **Confirmation-grade: 0–1, pending verification** (DEDALE).
+  - Its E2 rests on a second-hand "~30 emulated clients" and its licence is unverified: the
+    project repository blocked automated access.
+  - Emulated clients collapsed to 3.6–7 effective hosts on AIT.
+  - Its single APT campaign gives the same 0/1-like entity recall.
+  - Corrected OpTC would add 1 if its ~940 GB host logs, or the original Zeek logs, were
+    workable.
 - **Development-grade** (relaxed E2/E3: unverified real background, unidirectional flows, or
   < 30 hosts):
   - 3–6: LITNET, UGR'16, SIMARGL, CIDDS, AIT (1–2), 5G-NIDD;

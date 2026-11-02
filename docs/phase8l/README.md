@@ -24,33 +24,41 @@ calibration reliability and useful attack detection across previously unseen net
 
 ## Findings
 
-1. **F1 (AIT) labels are not host-level ground truth.**
-   - Attack steps are labelled by time window, whatever host sent the flow: 94% of attack-step
-     labels sit on the VPN server.
-   - Defaults and catch-alls fill the rest.
-   - The attacker machine emits 218 benign-labelled flows.
-   - Benign senders amount to 3.6–7 effective hosts per network.
+1. **F1 (AIT) labels are flow-level, and attack-entity attribution is ambiguous.**
+   - The attack enters through the VPN, so 94% of attack-step flows come from the VPN server's
+     address. That is plausibly correct per flow, but it makes a relay the main "attacker".
+   - Time-window spill-over onto other hosts is small: 3 flows.
+   - In the calibration period the attacker machine sends only benign-labelled flows.
+   - The probe network has 3.6 effective benign senders by flows, and 7.0 effective hosts by
+     hold-out windows.
    - F1 is development or demonstration material, not confirmation evidence.
-2. **F2 (UWF) has no usable benign calibration.** The parquet release is attack traffic only;
-   benign traffic is a single 10 MB file pooled over 7 weeks. Rebuilding a mixture would mean
-   opening protected evaluation-period traffic, which is rejected.
-3. **Public data offers about 1 confirmation-grade independent network** (DEDALE, Inria/DGA
-   2025), possibly 2 (OpTC at ~940 GB), plus 3–6 development-grade ones.
-4. **A powered confirmation needs about 20–30 independent networks**, each with ≥ 1,000
-   effective verified-benign windows, and only for a good rule.
-   - A moderate rule needs 60–100.
-   - The Phase 8k design had 2–21% power.
-   - Three-state adequacy labels are required.
-5. **History foreshadows population turnover, not behavioural change.**
-   - Within-calibration turnover was 0.79 on NF-ToN-IoT vs 0.15–0.19 on NF-CIC. This is a
-     candidate decision-time feature, post-hoc on 4 networks.
+2. **F2 (UWF) has no usable benign calibration.**
+   - The probe week is attack-only. The other weeks are unverified.
+   - The benign partition is a single 10 MB file pooled over 7 weeks: heavily reduced, so no
+     realistic benign mixture exists.
+3. **Public data offers 0–1 confirmation-grade independent networks, pending verification**
+   (DEDALE, Inria/DGA 2025: emulated clients, one APT campaign). OpTC would add 1 at ~940 GB.
+   There are 3–6 development-grade networks besides.
+4. **A powered confirmation needs at least about 15–30 independent networks**, each with
+   ≥ 1,000 effective verified-benign windows, and only for a good rule.
+   - It is a lower bound: the simulation models only the discrimination criteria.
+   - A moderate rule needs far more, largely because its false acceptance (0.20) sits next to
+     the 0.25 criterion.
+   - The Phase 8k design had 3–26% power for any rule (an upper bound).
+   - Three-state labels are recommended for validity, not power.
+5. **History showed turnover on one network, and no behavioural change.**
+   - Within-calibration turnover was 0.79 on NF-ToN-IoT vs 0.15–0.19 on NF-CIC (n = 1, post-hoc).
    - N4's dominant host drifted only after calibration, so that failure needs online
      monitoring.
 
-## Decision: **NO-GO**
+## Decision: **NO-GO for network-level accept/reject confirmation**
 
-**An adequately powered independent confirmatory experiment cannot be built from the public
-data available today:** about 1–2 eligible networks against the 20–30 needed. Running one
+**An adequately powered independent test of calibration-reliability *decisions* across
+networks cannot be built from the public data available today:** 0–2 eligible networks
+against the ≥ 15–30 needed.
+
+This is a NO-GO and not NOT EVALUABLE: no test was run. It is a design-stage finding that the
+test cannot be powered. Running one
 anyway would repeat Phase 8k: an unpowered test whose likely outcomes are "not evaluable" or a
 failure that says nothing about the method.
 
@@ -60,8 +68,18 @@ was made, and the AIT and DEDALE confirmation data remain untouched.
 **What would change the decision:** a source of ≥ 20 independent monitored networks with
 documented attacks and verifiable benign hosts. For example, a consortium of operators running
 authorised red-team exercises, or a future multi-institution corpus. The revised design
-(PROSPECTIVE_DESIGN.md) is ready for that case.
+(PROSPECTIVE_DESIGN.md) is the starting point for that case. Its power simulation must first be extended to every registered criterion.
 
-**Not recommended:**
-- spending DEDALE, the only clean public confirmation unit, on an unpowered single-network test;
-- further method development on the same 4 development networks.
+**A narrower question is answerable, and is named here rather than dismissed:**
+- *On one unseen environment, does a calibrated threshold hold its false-alert budget over
+  time?* That is a single-network external validation of temporal validity, with window-level
+  and host-cluster intervals.
+- With N = 1 it can be pre-registered and powered at the window level. It says nothing about
+  accept/reject discrimination.
+- DEDALE fits it: two benign weeks for calibration, then an 8-day APT. It would cost about
+  11 GB of Zeek-log downloads (approval needed), and would spend DEDALE.
+- **It is not started.** First DEDALE's host count must be verified from its documentation
+  (the repository blocked automated access), since emulated clients collapsed to 3.6–7
+  effective hosts on AIT. Then it is a decision for the user.
+
+**Not recommended:** further method development on the same 4 development networks.

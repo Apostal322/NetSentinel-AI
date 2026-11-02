@@ -5,14 +5,18 @@ Model of one confirmatory study with N network units:
     (true FPR ~ U(2.5%, 15%), the development range);
   - the rule accepts an adequate unit with probability `sens` and an unsafe one with `far`;
     with family dependence, units come in families of `fam_size` and each family shifts both
-    probabilities on the logit scale by N(0, sigma^2);
+    probabilities on the logit scale by N(0, sigma^2), centred so that the marginal rates stay
+    `sens` and `far` (adequacy itself is not clustered; the exchangeable test (d) is
+    anti-conservative under clustering, so dependent-case power is optimistic);
   - the unit's ADEQUACY LABEL is observed with noise: realised FPR = Binomial(n_eff, true FPR) /
     n_eff over its verified-benign evidence (n_eff effective independent windows), labelled
     adequate if <= 2%. Small networks therefore give noisy labels.
 Registered Phase 8k K1 discrimination criteria are applied to the OBSERVED labels: gates E2
 (>= 2 adequate and >= 2 unsafe) and E3 (1/C(N, K) <= 0.05); (a) FAR <= 0.25; (b) FRR <= 0.5 with
 >= 2 accepted; (d) exact hypergeometric (one-sided Fisher) p <= 0.05.
-Power = P(all hold). Also reported: P(evaluable) and the label-noise rates.
+Power = P(all hold). Criteria (c) pooled accepted FPR, (e) detection and any per-family
+condition are NOT modelled, so every minimum N here is a LOWER bound. Also reported:
+P(evaluable) and the label-noise rates.
 
 Output: reports/phase8l/power_analysis.json
 Usage: uv run python scripts/phase8l/power_analysis.py
@@ -65,7 +69,9 @@ def one_config(n: int, prev: float, sens: float, far: float, n_eff: int, fam_siz
         if sigma
         else 0.0
     )
-    p_acc = np.where(ok_true, expit(logit(sens) + shift), expit(logit(far) + shift))
+    p_acc = np.where(
+        ok_true, expit(centred(sens, sigma) + shift), expit(centred(far, sigma) + shift)
+    )
     acc = rng.random((REPS, n)) < p_acc
     ok, bad = det & ok_obs, det & ~ok_obs
     n_det, k_ok, k_bad = det.sum(1), ok.sum(1), bad.sum(1)
@@ -89,6 +95,23 @@ def one_config(n: int, prev: float, sens: float, far: float, n_eff: int, fam_siz
 
 
 _C: dict = {}
+_OFF: dict = {}
+
+
+def centred(p: float, sigma: float) -> float:
+    """Logit intercept a with E[expit(a + sigma Z)] = p (Gauss-Hermite), so that the family
+    random effect adds dependence without changing the rule's marginal accept rate."""
+    if sigma == 0:
+        return float(logit(p))
+    if (p, sigma) not in _OFF:
+        z, w = np.polynomial.hermite_e.hermegauss(60)
+        w = w / w.sum()
+        lo, hi = -20.0, 20.0
+        for _ in range(80):
+            mid = (lo + hi) / 2
+            lo, hi = (mid, hi) if float(w @ expit(mid + sigma * z)) < p else (lo, mid)
+        _OFF[(p, sigma)] = (lo + hi) / 2
+    return _OFF[(p, sigma)]
 
 
 def _comb(n: int, k: int) -> int:

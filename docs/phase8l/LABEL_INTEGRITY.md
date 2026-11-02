@@ -39,11 +39,16 @@ It ran under the 3.4 GiB cap and peaked at 442 MiB.
   browsing 14, broken flow 9, bootp 6, OpenVPN 2), i.e. 2.4%.
 - As server: 15,778 `data exfiltration`.
 
-**Attack-step labels land mostly on non-attacker hosts:**
-- 146,292 of the 155,250 attack-step labels (94%) sit on flows sent by non-attacker roles: the
-  VPN server (146,289), a firewall address (2) and the intranet server (1).
-- The attack enters through the VPN, so some of this is relayed attack traffic. The labels
-  cannot say which.
+**Attack-step labels, by sending host:**
+- 146,292 of the 155,250 attack-step flows (94%) are sent from the VPN server's address. The
+  attack enters through the VPN, so this is plausibly correct at flow level: it is the
+  attacker's traffic as seen from the VPN.
+- Only **3** step-labelled flows from other non-attacker hosts (a firewall address 2, the
+  intranet server 1) look like time-window spill-over. The time-window rule therefore produced
+  little visible mislabelling on this network.
+- **The real limitation is attribution.** The labels are per flow, so the attack *entity* is
+  ambiguous. Per-source windows would make the VPN server, not the attacker, the main attack
+  entity.
 
 **The attack timeline:**
 - All 36 attack steps happen in **hours 75.0–76.0 of 96**.
@@ -52,28 +57,35 @@ It ran under the 3.4 GiB cap and peaked at 442 MiB.
 - Hourly flow counts range from 417 to **156,919** (the scan hour); the median is 2,282.
 
 **Benign host diversity:**
-- 35 sources never carry a malicious label, but they behave like only **3.6 effective sources**
-  by flow count. The top 5 send 89% of the flows.
-- The P1x hold-out had 7.0 effective hosts (Phase 8k F0).
+Two different metrics from this one network:
+- **By flows, over the whole capture:** 35 sources never carry a malicious label (the 5
+  malicious-labelled sources, including the VPN server and the resolver, are excluded). They
+  amount to **3.6 effective sources**, and the top 5 send 89% of the flows.
+- **By windows, in the P1x calibration hold-out:** 7.0 effective hosts (Phase 8k F0).
 
 **Consequences for any F1 confirmation:**
-1. **"Verified benign" (hosts with no malicious label anywhere) would include the attacker
-   machine.**
-   - Its role, not its labels, identifies it. Using the role column would be a documented
-     host-level ground truth, not a relabelling.
-   - It would have to be registered before any confirmation file is opened.
-2. **Attack entities would be dominated by relays:** the VPN server, the DNS resolver, a
-   firewall address. The attacker is one host.
+1. **In the calibration period, the attacker machine looks benign.**
+   - Before hour 75 it sends only benign-labelled flows, so the P1x calibration (which removes
+     hosts with malicious labels before the calibration end) keeps it.
+   - Over the whole capture it *is* excluded from "verified benign", through its 8,958
+     `service_scan` flows.
+   - Its role, not its calibration-period labels, identifies it. Using the role column would be
+     documented host-level ground truth, not relabelling. It would have to be registered before
+     any confirmation file is opened.
+2. **Attack entities would be dominated by relays** (the VPN server, the DNS resolver); the
+   attacker is one host.
    - Per network there are 1–5 attack entities and one short attack burst. Entity recall per
      network would therefore be 0/1-like.
-3. **Benign evidence per network is small and server-dominated** (3.6–7.0 effective hosts).
-   The unit's adequacy label would be noisy (POWER_ANALYSIS.md section 2).
+3. **Benign evidence on the probe network is small and server-dominated** (3.6 effective
+   sources by flows; 7.0 effective hosts by hold-out windows). The unit's adequacy label would
+   be noisy (POWER_ANALYSIS.md section 2).
 
 **Verdict on F1:**
 - It is usable as a *development or demonstration* source.
 - **It is not eligible as confirmation evidence** for a calibration-reliability claim. It has
   1–2 independent units (8 networks from one generator), too few effective hosts per unit, and
-  time-window labels that do not give host-level ground truth.
+  flow-level labels whose attack-entity attribution is ambiguous (relays) and which mark the
+  attacker benign in the calibration period.
 
 ## 3. F2: why the UWF calibration period contains no benign traffic
 
@@ -84,16 +96,21 @@ It ran under the 3.4 GiB cap and peaked at 442 MiB.
 - `csv/Benign/` is **one 10.2 MB file for all 7 weeks**. For comparison,
   `csv/Reconnaissance/` is 0.6 MB.
 
-**The probe week's whole parquet file** (allowed: the probe is spent):
+**The probe week's whole parquet file** (allowed: the probe is spent; `scripts/phase8l/uwf_probe_audit.py`,
+`reports/phase8l/uwf_probe_audit.json`):
 - 49,436 flows labelled `True` and 1,008 `Duplicate`; **no benign flow**;
 - 15 source addresses, the group attack hosts; 104 destinations;
 - it spans one day (2024-03-03).
 
 **Conclusion:**
-- The parquet release is the attack traffic. Benign traffic is published separately, pooled
-  over all weeks and heavily reduced (10 MB of CSV for 7 weeks of an enterprise range).
-- A realistic per-week mixture of benign and attack flows, which calibration windows need,
-  cannot be rebuilt from the documented partitions. Any attempt would mean opening the pooled
-  benign file, which holds the protected weeks' evaluation-period traffic.
-- **That approach is rejected. F2 is not eligible.**
+- **The probe week is attack-only.** Whether the other 6 parquet weeks are also attack-only is
+  unverified; checking would mean opening protected files.
+- **The decisive argument is the benign partition itself:** one 10.2 MB CSV pooled over all 7
+  weeks of an enterprise range, while the attack side is about 140 MB of compressed parquet.
+  Benign traffic is published separately and heavily reduced, so no realistic benign mixture,
+  and hence no meaningful verified-benign FPR, exists for any week.
+- **Not pursued:** a pre-registered, hashed reader that streams `csv/Benign/` and keeps only
+  rows before each week's calibration cut-off. It would be an amendment question, not an
+  impossibility. It was not pursued because the reduction alone defeats calibration.
+- **F2 is not eligible.**
 - UWF-ZeekData22 was already excluded for label-timing errors (Phase 8j).

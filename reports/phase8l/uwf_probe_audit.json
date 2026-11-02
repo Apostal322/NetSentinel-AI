@@ -1,0 +1,20 @@
+{
+ "rows": 50444,
+ "label_binary": {
+  "True": 49436,
+  "Duplicate": 1008
+ },
+ "label_tactic": {
+  "Credential Access": 45491,
+  "Reconnaissance": 3339,
+  "Initial Access": 576,
+  "Persistence": 336,
+  "Privilege Escalation": 336,
+  "Defense Evasion": 336,
+  "Exfiltration": 30
+ },
+ "sources": 15,
+ "destinations": 104,
+ "first": "2024-03-03T00:00:00.013611+00:00",
+ "last": "2024-03-03T23:59:41.761063+00:00"
+}
