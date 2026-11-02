@@ -67,7 +67,34 @@ uv run python scripts/phase8i/analyze.py
   file that looks complete.
 - Each file records its runtime and peak RSS.
 
-## 4. Determinism
+Exploratory analyses run after the development batch:
+
+```bash
+uv run python scripts/phase8i/label_audit.py
+```
+
+```bash
+uv run python scripts/phase8i/attribution.py --seeds 0,1
+```
+
+## 4. Confirmatory run (already consumed; do not rerun for model choice)
+
+The exact commands are in [FREEZE.md](FREEZE.md), and `reports/phase8i/logs/confirm8i.sh`
+runs them in order. Results are in `reports/phase8i/confirm/`, with verdicts in
+`verdicts.json`. The post-hoc diagnostic, run after the verdicts, is:
+
+```bash
+uv run python scripts/phase8i/posthoc_n4.py
+```
+
+**Commits:**
+- pre-registration `86b7daa`;
+- amendment A2 `5794364`, amendment A3 `0871e64`;
+- development results and A4 `559b4e2`;
+- freeze `5db0c6f`;
+- confirmatory results `0176269`.
+
+## 5. Determinism
 
 - **Seeds:** LightGBM `random_state` = seed with `n_jobs = 2`. Label draws use
   `np.random.default_rng(1_000_003 * draw + Ka (+7 for the single-entity variant))`. Negative

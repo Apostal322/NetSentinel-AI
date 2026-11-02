@@ -1,4 +1,4 @@
-# Phase 8i final report (draft: results pending)
+# Phase 8i final report
 
 **Status labels:**
 - **[E]:** development, exploratory.
@@ -74,8 +74,8 @@ whether three remedies help on an unseen network while keeping false alerts near
   - Ka = 100 changes little except on NF-ToN-IoT, where A5 rises to 0.83 at 7.0% FPR.
 
 **Findings:**
-1. **A target threshold is indispensable.** The source-calibrated threshold (A0) gives 20–47%
-   FPR on every network except NF-UNSW. That network's benign scores happen to sit low.
+1. **A target threshold is indispensable.** The source-calibrated threshold (A0) gives
+   19.9–47.4% FPR on every development network except NF-UNSW (and 39–51% on N4). That network's benign scores happen to sit low.
 2. **Zero-label transfer is far better than in Phase 8h, for a reason that is not
    adaptation.** NF-UNSW A1: ROC-AUC 0.974, recall 0.971 (FPR 3.7%), against ROC-AUC 0.39 in
    Phase 8h. The difference is the source set: Phase 8h trained on NF-CIC alone, Phase 8i on
@@ -143,3 +143,111 @@ whether three remedies help on an unseen network while keeping false alerts near
   which explains why C1 cannot work as intended.
 - **The deployed robust detector is complementary to the supervised model:** it is the best
   scorer on NF-ToN-IoT (0.958 at 7.4% FPR) and the worst on NetFlow NF-CIC and NF-UNSW.
+
+## 5. Confirmatory evaluation on NF-BoT-IoT-v3 [C]
+
+- **Run:** once, at the frozen commit `5db0c6f`, in the order recorded in
+  [FREEZE.md](FREEZE.md). Verdicts are computed by the frozen `confirm_analyze.py`
+  (`reports/phase8i/confirm/verdicts.json`).
+- **N4 at a glance:**
+  - **Evaluation:** 3,449 windows over 422 h (2018-06-04 to 06-19, mostly 06-04): 1,579 attack
+    windows from 8 attackers (DoS, DDoS, theft), and 620 label-benign windows.
+  - **Calibration (May):** benign-train 178 windows, threshold hold-out 781, labelled attack
+    pool 7,230 windows from 8 entities (mostly reconnaissance).
+  - Only 16 entities in total.
+
+| hypothesis | frozen choice | result | registered verdict |
+|---|---|---|---|
+| **I1** label budget | A4, Ka = 25 | median recall 0.923 (2.5th pct 0.745) at median FPR **9.8%**; zero-label A1 recall 0.839 | **failure** (2.5th pct ≤ A1; FPR > 2%) |
+| **I2** shift-aware abstention | B-rz, τ = 0.70095 | B-rz raised **no** alerts on N4 (recall 0, FPR 0, ROC-AUC 0.93); 5 eligible blocks, none overrunning; τ covered 20% of blocks, holding 67% of attack windows in the abstained blocks | **not evaluable** (no overrunning blocks, amendment A4) |
+| **I3** representation | C1_k2 | recall 0.858 vs raw 0.839, at FPR **19.0%** vs 11.7% | **failure** |
+
+**Other N4 numbers [C, descriptive]:**
+- **Supervised source model (raw):** ROC-AUC 0.87. Oracle recall at 1% FPR is 0.42, within the
+  development range of 0.008 (NF-ToN-IoT) to 0.995 (NF-CIC 02-14). Entity recall 0.875–1.0.
+- **Realised FPR at the benign-calibrated threshold:** 7.1–21.0% across seeds.
+- **No-volume:** recall 0.47–0.51 at 6.9% FPR. **C2:** unstable across seeds (0.44–0.85).
+- **Every method that alerts overran the false-alert budget on N4.** The deployed robust
+  detector kept its budget only by alerting on nothing.
+
+**Post-hoc diagnostic [E, after the verdicts; changes none].**
+- **Every false alert of the A1 model on N4 comes from one label-benign host**
+  (192.168.100.46): 40% of its 325 evaluation windows, all on 2018-06-04, the main DoS/DDoS
+  day.
+- **That host dominates calibration:** 503 of the 781 hold-out windows. Its alerting windows
+  have nearly the same feature medians as its calibration windows (`log_pkts` 9.41 vs 9.24;
+  `new_dst_frac` 0). Small shifts move its clustered scores across a threshold that its own
+  windows set.
+- The benign evidence is therefore essentially **two hosts**. The realised FPR measures one
+  host's behaviour on one flood day. It is not a network-wide false-alert rate.
+- A host that is busy during a flood (target, relay or bystander) can carry the dataset's
+  benign label. These alerts are **unverified**, not confirmed false positives.
+
+## 6. Error analysis and failure taxonomy [E]
+
+**Attribution** (TreeSHAP via LightGBM `pred_contrib`, seeds 0–1;
+`reports/phase8i/attribution.json`). These are predictive, not causal, attributions.
+- **Sources NF-UNSW + NF-ToN-IoT:** `new_dst_frac` (33% of gain), `rst_frac`, `med_log_dur`.
+  The ranking is stable across seeds (Spearman 0.98). False alerts on NF-CIC are driven by
+  `rst_frac` and `log_dst_ports`. The missed DDoS-LOIC windows have negative `log_pkts` and
+  `udp_share` contributions: the source networks' DoS looks different.
+- **Sources NF-CIC + NF-ToN-IoT** (target NF-UNSW): `log_pkts` alone carries 53% of the gain,
+  a volume shortcut. It is the least seed-stable model (Spearman 0.78).
+- **Target NF-ToN-IoT:** false alerts are driven by `new_dst_frac` (mean contribution +4.44).
+  The feature counts destinations unseen during calibration, so it grows with calibration age
+  by construction. **This is a plausible cause of the NF-ToN-IoT overrun (A1 FPR 14.5%). It
+  is a hypothesis, not tested here.** It does not explain N4 (section 5).
+
+**Failure taxonomy.** Categories are assigned only where the evidence supports them.
+
+| failure | units | category | evidence |
+|---|---|---|---|
+| DDoS-LOIC missed at every budget | NF-CIC 02-20 | 1 poor ranking | ROC-AUC 0.225 (attacks scored below benign); labels do not fix it |
+| source threshold unusable | all except NF-UNSW | 2 threshold miscalibration | A0 FPR 19.9–51% |
+| benign-calibrated threshold overruns | NF-ToN-IoT, NF-UNSW, N4 | 2 threshold miscalibration + 5 domain shift (within the target over time) | A1 FPR 14.5%, 3.7%, 7–21%; NF-ToN-IoT driven by `new_dst_frac`; N4 by one host |
+| N4 FPR rests on one host | N4 | 9 insufficient independent evidence + 4 label ambiguity | 2 benign hosts; alerts on a flood day |
+| seed-unstable zero-label detection | NF-CIC 03-02 | 6 model uncertainty | A1 recall 0.86 / 0.05 / 0.16 across seeds |
+| representation changes do not remove network identity | all | 5 domain shift | identity AUC 0.98–1.00 under every variant |
+| robust detector silent on N4 and NetFlow | N4, NF-CIC, NF-UNSW | 2 threshold miscalibration | ROC-AUC 0.91–0.93 but recall 0–0.11 at T0 |
+
+## 7. Interpretation
+
+1. **Cross-network detection did not improve under the registered tests.**
+   - I1 and I3 failed on the fresh network, and I2 could not be evaluated there.
+   - This matches Phase 8h's four negative results: the problem is not solved by a few
+     labels, by feature removal, or by an abstention rule.
+2. **The binding constraint is calibration, not ranking.**
+   - Ranking on N4 was moderate and labels raised recall to about 0.92. But no method kept
+     its false alerts near 1%, because the benign calibration did not represent the
+     evaluation period.
+   - On N4 the benign evidence was a single dominant host. Phases 8g and 8h saw the same
+     pattern: the operating threshold, not the model, decides whether a detector is usable.
+3. **What did help, on development data only [E]:**
+   - **Adding a second source network.** NF-UNSW ROC-AUC rose from 0.39 to 0.97. This may be
+     a shared-institution effect.
+   - **Labels where the zero-label model was unstable or blind,** but not where it ranked
+     attacks backwards.
+   - Neither effect is confirmed.
+4. **Abstention did not hide attacks by construction.** Alerts are never suppressed. But on N4
+   the shift score abstained on 80% of blocks, which held 67% of the attack windows. A policy
+   that abstains on most of an attack period cannot be called reliable, even when it is
+   honest about it.
+5. **Network identity is diffuse.** No subset of the 12 features carries it, so feature
+   removal (C1) and per-domain centring (C2) cannot remove it. A representation change would
+   need to act on all features at once, or the model needs target data.
+
+**Missing evidence:**
+- more than one fresh network, ideally from a different institution;
+- verified-benign traffic on the test network;
+- benign populations of more than a handful of hosts;
+- a calibration-age study isolating `new_dst_frac`.
+
+## 8. Decisions
+
+| question | decision |
+|---|---|
+| Phase 8i research closure | **GO.** Protocol frozen before the test, all runs complete, failures preserved. |
+| Independent confirmation of any Phase 8i method | **NO-GO.** All registered confirmatory tests failed or were not evaluable. |
+| Deploying any candidate method | **NO-GO.** No method kept false alerts within budget on the fresh network. The deployed detector is unchanged. |
+| Publishing the research report | **GO, after operator review** (local commits only; no push without authorization). |
+| Engineering fix (late-record health) | **GO.** Tested; it changes only the health flag. |

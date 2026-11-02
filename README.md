@@ -58,6 +58,7 @@ Full tables with sources and data roles: [`docs/RESULTS.md`](docs/RESULTS.md).
 | Can drift detection or automatic recalibration make calibration reliable? (Phase 8f, development data, pre-declared rules) | **Not automatically.** False positives come mainly from transient sources scored by the pooled fallback, not from calibration age. A new block-permutation shift test separated unreliable periods (33x) but failed its pre-declared adoption criterion, so it ships only as `--validity-shadow`. Periodic or drift-triggered refits cut false alerts by learning the attacks (recall 0.27 -> 0.03-0.05). Only vetted refresh helped, and only with oracle vetting: [`docs/phase8f/REPORT.md`](docs/phase8f/REPORT.md) |
 | Does the baseline find real bots on an independent network? (Phase 8g, pre-registered, CTU-13 scenario 9) | **Yes, at its operating point:** all 10 documented bots within about a minute of infection (window recall 0.21), and 0 false alerts on the 6 verified-benign hosts. The unlabelled background drew 2,563 alerts/h, mostly what a 1% target gives at about 197k device windows/h, so it is a triage burden, not a measured false-positive rate. The gated refresh absorbed 71% of the attack, because a few persistent bots dilute a population-level gate. A post-hoc audit found and fixed silent record loss in the stream; scenario 10 was not evaluable. [`docs/phase8g/FINAL_REPORT.md`](docs/phase8g/FINAL_REPORT.md) |
 | Can representation, calibration or fusion fix cross-network failure? (Phase 8h, pre-registered, development data, exploratory) | **No, none of four remedies worked.** Per-network standardisation, a new invariance-based feature screening, block-bootstrap thresholds and score fusion all failed their pre-registered rules. Diagnosis (exploratory): LightGBM on raw window features ranks 5 of 5 held-out attack days *within* one network almost perfectly (recall ≈ 1.0 at a 1%-FPR threshold set on the target's labels), and reaches 0.03 on another network. Benign traffic identifies its network at ROC-AUC 0.9999. Removing volume features lifts cross-network ROC-AUC from 0.39 to 0.93, but not recall at 1% FPR: [`docs/phase8h/FINAL_RESEARCH_REPORT.md`](docs/phase8h/FINAL_RESEARCH_REPORT.md) |
+| Can a few target labels, shift-aware abstention or a less network-identifying representation fix cross-network detection? (Phase 8i, pre-registered, one protected fresh network: NF-BoT-IoT-v3) | **No.** Every registered confirmatory test failed or was not evaluable. Twenty-five labelled target windows raised recall to 0.92, but at 9.8% FPR, and were not better than no labels at the 2.5th percentile. Removing network-identifying features did not help, and network identity stayed detectable (ROC-AUC 0.98). The deployed detector raised no alerts on the fresh network, so abstention could not be tested. The binding constraint is calibration: every method that alerted overran the 1% budget, and post-hoc the fresh network's benign evidence was essentially two hosts. [`docs/phase8i/FINAL_REPORT.md`](docs/phase8i/FINAL_REPORT.md) |
 | ML protocol ID vs port lookup | Better in-dataset (macro-F1 0.945 vs 0.840). Confidently wrong under shift (HTTP on port 80 called TLS), so the product combines it with port evidence and abstains on conflicts |
 
 ## Quick start
@@ -246,12 +247,16 @@ peak memory are recorded in the development logs.
   development data). It flags persistently anomalous entities for review (Phase 8g), but a
   gradually starting attack can still pass and be learned.
 - Streaming drops records that arrive after their window closed (the lateness policy). They
-  are counted (`late`) but do not mark telemetry as degraded. Dense traffic spills to disk,
-  at about a tenth of in-memory speed.
+  are counted (`late`, `late_windows`) and, since Phase 8i, mark telemetry health
+  `late_records`, so normality is not claimed. Assessments already emitted for those windows
+  are not rewritten. Dense traffic spills to disk, at about a tenth of in-memory speed.
 - Temporal models (EWMA, GRU, TCN, lag-IForest) are research code; none beat the robust
   baseline.
 - Phase 8h results come from development data inspected in earlier phases: exploratory, not
   confirmatory. Within-network attack-family transfer does not imply cross-network transfer.
+- Phase 8i has one fresh confirmatory network (NF-BoT-IoT-v3). It shares an institution with
+  UNSW-NB15 and ToN_IoT, has 16 hosts, and is 99.7% attack traffic, so its false-alert
+  estimates rest on very few benign hosts.
 - The PCAP extractor matches Zeek, but its field-level agreement with nProbe is unverified.
 - Benchmark labels contain documented errors; the test partitions are spent; the CIC test is
   single-seed.

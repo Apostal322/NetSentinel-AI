@@ -167,3 +167,21 @@ pre-registered.
 | Raw-feature LightGBM ranks new attack days within one network | **supported (exploratory)** | oracle recall ≈ 1.0 at 1% FPR on 5 of 5 NF-CIC held-out days (4 families, 29 attacking sources); realised FPR at the calibrated threshold 1.8–3.5% |
 | It transfers across networks | **refuted (exploratory)** | NF-UNSW 0.03; benign windows identify the network at ROC-AUC 0.9999; without volume features NF-UNSW ROC-AUC rises from 0.39 to 0.93 but recall at 1% FPR does not |
 | Cross-fitted thresholds exceed twice the target less often than split-conformal | **suggestive (exploratory, untested)** | 3/27 vs 8/27 units over 2% (exact one-sided McNemar p = 0.0625); worse than split-conformal at 15 minutes |
+
+## Phase 8i (cross-network adaptation, abstention, representations; docs/phase8i/FINAL_REPORT.md)
+
+- **Pre-registration:** docs/phase8i/PREREGISTRATION.md (amendments A1–A4, all made before the
+  protected test). Frozen at `5db0c6f` (docs/phase8i/FREEZE.md).
+- **Confirmatory [C]:** a single evaluation on NF-BoT-IoT-v3, never opened before the freeze.
+- **Development [E]:** NF-CIC, NF-UNSW and NF-ToN-IoT, all inspected before.
+
+| Claim | Status | Evidence |
+|---|---|---|
+| I1: 25 labelled target attack windows (A4 continued boosting) restore detection on an unseen network | **refuted (confirmatory, n = 1 network)** | N4: median recall 0.923 but FPR 9.8%; 2.5th percentile 0.745 ≤ zero-label recall 0.839 |
+| I2: a score-shift statistic marks blocks whose false-alert rate overruns | **not evaluable (confirmatory)** | the deployed detector raised no alerts on N4, so no block overran; development block AUC 0.72 [0.54, 0.92] [E] |
+| I3: removing the top-2 network-identifying features improves cross-network recall | **refuted (confirmatory and development)** | N4: +0.02 recall at FPR 19.0% vs 11.7%; development mean change −0.065; network identity AUC unchanged (0.985 → 0.984) |
+| A second source network improves zero-label transfer | **suggestive (exploratory)** | NF-UNSW ROC-AUC 0.97 with NF-CIC + NF-ToN-IoT sources vs 0.39 with NF-CIC alone (Phase 8h); shared institution not excluded |
+| Benign-calibrated thresholds keep about 1% FPR on a new network | **refuted (confirmatory, descriptive)** | N4 A1 FPR 7.1–21.0%; development NF-ToN-IoT 14.5%, NF-UNSW 3.7% |
+| N4 false alerts reflect a network-wide rate | **refuted (post-hoc)** | all A1 false alerts come from one label-benign host on one flood day; the benign evidence is essentially 2 hosts |
+| Late records degrade telemetry health | **implemented, tested** | `late_records` flag on the first late record; CTU-13 scenario 10 lost 10 alerts to 0.0008% late records |
+
