@@ -24,6 +24,7 @@ calibration reliability and useful attack detection across previously unseen net
 | [DEDALE_FEASIBILITY.md](DEDALE_FEASIBILITY.md) | DEDALE single-network feasibility: hosts, licence, taps, minimum download, labels, independence, memory plan, verdict |
 | [DEDALE_PREREGISTRATION.md](DEDALE_PREREGISTRATION.md) | draft pre-registration of the longitudinal test (not frozen) |
 | [DEDALE_MANIFEST.md](DEDALE_MANIFEST.md) | member-level download manifest with offsets, sizes and CRC32s |
+| [DEDALE_STAGE_A.md](DEDALE_STAGE_A.md) | authorized calibration download and gate N1–N6 outcome (PASS) |
 
 ## Findings
 
@@ -97,6 +98,13 @@ authorised red-team exercises, or a future multi-institution corpus. The revised
     calibration fortnight. The active, independent benign hosts are unverified, and 28 is below
     E2.
   - The draft pre-registration is DEDALE_PREREGISTRATION.md.
+  - **Stage A (authorized; DEDALE_STAGE_A.md).**
+    - Downloaded: 28 calibration members, 384 MB, CRC32-verified.
+    - Gate N1–N6: **PASS**. There are 26 eligible internal clients, with Kish 26.0 (balanced
+      clones) and 54,120 hold-out windows, and every calibration label is 0.
+    - No scores were computed.
+    - **The remaining risk is N8,** the dependence-adjusted n, which is checked before any
+      evaluation data is downloaded.
   - **The network-level NO-GO above is unchanged; a single-network result cannot revise it.**
 
 **Not recommended:** further method development on the same 4 development networks.

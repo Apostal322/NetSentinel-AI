@@ -51,6 +51,7 @@ COMPROMISED = ("172.16.1.2", "172.16.1.3")  # clients 1 and 2 (official timeline
 ALWAYS_EXCLUDED = {"172.19.0.2", "172.19.1.1", "172.19.2.1", "172.17.0.2", "172.16.0.2", ROUTER}
 INFERRED_3_4 = ("172.16.1.4", "172.16.1.5")
 MIN_CAL, MIN_HOLD = 100, 20
+GAP_WINDOWS = 60  # calibration_audit.GAP_WINDOWS
 NEED = ("ts", "ip_src", "ip_dst", "port_dst", "proto", "duration", "orig_ip_bytes",
         "resp_ip_bytes", "orig_pkts", "resp_pkts", "history", "label")  # fmt: skip
 NUMERIC = ("ts", "port_dst", "duration", "orig_ip_bytes", "resp_ip_bytes", "orig_pkts",
@@ -69,6 +70,16 @@ def split_cut(win: np.ndarray) -> int:
     """`scripts/phase8b/scorers.split_cut`: the last 30% of the calibration window range."""
     lo, hi = int(win.min()), int(win.max())
     return lo + int(math.floor((hi - lo + 1) * 0.7))
+
+
+def sessions(df: pl.DataFrame) -> np.ndarray:
+    """`scripts/phase8i/calibration_audit.sessions`, inlined: importing that module binds
+    `common` to the Phase 6 module (as in probe_f0.py). Rows of one host split at gaps > 60
+    windows (30 min)."""
+    s = df.with_row_index("i").sort("key", "win").with_columns(
+        ((pl.col("key") != pl.col("key").shift()) | (pl.col("win").diff() > GAP_WINDOWS))
+        .fill_null(True).cum_sum().alias("sid"))  # fmt: skip
+    return s.sort("i")["sid"].to_numpy()
 
 
 def kish(counts: np.ndarray) -> float:
@@ -265,8 +276,7 @@ def main() -> None:
     elig = [r for r in prim if r["status"] == "eligible"]
     hold = np.array([r["hold"] for r in elig])
     sub = cal.filter(pl.col("key").is_in([r["key"] for r in elig]) & (pl.col("win") >= cut))
-    cal_audit = _load("phase8i_calibration_audit", ROOT / "scripts/phase8i/calibration_audit.py")
-    sid = cal_audit.sessions(sub.select("key", "win")) if sub.height else np.array([])
+    sid = sessions(sub.select("key", "win")) if sub.height else np.array([])
     sess = np.unique(sid, return_counts=True)[1] if sid.size else np.array([])
     rep["hosts"] = {"primary": prim, "secondary_eligible": sum(
         1 for r in rows if not r["internal"] and r["addr"] not in excluded and r["cal"] >= MIN_CAL

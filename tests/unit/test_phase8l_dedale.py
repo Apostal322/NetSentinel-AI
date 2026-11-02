@@ -170,3 +170,12 @@ def test_stage_a_dhcp_and_helpers(tmp_path):
     assert STAGE_A.client_number("CLIENT3") == 3 and STAGE_A.client_number("dc") is None
     assert STAGE_A.split_cut(__import__("numpy").arange(10, 20)) == 17
     assert abs(STAGE_A.kish(__import__("numpy").array([1, 1, 2])) - 16 / 6) < 1e-12
+
+
+def test_stage_a_sessions_match_phase8i():
+    import numpy as np
+    import polars as pl
+
+    df = pl.DataFrame({"key": ["a", "a", "a", "b", "b"], "win": [1, 2, 70, 5, 6]})
+    sid = STAGE_A.sessions(df)
+    assert len(np.unique(sid)) == 3 and sid[0] == sid[1] != sid[2]

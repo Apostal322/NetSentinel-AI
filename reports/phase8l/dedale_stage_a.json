@@ -1,0 +1,1016 @@
+{
+ "boundary_utc": "2025-01-06T00:00:00+00:00",
+ "gate": {
+  "N1_integrity_failures": [],
+  "N2_failing_days": [],
+  "N3_days_with_nonzero_labels": {},
+  "N4_eligible_primary_hosts": 26,
+  "N5_kish_effective_hosts": 25.99272672955287,
+  "N5_top_host_share": 0.03991130820399113,
+  "N6_eligible_holdout_windows": 54120,
+  "N6_descriptive_sessions": 104,
+  "N6_descriptive_kish_effective_sessions_rho1": 52.06285351368675,
+  "failed": [],
+  "outcome": "PASS"
+ },
+ "days": {
+  "1": {
+   "rows": 782672,
+   "header": [
+    "date",
+    "ts",
+    "uid",
+    "ip_src",
+    "port_src",
+    "ip_dst",
+    "port_dst",
+    "proto",
+    "service",
+    "duration",
+    "orig_bytes",
+    "resp_bytes",
+    "conn_state",
+    "local_orig",
+    "local_resp",
+    "missed_bytes",
+    "history",
+    "orig_pkts",
+    "orig_ip_bytes",
+    "resp_pkts",
+    "resp_ip_bytes",
+    "tunnel_parents",
+    "ip_proto",
+    "label",
+    "step",
+    "attack_step",
+    "tactic",
+    "technique",
+    "comments"
+   ],
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "ts_min_utc": "2024-12-23T00:34:26.663199+00:00",
+   "ts_max_utc": "2024-12-23T23:37:15.239204+00:00",
+   "labels": {
+    "0": 782672
+   },
+   "dropped_ending_after_boundary": 0,
+   "calibration_flows": 782672
+  },
+  "2": {
+   "rows": 833834,
+   "header": [
+    "date",
+    "ts",
+    "uid",
+    "ip_src",
+    "port_src",
+    "ip_dst",
+    "port_dst",
+    "proto",
+    "service",
+    "duration",
+    "orig_bytes",
+    "resp_bytes",
+    "conn_state",
+    "local_orig",
+    "local_resp",
+    "missed_bytes",
+    "history",
+    "orig_pkts",
+    "orig_ip_bytes",
+    "resp_pkts",
+    "resp_ip_bytes",
+    "tunnel_parents",
+    "ip_proto",
+    "label",
+    "step",
+    "attack_step",
+    "tactic",
+    "technique",
+    "comments"
+   ],
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "ts_min_utc": "2024-12-24T00:38:25.255230+00:00",
+   "ts_max_utc": "2024-12-24T23:47:47.051230+00:00",
+   "labels": {
+    "0": 833834
+   },
+   "dropped_ending_after_boundary": 0,
+   "calibration_flows": 833834
+  },
+  "3": {
+   "rows": 773665,
+   "header": [
+    "date",
+    "ts",
+    "uid",
+    "ip_src",
+    "port_src",
+    "ip_dst",
+    "port_dst",
+    "proto",
+    "service",
+    "duration",
+    "orig_bytes",
+    "resp_bytes",
+    "conn_state",
+    "local_orig",
+    "local_resp",
+    "missed_bytes",
+    "history",
+    "orig_pkts",
+    "orig_ip_bytes",
+    "resp_pkts",
+    "resp_ip_bytes",
+    "tunnel_parents",
+    "ip_proto",
+    "label",
+    "step",
+    "attack_step",
+    "tactic",
+    "technique",
+    "comments"
+   ],
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "ts_min_utc": "2024-12-25T00:48:57.063210+00:00",
+   "ts_max_utc": "2024-12-25T23:23:21.703435+00:00",
+   "labels": {
+    "0": 773665
+   },
+   "dropped_ending_after_boundary": 0,
+   "calibration_flows": 773665
+  },
+  "4": {
+   "rows": 782535,
+   "header": [
+    "date",
+    "ts",
+    "uid",
+    "ip_src",
+    "port_src",
+    "ip_dst",
+    "port_dst",
+    "proto",
+    "service",
+    "duration",
+    "orig_bytes",
+    "resp_bytes",
+    "conn_state",
+    "local_orig",
+    "local_resp",
+    "missed_bytes",
+    "history",
+    "orig_pkts",
+    "orig_ip_bytes",
+    "resp_pkts",
+    "resp_ip_bytes",
+    "tunnel_parents",
+    "ip_proto",
+    "label",
+    "step",
+    "attack_step",
+    "tactic",
+    "technique",
+    "comments"
+   ],
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "ts_min_utc": "2024-12-26T00:26:42.791235+00:00",
+   "ts_max_utc": "2024-12-26T23:05:29.575230+00:00",
+   "labels": {
+    "0": 782535
+   },
+   "dropped_ending_after_boundary": 0,
+   "calibration_flows": 782535
+  },
+  "5": {
+   "rows": 776663,
+   "header": [
+    "date",
+    "ts",
+    "uid",
+    "ip_src",
+    "port_src",
+    "ip_dst",
+    "port_dst",
+    "proto",
+    "service",
+    "duration",
+    "orig_bytes",
+    "resp_bytes",
+    "conn_state",
+    "local_orig",
+    "local_resp",
+    "missed_bytes",
+    "history",
+    "orig_pkts",
+    "orig_ip_bytes",
+    "resp_pkts",
+    "resp_ip_bytes",
+    "tunnel_parents",
+    "ip_proto",
+    "label",
+    "step",
+    "attack_step",
+    "tactic",
+    "technique",
+    "comments"
+   ],
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "ts_min_utc": "2024-12-27T00:04:28.519258+00:00",
+   "ts_max_utc": "2024-12-27T23:57:31.751228+00:00",
+   "labels": {
+    "0": 776663
+   },
+   "dropped_ending_after_boundary": 0,
+   "calibration_flows": 776663
+  },
+  "6": {
+   "rows": 16228,
+   "header": [
+    "date",
+    "ts",
+    "uid",
+    "ip_src",
+    "port_src",
+    "ip_dst",
+    "port_dst",
+    "proto",
+    "service",
+    "duration",
+    "orig_bytes",
+    "resp_bytes",
+    "conn_state",
+    "local_orig",
+    "local_resp",
+    "missed_bytes",
+    "history",
+    "orig_pkts",
+    "orig_ip_bytes",
+    "resp_pkts",
+    "resp_ip_bytes",
+    "tunnel_parents",
+    "ip_proto",
+    "label",
+    "step",
+    "attack_step",
+    "tactic",
+    "technique",
+    "comments"
+   ],
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "ts_min_utc": "2024-12-28T00:56:30.695229+00:00",
+   "ts_max_utc": "2024-12-28T23:09:04.615207+00:00",
+   "labels": {
+    "0": 16228
+   },
+   "dropped_ending_after_boundary": 0,
+   "calibration_flows": 16228
+  },
+  "7": {
+   "rows": 24233,
+   "header": [
+    "date",
+    "ts",
+    "uid",
+    "ip_src",
+    "port_src",
+    "ip_dst",
+    "port_dst",
+    "proto",
+    "service",
+    "duration",
+    "orig_bytes",
+    "resp_bytes",
+    "conn_state",
+    "local_orig",
+    "local_resp",
+    "missed_bytes",
+    "history",
+    "orig_pkts",
+    "orig_ip_bytes",
+    "resp_pkts",
+    "resp_ip_bytes",
+    "tunnel_parents",
+    "ip_proto",
+    "label",
+    "step",
+    "attack_step",
+    "tactic",
+    "technique",
+    "comments"
+   ],
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "ts_min_utc": "2024-12-29T00:08:03.559228+00:00",
+   "ts_max_utc": "2024-12-29T23:30:31.787233+00:00",
+   "labels": {
+    "0": 24233
+   },
+   "dropped_ending_after_boundary": 0,
+   "calibration_flows": 24233
+  },
+  "8": {
+   "rows": 781281,
+   "header": [
+    "date",
+    "ts",
+    "uid",
+    "ip_src",
+    "port_src",
+    "ip_dst",
+    "port_dst",
+    "proto",
+    "service",
+    "duration",
+    "orig_bytes",
+    "resp_bytes",
+    "conn_state",
+    "local_orig",
+    "local_resp",
+    "missed_bytes",
+    "history",
+    "orig_pkts",
+    "orig_ip_bytes",
+    "resp_pkts",
+    "resp_ip_bytes",
+    "tunnel_parents",
+    "ip_proto",
+    "label",
+    "step",
+    "attack_step",
+    "tactic",
+    "technique",
+    "comments"
+   ],
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "ts_min_utc": "2024-12-30T00:36:03.947226+00:00",
+   "ts_max_utc": "2024-12-30T23:06:06.439203+00:00",
+   "labels": {
+    "0": 781281
+   },
+   "dropped_ending_after_boundary": 0,
+   "calibration_flows": 781281
+  },
+  "9": {
+   "rows": 776138,
+   "header": [
+    "date",
+    "ts",
+    "uid",
+    "ip_src",
+    "port_src",
+    "ip_dst",
+    "port_dst",
+    "proto",
+    "service",
+    "duration",
+    "orig_bytes",
+    "resp_bytes",
+    "conn_state",
+    "local_orig",
+    "local_resp",
+    "missed_bytes",
+    "history",
+    "orig_pkts",
+    "orig_ip_bytes",
+    "resp_pkts",
+    "resp_ip_bytes",
+    "tunnel_parents",
+    "ip_proto",
+    "label",
+    "step",
+    "attack_step",
+    "tactic",
+    "technique",
+    "comments"
+   ],
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "ts_min_utc": "2024-12-31T00:02:54.311239+00:00",
+   "ts_max_utc": "2024-12-31T23:25:22.535229+00:00",
+   "labels": {
+    "0": 776138
+   },
+   "dropped_ending_after_boundary": 0,
+   "calibration_flows": 776138
+  },
+  "10": {
+   "rows": 763004,
+   "header": [
+    "date",
+    "ts",
+    "uid",
+    "ip_src",
+    "port_src",
+    "ip_dst",
+    "port_dst",
+    "proto",
+    "service",
+    "duration",
+    "orig_bytes",
+    "resp_bytes",
+    "conn_state",
+    "local_orig",
+    "local_resp",
+    "missed_bytes",
+    "history",
+    "orig_pkts",
+    "orig_ip_bytes",
+    "resp_pkts",
+    "resp_ip_bytes",
+    "tunnel_parents",
+    "ip_proto",
+    "label",
+    "step",
+    "attack_step",
+    "tactic",
+    "technique",
+    "comments"
+   ],
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "ts_min_utc": "2025-01-01T00:22:10.411202+00:00",
+   "ts_max_utc": "2025-01-01T23:11:52.551203+00:00",
+   "labels": {
+    "0": 763004
+   },
+   "dropped_ending_after_boundary": 0,
+   "calibration_flows": 763004
+  },
+  "11": {
+   "rows": 906176,
+   "header": [
+    "date",
+    "ts",
+    "uid",
+    "ip_src",
+    "port_src",
+    "ip_dst",
+    "port_dst",
+    "proto",
+    "service",
+    "duration",
+    "orig_bytes",
+    "resp_bytes",
+    "conn_state",
+    "local_orig",
+    "local_resp",
+    "missed_bytes",
+    "history",
+    "orig_pkts",
+    "orig_ip_bytes",
+    "resp_pkts",
+    "resp_ip_bytes",
+    "tunnel_parents",
+    "ip_proto",
+    "label",
+    "step",
+    "attack_step",
+    "tactic",
+    "technique",
+    "comments"
+   ],
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "ts_min_utc": "2025-01-02T00:17:24.711247+00:00",
+   "ts_max_utc": "2025-01-02T23:50:48.295242+00:00",
+   "labels": {
+    "0": 906176
+   },
+   "dropped_ending_after_boundary": 0,
+   "calibration_flows": 906176
+  },
+  "12": {
+   "rows": 770867,
+   "header": [
+    "date",
+    "ts",
+    "uid",
+    "ip_src",
+    "port_src",
+    "ip_dst",
+    "port_dst",
+    "proto",
+    "service",
+    "duration",
+    "orig_bytes",
+    "resp_bytes",
+    "conn_state",
+    "local_orig",
+    "local_resp",
+    "missed_bytes",
+    "history",
+    "orig_pkts",
+    "orig_ip_bytes",
+    "resp_pkts",
+    "resp_ip_bytes",
+    "tunnel_parents",
+    "ip_proto",
+    "label",
+    "step",
+    "attack_step",
+    "tactic",
+    "technique",
+    "comments"
+   ],
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "ts_min_utc": "2025-01-03T00:56:20.455225+00:00",
+   "ts_max_utc": "2025-01-03T23:22:00.807203+00:00",
+   "labels": {
+    "0": 770867
+   },
+   "dropped_ending_after_boundary": 0,
+   "calibration_flows": 770867
+  },
+  "13": {
+   "rows": 28570,
+   "header": [
+    "date",
+    "ts",
+    "uid",
+    "ip_src",
+    "port_src",
+    "ip_dst",
+    "port_dst",
+    "proto",
+    "service",
+    "duration",
+    "orig_bytes",
+    "resp_bytes",
+    "conn_state",
+    "local_orig",
+    "local_resp",
+    "missed_bytes",
+    "history",
+    "orig_pkts",
+    "orig_ip_bytes",
+    "resp_pkts",
+    "resp_ip_bytes",
+    "tunnel_parents",
+    "ip_proto",
+    "label",
+    "step",
+    "attack_step",
+    "tactic",
+    "technique",
+    "comments"
+   ],
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "ts_min_utc": "2025-01-04T00:25:21.895204+00:00",
+   "ts_max_utc": "2025-01-04T23:34:43.691228+00:00",
+   "labels": {
+    "0": 28570
+   },
+   "dropped_ending_after_boundary": 0,
+   "calibration_flows": 28570
+  },
+  "14": {
+   "rows": 28023,
+   "header": [
+    "date",
+    "ts",
+    "uid",
+    "ip_src",
+    "port_src",
+    "ip_dst",
+    "port_dst",
+    "proto",
+    "service",
+    "duration",
+    "orig_bytes",
+    "resp_bytes",
+    "conn_state",
+    "local_orig",
+    "local_resp",
+    "missed_bytes",
+    "history",
+    "orig_pkts",
+    "orig_ip_bytes",
+    "resp_pkts",
+    "resp_ip_bytes",
+    "tunnel_parents",
+    "ip_proto",
+    "label",
+    "step",
+    "attack_step",
+    "tactic",
+    "technique",
+    "comments"
+   ],
+   "unparseable": 0,
+   "ending_outside_utc_day_2h": 0,
+   "ts_min_utc": "2025-01-05T00:33:42.631203+00:00",
+   "ts_max_utc": "2025-01-05T23:38:42.283224+00:00",
+   "labels": {
+    "0": 28023
+   },
+   "dropped_ending_after_boundary": 0,
+   "calibration_flows": 28023
+  }
+ },
+ "identity": {
+  "mode": "mac",
+  "internal_leases": 6248,
+  "addresses_with_leases": 30,
+  "macs": 30,
+  "addresses_with_several_macs": [],
+  "macs_with_several_addresses": [],
+  "host_names": {
+   "172.16.1.10": [
+    "CLIENT9"
+   ],
+   "172.16.1.11": [
+    "CLIENT10"
+   ],
+   "172.16.1.12": [
+    "CLIENT11"
+   ],
+   "172.16.1.13": [
+    "CLIENT12"
+   ],
+   "172.16.1.14": [
+    "CLIENT13"
+   ],
+   "172.16.1.15": [
+    "CLIENT14"
+   ],
+   "172.16.1.16": [
+    "CLIENT15"
+   ],
+   "172.16.1.17": [
+    "CLIENT16"
+   ],
+   "172.16.1.18": [
+    "CLIENT17"
+   ],
+   "172.16.1.19": [
+    "CLIENT18"
+   ],
+   "172.16.1.2": [
+    "CLIENT1"
+   ],
+   "172.16.1.20": [
+    "CLIENT19"
+   ],
+   "172.16.1.21": [
+    "CLIENT20"
+   ],
+   "172.16.1.22": [
+    "CLIENT21"
+   ],
+   "172.16.1.23": [
+    "CLIENT22"
+   ],
+   "172.16.1.24": [
+    "CLIENT23"
+   ],
+   "172.16.1.25": [
+    "CLIENT24"
+   ],
+   "172.16.1.26": [
+    "CLIENT25"
+   ],
+   "172.16.1.27": [
+    "CLIENT26"
+   ],
+   "172.16.1.28": [
+    "CLIENT27"
+   ],
+   "172.16.1.29": [
+    "CLIENT28"
+   ],
+   "172.16.1.3": [
+    "CLIENT2"
+   ],
+   "172.16.1.30": [
+    "CLIENT29"
+   ],
+   "172.16.1.31": [
+    "CLIENT30"
+   ],
+   "172.16.1.4": [
+    "CLIENT3"
+   ],
+   "172.16.1.5": [
+    "CLIENT4"
+   ],
+   "172.16.1.6": [
+    "CLIENT5"
+   ],
+   "172.16.1.7": [
+    "CLIENT6"
+   ],
+   "172.16.1.8": [
+    "CLIENT7"
+   ],
+   "172.16.1.9": [
+    "CLIENT8"
+   ]
+  },
+  "client_numbers_from_names": {
+   "172.16.1.10": 9,
+   "172.16.1.11": 10,
+   "172.16.1.12": 11,
+   "172.16.1.13": 12,
+   "172.16.1.14": 13,
+   "172.16.1.15": 14,
+   "172.16.1.16": 15,
+   "172.16.1.17": 16,
+   "172.16.1.18": 17,
+   "172.16.1.19": 18,
+   "172.16.1.2": 1,
+   "172.16.1.20": 19,
+   "172.16.1.21": 20,
+   "172.16.1.22": 21,
+   "172.16.1.23": 22,
+   "172.16.1.24": 23,
+   "172.16.1.25": 24,
+   "172.16.1.26": 25,
+   "172.16.1.27": 26,
+   "172.16.1.28": 27,
+   "172.16.1.29": 28,
+   "172.16.1.3": 2,
+   "172.16.1.30": 29,
+   "172.16.1.31": 30,
+   "172.16.1.4": 3,
+   "172.16.1.5": 4,
+   "172.16.1.6": 5,
+   "172.16.1.7": 6,
+   "172.16.1.8": 7,
+   "172.16.1.9": 8
+  },
+  "clients_3_4": [
+   "172.16.1.4",
+   "172.16.1.5"
+  ],
+  "clients_3_4_rule": "host name",
+  "compromised_macs": [
+   "00:50:56:00:00:01",
+   "00:50:56:00:00:02"
+  ]
+ },
+ "windows": {
+  "calibration": 316903,
+  "sources": 87,
+  "memory_destinations": 16588,
+  "split_cut_win": 57858615,
+  "holdout_start_utc": "2025-01-01T19:07:30+00:00",
+  "holdout": 64984
+ },
+ "hosts": {
+  "primary": [
+   {
+    "key": "172.16.1.10",
+    "addr": "172.16.1.10",
+    "internal": true,
+    "cal": 10316,
+    "hold": 2095,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.11",
+    "addr": "172.16.1.11",
+    "internal": true,
+    "cal": 10262,
+    "hold": 2037,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.12",
+    "addr": "172.16.1.12",
+    "internal": true,
+    "cal": 10501,
+    "hold": 2121,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.13",
+    "addr": "172.16.1.13",
+    "internal": true,
+    "cal": 10134,
+    "hold": 2062,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.14",
+    "addr": "172.16.1.14",
+    "internal": true,
+    "cal": 10269,
+    "hold": 2047,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.15",
+    "addr": "172.16.1.15",
+    "internal": true,
+    "cal": 10453,
+    "hold": 2138,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.16",
+    "addr": "172.16.1.16",
+    "internal": true,
+    "cal": 10244,
+    "hold": 2087,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.17",
+    "addr": "172.16.1.17",
+    "internal": true,
+    "cal": 10255,
+    "hold": 2084,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.18",
+    "addr": "172.16.1.18",
+    "internal": true,
+    "cal": 10440,
+    "hold": 2038,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.19",
+    "addr": "172.16.1.19",
+    "internal": true,
+    "cal": 10392,
+    "hold": 2062,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.2",
+    "addr": "172.16.1.2",
+    "internal": true,
+    "cal": 14375,
+    "hold": 4133,
+    "status": "excluded"
+   },
+   {
+    "key": "172.16.1.20",
+    "addr": "172.16.1.20",
+    "internal": true,
+    "cal": 10516,
+    "hold": 2066,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.21",
+    "addr": "172.16.1.21",
+    "internal": true,
+    "cal": 10471,
+    "hold": 2088,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.22",
+    "addr": "172.16.1.22",
+    "internal": true,
+    "cal": 10345,
+    "hold": 2127,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.23",
+    "addr": "172.16.1.23",
+    "internal": true,
+    "cal": 10190,
+    "hold": 2035,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.24",
+    "addr": "172.16.1.24",
+    "internal": true,
+    "cal": 10571,
+    "hold": 2070,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.25",
+    "addr": "172.16.1.25",
+    "internal": true,
+    "cal": 10491,
+    "hold": 2115,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.26",
+    "addr": "172.16.1.26",
+    "internal": true,
+    "cal": 10221,
+    "hold": 2064,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.27",
+    "addr": "172.16.1.27",
+    "internal": true,
+    "cal": 10687,
+    "hold": 2110,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.28",
+    "addr": "172.16.1.28",
+    "internal": true,
+    "cal": 10288,
+    "hold": 2018,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.29",
+    "addr": "172.16.1.29",
+    "internal": true,
+    "cal": 10210,
+    "hold": 2118,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.3",
+    "addr": "172.16.1.3",
+    "internal": true,
+    "cal": 10409,
+    "hold": 2064,
+    "status": "excluded"
+   },
+   {
+    "key": "172.16.1.30",
+    "addr": "172.16.1.30",
+    "internal": true,
+    "cal": 10483,
+    "hold": 2114,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.31",
+    "addr": "172.16.1.31",
+    "internal": true,
+    "cal": 10177,
+    "hold": 2064,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.4",
+    "addr": "172.16.1.4",
+    "internal": true,
+    "cal": 10301,
+    "hold": 2074,
+    "status": "clients_3_4"
+   },
+   {
+    "key": "172.16.1.5",
+    "addr": "172.16.1.5",
+    "internal": true,
+    "cal": 10438,
+    "hold": 2133,
+    "status": "clients_3_4"
+   },
+   {
+    "key": "172.16.1.6",
+    "addr": "172.16.1.6",
+    "internal": true,
+    "cal": 10554,
+    "hold": 2160,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.7",
+    "addr": "172.16.1.7",
+    "internal": true,
+    "cal": 10297,
+    "hold": 2078,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.8",
+    "addr": "172.16.1.8",
+    "internal": true,
+    "cal": 10036,
+    "hold": 2054,
+    "status": "eligible"
+   },
+   {
+    "key": "172.16.1.9",
+    "addr": "172.16.1.9",
+    "internal": true,
+    "cal": 10449,
+    "hold": 2068,
+    "status": "eligible"
+   }
+  ],
+  "secondary_eligible": 5
+ },
+ "peak_rss_mb": 853.42578125,
+ "seconds": 47.6
+}
