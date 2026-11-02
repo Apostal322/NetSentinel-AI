@@ -105,6 +105,8 @@ authorised red-team exercises, or a future multi-institution corpus. The revised
     - No scores were computed.
     - **The remaining risk is N8,** the dependence-adjusted n, which is checked before any
       evaluation data is downloaded.
+  - **Source models (authorized):** the three registered B-raw models are fitted and hashed
+    (`reports/phase8l/dedale_source_models.json`). No DEDALE window has been scored.
   - **The network-level NO-GO above is unchanged; a single-network result cannot revise it.**
 
 **Not recommended:** further method development on the same 4 development networks.

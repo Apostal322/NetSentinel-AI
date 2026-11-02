@@ -1,0 +1,71 @@
+{
+ "git_sha": "b94495dce34eb870add089d4ffa6307fe8d3e56b",
+ "lightgbm": "4.7.0",
+ "settings": {
+  "n_estimators": 200,
+  "learning_rate": 0.05,
+  "num_leaves": 15,
+  "min_child_samples": 20,
+  "subsample": 0.8,
+  "subsample_freq": 1,
+  "colsample_bytree": 0.8,
+  "n_jobs": 2,
+  "verbose": -1
+ },
+ "representation": "raw",
+ "features": [
+  "log_flows",
+  "log_up_bytes",
+  "log_down_bytes",
+  "log_pkts",
+  "log_dst_hosts",
+  "log_dst_ports",
+  "no_reply_frac",
+  "rst_frac",
+  "udp_share",
+  "med_log_dur",
+  "upload_share",
+  "new_dst_frac"
+ ],
+ "source_domains": [
+  "nfbot/all",
+  "nfcic/2018-02-14",
+  "nfcic/2018-02-15",
+  "nfcic/2018-02-16",
+  "nfcic/2018-02-20",
+  "nfcic/2018-02-21",
+  "nfcic/2018-02-22",
+  "nfcic/2018-02-23",
+  "nfcic/2018-02-27",
+  "nfcic/2018-02-28",
+  "nfcic/2018-03-01",
+  "nfcic/2018-03-02",
+  "nfton/all",
+  "nfunsw/all"
+ ],
+ "models": {
+  "0": {
+   "file": "data\\derived\\phase8l\\dedale\\models\\b_raw_seed0.txt",
+   "sha256": "770894fe2d13ef14c7ec4caf48d266e8f96c8473dba1e82816949ed08de25f39",
+   "train_rows": 585026,
+   "source_benign_q99": 0.48889873567362,
+   "reload_max_abs_diff": 0.0
+  },
+  "1": {
+   "file": "data\\derived\\phase8l\\dedale\\models\\b_raw_seed1.txt",
+   "sha256": "fd30d57df14cd15a9cb583543d57fefff9126bcc923fe8ec422ade6cac058e0d",
+   "train_rows": 585026,
+   "source_benign_q99": 0.47382672100194895,
+   "reload_max_abs_diff": 0.0
+  },
+  "2": {
+   "file": "data\\derived\\phase8l\\dedale\\models\\b_raw_seed2.txt",
+   "sha256": "0812f9a44cec0804bcbebbc3f828bfe8d2a2cacf34e31e678c3afc5231760e3a",
+   "train_rows": 585026,
+   "source_benign_q99": 0.48441597827446287,
+   "reload_max_abs_diff": 0.0
+  }
+ },
+ "peak_rss_mb": 829.53515625,
+ "seconds": 111.3
+}

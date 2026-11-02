@@ -233,8 +233,19 @@ All at T0, seed-mean.
    outcome is recorded in `DEDALE_STAGE_A.md`.
 3. Write the DEDALE adapter and `dedale_analysis.py`. Unit-test them on synthetic data and the
    Stage A schema, with no scores.
-4. **Needs authorization:** fit the three registered source models (~5 min) and record their
-   SHA-256.
+4. **Done** (authorized 2026-11-02; script `b94495d`). The three registered source models were fitted:
+   - 14 source domains of the four NF-v3 networks, 585,026 training rows each;
+   - LightGBM 4.7.0;
+   - 111 s, with a peak of 1,427 MiB under the cap;
+   - each reloaded file reproduces `predict_proba` exactly.
+
+   SHA-256:
+   - seed 0: `770894fe2d13ef14c7ec4caf48d266e8f96c8473dba1e82816949ed08de25f39`;
+   - seed 1: `fd30d57df14cd15a9cb583543d57fefff9126bcc923fe8ec422ade6cac058e0d`;
+   - seed 2: `0812f9a44cec0804bcbebbc3f828bfe8d2a2cacf34e31e678c3afc5231760e3a`.
+
+   The model files live under the git-ignored `data/derived/phase8l/dedale/models/`. The report
+   is `reports/phase8l/dedale_source_models.json`. No DEDALE data was read.
 5. An independent audit of the code and this document, with findings fixed.
 6. Write and commit `DEDALE_FREEZE.md` holding:
    - the commit;
