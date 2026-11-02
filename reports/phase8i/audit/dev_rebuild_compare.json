@@ -1,0 +1,23 @@
+{
+ "nfunsw": {
+  "parquet_files": 6,
+  "identical": true,
+  "summaries_equal": true,
+  "peak_ws_mib_frozen": 1015,
+  "peak_ws_mib_audit": 718
+ },
+ "nfcic": {
+  "parquet_files": 68,
+  "identical": true,
+  "summaries_equal": true,
+  "peak_ws_mib_frozen": 1833,
+  "peak_ws_mib_audit": 887
+ },
+ "nfton": {
+  "parquet_files": 6,
+  "identical": true,
+  "summaries_equal": true,
+  "peak_ws_mib_frozen": 2473,
+  "peak_ws_mib_audit": 981
+ }
+}

@@ -1,0 +1,50 @@
+{
+ "label": "Phase 8i audit: memory-budget violation, root cause and fix (no protected labels used)",
+ "limit_gib": 3.4,
+ "violations": {
+  "nfbot_window_build_peak_ws_mib": 4103,
+  "nfbot_ingest_peak_rss_gb": 3.69,
+  "why_missed": "watchdog sampled the CURRENT working set every 5 s; both peaks were shorter"
+ },
+ "root_cause": {
+  "window_build": "full captures were read in one-hour slices by repeated lazy Polars scans (scan_parquet(...).filter(hour).collect()); process memory grew with every scan while nothing was held",
+  "evidence_nfton_dev": {
+   "lazy_scan_only_commit_mib_after_slices": {"8": 996, "16": 1330, "24": 1603, "32": 1800, "40": 1885, "48": 2093, "56": 2300},
+   "pyarrow_row_group_reader_commit_mib_after_slices": {"8": 818, "16": 890, "24": 992, "32": 952, "40": 967, "48": 1004, "56": 1034},
+   "builder_add_only_commit_mib_after_40_slices": 688,
+   "frozen_build_trace": "working set rose ~40 MiB per 500k-row slice to 2.2 GB working set / 2.7 GB commit"
+  },
+  "nfbot_specific_metadata_only": {
+   "flows": 16933808,
+   "peak_hour_flows": 4050688,
+   "row_groups": 72,
+   "row_groups_overlapping_their_predecessor_in_time": 66,
+   "max_row_groups_overlapping_one_500k_slice": 26,
+   "note": "timestamps and Parquet metadata only; no labels read. Overlapping row groups mean each hourly scan decoded many groups; the 4.05M-flow hour was the largest slice"
+  },
+  "ruled_out": {
+   "slice_collect_alone": "0.78M-flow hourly collect on NF-ToN-IoT: +41 MiB working set",
+   "distinct_destinations": "NF-BoT-IoT-v3 has 291 destination addresses, NF-ToN-IoT 8,777: the destination sets are negligible",
+   "string_view_retention": "per-process test: no consistent difference between rechunk/shrink and none",
+   "concurrent_processes": "builds ran alone (watchdog and shell only)"
+  },
+  "ingest": "the CSV block size sets the peak: NF-UNSW-NB15-v3 ingest, 64 MiB blocks 1922 MiB working set (2223 MiB commit), 16 MiB blocks 993 MiB (1233 MiB commit), identical output"
+ },
+ "fix": {
+  "window_build": "slices of at most 500,000 flows cut on the 30 s window grid; each slice read one Parquet row group at a time and filtered at once (scripts/phase8i/build_windows.py)",
+  "ingest": "default CSV block 16 MiB (src/netsentinel/data/nf_v3.py)",
+  "enforcement": "scripts/run_capped.py: Windows Job Object on total committed memory (OS-enforced; allocations past the cap fail), exact PeakJobMemoryUsed recorded; watchdog now reads the per-process PEAK working set"
+ },
+ "validation_dev_networks_rebuilt_under_cap": {
+  "nfunsw": {"parquet_files": 6, "identical_to_frozen": true, "peak_ws_mib_frozen": 1015, "peak_ws_mib_audit": 718, "peak_commit_mib": 1070, "seconds": 19},
+  "nfcic": {"parquet_files": 68, "identical_to_frozen": true, "peak_ws_mib_frozen": 1833, "peak_ws_mib_audit": 887, "peak_commit_mib": 1262, "seconds": 187, "seconds_frozen": 99},
+  "nfton": {"parquet_files": 6, "identical_to_frozen": true, "peak_ws_mib_frozen": 2473, "peak_ws_mib_audit": 981, "peak_commit_mib": 1298, "seconds": 141, "seconds_frozen": 57}
+ },
+ "validation_synthetic_bot_shaped": {
+  "workload": "10.55M synthetic flows, 20 sources, 290 destinations, a 4.05M-flow hour, ~300k-row groups unsorted within each hour",
+  "cap_gib": 2.0,
+  "audit_code": {"exit": 0, "peak_ws_mib": 925, "peak_commit_mib": 1169, "slices": 22},
+  "frozen_code_6cfe97f": {"exit": "0xC0000409 (allocation failed at the cap)", "peak_commit_mib": "> 2048"}
+ },
+ "cost": "the bounded reader re-reads overlapping row groups: NF-CIC and NF-ToN-IoT builds take 1.9-2.5x longer"
+}

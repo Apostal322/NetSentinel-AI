@@ -7,9 +7,17 @@ truth per evaluation window). Phase 8i adds `cal_truth.parquet`: whether each UN
 calibration window holds an attack flow. It is needed only for the label-budget experiment
 (the labelled target windows are drawn from the calibration period).
 
-Inputs are streamed in time order so that a window spanning a day-file boundary is aggregated
-once (the Phase 8b builder split such windows in two): development parts file by file with the
-last window carried forward; full captures in one-hour slices across all files (`chunks`).
+Inputs are streamed in time order across all files, so that a window spanning a day-file
+boundary is aggregated once (the Phase 8b builder split such windows in two). Every slice
+handed to the builder holds at most `MAX_ROWS` flows, cut on the 30 s window grid
+(`window_ranges`), and is read one Parquet row group at a time, each filtered at once
+(`_read_range`), so the flow data in memory is bounded by the slice and row-group sizes, not
+by the traffic rate. (All timestamps and the per-window builder state still grow with the
+capture length.) The features do not depend on where the cuts fall (`aggregate` carries earlier
+destinations across slices). Before the Phase 8i audit, full captures were read in one-hour
+slices by repeated lazy Polars scans, whose memory grew with every scan, and development parts
+file by file; NF-BoT-IoT-v3 then peaked at 4.1 GB (docs/phase8i/AUDIT_TRAIL.md, item 7). The
+audit version reproduces the frozen windows of every development network exactly.
 
 Networks
   nfcic   NF-CIC-IDS2018-v3, development part (first 78% of each day), one domain per day,
@@ -21,7 +29,9 @@ Networks
           docs/phase8i/FREEZE.md exists (written when the protocol and code are frozen).
 
 Output: data/derived/phase8i/<network>/<domain>/ and reports/phase8i/windows_<network>.json
+(with --out DIR: DIR/<network>/<domain>/ and DIR/windows_<network>.json)
 Usage: uv run python scripts/phase8i/build_windows.py nfcic|nfunsw|nfton [--days a,b]
+       [--out DIR] [--max-rows N]
 """
 
 from __future__ import annotations
@@ -30,6 +40,7 @@ import argparse
 import json
 import sys
 import time
+from math import inf
 from pathlib import Path
 
 import polars as pl
@@ -52,6 +63,7 @@ NETWORKS = {
     "nfbot": ("data/interim/nf_bot_iot_v3", False, False),
 }  # (dir, dev_cut, per_day)
 NOISY = "infiltration"
+MAX_ROWS = 500_000  # flows per builder slice
 
 
 class LabelledCalBuilder(WindowBuilder):
@@ -74,15 +86,6 @@ class LabelledCalBuilder(WindowBuilder):
         ct.write_parquet(out / "cal_truth.parquet")
 
 
-def read(path: Path, dev_cut: bool) -> pl.DataFrame:
-    df = pl.read_parquet(path, columns=COLS)
-    if dev_cut and df.height:
-        e = df["flow_end_milliseconds"]
-        df = df.filter(pl.col("flow_end_milliseconds")
-                       < int(e.min() + DEV_SHARE * (e.max() - e.min())))  # fmt: skip
-    return with_flags(df)
-
-
 def with_flags(df: pl.DataFrame) -> pl.DataFrame:
     return df.with_columns(
         ((pl.col("client_tcp_flags") & 4) > 0).cast(pl.Int8).alias("cli_rst"),
@@ -91,44 +94,93 @@ def with_flags(df: pl.DataFrame) -> pl.DataFrame:
     ).sort("flow_end_milliseconds")
 
 
-def chunks(files: list[Path], dev_cut: bool):
-    """Time-ordered frames of COMPLETE windows.
-    dev_cut: whole files (each cut at 78% of its own span), each file's last window carried
-    into the next. Otherwise: all files scanned together in one-hour slices aligned to the
-    window grid (bounded memory for multi-million-flow days)."""
-    if dev_cut:
-        carry = None
-        for i, f in enumerate(files):
-            df = read(f, dev_cut)
-            if carry is not None:
-                df = pl.concat([carry, df]).sort("flow_end_milliseconds")
-            if df.height and i < len(files) - 1:
-                last = int(df["flow_end_milliseconds"].max()) // (W * 1000)
-                cut = pl.col("flow_end_milliseconds") // (W * 1000) < last
-                carry, df = df.filter(~cut), df.filter(cut)
-            if df.height:
-                yield df
-        return
-    lf = pl.scan_parquet([str(f) for f in files]).select(COLS)
-    span = lf.select(pl.col("flow_end_milliseconds").min().alias("lo"),
-                     pl.col("flow_end_milliseconds").max().alias("hi")).collect()  # fmt: skip
-    step = 3_600_000  # a multiple of the 30 s window: no window spans two slices
-    t = int(span["lo"][0]) // step * step
-    while t <= int(span["hi"][0]):
+def window_ranges(wins: pl.DataFrame, max_rows: int) -> list[tuple[int, int]]:
+    """[lo, hi) window-index ranges covering `wins` (columns win, len; sorted by win), each
+    holding at most `max_rows` flows, unless a single window holds more."""
+    out, lo, rows = [], None, 0
+    for w, n in wins.iter_rows():
+        if lo is not None and rows + n > max_rows:
+            out.append((lo, w))
+            lo, rows = None, 0
+        lo = w if lo is None else lo
+        rows += n
+    if lo is not None:
+        out.append((lo, int(wins["win"][-1]) + 1))
+    return out
+
+
+def _win_counts(frame: pl.DataFrame | pl.LazyFrame):
+    win = (pl.col("flow_end_milliseconds") // (W * 1000)).alias("win")
+    return frame.select(win).group_by("win").len().sort("win")
+
+
+def _in_range(lo: int, hi: int) -> pl.Expr:
+    e = pl.col("flow_end_milliseconds")
+    return (e >= lo * W * 1000) & (e < hi * W * 1000)
+
+
+def _cuts(files: list[Path], dev_cut: bool) -> dict[Path, float]:
+    """Per-file bound on the flow end: the development part ends at 78% of each file's own
+    span (as Phase 8h); full captures have none."""
+    if not dev_cut:
+        return {f: inf for f in files}
+    out = {}
+    for f in files:
         e = pl.col("flow_end_milliseconds")
-        df = lf.filter((e >= t) & (e < t + step)).collect()
-        if df.height:
-            yield with_flags(df)
-        t += step
+        lo, hi = pl.scan_parquet(f).select(e.min(), e.max().alias("hi")).collect().row(0)
+        out[f] = int(lo + DEV_SHARE * (hi - lo)) if lo is not None else -inf
+    return out
 
 
-def build(files: list[Path], dev_cut: bool, out: Path, source: str, split: str = "time") -> dict:
+def _ends(files: list[Path], cuts: dict[Path, float]) -> pl.LazyFrame:
+    e = pl.col("flow_end_milliseconds")
+    return pl.concat([pl.scan_parquet(f).select(e).filter(e < cuts[f]) for f in files])
+
+
+def _row_groups(files: list[Path], cuts: dict[Path, float]) -> list[tuple]:
+    """(ParquetFile, row group, min end, max end, file cut) from the Parquet statistics."""
+    import pyarrow.parquet as pq
+
+    out = []
+    for f in files:
+        pf = pq.ParquetFile(f)
+        ci = pf.schema_arrow.get_field_index("flow_end_milliseconds")
+        for g in range(pf.metadata.num_row_groups):
+            st = pf.metadata.row_group(g).column(ci).statistics
+            lo, hi = (st.min, st.max) if st is not None and st.has_min_max else (-inf, inf)
+            out.append((pf, g, lo, hi, cuts[f]))
+    return out
+
+
+def _read_range(rgs: list, lo: int, hi: int) -> pl.DataFrame:
+    """Flows ending in windows [lo, hi) (and before their file's cut), read row group by row
+    group and filtered at once: at most one decoded row group exists beside the slice being
+    assembled. (Repeated lazy scans grew by ~26 MB per slice on NF-ToN-IoT while holding
+    nothing: the audit's root cause.)"""
+    a, z = lo * W * 1000, hi * W * 1000
+    e = pl.col("flow_end_milliseconds")
+    return pl.concat([pl.from_arrow(pf.read_row_groups([g], columns=COLS))
+                      .filter(_in_range(lo, hi) & (e < cut))
+                      for pf, g, mn, mx, cut in rgs if mx >= a and mn < min(z, cut)])  # fmt: skip
+
+
+def chunks(files: list[Path], dev_cut: bool, max_rows: int = MAX_ROWS):
+    """Time-ordered frames of COMPLETE windows across all files (a window spanning a file
+    boundary comes in one frame), each of at most `max_rows` flows unless one window holds
+    more. Only the timestamps are ever loaded in full. dev_cut: each file cut at 78% of its
+    own span first (`_cuts`)."""
+    cuts = _cuts(files, dev_cut)
+    rgs = _row_groups(files, cuts)
+    for lo, hi in window_ranges(_win_counts(_ends(files, cuts)).collect(), max_rows):
+        # no local reference: the raw frame is freed as soon as with_flags has copied it
+        yield with_flags(_read_range(rgs, lo, hi))
+
+
+def build(files: list[Path], dev_cut: bool, out: Path, source: str, split: str = "time",
+          max_rows: int = MAX_ROWS) -> dict:  # fmt: skip
     """One domain from time-ordered files (`chunks`)."""
     t0 = time.perf_counter()
-    if dev_cut:
-        ends = pl.concat([read(f, dev_cut).select("flow_end_milliseconds") for f in files])
-    else:
-        ends = pl.scan_parquet([str(f) for f in files]).select("flow_end_milliseconds").collect()
+    ends = _ends(files, _cuts(files, dev_cut)).collect()
     if ends.height == 0:
         return {"status": "empty"}
     e = ends["flow_end_milliseconds"]
@@ -140,7 +192,7 @@ def build(files: list[Path], dev_cut: bool, out: Path, source: str, split: str =
     del ends, e
     b = LabelledCalBuilder(mid)
     n, labels, noisy = 0, {}, []
-    for df in chunks(files, dev_cut):
+    for df in chunks(files, dev_cut, max_rows):
         b.add(df)
         n += df.height
         ev = df.filter(pl.col("flow_end_milliseconds") >= mid)
@@ -149,6 +201,7 @@ def build(files: list[Path], dev_cut: bool, out: Path, source: str, split: str =
         noisy.append(ev.filter(pl.col("label") == NOISY)
                      .select(pl.col("ipv4_src_addr").alias("key"),
                              (pl.col("flow_end_milliseconds") // (W * 1000)).alias("win")))  # fmt: skip
+        del df, ev  # release this slice before the next one is loaded
     b.save(out, {"source": source, "dev_share": DEV_SHARE if dev_cut else 1.0, "split": split})
     nz = pl.concat(noisy).unique() if noisy else pl.DataFrame()
     if nz.height:
@@ -172,7 +225,10 @@ def main() -> None:
     ap.add_argument("network", choices=sorted(NETWORKS))
     ap.add_argument("--days")
     ap.add_argument("--protected-confirm", action="store_true")
+    ap.add_argument("--out", type=Path, help="output root instead of data/derived/phase8i")
+    ap.add_argument("--max-rows", type=int, default=MAX_ROWS)
     a = ap.parse_args()
+    out_root, reports = (a.out, a.out) if a.out else (OUT, REPORTS)
     if a.network == "nfbot" and not (
         a.protected_confirm and Path("docs/phase8i/FREEZE.md").exists()
     ):
@@ -188,17 +244,19 @@ def main() -> None:
         for f in files:
             if a.days and f.stem not in a.days.split(","):
                 continue
-            res[f.stem] = build([f], dev_cut, OUT / a.network / f.stem, f"{a.network} {f.stem}")
+            res[f.stem] = build([f], dev_cut, out_root / a.network / f.stem,
+                                f"{a.network} {f.stem}", max_rows=a.max_rows)  # fmt: skip
             print(f.stem, json.dumps(res[f.stem], default=str), flush=True)
     else:
         split = "median" if a.network == "nfunsw" else "time"
-        res["all"] = build(files, dev_cut, OUT / a.network / "all", a.network, split)
+        res["all"] = build(files, dev_cut, out_root / a.network / "all", a.network, split,
+                           a.max_rows)  # fmt: skip
         print(json.dumps(res["all"], default=str), flush=True)
-    REPORTS.mkdir(parents=True, exist_ok=True)
-    rep = REPORTS / f"windows_{a.network}.json"
+    reports.mkdir(parents=True, exist_ok=True)
+    rep = reports / f"windows_{a.network}.json"
     prev = json.loads(rep.read_text("utf-8"))["domains"] if rep.exists() else {}
     rep.write_text(json.dumps({"domains": {**prev, **res}, "seconds": time.perf_counter() - t0,
-                               "peak_rss_mb": peak_rss_mb()}, indent=1, default=str), "utf-8")  # fmt: skip
+                               "max_rows": a.max_rows, "peak_rss_mb": peak_rss_mb()}, indent=1, default=str), "utf-8")  # fmt: skip
 
 
 if __name__ == "__main__":

@@ -208,6 +208,37 @@ def test_builder_carries_boundary_window_and_labels_calibration(tmp_path, monkey
         assert res["flows"] == f1.height + f2.height
 
 
+def test_window_ranges_bound_rows_on_the_window_grid():
+    B = _load("build_windows")
+    wins = pl.DataFrame({"win": [1, 2, 5, 6, 7], "len": [3, 3, 9, 1, 1]})
+    assert B.window_ranges(wins, 6) == [(1, 5), (5, 6), (6, 8)]  # window 5 alone exceeds 6
+    assert B.window_ranges(wins, 100) == [(1, 8)]
+    assert B.window_ranges(wins.head(0), 6) == []
+
+
+@pytest.mark.parametrize("dev_cut", [False, True])
+def test_builder_output_does_not_depend_on_slice_size(tmp_path, monkeypatch, dev_cut):
+    """Row-bounded slices (audit fix) give the same windows as one slice per file."""
+    B = _load("build_windows")
+    monkeypatch.chdir(tmp_path)
+    rng = np.random.default_rng(0)
+    f1 = pl.concat([_flows(np.sort(rng.uniform(0, 900, 400)), src=f"10.0.0.{i}") for i in range(3)]
+                   + [_flows([30, 31, 620], src="10.0.0.66", label="dos")])  # fmt: skip
+    f1 = f1.with_columns(pl.Series("ipv4_dst_addr", [f"10.1.0.{i}" for i in
+                                                     rng.integers(0, 40, f1.height)]))  # fmt: skip
+    f2 = _flows(np.sort(rng.uniform(880, 1500, 300)), src="10.0.0.1")
+    f1.sort("flow_end_milliseconds").write_parquet(tmp_path / "2020-01-01.parquet")
+    f2.write_parquet(tmp_path / "2020-01-02.parquet")
+    files = [tmp_path / "2020-01-01.parquet", tmp_path / "2020-01-02.parquet"]
+    for name, rows in (("big", 10**9), ("small", 25)):
+        B.build(files, dev_cut, tmp_path / name, "test", max_rows=rows)
+    for part in ("cal_clean", "cal_unlabelled", "eval_clean", "eval_unlabelled", "truth",
+                 "cal_truth"):  # fmt: skip
+        big = pl.read_parquet(tmp_path / "big" / f"{part}.parquet").sort("key", "win")
+        small = pl.read_parquet(tmp_path / "small" / f"{part}.parquet").sort("key", "win")
+        assert big.height > 0 and big.equals(small), part
+
+
 def test_a4_margin_shortcut_equals_full_prediction():
     """A4's score = stored source margin + the new trees' margin (exp_a.fit_corrections)."""
     import lightgbm as lgb

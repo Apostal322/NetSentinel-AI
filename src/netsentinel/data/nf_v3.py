@@ -150,12 +150,14 @@ def ingest_nf_zip(
     out_dir: str | Path,
     utc_offset_hours: float,
     family_map: dict[str, str] | None = None,
-    block_bytes: int = 64 << 20,
+    block_bytes: int = 16 << 20,
     verify: bool = True,
     label_map: dict[str, str] | None = None,
 ) -> NFIngestReport:
     """`label_map` renames canonicalised attack names (e.g. `dos_attacks_hulk` -> `dos_hulk`,
-    aligning NF-IDS2018 with the CIC labels); `family_map` maps final labels to families."""
+    aligning NF-IDS2018 with the CIC labels); `family_map` maps final labels to families.
+    `block_bytes` sets the peak memory: on NF-UNSW-NB15-v3, 64 MiB blocks peaked at 1.9 GB
+    and 16 MiB at 1.0 GB, with identical output (Phase 8i audit)."""
     import pyarrow as pa
     import pyarrow.csv as pacsv
     import pyarrow.parquet as pq
