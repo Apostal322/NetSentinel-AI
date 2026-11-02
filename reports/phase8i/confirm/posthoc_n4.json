@@ -1,6 +1,36 @@
 {
- "label": "[E post-hoc] N4 diagnostic; verdicts unchanged",
+ "label": "[E post-hoc] N4 diagnostic, A1 seed 0; verdicts unchanged",
  "T0": 0.4978674826907224,
+ "host_feature_medians": {
+  "host": "192.168.100.46",
+  "hold": {
+   "new_dst_frac": 0.0,
+   "log_flows": 1.3862943611198906,
+   "log_pkts": 9.23815007261545,
+   "log_dst_hosts": 0.6931471805599453,
+   "log_dst_ports": 0.6931471805599453,
+   "rst_frac": 0.0,
+   "udp_share": 0.6666666666666666
+  },
+  "eval_alert": {
+   "new_dst_frac": 0.0,
+   "log_flows": 1.3862943611198906,
+   "log_pkts": 9.412160527398468,
+   "log_dst_hosts": 0.6931471805599453,
+   "log_dst_ports": 0.6931471805599453,
+   "rst_frac": 0.0,
+   "udp_share": 0.6666666666666666
+  },
+  "eval_no_alert": {
+   "new_dst_frac": 0.0,
+   "log_flows": 1.3862943611198906,
+   "log_pkts": 9.861884002681053,
+   "log_dst_hosts": 0.6931471805599453,
+   "log_dst_ports": 0.6931471805599453,
+   "rst_frac": 0.0,
+   "udp_share": 0.6666666666666666
+  }
+ },
  "benign_eval_windows": 620,
  "fpr": 0.20967741935483872,
  "fpr_by_entity": [
@@ -30,12 +60,12 @@
    "fpr": 0.0
   },
   {
-   "key": "52.35.21.241",
+   "key": "35.162.156.78",
    "windows": 1,
    "fpr": 0.0
   },
   {
-   "key": "35.162.156.78",
+   "key": "52.35.21.241",
    "windows": 1,
    "fpr": 0.0
   },

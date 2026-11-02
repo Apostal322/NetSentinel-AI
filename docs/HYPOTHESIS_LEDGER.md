@@ -178,10 +178,10 @@ pre-registered.
 | Claim | Status | Evidence |
 |---|---|---|
 | I1: 25 labelled target attack windows (A4 continued boosting) restore detection on an unseen network | **refuted (confirmatory, n = 1 network)** | N4: median recall 0.923 but FPR 9.8%; 2.5th percentile 0.745 ≤ zero-label recall 0.839 |
-| I2: a score-shift statistic marks blocks whose false-alert rate overruns | **not evaluable (confirmatory)** | the deployed detector raised no alerts on N4, so no block overran; development block AUC 0.72 [0.54, 0.92] [E] |
+| I2: a score-shift statistic marks blocks whose false-alert rate overruns | **not evaluable (confirmatory)** | the deployed detector raised no alerts on N4, so no block overran. Development pooled block AUC 0.72 [0.54, 0.92] [E] is driven by between-domain differences: within NF-ToN-IoT 0.40; without it, the sample-size comparator is best (0.93) |
 | I3: removing the top-2 network-identifying features improves cross-network recall | **refuted (confirmatory and development)** | N4: +0.02 recall at FPR 19.0% vs 11.7%; development mean change −0.065; network identity AUC unchanged (0.985 → 0.984) |
-| A second source network improves zero-label transfer | **suggestive (exploratory)** | NF-UNSW ROC-AUC 0.97 with NF-CIC + NF-ToN-IoT sources vs 0.39 with NF-CIC alone (Phase 8h); shared institution not excluded |
-| Benign-calibrated thresholds keep about 1% FPR on a new network | **refuted (confirmatory, descriptive)** | N4 A1 FPR 7.1–21.0%; development NF-ToN-IoT 14.5%, NF-UNSW 3.7% |
-| N4 false alerts reflect a network-wide rate | **refuted (post-hoc)** | all A1 false alerts come from one label-benign host on one flood day; the benign evidence is essentially 2 hosts |
+| The Phase 8i source setup improves zero-label transfer | **suggestive (exploratory, cause not isolated)** | NF-UNSW ROC-AUC 0.97 vs 0.39 in Phase 8h; the source set, cap, weighting and strict calibration all changed at once; shared institution not excluded |
+| Benign-calibrated thresholds keep about 1% FPR on a new network | **refuted (confirmatory, descriptive)** | N4 A1 FPR 7.1–21.0%; development NF-ToN-IoT 14.5%, NF-UNSW 3.7%. Exploratory exception: non-selected A3 at Ka = 5 reached 1.3% median FPR on N4 (wide spread) |
+| N4 false alerts reflect a network-wide rate | **refuted (post-hoc, seed 0)** | all 130 A1 false alerts come from one label-benign host (125 on the main flood day); the benign evidence is essentially 2 hosts |
 | Late records degrade telemetry health | **implemented, tested** | `late_records` flag on the first late record; CTU-13 scenario 10 lost 10 alerts to 0.0008% late records |
 

@@ -106,9 +106,9 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 | Question | Data | Result | Role |
 |---|---|---|---|
 | Do 25 labelled target attack windows restore detection? (I1) | NF-BoT-IoT-v3 | No: recall 0.92 but FPR 9.8%; not better than zero-label (0.84) at the 2.5th percentile | C |
-| Does a shift score mark blocks that overrun their false-alert budget? (I2) | NF-BoT-IoT-v3 / 118 development blocks | Not evaluable on N4 (the deployed detector raised no alerts); development AUC 0.72 | C / E |
+| Does a shift score mark blocks that overrun their false-alert budget? (I2) | NF-BoT-IoT-v3 / 118 development blocks | Not evaluable on N4 (the deployed detector raised no alerts); development pooled AUC 0.72, driven by between-domain differences; it does not beat the sample-size comparator | C / E |
 | Does removing network-identifying features help? (I3) | NF-BoT-IoT-v3 / 3 development networks | No: +0.02 recall at 19% FPR; development −0.065 | C / E |
-| Zero-label transfer with two source networks | NF-UNSW | ROC-AUC 0.97 (0.39 with one source network in Phase 8h) | E |
+| Zero-label transfer with the Phase 8i source setup | NF-UNSW | ROC-AUC 0.97 (0.39 in Phase 8h); cause not isolated (source set, cap, weighting and calibration all changed) | E |
 | Why thresholds overran | N4 post-hoc, attribution | N4: one benign host dominates calibration and evaluation; NF-ToN-IoT: `new_dst_frac` drives false alerts (hypothesis) | E |
 
 ## Telemetry

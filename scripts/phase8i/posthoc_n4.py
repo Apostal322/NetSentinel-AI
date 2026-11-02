@@ -35,7 +35,20 @@ def main() -> None:
     cal_ent = cal.group_by("key", "part").len().sort("len", descending=True)
     cal_days = (cal.with_columns((pl.col("window_end_ms") // 86_400_000).alias("day"))
                 .group_by("day").len().sort("day"))  # fmt: skip
-    out = {"label": "[E post-hoc] N4 diagnostic; verdicts unchanged", "T0": thr,
+    host = by_ent["key"][0]
+    cols = ["new_dst_frac", "log_flows", "log_pkts", "log_dst_hosts", "log_dst_ports", "rst_frac",
+            "udp_share"]  # fmt: skip
+
+    def medians(df: pl.DataFrame) -> dict:
+        return df.select([pl.col(c).median() for c in cols]).to_dicts()[0] if df.height else {}
+
+    he = ev.filter(pl.col("key") == host)
+    host_medians = {"host": host,
+                    "hold": medians(d["_hold"].filter(pl.col("key") == host)),
+                    "eval_alert": medians(he.filter(pl.col("alert"))),
+                    "eval_no_alert": medians(he.filter(~pl.col("alert")))}  # fmt: skip
+    out = {"label": "[E post-hoc] N4 diagnostic, A1 seed 0; verdicts unchanged", "T0": thr,
+           "host_feature_medians": host_medians,
            "benign_eval_windows": ben.height, "fpr": float(ben["alert"].mean()),
            "fpr_by_entity": by_ent.to_dicts(), "fpr_by_day": by_day.to_dicts(),
            "cal_by_entity": cal_ent.to_dicts(), "cal_days": cal_days.to_dicts(),

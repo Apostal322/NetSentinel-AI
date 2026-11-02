@@ -76,20 +76,27 @@ whether three remedies help on an unseen network while keeping false alerts near
 **Findings:**
 1. **A target threshold is indispensable.** The source-calibrated threshold (A0) gives
    19.9–47.4% FPR on every development network except NF-UNSW (and 39–51% on N4). That network's benign scores happen to sit low.
-2. **Zero-label transfer is far better than in Phase 8h, for a reason that is not
-   adaptation.** NF-UNSW A1: ROC-AUC 0.974, recall 0.971 (FPR 3.7%), against ROC-AUC 0.39 in
-   Phase 8h. The difference is the source set: Phase 8h trained on NF-CIC alone, Phase 8i on
-   NF-CIC + NF-ToN-IoT. Both NF-UNSW and NF-ToN-IoT were captured at UNSW Canberra, so a
-   shared-institution effect cannot be excluded (section 6).
+2. **Zero-label transfer is far better than in Phase 8h, and the cause is not isolated.**
+   - NF-UNSW A1: ROC-AUC 0.974, recall 0.971 (FPR 3.7%), against ROC-AUC 0.39 in Phase 8h.
+   - The improvement coincides with adding NF-ToN-IoT as a source network (Phase 8h trained
+     on NF-CIC alone). Three other things changed at the same time: the training cap (200k →
+     50k per domain), the weighting (network-balanced), and benign calibration (attacker
+     entities removed). No ablation isolates the source set.
+   - Both NF-UNSW and NF-ToN-IoT were captured at UNSW Canberra, so a shared-institution
+     effect cannot be excluded either.
 3. **The registered I1 comparison (A4 vs A1) helps where A1 fails, and does nothing where the
    failure is in ranking.**
    - **Gains:**
      - 03-02 Bot: 0.36 → 0.99. A1 was seed-unstable: 0.86 / 0.05 / 0.16.
      - NF-ToN-IoT: 0.36 → 0.59, but still at about 11% FPR.
      - 02-22: 0.10 → 0.85. Its labels mark victims, and the labelled hosts recur in evaluation.
-   - **No change:** 02-20 DDoS-LOIC stays at 0.085 at every budget. The source model scores
-     those attacks *below* benign (ROC-AUC 0.225), and 50 extra trees on up to 100 labels do
-     not reverse that.
+   - **No change for A4:** 02-20 DDoS-LOIC stays at 0.085 in all 60 draws. The source model
+     scores those attacks *below* benign (ROC-AUC 0.225), and 50 extra trees on up to 100
+     labels do not reverse that.
+   - **The target-only model A5 can recover it, but unstably.** At Ka = 5 its median recall is
+     0.906 (FPR 0.65%), with recall ≥ 0.8 in 15 of 20 draws. But this falls to 8 of 20 draws
+     at Ka = 25 (median 0.009) and 4 of 20 at Ka = 100. The failure lies in correcting a
+     backwards-ranking source model, not in labels as such.
 4. **Label diversity matters.** With all 25 labels from one attacker, NF-ToN-IoT A4 recall
    falls from 0.59 to 0.33. Its label pool comes from different attack types (scanning,
    DoS/DDoS and injection occur only in the calibration half, per the ingest counts) than its
@@ -113,8 +120,17 @@ whether three remedies help on an unseen network while keeping false alerts near
 | S_n: 1 / n_hold (comparator) | 0.646 | 0.489–0.969 | 21.4% |
 | random abstention | 0.5 | — | 22.9% |
 
-- The shift scores beat the sample-size comparator and random abstention. The intervals are
-  wide, because most blocks come from few domains.
+- **The pooled AUCs are driven by differences between domains, not by separating good blocks
+  from bad ones within a domain.** NF-ToN-IoT supplies 47 of the 118 blocks and 19 of the 27
+  overruns.
+  - Within NF-ToN-IoT, S_score has AUC 0.40 (worse than chance), and τ covers only 2 of its
+    47 blocks: in practice it abstains on that whole network.
+  - Without NF-ToN-IoT (71 blocks, 8 overruns), the sample-size comparator S_n is best (0.93),
+    ahead of S_cal 0.87, S_feat 0.77 and S_score 0.72.
+  - S_cal is constant within each domain, yet it has the best pooled AUC.
+  - The domain-bootstrap intervals overlap.
+  - **No shift score demonstrably beats the sample-size comparator.** (These sensitivity
+    analyses are exploratory and were added after review.)
 - **Selected for the test:** τ = 0.70095 (S_score). Under the I2 policy, alerts are never
   suppressed: abstention only withdraws the false-alert budget claim.
 - **The source model (A1) is different.** On the 8 cross-network units (76 blocks), S_score is
@@ -134,15 +150,17 @@ whether three remedies help on an unseen network while keeping false alerts near
   log_up_bytes and med_log_dur (sources N2+N3), rst_frac and log_down_bytes (N1+N3),
   log_up_bytes and log_dst_ports (N1+N2).
 - **Within one network** (NF-CIC leave-one-day-out), C1_k2 and C2 cost at most 0.002 recall.
-  The registered rule therefore selected C1_k2 (the less negative gain), with a low prior.
+  Raw recall is 0.97–1.00 on every day, so this check sits at a ceiling and says little. The
+  registered rule therefore selected C1_k2 (the less negative gain), with a low prior.
 - **Negative control:** a network classifier on benign windows. Its macro ROC-AUC barely
   moves: raw 0.985, C1_k2 0.984, no-volume 0.982. C2 raises it to 1.000. The mechanism was
   not investigated; per-domain centring evidently adds, rather than removes, a
   domain-specific signal.
-  **Network identity is spread across all features.** Removing a few does not remove it,
-  which explains why C1 cannot work as intended.
-- **The deployed robust detector is complementary to the supervised model:** it is the best
-  scorer on NF-ToN-IoT (0.958 at 7.4% FPR) and the worst on NetFlow NF-CIC and NF-UNSW.
+  **Removing the tested feature subsets does not remove network identity.** That is
+  consistent with C1 failing, though other subsets were not tested.
+- **The deployed robust detector behaves very differently from the supervised model:** it is
+  the strongest on NF-ToN-IoT (0.958 at 7.4% FPR) and weak on NF-CIC (network mean 0.11; 0.56
+  on 02-16) and NF-UNSW (0).
 
 ## 5. Confirmatory evaluation on NF-BoT-IoT-v3 [C]
 
@@ -151,14 +169,15 @@ whether three remedies help on an unseen network while keeping false alerts near
   (`reports/phase8i/confirm/verdicts.json`).
 - **N4 at a glance:**
   - **Evaluation:** 3,449 windows over 422 h (2018-06-04 to 06-19, mostly 06-04): 1,579 attack
-    windows from 8 attackers (DoS, DDoS, theft), and 620 label-benign windows.
+    windows from 8 entities with attack-labelled windows (two address groups; roles not
+    independently verified), and 620 label-benign windows.
   - **Calibration (May):** benign-train 178 windows, threshold hold-out 781, labelled attack
     pool 7,230 windows from 8 entities (mostly reconnaissance).
   - Only 16 entities in total.
 
 | hypothesis | frozen choice | result | registered verdict |
 |---|---|---|---|
-| **I1** label budget | A4, Ka = 25 | median recall 0.923 (2.5th pct 0.745) at median FPR **9.8%**; zero-label A1 recall 0.839 | **failure** (2.5th pct ≤ A1; FPR > 2%) |
+| **I1** label budget | A4, Ka = 25 | median recall 0.923 (2.5th pct 0.745) at median FPR **9.8%**; zero-label A1 recall 0.839 (seed mean; seed 0, on which A4 is built: 0.847 at 21.0% FPR) | **failure** (2.5th pct ≤ A1; FPR > 2%) |
 | **I2** shift-aware abstention | B-rz, τ = 0.70095 | B-rz raised **no** alerts on N4 (recall 0, FPR 0, ROC-AUC 0.93); 5 eligible blocks, none overrunning; τ covered 20% of blocks, holding 67% of attack windows in the abstained blocks | **not evaluable** (no overrunning blocks, amendment A4) |
 | **I3** representation | C1_k2 | recall 0.858 vs raw 0.839, at FPR **19.0%** vs 11.7% | **failure** |
 
@@ -167,17 +186,26 @@ whether three remedies help on an unseen network while keeping false alerts near
   development range of 0.008 (NF-ToN-IoT) to 0.995 (NF-CIC 02-14). Entity recall 0.875–1.0.
 - **Realised FPR at the benign-calibrated threshold:** 7.1–21.0% across seeds.
 - **No-volume:** recall 0.47–0.51 at 6.9% FPR. **C2:** unstable across seeds (0.44–0.85).
-- **Every method that alerts overran the false-alert budget on N4.** The deployed robust
+- **Not the registered choices [E, exploratory on N4]:**
+  - A3 (logistic correction) at Ka = 5 reached median recall 0.944 at median FPR **1.29%**
+    (14 of 20 draws ≤ 2%). Its draw spread is wide: the 2.5th percentile of recall is 0.36.
+  - A3 single-entity at Ka = 25: 0.943 at 1.6%.
+  - C2, seeds 0 and 2: FPR 2.1%, at recall 0.44–0.46.
+  - A3 was not selected on development data, where it collapsed on NF-UNSW. These are
+    observations, not confirmations.
+- **The registered choices all overran the budget, as did zero-label A1.** The deployed robust
   detector kept its budget only by alerting on nothing.
 
 **Post-hoc diagnostic [E, after the verdicts; changes none].**
-- **Every false alert of the A1 model on N4 comes from one label-benign host**
-  (192.168.100.46): 40% of its 325 evaluation windows, all on 2018-06-04, the main DoS/DDoS
-  day.
-- **That host dominates calibration:** 503 of the 781 hold-out windows. Its alerting windows
-  have nearly the same feature medians as its calibration windows (`log_pkts` 9.41 vs 9.24;
-  `new_dst_frac` 0). Small shifts move its clustered scores across a threshold that its own
-  windows set.
+- **Every false alert of the A1 model (seed 0, FPR 21.0%) on N4 comes from one label-benign
+  host** (192.168.100.46): 130 alerts, 40% of its 325 evaluation windows. 125 of the 130 fall
+  on 2018-06-04, the main DoS/DDoS day, and 5 on 06-18/19. Seeds 1 and 2 have 7.1% FPR; their
+  alerts were not broken down.
+- **That host dominates calibration:** 503 of the 781 hold-out windows.
+  - Its alerting windows have nearly the same feature medians as its hold-out windows:
+    `log_pkts` 9.41 vs 9.24, `new_dst_frac` 0 (saved in `posthoc_n4.json`).
+  - A plausible reading: small shifts move its clustered scores across a threshold that its
+    own windows set.
 - The benign evidence is therefore essentially **two hosts**. The realised FPR measures one
   host's behaviour on one flood day. It is not a network-wide false-alert rate.
 - A host that is busy during a flood (target, relay or bystander) can carry the dataset's
@@ -202,13 +230,13 @@ whether three remedies help on an unseen network while keeping false alerts near
 
 | failure | units | category | evidence |
 |---|---|---|---|
-| DDoS-LOIC missed at every budget | NF-CIC 02-20 | 1 poor ranking | ROC-AUC 0.225 (attacks scored below benign); labels do not fix it |
+| DDoS-LOIC missed by the source model and by A4 at every budget | NF-CIC 02-20 | 1 poor ranking | ROC-AUC 0.225 (attacks scored below benign); A4 0.085 in all draws; target-only A5 recovers it in some draws only (15/20 at Ka = 5, 4/20 at Ka = 100) |
 | source threshold unusable | all except NF-UNSW | 2 threshold miscalibration | A0 FPR 19.9–51% |
 | benign-calibrated threshold overruns | NF-ToN-IoT, NF-UNSW, N4 | 2 threshold miscalibration + 5 domain shift (within the target over time) | A1 FPR 14.5%, 3.7%, 7–21%; NF-ToN-IoT driven by `new_dst_frac`; N4 by one host |
 | N4 FPR rests on one host | N4 | 9 insufficient independent evidence + 4 label ambiguity | 2 benign hosts; alerts on a flood day |
 | seed-unstable zero-label detection | NF-CIC 03-02 | 6 model uncertainty | A1 recall 0.86 / 0.05 / 0.16 across seeds |
 | representation changes do not remove network identity | all | 5 domain shift | identity AUC 0.98–1.00 under every variant |
-| robust detector silent on N4 and NetFlow | N4, NF-CIC, NF-UNSW | 2 threshold miscalibration | ROC-AUC 0.91–0.93 but recall 0–0.11 at T0 |
+| robust detector nearly silent on N4 and most NetFlow units | N4, NF-CIC (except 02-16: 0.56), NF-UNSW | 2 threshold miscalibration | ROC-AUC 0.91–0.93 but network-level recall 0–0.11 at T0 |
 
 ## 7. Interpretation
 
@@ -217,14 +245,17 @@ whether three remedies help on an unseen network while keeping false alerts near
    - This matches Phase 8h's four negative results: the problem is not solved by a few
      labels, by feature removal, or by an abstention rule.
 2. **The binding constraint is calibration, not ranking.**
-   - Ranking on N4 was moderate and labels raised recall to about 0.92. But no method kept
-     its false alerts near 1%, because the benign calibration did not represent the
-     evaluation period.
+   - Ranking on N4 was moderate, and labels raised recall to about 0.92. But none of the
+     registered methods kept its false alerts near 1%, because the benign calibration did not
+     represent the evaluation period.
+   - A non-selected method (A3, Ka = 5) did reach 0.94 recall at 1.3% median FPR, with a wide
+     spread across draws. That is a lead, not evidence.
    - On N4 the benign evidence was a single dominant host. Phases 8g and 8h saw the same
      pattern: the operating threshold, not the model, decides whether a detector is usable.
 3. **What did help, on development data only [E]:**
-   - **Adding a second source network.** NF-UNSW ROC-AUC rose from 0.39 to 0.97. This may be
-     a shared-institution effect.
+   - **The Phase 8i source setup** (two source networks, network-balanced weights, strict
+     calibration, 50k cap). NF-UNSW ROC-AUC rose from 0.39 to 0.97. The contributing change
+     is not isolated, and a shared-institution effect is possible.
    - **Labels where the zero-label model was unstable or blind,** but not where it ranked
      attacks backwards.
    - Neither effect is confirmed.
@@ -232,9 +263,9 @@ whether three remedies help on an unseen network while keeping false alerts near
    the shift score abstained on 80% of blocks, which held 67% of the attack windows. A policy
    that abstains on most of an attack period cannot be called reliable, even when it is
    honest about it.
-5. **Network identity is diffuse.** No subset of the 12 features carries it, so feature
-   removal (C1) and per-domain centring (C2) cannot remove it. A representation change would
-   need to act on all features at once, or the model needs target data.
+5. **Network identity appears diffuse.** Removing the top 1–3 identifying features, or the 4
+   volume features, leaves identity AUC at 0.98 or above. Only those subsets were tested.
+   Within the tested variants, removal (C1) and per-domain centring (C2) did not remove it.
 
 **Missing evidence:**
 - more than one fresh network, ideally from a different institution;
@@ -248,6 +279,32 @@ whether three remedies help on an unseen network while keeping false alerts near
 |---|---|
 | Phase 8i research closure | **GO.** Protocol frozen before the test, all runs complete, failures preserved. |
 | Independent confirmation of any Phase 8i method | **NO-GO.** All registered confirmatory tests failed or were not evaluable. |
-| Deploying any candidate method | **NO-GO.** No method kept false alerts within budget on the fresh network. The deployed detector is unchanged. |
+| Deploying any candidate method | **NO-GO.** No registered method kept false alerts within budget on the fresh network; the one exploratory exception (A3, Ka = 5) is unconfirmed. The deployed detector is unchanged. |
 | Publishing the research report | **GO, after operator review** (local commits only; no push without authorization). |
 | Engineering fix (late-record health) | **GO.** Tested; it changes only the health flag. |
+
+## 9. Independent review and deviations
+
+- **The review.** An independent review pass checked the code, the JSON and the git ordering.
+  It found **no bug that changes a registered verdict**, and confirmed that the
+  pre-registration, amendments, freeze and protected test happened in the recorded order.
+- **Upheld findings, corrected above:**
+  1. The I2 development claim was overstated; added the within- and without-NF-ToN-IoT
+     sensitivity analysis.
+  2. The blanket "every method overran on N4" was wrong: the non-selected A3 reached 1.3%
+     FPR.
+  3. "Labels do not fix DDoS-LOIC" was wrong: target-only A5 sometimes recovers it.
+  4. The NF-UNSW gain was attributed to the source set alone, though other changes coincide
+     with it.
+  5. The post-hoc "all on 06-04" was wrong (125 of 130), and the analysis is seed 0 only.
+  6. The identity-diffusion wording claimed more than the tested subsets show.
+- **Deviations from the pre-registration** (also in AUDIT_TRAIL.md):
+  - The moving-block bootstrap intervals for I2/I3 on N4 were not computed. The verdict
+    rules are effect-size rules, so no verdict depends on them.
+  - The NF-ToN-IoT "initiator check" was a per-source attribution: 53% of attack windows come
+    from 192.168.1.30–38. 192.168.1.193 contributes 36% (attack share 0.58) and is
+    unexplained. N4 got no label audit.
+  - The label-draw generator seed is `1_000_003·draw + Ka (+7)`, not the draw index.
+  - `pool_short` is checked on draw 0 only.
+  - The first evaluation hour is discarded rather than used for shift scores: the scores
+    compare each block with the hold-out.

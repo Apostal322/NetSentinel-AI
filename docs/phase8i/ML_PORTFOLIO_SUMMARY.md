@@ -65,8 +65,12 @@ false alerts, not ROC-AUC.
   - **N4 (post-hoc):** every false alert came from one benign host, so the fresh network's
     benign evidence was essentially two hosts.
   - **NF-ToN-IoT:** a history-dependent novelty feature drove false alerts (a hypothesis).
-- **Exploratory:** adding a second source network lifted zero-label cross-network ROC-AUC from
-  0.39 to 0.97 on NF-UNSW. A shared-institution effect is not excluded.
+- **Exploratory:** with the Phase 8i source setup (a second source network, among other
+  changes), zero-label cross-network ROC-AUC on NF-UNSW rose from 0.39 to 0.97. The cause is
+  not isolated, and a shared-institution effect is not excluded.
+- **Exploratory:** a non-selected variant (logistic correction, 5 labels) reached 0.94 recall
+  at 1.3% median false alerts on the fresh network, with a wide spread across label draws.
+  It is a lead, not a result.
 
 **What it shows:**
 - Turning an open research question into falsifiable, pre-registered tests.
@@ -92,8 +96,8 @@ LightGBM, scikit-learn, polars)
   models) and shift-aware selective prediction. Evaluated both at a calibrated 1%
   false-alert operating point.
 - Ran a pre-registered evaluation on a protected, never-opened network (code-enforced freeze).
-  The remedies failed or were not evaluable, and I traced the failure to threshold
-  calibration on two benign hosts rather than to model ranking.
+  The remedies failed or were not evaluable. A post-hoc diagnostic traced the false alerts to
+  a benign calibration population of essentially two hosts.
 - Fixed a streaming telemetry-health gap: dropped late records had left health "ok" while
   10 alerts were lost. Added regression tests.
 
@@ -106,7 +110,8 @@ LightGBM, scikit-learn, polars)
   - Labels, abstention and feature removal do not fix cross-network detection on the fresh
     network.
   - Calibration on a non-representative benign population is the dominant failure.
-  - Network identity is spread across all 12 features, so subset removal cannot remove it.
+  - Removing the most network-identifying features (top 1–3, or the volume group) does not
+    remove network identity (ROC-AUC ≥ 0.98).
 - **Suggested next work:**
   - a calibration-age study isolating the history-dependent `new_dst_frac` feature;
   - a test network from a different institution, with verified benign hosts.

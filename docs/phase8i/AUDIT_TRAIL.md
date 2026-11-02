@@ -50,3 +50,18 @@ A chronological record of what was done, in what order, and every deviation. Tim
    3.28 GB and did not intervene. The run completed normally, with no effect on data or
    results. The ingest reads a 3.5 GB CSV in one pass. A chunked ingest is a follow-up for
    any larger archive.
+5. **N4 window build above the memory limit.** `windows_nfbot.json` records a peak of
+   4.10 GB for the NF-BoT-IoT-v3 window build, above the 3.4 GB limit. The 5 s watchdog
+   sampling missed it, as with the ingest (item 4). The run completed and the results are
+   unaffected. Both peaks were short; a finer sampling interval or an in-process RSS cap is
+   the follow-up.
+6. **Independent review (after the confirmatory run).** A review pass found no bug that changes
+   a verdict, and upheld several report overstatements. Corrected in FINAL_REPORT.md
+   section 9, which also lists these unregistered deviations:
+   - the N4 bootstrap intervals for I2/I3 were not computed;
+   - the NF-ToN-IoT label audit is a per-source attribution, not an initiator check
+     (192.168.1.193 contributes 36% of attack windows, unexplained);
+   - N4 got no label audit;
+   - the draw-seed formula differs from "draw index";
+   - `pool_short` is checked on draw 0 only;
+   - the first evaluation hour is discarded, not used for the shift scores.
