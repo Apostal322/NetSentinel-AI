@@ -103,3 +103,57 @@ def test_bootstrap_ignores_units_without_verified_benign_windows():
              {"unit": "b", "host_fp": np.zeros(0), "host_n": np.zeros(0)}]  # fmt: skip
     assert np.isclose(CA.two_level_ucb(units, {"a": "F1", "b": "F1"}, rng), 0.01)
     assert CA.two_level_ucb(units[1:], {"b": "F1"}, rng) is None
+
+
+TM = _load("telemetry_maps")
+
+
+def test_tstat_header_names_are_cleaned(tmp_path):
+    p = tmp_path / "tcp_complete.csv"
+    p.write_text("#15#c_ip:1,c_port:2,first:29,timestamp,label\n1.1.1.1,5,1.0,x,HTTP\n", "utf-8")
+    assert TM.tstat_columns(p) == ["c_ip", "c_port", "first", "timestamp", "label"]
+
+
+def test_tstat_tcp_maps_direction_headers_and_resets():
+    import polars as pl
+
+    row = {"first": "1000.5", "last": "3000.0", "c_ip": "10.0.0.1", "s_ip": "10.0.0.2",
+           "s_port": "443", "c_bytes_all": "100", "s_bytes_all": "0", "c_pkts_all": "3",
+           "s_pkts_all": "0", "durat": "1999.5", "c_rst_cnt": "0", "s_rst_cnt": "2",
+           "label": "service_scan"}  # fmt: skip
+    out = TM.tstat_tcp(pl.DataFrame([row]))
+    r = out.row(0, named=True)
+    assert (r["ipv4_src_addr"], r["dst_port"], r["protocol"]) == ("10.0.0.1", 443, 6)
+    assert r["in_bytes"] == 100 + 40 * 3 and r["out_bytes"] == 0 and r["out_pkts"] == 0
+    assert (r["cli_rst"], r["srv_rst"], r["is_attack"]) == (0, 1, 1.0)
+    assert r["flow_end_milliseconds"] == 3000
+
+
+def test_tstat_udp_end_covers_both_sides_and_benign_labels():
+    import polars as pl
+
+    rows = [{"c_ip": "a", "s_ip": "b", "s_port": "53", "c_first_abs": "1000", "c_durat": "0",
+             "c_bytes_all": "60", "c_pkts_all": "1", "s_first_abs": "1005", "s_durat": "10",
+             "s_bytes_all": "90", "s_pkts_all": "1", "label": "DNS"},
+            {"c_ip": "a", "s_ip": "b", "s_port": "53", "c_first_abs": "2000", "c_durat": "5",
+             "c_bytes_all": "60", "c_pkts_all": "1", "s_first_abs": "0", "s_durat": "0",
+             "s_bytes_all": "0", "s_pkts_all": "0", "label": "something new"}]  # fmt: skip
+    out = TM.tstat_udp(pl.DataFrame(rows))
+    assert out["flow_end_milliseconds"].to_list() == [1015, 2005]
+    assert out["out_pkts"].to_list() == [1.0, 0.0]
+    assert out["is_attack"].to_list() == [0.0, 1.0]  # an unknown label counts as an attack
+
+
+def test_zeek_conn_maps_ip_bytes_resets_and_labels():
+    import polars as pl
+
+    df = pl.DataFrame({"ts": [10.0, 20.0], "duration": [1.5, None], "src_ip_zeek": ["a", "c"],
+                       "dest_ip_zeek": ["b", "d"], "dest_port_zeek": [22, 53],
+                       "proto": ["tcp", "udp"], "orig_ip_bytes": [120, 60],
+                       "resp_ip_bytes": [0, 80], "orig_pkts": [3, 1], "resp_pkts": [0, 1],
+                       "history": ["ShR", "Dd"], "label_binary": ["True", "False"]})  # fmt: skip
+    out = TM.zeek_conn(df)
+    assert out["flow_end_milliseconds"].to_list() == [11500, 20000]
+    assert out["protocol"].to_list() == [6, 17]
+    assert out["cli_rst"].to_list() == [1, 0] and out["srv_rst"].to_list() == [0, 0]
+    assert out["is_attack"].to_list() == [1.0, 0.0]

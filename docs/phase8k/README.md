@@ -16,6 +16,7 @@ abstain when it is not, and still keep useful attack detection where it operates
 | [PREREGISTRATION.md](PREREGISTRATION.md) | K1 (primary, M1), K2, K3 (M2); units, criteria, NOT EVALUABLE conditions; order of work |
 | [AUDIT.md](AUDIT.md) | the independent audit, statistical and reproducibility checks, chronology |
 | [FREEZE_CANDIDATE.md](FREEZE_CANDIDATE.md) | commit and SHA-256 of every frozen file |
+| [PROBES.md](PROBES.md) | the two authorized probes and the feasibility gate F0: F2 fails (no benign calibration traffic), F1's registered wording and decision rules disagree |
 
 ## Findings [E]
 
@@ -51,7 +52,18 @@ The prior expectation, written into the pre-registration before any download, is
 rejects most fresh units. That would make discrimination NOT EVALUABLE or fail on false
 rejection.
 
-**The only justified next step** is the pre-registered feasibility gate:
+**Probe outcome (2026-11-02; [PROBES.md](PROBES.md)):** the gate was run under authorization.
+- **F2 (UWF) fails:** its probe calibration holds no benign traffic, so F2 is dropped.
+- **F1 (AIT) is ambiguous.** It passes the registered wording (35 hosts), but has 7.0 effective
+  hosts, below what M1 needs. It also shows a label-semantics problem: the attacker machine emits
+  only benign-labelled flows.
+- At most one environment family remains.
+
+**The recommendation stays NOT EVALUABLE.** Running F1 would need four further authorizations
+and an amendment. The expected registered outcome is a single-family K1 failure or NOT
+EVALUABLE.
+
+The pre-registered feasibility gate that preceded this was:
 - download the two probes (24.5 MB), map the telemetry, and count calibration hosts;
 - a full confirmation is worth running only if the probes show ≥ 10 calibration hosts per
   unit;
