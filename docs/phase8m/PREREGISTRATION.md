@@ -208,3 +208,35 @@ following prediction is recorded so that the outcome is not read as a surprise a
   NF-ToN-IoT 14.8 %, NF-UNSW-NB15 3.7 % and NF-BoT-IoT 11.9 %. NF-CIC is at 1.29 %.
 - "Lower on both" therefore reads "lower on every network in the set".
 - NF-BoT-IoT has only 620 benign evaluation windows, so its FPR is reported with that caveat.
+
+**Amendment 2** (2026-11-02). Written with the analysis code (`scripts/phase8m/`) and before any
+build, training or comparison. It settles details the sections above left open. No threshold,
+feature or parameter changes.
+
+1. **Selection when only B1 meets H3.** Section 3 does not cover this case.
+   - It is reported as a secondary finding, and no candidate is selected.
+   - This is the conservative reading: B2 is the only primary comparison.
+2. **H2 pooling.**
+   - Each H2 measure is first averaged over the domains of a network.
+   - It is then averaged over the 4 networks with equal weight, matching the 4 independent units.
+   - The three H2 thresholds apply to these means.
+   - Per-network values are reported alongside.
+3. **H2 score change.**
+   - This is the alert change at B2's frozen T0 on the beaconing host.
+   - It is measured on the host's existing evaluation windows that carry the beacon. Only the
+     novelty columns are recomputed; the other 11 features keep their observed values.
+   - Windows that contain only the beacon are counted, not scored.
+   - B1u is reported beside B2 as the unconditional comparison.
+4. **Sensitivity grid.**
+   - sources × span is run at memory level: promotion of benign and attack destinations.
+   - τ changes only `familiarity_decay`. Its grid points would need retrained models, so they are
+     not run.
+   - The grid stays EXPLORATORY.
+5. **Midpoint window.**
+   - The one 30 s window index that straddles the time midpoint gets its novelty from its merged
+     flows, so its calibration and evaluation rows share values.
+   - The build excludes it from the `new_dst_frac` reproduction check and records it.
+6. **Pipeline check.**
+   - B0 is refitted as B0r. Its scores must reproduce the Phase 8j B0 scores.
+   - The comparison reports the largest difference.
+   - B0 itself is always the Phase 8j scores.

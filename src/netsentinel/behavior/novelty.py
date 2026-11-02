@@ -45,18 +45,19 @@ FEATURES = ("nov_frozen", "nov_unconditional", "nov_guarded", "nov_host", "log_n
 
 
 class _Dst:
-    __slots__ = ("first_ms", "last_ms", "sources", "promoted")
+    __slots__ = ("first_ms", "last_ms", "sources", "promoted", "promoted_ms")
 
     def __init__(self, first_ms: int, last_ms: int):
         self.first_ms, self.last_ms = first_ms, last_ms
         self.sources: set = set()
         self.promoted = False
+        self.promoted_ms: int | None = None
 
     def __getstate__(self):
-        return (self.first_ms, self.last_ms, self.sources, self.promoted)
+        return (self.first_ms, self.last_ms, self.sources, self.promoted, self.promoted_ms)
 
     def __setstate__(self, state):
-        self.first_ms, self.last_ms, self.sources, self.promoted = state
+        self.first_ms, self.last_ms, self.sources, self.promoted, self.promoted_ms = state
 
 
 @dataclass
@@ -116,16 +117,18 @@ class NoveltyMemory:
                 and len(s.sources) >= self.min_sources
                 and s.last_ms - s.first_ms >= self.min_span_ms
             ):
-                s.promoted = True
+                s.promoted, s.promoted_ms = True, t_ms
             self.pairs.add((src, d))
 
-    def process(self, contacts: pl.DataFrame) -> pl.DataFrame:
+    def process(self, contacts: pl.DataFrame, emit: frozenset | None = None) -> pl.DataFrame:
         """`contacts`: one row per (win, src, dst) with columns win, window_end_ms, src, dst, in
         time order across calls. All windows of one index are scored before any of them updates
-        the memory. Returns one row per (win, src) with the FEATURES."""
+        the memory. Returns one row per (win, src) with the FEATURES; with `emit`, only the rows
+        of those sources (the memory still learns from every contact)."""
+        empty = pl.DataFrame(schema={"key": pl.Utf8, "win": pl.Int64,
+                                     **{f: pl.Float64 for f in FEATURES}})  # fmt: skip
         if contacts.height == 0:
-            return pl.DataFrame(schema={"key": pl.Utf8, "win": pl.Int64,
-                                        **{f: pl.Float64 for f in FEATURES}})  # fmt: skip
+            return empty
         agg = [pl.col("window_end_ms").first(), pl.col("dst").unique()]
         g = contacts.group_by("win", "src").agg(*agg).sort("win", "src")
         first = int(g["win"][0])
@@ -140,12 +143,23 @@ class NoveltyMemory:
                     self._update(*p)
                 pending, cur = [], w
             t = int(end) - 1
-            rows.append({"key": src, "win": int(w), **self._features(src, dsts, t)})
+            if emit is None or src in emit:
+                rows.append({"key": src, "win": int(w), **self._features(src, dsts, t)})
             pending.append((src, dsts, t))
         for p in pending:
             self._update(*p)
         self.last_win = cur
-        return pl.DataFrame(rows)
+        return pl.DataFrame(rows) if rows else empty
+
+
+def destination_state(mem: NoveltyMemory) -> pl.DataFrame:
+    """One row per destination in the memory: first/last contact, distinct sources (capped),
+    whether it was known at the freeze and when (if ever) the guarded policy accepted it."""
+    rows = [(d, s.first_ms, s.last_ms, len(s.sources), d in mem.frozen, s.promoted_ms)
+            for d, s in mem.dst.items()]  # fmt: skip
+    schema = {"dst": pl.Utf8, "first_ms": pl.Int64, "last_ms": pl.Int64, "sources": pl.Int64,
+              "frozen": pl.Boolean, "promoted_ms": pl.Int64}  # fmt: skip
+    return pl.DataFrame(rows, schema=schema, orient="row")
 
 
 def contacts_from_flows(flows: pl.DataFrame, window_s: int = 30) -> pl.DataFrame:

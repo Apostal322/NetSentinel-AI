@@ -10,7 +10,13 @@ import numpy as np
 import polars as pl
 import pytest
 
-from netsentinel.behavior.novelty import DAY_MS, FEATURES, NoveltyMemory, contacts_from_flows
+from netsentinel.behavior.novelty import (
+    DAY_MS,
+    FEATURES,
+    NoveltyMemory,
+    contacts_from_flows,
+    destination_state,
+)
 from netsentinel.behavior.windows import aggregate
 
 W = 30_000
@@ -70,6 +76,10 @@ def test_first_and_repeated_observation_and_guarded_promotion():
     assert out["nov_unconditional"].to_list() == [1.0, 0.0, 0.0, 0.0, 0.0]
     assert out["nov_guarded"].to_list() == [1.0, 1.0, 1.0, 1.0, 0.0]
     assert out["nov_host"].to_list() == [1.0, 0.0, 0.0, 1.0, 1.0]  # first contact per source
+    mem = NoveltyMemory()
+    mem.process(contacts_from_flows(flows(rows)))
+    st = destination_state(mem).row(0, named=True)
+    assert st["sources"] == 3 and st["promoted_ms"] == 2 * W + h - 1  # end of b's window - 1 ms
     burst = [(10, "a", "y"), (W + 10, "b", "y"), (2 * W + 10, "c", "y")]  # 3 sources in 1 min
     assert NoveltyMemory().process(contacts_from_flows(flows(burst)))["nov_guarded"].min() == 1.0
 
@@ -125,3 +135,14 @@ def test_bounded_state_and_empty_input():
     mem.process(contacts_from_flows(flows(rows)))
     assert len(mem.dst["popular"].sources) == 8
     assert NoveltyMemory().process(contacts_from_flows(flows([]))).height == 0
+
+
+def test_emit_subset_keeps_memory_and_rows_identical():
+    rows = random_stream(3)
+    c = contacts_from_flows(flows(rows))
+    full_mem, sub_mem = NoveltyMemory(freeze_ms=3 * DAY_MS), NoveltyMemory(freeze_ms=3 * DAY_MS)
+    full = full_mem.process(c)
+    sub = sub_mem.process(c, emit=frozenset({"h1"}))
+    assert sub.equals(full.filter(pl.col("key") == "h1"))
+    assert destination_state(sub_mem).equals(destination_state(full_mem))
+    assert NoveltyMemory().process(c, emit=frozenset({"nobody"})).height == 0
