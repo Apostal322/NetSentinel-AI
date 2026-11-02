@@ -112,6 +112,16 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 | Was N4's benign calibration adequate? (final audit) | NF-BoT-IoT-v3 | No: 7 hosts, 2.2 effective, about 5 effective observations; a threshold from the other hosts is exceeded by 64% of the held-out host windows; evaluation benign windows start 12.7 days after the hold-out | E (post-hoc) |
 | Why thresholds overran | N4 post-hoc, attribution | N4: one benign host dominates calibration and evaluation; NF-ToN-IoT: `new_dst_frac` drives false alerts (hypothesis) | E |
 
+## Phase 8j (calibration reliability; preparation only)
+
+- Documents: [`docs/phase8j/`](phase8j/README.md). Nothing confirmatory yet; no fresh data opened.
+
+| Question | Data | Result | Role |
+|---|---|---|---|
+| Did evaluation labels choosing calibration hosts change Phase 8i results? | 9 development domains incl. N4 | No: identical thresholds, FPR and recall | E |
+| Does recall survive a destination memory that keeps the calibration attackers' traffic? | same | FPR unchanged; recall lower on 3 domains (NF-CIC 03-02 0.86 → 0.00, 02-22 0.09 → 0.02, NF-UNSW 0.97 → 0.62); the registered protocol purges known attackers from the memory and is not yet measured | E |
+| Are the proposed eligibility checks statistically safe? | simulation | Not individually; together very conservative; a PAC rank at a dependence-adjusted effective n is the registered alternative (simulation-only support) | E |
+
 ## Telemetry
 
 | Check | Result | Source |
