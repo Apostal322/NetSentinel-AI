@@ -219,4 +219,21 @@ Both are reported whatever the J1 verdict.
 
 ## 11. Amendments
 
-(none)
+**A1 (2026-11-02, development only, before any freeze or fresh data): the overrun test uses the
+2α tolerance.**
+- **What changes:** block overrun is now the exact one-sided binomial test of FPR ≤ **2α**
+  (p < 0.05), not FPR ≤ α. Everything else in section 2 is unchanged (≥ 30 verified-benign
+  windows; strictly-above alerts).
+- **Why:** the first development smoke run (seed 0) showed that the α-test flags near-nominal
+  blocks as overruns whenever a block is large.
+  - NF-CIC blocks hold about 20,000 verified-benign windows. A realised FPR of 1.33% is then
+    significantly above 1%, and 81% of NF-CIC blocks counted as overruns.
+  - M2, trained on that target, abstained on all of NF-CIC.
+  - The α-null contradicts the 2α tolerance used everywhere else: criterion (a) ≤ 2%, the
+    simulation's "bad", and the first draft's "> 2%".
+  - The 2α-null keeps the review's fix (the false-overrun rate of a perfectly calibrated block
+    stays ≤ 5% at any size), and it flags blocks only when they clearly exceed the tolerance.
+- **Seen before the change:** seed-0 development results of all methods under the α-null.
+  No fresh data.
+- **Transparency:** the complete development comparison is also reported under the original
+  α-null (`reports/phase8j/dev/compare_null_alpha.json`) as a sensitivity analysis.

@@ -1,8 +1,14 @@
 # Phase 8j: calibration reliability (research preparation)
 
-**Status (2026-11-02):** design and data-integrity audit complete. **No Phase 8j method has been
-compared yet, no fresh dataset has been downloaded, and nothing is frozen.** Everything here
-is development-only [E] unless marked otherwise.
+**Status (2026-11-02): development NO-GO.** The registered development comparison
+([DEVELOPMENT_RESULTS.md](DEVELOPMENT_RESULTS.md)) found no abstaining method that meets the
+budget and coverage criteria on ≥ 2 of 4 development units. Under the pre-registered rule,
+Phase 8j stops:
+- no fresh dataset was downloaded;
+- nothing is frozen;
+- no method is promoted.
+
+Everything here is development-only [E].
 
 **Question.** Can a detector recognise when its target-network calibration is representative
 enough to support a 1% false-alert budget, and abstain where it is not, while still covering
@@ -14,7 +20,8 @@ most traffic and most attacks?
 | [CALIBRATION_RELIABILITY_METHODOLOGY.md](CALIBRATION_RELIABILITY_METHODOLOGY.md) | exact conformal risk, a simulation testing the four proposed eligibility checks, the learned reliability model and the PAC calibration |
 | [DATASET_ELIGIBILITY.md](DATASET_ELIGIBILITY.md) | 15 candidate datasets; shortlist AIT Netflow v2 (F1) and UWF-ZeekData24 (F2); probes and approvals |
 | [PREREGISTRATION.md](PREREGISTRATION.md) | hypotheses J1–J4, methods M0–M4 and controls, metrics, success criteria, development selection rule |
-| [VALIDATION_PROTOCOL.md](VALIDATION_PROTOCOL.md) | data roles, order of work, label sealing, splits, failure handling, compute budget |
+| [VALIDATION_PROTOCOL.md](VALIDATION_PROTOCOL.md) | data roles, order of work, label sealing, splits, failure handling, compute budget (not executed: no-go) |
+| [DEVELOPMENT_RESULTS.md](DEVELOPMENT_RESULTS.md) | M0–M4 leave-one-network-out, the selection rule (no-go), P1x vs the oracle |
 
 **Headline findings so far [E]:**
 - **The future-label leak flagged by the Phase 8i audit made no measurable difference** on any
@@ -25,8 +32,8 @@ most traffic and most attacks?
   - NF-CIC 02-22: 0.09 → 0.02;
   - NF-UNSW: 0.97 → 0.62.
 
-  The registered protocol (P1x) purges known calibration attackers from that memory. Whether
-  that restores the Phase 8i recall is not yet measured.
+  The registered protocol (P1x) purges known calibration attackers from that memory. That
+  restores the oracle recall on every domain, so the Phase 8i recall was not overstated.
 - **None of the four proposed eligibility checks is statistically safe on its own.** "n ≥ 199"
   falls on a bad stretch of the exact conformal risk curve. A PAC rank at a dependence-adjusted
   effective sample size had the best safety and utility trade-off in the simulation, so it
@@ -37,7 +44,9 @@ most traffic and most attacks?
 
 **Scripts:**
 - `scripts/phase8j/leakage_audit.py` and `scripts/phase8j/leakage_p1u.py`: the integrity audit;
-- `scripts/phase8j/threshold_stats.py`: the statistics.
+- `scripts/phase8j/threshold_stats.py`: the statistics;
+- `build_p1x.py`, `dev_scores.py`, `dev_compare.py`, `protocol_summary.py`: the development
+  runs.
 
 **Outputs:** `reports/phase8j/`.
 

@@ -114,12 +114,14 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 
 ## Phase 8j (calibration reliability; preparation only)
 
-- Documents: [`docs/phase8j/`](phase8j/README.md). Nothing confirmatory yet; no fresh data opened.
+- Documents: [`docs/phase8j/`](phase8j/README.md). Development no-go: nothing confirmatory; no fresh data opened.
 
 | Question | Data | Result | Role |
 |---|---|---|---|
 | Did evaluation labels choosing calibration hosts change Phase 8i results? | 9 development domains incl. N4 | No: identical thresholds, FPR and recall | E |
-| Does recall survive a destination memory that keeps the calibration attackers' traffic? | same | FPR unchanged; recall lower on 3 domains (NF-CIC 03-02 0.86 → 0.00, 02-22 0.09 → 0.02, NF-UNSW 0.97 → 0.62); the registered protocol purges known attackers from the memory and is not yet measured | E |
+| Does recall survive a destination memory that keeps the calibration attackers' traffic? | same | FPR unchanged; recall lower on 3 domains (NF-CIC 03-02 0.86 → 0.00, 02-22 0.09 → 0.02, NF-UNSW 0.97 → 0.62) | E |
+| Does the deployable protocol (P1x: purged memory) keep the oracle's recall? | same, 3 seeds | Yes: equal on every domain, higher on NF-ToN-IoT (0.61 vs 0.36) and N4 (0.88 vs 0.84) | E |
+| Can an abstaining method keep the budget with ≥ 50% coverage on ≥ 2 of 4 development units? | 4 development units, 3 seeds | No-go: best method (M1) qualifies on NF-CIC only; the learned model (M2) is degenerate; Phase 8j stops before fresh data | E |
 | Are the proposed eligibility checks statistically safe? | simulation | Not individually; together very conservative; a PAC rank at a dependence-adjusted effective n is the registered alternative (simulation-only support) | E |
 
 ## Telemetry

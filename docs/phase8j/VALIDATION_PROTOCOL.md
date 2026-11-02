@@ -1,6 +1,8 @@
 # Phase 8j independent validation protocol and compute budget
 
-**Status:** prepared, not run. No fresh data has been downloaded or opened. Every step below
+**Status:** prepared, **not executed**. The development go/no-go rule gave no-go
+(DEVELOPMENT_RESULTS.md), so steps 3–8 are not run. No fresh data has been downloaded or
+opened. Every step below
 that downloads, opens or evaluates fresh data needs the operator approvals listed in
 [DATASET_ELIGIBILITY.md](DATASET_ELIGIBILITY.md) section 6. Every run longer than 2 minutes
 needs separate approval (section 6 below).

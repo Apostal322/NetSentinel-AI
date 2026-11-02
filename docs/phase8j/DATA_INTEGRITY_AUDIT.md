@@ -85,12 +85,11 @@ again be confirmation.
      calibration attackers.
    - P1u's own premise is that the operator knows those hosts, and an operator who knows them
      can keep their traffic out of the memory (P1x). P1x is close to the clean memory of P0,
-     so it may recover most of the recall. **That is untested:** it needs a window rebuild,
-     registered as a development run.
+     so it may recover most of the recall. **Measured afterwards (section 7): it does.**
    - **What is established:** a detector whose memory absorbs attackers' calibration traffic
      (P1u, P2) loses recall on these domains.
    - **What is not:** that the Phase 8i development recall overstates what a deployable
-     detector (P1x) would reach.
+     detector (P1x) would reach. Section 7 shows it does not.
    - N4 is unaffected (recall 0.85 under every protocol with attacker exclusion).
 3. **With no labels at all (P2), contamination dominates.** Attack windows make up 22–60% of
    the hold-out on NF-UNSW, NF-ToN-IoT and N4. T0 rises (NF-ToN-IoT 0.55 → 0.998), FPR falls
@@ -134,3 +133,18 @@ dropped.
 - No Phase 8j code reads any dataset not already consumed or development-permitted.
 - Remaining limitation: L2a still requires the calibration-period labels to be correct. On
   NF-ToN-IoT and N4 they are known to be imperfect (Phase 8c; Phase 8i label audit).
+
+## 7. P1x measured (registered development run, seeds 0–2)
+
+`scripts/phase8j/build_p1x.py` rebuilt the 4 development networks with known calibration
+attackers kept out of the calibration windows and the destination memory. At T0 (3-seed means,
+`reports/phase8j/protocol_summary.json`):
+- **P1x matches the P0 oracle's recall on every domain:** NF-CIC 03-02 0.358 vs 0.357, 02-22
+  0.095, NF-UNSW 0.971.
+- **It exceeds the oracle on NF-ToN-IoT and N4:** NF-ToN-IoT 0.609 vs 0.363, N4 0.883 vs
+  0.839. FPR rises slightly there (14.5% → 14.8%, 11.7% → 11.9%).
+- The recall loss of section 4, finding 2, therefore came only from keeping attackers'
+  traffic in the memory. **The Phase 8i development recall was not overstated relative to a
+  deployable detector.**
+- Seeds 1–2 of the other protocols reproduce the seed-0 pattern: P1 = P0 in FPR and recall to
+  three decimals on all 9 domains.
