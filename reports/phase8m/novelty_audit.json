@@ -1,0 +1,1504 @@
+{
+ "development": {
+  "status": "exploratory (correlational; existing Phase 8j artifacts)",
+  "domains": {
+   "nfbot/all": {
+    "seed0": {
+     "t0": 0.4978674826907224,
+     "benign_windows": 620,
+     "fpr": 0.21129032258064517,
+     "novelty_vs_false_alerts": {
+      "alerts": 131,
+      "p_novel_given_alert": 0.007633587786259542,
+      "p_novel_base": 0.02258064516129032,
+      "lift": 0.3380588876772083
+     },
+     "false_alert_share_from_unseen_hosts": 0.007633587786259542,
+     "benign_share_from_unseen_hosts": 0.0014496955639315744,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 878,
+       "recall": 0.8394077448747153
+      },
+      "not_novel": {
+       "attack_windows": 701,
+       "recall": 0.9543509272467903
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        72,
+        1000000000.0
+       ],
+       "windows": 620,
+       "novel_share": 0.02258064516129032,
+       "fpr": 0.21129032258064517
+      }
+     ]
+    },
+    "seed1": {
+     "t0": 0.5996425608716452,
+     "benign_windows": 620,
+     "fpr": 0.07258064516129033,
+     "novelty_vs_false_alerts": {
+      "alerts": 45,
+      "p_novel_given_alert": 0.022222222222222223,
+      "p_novel_base": 0.02258064516129032,
+      "lift": 0.9841269841269842
+     },
+     "false_alert_share_from_unseen_hosts": 0.022222222222222223,
+     "benign_share_from_unseen_hosts": 0.0014496955639315744,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 878,
+       "recall": 0.8120728929384966
+      },
+      "not_novel": {
+       "attack_windows": 701,
+       "recall": 0.9529243937232525
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        72,
+        1000000000.0
+       ],
+       "windows": 620,
+       "novel_share": 0.02258064516129032,
+       "fpr": 0.07258064516129033
+      }
+     ]
+    },
+    "seed2": {
+     "t0": 0.5965735893550419,
+     "benign_windows": 620,
+     "fpr": 0.07258064516129033,
+     "novelty_vs_false_alerts": {
+      "alerts": 45,
+      "p_novel_given_alert": 0.022222222222222223,
+      "p_novel_base": 0.02258064516129032,
+      "lift": 0.9841269841269842
+     },
+     "false_alert_share_from_unseen_hosts": 0.022222222222222223,
+     "benign_share_from_unseen_hosts": 0.0014496955639315744,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 878,
+       "recall": 0.8302961275626424
+      },
+      "not_novel": {
+       "attack_windows": 701,
+       "recall": 0.9529243937232525
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        72,
+        1000000000.0
+       ],
+       "windows": 620,
+       "novel_share": 0.02258064516129032,
+       "fpr": 0.07258064516129033
+      }
+     ]
+    }
+   },
+   "nfcic/2018-02-14": {
+    "seed0": {
+     "t0": 0.8029920809291982,
+     "benign_windows": 108297,
+     "fpr": 0.013342936554105839,
+     "novelty_vs_false_alerts": {
+      "alerts": 1445,
+      "p_novel_given_alert": 0.4249134948096886,
+      "p_novel_base": 0.03286332954744822,
+      "lift": 12.929715298512178
+     },
+     "false_alert_share_from_unseen_hosts": 0.08027681660899653,
+     "benign_share_from_unseen_hosts": 0.20073561268793613,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 184,
+       "recall": 1.0
+      },
+      "not_novel": {
+       "attack_windows": 0,
+       "recall": null
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 26355,
+       "novel_share": 0.029595902105862264,
+       "fpr": 0.011383039271485486
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 81942,
+       "novel_share": 0.033914232017768664,
+       "fpr": 0.013973298186522175
+      }
+     ]
+    },
+    "seed1": {
+     "t0": 0.8608833520822483,
+     "benign_windows": 108297,
+     "fpr": 0.012853541649353168,
+     "novelty_vs_false_alerts": {
+      "alerts": 1392,
+      "p_novel_given_alert": 0.2521551724137931,
+      "p_novel_base": 0.03286332954744822,
+      "lift": 7.6728431320305
+     },
+     "false_alert_share_from_unseen_hosts": 0.07040229885057471,
+     "benign_share_from_unseen_hosts": 0.20073561268793613,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 184,
+       "recall": 0.9945652173913043
+      },
+      "not_novel": {
+       "attack_windows": 0,
+       "recall": null
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 26355,
+       "novel_share": 0.029595902105862264,
+       "fpr": 0.011003604629102636
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 81942,
+       "novel_share": 0.033914232017768664,
+       "fpr": 0.013448536769910424
+      }
+     ]
+    },
+    "seed2": {
+     "t0": 0.8584764867663406,
+     "benign_windows": 108297,
+     "fpr": 0.0138230975927311,
+     "novelty_vs_false_alerts": {
+      "alerts": 1497,
+      "p_novel_given_alert": 0.28857715430861725,
+      "p_novel_base": 0.03286332954744822,
+      "lift": 8.78112955329034
+     },
+     "false_alert_share_from_unseen_hosts": 0.04809619238476954,
+     "benign_share_from_unseen_hosts": 0.20073561268793613,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 184,
+       "recall": 0.9945652173913043
+      },
+      "not_novel": {
+       "attack_windows": 0,
+       "recall": null
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 26355,
+       "novel_share": 0.029595902105862264,
+       "fpr": 0.011800417378106621
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 81942,
+       "novel_share": 0.033914232017768664,
+       "fpr": 0.01447365209538454
+      }
+     ]
+    }
+   },
+   "nfcic/2018-02-16": {
+    "seed0": {
+     "t0": 0.8119682189625365,
+     "benign_windows": 79527,
+     "fpr": 0.012951576194248493,
+     "novelty_vs_false_alerts": {
+      "alerts": 1030,
+      "p_novel_given_alert": 0.5184466019417475,
+      "p_novel_base": 0.03911878984495831,
+      "lift": 13.253134976734605
+     },
+     "false_alert_share_from_unseen_hosts": 0.05825242718446602,
+     "benign_share_from_unseen_hosts": 0.18386253362495913,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 0,
+       "recall": null
+      },
+      "not_novel": {
+       "attack_windows": 27,
+       "recall": 0.9629629629629629
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 20428,
+       "novel_share": 0.020706872919522223,
+       "fpr": 0.008713530448404151
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 59099,
+       "novel_share": 0.045483003096499094,
+       "fpr": 0.014416487588622481
+      }
+     ]
+    },
+    "seed1": {
+     "t0": 0.8446288983064646,
+     "benign_windows": 79527,
+     "fpr": 0.012524048436380098,
+     "novelty_vs_false_alerts": {
+      "alerts": 996,
+      "p_novel_given_alert": 0.3825301204819277,
+      "p_novel_base": 0.03911878984495831,
+      "lift": 9.77867981085383
+     },
+     "false_alert_share_from_unseen_hosts": 0.06526104417670683,
+     "benign_share_from_unseen_hosts": 0.18386253362495913,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 0,
+       "recall": null
+      },
+      "not_novel": {
+       "attack_windows": 27,
+       "recall": 0.9629629629629629
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 20428,
+       "novel_share": 0.020706872919522223,
+       "fpr": 0.009496769140395536
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 59099,
+       "novel_share": 0.045483003096499094,
+       "fpr": 0.01357044958459534
+      }
+     ]
+    },
+    "seed2": {
+     "t0": 0.8779677230848734,
+     "benign_windows": 79527,
+     "fpr": 0.011442654695889447,
+     "novelty_vs_false_alerts": {
+      "alerts": 910,
+      "p_novel_given_alert": 0.4230769230769231,
+      "p_novel_base": 0.03911878984495831,
+      "lift": 10.815184333506418
+     },
+     "false_alert_share_from_unseen_hosts": 0.04065934065934066,
+     "benign_share_from_unseen_hosts": 0.18386253362495913,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 0,
+       "recall": null
+      },
+      "not_novel": {
+       "attack_windows": 27,
+       "recall": 0.9629629629629629
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 20428,
+       "novel_share": 0.020706872919522223,
+       "fpr": 0.007587624828666536
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 59099,
+       "novel_share": 0.045483003096499094,
+       "fpr": 0.012775173860809827
+      }
+     ]
+    }
+   },
+   "nfcic/2018-02-20": {
+    "seed0": {
+     "t0": 0.8149608494346987,
+     "benign_windows": 113849,
+     "fpr": 0.013913165684371405,
+     "novelty_vs_false_alerts": {
+      "alerts": 1584,
+      "p_novel_given_alert": 0.5511363636363636,
+      "p_novel_base": 0.04302189742553734,
+      "lift": 12.810601033817141
+     },
+     "false_alert_share_from_unseen_hosts": 0.08333333333333333,
+     "benign_share_from_unseen_hosts": 0.1933307007151946,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 0,
+       "recall": null
+      },
+      "not_novel": {
+       "attack_windows": 106,
+       "recall": 0.08490566037735849
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 25795,
+       "novel_share": 0.030781159139368096,
+       "fpr": 0.009808102345415778
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 88054,
+       "novel_share": 0.04660776341790265,
+       "fpr": 0.015115724441819793
+      }
+     ]
+    },
+    "seed1": {
+     "t0": 0.8613436520587664,
+     "benign_windows": 113849,
+     "fpr": 0.013131428471044981,
+     "novelty_vs_false_alerts": {
+      "alerts": 1495,
+      "p_novel_given_alert": 0.3939799331103679,
+      "p_novel_base": 0.04302189742553734,
+      "lift": 9.157660556284661
+     },
+     "false_alert_share_from_unseen_hosts": 0.1197324414715719,
+     "benign_share_from_unseen_hosts": 0.1933307007151946,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 0,
+       "recall": null
+      },
+      "not_novel": {
+       "attack_windows": 106,
+       "recall": 0.08490566037735849
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 25795,
+       "novel_share": 0.030781159139368096,
+       "fpr": 0.008800155068811785
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 88054,
+       "novel_share": 0.04660776341790265,
+       "fpr": 0.01440025438935199
+      }
+     ]
+    },
+    "seed2": {
+     "t0": 0.8770107385652629,
+     "benign_windows": 113849,
+     "fpr": 0.011857811662816537,
+     "novelty_vs_false_alerts": {
+      "alerts": 1350,
+      "p_novel_given_alert": 0.46074074074074073,
+      "p_novel_base": 0.04302189742553734,
+      "lift": 10.709447242260634
+     },
+     "false_alert_share_from_unseen_hosts": 0.04888888888888889,
+     "benign_share_from_unseen_hosts": 0.1933307007151946,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 0,
+       "recall": null
+      },
+      "not_novel": {
+       "attack_windows": 106,
+       "recall": 0.08490566037735849
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 25795,
+       "novel_share": 0.030781159139368096,
+       "fpr": 0.008218647024617174
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 88054,
+       "novel_share": 0.04660776341790265,
+       "fpr": 0.012923887614418424
+      }
+     ]
+    }
+   },
+   "nfcic/2018-02-21": {
+    "seed0": {
+     "t0": 0.8029920809291982,
+     "benign_windows": 116040,
+     "fpr": 0.015710099965529127,
+     "novelty_vs_false_alerts": {
+      "alerts": 1823,
+      "p_novel_given_alert": 0.4777838727372463,
+      "p_novel_base": 0.0667873147190624,
+      "lift": 7.153811689345814
+     },
+     "false_alert_share_from_unseen_hosts": 0.09764125068568294,
+     "benign_share_from_unseen_hosts": 0.20483923296279222,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 0,
+       "recall": null
+      },
+      "not_novel": {
+       "attack_windows": 1086,
+       "recall": 0.998158379373849
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 26081,
+       "novel_share": 0.04635558452513324,
+       "fpr": 0.017215597561443197
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 89959,
+       "novel_share": 0.07271090163296613,
+       "fpr": 0.015273624651230005
+      }
+     ]
+    },
+    "seed1": {
+     "t0": 0.8436892498999018,
+     "benign_windows": 116040,
+     "fpr": 0.015511892450879007,
+     "novelty_vs_false_alerts": {
+      "alerts": 1800,
+      "p_novel_given_alert": 0.3522222222222222,
+      "p_novel_base": 0.0667873147190624,
+      "lift": 5.273789247311828
+     },
+     "false_alert_share_from_unseen_hosts": 0.105,
+     "benign_share_from_unseen_hosts": 0.20483923296279222,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 0,
+       "recall": null
+      },
+      "not_novel": {
+       "attack_windows": 1086,
+       "recall": 0.9972375690607734
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 26081,
+       "novel_share": 0.04635558452513324,
+       "fpr": 0.0141098884245236
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 89959,
+       "novel_share": 0.07271090163296613,
+       "fpr": 0.015918362809724432
+      }
+     ]
+    },
+    "seed2": {
+     "t0": 0.8589651479542029,
+     "benign_windows": 116040,
+     "fpr": 0.015960013788348847,
+     "novelty_vs_false_alerts": {
+      "alerts": 1852,
+      "p_novel_given_alert": 0.3536717062634989,
+      "p_novel_base": 0.0667873147190624,
+      "lift": 5.295492231589215
+     },
+     "false_alert_share_from_unseen_hosts": 0.06317494600431965,
+     "benign_share_from_unseen_hosts": 0.20483923296279222,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 0,
+       "recall": null
+      },
+      "not_novel": {
+       "attack_windows": 1086,
+       "recall": 0.9788213627992634
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 26081,
+       "novel_share": 0.04635558452513324,
+       "fpr": 0.016448755799240825
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 89959,
+       "novel_share": 0.07271090163296613,
+       "fpr": 0.01581831723340633
+      }
+     ]
+    }
+   },
+   "nfcic/2018-02-22": {
+    "seed0": {
+     "t0": 0.8029920809291982,
+     "benign_windows": 114337,
+     "fpr": 0.013337764678100703,
+     "novelty_vs_false_alerts": {
+      "alerts": 1525,
+      "p_novel_given_alert": 0.4157377049180328,
+      "p_novel_base": 0.03822034861855742,
+      "lift": 10.877391754511011
+     },
+     "false_alert_share_from_unseen_hosts": 0.07344262295081967,
+     "benign_share_from_unseen_hosts": 0.151714617730325,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 842,
+       "recall": 0.09382422802850356
+      },
+      "not_novel": {
+       "attack_windows": 7,
+       "recall": 0.0
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 25075,
+       "novel_share": 0.023768693918245265,
+       "fpr": 0.011445663010967099
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 89262,
+       "novel_share": 0.042280029575855346,
+       "fpr": 0.013869283681745871
+      }
+     ]
+    },
+    "seed1": {
+     "t0": 0.8402847990848432,
+     "benign_windows": 114337,
+     "fpr": 0.013731338062044657,
+     "novelty_vs_false_alerts": {
+      "alerts": 1570,
+      "p_novel_given_alert": 0.31019108280254776,
+      "p_novel_base": 0.03822034861855742,
+      "lift": 8.115862204667026
+     },
+     "false_alert_share_from_unseen_hosts": 0.04522292993630573,
+     "benign_share_from_unseen_hosts": 0.151714617730325,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 842,
+       "recall": 0.09619952494061758
+      },
+      "not_novel": {
+       "attack_windows": 7,
+       "recall": 0.0
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 25075,
+       "novel_share": 0.023768693918245265,
+       "fpr": 0.011365902293120638
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 89262,
+       "novel_share": 0.042280029575855346,
+       "fpr": 0.014395823530729763
+      }
+     ]
+    },
+    "seed2": {
+     "t0": 0.8624028224496281,
+     "benign_windows": 114337,
+     "fpr": 0.012270743503852646,
+     "novelty_vs_false_alerts": {
+      "alerts": 1403,
+      "p_novel_given_alert": 0.35067712045616534,
+      "p_novel_base": 0.03822034861855742,
+      "lift": 9.175141858488919
+     },
+     "false_alert_share_from_unseen_hosts": 0.030648610121168925,
+     "benign_share_from_unseen_hosts": 0.151714617730325,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 842,
+       "recall": 0.09738717339667459
+      },
+      "not_novel": {
+       "attack_windows": 7,
+       "recall": 0.0
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 25075,
+       "novel_share": 0.023768693918245265,
+       "fpr": 0.011046859421734796
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 89262,
+       "novel_share": 0.042280029575855346,
+       "fpr": 0.012614550424592771
+      }
+     ]
+    }
+   },
+   "nfcic/2018-03-02": {
+    "seed0": {
+     "t0": 0.8165334679309826,
+     "benign_windows": 91935,
+     "fpr": 0.01040952847120248,
+     "novelty_vs_false_alerts": {
+      "alerts": 957,
+      "p_novel_given_alert": 0.40856844305120166,
+      "p_novel_base": 0.038342307064774026,
+      "lift": 10.655812712599213
+     },
+     "false_alert_share_from_unseen_hosts": 0.06374085684430512,
+     "benign_share_from_unseen_hosts": 0.1630295386376403,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 2408,
+       "recall": 0.8554817275747508
+      },
+      "not_novel": {
+       "attack_windows": 0,
+       "recall": null
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 32340,
+       "novel_share": 0.03175633889919604,
+       "fpr": 0.009121830550401978
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 59595,
+       "novel_share": 0.041916268143300614,
+       "fpr": 0.01110831445591073
+      }
+     ]
+    },
+    "seed1": {
+     "t0": 0.8707715379062388,
+     "benign_windows": 91935,
+     "fpr": 0.009474084951324305,
+     "novelty_vs_false_alerts": {
+      "alerts": 871,
+      "p_novel_given_alert": 0.269804822043628,
+      "p_novel_base": 0.038342307064774026,
+      "lift": 7.036739380022961
+     },
+     "false_alert_share_from_unseen_hosts": 0.08495981630309989,
+     "benign_share_from_unseen_hosts": 0.1630295386376403,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 2408,
+       "recall": 0.057308970099667775
+      },
+      "not_novel": {
+       "attack_windows": 0,
+       "recall": null
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 32340,
+       "novel_share": 0.03175633889919604,
+       "fpr": 0.00992578849721707
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 59595,
+       "novel_share": 0.041916268143300614,
+       "fpr": 0.009228962161255138
+      }
+     ]
+    },
+    "seed2": {
+     "t0": 0.8746662064438515,
+     "benign_windows": 91935,
+     "fpr": 0.00978952520802741,
+     "novelty_vs_false_alerts": {
+      "alerts": 900,
+      "p_novel_given_alert": 0.34,
+      "p_novel_base": 0.038342307064774026,
+      "lift": 8.867489361702129
+     },
+     "false_alert_share_from_unseen_hosts": 0.07666666666666666,
+     "benign_share_from_unseen_hosts": 0.1630295386376403,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 2408,
+       "recall": 0.1611295681063123
+      },
+      "not_novel": {
+       "attack_windows": 0,
+       "recall": null
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 32340,
+       "novel_share": 0.03175633889919604,
+       "fpr": 0.008843537414965987
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 59595,
+       "novel_share": 0.041916268143300614,
+       "fpr": 0.010302877758201191
+      }
+     ]
+    }
+   },
+   "nfton/all": {
+    "seed0": {
+     "t0": 0.550418849296473,
+     "benign_windows": 7447,
+     "fpr": 0.1336108500067141,
+     "novelty_vs_false_alerts": {
+      "alerts": 995,
+      "p_novel_given_alert": 0.9879396984924623,
+      "p_novel_base": 0.2791728212703102,
+      "lift": 3.538810454388344
+     },
+     "false_alert_share_from_unseen_hosts": 0.5809045226130654,
+     "benign_share_from_unseen_hosts": 0.04599641956221011,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 6664,
+       "recall": 0.7376950780312125
+      },
+      "not_novel": {
+       "attack_windows": 2121,
+       "recall": 0.026402640264026403
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 88,
+       "novel_share": 0.0,
+       "fpr": 0.0
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 252,
+       "novel_share": 0.011904761904761904,
+       "fpr": 0.0
+      },
+      {
+       "age_h": [
+        6,
+        24
+       ],
+       "windows": 3443,
+       "novel_share": 0.4530932326459483,
+       "fpr": 0.19372640139413302
+      },
+      {
+       "age_h": [
+        24,
+        72
+       ],
+       "windows": 3554,
+       "novel_share": 0.13027574563871694,
+       "fpr": 0.08384918401800788
+      },
+      {
+       "age_h": [
+        72,
+        1000000000.0
+       ],
+       "windows": 110,
+       "novel_share": 0.4818181818181818,
+       "fpr": 0.2727272727272727
+      }
+     ]
+    },
+    "seed1": {
+     "t0": 0.43010371318301144,
+     "benign_windows": 7447,
+     "fpr": 0.1545588827715859,
+     "novelty_vs_false_alerts": {
+      "alerts": 1151,
+      "p_novel_given_alert": 0.9904430929626412,
+      "p_novel_base": 0.2791728212703102,
+      "lift": 3.5477776398714718
+     },
+     "false_alert_share_from_unseen_hosts": 0.5986099044309297,
+     "benign_share_from_unseen_hosts": 0.04599641956221011,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 6664,
+       "recall": 0.771608643457383
+      },
+      "not_novel": {
+       "attack_windows": 2121,
+       "recall": 0.026874115983026876
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 88,
+       "novel_share": 0.0,
+       "fpr": 0.0
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 252,
+       "novel_share": 0.011904761904761904,
+       "fpr": 0.0
+      },
+      {
+       "age_h": [
+        6,
+        24
+       ],
+       "windows": 3443,
+       "novel_share": 0.4530932326459483,
+       "fpr": 0.2370026139994191
+      },
+      {
+       "age_h": [
+        24,
+        72
+       ],
+       "windows": 3554,
+       "novel_share": 0.13027574563871694,
+       "fpr": 0.08469330332020258
+      },
+      {
+       "age_h": [
+        72,
+        1000000000.0
+       ],
+       "windows": 110,
+       "novel_share": 0.4818181818181818,
+       "fpr": 0.3090909090909091
+      }
+     ]
+    },
+    "seed2": {
+     "t0": 0.4030196988193584,
+     "benign_windows": 7447,
+     "fpr": 0.1571102457365382,
+     "novelty_vs_false_alerts": {
+      "alerts": 1170,
+      "p_novel_given_alert": 0.9905982905982906,
+      "p_novel_base": 0.2791728212703102,
+      "lift": 3.548333559444671
+     },
+     "false_alert_share_from_unseen_hosts": 0.5965811965811966,
+     "benign_share_from_unseen_hosts": 0.04599641956221011,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 6664,
+       "recall": 0.8712484993997599
+      },
+      "not_novel": {
+       "attack_windows": 2121,
+       "recall": 0.031588873173031586
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 88,
+       "novel_share": 0.0,
+       "fpr": 0.0
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 252,
+       "novel_share": 0.011904761904761904,
+       "fpr": 0.0
+      },
+      {
+       "age_h": [
+        6,
+        24
+       ],
+       "windows": 3443,
+       "novel_share": 0.4530932326459483,
+       "fpr": 0.24135927969793786
+      },
+      {
+       "age_h": [
+        24,
+        72
+       ],
+       "windows": 3554,
+       "novel_share": 0.13027574563871694,
+       "fpr": 0.08610016882386044
+      },
+      {
+       "age_h": [
+        72,
+        1000000000.0
+       ],
+       "windows": 110,
+       "novel_share": 0.4818181818181818,
+       "fpr": 0.3
+      }
+     ]
+    }
+   },
+   "nfunsw/all": {
+    "seed0": {
+     "t0": 0.040203215642374,
+     "benign_windows": 11937,
+     "fpr": 0.03686018262545028,
+     "novelty_vs_false_alerts": {
+      "alerts": 440,
+      "p_novel_given_alert": 0.006818181818181818,
+      "p_novel_base": 0.00025131942699170643,
+      "lift": 27.129545454545458
+     },
+     "false_alert_share_from_unseen_hosts": 0.0,
+     "benign_share_from_unseen_hosts": 0.0,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 4086,
+       "recall": 0.9723445912873225
+      },
+      "not_novel": {
+       "attack_windows": 5,
+       "recall": 0.8
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 1326,
+       "novel_share": 0.0,
+       "fpr": 0.03996983408748114
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 6727,
+       "novel_share": 0.0004459640255686041,
+       "fpr": 0.03181210049056043
+      },
+      {
+       "age_h": [
+        6,
+        24
+       ],
+       "windows": 3884,
+       "novel_share": 0.0,
+       "fpr": 0.04454170957775489
+      }
+     ]
+    },
+    "seed1": {
+     "t0": 0.044815669882512975,
+     "benign_windows": 11937,
+     "fpr": 0.036441316913797435,
+     "novelty_vs_false_alerts": {
+      "alerts": 435,
+      "p_novel_given_alert": 0.006896551724137931,
+      "p_novel_base": 0.00025131942699170643,
+      "lift": 27.44137931034483
+     },
+     "false_alert_share_from_unseen_hosts": 0.0,
+     "benign_share_from_unseen_hosts": 0.0,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 4086,
+       "recall": 0.9733235438081254
+      },
+      "not_novel": {
+       "attack_windows": 5,
+       "recall": 0.8
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 1326,
+       "novel_share": 0.0,
+       "fpr": 0.038461538461538464
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 6727,
+       "novel_share": 0.0004459640255686041,
+       "fpr": 0.031663445815370894
+      },
+      {
+       "age_h": [
+        6,
+        24
+       ],
+       "windows": 3884,
+       "novel_share": 0.0,
+       "fpr": 0.04402677651905252
+      }
+     ]
+    },
+    "seed2": {
+     "t0": 0.04167435878561848,
+     "benign_windows": 11937,
+     "fpr": 0.036608863198458574,
+     "novelty_vs_false_alerts": {
+      "alerts": 437,
+      "p_novel_given_alert": 0.006864988558352402,
+      "p_novel_base": 0.00025131942699170643,
+      "lift": 27.315789473684212
+     },
+     "false_alert_share_from_unseen_hosts": 0.0,
+     "benign_share_from_unseen_hosts": 0.0,
+     "recall_by_novelty": {
+      "novel": {
+       "attack_windows": 4086,
+       "recall": 0.9686735193343123
+      },
+      "not_novel": {
+       "attack_windows": 5,
+       "recall": 0.6
+      }
+     },
+     "by_calibration_age": [
+      {
+       "age_h": [
+        0,
+        1
+       ],
+       "windows": 1326,
+       "novel_share": 0.0,
+       "fpr": 0.03996983408748114
+      },
+      {
+       "age_h": [
+        1,
+        6
+       ],
+       "windows": 6727,
+       "novel_share": 0.0004459640255686041,
+       "fpr": 0.031366136464991826
+      },
+      {
+       "age_h": [
+        6,
+        24
+       ],
+       "windows": 3884,
+       "novel_share": 0.0,
+       "fpr": 0.04454170957775489
+      }
+     ]
+    }
+   }
+  }
+ },
+ "dedale": {
+  "status": "POST-HOC retrospective diagnostic (consumed DEDALE data)",
+  "fpr_reproduced": 0.0055252939207104425,
+  "fpr_confirmatory": 0.0055252939207104425,
+  "novelty_vs_false_alerts": {
+   "alerts": 2188,
+   "p_novel_given_alert": 0.8802559414990859,
+   "p_novel_base": 0.21549379412476266,
+   "lift": 4.084831978917459
+  },
+  "novelty_in_attack_windows": {
+   "attack_windows": 43,
+   "novel_share": 0.8372093023255814,
+   "recall_novel": 0.08333333333333331,
+   "recall_not_novel": 0.0
+  },
+  "counterfactual_new_dst_frac_zero": {
+   "fpr": 0.0006463689703794393,
+   "fpr_original": 0.0055252939207104425,
+   "false_alerts": 176.33333333333331,
+   "false_alerts_original": 1507.333333333333,
+   "attack_window_recall": 0.0,
+   "attack_window_recall_original": 0.0697674418604651,
+   "note": "all other features unchanged; models and thresholds frozen; a counterfactual input, not a deployable feature"
+  },
+  "shap": {
+   "false_alert_windows": {
+    "windows": 2188,
+    "mean_contribution": {
+     "new_dst_frac": 1.8015954929137437,
+     "med_log_dur": 0.6699230298833471,
+     "no_reply_frac": 0.5130943177545438,
+     "log_pkts": 0.5153363920076693,
+     "upload_share": 0.40789632951805693,
+     "log_up_bytes": 0.35681567627021094,
+     "log_dst_hosts": 0.23069667447904355,
+     "log_dst_ports": 0.3130282209320744,
+     "udp_share": 0.22750347677188895,
+     "log_flows": 0.1202988236361831,
+     "log_down_bytes": 0.12802762018805766,
+     "rst_frac": 0.11891584232259973
+    },
+    "mean_abs_contribution": {
+     "new_dst_frac": 1.8546459679980412,
+     "med_log_dur": 0.67260515652358,
+     "no_reply_frac": 0.527955016644319,
+     "log_pkts": 0.5180452620994526,
+     "upload_share": 0.4319490944665913,
+     "log_up_bytes": 0.3573098135999126,
+     "log_dst_hosts": 0.31826834353879685,
+     "log_dst_ports": 0.3144477409204303,
+     "udp_share": 0.30422984776252854,
+     "log_flows": 0.26825999407778706,
+     "log_down_bytes": 0.17259924997207346,
+     "rst_frac": 0.16854558500719682
+    },
+    "new_dst_frac_rank_by_abs": 1
+   },
+   "benign_sample": {
+    "windows": 5000,
+    "mean_contribution": {
+     "log_dst_hosts": -0.20801279375681078,
+     "med_log_dur": 0.4163208749771196,
+     "new_dst_frac": -0.05727620739608246,
+     "udp_share": -0.22562379735810556,
+     "log_flows": 0.0630500052505332,
+     "upload_share": 0.24679465060018493,
+     "log_pkts": 0.2684129466160331,
+     "log_up_bytes": 0.2173459258208749,
+     "log_dst_ports": 0.20760976044248527,
+     "rst_frac": -0.08257558182633588,
+     "log_down_bytes": 0.05798976897540376,
+     "no_reply_frac": 0.0717011118147844
+    },
+    "mean_abs_contribution": {
+     "log_dst_hosts": 0.4890204239379612,
+     "med_log_dur": 0.4570857257017754,
+     "new_dst_frac": 0.40815355619474886,
+     "udp_share": 0.4069737023170385,
+     "log_flows": 0.35983677090934013,
+     "upload_share": 0.3098671768180576,
+     "log_pkts": 0.2874647350858122,
+     "log_up_bytes": 0.26354243254554505,
+     "log_dst_ports": 0.2305396266282104,
+     "rst_frac": 0.15673485429052067,
+     "log_down_bytes": 0.14348194965617603,
+     "no_reply_frac": 0.11883722893407771
+    },
+    "new_dst_frac_rank_by_abs": 3
+   }
+  },
+  "novelty_by_day": [
+   {
+    "part": "calibration_expanding_memory",
+    "utc_day": "2024-12-23",
+    "windows": 26929,
+    "novel_share": 0.10479408815774816
+   },
+   {
+    "part": "calibration_expanding_memory",
+    "utc_day": "2024-12-24",
+    "windows": 27135,
+    "novel_share": 0.04735581352496775
+   },
+   {
+    "part": "calibration_expanding_memory",
+    "utc_day": "2024-12-25",
+    "windows": 26962,
+    "novel_share": 0.028521623024998145
+   },
+   {
+    "part": "calibration_expanding_memory",
+    "utc_day": "2024-12-26",
+    "windows": 27047,
+    "novel_share": 0.022849114504381263
+   },
+   {
+    "part": "calibration_expanding_memory",
+    "utc_day": "2024-12-27",
+    "windows": 26892,
+    "novel_share": 0.02435668600327235
+   },
+   {
+    "part": "calibration_expanding_memory",
+    "utc_day": "2024-12-30",
+    "windows": 26719,
+    "novel_share": 0.03136344923088439
+   },
+   {
+    "part": "calibration_expanding_memory",
+    "utc_day": "2024-12-31",
+    "windows": 26904,
+    "novel_share": 0.01988551888195064
+   },
+   {
+    "part": "calibration_expanding_memory",
+    "utc_day": "2025-01-01",
+    "windows": 26559,
+    "novel_share": 0.018901314055499076
+   },
+   {
+    "part": "calibration_expanding_memory",
+    "utc_day": "2025-01-02",
+    "windows": 26870,
+    "novel_share": 0.020617789356159287
+   },
+   {
+    "part": "calibration_expanding_memory",
+    "utc_day": "2025-01-03",
+    "windows": 27235,
+    "novel_share": 0.016486139159170184
+   },
+   {
+    "part": "evaluation_frozen_memory",
+    "utc_day": "2025-01-06",
+    "windows": 26835,
+    "novel_share": 0.08637972796720701
+   },
+   {
+    "part": "evaluation_frozen_memory",
+    "utc_day": "2025-01-07",
+    "windows": 27258,
+    "novel_share": 0.14773644434661384
+   },
+   {
+    "part": "evaluation_frozen_memory",
+    "utc_day": "2025-01-08",
+    "windows": 27573,
+    "novel_share": 0.1707104776411707
+   },
+   {
+    "part": "evaluation_frozen_memory",
+    "utc_day": "2025-01-09",
+    "windows": 27846,
+    "novel_share": 0.238562091503268
+   },
+   {
+    "part": "evaluation_frozen_memory",
+    "utc_day": "2025-01-10",
+    "windows": 28265,
+    "novel_share": 0.24769149124358747
+   },
+   {
+    "part": "evaluation_frozen_memory",
+    "utc_day": "2025-01-13",
+    "windows": 27795,
+    "novel_share": 0.2252563410685375
+   },
+   {
+    "part": "evaluation_frozen_memory",
+    "utc_day": "2025-01-14",
+    "windows": 26698,
+    "novel_share": 0.24353884186081354
+   },
+   {
+    "part": "evaluation_frozen_memory",
+    "utc_day": "2025-01-15",
+    "windows": 26753,
+    "novel_share": 0.2524950472844167
+   },
+   {
+    "part": "evaluation_frozen_memory",
+    "utc_day": "2025-01-16",
+    "windows": 27125,
+    "novel_share": 0.264110599078341
+   },
+   {
+    "part": "evaluation_frozen_memory",
+    "utc_day": "2025-01-17",
+    "windows": 26658,
+    "novel_share": 0.2779653387350889
+   }
+  ],
+  "false_alerts_by_host": {
+   "hosts_with_false_alerts": 26,
+   "top1_share": 0.05948695267580717,
+   "top5_share": 0.27156125608137993,
+   "per_host_min_max": [
+    23.333333333333332,
+    89.66666666666667
+   ]
+  },
+  "alert_rate_reconciliation": {
+   "verified_benign_windows": 272806,
+   "seed_mean_false_alerts": 1507.333333333333,
+   "fpr_per_window": 0.0055252939207104425,
+   "days_with_benign_windows": 10,
+   "false_alerts_per_active_day_mean": 150.7333333333333,
+   "false_alerts_per_calendar_day_14": 107.66666666666664,
+   "active_host_hours": 2970,
+   "false_alerts_per_active_host_hour": 0.5075196408529741,
+   "false_alerts_per_host_per_active_day": 5.7974358974358955,
+   "note": "Phase 8l's '~200 a day' was the upper part of the daily range (20-251); the mean over the 10 working days with benign windows is the figure above"
+  }
+ },
+ "peak_rss_mb": 444.82421875,
+ "seconds": 5990.9
+}

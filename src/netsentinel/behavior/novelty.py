@@ -10,9 +10,10 @@ Memory policies (docs/phase8m/PREREGISTRATION.md):
                   deployed `new_dst_frac` evaluation behaviour).
 - ``unconditional`` (A1) every destination becomes known after its first window.
 - ``guarded``     (A3) a destination becomes known only once it has been contacted by at least
-                  `min_sources` distinct sources on at least `min_days` distinct UTC days; until
-                  then it stays novel however often one host contacts it. No score or label is
-                  used, so the model's own predictions cannot decide what becomes normal.
+                  `min_sources` distinct sources and its contacts span at least `min_span_ms`
+                  (first to latest contact); until then it stays novel however often one host
+                  contacts it. No score or label is used, so the model's own predictions cannot
+                  decide what becomes normal.
 
 Per window and source the class emits (all in [0, 1] or log scale, NaN never produced):
 
@@ -25,8 +26,8 @@ Per window and source the class emits (all in [0, 1] or log scale, NaN never pro
 - ``log_prevalence``: mean log(1 + distinct earlier sources of each destination), capped at
   `source_cap`.
 
-State per destination is bounded: first/last time, a capped set of sources and a capped set of
-days, so memory grows with the number of destinations only.
+State per destination is bounded: first/last time, a capped set of sources and a promotion flag,
+so memory grows with the number of destinations only.
 """
 
 from __future__ import annotations
@@ -43,13 +44,19 @@ FEATURES = ("nov_frozen", "nov_unconditional", "nov_guarded", "nov_host", "log_n
             "familiarity_decay", "log_prevalence")  # fmt: skip
 
 
-@dataclass
 class _Dst:
-    first_ms: int
-    last_ms: int
-    sources: set = field(default_factory=set)
-    days: set = field(default_factory=set)
-    promoted: bool = False
+    __slots__ = ("first_ms", "last_ms", "sources", "promoted")
+
+    def __init__(self, first_ms: int, last_ms: int):
+        self.first_ms, self.last_ms = first_ms, last_ms
+        self.sources: set = set()
+        self.promoted = False
+
+    def __getstate__(self):
+        return (self.first_ms, self.last_ms, self.sources, self.promoted)
+
+    def __setstate__(self, state):
+        self.first_ms, self.last_ms, self.sources, self.promoted = state
 
 
 @dataclass
@@ -58,9 +65,9 @@ class NoveltyMemory:
 
     freeze_ms: int | None = None
     min_sources: int = 2
-    min_days: int = 2
-    tau_ms: float = 7 * DAY_MS
-    source_cap: int = 16
+    min_span_ms: int = 3_600_000
+    tau_ms: float = DAY_MS
+    source_cap: int = 8
     excluded_sources: frozenset = frozenset()
     dst: dict = field(default_factory=dict)
     pairs: set = field(default_factory=set)
@@ -95,7 +102,6 @@ class NoveltyMemory:
         # after the freeze every source updates it, as it would in deployment
         if src in self.excluded_sources and (self.freeze_ms is None or t_ms < self.freeze_ms):
             return
-        day = t_ms // DAY_MS
         for d in dsts:
             s = self.dst.get(d)
             if s is None:
@@ -105,12 +111,10 @@ class NoveltyMemory:
             s.last_ms = max(s.last_ms, t_ms)
             if len(s.sources) < self.source_cap:
                 s.sources.add(src)
-            if len(s.days) < self.min_days:
-                s.days.add(day)
             if (
                 not s.promoted
                 and len(s.sources) >= self.min_sources
-                and len(s.days) >= self.min_days
+                and s.last_ms - s.first_ms >= self.min_span_ms
             ):
                 s.promoted = True
             self.pairs.add((src, d))

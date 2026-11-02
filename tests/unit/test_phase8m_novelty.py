@@ -61,15 +61,17 @@ def test_features_are_causal():
 
 
 def test_first_and_repeated_observation_and_guarded_promotion():
-    day = DAY_MS
-    rows = [(10, "a", "x"), (W + 10, "a", "x"),  # one source, same day: never promoted
-            (day + 10, "a", "x"),  # one source, two days: still not promoted (needs 2 sources)
-            (day + W + 10, "b", "x"),  # second source on day 2: promoted after this window
-            (day + 2 * W + 10, "c", "x")]  # fmt: skip
+    h = 3_600_000
+    rows = [(10, "a", "x"), (W + 10, "a", "x"),  # one source: never promoted
+            (h + 10, "a", "x"),  # one source over an hour: still not (needs 2 sources)
+            (h + W + 10, "b", "x"),  # second source, span >= 1 h: promoted after this window
+            (h + 2 * W + 10, "c", "x")]  # fmt: skip
     out = NoveltyMemory().process(contacts_from_flows(flows(rows))).sort("win", "key")
     assert out["nov_unconditional"].to_list() == [1.0, 0.0, 0.0, 0.0, 0.0]
     assert out["nov_guarded"].to_list() == [1.0, 1.0, 1.0, 1.0, 0.0]
     assert out["nov_host"].to_list() == [1.0, 0.0, 0.0, 1.0, 1.0]  # first contact per source
+    burst = [(10, "a", "y"), (W + 10, "b", "y"), (2 * W + 10, "c", "y")]  # 3 sources in 1 min
+    assert NoveltyMemory().process(contacts_from_flows(flows(burst)))["nov_guarded"].min() == 1.0
 
 
 def test_persistent_single_host_beacon_is_never_absorbed_by_guarded_memory():
@@ -121,5 +123,5 @@ def test_bounded_state_and_empty_input():
     rows = [(k * W + 1, f"s{k}", "popular") for k in range(100)]
     mem = NoveltyMemory(source_cap=8)
     mem.process(contacts_from_flows(flows(rows)))
-    assert len(mem.dst["popular"].sources) == 8 and len(mem.dst["popular"].days) <= mem.min_days
+    assert len(mem.dst["popular"].sources) == 8
     assert NoveltyMemory().process(contacts_from_flows(flows([]))).height == 0
