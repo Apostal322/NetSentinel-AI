@@ -25,6 +25,8 @@ calibration reliability and useful attack detection across previously unseen net
 | [DEDALE_PREREGISTRATION.md](DEDALE_PREREGISTRATION.md) | draft pre-registration of the longitudinal test (not frozen) |
 | [DEDALE_MANIFEST.md](DEDALE_MANIFEST.md) | member-level download manifest with offsets, sizes and CRC32s |
 | [DEDALE_STAGE_A.md](DEDALE_STAGE_A.md) | authorized calibration download and gate N1–N6 outcome (PASS) |
+| [DEDALE_FREEZE.md](DEDALE_FREEZE.md) | the freeze: 52 hashed files at `912786f` |
+| [DEDALE_N8.md](DEDALE_N8.md) | calibration-side dependence check (PASS); thresholds fixed |
 
 ## Findings
 
@@ -107,6 +109,10 @@ authorised red-team exercises, or a future multi-institution corpus. The revised
       evaluation data is downloaded.
   - **Source models (authorized):** the three registered B-raw models are fitted and hashed
     (`reports/phase8l/dedale_source_models.json`). No DEDALE window has been scored.
+  - **Freeze and N8:** the protocol is frozen (`ff4da57`).
+    - N8 passed: the minimum `neff_m3` is 15,721, against the 590 required.
+    - The thresholds are fixed; only calibration windows were scored.
+    - Stage B (396.3 MB) and the single final run are next, and need authorization.
   - **The network-level NO-GO above is unchanged; a single-network result cannot revise it.**
 
 **Not recommended:** further method development on the same 4 development networks.
