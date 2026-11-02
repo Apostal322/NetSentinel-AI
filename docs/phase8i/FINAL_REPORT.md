@@ -170,15 +170,18 @@ whether three remedies help on an unseen network while keeping false alerts near
 - **N4 at a glance:**
   - **Evaluation:** 3,449 windows over 422 h (2018-06-04 to 06-19, mostly 06-04): 1,579 attack
     windows from 8 entities with attack-labelled windows (two address groups; roles not
-    independently verified), and 620 label-benign windows.
+    independently verified), and 620 label-benign windows from 8 entities that never attack.
+    Recall is over the 1,579 attack windows and FPR over the 620 benign windows; the 1,250
+    non-attack windows of the 8 attacking entities count in neither (strict benign rule,
+    section 2 of the pre-registration).
   - **Calibration (May):** benign-train 178 windows, threshold hold-out 781, labelled attack
     pool 7,230 windows from 8 entities (mostly reconnaissance).
-  - Only 16 entities in total.
+  - 16 entities in the evaluation period; at least 20 counting the calibration period.
 
 | hypothesis | frozen choice | result | registered verdict |
 |---|---|---|---|
-| **I1** label budget | A4, Ka = 25 | median recall 0.923 (2.5th pct 0.745) at median FPR **9.8%**; zero-label A1 recall 0.839 (seed mean; seed 0, on which A4 is built: 0.847 at 21.0% FPR) | **failure** (2.5th pct ≤ A1; FPR > 2%) |
-| **I2** shift-aware abstention | B-rz, τ = 0.70095 | B-rz raised **no** alerts on N4 (recall 0, FPR 0, ROC-AUC 0.93); 5 eligible blocks, none overrunning; τ covered 20% of blocks, holding 67% of attack windows in the abstained blocks | **not evaluable** (no overrunning blocks, amendment A4) |
+| **I1** label budget | A4, Ka = 25 | median recall 0.923 (2.5th pct 0.745) at median FPR **9.8%**; zero-label A1 recall 0.839 (seed mean; seed 0, on which A4 is built: 0.847 at 21.0% FPR) | **failure** (2.5th pct ≤ A1; the 9.8% FPR would also have blocked success) |
+| **I2** shift-aware abstention | B-rz, τ = 0.70095 | B-rz raised **no** alerts on N4 (recall 0, FPR 0, ROC-AUC 0.93); 5 eligible blocks, none overrunning; τ covered 20% of blocks; the abstained blocks held 67% of the attack windows inside eligible blocks (767 of 1,149; 49% of all 1,579) | **not evaluable** (no overrunning blocks, amendment A4) |
 | **I3** representation | C1_k2 | recall 0.858 vs raw 0.839, at FPR **19.0%** vs 11.7% | **failure** |
 
 **Other N4 numbers [C, descriptive]:**
@@ -193,21 +196,31 @@ whether three remedies help on an unseen network while keeping false alerts near
   - C2, seeds 0 and 2: FPR 2.1%, at recall 0.44–0.46.
   - A3 was not selected on development data, where it collapsed on NF-UNSW. These are
     observations, not confirmations.
+  - **Why A3 at Ka = 5 is not a success either.** It is one seed and 20 draws. Its 2.5th
+    percentile (0.357) is below A1's recall (0.839), so it would fail the registered I1 rule's
+    spread clause even at that budget. And its FPR does not hold as labels are added: median
+    5.5% at Ka = 25 and 6.5% at Ka = 100. An effect that disappears with more labels is more
+    likely draw noise on a two-source calibration than a reliable operating point.
+  - **The verdicts do not depend on the frozen choices.** Under I1's rules, A3 and A5 at
+    Ka = 25 would also fail (2.5th percentile 0.583 and 0.556 ≤ 0.839). Under I3's rules, C2
+    would also fail (mean recall 0.586 against the 0.939 needed).
 - **The registered choices all overran the budget, as did zero-label A1.** The deployed robust
   detector kept its budget only by alerting on nothing.
 
 **Post-hoc diagnostic [E, after the verdicts; changes none].**
-- **Every false alert of the A1 model (seed 0, FPR 21.0%) on N4 comes from one label-benign
-  host** (192.168.100.46): 130 alerts, 40% of its 325 evaluation windows. 125 of the 130 fall
-  on 2018-06-04, the main DoS/DDoS day, and 5 on 06-18/19. Seeds 1 and 2 have 7.1% FPR; their
-  alerts were not broken down.
-- **That host dominates calibration:** 503 of the 781 hold-out windows.
+- **Every false alert of the A1 model on N4 comes from one label-benign host**
+  (192.168.100.46), in all three seeds: 130 alerts in seed 0 (FPR 21.0%; 40% of its 325
+  evaluation windows; 125 on 2018-06-04, the main DoS/DDoS day, and 5 on 06-18/19), and 44 in
+  each of seeds 1 and 2 (FPR 7.1%; final audit, `calibration_audit.json`).
+- **That host dominates calibration:** 503 of the 781 hold-out windows. The next largest
+  source is 0.0.0.0 (127 windows), the unspecified IPv4 address, not an ordinary host.
   - Its alerting windows have nearly the same feature medians as its hold-out windows:
     `log_pkts` 9.41 vs 9.24, `new_dst_frac` 0 (saved in `posthoc_n4.json`).
   - A plausible reading: small shifts move its clustered scores across a threshold that its
     own windows set.
-- The benign evidence is therefore essentially **two hosts**. The realised FPR measures one
-  host's behaviour on one flood day. It is not a network-wide false-alert rate.
+- The benign evidence is therefore essentially **two sources, one of them an ordinary host**
+  (2.2 effective hosts, section 10). The realised FPR measures one host's behaviour on one
+  flood day. It is not a network-wide false-alert rate.
 - A host that is busy during a flood (target, relay or bystander) can carry the dataset's
   benign label. These alerts are **unverified**, not confirmed false positives.
 
@@ -233,7 +246,7 @@ whether three remedies help on an unseen network while keeping false alerts near
 | DDoS-LOIC missed by the source model and by A4 at every budget | NF-CIC 02-20 | 1 poor ranking | ROC-AUC 0.225 (attacks scored below benign); A4 0.085 in all draws; target-only A5 recovers it in some draws only (15/20 at Ka = 5, 4/20 at Ka = 100) |
 | source threshold unusable | all except NF-UNSW | 2 threshold miscalibration | A0 FPR 19.9–51% |
 | benign-calibrated threshold overruns | NF-ToN-IoT, NF-UNSW, N4 | 2 threshold miscalibration + 5 domain shift (within the target over time) | A1 FPR 14.5%, 3.7%, 7–21%; NF-ToN-IoT driven by `new_dst_frac`; N4 by one host |
-| N4 FPR rests on one host | N4 | 9 insufficient independent evidence + 4 label ambiguity | 2 benign hosts; alerts on a flood day |
+| N4 FPR rests on one host | N4 | 9 insufficient independent evidence + 4 label ambiguity | 2.2 effective benign hosts, about 5 effective observations; alerts on a flood day (section 10) |
 | seed-unstable zero-label detection | NF-CIC 03-02 | 6 model uncertainty | A1 recall 0.86 / 0.05 / 0.16 across seeds |
 | representation changes do not remove network identity | all | 5 domain shift | identity AUC 0.98–1.00 under every variant |
 | robust detector nearly silent on N4 and most NetFlow units | N4, NF-CIC (except 02-16: 0.56), NF-UNSW | 2 threshold miscalibration | ROC-AUC 0.91–0.93 but network-level recall 0–0.11 at T0 |
@@ -244,7 +257,12 @@ whether three remedies help on an unseen network while keeping false alerts near
    - I1 and I3 failed on the fresh network, and I2 could not be evaluated there.
    - This matches Phase 8h's four negative results: the problem is not solved by a few
      labels, by feature removal, or by an abstention rule.
-2. **The binding constraint is calibration, not ranking.**
+2. **The binding constraint is calibration, not ranking. The two must be reported
+   separately.**
+   - Ranking quality (ROC-AUC, oracle recall) and operating-point reliability (realised FPR
+     at a threshold fixed in advance) failed independently in this phase. NF-ToN-IoT and N4
+     rank attacks moderately to well (ROC-AUC 0.82 and 0.87) yet overrun their false-alert
+     budget, while NF-CIC 02-20 stays near its budget (1.3% FPR) and ranks attacks backwards.
    - Ranking on N4 was moderate, and labels raised recall to about 0.92. But none of the
      registered methods kept its false alerts near 1%, because the benign calibration did not
      represent the evaluation period.
@@ -260,12 +278,16 @@ whether three remedies help on an unseen network while keeping false alerts near
      attacks backwards.
    - Neither effect is confirmed.
 4. **Abstention did not hide attacks by construction.** Alerts are never suppressed. But on N4
-   the shift score abstained on 80% of blocks, which held 67% of the attack windows. A policy
+   the shift score abstained on 80% of blocks, which held 67% of the attack windows inside
+   eligible blocks (49% of all attack windows). A policy
    that abstains on most of an attack period cannot be called reliable, even when it is
    honest about it.
-5. **Network identity appears diffuse.** Removing the top 1–3 identifying features, or the 4
-   volume features, leaves identity AUC at 0.98 or above. Only those subsets were tested.
-   Within the tested variants, removal (C1) and per-domain centring (C2) did not remove it.
+5. **Network identity appears diffuse, and the models depend on network-specific features.**
+   Removing the top 1–3 identifying features, or the 4 volume features, leaves identity AUC
+   at 0.98 or above. Only those subsets were tested. Within the tested variants, removal (C1)
+   and per-domain centring (C2) did not remove it. Which feature carries a model also changes
+   with the source set (`new_dst_frac`, or `log_pkts` at 53% of gain; section 6), so a
+   feature that transfers for one pair of networks need not transfer for another.
 
 **Missing evidence:**
 - more than one fresh network, ideally from a different institution;
@@ -282,6 +304,7 @@ whether three remedies help on an unseen network while keeping false alerts near
 | Deploying any candidate method | **NO-GO.** No registered method kept false alerts within budget on the fresh network; the one exploratory exception (A3, Ka = 5) is unconfirmed. The deployed detector is unchanged. |
 | Publishing the research report | **GO, after operator review** (local commits only; no push without authorization). |
 | Engineering fix (late-record health) | **GO.** Tested; it changes only the health flag. |
+| Window builds and ingest under the 3.4 GiB budget | **GO** after the final audit (section 10): bounded slices, identical development outputs at under 1.3 GB commit, OS-enforced cap. The NF-BoT-IoT-v3 ingest and build were not re-run, so their compliance is inferred from smaller equivalent workloads (a 10.6M-flow synthetic build; a 2.4M-row ingest), not shown on that capture. |
 
 ## 9. Independent review and deviations
 
@@ -308,3 +331,146 @@ whether three remedies help on an unseen network while keeping false alerts near
   - `pool_short` is checked on draw 0 only.
   - The first evaluation hour is discarded rather than used for shift scores: the scores
     compare each block with the hold-out.
+
+## 10. Final audit (after publication of the results)
+
+The results above were pushed at `6cfe97f`. This audit re-checked them, resolved the memory
+violations and characterised the N4 calibration. It changes no verdict.
+
+### 10.1 Verdicts and denominators
+
+- **Re-derived from the raw N4 outputs:** I1 **failure**, I2 **not evaluable**, I3
+  **failure**. The verdict code implements the registered rules and amendment A4, which was
+  committed (`559b4e2`) before the freeze (`5db0c6f`) and the protected run (`0176269`). The
+  pre-registration was only appended to, and not after the freeze.
+- **Denominators:** I1 FPR medians are over 20 draws of 620 benign windows (e.g. 9.76% =
+  60.5 / 620, the median of an even count). The I3 raw FPR 11.7% is the mean of 130, 44 and 44
+  false alerts over 620.
+- **Robust to the frozen choices** (section 5): no other method or variant would have passed.
+- **C selection wording:** recorded as an ambiguity in AUDIT_TRAIL.md item 8; either reading
+  gives a failure.
+
+### 10.2 Memory-budget violations
+
+- **Root cause (window build, 4.1 GB):** full captures were read in one-hour slices by
+  repeated lazy Polars scans, whose memory grew with every scan even while nothing was held
+  (1.0 → 2.3 GB commit over 57 slices on NF-ToN-IoT). NF-BoT-IoT-v3's time-overlapping row
+  groups (66 of 72) and its 4.05M-flow hour made each scan large.
+- **Root cause (ingest, 3.69 GB):** the 64 MiB CSV block. 16 MiB halves the peak with
+  identical output.
+- **Fix:** slices of at most 500,000 flows on the window grid, read one row group at a time;
+  ingest blocks of 16 MiB.
+- **Validation without protected data:**
+  - All 80 development outputs are identical to the frozen ones.
+  - Peak working sets: NF-CIC 1.8 → 0.9 GB, NF-ToN-IoT 2.5 → 1.0 GB.
+  - A synthetic BoT-shaped capture runs at 1.17 GB commit under a 2 GiB cap, where the frozen
+    code fails.
+- **Enforcement:** `scripts/run_capped.py` (OS-enforced cap on committed memory, exact peak);
+  the watchdog now reads peak working sets, so a brief overrun of a process that is still
+  running at the next 5 s poll is detected; one that spikes and exits between polls is not.
+  Only the cap prevents overruns. None of the result-producing Phase 8i runs used it.
+- **Limit:** compliance on NF-BoT-IoT-v3 itself is inferred from equivalent workloads; its
+  build and ingest were not re-run.
+- Evidence: `reports/phase8i/memory_audit.json` and `reports/phase8i/audit/`; details: AUDIT_TRAIL.md item 7.
+
+### 10.3 Why the N4 benign calibration was inadequate
+
+`scripts/phase8i/calibration_audit.py` (post-hoc; fits nothing, chooses no threshold) uses
+the saved A1 scores (`reports/phase8i/calibration_audit.json`). The calibration-side columns
+use no evaluation scores. **But hold-out membership is not label-free:** the registered
+strict-benign rule (pre-registration section 2, amendment A1) removes every entity that
+attacks in *either* period, so evaluation labels decide which hosts calibrate. On development
+data this removed 912 NF-ToN-IoT and 1,085 NF-CIC 02-22 calibration windows; for N4 the
+effect cannot be determined from the saved files. No deployed detector has this oracle: it
+makes every Phase 8i benign calibration cleaner than an operational one would be.
+
+| domain | hold-out windows | hosts | effective hosts | effective n (sessions) | host-grouped exceedance | i.i.d. conformal FPR 95% | realised A1 FPR | KS hold vs eval benign |
+|---|---|---|---|---|---|---|---|---|
+| NF-CIC (6 days) | 25,919–36,144 | 4,736–6,557 | 477–651 | 914–1,152 | 0.008–0.010 | about 0.9–1.1% | 1.0–1.6% | 0.01–0.03 |
+| NF-UNSW | 443 | 17 | 12.3 | 27 | 0.007 | 0.25–1.97% | 3.7% | 0.09 |
+| NF-ToN-IoT | 4,571 | 3,634 | 92.7 | 4,571 | 0.030 | 0.72–1.29% | 14.5% | 0.68 |
+| **N4 NF-BoT-IoT-v3** | 781 | 7 | **2.2** | **4.8** | **0.644** | 0.36–1.66% | **7.1–21.0%** | 0.38 |
+
+- **Definitions:**
+  - Effective hosts = (Σm)² / Σm² over hold-out windows per host.
+  - Effective n = n / (1 + (m_w − 1)ρ), with ρ the intra-session correlation of the A1 score
+    and sessions split at 30-minute gaps.
+  - Host-grouped exceedance: the T0 threshold computed from the other hosts' hold-out
+    windows, applied to each held-out host (up to 10 host folds).
+  - The i.i.d. interval is the conformal guarantee if windows were exchangeable.
+- **N4, what the data show:**
+  - **One host is 64% of the hold-out** (192.168.100.46, 503 of 781). The second is 0.0.0.0.
+    The intra-host correlation of scores is 0.97, so 781 windows carry about 2–5 independent
+    observations.
+  - **The calibration fails its own internal check** (no evaluation scores used): a
+    threshold from the other hosts is exceeded by 64% of the held-out host windows. That
+    figure is 503 / 781: when 192.168.100.46 is held out, all of its windows exceed the
+    threshold set by the others, and no other host's windows do.
+  - **Time gap:** the hold-out covers 2 days in May. Every benign evaluation window falls on a
+    day with no calibration data, starting 305 h (12.7 days) after the hold-out ends.
+  - **The benign train/hold-out split is unbalanced** (178 vs 781 windows): the split is by
+    time slots, and the benign windows cluster late in the calibration period.
+  - **False alerts are concentrated:** all false alerts of all 3 seeds come from one host.
+  - **The i.i.d. interval (0.36–1.66%) is irrelevant here:** exchangeability fails, and the
+    realised 7–21% lies far outside it.
+- **What can be concluded:** N4's realised FPR is not an estimate of a network-wide
+  false-alert rate, and no threshold calibrated on this hold-out could have a meaningful
+  1% guarantee. The I1 failure stands as registered; it shows that the method was not
+  validated on N4 rather than that it would fail on a network with adequate benign data (labels
+  did improve ranking: oracle recall at 1% FPR 0.42 → median 0.77). **I3 is a failure on
+  ranking too:** C1_k2's oracle recall at 1% FPR is 0.20–0.36 against raw 0.41–0.42, and its
+  ROC-AUC is 0.79–0.89 against 0.87. Both remain refuted, as the hypothesis ledger records.
+- **What cannot be concluded:** whether the 192.168.100.46 alerts are false positives (the
+  host may be a flood target or relay; its labels are unverified), and whether a larger
+  benign population would have rescued any method. N4 cannot be re-used to find out.
+- **Two separable failure modes on the development networks:**
+  - **Small, dependent calibration** (NF-UNSW: 27 effective windows; N4). This can be seen
+    in the calibration data alone.
+  - **Calibration-to-evaluation drift** (NF-ToN-IoT: KS 0.68, 94% of benign evaluation
+    windows on days without calibration, 35% from hosts absent from the hold-out). Its
+    composition looks adequate. Only the grouped exceedance (0.030, three times the target)
+    hints at it. (Its effective n of 4,571 is degenerate: 3,688 sessions for 4,571 windows,
+    so the session correlation is clipped to 0.)
+
+### 10.4 Recommended calibration eligibility checks (for a future registered test)
+
+Proposed from development data. They are **hypotheses**: they were designed after N4's
+post-hoc diagnostic, so N4 is not independent evidence for them.
+
+1. **Effective sample size ≥ 199** session-adjusted windows: below 199 the 1% conformal
+   threshold is the hold-out maximum and cannot control FPR at 1% (pre-registration section 2).
+   Flag the estimate as degenerate when sessions are mostly single windows.
+2. **Effective hosts ≥ 10**, and no host above 25% of the hold-out.
+3. **Host-grouped exceedance ≤ 2α** (2% at α = 1%).
+4. **Recency:** the hold-out ends within 24 h of the evaluation start. (An earlier draft
+   also required the same hours of day; every NF-CIC domain splits one day at its midpoint
+   and would fail it, so it was dropped.)
+
+- **On development data:** all 4 checks pass all 6 NF-CIC domains (realised FPR 1.0–1.6%).
+  NF-UNSW fails check 1 (3.7%) and NF-ToN-IoT fails check 3 (14.5%); both pass check 4.
+- **On N4 (post-hoc):** N4 fails checks 1–4.
+- **Use:** a domain that fails would report "FPR budget not supported" instead of a
+  threshold, which is the honest output for N4. Their predictive value has to be tested on
+  networks not used here.
+
+### 10.5 Remaining risks
+
+- **Scientific:**
+  - One fresh network, with two benign sources; unverified benign labels.
+  - The eligibility checks are untested.
+  - A3's low-FPR observation is unreplicated.
+  - The NF-UNSW zero-label gain is unexplained.
+  - Development effects come from 3 network-level units.
+- **Engineering:**
+  - The N4 build and ingest were not re-run under the new code.
+  - `run_capped.py` caps the total committed memory of the job, including the capping
+    interpreter and `uv` (stricter than the per-process working set the budget was stated
+    in). On POSIX it falls back to an address-space limit, which can fail spuriously with
+    allocators that reserve large ranges, and reports the largest child's peak.
+  - The bounded-memory claims rest on `reports/phase8i/audit/` (run records and output
+    comparison), not on a re-run of the N4 build.
+  - The strict-benign rule uses evaluation labels to choose calibration hosts (section 10.3).
+  - `exp_b.py`'s confirm path skips the "≥ 60 benign evaluation windows" domain filter of the
+    development path (frozen code; no effect on N4, which has 620).
+  - Bounded builds are about 2× slower.
+  - The frozen scripts' temp-directory leaks (`ns-h6-`, `ns-inc-`) remain as documented.

@@ -65,3 +65,47 @@ A chronological record of what was done, in what order, and every deviation. Tim
    - the draw-seed formula differs from "draw index";
    - `pool_short` is checked on draw 0 only;
    - the first evaluation hour is discarded, not used for the shift scores.
+7. **Final audit: memory-budget violations resolved (after publication of the results).**
+   Evidence in `reports/phase8i/memory_audit.json`. No protected labels were read; NF-BoT-IoT-v3
+   was inspected through timestamps and Parquet metadata only.
+   - **Window build (item 5), root cause.** Full captures were read in one-hour slices by
+     repeated lazy Polars scans. On NF-ToN-IoT (development) the scans alone, holding nothing,
+     grew from 1.0 to 2.3 GB commit over 57 slices; a pyarrow row-group reader stayed near
+     1.0 GB, and the builder itself was flat. NF-BoT-IoT-v3's row groups overlap in time (66 of
+     72), so each hourly scan decoded many groups, and its largest hour held 4.05M flows.
+     Ruled out: the destination sets (291 addresses), string-buffer retention, concurrent
+     processes.
+   - **Window build, fix.** At most 500,000 flows per slice, cut on the 30 s window grid; each
+     slice read one row group at a time and filtered at once. Rebuilt under an OS-enforced
+     3.4 GiB cap, all 80 development Parquet outputs (NF-CIC, NF-UNSW, NF-ToN-IoT) are
+     identical to the frozen ones. Peak working set fell from 1.8 to 0.9 GB (NF-CIC) and from
+     2.5 to 1.0 GB (NF-ToN-IoT). On a synthetic BoT-shaped capture (10.6M flows, a 4.05M-flow
+     hour) under a 2 GiB cap, the new code peaked at 1.17 GB commit; the frozen code failed at
+     the cap. Cost: the builds take 1.9–2.5× longer.
+   - **Ingest (item 4).** The CSV block size sets the peak. On NF-UNSW-NB15-v3, 64 MiB blocks
+     peaked at 1.9 GB and 16 MiB at 1.0 GB, with identical output; the default is now 16 MiB.
+     The NF-BoT-IoT-v3 ingest was not re-run.
+   - **Enforcement.** `scripts/run_capped.py` runs a command inside a Windows Job Object that
+     caps total committed memory: an allocation past the cap fails, and the exact peak
+     (`PeakJobMemoryUsed`) is recorded, not sampled. The watchdog now reads each process's
+     peak working set, so a brief overrun is detected if the process is still running at
+     the next 5 s poll. Only the cap prevents overruns.
+   - **Evidence files:** `reports/phase8i/audit/` (capped run records, output comparison).
+   - **Frozen code.** `build_windows.py` changed after the confirmatory run. The frozen version
+     stays at `5db0c6f`; the change only alters memory use, verified by identical outputs.
+8. **Final audit: verdicts and calibration (after publication of the results).**
+   - **Verdicts re-derived** from the raw N4 outputs: I1 failure, I2 not evaluable, I3
+     failure, unchanged. They are robust to the method choices: under I1's rules A3 and A5
+     would also fail (2.5th percentile 0.583 and 0.556 ≤ A1 0.839), and under I3's rules C2
+     would also fail (recall 0.586 vs the 0.939 needed).
+   - **C selection wording.** "Whichever of C1(k=2) and C2 has the larger mean development
+     gain" was applied to two negative gains (−0.065, −0.112); C1_k2 was selected. Reading
+     "neither meets this" as "no positive gain" would have sent C2 to N4 instead, with the
+     same failure verdict. Recorded as an ambiguity, not a deviation.
+   - **Independent review of the audit** (read-only agent): no verdict or headline number
+     changed. Upheld and corrected: the calibration hold-out is chosen with evaluation labels
+     (strict-benign rule), eligibility check 1 raised from 99 to 199 and check 4's hours-of-day
+     clause dropped, I3 also fails on ranking, the 67% abstained-attack share's denominator,
+     memory and watchdog overclaims, and a development number shown as confirmatory.
+   - **Calibration audit** (`scripts/phase8i/calibration_audit.py`, post-hoc, fits nothing):
+     FINAL_REPORT.md section 10.

@@ -10,6 +10,9 @@
 | [FINAL_REPORT.md](FINAL_REPORT.md) | results, error analysis, interpretation, decisions |
 | [ML_PORTFOLIO_SUMMARY.md](ML_PORTFOLIO_SUMMARY.md) | GitHub, portfolio, resume and research-engineer summaries |
 
+The final audit (memory violations, verdict re-check, calibration representativeness) is
+FINAL_REPORT.md section 10 and AUDIT_TRAIL.md items 7–8.
+
 **Status labels:**
 - **[E]:** development, exploratory.
 - **[C]:** the single confirmatory evaluation on NF-BoT-IoT-v3, run after `FREEZE.md`.

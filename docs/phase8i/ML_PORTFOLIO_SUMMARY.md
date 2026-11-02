@@ -50,7 +50,10 @@ false alerts, not ROC-AUC.
   post-hoc diagnostics labelled as such.
 - **Engineering:**
   - a streaming telemetry-health fix: dropped late records now block normality claims;
-  - bounded-memory window construction over 27M flows on an 8 GB machine;
+  - bounded-memory window construction over 27M flows on an 8 GB machine. Two runs
+    exceeded the 3.4 GB budget; the final audit traced them to repeated lazy Parquet scans
+    and a large CSV block, bounded both (identical outputs, about 1 GB peaks) and added an
+    OS-enforced memory cap;
   - atomic result files and a memory watchdog.
 
 **Results:**
@@ -58,23 +61,27 @@ false alerts, not ROC-AUC.
   evaluable.**
   - Twenty-five labelled target windows raised recall to 0.92, but at 9.8% false alerts, and
     were not reliably better than no labels.
-  - Feature removal did not help, and network identity stayed detectable (ROC-AUC 0.98).
+  - Feature removal did not help (on development data [E], network identity also stayed
+    detectable: ROC-AUC 0.98).
   - The deployed detector raised no alerts on the fresh network, so abstention could not be
     tested.
 - **Diagnosis:** the binding constraint is threshold calibration, not ranking.
-  - **N4 (post-hoc):** every false alert came from one benign host, so the fresh network's
-    benign evidence was essentially two hosts.
+  - **N4 (post-hoc):** every false alert came from one benign host. The benign calibration
+    had 2.2 effective hosts and failed its own host-grouped check (64% exceedance), without
+    any evaluation labels.
   - **NF-ToN-IoT:** a history-dependent novelty feature drove false alerts (a hypothesis).
 - **Exploratory:** with the Phase 8i source setup (a second source network, among other
   changes), zero-label cross-network ROC-AUC on NF-UNSW rose from 0.39 to 0.97. The cause is
   not isolated, and a shared-institution effect is not excluded.
 - **Exploratory:** a non-selected variant (logistic correction, 5 labels) reached 0.94 recall
   at 1.3% median false alerts on the fresh network, with a wide spread across label draws.
-  It is a lead, not a result.
+  It is a lead, not a result: its false alerts rose to 5.5–6.5% with more labels, and its
+  2.5th-percentile recall would fail the registered rule.
 
 **What it shows:**
 - Turning an open research question into falsifiable, pre-registered tests.
-- Leakage-safe data handling, including a protected test set.
+- Leakage-safe data handling, including a protected test set (with one disclosed oracle
+  element: benign calibration excludes hosts labelled as attackers in either period).
 - Operational metrics instead of ranking metrics.
 - Honest reporting of negative results.
 - Reproducible CPU-only experimentation under tight memory limits.
@@ -90,14 +97,15 @@ false alerts, not ROC-AUC.
 **NetSentinel AI: ML for network-attack detection under distribution shift** (Python,
 LightGBM, scikit-learn, polars)
 - Built leakage-safe flow-window pipelines over about 67M NetFlow records (four datasets) on an 8 GB machine
-  (streamed, memory-bounded, watchdog-guarded). Trained LightGBM, logistic and
+  (streamed and memory-bounded; an OS-enforced cap added after two runs overran the
+  budget). Trained LightGBM, logistic and
   robust-statistics detectors.
 - Implemented label-budget domain adaptation (continued boosting, stacking, target-only
-  models) and shift-aware selective prediction. Evaluated both at a calibrated 1%
-  false-alert operating point.
+  models) and shift-aware selective prediction. Evaluated both at a 1% target
+  false-alert threshold, reporting the realised rate.
 - Ran a pre-registered evaluation on a protected, never-opened network (code-enforced freeze).
-  The remedies failed or were not evaluable. A post-hoc diagnostic traced the false alerts to
-  a benign calibration population of essentially two hosts.
+  The remedies failed or were not evaluable. A post-hoc audit traced the false alerts to a
+  benign calibration of 2.2 effective hosts that fails a host-grouped check on its own.
 - Fixed a streaming telemetry-health gap: dropped late records had left health "ok" while
   10 alerts were lost. Added regression tests.
 

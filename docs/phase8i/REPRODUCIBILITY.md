@@ -40,6 +40,17 @@ uv run python scripts/phase8i/build_windows.py nfton
 Outputs go to `data/derived/phase8i/<network>/<domain>/` (git-ignored). Counts are in
 `reports/phase8i/windows_<network>.json`.
 
+**Memory:** run builds and ingests under the hard cap, which fails the command instead of
+letting it exceed 3.4 GiB, and records the exact peak:
+
+```bash
+uv run python scripts/run_capped.py --record reports/phase8i/logs/capped.jsonl -- uv run python scripts/phase8i/build_windows.py nfton
+```
+
+`--out DIR` writes a build elsewhere (to compare with the stored windows), and `--max-rows`
+sets the slice size (default 500,000 flows). The audit version of the builder reproduces the
+frozen windows of all three development networks exactly (`reports/phase8i/memory_audit.json`).
+
 **Consistency check:** the NF-UNSW build reproduces the Phase 8b windows exactly:
 1,829,313 flows, 16,028 evaluation windows, 14,057 clean calibration windows, and 4,091
 attack windows from 4 attackers.
@@ -94,7 +105,16 @@ uv run python scripts/phase8i/posthoc_n4.py
 - freeze `5db0c6f`;
 - confirmatory results `0176269`.
 
-## 5. Determinism
+## 5. Final audit (post-hoc; fits nothing)
+
+```bash
+uv run python scripts/phase8i/calibration_audit.py
+```
+
+It reads the saved windows and A1 scores and writes `reports/phase8i/calibration_audit.json`
+(FINAL_REPORT.md section 10).
+
+## 6. Determinism
 
 - **Seeds:** LightGBM `random_state` = seed with `n_jobs = 2`. Label draws use
   `np.random.default_rng(1_000_003 * draw + Ka (+7 for the single-entity variant))`. Negative

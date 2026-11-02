@@ -109,6 +109,7 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 | Does a shift score mark blocks that overrun their false-alert budget? (I2) | NF-BoT-IoT-v3 / 118 development blocks | Not evaluable on N4 (the deployed detector raised no alerts); development pooled AUC 0.72, driven by between-domain differences; it does not beat the sample-size comparator | C / E |
 | Does removing network-identifying features help? (I3) | NF-BoT-IoT-v3 / 3 development networks | No: +0.02 recall at 19% FPR; development −0.065 | C / E |
 | Zero-label transfer with the Phase 8i source setup | NF-UNSW | ROC-AUC 0.97 (0.39 in Phase 8h); cause not isolated (source set, cap, weighting and calibration all changed) | E |
+| Was N4's benign calibration adequate? (final audit) | NF-BoT-IoT-v3 | No: 7 hosts, 2.2 effective, about 5 effective observations; a threshold from the other hosts is exceeded by 64% of the held-out host windows; evaluation benign windows start 12.7 days after the hold-out | E (post-hoc) |
 | Why thresholds overran | N4 post-hoc, attribution | N4: one benign host dominates calibration and evaluation; NF-ToN-IoT: `new_dst_frac` drives false alerts (hypothesis) | E |
 
 ## Telemetry
