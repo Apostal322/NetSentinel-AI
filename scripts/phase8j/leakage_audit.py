@@ -26,6 +26,7 @@ development network in Phase 8j and never confirmation. P0 must reproduce the Ph
 A1 numbers; the script checks that.
 
 Output: reports/phase8j/leakage_audit.json, data/derived/phase8j/scores/<domain>__<protocol>.npz
+(--seed k > 0: leakage_audit_seed<k>.json and <domain>__<protocol>__seed<k>.npz)
 Usage: uv run python scripts/run_capped.py -- uv run python scripts/phase8j/leakage_audit.py
 """
 
@@ -50,7 +51,16 @@ PROTOCOLS = ("P0_oracle", "P1_past", "P2_none", "P3_screen")
 OUT = Path("reports/phase8j/leakage_audit.json")
 SCORES = Path("data/derived/phase8j/scores")
 PHASE8I = {"nfbot": Path("reports/phase8i/confirm/exp_a")}
-SEED = 0
+SEED = 0  # set by --seed
+
+
+def out_path(seed: int) -> Path:
+    return OUT if seed == 0 else OUT.with_name(f"leakage_audit_seed{seed}.json")
+
+
+def score_path(name: str, protocol: str, seed: int) -> Path:
+    tail = "" if seed == 0 else f"__seed{seed}"
+    return SCORES / f"{name.replace('/', '__')}__{protocol}{tail}.npz"
 
 
 def targets(nets: dict[str, dict[str, dict]]) -> list[tuple[str, dict, dict]]:
@@ -126,7 +136,7 @@ def run_domain(name: str, d: dict, model, src_thr: float) -> dict:
                                **{k: met.get(k) for k in ("threshold", "fpr", "window_recall",
                                   "false_alerts_per_h", "entity_recall", "roc_auc",
                                   "oracle_recall_at_fpr1")}}  # fmt: skip
-        np.savez_compressed(SCORES / f"{name.replace('/', '__')}__{p}.npz",
+        np.savez_compressed(score_path(name, p, SEED),
                             s_hold=s_hold, hold_key=hold["key"].to_numpy().astype(str),
                             hold_win=hold["win"].to_numpy(), s_ev=s_ev)  # fmt: skip
     ref = (
@@ -140,6 +150,12 @@ def run_domain(name: str, d: dict, model, src_thr: float) -> dict:
 
 
 def main() -> None:
+    import argparse
+
+    global SEED
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--seed", type=int, default=0)
+    SEED = ap.parse_args().seed
     t0 = time.perf_counter()
     nets = {n: C.load_network(n) for n in NETWORKS}
     cache: dict[tuple, tuple] = {}
@@ -154,7 +170,7 @@ def main() -> None:
               res["domains"][name]["reproduces_phase8i"], flush=True)  # fmt: skip
     res["seconds"] = round(time.perf_counter() - t0, 1)
     res["peak_rss_mb"] = peak_rss_mb()
-    C.dump(OUT, res)
+    C.dump(out_path(SEED), res)
 
 
 if __name__ == "__main__":

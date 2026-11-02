@@ -1,0 +1,12 @@
+{
+ "domains": {
+  "all": {
+   "mid_ms": 1424221013826,
+   "excluded_hosts": 4,
+   "flows": 1829313,
+   "memory_destinations": 31,
+   "seconds": 3.6
+  }
+ },
+ "peak_rss_mb": 804.6484375
+}

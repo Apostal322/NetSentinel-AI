@@ -17,9 +17,13 @@ for sub in ("scripts/phase8j", "scripts/phase8i", "scripts/phase8h", "scripts/ph
 
 
 def _load(name: str):
-    spec = importlib.util.spec_from_file_location(name, ROOT / "scripts/phase8j" / f"{name}.py")
+    # registered under a unique name: scripts/phase8c/dev_compare.py also exists, and other test
+    # modules import it by its bare name
+    spec = importlib.util.spec_from_file_location(
+        f"phase8j_{name}", ROOT / "scripts/phase8j" / f"{name}.py"
+    )
     mod = importlib.util.module_from_spec(spec)
-    sys.modules[name] = mod
+    sys.modules[f"phase8j_{name}"] = mod
     spec.loader.exec_module(mod)
     return mod
 
@@ -108,9 +112,103 @@ def test_cluster_bound_is_a_rate_and_zero_without_exceedances():
     assert 0.05 < ub <= 1.0
 
 
+def _flows(starts_s, src="10.0.0.1", label="benign"):
+    import polars as pl
+
+    n = len(starts_s)
+    return pl.DataFrame({
+        "flow_start_milliseconds": [int(s * 1000) for s in starts_s],
+        "flow_end_milliseconds": [int(s * 1000) + 500 for s in starts_s],
+        "ipv4_src_addr": [src] * n, "ipv4_dst_addr": ["10.0.0.9"] * n, "dst_port": [80] * n,
+        "protocol": [6] * n, "in_bytes": [100] * n, "out_bytes": [50] * n, "in_pkts": [2] * n,
+        "out_pkts": [1] * n, "flow_duration_milliseconds": [500] * n, "client_tcp_flags": [2] * n,
+        "server_tcp_flags": [18] * n, "label": [label] * n})  # fmt: skip
+
+
+def test_p1x_windows_equal_the_unlabelled_variant_without_exclusions(tmp_path, monkeypatch):
+    """P1x = the Phase 8i all-flow windows, except that calibration-period attackers are kept out
+    of the calibration windows and of the destination memory."""
+    import polars as pl
+
+    P = _load("build_p1x")  # noqa: N806
+    monkeypatch.chdir(tmp_path)
+    rng = np.random.default_rng(0)
+    f = pl.concat([_flows(np.sort(rng.uniform(0, 900, 300)), src=f"10.0.0.{i}") for i in range(3)]
+                  + [_flows([30, 31, 620], src="10.0.0.66", label="dos")])  # fmt: skip
+    f = f.with_columns(pl.Series("ipv4_dst_addr", [f"10.1.0.{i}" for i in
+                                                   rng.integers(0, 40, f.height)]))  # fmt: skip
+    f.sort("flow_end_milliseconds").write_parquet(tmp_path / "2020-01-01.parquet")
+    files = [tmp_path / "2020-01-01.parquet"]
+    P.BW.build(files, False, tmp_path / "p8i", "test")
+    mid = __import__("json").loads((tmp_path / "p8i" / "meta.json").read_text())["mid_ms"]
+    b = P.P1xBuilder(mid, set())
+    for df in P.BW.chunks(files, False):
+        b.add(df)
+    b.save(tmp_path / "none", {})
+    for part in ("cal", "eval"):
+        x = pl.read_parquet(tmp_path / "none" / f"{part}_p1x.parquet").sort("key", "win")
+        u = pl.read_parquet(tmp_path / "p8i" / f"{part}_unlabelled.parquet").sort("key", "win")
+        assert x.height > 0 and x.equals(u.select(x.columns)), part
+    meta = P.build(files, False, tmp_path / "p8i", tmp_path / "p1x", 10**9)
+    assert meta["excluded_hosts"] == 1  # the calibration-period attacker 10.0.0.66
+    cal = pl.read_parquet(tmp_path / "p1x" / "cal_p1x.parquet")
+    assert "10.0.0.66" not in cal["key"].to_list()
+    assert pl.read_parquet(tmp_path / "p1x" / "eval_p1x.parquet").height == pl.read_parquet(
+        tmp_path / "p8i" / "eval_unlabelled.parquet").height  # fmt: skip
+
+
 def test_host_sizes_sum_to_n_and_skew_concentrates():
     for skew in (0.0, 1.0):
         m = T.sizes(10, 1000, skew)
         assert m.sum() == 1000 and (m >= 1).all()
     assert T.sizes(10, 1000, 1.0).max() > T.sizes(10, 1000, 0.0).max()
     assert math.isclose(T.sizes(4, 400, 0.0).std(), 0.0)
+
+
+DC = _load("dev_compare")
+
+
+def _fake_domain(benign_per_block, fp_per_block):
+    d = object.__new__(DC.Domain)
+    blk, s, ben = [], [], []
+    for b, (n, fp) in enumerate(zip(benign_per_block, fp_per_block, strict=True)):
+        blk += [b] * n
+        s += [1.0] * fp + [0.0] * (n - fp)
+        ben += [True] * n
+    d.blk, d.nb = np.array(blk), len(benign_per_block)
+    d.ev = {"s": np.array(s), "benign": np.array(ben)}
+    d.ben_per_blk = np.bincount(d.blk, minlength=d.nb)
+    return d
+
+
+def test_overrun_tests_against_the_tolerance_and_skips_small_blocks():
+    d = _fake_domain([20_000, 20_000, 20_000, 29], [266, 600, 0, 29])  # 1.33%, 3%, 0%, tiny
+    over = d.overrun(0.5)
+    assert over[0] == 0.0  # 1.33% is not significantly above 2 alpha
+    assert over[1] == 1.0  # 3% is
+    assert over[2] == 0.0
+    assert np.isnan(over[3])  # fewer than 30 verified-benign windows: not scored
+
+
+def test_variants_keep_the_full_hold_out_and_drop_duplicates():
+    d = object.__new__(DC.Domain)
+    n = 600
+    d.cal = {
+        "hold": np.ones(n, dtype=bool),
+        "key": np.repeat([f"h{i}" for i in range(12)], 50),
+        "end": np.tile(np.arange(50) * 30_000.0, 12),
+    }  # hold-out spans 25 min
+    out = DC.variants(d, np.random.default_rng(0))
+    assert sum(f for f, _ in out) == 1 and len(out[0][1]) == n and out[0][0]
+    sigs = {idx.tobytes() for _, idx in out}
+    assert len(sigs) == len(out)  # the 3 h / 12 h truncations equal the full set: dropped
+
+
+def test_tau_is_the_least_abstention_meeting_the_overrun_target():
+    rng = np.random.default_rng(5)
+    units = np.repeat(["a", "b", "c"], 400)
+    x = rng.normal(size=(1200, 3))
+    y = (x[:, 0] + 0.3 * rng.normal(size=1200) > 1.0).astype(float)  # predictable overruns
+    rows = {"x": x, "over_t0": y, "unit": units}
+    t = DC.choose_tau(rows, ["a", "b", "c"], "over_t0")
+    assert not t["flag"] and t["oof_overrun"] <= 0.10 and 0.5 < t["oof_coverage"] < 1.0

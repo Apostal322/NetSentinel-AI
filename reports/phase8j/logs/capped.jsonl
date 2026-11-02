@@ -1,1 +1,16 @@
 {"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8j/leakage_audit.py"], "exit": 0, "limit_mib": 3481.6, "peak_mib": 1514.45703125, "seconds": 262.0}
+{"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8j/build_p1x.py", "nfunsw"], "exit": 1, "limit_mib": 3481.6, "peak_mib": 160.90234375, "seconds": 3.1}
+{"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8j/build_p1x.py", "nfton"], "exit": 1, "limit_mib": 3481.6, "peak_mib": 161.01171875, "seconds": 2.4}
+{"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8j/build_p1x.py", "nfcic"], "exit": 1, "limit_mib": 3481.6, "peak_mib": 160.51953125, "seconds": 2.5}
+{"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8j/build_p1x.py", "nfbot"], "exit": 1, "limit_mib": 3481.6, "peak_mib": 160.703125, "seconds": 2.1}
+{"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8j/build_p1x.py", "nfunsw"], "exit": 0, "limit_mib": 3481.6, "peak_mib": 1093.68359375, "seconds": 6.8}
+{"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8j/build_p1x.py", "nfton"], "exit": 0, "limit_mib": 3481.6, "peak_mib": 1086.796875, "seconds": 41.8}
+{"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8j/build_p1x.py", "nfcic"], "exit": 0, "limit_mib": 3481.6, "peak_mib": 1253.5703125, "seconds": 35.5}
+{"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8j/build_p1x.py", "nfbot"], "exit": 0, "limit_mib": 3481.6, "peak_mib": 2664.34765625, "seconds": 41.2}
+{"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8j/dev_scores.py", "--seed", "0"], "exit": 0, "limit_mib": 3481.6, "peak_mib": 1514.37890625, "seconds": 109.4}
+{"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8j/leakage_audit.py", "--seed", "1"], "exit": 0, "limit_mib": 3481.6, "peak_mib": 1496.95703125, "seconds": 137.3}
+{"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8j/dev_scores.py", "--seed", "1"], "exit": 0, "limit_mib": 3481.6, "peak_mib": 1551.0234375, "seconds": 84.7}
+{"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8j/leakage_audit.py", "--seed", "2"], "exit": 0, "limit_mib": 3481.6, "peak_mib": 1497.8828125, "seconds": 236.1}
+{"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8j/dev_scores.py", "--seed", "2"], "exit": 0, "limit_mib": 3481.6, "peak_mib": 1515.16796875, "seconds": 92.8}
+{"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8j/dev_compare.py"], "exit": 0, "limit_mib": 3481.6, "peak_mib": 1303.55078125, "seconds": 218.0}
+{"cmd": ["C:/Users/marke/projects/netsentinel-ai/.venv/Scripts/python.exe", "scripts/phase8j/dev_compare.py", "--overrun-null", "alpha"], "exit": 0, "limit_mib": 3481.6, "peak_mib": 1292.0859375, "seconds": 167.9}

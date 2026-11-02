@@ -1,0 +1,47 @@
+{
+ "domains": {
+  "2018-02-14": {
+   "mid_ms": 1518628186474,
+   "excluded_hosts": 1,
+   "flows": 2137465,
+   "memory_destinations": 5847,
+   "seconds": 4.3
+  },
+  "2018-02-16": {
+   "mid_ms": 1518797904454,
+   "excluded_hosts": 1,
+   "flows": 1551863,
+   "memory_destinations": 5245,
+   "seconds": 3.7
+  },
+  "2018-02-20": {
+   "mid_ms": 1519146045844,
+   "excluded_hosts": 10,
+   "flows": 1827843,
+   "memory_destinations": 5797,
+   "seconds": 6.5
+  },
+  "2018-02-21": {
+   "mid_ms": 1519233147784,
+   "excluded_hosts": 10,
+   "flows": 2711059,
+   "memory_destinations": 6973,
+   "seconds": 9.1
+  },
+  "2018-02-22": {
+   "mid_ms": 1519318027117,
+   "excluded_hosts": 316,
+   "flows": 1989174,
+   "memory_destinations": 7851,
+   "seconds": 4.9
+  },
+  "2018-03-02": {
+   "mid_ms": 1520005082631,
+   "excluded_hosts": 8,
+   "flows": 1406244,
+   "memory_destinations": 5582,
+   "seconds": 3.4
+  }
+ },
+ "peak_rss_mb": 943.59375
+}

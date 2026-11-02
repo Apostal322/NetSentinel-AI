@@ -30,7 +30,12 @@ NAME = "P1u_past_unlabelled"
 
 
 def main() -> None:
-    res = json.loads(LA.OUT.read_text("utf-8"))
+    import argparse
+
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--seed", type=int, default=0)
+    seed = ap.parse_args().seed
+    res = json.loads(LA.out_path(seed).read_text("utf-8"))
     nets = {n: C.load_network(n) for n in LA.NETWORKS}
     for name, r in res["domains"].items():
         net = name.split("/")[0]
@@ -43,7 +48,7 @@ def main() -> None:
         kept = cal_u.filter(~pl.col("key").is_in(list(cal_att)))
         if C.S.split_cut(kept) != C.S.split_cut(cal_u):
             raise SystemExit(f"{name}: the time cut moves; P1u needs its own scoring run")
-        z = np.load(LA.SCORES / f"{name.replace('/', '__')}__P2_none.npz")
+        z = np.load(LA.score_path(name, "P2_none", seed))
         keep = ~np.isin(z["hold_key"], list(cal_att))
         hold = pl.DataFrame({"key": z["hold_key"][keep], "win": z["hold_win"][keep]})
         thr, _ = C.t0(z["s_hold"][keep])
@@ -54,7 +59,7 @@ def main() -> None:
                                    "oracle_recall_at_fpr1")}}  # fmt: skip
         print(name, round(r["protocols"][NAME]["fpr"], 4),
               round(r["protocols"][NAME]["window_recall"], 3), flush=True)  # fmt: skip
-    C.dump(LA.OUT, res)
+    C.dump(LA.out_path(seed), res)
 
 
 if __name__ == "__main__":
