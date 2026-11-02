@@ -146,3 +146,20 @@ def test_emit_subset_keeps_memory_and_rows_identical():
     assert sub.equals(full.filter(pl.col("key") == "h1"))
     assert destination_state(sub_mem).equals(destination_state(full_mem))
     assert NoveltyMemory().process(c, emit=frozenset({"nobody"})).height == 0
+
+
+def test_window_straddling_the_freeze_adds_its_calibration_destinations():
+    freeze = 10 * W + 15_000  # inside window 10
+    rows = [(10 * W + 5, "a", "x"),  # calibration part of window 10
+            (10 * W + 20_000, "b", "y"),  # evaluation part of the same window
+            (11 * W + 5, "c", "x"), (11 * W + 6, "c", "y")]  # fmt: skip
+    f = flows(rows)
+    mem = NoveltyMemory(freeze_ms=freeze)
+    out = mem.process(contacts_from_flows(f, freeze_ms=freeze)).sort("win", "key")
+    assert mem.frozen == {"x"}  # x came from a calibration flow, y only after the freeze
+    known = set(f.filter(pl.col("end_ms") < freeze)["dst"].to_list())
+    ref = aggregate(f.filter(pl.col("end_ms") >= freeze), "device", 30, known_dst=known)
+    j = ref.select("key", "win", "new_dst_frac").join(out, on=["key", "win"])
+    later = j.filter(pl.col("win") > 10)
+    np.testing.assert_allclose(later["new_dst_frac"], later["nov_frozen"])
+    assert later["nov_frozen"].to_list() == [0.5]

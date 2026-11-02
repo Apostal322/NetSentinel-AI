@@ -1,0 +1,63 @@
+{
+ "domains": {
+  "all": {
+   "mid_ms": 1527862993220,
+   "straddle_win": 50928766,
+   "excluded_hosts": 8,
+   "flows": 16933808,
+   "chunks": 37,
+   "contacts": 18001,
+   "truncated": false,
+   "variants": {
+    "clean": {
+     "rows": 9483,
+     "destinations": 291,
+     "frozen_destinations": 243,
+     "promoted": 19,
+     "check_new_dst_frac": {
+      "cal_clean": {
+       "windows": 6034,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      },
+      "eval_clean": {
+       "windows": 3449,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      }
+     }
+    },
+    "p1x": {
+     "rows": 4408,
+     "destinations": 145,
+     "frozen_destinations": 8,
+     "promoted": 12,
+     "check_new_dst_frac": {
+      "cal_p1x": {
+       "windows": 959,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      },
+      "eval_p1x": {
+       "windows": 3449,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 31.0,
+   "features": [
+    "nov_frozen",
+    "nov_unconditional",
+    "nov_guarded",
+    "nov_host",
+    "log_new_guarded",
+    "familiarity_decay",
+    "log_prevalence"
+   ]
+  }
+ },
+ "seconds": 31.0,
+ "peak_rss_mb": 1834.48828125
+}

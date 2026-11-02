@@ -13,9 +13,10 @@ mirroring the two window sets the models see:
 
 After the midpoint every flow updates both memories, as it would in deployment. Each memory
 reproduces its window set's `new_dst_frac` as `nov_frozen`; the build checks this on every
-window and records the largest difference. The one 30 s window index that straddles the midpoint
-is scored once from its merged flows (its calibration and evaluation rows get the same values);
-it is excluded from the check and counted in meta.json.
+window and records the largest difference. Contacts are tagged by flow end time, so the calibration
+part of the one 30 s window index that straddles the midpoint still enters the frozen memory;
+that window itself is scored once from its merged flows (its calibration and evaluation rows get
+the same values) and is excluded from the check (meta.json `straddle_win`).
 
 Output: data/derived/phase8m/novelty/<network>/<domain>/
           {clean,p1x}.parquet         features per (key, win)
@@ -116,7 +117,7 @@ def build(files: list[Path], dev_cut: bool, network: str, domain: str, max_rows:
         chunks += 1
         del df
         for v in VARIANTS:
-            c = contacts_from_flows(keep_flows(flows, v, mid, excluded), BW.W)
+            c = contacts_from_flows(keep_flows(flows, v, mid, excluded), BW.W, freeze_ms=mid)
             contacts += c.height
             parts[v].append(mems[v].process(c))
             if v == "p1x" and c.height:

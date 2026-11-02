@@ -91,7 +91,10 @@ def replay(state: bytes, rest: list[Path], straddle: int, inject: pl.DataFrame |
             hi = int(c["win"].max()) if i < len(rest) - 1 else int(inject["win"].max())
             take = inject.filter((pl.col("win") <= hi) & (pl.col("_n") >= used))
             used += take.height
-            c = pl.concat([c, take.drop("_n")]).unique(maintain_order=True)
+            take = take.drop("_n")
+            if "pre_freeze" in c.columns:  # injected contacts are all after the freeze
+                take = take.with_columns(pl.lit(False).alias("pre_freeze")).select(c.columns)
+            c = pl.concat([c, take]).unique(maintain_order=True)
         rows.append(mem.process(c, emit=emit))
     return mem, pl.concat(rows) if rows else pl.DataFrame()
 

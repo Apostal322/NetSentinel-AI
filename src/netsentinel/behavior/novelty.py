@@ -98,7 +98,7 @@ class NoveltyMemory:
                 "nov_host": nh / n, "log_new_guarded": math.log1p(ng),
                 "familiarity_decay": fam / n, "log_prevalence": prev / n}  # fmt: skip
 
-    def _update(self, src: str, dsts: Iterable[str], t_ms: int) -> None:
+    def _update(self, src: str, dsts: Iterable[str], t_ms: int, pre: set | None = None) -> None:
         # vetted calibration: known calibration-period attackers never enter the memory (P1x);
         # after the freeze every source updates it, as it would in deployment
         if src in self.excluded_sources and (self.freeze_ms is None or t_ms < self.freeze_ms):
@@ -107,8 +107,13 @@ class NoveltyMemory:
             s = self.dst.get(d)
             if s is None:
                 s = self.dst[d] = _Dst(first_ms=t_ms, last_ms=t_ms)
-                if self.freeze_ms is None or t_ms < self.freeze_ms:
+            # frozen memory: destinations of calibration flows. With `pre` (contacts tagged by
+            # flow end time) a window straddling the freeze still adds its calibration part.
+            if pre is not None:
+                if d in pre:
                     self.frozen.add(d)
+            elif self.freeze_ms is None or t_ms < self.freeze_ms:
+                self.frozen.add(d)
             s.last_ms = max(s.last_ms, t_ms)
             if len(s.sources) < self.source_cap:
                 s.sources.add(src)
@@ -124,12 +129,19 @@ class NoveltyMemory:
         """`contacts`: one row per (win, src, dst) with columns win, window_end_ms, src, dst, in
         time order across calls. All windows of one index are scored before any of them updates
         the memory. Returns one row per (win, src) with the FEATURES; with `emit`, only the rows
-        of those sources (the memory still learns from every contact)."""
+        of those sources (the memory still learns from every contact). An optional boolean
+        column `pre_freeze` (some flow of the contact ended before `freeze_ms`) decides what
+        enters the frozen memory; without it, the window time does."""
         empty = pl.DataFrame(schema={"key": pl.Utf8, "win": pl.Int64,
                                      **{f: pl.Float64 for f in FEATURES}})  # fmt: skip
         if contacts.height == 0:
             return empty
+        tagged = "pre_freeze" in contacts.columns
         agg = [pl.col("window_end_ms").first(), pl.col("dst").unique()]
+        if tagged:
+            agg.append(
+                pl.col("dst").filter(pl.col("pre_freeze").fill_null(False)).unique().alias("pre")
+            )
         g = contacts.group_by("win", "src").agg(*agg).sort("win", "src")
         first = int(g["win"][0])
         if self.last_win is not None and first <= self.last_win:
@@ -137,7 +149,7 @@ class NoveltyMemory:
                 f"window {first} is not after the last processed window {self.last_win}"
             )
         rows, pending, cur = [], [], None
-        for w, src, end, dsts in g.iter_rows():
+        for w, src, end, dsts, *pre in g.iter_rows():
             if w != cur:
                 for p in pending:
                     self._update(*p)
@@ -145,7 +157,7 @@ class NoveltyMemory:
             t = int(end) - 1
             if emit is None or src in emit:
                 rows.append({"key": src, "win": int(w), **self._features(src, dsts, t)})
-            pending.append((src, dsts, t))
+            pending.append((src, dsts, t, set(pre[0]) if tagged else None))
         for p in pending:
             self._update(*p)
         self.last_win = cur
@@ -162,12 +174,21 @@ def destination_state(mem: NoveltyMemory) -> pl.DataFrame:
     return pl.DataFrame(rows, schema=schema, orient="row")
 
 
-def contacts_from_flows(flows: pl.DataFrame, window_s: int = 30) -> pl.DataFrame:
-    """Canonical flows (end_ms, src, dst; `prepare_flows` output) -> distinct (win, src, dst)."""
+def contacts_from_flows(flows: pl.DataFrame, window_s: int = 30,
+                        freeze_ms: int | None = None) -> pl.DataFrame:  # fmt: skip
+    """Canonical flows (end_ms, src, dst; `prepare_flows` output) -> distinct (win, src, dst).
+    With `freeze_ms`, each contact is tagged `pre_freeze` if one of its flows ended before it."""
     w = window_s * 1000
-    return (flows.select((pl.col("end_ms").cast(pl.Int64) // w).alias("win"),
-                         pl.col("src").cast(pl.Utf8), pl.col("dst").cast(pl.Utf8))
-            .unique().with_columns(((pl.col("win") + 1) * w).alias("window_end_ms"))
+    f = flows.select((pl.col("end_ms").cast(pl.Int64) // w).alias("win"),
+                     pl.col("src").cast(pl.Utf8), pl.col("dst").cast(pl.Utf8),
+                     pl.col("end_ms").cast(pl.Int64))  # fmt: skip
+    if freeze_ms is None:
+        f = f.drop("end_ms").unique()
+    else:
+        f = f.group_by("win", "src", "dst").agg(
+            (pl.col("end_ms") < freeze_ms).any().alias("pre_freeze")
+        )
+    return (f.with_columns(((pl.col("win") + 1) * w).alias("window_end_ms"))
             .sort("win", "src", "dst"))  # fmt: skip
 
 

@@ -1,0 +1,348 @@
+{
+ "domains": {
+  "2018-02-14": {
+   "mid_ms": 1518628186474,
+   "straddle_win": 50620939,
+   "excluded_hosts": 1,
+   "flows": 2137465,
+   "chunks": 5,
+   "contacts": 1268404,
+   "truncated": false,
+   "variants": {
+    "clean": {
+     "rows": 234214,
+     "destinations": 7685,
+     "frozen_destinations": 5847,
+     "promoted": 4470,
+     "check_new_dst_frac": {
+      "cal_clean": {
+       "windows": 125648,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      },
+      "eval_clean": {
+       "windows": 108343,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      }
+     }
+    },
+    "p1x": {
+     "rows": 234214,
+     "destinations": 7685,
+     "frozen_destinations": 5847,
+     "promoted": 4470,
+     "check_new_dst_frac": {
+      "cal_p1x": {
+       "windows": 125648,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      },
+      "eval_p1x": {
+       "windows": 108343,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 12.3,
+   "features": [
+    "nov_frozen",
+    "nov_unconditional",
+    "nov_guarded",
+    "nov_host",
+    "log_new_guarded",
+    "familiarity_decay",
+    "log_prevalence"
+   ]
+  },
+  "2018-02-16": {
+   "mid_ms": 1518797904454,
+   "straddle_win": 50626596,
+   "excluded_hosts": 1,
+   "flows": 1551863,
+   "chunks": 4,
+   "contacts": 1113896,
+   "truncated": false,
+   "variants": {
+    "clean": {
+     "rows": 170842,
+     "destinations": 6489,
+     "frozen_destinations": 5245,
+     "promoted": 3822,
+     "check_new_dst_frac": {
+      "cal_clean": {
+       "windows": 91158,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      },
+      "eval_clean": {
+       "windows": 79497,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      }
+     }
+    },
+    "p1x": {
+     "rows": 170842,
+     "destinations": 6489,
+     "frozen_destinations": 5245,
+     "promoted": 3822,
+     "check_new_dst_frac": {
+      "cal_p1x": {
+       "windows": 91158,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      },
+      "eval_p1x": {
+       "windows": 79497,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 11.1,
+   "features": [
+    "nov_frozen",
+    "nov_unconditional",
+    "nov_guarded",
+    "nov_host",
+    "log_new_guarded",
+    "familiarity_decay",
+    "log_prevalence"
+   ]
+  },
+  "2018-02-20": {
+   "mid_ms": 1519146045844,
+   "straddle_win": 50638201,
+   "excluded_hosts": 10,
+   "flows": 1827843,
+   "chunks": 4,
+   "contacts": 1372820,
+   "truncated": false,
+   "variants": {
+    "clean": {
+     "rows": 233598,
+     "destinations": 8131,
+     "frozen_destinations": 5797,
+     "promoted": 4497,
+     "check_new_dst_frac": {
+      "cal_clean": {
+       "windows": 119570,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      },
+      "eval_clean": {
+       "windows": 113830,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      }
+     }
+    },
+    "p1x": {
+     "rows": 233598,
+     "destinations": 8131,
+     "frozen_destinations": 5797,
+     "promoted": 4497,
+     "check_new_dst_frac": {
+      "cal_p1x": {
+       "windows": 119570,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      },
+      "eval_p1x": {
+       "windows": 113830,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 9.7,
+   "features": [
+    "nov_frozen",
+    "nov_unconditional",
+    "nov_guarded",
+    "nov_host",
+    "log_new_guarded",
+    "familiarity_decay",
+    "log_prevalence"
+   ]
+  },
+  "2018-02-21": {
+   "mid_ms": 1519233147784,
+   "straddle_win": 50641104,
+   "excluded_hosts": 10,
+   "flows": 2711059,
+   "chunks": 6,
+   "contacts": 1458816,
+   "truncated": false,
+   "variants": {
+    "clean": {
+     "rows": 244235,
+     "destinations": 9098,
+     "frozen_destinations": 6973,
+     "promoted": 5107,
+     "check_new_dst_frac": {
+      "cal_clean": {
+       "windows": 126921,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      },
+      "eval_clean": {
+       "windows": 117101,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      }
+     }
+    },
+    "p1x": {
+     "rows": 244235,
+     "destinations": 9098,
+     "frozen_destinations": 6973,
+     "promoted": 5107,
+     "check_new_dst_frac": {
+      "cal_p1x": {
+       "windows": 126921,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      },
+      "eval_p1x": {
+       "windows": 117101,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 11.1,
+   "features": [
+    "nov_frozen",
+    "nov_unconditional",
+    "nov_guarded",
+    "nov_host",
+    "log_new_guarded",
+    "familiarity_decay",
+    "log_prevalence"
+   ]
+  },
+  "2018-02-22": {
+   "mid_ms": 1519318027117,
+   "straddle_win": 50643934,
+   "excluded_hosts": 316,
+   "flows": 1989174,
+   "chunks": 4,
+   "contacts": 1467445,
+   "truncated": false,
+   "variants": {
+    "clean": {
+     "rows": 265571,
+     "destinations": 10027,
+     "frozen_destinations": 7874,
+     "promoted": 5621,
+     "check_new_dst_frac": {
+      "cal_clean": {
+       "windows": 137314,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      },
+      "eval_clean": {
+       "windows": 128056,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      }
+     }
+    },
+    "p1x": {
+     "rows": 253018,
+     "destinations": 10013,
+     "frozen_destinations": 7851,
+     "promoted": 5621,
+     "check_new_dst_frac": {
+      "cal_p1x": {
+       "windows": 124763,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      },
+      "eval_p1x": {
+       "windows": 128056,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 11.4,
+   "features": [
+    "nov_frozen",
+    "nov_unconditional",
+    "nov_guarded",
+    "nov_host",
+    "log_new_guarded",
+    "familiarity_decay",
+    "log_prevalence"
+   ]
+  },
+  "2018-03-02": {
+   "mid_ms": 1520005082631,
+   "straddle_win": 50666836,
+   "excluded_hosts": 8,
+   "flows": 1406244,
+   "chunks": 3,
+   "contacts": 1080021,
+   "truncated": false,
+   "variants": {
+    "clean": {
+     "rows": 192582,
+     "destinations": 7175,
+     "frozen_destinations": 5590,
+     "promoted": 3739,
+     "check_new_dst_frac": {
+      "cal_clean": {
+       "windows": 98220,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      },
+      "eval_clean": {
+       "windows": 94070,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      }
+     }
+    },
+    "p1x": {
+     "rows": 192045,
+     "destinations": 7170,
+     "frozen_destinations": 5582,
+     "promoted": 3734,
+     "check_new_dst_frac": {
+      "cal_p1x": {
+       "windows": 97683,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      },
+      "eval_p1x": {
+       "windows": 94070,
+       "missing": 0,
+       "max_abs_diff": 0.0
+      }
+     }
+    }
+   },
+   "seconds": 8.1,
+   "features": [
+    "nov_frozen",
+    "nov_unconditional",
+    "nov_guarded",
+    "nov_host",
+    "log_new_guarded",
+    "familiarity_decay",
+    "log_prevalence"
+   ]
+  }
+ },
+ "seconds": 64.3,
+ "peak_rss_mb": 952.32421875
+}
