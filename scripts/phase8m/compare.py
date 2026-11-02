@@ -250,7 +250,7 @@ def select(h3_b2: dict, h3_b1: dict, nm: dict) -> dict:
     if h3_b1["supported"]:
         return {
             "candidate": None,
-            "rule": "only B1 meets H3: secondary finding, no candidate (amendment 1)",
+            "rule": "only B1 meets H3: secondary finding, no candidate (amendment 2)",
         }
     return {"candidate": None, "rule": "neither B2 nor B1 meets H3: NO-GO, B0 stays"}
 

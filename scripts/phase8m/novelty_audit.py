@@ -94,7 +94,9 @@ def dev_domain(npz: Path) -> dict:
         "fpr": float(alert[benign].mean()) if benign.any() else None,
         "novelty_vs_false_alerts": lift(nov, fa, benign),
         "false_alert_share_from_unseen_hosts": float((fa & ~seen).sum() / fa.sum()) if fa.any() else None,
-        "benign_share_from_unseen_hosts": float((benign & ~seen).mean()) if benign.any() else None,
+        # share of BENIGN windows (the run saved at 40fab1f divided by all evaluation windows;
+        # NOVELTY_FAILURE_ANALYSIS.md erratum)
+        "benign_share_from_unseen_hosts": float((benign & ~seen).sum() / benign.sum()) if benign.any() else None,
         "recall_by_novelty": rec, "by_calibration_age": by_age,
     }  # fmt: skip
 

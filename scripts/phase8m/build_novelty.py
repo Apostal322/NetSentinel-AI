@@ -82,6 +82,9 @@ def check(feat: pl.DataFrame, variant: str, network: str, domain: str, skip_win:
     root, cal, ev = REFERENCE[variant]
     out = {}
     for part in (cal, ev):
+        if not (root / network / domain / f"{part}.parquet").exists():
+            out[part] = None  # source-only NF-CIC day: no P1x windows (never a target)
+            continue
         ref = pl.read_parquet(root / network / domain / f"{part}.parquet",
                               columns=["key", "win", "new_dst_frac"])  # fmt: skip
         ref = ref.filter(pl.col("win") != skip_win)
@@ -150,7 +153,11 @@ def build(files: list[Path], dev_cut: bool, network: str, domain: str, max_rows:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("network", choices=("nfcic", "nfunsw", "nfton", "nfbot"))
-    ap.add_argument("--days", help="NF-CIC days (comma-separated); default: the Phase 8j days")
+    ap.add_argument(
+        "--days",
+        help="NF-CIC days (comma-separated); default: the Phase 8j days."
+        " The source models also train on the other Phase 8i days (clean memory)",
+    )
     ap.add_argument("--max-rows", type=int, default=BW.MAX_ROWS)
     ap.add_argument("--max-chunks", type=int, help="timing sample: stop after N chunks")
     a = ap.parse_args()
@@ -172,7 +179,8 @@ def main() -> None:
     REPORTS.mkdir(parents=True, exist_ok=True)
     tail = "_sample" if a.max_chunks is not None else ""
     rep = REPORTS / f"build_novelty_{a.network}{tail}.json"
-    rep.write_bytes(json.dumps({"domains": res, "seconds": round(time.perf_counter() - t0, 1),
+    prev = json.loads(rep.read_text("utf-8"))["domains"] if rep.exists() else {}
+    rep.write_bytes(json.dumps({"domains": {**prev, **res}, "seconds": round(time.perf_counter() - t0, 1),
                                 "peak_rss_mb": peak_rss_mb()}, indent=1).encode())  # fmt: skip
 
 

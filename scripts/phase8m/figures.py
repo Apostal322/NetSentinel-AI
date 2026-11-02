@@ -86,6 +86,9 @@ def contamination() -> None:
                         ax.scatter(i + off, 100 * sum(v) / len(v), marker=mk,
                                    color=("#d62728" if policy.startswith("a3") else "#ff7f0e"))  # fmt: skip
         ax.set_xticks([0, 1, 2], ["1 min", "10 min", "1 h"])
+        ax.set_xlabel(
+            "beacon period (per period, left to right: NF-CIC, NF-UNSW, NF-ToN, NF-BoT)", fontsize=7
+        )
         ax.set_title(variant.replace("_", " ") + " (synthetic)", fontsize=10)
     axes[0].set_ylabel("beacon windows still novel (%)")
     axes[0].scatter([], [], marker="o", color="#d62728", label="A3 guarded")

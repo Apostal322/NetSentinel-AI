@@ -25,7 +25,9 @@ Negative controls: A0 (frozen) and always-quarantine promote nothing after the f
 
 H2 (registered): pooled single-host beacon windows novel under A3 >= 95 %, under A1 <= 5 %, and
 the guarded memory promotes >= 50 % of the benign post-freeze destinations; pooled = network
-means (each network = mean of its domains), equal weight per network (amendment 1).
+means (each network = mean of its domains), equal weight per network over the networks that have a value
+(amendment 2; NF-UNSW has no benign-only post-freeze destination, so the benign-promotion mean
+covers 3 networks).
 
 Output: reports/phase8m/contamination.json
 Usage: python scripts/run_capped.py -- <python> scripts/phase8m/contamination.py [--no-grid]

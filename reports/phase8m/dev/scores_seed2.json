@@ -1,0 +1,390 @@
+{
+ "seed": 2,
+ "variants": {
+  "B0r": [
+   "log_flows",
+   "log_up_bytes",
+   "log_down_bytes",
+   "log_pkts",
+   "log_dst_hosts",
+   "log_dst_ports",
+   "no_reply_frac",
+   "rst_frac",
+   "udp_share",
+   "med_log_dur",
+   "upload_share",
+   "new_dst_frac"
+  ],
+  "B1": [
+   "log_flows",
+   "log_up_bytes",
+   "log_down_bytes",
+   "log_pkts",
+   "log_dst_hosts",
+   "log_dst_ports",
+   "no_reply_frac",
+   "rst_frac",
+   "udp_share",
+   "med_log_dur",
+   "upload_share",
+   "nov_guarded",
+   "log_new_guarded",
+   "familiarity_decay"
+  ],
+  "B2": [
+   "log_flows",
+   "log_up_bytes",
+   "log_down_bytes",
+   "log_pkts",
+   "log_dst_hosts",
+   "log_dst_ports",
+   "no_reply_frac",
+   "rst_frac",
+   "udp_share",
+   "med_log_dur",
+   "upload_share",
+   "nov_guarded",
+   "log_new_guarded",
+   "familiarity_decay",
+   "nov_host",
+   "log_prevalence"
+  ],
+  "B1u": [
+   "log_flows",
+   "log_up_bytes",
+   "log_down_bytes",
+   "log_pkts",
+   "log_dst_hosts",
+   "log_dst_ports",
+   "no_reply_frac",
+   "rst_frac",
+   "udp_share",
+   "med_log_dur",
+   "upload_share",
+   "nov_unconditional",
+   "familiarity_decay"
+  ],
+  "A_none": [
+   "log_flows",
+   "log_up_bytes",
+   "log_down_bytes",
+   "log_pkts",
+   "log_dst_hosts",
+   "log_dst_ports",
+   "no_reply_frac",
+   "rst_frac",
+   "udp_share",
+   "med_log_dur",
+   "upload_share"
+  ],
+  "A_novol": [
+   "log_dst_hosts",
+   "log_dst_ports",
+   "no_reply_frac",
+   "rst_frac",
+   "udp_share",
+   "med_log_dur",
+   "upload_share",
+   "nov_guarded",
+   "log_new_guarded",
+   "familiarity_decay",
+   "nov_host",
+   "log_prevalence"
+  ]
+ },
+ "domains": {
+  "B0r": {
+   "nfcic/2018-02-14": {
+    "cal": 125797,
+    "hold": 35221,
+    "eval": 108481,
+    "b0_max_abs_diff": 0.0
+   },
+   "nfcic/2018-02-16": {
+    "cal": 91328,
+    "hold": 25919,
+    "eval": 79554,
+    "b0_max_abs_diff": 0.0
+   },
+   "nfcic/2018-02-20": {
+    "cal": 119688,
+    "hold": 34741,
+    "eval": 113955,
+    "b0_max_abs_diff": 0.0
+   },
+   "nfcic/2018-02-21": {
+    "cal": 127124,
+    "hold": 36144,
+    "eval": 117126,
+    "b0_max_abs_diff": 0.0
+   },
+   "nfcic/2018-02-22": {
+    "cal": 124848,
+    "hold": 36303,
+    "eval": 128221,
+    "b0_max_abs_diff": 0.0
+   },
+   "nfcic/2018-03-02": {
+    "cal": 97737,
+    "hold": 29131,
+    "eval": 94351,
+    "b0_max_abs_diff": 0.0
+   },
+   "nfunsw/all": {
+    "cal": 14057,
+    "hold": 443,
+    "eval": 16028,
+    "b0_max_abs_diff": 0.0
+   },
+   "nfton/all": {
+    "cal": 27108,
+    "hold": 4572,
+    "eval": 49156,
+    "b0_max_abs_diff": 0.0
+   },
+   "nfbot/all": {
+    "cal": 959,
+    "hold": 781,
+    "eval": 3449,
+    "b0_max_abs_diff": 0.0
+   }
+  },
+  "B1": {
+   "nfcic/2018-02-14": {
+    "cal": 125797,
+    "hold": 35221,
+    "eval": 108481
+   },
+   "nfcic/2018-02-16": {
+    "cal": 91328,
+    "hold": 25919,
+    "eval": 79554
+   },
+   "nfcic/2018-02-20": {
+    "cal": 119688,
+    "hold": 34741,
+    "eval": 113955
+   },
+   "nfcic/2018-02-21": {
+    "cal": 127124,
+    "hold": 36144,
+    "eval": 117126
+   },
+   "nfcic/2018-02-22": {
+    "cal": 124848,
+    "hold": 36303,
+    "eval": 128221
+   },
+   "nfcic/2018-03-02": {
+    "cal": 97737,
+    "hold": 29131,
+    "eval": 94351
+   },
+   "nfunsw/all": {
+    "cal": 14057,
+    "hold": 443,
+    "eval": 16028
+   },
+   "nfton/all": {
+    "cal": 27108,
+    "hold": 4572,
+    "eval": 49156
+   },
+   "nfbot/all": {
+    "cal": 959,
+    "hold": 781,
+    "eval": 3449
+   }
+  },
+  "B2": {
+   "nfcic/2018-02-14": {
+    "cal": 125797,
+    "hold": 35221,
+    "eval": 108481
+   },
+   "nfcic/2018-02-16": {
+    "cal": 91328,
+    "hold": 25919,
+    "eval": 79554
+   },
+   "nfcic/2018-02-20": {
+    "cal": 119688,
+    "hold": 34741,
+    "eval": 113955
+   },
+   "nfcic/2018-02-21": {
+    "cal": 127124,
+    "hold": 36144,
+    "eval": 117126
+   },
+   "nfcic/2018-02-22": {
+    "cal": 124848,
+    "hold": 36303,
+    "eval": 128221
+   },
+   "nfcic/2018-03-02": {
+    "cal": 97737,
+    "hold": 29131,
+    "eval": 94351
+   },
+   "nfunsw/all": {
+    "cal": 14057,
+    "hold": 443,
+    "eval": 16028
+   },
+   "nfton/all": {
+    "cal": 27108,
+    "hold": 4572,
+    "eval": 49156
+   },
+   "nfbot/all": {
+    "cal": 959,
+    "hold": 781,
+    "eval": 3449
+   }
+  },
+  "B1u": {
+   "nfcic/2018-02-14": {
+    "cal": 125797,
+    "hold": 35221,
+    "eval": 108481
+   },
+   "nfcic/2018-02-16": {
+    "cal": 91328,
+    "hold": 25919,
+    "eval": 79554
+   },
+   "nfcic/2018-02-20": {
+    "cal": 119688,
+    "hold": 34741,
+    "eval": 113955
+   },
+   "nfcic/2018-02-21": {
+    "cal": 127124,
+    "hold": 36144,
+    "eval": 117126
+   },
+   "nfcic/2018-02-22": {
+    "cal": 124848,
+    "hold": 36303,
+    "eval": 128221
+   },
+   "nfcic/2018-03-02": {
+    "cal": 97737,
+    "hold": 29131,
+    "eval": 94351
+   },
+   "nfunsw/all": {
+    "cal": 14057,
+    "hold": 443,
+    "eval": 16028
+   },
+   "nfton/all": {
+    "cal": 27108,
+    "hold": 4572,
+    "eval": 49156
+   },
+   "nfbot/all": {
+    "cal": 959,
+    "hold": 781,
+    "eval": 3449
+   }
+  },
+  "A_none": {
+   "nfcic/2018-02-14": {
+    "cal": 125797,
+    "hold": 35221,
+    "eval": 108481
+   },
+   "nfcic/2018-02-16": {
+    "cal": 91328,
+    "hold": 25919,
+    "eval": 79554
+   },
+   "nfcic/2018-02-20": {
+    "cal": 119688,
+    "hold": 34741,
+    "eval": 113955
+   },
+   "nfcic/2018-02-21": {
+    "cal": 127124,
+    "hold": 36144,
+    "eval": 117126
+   },
+   "nfcic/2018-02-22": {
+    "cal": 124848,
+    "hold": 36303,
+    "eval": 128221
+   },
+   "nfcic/2018-03-02": {
+    "cal": 97737,
+    "hold": 29131,
+    "eval": 94351
+   },
+   "nfunsw/all": {
+    "cal": 14057,
+    "hold": 443,
+    "eval": 16028
+   },
+   "nfton/all": {
+    "cal": 27108,
+    "hold": 4572,
+    "eval": 49156
+   },
+   "nfbot/all": {
+    "cal": 959,
+    "hold": 781,
+    "eval": 3449
+   }
+  },
+  "A_novol": {
+   "nfcic/2018-02-14": {
+    "cal": 125797,
+    "hold": 35221,
+    "eval": 108481
+   },
+   "nfcic/2018-02-16": {
+    "cal": 91328,
+    "hold": 25919,
+    "eval": 79554
+   },
+   "nfcic/2018-02-20": {
+    "cal": 119688,
+    "hold": 34741,
+    "eval": 113955
+   },
+   "nfcic/2018-02-21": {
+    "cal": 127124,
+    "hold": 36144,
+    "eval": 117126
+   },
+   "nfcic/2018-02-22": {
+    "cal": 124848,
+    "hold": 36303,
+    "eval": 128221
+   },
+   "nfcic/2018-03-02": {
+    "cal": 97737,
+    "hold": 29131,
+    "eval": 94351
+   },
+   "nfunsw/all": {
+    "cal": 14057,
+    "hold": 443,
+    "eval": 16028
+   },
+   "nfton/all": {
+    "cal": 27108,
+    "hold": 4572,
+    "eval": 49156
+   },
+   "nfbot/all": {
+    "cal": 959,
+    "hold": 781,
+    "eval": 3449
+   }
+  }
+ },
+ "peak_rss_mb": 1701.046875,
+ "seconds": 380.1
+}

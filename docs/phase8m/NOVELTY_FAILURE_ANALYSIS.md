@@ -89,15 +89,18 @@ All values are means over seeds {0, 1, 2}. NF-CIC is the mean of its 6 days.
 | network | benign windows | FPR at T0 | P(novel \| false alert) | P(novel), benign | false alerts from hosts unseen in calibration | benign windows from unseen hosts |
 |---|---|---|---|---|---|---|
 | NF-CIC (6 days) | 79–116 k per day | 1.29 % | 0.39 | 0.043 | 7 % | 18 % |
-| NF-ToN-IoT | 7,447 | 14.8 % | **0.99** | 0.28 | **59 %** | 5 % |
+| NF-ToN-IoT | 7,447 | 14.8 % | **0.99** | 0.28 | **59 %** | 30 % |
 | NF-UNSW-NB15 | 11,937 | 3.7 % | 0.007 | 0.000 | 0 % | 0 % |
-| NF-BoT-IoT | 620 | 11.9 % | 0.017 | 0.023 | 2 % | 0.1 % |
+| NF-BoT-IoT | 620 | 11.9 % | 0.017 | 0.023 | 2 % | 0.8 % |
+
+The last column is corrected; see the erratum at the end.
 
 **Three different failure modes:**
 
 1. **NF-ToN-IoT: stale novelty, as on DEDALE.**
    - Almost every false alert is novel.
-   - 59 % come from hosts first seen after calibration, which make up only 5 % of benign windows.
+   - 59 % come from hosts first seen after calibration, which make up 30 % of benign windows. That
+     is about a 2× concentration.
    - FPR depends on calibration age: 0 % in the first 6 h, then 22 % at 6–24 h, where 45 % of
      benign windows are novel.
    - Adaptive memory is aimed exactly at this.
@@ -152,3 +155,28 @@ This is the contamination risk H2 targets:
 3. **The expected benefit is limited to novelty-driven false alerts:** NF-ToN-IoT clearly, NF-CIC
    modestly, NF-UNSW-NB15 and NF-BoT-IoT not at all. H3's "≥ 3 of 4 networks" clause is therefore
    demanding, and was left unchanged.
+
+## Erratum (2026-11-03, after the independent review, docs/phase8m/REVIEW.md)
+
+**The saved `benign_share_from_unseen_hosts` used the wrong denominator.**
+- `novelty_audit.py` as run at 0cb0ad7 divided by **all** evaluation windows, not by the benign
+  ones. The script is now corrected.
+- The values in section 3's table are recomputed from the per-host benign counts in
+  `reports/phase8m/model_comparison.json` (B0, `by_host_seen`):
+
+  | network | was | corrected |
+  |---|---|---|
+  | NF-ToN-IoT | 5 % | **30 %** (2,261 / 7,447) |
+  | NF-BoT-IoT | 0.1 % | **0.8 %** (5 / 620) |
+  | NF-CIC | 18 % | 18 % (unchanged to the shown precision, since almost all evaluation windows are benign) |
+
+- `novelty_audit.json` itself is kept as it was produced. Nothing else in the audit depends on
+  this field.
+
+**The "seen in calibration" split is valid for benign hosts only.**
+- "Seen" means present in the P1x calibration windows, and P1x removes calibration-period
+  attackers from them.
+- Evaluation attackers that were active in calibration are therefore always counted as "unseen":
+  NF-ToN-IoT 12 of 13, NF-BoT-IoT 8 of 8, NF-UNSW 4 of 4.
+- The false-alert concentration above concerns verified-benign hosts, which never attack, so it is
+  unaffected.
