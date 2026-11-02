@@ -14,3 +14,15 @@ dev exp_b start 2026-11-02T02:32:22+03:00 0871e64
 dev exp_b exit 0 2026-11-02T02:36:25+03:00
 dev exp_c start 2026-11-02T02:36:25+03:00 0871e64
 dev exp_c exit 0 2026-11-02T02:55:57+03:00
+confirm ingest start 2026-11-02T03:01:07+03:00 5db0c6f
+confirm ingest exit 0 2026-11-02T03:04:00+03:00
+confirm build start 2026-11-02T03:04:00+03:00 5db0c6f
+confirm build exit 0 2026-11-02T03:04:36+03:00
+confirm exp_a start 2026-11-02T03:04:36+03:00 5db0c6f
+confirm exp_a exit 0 2026-11-02T03:06:23+03:00
+confirm exp_c start 2026-11-02T03:06:23+03:00 5db0c6f
+confirm exp_c exit 0 2026-11-02T03:10:07+03:00
+confirm exp_b start 2026-11-02T03:10:07+03:00 5db0c6f
+confirm exp_b exit 0 2026-11-02T03:10:15+03:00
+confirm verdicts start 2026-11-02T03:10:15+03:00 5db0c6f
+confirm verdicts exit 0 2026-11-02T03:10:16+03:00

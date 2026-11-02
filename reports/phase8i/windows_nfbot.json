@@ -1,0 +1,25 @@
+{
+ "domains": {
+  "all": {
+   "flows": 16933808,
+   "mid_ms": 1527862993220,
+   "eval_labels": {
+    "benign": 3547,
+    "dos": 8034190,
+    "ddos": 7150882,
+    "theft": 1615
+   },
+   "cal_windows_clean": 6034,
+   "cal_attack_windows": 7230,
+   "cal_attack_entities": 8,
+   "eval_windows": 3449,
+   "attack_windows": 1579,
+   "attack_entities": 8,
+   "noisy_windows": 0,
+   "entities": 16,
+   "seconds": 22.192490599998564
+  }
+ },
+ "seconds": 22.219648899997992,
+ "peak_rss_mb": 4103.06640625
+}

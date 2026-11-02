@@ -1,0 +1,40 @@
+{
+ "label": "[C] NF-BoT-IoT-v3, single confirmatory evaluation",
+ "I1": {
+  "method": "A4",
+  "A1_recall": 0.8385053831538949,
+  "pool_windows": 7230,
+  "pool_entities": 8,
+  "n_hold": 781,
+  "Ka25": {
+   "median_recall": 0.9233692210259659,
+   "p025_recall": 0.7454559848005067,
+   "median_fpr": 0.09758064516129032,
+   "n": 20
+  },
+  "Ka100": {
+   "median_recall": 0.9024699176694111,
+   "p025_recall": 0.787887903736542,
+   "median_fpr": 0.07016129032258064,
+   "n": 20
+  },
+  "verdict": "failure"
+ },
+ "I2": {
+  "blocks": 5,
+  "tau": 0.7009482465833334,
+  "coverage": 0.2,
+  "exceedance_covered": 0.0,
+  "exceedance_all": 0.0,
+  "attack_share_abstained": 0.6675369886858138,
+  "verdict": "not evaluable (no overrunning blocks)"
+ },
+ "I3": {
+  "variant": "C1_k2",
+  "recall_variant": 0.8579269579902893,
+  "recall_raw": 0.8385053831538949,
+  "fpr_variant": 0.18978494623655914,
+  "fpr_raw": 0.11720430107526882,
+  "verdict": "failure"
+ }
+}

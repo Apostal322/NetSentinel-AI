@@ -21,6 +21,10 @@ A chronological record of what was done, in what order, and every deviation. Tim
 | 02:01–02:56 | Development batch at commit `0871e64`: Experiment A (31 min), B (4 min), C (20 min); peak 2.67 GB. |
 | 02:5x | `analyze.py` applied the selection rules: A4, C1_k2, τ = 0.70095. |
 | 03:0x | Confirmatory pipeline dry run with NF-UNSW standing in for N4 (smoke folder). It revealed the unanticipated no-overrun and ceiling cases: amendment A4, written before N4 was opened. |
+| ~03:00 | Development results committed (`559b4e2`); FREEZE.md and freeze.json committed (`5db0c6f`). |
+| 03:01–03:04 | **N4 opened for the first time:** NF-BoT-IoT-v3 ingested (16,933,808 rows, SHA-1 verified, all labels mapped by the pre-written map). |
+| 03:04 | N4 windows built: 3,449 evaluation windows (1,579 attack, 8 attackers, 16 entities); 7,230 labelled calibration attack windows from 8 entities. |
+| 03:04– | Confirmatory experiments A, C and B in the frozen order. |
 
 ## 2. Deviations and incidents
 
@@ -41,3 +45,8 @@ A chronological record of what was done, in what order, and every deviation. Tim
    NF-ToN-IoT-v3 ingest also peaked at 2.67 GB). Amendment A3 had already reduced the
    registered design to fit. The remaining overrun is recorded here, not hidden. No run came
    near the 3.4 GB watchdog limit.
+4. **N4 ingest above the memory limit.** The NF-BoT-IoT-v3 ingest's own peak-RSS report is
+   3.69 GB, above the 3.4 GB project limit. The watchdog, sampling every 5 s, saw at most
+   3.28 GB and did not intervene. The run completed normally, with no effect on data or
+   results. The ingest reads a 3.5 GB CSV in one pass. A chunked ingest is a follow-up for
+   any larger archive.
