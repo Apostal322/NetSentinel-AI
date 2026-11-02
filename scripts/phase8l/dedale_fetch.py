@@ -160,22 +160,63 @@ def fetch_member(url: str, m: dict, dest: Path, opener=None, total: int | None =
     return {**got, "sha256_deflate": sha.hexdigest()}
 
 
-def freeze_ok(freeze: Path | None = None, prereg: Path | None = None) -> bool:
-    """Stage B unlocks only if the freeze file is committed and records the pre-registration's
-    current SHA-256 (computed with LF line endings, i.e. as committed)."""
-    freeze, prereg = freeze or FREEZE, prereg or PREREG
+HASH_LINE = re.compile(r"^([0-9a-f]{64})  (\S+)\s*$")
+
+
+def lf_sha256(path: Path) -> str:
+    """SHA-256 of a file with CRLF normalised to LF (the committed form of text files)."""
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+
+
+def frozen_hashes(text: str) -> dict[str, str]:
+    """`<sha256>  <repo-relative path>` lines of the freeze file."""
+    return {g[2]: g[1] for line in text.splitlines() if (g := HASH_LINE.match(line))}
+
+
+def _git_clean(rel: str) -> bool:
+    """The path is committed and unchanged from HEAD (true for git-ignored files, which are
+    covered by their hash alone)."""
+    r = subprocess.run(["git", "-C", str(ROOT), "diff", "--quiet", "HEAD", "--", rel],
+                       capture_output=True)  # fmt: skip
+    return r.returncode == 0
+
+
+def freeze_ok(freeze: Path | None = None, prereg: Path | None = None, check_git: bool = True,
+              root: Path | None = None) -> bool:  # fmt: skip
+    """N7: the freeze file exists, is committed and unchanged, lists the pre-registration, and
+    every file it lists matches its recorded SHA-256 (LF-normalised) and, if tracked, HEAD."""
+    freeze, prereg, root = freeze or FREEZE, prereg or PREREG, root or ROOT
     if not freeze.exists():
         return False
-    tracked = subprocess.run(["git", "-C", str(ROOT), "ls-files", "--error-unmatch", str(freeze)],
-                             capture_output=True).returncode == 0  # fmt: skip
-    digest = hashlib.sha256(prereg.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
-    return tracked and digest in freeze.read_text("utf-8")
+    hashes = frozen_hashes(freeze.read_text("utf-8"))
+    try:
+        rel_pre = prereg.resolve().relative_to(root.resolve()).as_posix()
+        rel_freeze = freeze.resolve().relative_to(root.resolve()).as_posix()
+    except ValueError:  # outside the repository: cannot be the frozen file
+        return False
+    if rel_pre not in hashes:
+        return False
+    for rel, h in hashes.items():
+        p = root / rel
+        if not p.exists() or lf_sha256(p) != h:
+            return False
+    if check_git:
+        tracked = subprocess.run(["git", "-C", str(root), "ls-files", "--error-unmatch", rel_freeze],
+                                 capture_output=True).returncode == 0  # fmt: skip
+        if not tracked or not all(_git_clean(r) for r in [rel_freeze, *hashes]):
+            return False
+    return True
+
+
+def n8_passed(report: Path | None = None) -> bool:
+    report = report or ROOT / "reports" / "phase8l" / "dedale_n8.json"
+    return report.exists() and json.loads(report.read_text("utf-8")).get("outcome") == "PASS"
 
 
 def download(stage: str) -> None:
-    if stage == "B" and not freeze_ok():
+    if stage == "B" and not (freeze_ok() and n8_passed()):
         raise SystemExit("stage B (evaluation days) is locked until docs/phase8l/DEDALE_FREEZE.md "
-                         "is committed with the pre-registration's SHA-256")  # fmt: skip
+                         "is committed and verified (N7) and N8 has passed")  # fmt: skip
     man = json.loads(MANIFEST.read_text("utf-8"))
     OUT.mkdir(parents=True, exist_ok=True)
     log = {}

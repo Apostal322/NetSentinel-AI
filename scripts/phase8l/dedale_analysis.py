@@ -162,6 +162,8 @@ def overrun_p(rate: float, n: int, deff: float) -> float:
 def logistic_slope(y: np.ndarray, t: np.ndarray, g: np.ndarray, iters: int = 50) -> dict:
     """Logit(P(alert)) = b0 + b1 t, fractional y in [0, 1], IRLS; cluster-robust (CR0) SE of b1
     with clusters g."""
+    if y.size == 0 or y.sum() == 0 or y.sum() == y.size or np.unique(t).size < 2:
+        return {"slope_per_day": None, "se": None, "z": None, "note": "undefined (no variation)"}
     x = np.column_stack([np.ones_like(t, dtype=float), t.astype(float)])
     b = np.zeros(2)
     for _ in range(iters):
@@ -238,6 +240,40 @@ def attribute_hosts(
     return j.select(pl.coalesce("mac", "m2", "key")).to_series().alias("host")
 
 
+def weekday(t_ms: np.ndarray) -> np.ndarray:
+    """Monday-Friday in UTC (1970-01-01 was a Thursday)."""
+    return ((t_ms // 86_400_000) + 3) % 7 < 5
+
+
+def window_time(end_ms: np.ndarray) -> np.ndarray:
+    """The instant a window is assigned to periods, days and hours: its last millisecond."""
+    return end_ms - 1
+
+
+def excluded_addresses(a, pop: dict) -> list[str]:
+    """Section 2 exclusions: the documented addresses plus Stage A's excluded internal ones."""
+    return sorted(set(a.ALWAYS_EXCLUDED) | set(a.COMPROMISED) | set(pop["excluded_internal"]))
+
+
+def calibration_hosts(cal: pl.DataFrame, pop: dict, excl_addr: list[str]) -> dict:
+    """Hosts from calibration-period attribution only: eligible primary, clients 3-4, and the
+    hosts that held an excluded address in D1-D14 (removed from both)."""
+    excl = set(_hosts_of(cal, excl_addr))
+    return {"eligible": set(_hosts_of(cal, pop["eligible"])) - excl,
+            "clients_3_4": set(_hosts_of(cal, pop["clients_3_4"])) - excl, "excluded": excl}  # fmt: skip
+
+
+def entity_host(addr: str, comp_ms: int, leases: pl.DataFrame, internal) -> str:
+    """The host holding `addr` at its compromise time."""
+    return attribute_hosts(pl.Series([addr]), pl.Series([comp_ms]), leases, internal)[0]
+
+
+def file_sha256(path: Path) -> str:
+    import hashlib
+
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
 def score(c, models: list, df: pl.DataFrame) -> np.ndarray:
     x = c.S._x(df)
     return np.column_stack([m.predict(x) for m in models])
@@ -271,7 +307,7 @@ def _guard(report: Path) -> None:
     f = _load("phase8l_dedale_fetch", HERE / "dedale_fetch.py")
     if not f.freeze_ok():
         raise SystemExit(
-            "refused: DEDALE_FREEZE.md is not committed with the pre-registration hash"
+            "refused: DEDALE_FREEZE.md is missing, uncommitted, or a frozen hash does not match (N7)"
         )
     if report.exists():
         raise SystemExit(f"refused: {report.name} exists (each mode runs once)")
@@ -304,6 +340,8 @@ def run_n8() -> None:
     c, ts = _stats()
     a = _load("phase8l_dedale_stage_a", HERE / "dedale_stage_a.py")
     stage_a = json.loads((REPORTS / "dedale_stage_a.json").read_text("utf-8"))
+    if stage_a["gate"]["outcome"] != "PASS":
+        raise SystemExit("refused: the Stage A gate did not pass")
     models = load_models(json.loads((REPORTS / "dedale_source_models.json").read_text("utf-8")))
     cal = pl.read_parquet(a.DERIVED / "cal_p1x.parquet")
     cal = cal.with_columns(attribute_hosts(cal["key"], cal["window_end_ms"], _cal_leases(a),
@@ -312,7 +350,8 @@ def run_n8() -> None:
     pop = population(stage_a)
     s = score(c, models, cal)
     np.save(a.DERIVED / "cal_scores.npy", s)
-    elig_hosts = set(_hosts_of(cal, pop["eligible"]))
+    hosts = calibration_hosts(cal, pop, excluded_addresses(a, pop))
+    elig_hosts = hosts["eligible"]
     hold = ((cal["win"] >= cut) & cal["host"].is_in(sorted(elig_hosts))).to_numpy()
     host, win = cal["host"].to_numpy()[hold], cal["win"].to_numpy()[hold]
     per = {str(k): holdout_stats(ts, s[hold, i], host, win) for i, k in enumerate(SEEDS)}
@@ -320,6 +359,8 @@ def run_n8() -> None:
     rep = {"holdout_windows": int(hold.sum()), "hosts": len(elig_hosts), "per_seed": per,
            "min_neff_m3": worst, "deff": float(np.mean([v["n"] / v["neff_m3"] for v in per.values()])),
            "outcome": "PASS" if worst >= NEFF_MIN else "NOT EVALUABLE",
+           "eligible_hosts": sorted(elig_hosts), "excluded_calibration_hosts": sorted(hosts["excluded"]),
+           "cal_scores_sha256": file_sha256(a.DERIVED / "cal_scores.npy"),
            "seconds": round(time.perf_counter() - t_start, 1)}  # fmt: skip
     N8_REPORT.write_text(json.dumps(rep, indent=1), "utf-8")
     print(json.dumps(rep, indent=1))
@@ -351,13 +392,32 @@ def run_final() -> None:
     build = json.loads((REPORTS / "dedale_eval_build.json").read_text("utf-8"))
     models = load_models(json.loads((REPORTS / "dedale_source_models.json").read_text("utf-8")))
     leases = pl.read_parquet(a.DERIVED / "leases.parquet")
+    cal_leases = leases.filter(pl.col("day") <= 14)
     internal = a_internal(a)
     pop = population(stage_a)
+    excl_addr = excluded_addresses(a, pop)
 
+    # calibration side first: hosts and T0 exactly as at N8 (calibration information only)
     cal = pl.read_parquet(a.DERIVED / "cal_p1x.parquet")
-    cal = cal.with_columns(attribute_hosts(cal["key"], cal["window_end_ms"], leases, internal))
+    cal = cal.with_columns(attribute_hosts(cal["key"], cal["window_end_ms"], cal_leases, internal))
+    if file_sha256(a.DERIVED / "cal_scores.npy") != n8["cal_scores_sha256"]:
+        raise SystemExit("N7: calibration scores differ from the N8 report")
     s_cal = np.load(a.DERIVED / "cal_scores.npy")
     cut = stage_a["windows"]["split_cut_win"]
+    hosts = calibration_hosts(cal, pop, excl_addr)
+    elig, c34 = hosts["eligible"], hosts["clients_3_4"]
+    if sorted(elig) != n8["eligible_hosts"]:
+        raise SystemExit("eligible hosts differ from the N8 report")
+
+    def thresholds(hold_mask: np.ndarray) -> list[float]:
+        return [t0(s_cal[hold_mask, i], ts.k_of) for i in range(len(SEEDS))]
+
+    hold_primary = ((cal["win"] >= cut) & cal["host"].is_in(sorted(elig))).to_numpy()
+    thr = [n8["per_seed"][str(k)]["t0"] for k in SEEDS]  # fixed at N8
+    if thresholds(hold_primary) != thr:
+        raise SystemExit("T0 recomputed from calibration differs from the N8 report")
+
+    # evaluation side
     ev = pl.read_parquet(a.DERIVED / "eval_p1x.parquet")
     ev = ev.with_columns(attribute_hosts(ev["key"], ev["window_end_ms"], leases, internal))
     truth = pl.read_parquet(a.DERIVED / "eval_truth.parquet")
@@ -365,39 +425,29 @@ def run_final() -> None:
         pl.col("y1").fill_null(False), pl.col("y2").fill_null(False)
     )
     s_ev = score(c, models, ev)
-
-    # excluded hosts: everything that ever held an excluded internal address, any day
-    excl_hosts = set(_hosts_of(ev, pop["excluded_internal"])) | set(
-        _hosts_of(cal, pop["excluded_internal"])
-    )
-    elig = set(_hosts_of(cal, pop["eligible"])) - excl_hosts
-    c34 = set(_hosts_of(cal, pop["clients_3_4"])) - excl_hosts
-
-    def thresholds(hold_mask: np.ndarray) -> list[float]:
-        return [t0(s_cal[hold_mask, i], ts.k_of) for i in range(len(SEEDS))]
-
-    hold_primary = ((cal["win"] >= cut) & cal["host"].is_in(sorted(elig))).to_numpy()
-    thr = thresholds(hold_primary)
-    for i, k in enumerate(SEEDS):
-        if abs(thr[i] - n8["per_seed"][str(k)]["t0"]) > 0:
-            raise SystemExit("T0 differs from the N8 report")
+    # hosts that held an excluded address only in D15-D28 leave the evaluation sets; T0 stays
+    late_excl = set(_hosts_of(ev, excl_addr)) - hosts["excluded"]
+    excl_hosts = hosts["excluded"] | late_excl
+    elig_ev = elig - late_excl
     alerts = (s_ev > np.array(thr)[None, :]).astype(float)
     a_mean = alerts.mean(1)
     host = ev["host"].to_numpy()
     win = ev["win"].to_numpy()
     end = ev["window_end_ms"].to_numpy()
+    tw = window_time(end)
     y1, y2 = ev["y1"].to_numpy(), ev["y2"].to_numpy()
     clean = ~(y1 | y2)
 
     def summary(mask: np.ndarray, aa: np.ndarray = a_mean, seed: int = RNG_SEED) -> dict:
         return fpr_summary(aa[mask], host[mask], win[mask], ts.neff_m3, seed)
 
-    vb = np.isin(host, sorted(elig)) & clean
-    per_host = pl.DataFrame({"h": host[np.isin(host, sorted(elig))]}).group_by("h").len()
+    vb = np.isin(host, sorted(elig_ev)) & clean
+    per_host = pl.DataFrame({"h": host[np.isin(host, sorted(elig_ev))]}).group_by("h").len()
     n9 = bool((per_host["len"] >= N9_HOST_WINDOWS).sum() < N9_HOSTS or vb.sum() < N9_WINDOWS)
     h1 = summary(vb)
     rep: dict = {"n8": n8, "thresholds_t0": thr, "N9_triggered": n9,
-                 "label2_only_windows_excluded": int((np.isin(host, sorted(elig)) & y2 & ~y1).sum()),
+                 "hosts_excluded_from_evaluation_only": sorted(late_excl),
+                 "label2_only_windows_excluded": int((np.isin(host, sorted(elig_ev)) & y2 & ~y1).sum()),
                  "H1": {**h1, "outcome": h1_outcome(h1, n9),
                         "per_seed_fpr": [float(alerts[vb, i].mean()) for i in range(len(SEEDS))],
                         "host_macro_fpr": float(pl.DataFrame({"h": host[vb], "a": a_mean[vb]})
@@ -405,7 +455,7 @@ def run_final() -> None:
     periods = {"attack": (BOUNDARY_MS, POST_MS), "post_attack": (POST_MS, END_MS)}
     rep["H2"] = {}
     for name, (lo, hi) in periods.items():
-        m = vb & (end >= lo) & (end < hi)
+        m = vb & (tw >= lo) & (tw < hi)
         sm = summary(m)
         rep["H2"][name] = {
             **sm,
@@ -413,18 +463,22 @@ def run_final() -> None:
         }
 
     # H3 drift (descriptive)
-    day = (end - BOUNDARY_MS) // 86_400_000
+    day = (tw - BOUNDARY_MS) // 86_400_000
+    work = weekday(tw)
     deff = n8["deff"]
     daily = []
-    for d in np.unique(day[vb]):
-        m = vb & (day == d)
+    for d in np.unique(day[vb & work]):
+        m = vb & work & (day == d)
         if m.sum() >= DAY_MIN:
             r = float(a_mean[m].mean())
             daily.append({"day": int(d) + 15, "n": int(m.sum()), "fpr": r,
                           "p_overrun": overrun_p(r, int(m.sum()), deff)})  # fmt: skip
     for row, p in zip(daily, holm([r["p_overrun"] for r in daily]), strict=True):
         row["p_holm"] = p
-    rep["H3"] = {"daily": daily, "trend": logistic_slope(a_mean[vb], day[vb], host[vb])}
+    rep["H3"] = {
+        "daily_working_days": daily,
+        "trend": logistic_slope(a_mean[vb & work], day[vb & work], host[vb & work]),
+    }
 
     # secondary threshold M2
     m2 = [n8["per_seed"][str(k)]["m2"] for k in SEEDS]
@@ -446,19 +500,20 @@ def run_final() -> None:
     pop34 = elig | c34
     hold34 = ((cal["win"] >= cut) & cal["host"].is_in(sorted(pop34))).to_numpy()
     thr34 = thresholds(hold34)
-    vb34 = np.isin(host, sorted(pop34)) & clean
+    vb34 = np.isin(host, sorted(pop34 - late_excl)) & clean
     sens["clients_3_4_included"] = {"thresholds": thr34,
                                     **summary(vb34, (s_ev > np.array(thr34)[None, :]).mean(1))}  # fmt: skip
     outside = set(build.get("label_addresses_outside_script", []))
     drop = set(_hosts_of(ev, sorted(outside))) if outside else set()
     sens["label_sanity_dropped"] = {"addresses": sorted(outside),
                                     **(summary(vb & ~np.isin(host, sorted(drop))) if drop else {"same_as_primary": True})}  # fmt: skip
-    excluded_addr = set(a.ALWAYS_EXCLUDED) | set(a.COMPROMISED)
+    excluded_addr = set(excl_addr)
     per = cal.group_by("key").agg(pl.len().alias("n"), (pl.col("win") >= cut).sum().alias("h"))
     sec_keys = [r[0] for r in per.iter_rows() if not internal(r[0]) and r[0] not in excluded_addr
                 and r[1] >= a.MIN_CAL and r[2] >= a.MIN_HOLD]  # fmt: skip
     sec = np.isin(ev["key"].to_numpy(), sec_keys) & clean
-    sens["secondary_population"] = {"sources": sorted(sec_keys), **summary(sec)}
+    sens["secondary_population"] = {"sources": sorted(sec_keys), "threshold": "primary T0",
+                                    **summary(sec)}  # fmt: skip
     rep["sensitivity"] = sens
 
     # detection (descriptive)
@@ -477,11 +532,11 @@ def run_final() -> None:
     }  # fmt: skip
     wins = pl.DataFrame({"host": host, "window_end_ms": end, "y1": y1})
     for addr, comp in COMPROMISE_MS.items():
-        hs = _hosts_of(ev, [addr])
-        ent = hs[0] if hs else addr
-        rep["detection"]["entities"][addr] = entity_detection(wins, alerts, ent, comp)
+        ent = entity_host(addr, comp, leases, internal)
+        rep["detection"]["entities"][addr] = {"host": ent,
+                                              **entity_detection(wins, alerts, ent, comp)}  # fmt: skip
     fa = vb & (a_mean > 0)
-    hh = pl.DataFrame({"h": host[vb], "hr": end[vb] // 3_600_000}).unique().height
+    hh = pl.DataFrame({"h": host[vb], "hr": tw[vb] // 3_600_000}).unique().height
     newdst = ev["new_dst_frac"].fill_null(0).to_numpy() > 0
     excl_int = np.isin(host, sorted(excl_hosts)) & ~y1 & ~y2
     rep["alert_burden"] = {

@@ -74,3 +74,37 @@ request is minimal.
 | Arithmetic: 780.2 MB, 8.4 % by count, router 4.1 GB; "55 VMs verified"; labels "verified" | minor | corrected |
 | Evaluation-day archive metadata was read (sizes, `pe.log` on D17) | minor | disclosed in the pre-registration |
 | Use the repository's own citation; disk needs missing from the manifest | minor | both added |
+
+## DEDALE analysis code: independent pre-freeze audit
+
+**Reviewer:** a separate, read-only agent. It opened no data and ran no data script.
+
+**Verified:**
+- T0 rank and strict alert;
+- the seed-mean;
+- `neff_m3` row order;
+- the Clopper-Pearson and bootstrap bounds;
+- H1, H2 and N9 logic;
+- Holm and M2;
+- the window-truth index;
+- lease attribution;
+- labels kept out of the features.
+
+**Verdict:** not ready until findings 1–3 were fixed. The dispositions are below.
+
+| # | finding | severity | disposition |
+|---|---|---|---|
+| 1 | Stage B was not locked on N8 PASS | blocking | `download("B")` requires `freeze_ok()` and `n8_passed()` |
+| 2 | N7 checked models against an editable report; code hashes were never verified; the freeze file was not checked against HEAD | blocking | `freeze_ok` verifies every `<sha256>  <path>` line (LF-normalised) and a clean HEAD for the freeze file and listed tracked files; used by all modes |
+| 3 | Exclusions found only in evaluation DHCP could change T0 after unblinding | blocking | T0 is fixed at N8 from calibration-only attribution; late exclusions leave only the evaluation sets (amendment 4) |
+| 4 | The daily tests included weekends | should fix | weekdays only |
+| 5 | Unparseable evaluation rows could drop attack labels | should fix | truth from every row with parseable time, source and label; unparseable rows counted by label |
+| 6 | The entity host was arbitrary under several hosts | should fix | the host holding the address at compromise time |
+| 7 | The secondary population's threshold was unstated | should fix | primary T0 (amendment) |
+| 8 | Time assignment by window end put boundary windows on the wrong day | minor | `window_end_ms − 1` |
+| 9 | Excluded-host alerts could undercount | minor | all excluded addresses |
+| 10 | `--n8` did not check Stage A | minor | it does |
+| 11 | The logistic fit diverges with no alerts | minor | reported as undefined |
+| 12 | `W_MS` was hard-coded | minor | asserted against the builder |
+| 13 | `cal_scores.npy` was not hashed | minor | hashed in the N8 report and checked in `--final` |
+| – | Test gaps | – | tests added for: freeze verification, the N8 lock, weekdays and time helpers, the logistic guard, `overrun_p` against scipy, Holm ties, lease ties and missing leases, calibration-host exclusion, and the truth/builder window index. No end-to-end run on synthetic data (the modes need the frozen repository state); the run modes' internal consistency checks (T0, hosts, scores, calibration windows) stop on any mismatch |

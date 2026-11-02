@@ -79,9 +79,13 @@ def parse_eval_day(path: Path, day: int) -> tuple[pl.DataFrame, pl.DataFrame, di
     end = ok["ts"] + ok["duration"]
     out_of_day = int(((end < lo - A.TOLERANCE_S) | (end >= lo + 86400 + A.TOLERANCE_S)).sum())
     flows = A.canonical(ok).with_columns(pl.lit("benign").alias("label"))  # placeholder
-    # end time exactly as canonical() computes it
-    end_ms = (pl.col("ts") * 1000).cast(pl.Int64) + (pl.col("duration") * 1000).cast(pl.Int64)
-    lab = ok.select(pl.col("ip_src").alias("src"), pl.col("ip_dst").alias("dst"),
+    # labels from every row whose ts, source and label parse (a bad numeric field elsewhere must
+    # not turn an attack flow into a benign one); end time as canonical() computes it
+    lab_ok = parsed.filter(pl.col("ts").is_not_null() & pl.col("ip_src").is_not_null()
+                           & pl.col("label").is_not_null())  # fmt: skip
+    end_ms = (pl.col("ts") * 1000).cast(pl.Int64) + (
+        pl.col("duration").fill_null(0.0) * 1000).cast(pl.Int64)  # fmt: skip
+    lab = lab_ok.select(pl.col("ip_src").alias("src"), pl.col("ip_dst").alias("dst"),
                     end_ms.alias("end_ms"), pl.col("label").cast(pl.Int64), "attack_step")  # fmt: skip
     e = pl.col("flow_end_milliseconds")
     before = int(flows.select((e < A.BOUNDARY_MS).sum()).item())
@@ -91,6 +95,8 @@ def parse_eval_day(path: Path, day: int) -> tuple[pl.DataFrame, pl.DataFrame, di
     info = {"rows": raw.height, "unparseable": int(bad.sum()), "ending_outside_utc_day_2h": out_of_day,
             "dropped_ending_before_boundary": before, "dropped_ending_after_end": after,
             "evaluation_flows": flows.height,
+            "unparseable_by_label": {str(r[0]): int(r[1]) for r in
+                                     raw.filter(bad)["label"].value_counts().iter_rows()},
             "labels": {str(int(r[0])): int(r[1]) for r in ok["label"].value_counts().iter_rows()}}  # fmt: skip
     return flows, lab, info
 
@@ -115,11 +121,8 @@ def outside_script(labels: pl.DataFrame) -> list[str]:
 
 def main() -> None:
     t0 = time.perf_counter()
-    if not F.freeze_ok():
-        raise SystemExit("refused: docs/phase8l/DEDALE_FREEZE.md is not committed with the "
-                         "pre-registration's SHA-256")  # fmt: skip
-    if not N8_REPORT.exists() or json.loads(N8_REPORT.read_text("utf-8")).get("outcome") != "PASS":
-        raise SystemExit("refused: N8 has not passed")
+    if not (F.freeze_ok() and F.n8_passed(N8_REPORT)):
+        raise SystemExit("refused: the freeze is not verified (N7) or N8 has not passed")
     man = json.loads(A.MANIFEST.read_text("utf-8"))["stages"]["B"]["members"]
     fetched = json.loads((ROOT / "reports/phase8l/dedale_fetch_stageB.json").read_text("utf-8"))
     bad = [
@@ -155,6 +158,8 @@ def main() -> None:
     del labels
 
     p1x = _load("phase8j_build_p1x", ROOT / "scripts" / "phase8j" / "build_p1x.py")
+    if p1x.BW.W * 1000 != W_MS:
+        raise SystemExit("window length differs from the builder's")
     builder = p1x.P1xBuilder(A.BOUNDARY_MS, set())
     cal_files = sorted((A.DERIVED / "flows").glob("D??.parquet"))
     for frame in p1x.BW.chunks(cal_files + files, False, p1x.BW.MAX_ROWS):

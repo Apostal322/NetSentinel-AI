@@ -82,8 +82,13 @@ def test_logistic_slope_recovers_trend():
 
 
 def test_attribute_hosts_uses_leases():
-    leases = pl.DataFrame({"ts": ["100.0", "500.0"], "mac": ["m1", "m2"],
-                           "assigned_addr": ["172.16.1.9", "172.16.1.9"]})  # fmt: skip
+    leases = pl.DataFrame(
+        {
+            "ts": ["100.0", "500.0"],
+            "mac": ["m1", "m2"],
+            "assigned_addr": ["172.16.1.9", "172.16.1.9"],
+        }
+    )
     keys = pl.Series(["172.16.1.9", "172.16.1.9", "172.16.1.9", "8.8.8.8"])
     end = pl.Series([50_000, 200_000, 600_000, 200_000])
     internal = lambda a: a.startswith("172.16.1.")  # noqa: E731
@@ -93,8 +98,13 @@ def test_attribute_hosts_uses_leases():
 
 def test_entity_detection_delays():
     h = 3_600_000
-    wins = pl.DataFrame({"host": ["c2"] * 4 + ["x"], "window_end_ms": [0, h, 2 * h, 3 * h, h],
-                         "y1": [False, True, True, False, True]})  # fmt: skip
+    wins = pl.DataFrame(
+        {
+            "host": ["c2"] * 4 + ["x"],
+            "window_end_ms": [0, h, 2 * h, 3 * h, h],
+            "y1": [False, True, True, False, True],
+        }
+    )
     alerts = np.array([[0, 0], [0, 1], [1, 1], [1, 0], [1, 1]], dtype=float)
     r = AN.entity_detection(wins, alerts, "c2", comp_ms=0)
     s0, s1 = r["per_seed"]
@@ -103,10 +113,12 @@ def test_entity_detection_delays():
 
 
 def test_eval_parser_keeps_labels_apart(tmp_path):
-    hdr = ("date;ts;uid;ip_src;port_src;ip_dst;port_dst;proto;service;duration;orig_bytes;"
-           "resp_bytes;conn_state;local_orig;local_resp;missed_bytes;history;orig_pkts;"
-           "orig_ip_bytes;resp_pkts;resp_ip_bytes;tunnel_parents;ip_proto;label;step;"
-           "attack_step;tactic;technique;comments")  # fmt: skip
+    hdr = (
+        "date;ts;uid;ip_src;port_src;ip_dst;port_dst;proto;service;duration;orig_bytes;"
+        "resp_bytes;conn_state;local_orig;local_resp;missed_bytes;history;orig_pkts;"
+        "orig_ip_bytes;resp_pkts;resp_ip_bytes;tunnel_parents;ip_proto;label;step;"
+        "attack_step;tactic;technique;comments"
+    )
     b = EB.A.BOUNDARY_MS / 1000
     tail = ";1;1;SF;T;F;0;Sh;1;60;1;80;-;6;{lab};0;{step};;;"
     rows = [
@@ -137,3 +149,123 @@ def test_modes_refuse_without_freeze(monkeypatch, tmp_path):
     monkeypatch.setattr(AN, "_load", lambda name, path: f if "fetch" in name else None)
     with pytest.raises(SystemExit, match="refused"):
         AN._guard(tmp_path / "x.json")
+
+
+def test_freeze_verification_checks_every_listed_hash(tmp_path):
+    f = _load("dedale_fetch")
+    (tmp_path / "docs").mkdir()
+    pre = tmp_path / "docs" / "pre.md"
+    pre.write_bytes(b"rule\r\n")
+    code = tmp_path / "a.py"
+    code.write_text("x = 1\n", "utf-8")
+    freeze = tmp_path / "docs" / "FREEZE.md"
+    lines = f"{f.lf_sha256(pre)}  docs/pre.md\n{f.lf_sha256(code)}  a.py\n"
+    freeze.write_text("# freeze\n" + lines, "utf-8")
+    ok = dict(freeze=freeze, prereg=pre, check_git=False, root=tmp_path)
+    assert f.freeze_ok(**ok)
+    code.write_text("x = 2\n", "utf-8")
+    assert not f.freeze_ok(**ok)  # a frozen file changed
+    freeze.write_text(f"{f.lf_sha256(code)}  a.py\n", "utf-8")
+    assert not f.freeze_ok(**ok)  # pre-registration not listed
+
+
+def test_stage_b_needs_n8_pass(tmp_path):
+    f = _load("dedale_fetch")
+    r = tmp_path / "n8.json"
+    assert not f.n8_passed(r)
+    r.write_text('{"outcome": "NOT EVALUABLE"}', "utf-8")
+    assert not f.n8_passed(r)
+    r.write_text('{"outcome": "PASS"}', "utf-8")
+    assert f.n8_passed(r)
+
+
+def test_time_helpers_and_logistic_guard():
+    mon = AN.BOUNDARY_MS  # 2025-01-06 00:00 UTC, a Monday
+    sat = mon + 5 * 86_400_000
+    assert AN.weekday(np.array([mon, sat])).tolist() == [True, False]
+    assert (
+        AN.window_time(np.array([mon])).item() == mon - 1
+    )  # the window ending at 00:00 is Sunday's
+    r = AN.logistic_slope(np.zeros(50), np.arange(50) % 5, np.arange(50) % 3)
+    assert r["slope_per_day"] is None
+
+
+def test_overrun_and_holm_against_direct_values():
+    from scipy.stats import binom
+
+    assert AN.overrun_p(0.05, 1000, 2.0) == pytest.approx(binom.sf(24, 500, 0.02))
+    assert AN.holm([0.02, 0.02, 0.5]) == pytest.approx([0.06, 0.06, 0.5])
+
+
+def test_attribute_hosts_groups_ties_and_missing_leases():
+    leases = pl.DataFrame(
+        {
+            "ts": ["100.0", "100.0", "300.0"],
+            "mac": ["mA", "mB", "mA2"],
+            "assigned_addr": ["172.16.1.9", "172.16.1.8", "172.16.1.9"],
+        }
+    )
+    keys = pl.Series(["172.16.1.8", "172.16.1.9", "172.16.1.9", "172.16.1.7"])
+    end = pl.Series([100_000, 300_000, 299_999, 100_000])
+    internal = lambda a: a.startswith("172.16.1.")  # noqa: E731
+    got = AN.attribute_hosts(keys, end, leases, internal).to_list()
+    assert got == ["mB", "mA2", "mA", "172.16.1.7"]  # equal time counts as held; no lease: address
+    assert AN.entity_host("172.16.1.9", 350_000, leases, internal) == "mA2"
+
+
+def test_calibration_hosts_remove_excluded_holders():
+    cal = pl.DataFrame(
+        {
+            "key": ["172.16.1.10", "172.16.1.2", "172.16.1.11", "172.16.1.4"],
+            "host": ["m10", "m10", "m11", "m4"],
+        }
+    )
+    pop = {
+        "eligible": ["172.16.1.10", "172.16.1.11"],
+        "clients_3_4": ["172.16.1.4"],
+        "excluded_internal": ["172.16.1.2"],
+    }
+    h = AN.calibration_hosts(cal, pop, ["172.16.1.2"])
+    assert h["eligible"] == {"m11"} and h["excluded"] == {"m10"} and h["clients_3_4"] == {"m4"}
+
+
+def test_truth_window_index_matches_the_builder():
+    from netsentinel.behavior.windows import aggregate, prepare_flows
+
+    n = 3
+    raw = pl.DataFrame(
+        {
+            "ts": [1736158000.123, 1736158029.999, 1736158031.0],
+            "duration": [0.5, 0.0004, 2.25],
+            "ip_src": ["172.16.1.3"] * n,
+            "ip_dst": ["172.19.0.2"] * n,
+            "port_dst": [443.0] * n,
+            "proto": ["tcp"] * n,
+            "orig_ip_bytes": [60.0] * n,
+            "resp_ip_bytes": [80.0] * n,
+            "orig_pkts": [1.0] * n,
+            "resp_pkts": [1.0] * n,
+            "history": ["Sh"] * n,
+            "label": [1.0, 0.0, 1.0],
+        }
+    )
+    flows = EB.A.canonical(raw)
+    # build_windows.with_flags, inlined (importing build_windows rebinds `common`)
+    rst = lambda c: ((pl.col(c) & 4) > 0).cast(pl.Int8)  # noqa: E731
+    frame = flows.with_columns(
+        rst("client_tcp_flags").alias("cli_rst"),
+        rst("server_tcp_flags").alias("srv_rst"),
+        (pl.col("label") != "benign").cast(pl.Float64).alias("is_attack"),
+    )
+    wins = aggregate(prepare_flows(frame), "device", 30)
+    end_ms = (pl.col("ts") * 1000).cast(pl.Int64) + (pl.col("duration") * 1000).cast(pl.Int64)
+    lab = raw.select(
+        pl.col("ip_src").alias("src"),
+        pl.col("ip_dst").alias("dst"),
+        end_ms.alias("end_ms"),
+        pl.col("label").cast(pl.Int64),
+        pl.lit("c2").alias("attack_step"),
+    )
+    truth = EB.window_truth(lab)
+    assert truth.height == 2
+    assert wins.join(truth, on=["key", "win"], how="inner").height == truth.height

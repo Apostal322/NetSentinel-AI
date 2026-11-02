@@ -309,3 +309,27 @@ All at T0, seed-mean.
    - **Host attribution:** each window goes to the MAC of its address's latest DHCP lease at or
      before the window end (else the first later lease). Excluded hosts are every host that held
      an excluded address on any of the 28 days.
+4. **Independent pre-freeze code audit** (2026-11-02, before any scoring; REVIEW.md).
+   - **N7 is now enforced in code.**
+     - `DEDALE_FREEZE.md` lists `<sha256>  <path>` lines. They cover this file, every analysis
+       and adapter script and the three model files.
+     - Every run mode, the evaluation build and the Stage B download verify each line
+       (LF-normalised).
+     - They also check that the freeze file and every tracked listed file are committed and
+       unchanged from HEAD.
+   - **Stage B is also locked on N8 PASS.**
+   - **T0 is fixed at N8 from calibration information only.**
+     - The eligible hosts minus those holding an excluded address in D1–D14.
+     - A host that holds an excluded address only in D15–D28 is dropped from the evaluation sets
+       and reported. T0 does not change.
+   - **The daily tests (H3) use working days (UTC Monday–Friday) only.**
+   - **Time assignment.** Periods, days and hours are assigned by a window's last millisecond
+     (`window_end_ms − 1`).
+   - **The secondary population is evaluated at the primary T0.**
+   - **The entity host** is the host holding the address at its compromise time.
+   - **Evaluation truth** comes from every row whose time, source and label parse. Unparseable
+     rows are counted by label.
+   - **Alert burden on excluded hosts** uses all excluded addresses.
+   - **Other guards:** the logistic trend is reported as undefined when there is no variation;
+     `cal_scores.npy` is hashed in the N8 report; `--n8` requires the Stage A gate to have
+     passed.
