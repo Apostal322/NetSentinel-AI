@@ -20,7 +20,7 @@ The focus cases are NF-CIC 02-14, 02-16 and 02-21, 3 replicates each (9 per arm)
 | hypothesis | result | evidence |
 |---|---|---|
 | HA2: removing `new_dst_frac` is catastrophic (≥ 6/9) while no no-op arm exceeds 2 | **SUPPORTED** | `A4_drop_new_dst_frac` 9/9 and `A4_shuffle_new_dst_frac` 9/9 (recall 0.00 in every case); the 3 A2 arms 0/9 |
-| HA1: an information-preserving arm is catastrophic in ≥ 3/9 | **SUPPORTED, at the threshold** | `A5_host_bootstrap` 3/9; `A5_sample_seed` 2/9; `A6_double_nfton` 1/9; `A6_double_nfunsw` 1/9; `A5_lgb_seed` 0/9; A2 0/9 |
+| HA1: an information-preserving arm is catastrophic in ≥ 3/9 | **SUPPORTED, at the threshold, as registered** | `A5_host_bootstrap` 3/9; `A5_sample_seed` 2/9; `A6_double_nfton` 1/9; `A6_double_nfunsw` 1/9; `A5_lgb_seed` 0/9; A2 0/9. All 3 bootstrap cases are the *same* 02-16 entity, which the pre-registration counts as one unit, and 2 of the 3 are confounded by seed choice (point 2), so the evidence is one entity-day |
 | HA3: other removals and mechanism (descriptive) | see below | all recall failures in the focus cases are *ranking* failures except where noted |
 
 ## What breaks and how
@@ -31,10 +31,15 @@ The focus cases are NF-CIC 02-14, 02-16 and 02-21, 3 replicates each (9 per arm)
 - Reversing the column order changes the scores slightly (Spearman 0.98). The cause is
   `colsample_bytree`, which samples columns by position. No case becomes catastrophic.
 
-**2. Optimizer randomness is not the problem.**
-- Changing only the LightGBM seed (bagging and column sampling) gives 0 catastrophic cases in
-  27 domain-replicates.
-- The focus days stay at 0.96–1.00.
+**2. Optimizer randomness alone gave no flips, but that rests on one clean replicate.**
+- The LightGBM-seed arm gives 0 catastrophic cases in 27 domain-replicates, and the focus days
+  stay at 0.96–1.00.
+- **The arms were not single-factor for r = 1 and 2** (corrected after review):
+  - `A5_lgb_seed` uses seeds (100 + r, 0) and `A5_sample_seed` (0, 100 + r), yet both are compared
+    with P_ref at (r, r);
+  - `A5_host_bootstrap` uses (0, 0) for every r.
+- **A clean one-factor contrast exists only at r = 0:** LightGBM seed only, 0 flips; subsample
+  seed only, 1 flip (02-16).
 
 **3. Small changes of the training *data* flip whole attack entities.** Focus-day window recall
 per replicate:
@@ -50,9 +55,13 @@ per replicate:
   force; DoS).
 - So recall on these days is close to all-or-nothing. The whole cluster of attack windows sits
   either above or below the benign tail.
-- Every one of these failures is a *ranking* failure: the ranking recall at the benign 99th
-  percentile falls with it. The overall score order barely changes (Spearman with P_ref
-  0.90–0.98), so a small shift of one dense cluster relative to the benign tail decides the day.
+- Every one of these failures is classed *ranking* by the registered rule: the ranking recall at
+  the benign 99th percentile falls with it.
+  - On NF-CIC the FPR is close to α, so T0 is close to the benign 99th percentile. A recall
+    failure there is almost necessarily classed "ranking" (REVIEW).
+- **The overall score order changes little.** Mean Spearman with P_ref is 0.90–0.98 across the
+  randomness arms. The host bootstrap goes down to 0.78 overall and 0.85–0.93 on the focus days,
+  the very failing cases.
 - These are not many independent misses. They are one entity, observed once per day.
 
 **4. Detection depends on a few features, and which ones depends on the network.**
@@ -64,8 +73,13 @@ per replicate:
 | `log_flows` | 20 | NF-CIC 0.072, NF-BoT 0.183, NF-UNSW 0.623, NF-ToN 0.410 |
 | `log_dst_ports` | 19 | **NF-UNSW 0.971 → 0.027** (a *threshold* failure in all 3 reps), NF-CIC 0.259 |
 | `udp_share` | 5 | NF-ToN 0.392 |
-| every other single feature | 0–3 | changes ≤ 0.17 on any network |
+| every other single feature | 0–3 | network-mean changes ≤ 0.17, but some single-domain collapses (below) |
 
+- **Network means hide single-domain collapses** (corrected after review):
+  - `A4_drop_log_dst_hosts` collapses 02-16 in 2 of 3 replicates;
+  - `A4_drop_log_dst_ports` collapses 02-14 in 3 of 3;
+  - removing `log_down_bytes`, `log_pkts`, `no_reply_frac` or `upload_share` collapses 03-02 in
+    replicate 0, where B0 itself is near its threshold.
 - **The shuffle control removes the information but keeps the column.** It is as damaging as
   dropping the column, so the effect is the information in `new_dst_frac`, not the change of
   column count.

@@ -161,3 +161,53 @@ The entity measures cover the 75 entities (sources with ≥ 5 attack windows):
 - 288 LightGBM fits (M0 24, M1 120, M2 120, M3 24) and member scoring;
 - estimate 75–110 min, peak ≈ 2 GiB under `run_capped`, sequential;
 - run only after the user authorizes it.
+
+### Amendment 2: replication with fresh randomness
+
+**Written:** 2026-11-03.
+- **Written after:** the Experiment C results and the independent review (REVIEW.md).
+- **Written before:** any of the fits it uses (replicates 3–5). No registered verdict above is
+  changed.
+
+**Deviations in amendment 1, found by the review:**
+1. **M0's stress fits (r = 0–2) *are* Experiment A's `A5_host_bootstrap` fits**, which had been
+   seen. That contradicts the sentence "Experiment A is not reused for selection".
+2. **G3's margin (U ≤ U(M0) − 3)** was set after U(M0) = 9 had been computed on those fits.
+3. **Under the registered "≥ 1 alerted window" definition, every unstable entity of M0, M2 and M3
+   comes from one fit (stress r = 2).** The registered G3 outcome therefore rests on one
+   already-seen bootstrap draw.
+
+**The amendment 1 verdict stands as registered** (M2 passes and is selected), but it is weak
+evidence. This replication tests it on fits that nobody has seen.
+
+**Fresh fits:** replicates r ∈ {3, 4, 5}, for M0, M2 and M3.
+- **Base:** subsample seed and LightGBM seed r; M2's members use 1000 + 10r + m.
+- **Stress:** the source hosts resampled with seed (8, r, domain), then the same seeds as base.
+  So, unlike replicates 0–2, the seeds are not fixed at 0.
+
+**Registered replication criteria for M2 (all must hold):**
+- **RP1:** G1 and G2 of amendment 1 on the fresh fits.
+- **RP2:** amendment 1's G3 on the fresh fits. Detected = at least one alerted window;
+  U ≤ U(M0) − 3 and R ≥ R(M0).
+- **RP3:** the same, with "detected" requiring that ≥ 20 % of the entity's attack windows are
+  alerted.
+  - This guards against single-window "detections" at the false-alert rate (REVIEW A2).
+  - The 20 % was chosen after seeing the exploratory sensitivity on replicates 0–2
+    (`reports/phase8n/entity_sensitivity.json`), and is disclosed as such.
+- **RP4:** window collapses, meaning domain-fits with window recall < 0.2, on the domains where the
+  Phase 8j B0 mean recall is ≥ 0.5 (NF-BoT, NF-CIC 02-14, 02-16 and 02-21, NF-ToN, NF-UNSW).
+  M2 must have fewer than M0. On replicates 0–2: M0 4, M2 0, M3 2.
+
+**Outcomes:**
+- **All of RP1–RP4 hold:** a *replicated development GO* for M2, still on consumed development
+  networks and still no deployment decision.
+- **Any fails:** *the registered GO is not replicated*; the conclusion is NO-GO, and B0 stays.
+
+**What it can and cannot show:**
+- The replication varies randomness only. It cannot address selection on these networks, or the
+  correlated entity units.
+
+**Resources:**
+- 168 LightGBM fits (M0 24, M2 120, M3 24);
+- estimate 30–45 min, peak ≈ 1.9 GiB under `run_capped`;
+- run only after the user authorizes it.

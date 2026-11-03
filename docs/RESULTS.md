@@ -146,6 +146,17 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 | Does a 1% conformal threshold calibrated on 2 benign weeks hold its budget over the next 2 weeks on an unseen network? | DEDALE green_internal, frozen pre-registration, one run | **HOLDS**: verified-benign FPR 0.55% [0.49, 0.62]% (26 hosts, 272,806 windows); attack and post-attack periods hold; sensitivity ≤ 1.2% | **confirmatory, n = 1** |
 | How useful is detection at that threshold? | same | window recall 7% (43 attack windows), both entities first detected 44–49 h after their first attack window; ~200 false alerts/day; 90% of false alerts from the frozen destination memory | descriptive |
 
+## Phase 8m (adaptive destination memory; development data)
+
+- Documents: [`docs/phase8m/`](phase8m/FINAL_RESEARCH_REPORT.md). Registered development NO-GO; the deployed detector (B0) stays. (Phase 8l's "~200 false alerts/day" is the upper part of the daily range; the mean is 151 per working day.)
+
+| Question | Data | Result | Role |
+|---|---|---|---|
+| Why do DEDALE's false alerts concentrate on new destinations? | DEDALE (consumed) | the evaluation memory is frozen, so post-calibration destinations stay "new"; 88% of false alerts are novel; setting the feature to 0 removes 88% of them and all detection | post-hoc |
+| Does a guarded adaptive memory (≥ 2 sources, ≥ 1 h) improve detection (H3) or false alerts (H1)? | 4 development networks, 3 seeds | **not supported**: recall falls on 4 of 4 networks; FPR falls on NF-ToN-IoT (−89%) but doubles on NF-BoT-IoT | registered development |
+| Does it resist contamination while adapting (H2)? | same, plus synthetic beacons | **not supported**: single-host beacons stay novel (by construction), but only 5.5% of benign new destinations are accepted, and destinations contacted by several attackers are accepted | registered development |
+| Why did the NF-CIC recall collapse? | same | every retrained variant loses single-attacker days that the unrefitted B0 model keeps (refit fragility; investigated in Phase 8n) | exploratory |
+
 ## Telemetry
 
 | Check | Result | Source |

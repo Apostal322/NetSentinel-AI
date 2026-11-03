@@ -1,0 +1,774 @@
+{
+ "status": "REGISTERED DEVELOPMENT (Experiment C); consumed development networks; a GO is a candidate for independent testing, not deployment",
+ "models": {
+  "M0": {
+   "network_means": {
+    "nfcic": {
+     "window_recall": 0.5445355509525441,
+     "fpr": 0.012880892252871524,
+     "false_alerts": 1350.4722222222222,
+     "false_alerts_per_h": 325.0050038553711,
+     "auc": 0.7729236060058381,
+     "ranking_recall_at_benign_q99": 0.5365387218566116,
+     "t0": 0.8565554606901431,
+     "median_delay_s": 48.857142857142854,
+     "window_recall_base": 0.5814397281549302,
+     "window_recall_stress": 0.5076313737501581
+    },
+    "nfunsw": {
+     "window_recall": 0.8326814959667562,
+     "fpr": 0.04392505096199492,
+     "false_alerts": 524.3333333333334,
+     "false_alerts_per_h": 59.04543833636757,
+     "auc": 0.9480536041082246,
+     "ranking_recall_at_benign_q99": 0.16271490263179336,
+     "t0": 0.09637929768571553,
+     "median_delay_s": 15.0,
+     "window_recall_base": 0.971156196528966,
+     "window_recall_stress": 0.6942067954045466
+    },
+    "nfton": {
+     "window_recall": 0.5681274900398406,
+     "fpr": 0.137169329931516,
+     "false_alerts": 1021.5,
+     "false_alerts_per_h": 14.128488378298263,
+     "auc": 0.8644114647448431,
+     "ranking_recall_at_benign_q99": 0.055188768734585475,
+     "t0": 0.47583256839299054,
+     "median_delay_s": 87.5,
+     "window_recall_base": 0.6087649402390438,
+     "window_recall_stress": 0.5274900398406374
+    },
+    "nfbot": {
+     "window_recall": 0.797656744775174,
+     "fpr": 0.08709677419354839,
+     "false_alerts": 54.0,
+     "false_alerts_per_h": 0.12799230672480902,
+     "auc": 0.8931890845573965,
+     "ranking_recall_at_benign_q99": 0.41302512138484265,
+     "t0": 0.6426253885892144,
+     "median_delay_s": 20.0,
+     "window_recall_base": 0.8832594469073253,
+     "window_recall_stress": 0.7120540426430231
+    }
+   },
+   "entity_recall_pooled": 0.7133333333333334,
+   "R": 46,
+   "U": 9,
+   "N": 20,
+   "RUN_by_network": {
+    "nfcic": [
+     24,
+     8,
+     20
+    ],
+    "nfunsw": [
+     4,
+     0,
+     0
+    ],
+    "nfton": [
+     10,
+     1,
+     0
+    ],
+    "nfbot": [
+     8,
+     0,
+     0
+    ]
+   },
+   "focus_day_recall": {
+    "nfcic/2018-02-14": {
+     "base_r0": 1.0,
+     "base_r1": 0.9945652173913043,
+     "base_r2": 0.9945652173913043,
+     "stress_r0": 1.0,
+     "stress_r1": 1.0,
+     "stress_r2": 1.0
+    },
+    "nfcic/2018-02-16": {
+     "base_r0": 0.9629629629629629,
+     "base_r1": 0.9629629629629629,
+     "base_r2": 0.9629629629629629,
+     "stress_r0": 0.07407407407407407,
+     "stress_r1": 0.18518518518518517,
+     "stress_r2": 0.0
+    },
+    "nfcic/2018-02-21": {
+     "base_r0": 0.998158379373849,
+     "base_r1": 0.9972375690607734,
+     "base_r2": 0.9788213627992634,
+     "stress_r0": 0.9972375690607734,
+     "stress_r1": 0.998158379373849,
+     "stress_r2": 0.7366482504604052
+    }
+   },
+   "per_domain": {
+    "nfbot/all": {
+     "family": "dos, ddos, theft",
+     "recall_mean": 0.797656744775174,
+     "recall_min": 0.6250791640278658,
+     "recall_max": 0.8904369854338189,
+     "false_alerts_mean": 54.0,
+     "entities": 8
+    },
+    "nfcic/2018-02-14": {
+     "family": "ssh_bruteforce",
+     "recall_mean": 0.9981884057971014,
+     "recall_min": 0.9945652173913043,
+     "recall_max": 1.0,
+     "false_alerts_mean": 1369.1666666666667,
+     "entities": 1
+    },
+    "nfcic/2018-02-16": {
+     "family": "dos_hulk",
+     "recall_mean": 0.5246913580246914,
+     "recall_min": 0.0,
+     "recall_max": 0.9629629629629629,
+     "false_alerts_mean": 978.0,
+     "entities": 1
+    },
+    "nfcic/2018-02-20": {
+     "family": "ddos_loic_http",
+     "recall_mean": 0.07861635220125786,
+     "recall_min": 0.04716981132075472,
+     "recall_max": 0.08490566037735849,
+     "false_alerts_mean": 1459.8333333333333,
+     "entities": 10
+    },
+    "nfcic/2018-02-21": {
+     "family": "ddos_hoic",
+     "recall_mean": 0.9510435850214854,
+     "recall_min": 0.7366482504604052,
+     "recall_max": 0.998158379373849,
+     "false_alerts_mean": 1826.5,
+     "entities": 10
+    },
+    "nfcic/2018-02-22": {
+     "family": "web_bruteforce/xss/sql_injection",
+     "recall_mean": 0.07361601884570083,
+     "recall_min": 0.020023557126030624,
+     "recall_max": 0.09658421672555949,
+     "false_alerts_mean": 1444.0,
+     "entities": 23
+    },
+    "nfcic/2018-03-02": {
+     "family": "bot",
+     "recall_mean": 0.6410575858250277,
+     "recall_min": 0.057308970099667775,
+     "recall_max": 0.9950166112956811,
+     "false_alerts_mean": 1025.3333333333333,
+     "entities": 7
+    },
+    "nfton/all": {
+     "family": "password, xss, backdoor, ransomware, mitm",
+     "recall_mean": 0.5681274900398406,
+     "recall_min": 0.3919180421172453,
+     "recall_max": 0.6685258964143427,
+     "false_alerts_mean": 1021.5,
+     "entities": 11
+    },
+    "nfunsw/all": {
+     "family": "9 families (exploits, fuzzers, generic, ...)",
+     "recall_mean": 0.8326814959667562,
+     "recall_min": 0.1720850647763383,
+     "recall_max": 0.9780004888780249,
+     "false_alerts_mean": 524.3333333333334,
+     "entities": 4
+    }
+   }
+  },
+  "M1": {
+   "network_means": {
+    "nfcic": {
+     "window_recall": 0.5884568919831632,
+     "fpr": 0.012482814455478468,
+     "false_alerts": 1294.0555555555557,
+     "false_alerts_per_h": 317.54780485122234,
+     "auc": 0.7755847907268748,
+     "ranking_recall_at_benign_q99": 0.5704349092925021,
+     "t0": 0.7890068756553225,
+     "median_delay_s": 16.323529411764707,
+     "window_recall_base": 0.6813445147471451,
+     "window_recall_stress": 0.4955692692191811
+    },
+    "nfunsw": {
+     "window_recall": 0.616067791086124,
+     "fpr": 0.03591075367903716,
+     "false_alerts": 428.6666666666667,
+     "false_alerts_per_h": 48.272367260374246,
+     "auc": 0.9235693384456178,
+     "ranking_recall_at_benign_q99": 0.16907031695591948,
+     "t0": 0.13586148215523494,
+     "median_delay_s": 25.0,
+     "window_recall_base": 0.5776093864580787,
+     "window_recall_stress": 0.6545261957141694
+    },
+    "nfton": {
+     "window_recall": 0.5818630240940998,
+     "fpr": 0.14818047535920503,
+     "false_alerts": 1103.5,
+     "false_alerts_per_h": 15.262640161969784,
+     "auc": 0.858349898251444,
+     "ranking_recall_at_benign_q99": 0.013982166571808006,
+     "t0": 0.3137828031286064,
+     "median_delay_s": 75.0,
+     "window_recall_base": 0.6221969265793966,
+     "window_recall_stress": 0.5415291216088028
+    },
+    "nfbot": {
+     "window_recall": 0.8177116318344945,
+     "fpr": 0.13844086021505378,
+     "false_alerts": 85.83333333333333,
+     "false_alerts_per_h": 0.20344456161505134,
+     "auc": 0.897841290594973,
+     "ranking_recall_at_benign_q99": 0.6144184082752797,
+     "t0": 0.5729862370523848,
+     "median_delay_s": 10.0,
+     "window_recall_base": 0.8832594469073253,
+     "window_recall_stress": 0.7521638167616636
+    }
+   },
+   "entity_recall_pooled": 0.68,
+   "R": 37,
+   "U": 18,
+   "N": 20,
+   "RUN_by_network": {
+    "nfcic": [
+     14,
+     18,
+     20
+    ],
+    "nfunsw": [
+     4,
+     0,
+     0
+    ],
+    "nfton": [
+     11,
+     0,
+     0
+    ],
+    "nfbot": [
+     8,
+     0,
+     0
+    ]
+   },
+   "focus_day_recall": {
+    "nfcic/2018-02-14": {
+     "base_r0": 1.0,
+     "base_r1": 1.0,
+     "base_r2": 1.0,
+     "stress_r0": 1.0,
+     "stress_r1": 1.0,
+     "stress_r2": 1.0
+    },
+    "nfcic/2018-02-16": {
+     "base_r0": 0.9629629629629629,
+     "base_r1": 0.9629629629629629,
+     "base_r2": 0.9629629629629629,
+     "stress_r0": 0.9629629629629629,
+     "stress_r1": 0.0,
+     "stress_r2": 0.07407407407407407
+    },
+    "nfcic/2018-02-21": {
+     "base_r0": 0.9834254143646409,
+     "base_r1": 0.998158379373849,
+     "base_r2": 0.9972375690607734,
+     "stress_r0": 0.9769797421731123,
+     "stress_r1": 0.0,
+     "stress_r2": 0.852670349907919
+    }
+   },
+   "per_domain": {
+    "nfbot/all": {
+     "family": "dos, ddos, theft",
+     "recall_mean": 0.8177116318344945,
+     "recall_min": 0.49398353388220395,
+     "recall_max": 0.902469917669411,
+     "false_alerts_mean": 85.83333333333333,
+     "entities": 8
+    },
+    "nfcic/2018-02-14": {
+     "family": "ssh_bruteforce",
+     "recall_mean": 1.0,
+     "recall_min": 1.0,
+     "recall_max": 1.0,
+     "false_alerts_mean": 1274.3333333333333,
+     "entities": 1
+    },
+    "nfcic/2018-02-16": {
+     "family": "dos_hulk",
+     "recall_mean": 0.6543209876543209,
+     "recall_min": 0.0,
+     "recall_max": 0.9629629629629629,
+     "false_alerts_mean": 1021.8333333333334,
+     "entities": 1
+    },
+    "nfcic/2018-02-20": {
+     "family": "ddos_loic_http",
+     "recall_mean": 0.0660377358490566,
+     "recall_min": 0.02830188679245283,
+     "recall_max": 0.08490566037735849,
+     "false_alerts_mean": 1345.0,
+     "entities": 10
+    },
+    "nfcic/2018-02-21": {
+     "family": "ddos_hoic",
+     "recall_mean": 0.8014119091467159,
+     "recall_min": 0.0,
+     "recall_max": 0.998158379373849,
+     "false_alerts_mean": 1617.5,
+     "entities": 10
+    },
+    "nfcic/2018-02-22": {
+     "family": "web_bruteforce/xss/sql_injection",
+     "recall_mean": 0.06281900274833137,
+     "recall_min": 0.02120141342756184,
+     "recall_max": 0.0800942285041225,
+     "false_alerts_mean": 1279.5,
+     "entities": 23
+    },
+    "nfcic/2018-03-02": {
+     "family": "bot",
+     "recall_mean": 0.9461517165005536,
+     "recall_min": 0.8384551495016611,
+     "recall_max": 0.9983388704318937,
+     "false_alerts_mean": 1226.1666666666667,
+     "entities": 7
+    },
+    "nfton/all": {
+     "family": "password, xss, backdoor, ransomware, mitm",
+     "recall_mean": 0.5818630240940998,
+     "recall_min": 0.3825839499146272,
+     "recall_max": 0.642344906089926,
+     "false_alerts_mean": 1103.5,
+     "entities": 11
+    },
+    "nfunsw/all": {
+     "family": "9 families (exploits, fuzzers, generic, ...)",
+     "recall_mean": 0.616067791086124,
+     "recall_min": 0.07528721583964801,
+     "recall_max": 0.9794671229528232,
+     "false_alerts_mean": 428.6666666666667,
+     "entities": 4
+    }
+   }
+  },
+  "M2": {
+   "network_means": {
+    "nfcic": {
+     "window_recall": 0.684443935720748,
+     "fpr": 0.013373717233349855,
+     "false_alerts": 1395.9722222222222,
+     "false_alerts_per_h": 335.86881951912386,
+     "auc": 0.7808266227388837,
+     "ranking_recall_at_benign_q99": 0.6820433793808702,
+     "t0": 0.7724246361741857,
+     "median_delay_s": 13.333333333333334,
+     "window_recall_base": 0.6894621489131542,
+     "window_recall_stress": 0.6794257225283419
+    },
+    "nfunsw": {
+     "window_recall": 0.9011651592927565,
+     "fpr": 0.03948507441847477,
+     "false_alerts": 471.3333333333333,
+     "false_alerts_per_h": 53.07708188660123,
+     "auc": 0.9614006970419631,
+     "ranking_recall_at_benign_q99": 0.18275890165403733,
+     "t0": 0.06526847057188527,
+     "median_delay_s": 5.0,
+     "window_recall_base": 0.9750672207284282,
+     "window_recall_stress": 0.8272630978570846
+    },
+    "nfton": {
+     "window_recall": 0.6335230506545247,
+     "fpr": 0.15986303209346045,
+     "false_alerts": 1190.5,
+     "false_alerts_per_h": 16.46594754220664,
+     "auc": 0.8646891521052189,
+     "ranking_recall_at_benign_q99": 0.04538038322898882,
+     "t0": 0.3519753814518029,
+     "median_delay_s": 30.0,
+     "window_recall_base": 0.5867197875166003,
+     "window_recall_stress": 0.6803263137924492
+    },
+    "nfbot": {
+     "window_recall": 0.8833649989444797,
+     "fpr": 0.09139784946236561,
+     "false_alerts": 56.666666666666664,
+     "false_alerts_per_h": 0.13431291446430577,
+     "auc": 0.904982226398905,
+     "ranking_recall_at_benign_q99": 0.47308423052564913,
+     "t0": 0.5812939155013931,
+     "median_delay_s": 0.0,
+     "window_recall_base": 0.8815706143128562,
+     "window_recall_stress": 0.885159383576103
+    }
+   },
+   "entity_recall_pooled": 0.731111111111111,
+   "R": 54,
+   "U": 1,
+   "N": 20,
+   "RUN_by_network": {
+    "nfcic": [
+     31,
+     1,
+     20
+    ],
+    "nfunsw": [
+     4,
+     0,
+     0
+    ],
+    "nfton": [
+     11,
+     0,
+     0
+    ],
+    "nfbot": [
+     8,
+     0,
+     0
+    ]
+   },
+   "focus_day_recall": {
+    "nfcic/2018-02-14": {
+     "base_r0": 1.0,
+     "base_r1": 1.0,
+     "base_r2": 1.0,
+     "stress_r0": 1.0,
+     "stress_r1": 1.0,
+     "stress_r2": 1.0
+    },
+    "nfcic/2018-02-16": {
+     "base_r0": 0.9629629629629629,
+     "base_r1": 0.9629629629629629,
+     "base_r2": 0.9629629629629629,
+     "stress_r0": 0.9629629629629629,
+     "stress_r1": 0.9629629629629629,
+     "stress_r2": 0.9629629629629629
+    },
+    "nfcic/2018-02-21": {
+     "base_r0": 0.9972375690607734,
+     "base_r1": 0.9972375690607734,
+     "base_r2": 0.9935543278084714,
+     "stress_r0": 0.998158379373849,
+     "stress_r1": 0.998158379373849,
+     "stress_r2": 0.9972375690607734
+    }
+   },
+   "per_domain": {
+    "nfbot/all": {
+     "family": "dos, ddos, theft",
+     "recall_mean": 0.8833649989444797,
+     "recall_min": 0.8625712476250792,
+     "recall_max": 0.902469917669411,
+     "false_alerts_mean": 56.666666666666664,
+     "entities": 8
+    },
+    "nfcic/2018-02-14": {
+     "family": "ssh_bruteforce",
+     "recall_mean": 1.0,
+     "recall_min": 1.0,
+     "recall_max": 1.0,
+     "false_alerts_mean": 1446.3333333333333,
+     "entities": 1
+    },
+    "nfcic/2018-02-16": {
+     "family": "dos_hulk",
+     "recall_mean": 0.9629629629629629,
+     "recall_min": 0.9629629629629629,
+     "recall_max": 0.9629629629629629,
+     "false_alerts_mean": 1124.6666666666667,
+     "entities": 1
+    },
+    "nfcic/2018-02-20": {
+     "family": "ddos_loic_http",
+     "recall_mean": 0.08490566037735849,
+     "recall_min": 0.08490566037735849,
+     "recall_max": 0.08490566037735849,
+     "false_alerts_mean": 1508.3333333333333,
+     "entities": 10
+    },
+    "nfcic/2018-02-21": {
+     "family": "ddos_hoic",
+     "recall_mean": 0.9969306322897483,
+     "recall_min": 0.9935543278084714,
+     "recall_max": 0.998158379373849,
+     "false_alerts_mean": 1838.0,
+     "entities": 10
+    },
+    "nfcic/2018-02-22": {
+     "family": "web_bruteforce/xss/sql_injection",
+     "recall_mean": 0.08775029446407538,
+     "recall_min": 0.06595995288574794,
+     "recall_max": 0.10129564193168433,
+     "false_alerts_mean": 1447.3333333333333,
+     "entities": 23
+    },
+    "nfcic/2018-03-02": {
+     "family": "bot",
+     "recall_mean": 0.9741140642303434,
+     "recall_min": 0.8621262458471761,
+     "recall_max": 0.9995847176079734,
+     "false_alerts_mean": 1011.1666666666666,
+     "entities": 7
+    },
+    "nfton/all": {
+     "family": "password, xss, backdoor, ransomware, mitm",
+     "recall_mean": 0.6335230506545247,
+     "recall_min": 0.5824701195219123,
+     "recall_max": 0.8126351735913488,
+     "false_alerts_mean": 1190.5,
+     "entities": 11
+    },
+    "nfunsw/all": {
+     "family": "9 families (exploits, fuzzers, generic, ...)",
+     "recall_mean": 0.9011651592927565,
+     "recall_min": 0.551454412124175,
+     "recall_max": 0.9789782449278905,
+     "false_alerts_mean": 471.3333333333333,
+     "entities": 4
+    }
+   }
+  },
+  "M3": {
+   "network_means": {
+    "nfcic": {
+     "window_recall": 0.5993603864491126,
+     "fpr": 0.013506605863434006,
+     "false_alerts": 1415.0,
+     "false_alerts_per_h": 339.6421926807773,
+     "auc": 0.7858287141470017,
+     "ranking_recall_at_benign_q99": 0.5915341707824183,
+     "t0": 0.8677066994389523,
+     "median_delay_s": 37.083333333333336,
+     "window_recall_base": 0.6073551947098444,
+     "window_recall_stress": 0.5913655781883808
+    },
+    "nfunsw": {
+     "window_recall": 0.8752546239713191,
+     "fpr": 0.04400882410432549,
+     "false_alerts": 525.3333333333334,
+     "false_alerts_per_h": 59.15804883541977,
+     "auc": 0.9554648651393362,
+     "ranking_recall_at_benign_q99": 0.17538499144463457,
+     "t0": 0.06330400283491269,
+     "median_delay_s": 0.0,
+     "window_recall_base": 0.9701784404791004,
+     "window_recall_stress": 0.7803308074635379
+    },
+    "nfton": {
+     "window_recall": 0.5214949724909884,
+     "fpr": 0.12183877176491653,
+     "false_alerts": 907.3333333333334,
+     "false_alerts_per_h": 12.549435590056412,
+     "auc": 0.862027892191139,
+     "ranking_recall_at_benign_q99": 0.09345475241889585,
+     "t0": 0.5584394918148674,
+     "median_delay_s": 125.0,
+     "window_recall_base": 0.5015367103016505,
+     "window_recall_stress": 0.5414532346803264
+    },
+    "nfbot": {
+     "window_recall": 0.8752374920835971,
+     "fpr": 0.07016129032258064,
+     "false_alerts": 43.5,
+     "false_alerts_per_h": 0.1031049137505406,
+     "auc": 0.9125484347654361,
+     "ranking_recall_at_benign_q99": 0.6000633312222926,
+     "t0": 0.6662829349128655,
+     "median_delay_s": 10.0,
+     "window_recall_base": 0.893181338399831,
+     "window_recall_stress": 0.8572936457673633
+    }
+   },
+   "entity_recall_pooled": 0.7266666666666667,
+   "R": 52,
+   "U": 3,
+   "N": 20,
+   "RUN_by_network": {
+    "nfcic": [
+     30,
+     2,
+     20
+    ],
+    "nfunsw": [
+     4,
+     0,
+     0
+    ],
+    "nfton": [
+     10,
+     1,
+     0
+    ],
+    "nfbot": [
+     8,
+     0,
+     0
+    ]
+   },
+   "focus_day_recall": {
+    "nfcic/2018-02-14": {
+     "base_r0": 0.016304347826086956,
+     "base_r1": 1.0,
+     "base_r2": 1.0,
+     "stress_r0": 1.0,
+     "stress_r1": 1.0,
+     "stress_r2": 1.0
+    },
+    "nfcic/2018-02-16": {
+     "base_r0": 0.9629629629629629,
+     "base_r1": 0.9629629629629629,
+     "base_r2": 0.9629629629629629,
+     "stress_r0": 0.9629629629629629,
+     "stress_r1": 0.9629629629629629,
+     "stress_r2": 0.1111111111111111
+    },
+    "nfcic/2018-02-21": {
+     "base_r0": 0.9861878453038674,
+     "base_r1": 0.9659300184162063,
+     "base_r2": 0.9972375690607734,
+     "stress_r0": 0.9972375690607734,
+     "stress_r1": 0.9953959484346224,
+     "stress_r2": 0.5248618784530387
+    }
+   },
+   "per_domain": {
+    "nfbot/all": {
+     "family": "dos, ddos, theft",
+     "recall_mean": 0.8752374920835971,
+     "recall_min": 0.8480050664977834,
+     "recall_max": 0.9088030398986701,
+     "false_alerts_mean": 43.5,
+     "entities": 8
+    },
+    "nfcic/2018-02-14": {
+     "family": "ssh_bruteforce",
+     "recall_mean": 0.8360507246376812,
+     "recall_min": 0.016304347826086956,
+     "recall_max": 1.0,
+     "false_alerts_mean": 1480.6666666666667,
+     "entities": 1
+    },
+    "nfcic/2018-02-16": {
+     "family": "dos_hulk",
+     "recall_mean": 0.8209876543209876,
+     "recall_min": 0.1111111111111111,
+     "recall_max": 0.9629629629629629,
+     "false_alerts_mean": 1061.6666666666667,
+     "entities": 1
+    },
+    "nfcic/2018-02-20": {
+     "family": "ddos_loic_http",
+     "recall_mean": 0.08490566037735849,
+     "recall_min": 0.08490566037735849,
+     "recall_max": 0.08490566037735849,
+     "false_alerts_mean": 1564.6666666666667,
+     "entities": 10
+    },
+    "nfcic/2018-02-21": {
+     "family": "ddos_hoic",
+     "recall_mean": 0.9111418047882136,
+     "recall_min": 0.5248618784530387,
+     "recall_max": 0.9972375690607734,
+     "false_alerts_mean": 1936.1666666666667,
+     "entities": 10
+    },
+    "nfcic/2018-02-22": {
+     "family": "web_bruteforce/xss/sql_injection",
+     "recall_mean": 0.0712603062426384,
+     "recall_min": 0.05771495877502945,
+     "recall_max": 0.08598351001177856,
+     "false_alerts_mean": 1419.8333333333333,
+     "entities": 23
+    },
+    "nfcic/2018-03-02": {
+     "family": "bot",
+     "recall_mean": 0.8718161683277962,
+     "recall_min": 0.7570598006644518,
+     "recall_max": 0.9954318936877077,
+     "false_alerts_mean": 1027.0,
+     "entities": 7
+    },
+    "nfton/all": {
+     "family": "password, xss, backdoor, ransomware, mitm",
+     "recall_mean": 0.5214949724909884,
+     "recall_min": 0.3553784860557769,
+     "recall_max": 0.6869664200341491,
+     "false_alerts_mean": 907.3333333333334,
+     "entities": 11
+    },
+    "nfunsw/all": {
+     "family": "9 families (exploits, fuzzers, generic, ...)",
+     "recall_mean": 0.8752546239713191,
+     "recall_min": 0.4223906135419213,
+     "recall_max": 0.9782449278904913,
+     "false_alerts_mean": 525.3333333333334,
+     "entities": 4
+    }
+   }
+  }
+ },
+ "go": {
+  "M1": {
+   "G1_recall_by_network": {
+    "nfcic": true,
+    "nfunsw": false,
+    "nfton": true,
+    "nfbot": true
+   },
+   "G1_entity": false,
+   "G2_workload_by_network": {
+    "nfcic": true,
+    "nfunsw": true,
+    "nfton": true,
+    "nfbot": false
+   },
+   "G3_robustness": false,
+   "pass": false
+  },
+  "M2": {
+   "G1_recall_by_network": {
+    "nfcic": true,
+    "nfunsw": true,
+    "nfton": true,
+    "nfbot": true
+   },
+   "G1_entity": true,
+   "G2_workload_by_network": {
+    "nfcic": true,
+    "nfunsw": true,
+    "nfton": true,
+    "nfbot": true
+   },
+   "G3_robustness": true,
+   "pass": true
+  },
+  "M3": {
+   "G1_recall_by_network": {
+    "nfcic": true,
+    "nfunsw": true,
+    "nfton": true,
+    "nfbot": true
+   },
+   "G1_entity": true,
+   "G2_workload_by_network": {
+    "nfcic": true,
+    "nfunsw": true,
+    "nfton": true,
+    "nfbot": true
+   },
+   "G3_robustness": true,
+   "pass": true
+  }
+ },
+ "selection": {
+  "candidate": "M2",
+  "rule": "largest R among passing; ties to the simpler"
+ }
+}

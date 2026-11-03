@@ -37,6 +37,12 @@ REGIMES = ("base", "stress")
 REPS = (0, 1, 2)
 NETWORKS = AF.NETWORKS
 RECALL_LOSS, ENTITY_LOSS, FA_RATIO, U_GAIN = 0.05, 0.02, 1.25, 3
+# attack families per domain (dataset labels; reports/phase8i/windows_<network>.json)
+FAMILY = {"nfcic/2018-02-14": "ssh_bruteforce", "nfcic/2018-02-16": "dos_hulk",
+          "nfcic/2018-02-20": "ddos_loic_http", "nfcic/2018-02-21": "ddos_hoic",
+          "nfcic/2018-02-22": "web_bruteforce/xss/sql_injection", "nfcic/2018-03-02": "bot",
+          "nfunsw/all": "9 families (exploits, fuzzers, generic, ...)",
+          "nfton/all": "password, xss, backdoor, ransomware, mitm", "nfbot/all": "dos, ddos, theft"}  # fmt: skip
 
 
 def domains() -> list[str]:
@@ -87,9 +93,16 @@ def summarise(f: dict, labels: dict) -> dict:
             robust, unstable, never = robust + (k == 0), unstable + (k == 1), never + (k == 2)
             by_net[name.split("/")[0]][k] += 1
     focus = {n: {f"{g}_r{r}": f[(g, r)][n]["window_recall"] for (g, r) in f} for n in AF.FOCUS}
+    per_domain = {}
+    for name in labels:
+        rec = [per[name]["window_recall"] for per in f.values()]
+        per_domain[name] = {"family": FAMILY.get(name), "recall_mean": float(np.mean(rec)),
+                            "recall_min": float(np.min(rec)), "recall_max": float(np.max(rec)),
+                            "false_alerts_mean": float(np.mean([per[name]["false_alerts"] for per in f.values()])),
+                            "entities": len(labels[name].entities)}  # fmt: skip
     return {"network_means": nets, "entity_recall_pooled": float(np.mean(det_share)),
             "R": robust, "U": unstable, "N": never, "RUN_by_network": by_net,
-            "focus_day_recall": focus}  # fmt: skip
+            "focus_day_recall": focus, "per_domain": per_domain}  # fmt: skip
 
 
 def go(c: dict, m0: dict) -> dict:

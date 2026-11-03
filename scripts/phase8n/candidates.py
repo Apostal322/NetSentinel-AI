@@ -46,6 +46,7 @@ REPORT = ROOT / "reports" / "phase8n" / "candidates_runs.json"
 MEMBERS = 5
 REGULARISED = {"min_child_samples": 200, "reg_lambda": 5.0}
 MODELS = ("M0", "M1", "M2", "M3")
+REPLICATION = frozenset({3, 4, 5})  # fresh-randomness replicates of amendment 2
 REGIMES = ("base", "stress")
 
 
@@ -88,8 +89,11 @@ def fit_one(
 
 def build(model: str, regime: str, r: int, srcs: dict) -> list:
     outer = r if regime == "stress" else None
-    base_sample = 0 if regime == "stress" else r
-    base_seed = 0 if regime == "stress" else r
+    # replicates 0-2: stress fits use seeds (0, 0) as Experiment A's A5_host_bootstrap; the fresh
+    # replication replicates (amendment 2) use seed r in both regimes
+    zero = regime == "stress" and r not in REPLICATION
+    base_sample = 0 if zero else r
+    base_seed = 0 if zero else r
     if model in ("M0", "M3"):
         over = REGULARISED if model == "M3" else None
         return [fit_one(source_data(srcs, base_sample, outer), base_seed, overrides=over)]
@@ -105,6 +109,30 @@ def build(model: str, regime: str, r: int, srcs: dict) -> list:
         seed = 1000 + 10 * r + m
         members.append(fit_one(source_data(srcs, seed, outer), seed))
     return members
+
+
+def save_atomic(out: Path, **arrays) -> None:
+    """Write the npz under a temporary name and rename it, so an interrupted run never leaves a
+    truncated file that a resumed run would take as complete."""
+    tmp = out.with_name(out.stem + ".tmp.npz")
+    np.savez_compressed(tmp, **arrays)
+    tmp.replace(out)
+
+
+def provenance(args) -> dict:
+    """Git commit, package versions, code hash and arguments of this invocation."""
+    import hashlib
+    import subprocess
+
+    import lightgbm
+
+    sha = subprocess.run(
+        ["git", "rev-parse", "HEAD"], capture_output=True, text=True, cwd=ROOT
+    ).stdout.strip()
+    code = hashlib.sha256(Path(__file__).read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+    return {"git_head": sha, "candidates_py_sha256": code, "lightgbm": lightgbm.__version__,
+            "numpy": np.__version__, "polars": pl.__version__, "args": vars(args),
+            "lgb_params": C.LGB, "regularised": REGULARISED, "members": MEMBERS}  # fmt: skip
 
 
 def score(members: list, x: np.ndarray) -> np.ndarray:
@@ -123,6 +151,7 @@ def main() -> None:
     todo = [t for t in LA.targets(nets) if not a.targets or t[1]["network"] in a.targets.split(",")]
     frames = {name: DS.p1x_frames(d) for name, d, _ in todo}
     log = json.loads(REPORT.read_text("utf-8")) if REPORT.exists() else {"runs": {}}
+    log.setdefault("provenance", []).append(provenance(a))
     for model in a.models.split(","):
         for regime in a.regimes.split(","):
             for r in [int(x) for x in a.reps.split(",")]:
@@ -144,13 +173,13 @@ def main() -> None:
                         s_hold = score(members, S._x(cal.filter(pl.Series(hold))))
                         s_ev = score(members, S._x(ev))
                         row = {"members": len(members), "fit_seconds": fit_s}
-                        if model == "M0":  # must equal the Experiment A arm it re-creates
+                        if model == "M0" and r not in REPLICATION:  # = the Experiment A arm
                             arm = "P_ref" if regime == "base" else "A5_host_bootstrap"
                             ref = np.load(FRAG / arm / f"{name.replace('/', '__')}__r{r}.npz")
                             row["experiment_a_max_abs_diff"] = float(max(np.abs(ref["s_ev"] - s_ev).max(),
                                                                          np.abs(ref["s_hold"] - s_hold).max()))  # fmt: skip
                         out.parent.mkdir(parents=True, exist_ok=True)
-                        np.savez_compressed(out, s_hold=s_hold, s_ev=s_ev)
+                        save_atomic(out, s_hold=s_hold, s_ev=s_ev)
                         log["runs"].setdefault(f"{model}/{regime}", {})[f"{name} r{r}"] = row
                         print(model, regime, name, r, row, flush=True)
                     log["peak_rss_mb"] = peak_rss_mb()

@@ -5,7 +5,7 @@ Written 2026-11-03 at the start of Phase 8n.
   untracked changes.
 - **Evidence:** saved artifacts and code. Each line says where it comes from.
 
-**Statuses:**
+**Statuses** (updated 2026-11-03 after Experiments A–C and the review):
 - **open:** not yet investigated.
 - **investigating:** an experiment is registered.
 - **closed:** resolved, with evidence.
@@ -15,9 +15,9 @@ Written 2026-11-03 at the start of Phase 8n.
 
 | ID | gap | evidence | severity / risk | investigation and fix | cost | status |
 |---|---|---|---|---|---|---|
-| G0.1 | **The NF-CIC collapse is unexplained** (Phase 8m): every retrained variant reaches recall ≈ 0 on 02-14, 02-16 and 02-21, where B0 and Q1 reach 0.96–0.996 | `reports/phase8m/model_comparison.json`; Phase 8n diagnostic (below) | high: any feature or training change could be misjudged as good or bad | Experiment A (factorial perturbations, below) | ≈ 1 h CPU | investigating |
-| G0.2 | **The B0 reference must be reproducible** before any comparison | Phase 8m B0r: max \|Δ\| 0.0; Phase 8n `fragility.py` P_ref (NF-CIC, seed 0): 0.0 on 6 days | high if it failed | P_ref is rerun for every target and seed inside Experiment A | included | closed for NF-CIC seed 0; full check in Experiment A |
-| G0.3 | **Ranking vs threshold** were never separated for the failures | first diagnostic (below) | high: a calibration effect could be read as a model effect | per-case AUC, ranking recall at the benign 99th percentile and T0, in `analyze_fragility.py` | none | investigating |
+| G0.1 | **The NF-CIC collapse is unexplained** (Phase 8m): every retrained variant reaches recall ≈ 0 on 02-14, 02-16 and 02-21, where B0 and Q1 reach 0.96–0.996 | `reports/phase8m/model_comparison.json`; Phase 8n diagnostic (below) | high: any feature or training change could be misjudged as good or bad | Experiment A (factorial perturbations, below) | ≈ 1 h CPU | **closed**: dependence on `new_dst_frac` information, plus whole-entity flips on single-attacker days (TRAINING_STABILITY.md) |
+| G0.2 | **The B0 reference must be reproducible** before any comparison | Phase 8m B0r: max \|Δ\| 0.0; Phase 8n `fragility.py` P_ref (NF-CIC, seed 0): 0.0 on 6 days | high if it failed | P_ref is rerun for every target and seed inside Experiment A | included | **closed**: 27/27 P_ref and 54/54 M0 fits reproduce exactly (same machine; LightGBM `deterministic` not set) |
+| G0.3 | **Ranking vs threshold** were never separated for the failures | first diagnostic (below) | high: a calibration effect could be read as a model effect | per-case AUC, ranking recall at the benign 99th percentile and T0, in `analyze_fragility.py` | none | **closed, with a limit**: on NF-CIC (FPR ≈ α) a recall failure is almost necessarily classed as ranking |
 | G0.4 | **Attacks on a day are few independent units**: 02-14 and 02-16 each have 1 attacker entity, 02-21 has 10 | Phase 8m bootstrap degenerate on 02-14/02-16 | high: correlated windows can look like strong evidence | results reported at entity level; intervals marked degenerate; NF-CIC days never counted as independent networks | none | documented limit |
 | G0.5 | **P1x assumes confirmed calibration-period attacker labels.** A deployed model does not have them | Phase 8j DATA_INTEGRITY_AUDIT; Phase 8m REVIEW (seen-host artefact) | medium: optimistic calibration | stated in every Phase 8n result; no change of protocol (Phase 8j frozen) | none | documented limit |
 
@@ -25,10 +25,10 @@ Written 2026-11-03 at the start of Phase 8n.
 
 | ID | gap | evidence | severity / risk | investigation and fix | cost | status |
 |---|---|---|---|---|---|---|
-| G1.1 | **B0 is seed-unstable on NF-CIC 2018-03-02** | the seeds score 0.855 / 0.057 / 0.161 recall, with attack median within 0.04 of T0 (diagnostic below) | high: the deployed model's recall depends on the seed | Experiment A (A5) quantifies it; Experiment B tests seed ensembling and regularisation | in A / B | investigating |
-| G1.2 | **The models learn `new_dst_frac` interactions** that other features cannot replace after a refit | the contributions (below): B0 attack windows on 02-14 get +3.0 from `new_dst_frac`; on 02-16 (non-novel attacks) +1.8 from `rst_frac`, which the 11-feature refit no longer gives | high | Experiment A: A4 drop of each feature, shuffle control, A2 no-op controls | in A | investigating |
-| G1.3 | **Retrained variants score NF-CIC benign traffic much higher:** benign 99th percentile 0.97–0.98 against B0's 0.82–0.88 | diagnostic below | high: the threshold rises and the attacks fall under it | Experiment A; Experiment B (domain reweighting, regularisation) | in A / B | investigating |
-| G1.4 | **No worst-case or entity-level selection criterion** for model choice. Mean recall hides total misses | Phase 8m used network means | medium | Experiment B/C selection rule with entity-level catastrophic-failure counts (to be registered after A) | none | open |
+| G1.1 | **B0 is seed-unstable on NF-CIC 2018-03-02** | the seeds score 0.855 / 0.057 / 0.161 recall, with attack median within 0.04 of T0 (diagnostic below) | high: the deployed model's recall depends on the seed | Experiment A (A5) quantifies it; Experiment B tests seed ensembling and regularisation | in A / B | **partly closed**: M2 keeps 03-02 at 0.86–1.00 over 6 fits (M0 0.06–1.00); replication pending |
+| G1.2 | **The models learn `new_dst_frac` interactions** that other features cannot replace after a refit | the contributions (below): B0 attack windows on 02-14 get +3.0 from `new_dst_frac`; on 02-16 (non-novel attacks) +1.8 from `rst_frac`, which the 11-feature refit no longer gives | high | Experiment A: A4 drop of each feature, shuffle control, A2 no-op controls | in A | **closed** (HA2 supported); the source-side reason is not established |
+| G1.3 | **Retrained variants score NF-CIC benign traffic much higher:** benign 99th percentile 0.97–0.98 against B0's 0.82–0.88 | diagnostic below | high: the threshold rises and the attacks fall under it | Experiment A; Experiment B (domain reweighting, regularisation) | in A / B | documented: the benign tail of refits without `new_dst_frac` |
+| G1.4 | **No worst-case or entity-level selection criterion** for model choice. Mean recall hides total misses | Phase 8m used network means | medium | Experiment B/C selection rule with entity-level catastrophic-failure counts (to be registered after A) | none | **partly closed**: G1–G3 registered; the review showed that a ≥ 1-window entity rule misses window collapses, so amendment 2 adds RP3 and RP4 |
 | G1.5 | **Candidate selection on consumed development networks.** No independent confirmation set exists (DEDALE consumed; AIT and UWF ineligible) | Phase 8l, 8k | high for claims | any Phase 8n candidate is development-only; a freeze package is prepared only if a candidate passes | none | documented limit |
 
 ## P2: supporting engineering and documentation
@@ -36,8 +36,8 @@ Written 2026-11-03 at the start of Phase 8n.
 | ID | gap | evidence | fix | status |
 |---|---|---|---|---|
 | G2.1 | The Phase 8m report says "local only, never pushed", but 80c0b5c is on `origin/main` | `git log origin/main` | editorial addendum, without changing results | closed (addendum in `docs/phase8m/FINAL_RESEARCH_REPORT.md`) |
-| G2.2 | `docs/HYPOTHESIS_LEDGER.md`, `docs/RESULTS.md` and the README have no Phase 8m entries | grep | added at Phase 8n closure | open |
-| G2.3 | The model artifacts carry no feature-schema identifier. Phase 8m boosters were trained on 11–16 columns, and nothing stops loading one with the wrong column list | `data/derived/phase8m/models/*.txt`; LightGBM stores only `Column_k` names | check the expected feature count at load; register a schema id per variant in the Phase 8n outputs | open |
+| G2.2 | `docs/HYPOTHESIS_LEDGER.md`, `docs/RESULTS.md` and the README have no Phase 8m entries | grep | added at Phase 8n closure | Phase 8j–8m added; 8n at closure |
+| G2.3 | The model artifacts carry no feature-schema identifier. Phase 8m boosters were trained on 11–16 columns, and nothing stops loading one with the wrong column list | `data/derived/phase8m/models/*.txt`; LightGBM stores only `Column_k` names | check the expected feature count at load; register a schema id per variant in the Phase 8n outputs | **closed for the deployed path**: `load_bundle` and `load_profile` refuse schema or hash mismatches; Phase 8n saves no models; Phase 8m research boosters remain unchecked (frozen, documented) |
 | G2.4 | The CI status cannot be checked from here (`gh` is not installed) | shell | reported as not verified | documented limit |
 
 ## First Phase 8n diagnostic (no training; saved Phase 8j and 8m scores)

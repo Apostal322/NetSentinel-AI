@@ -195,7 +195,9 @@ def main() -> None:
                     ref = np.load(B0_DIR / f"{name.replace('/', '__')}__seed{r}.npz")
                     row["b0_max_abs_diff"] = float(max(np.abs(ref["ev_s"] - s_ev).max(),
                                                        np.abs(ref["cal_s"][ref["cal_hold"]] - s_hold).max()))  # fmt: skip
-                np.savez_compressed(out, s_hold=s_hold, s_ev=s_ev)
+                tmp = out.with_name(out.stem + ".tmp.npz")  # atomic: never a truncated output
+                np.savez_compressed(tmp, s_hold=s_hold, s_ev=s_ev)
+                tmp.replace(out)
                 log["runs"].setdefault(pname, {})[f"{name} r{r}"] = row
                 print(pname, name, r, row, flush=True)
             log["peak_rss_mb"] = peak_rss_mb()

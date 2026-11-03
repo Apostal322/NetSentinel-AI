@@ -1,0 +1,277 @@
+{
+ "status": "EXPLORATORY (post-hoc, after the independent review); not a registered criterion",
+ "models": {
+  "M0": {
+   "any_window": {
+    "all_6_fits": {
+     "R": 46,
+     "U": 9,
+     "N": 20,
+     "unstable_misses_by_fit": {
+      "stress_r2": 9
+     }
+    },
+    "base_only": {
+     "R": 55,
+     "U": 0,
+     "N": 20,
+     "unstable_misses_by_fit": {}
+    }
+   },
+   "share_20pct": {
+    "all_6_fits": {
+     "R": 23,
+     "U": 22,
+     "N": 30,
+     "unstable_misses_by_fit": {
+      "base_r1": 10,
+      "stress_r1": 4,
+      "stress_r2": 10,
+      "stress_r0": 8,
+      "base_r2": 5,
+      "base_r0": 2
+     }
+    },
+    "base_only": {
+     "R": 35,
+     "U": 9,
+     "N": 31,
+     "unstable_misses_by_fit": {
+      "base_r1": 9,
+      "base_r2": 4,
+      "base_r0": 1
+     }
+    }
+   },
+   "share_50pct": {
+    "all_6_fits": {
+     "R": 21,
+     "U": 19,
+     "N": 35,
+     "unstable_misses_by_fit": {
+      "base_r0": 3,
+      "base_r1": 8,
+      "stress_r0": 7,
+      "stress_r1": 2,
+      "stress_r2": 8,
+      "base_r2": 7
+     }
+    },
+    "base_only": {
+     "R": 31,
+     "U": 8,
+     "N": 36,
+     "unstable_misses_by_fit": {
+      "base_r0": 2,
+      "base_r1": 7,
+      "base_r2": 6
+     }
+    }
+   }
+  },
+  "M1": {
+   "any_window": {
+    "all_6_fits": {
+     "R": 37,
+     "U": 18,
+     "N": 20,
+     "unstable_misses_by_fit": {
+      "stress_r1": 17,
+      "base_r1": 6,
+      "stress_r2": 1
+     }
+    },
+    "base_only": {
+     "R": 49,
+     "U": 6,
+     "N": 20,
+     "unstable_misses_by_fit": {
+      "base_r1": 6
+     }
+    }
+   },
+   "share_20pct": {
+    "all_6_fits": {
+     "R": 18,
+     "U": 27,
+     "N": 30,
+     "unstable_misses_by_fit": {
+      "base_r1": 2,
+      "stress_r1": 15,
+      "stress_r2": 10,
+      "base_r2": 1,
+      "stress_r0": 6,
+      "base_r0": 1
+     }
+    },
+    "base_only": {
+     "R": 42,
+     "U": 3,
+     "N": 30,
+     "unstable_misses_by_fit": {
+      "base_r1": 2,
+      "base_r2": 1,
+      "base_r0": 1
+     }
+    }
+   },
+   "share_50pct": {
+    "all_6_fits": {
+     "R": 15,
+     "U": 25,
+     "N": 35,
+     "unstable_misses_by_fit": {
+      "stress_r1": 14,
+      "base_r1": 1,
+      "base_r2": 1,
+      "stress_r2": 9,
+      "stress_r0": 5,
+      "base_r0": 1
+     }
+    },
+    "base_only": {
+     "R": 38,
+     "U": 2,
+     "N": 35,
+     "unstable_misses_by_fit": {
+      "base_r1": 1,
+      "base_r2": 1,
+      "base_r0": 1
+     }
+    }
+   }
+  },
+  "M2": {
+   "any_window": {
+    "all_6_fits": {
+     "R": 54,
+     "U": 1,
+     "N": 20,
+     "unstable_misses_by_fit": {
+      "stress_r2": 1
+     }
+    },
+    "base_only": {
+     "R": 55,
+     "U": 0,
+     "N": 20,
+     "unstable_misses_by_fit": {}
+    }
+   },
+   "share_20pct": {
+    "all_6_fits": {
+     "R": 40,
+     "U": 5,
+     "N": 30,
+     "unstable_misses_by_fit": {
+      "base_r2": 3,
+      "stress_r2": 3,
+      "base_r0": 1,
+      "base_r1": 1,
+      "stress_r0": 1
+     }
+    },
+    "base_only": {
+     "R": 42,
+     "U": 2,
+     "N": 31,
+     "unstable_misses_by_fit": {
+      "base_r2": 2
+     }
+    }
+   },
+   "share_50pct": {
+    "all_6_fits": {
+     "R": 36,
+     "U": 6,
+     "N": 33,
+     "unstable_misses_by_fit": {
+      "stress_r1": 1,
+      "base_r1": 3,
+      "base_r2": 2,
+      "stress_r2": 3,
+      "base_r0": 1,
+      "stress_r0": 2
+     }
+    },
+    "base_only": {
+     "R": 39,
+     "U": 2,
+     "N": 34,
+     "unstable_misses_by_fit": {
+      "base_r1": 2,
+      "base_r2": 1
+     }
+    }
+   }
+  },
+  "M3": {
+   "any_window": {
+    "all_6_fits": {
+     "R": 52,
+     "U": 3,
+     "N": 20,
+     "unstable_misses_by_fit": {
+      "stress_r2": 3
+     }
+    },
+    "base_only": {
+     "R": 55,
+     "U": 0,
+     "N": 20,
+     "unstable_misses_by_fit": {}
+    }
+   },
+   "share_20pct": {
+    "all_6_fits": {
+     "R": 32,
+     "U": 13,
+     "N": 30,
+     "unstable_misses_by_fit": {
+      "stress_r1": 4,
+      "base_r0": 2,
+      "stress_r2": 8,
+      "base_r1": 2,
+      "stress_r0": 2,
+      "base_r2": 3
+     }
+    },
+    "base_only": {
+     "R": 40,
+     "U": 4,
+     "N": 31,
+     "unstable_misses_by_fit": {
+      "base_r0": 1,
+      "base_r1": 1,
+      "base_r2": 2
+     }
+    }
+   },
+   "share_50pct": {
+    "all_6_fits": {
+     "R": 26,
+     "U": 15,
+     "N": 34,
+     "unstable_misses_by_fit": {
+      "stress_r0": 8,
+      "stress_r1": 3,
+      "stress_r2": 9,
+      "base_r0": 4,
+      "base_r1": 5,
+      "base_r2": 6
+     }
+    },
+    "base_only": {
+     "R": 33,
+     "U": 6,
+     "N": 36,
+     "unstable_misses_by_fit": {
+      "base_r0": 2,
+      "base_r1": 3,
+      "base_r2": 4
+     }
+    }
+   }
+  }
+ }
+}
