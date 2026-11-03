@@ -140,3 +140,9 @@ training support.
    development networks are exhausted for confirmation. Any candidate from experiments 1–2 needs a
    new, untouched network under the Phase 8l eligibility rules: a desk check first, and downloads
    only with authorization.
+
+## Editorial addendum (2026-11-03, Phase 8n)
+
+Section 1 says the commits are "local only, never pushed". That was true when the report was
+written. The user then authorized a push, and `0cb0ad7..80c0b5c` has been on `origin/main` since
+2026-11-03. No result, verdict or number in this report is changed by this note.
