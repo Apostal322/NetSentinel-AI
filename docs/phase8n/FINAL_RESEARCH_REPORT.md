@@ -170,3 +170,9 @@ while keeping its attack sensitivity and false-alert control across networks?
    fresh seeds, to find the smallest K that keeps RP2–RP4.
 3. **A desk search for an independent eligible network** (no download until approved), to test the
    frozen M2 and B0 side by side.
+
+## Editorial addendum (2026-11-03, Phase 8o)
+
+Section 1 says "Nothing pushed; no release". That was true when the report was written. The user
+then authorized a push, and `80c0b5c..1ea3243` has been on `origin/main` since 2026-11-03. No
+tag or release exists. No result, verdict or number in this report is changed by this note.

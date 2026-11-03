@@ -1,0 +1,26 @@
+{
+ "domains": {
+  "all": {
+   "mid_ms": 1527862993220,
+   "flows": 1743574,
+   "chunks": 4,
+   "checks": {
+    "c1_before_q_vs_cal_p1x": {
+     "windows": 178,
+     "missing": 0,
+     "max_abs_diff": 0.0
+    },
+    "c1_rows_cover_holdout": {
+     "windows": 781,
+     "missing": 0,
+     "max_abs_diff": 1.0
+    }
+   },
+   "q_tgt_ms": 1526791650000,
+   "c1_rows": 781,
+   "seconds": 3.6
+  }
+ },
+ "seconds": 3.6,
+ "peak_rss_mb": 1372.26953125
+}

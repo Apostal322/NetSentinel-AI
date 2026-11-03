@@ -1,0 +1,43 @@
+{
+ "domains": {
+  "all": {
+   "mid_ms": 1424221013826,
+   "flows": 914656,
+   "chunks": 2,
+   "checks": {
+    "f3_vs_cal_clean": {
+     "windows": 14057,
+     "missing": 0,
+     "max_abs_diff": 0.0
+    },
+    "f1_before_q_vs_cal_clean": {
+     "windows": 13614,
+     "missing": 0,
+     "max_abs_diff": 0.0
+    },
+    "f1_rows_cover_training_rows": {
+     "windows": 443,
+     "missing": 0,
+     "max_abs_diff": 1.0
+    },
+    "c1_before_q_vs_cal_p1x": {
+     "windows": 13614,
+     "missing": 0,
+     "max_abs_diff": 0.0
+    },
+    "c1_rows_cover_holdout": {
+     "windows": 443,
+     "missing": 0,
+     "max_abs_diff": 1.0
+    }
+   },
+   "q_src_ms": 1423532910000,
+   "f1_rows": 443,
+   "q_tgt_ms": 1423532910000,
+   "c1_rows": 443,
+   "seconds": 7.9
+  }
+ },
+ "seconds": 7.9,
+ "peak_rss_mb": 796.421875
+}
