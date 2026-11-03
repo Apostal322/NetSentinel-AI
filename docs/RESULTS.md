@@ -157,6 +157,16 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 | Does it resist contamination while adapting (H2)? | same, plus synthetic beacons | **not supported**: single-host beacons stay novel (by construction), but only 5.5% of benign new destinations are accepted, and destinations contacted by several attackers are accepted | registered development |
 | Why did the NF-CIC recall collapse? | same | every retrained variant loses single-attacker days that the unrefitted B0 model keeps (refit fragility; investigated in Phase 8n) | exploratory |
 
+## Phase 8n (training stability and robustness; development data)
+
+- Documents: [`docs/phase8n/`](phase8n/FINAL_RESEARCH_REPORT.md). Replicated development GO for a 5-member seed ensemble (M2); development only; deployed detector unchanged.
+
+| Question | Data | Result | Role |
+|---|---|---|---|
+| What makes the refitted detector collapse? | 4 development networks, 23 perturbation arms × 3 replicates | losing the information in `new_dst_frac` (drop or shuffle: 9/9 catastrophic focus cases; no-op arms 0/9); training-data changes flip single-attacker days as a whole (7 of 24 cases) | registered development diagnostic |
+| Do seed ensembling, bagging or regularisation make it robust? | same, base and host-bootstrap stress regimes | M2 (5-seed ensemble) passes the registered rule; M3 passes once but not on fresh fits; M1 fails | registered development |
+| Does M2's gain replicate with fresh randomness? | same, replicates never seen before | **yes**: unstable entities 11 → 1 (≥ 1 window) and 14 → 10 (≥ 20 % of windows), collapses 1 → 0; recall +0.09 NF-CIC, +0.05 NF-UNSW, −0.02 NF-ToN, −0.03 NF-BoT | registered development |
+
 ## Telemetry
 
 | Check | Result | Source |

@@ -157,3 +157,51 @@ of them biases its estimates upward. M2's numbers are optimistic estimates.
 
 **Compute.** M2 costs 5× B0 in training and in inference. Median measured fit time per source
 set: M2 37 s, M0 7.9 s, M3 6.8 s. Inference cost was not measured separately.
+
+## Replication with fresh randomness (amendment 2)
+
+**Sources:**
+- `reports/phase8n/replication.json`, from `scripts/phase8n/replication_check.py`;
+- the fits: `candidates.py --models M0,M2,M3 --reps 3,4,5`, 31 min, peak 1.81 GiB, authorized on
+  2026-11-03.
+- None of these fits had been seen when amendment 2 was written.
+
+| criterion (amendment 2) | M0 | M2 | result |
+|---|---|---|---|
+| RP1: G1 recall and entity, G2 workload | — | entity recall 0.736 vs 0.704; every network within −0.05; false alerts ≤ 1.25 × M0 | ✓ |
+| RP2: R / U, "≥ 1 window" | 44 / 11 | **55 / 1** | ✓ |
+| RP3: R / U, "≥ 20 % of windows" | 31 / 14 | 35 / 10 | ✓ (U −4, against −3 required) |
+| RP4: window collapses on strong domains | 1 | 0 | ✓ |
+| **verdict** | | | **replicated development GO** |
+
+**Network means over the 6 fresh fits.** Each cell: recall / false alerts / FPR.
+
+| network | M0 | M2 |
+|---|---|---|
+| NF-CIC | 0.567 / 1,359 / 1.30 % | **0.656** / 1,383 / 1.33 % |
+| NF-UNSW | 0.870 / 505 / 4.23 % | **0.919** / 529 / 4.43 % |
+| NF-ToN-IoT | **0.614** / 1,080 / 14.5 % | 0.593 / 1,120 / 15.0 % |
+| NF-BoT-IoT | **0.898** / 91 / 14.6 % | 0.869 / 61 / 9.9 % |
+
+**What replicated and what did not:**
+- **Replicated: the stability gain on the single-attacker days.**
+  - On 02-16, M2 detects the entity at 0.96 in all 6 fresh fits; M0 falls to 0.26 and 0.00 in two
+    of them.
+  - On 02-14, M2 stays at 1.00.
+- **Replicated, with a narrow margin: fewer unstable entities under the stricter definition**
+  (U 10 vs 14).
+- **Not replicated: "higher recall on 4 of 4 networks".**
+  - On the fresh fits, M2 is better on NF-CIC (+0.089) and NF-UNSW (+0.049).
+  - It is slightly worse on NF-ToN (−0.021) and NF-BoT (−0.029). Both are inside the registered
+    −0.05 margin.
+- **A new weakness:** M2's worst fit on NF-CIC 03-02 is 0.14 (M0's is 0.01). So 03-02 remains
+  seed-sensitive for both models.
+- **M3 did not hold up.** On the fresh fits it matches M0 (R 43, U 12), with 2 collapses (02-14 at
+  0.01, 02-16 at 0.11). Its amendment 1 pass was not robust.
+
+**Reading.**
+- Averaging five subsample-and-seed draws of the same model reliably removes the whole-entity
+  flips on NF-CIC's single-attacker days, at 5× the training and inference cost.
+- It does not raise detection across the board. On NF-ToN and NF-BoT it trades a little recall,
+  with fewer false alerts on NF-BoT and slightly more on NF-ToN.
+- The units are still 4 correlated development networks, and the selection was made on them.
