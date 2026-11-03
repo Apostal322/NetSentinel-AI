@@ -88,4 +88,76 @@ cases per arm.
 
 ## Amendments
 
-None yet.
+### Amendment 1: Experiments B and C
+
+**Written:** 2026-11-03.
+- **Seen beforehand:** Experiment A's results (TRAINING_STABILITY.md) and B0's entity stability
+  across its 6 Experiment A fits, which was computed only to check that the rule below is
+  attainable.
+- **Not yet trained:** no candidate.
+
+**What Experiment A established:**
+- B0's NF-CIC detections depend on information in `new_dst_frac` (HA2).
+- Single-attacker days flip as a whole under small changes of the training *data* (HA1, through
+  the host bootstrap; 7 of 24 single-attacker-day cases flip under the data-perturbation arms),
+  while optimizer randomness alone does not.
+
+The candidates target that data sensitivity. They keep every feature, because removing features
+was shown to destroy detection.
+
+| model | definition | justification |
+|---|---|---|
+| **M0** | B0: the Phase 8i LightGBM, 12 features | reference |
+| **M2** | mean probability of 5 B0-configured models, each with its own training-subsample seed and LightGBM seed | averaging over the subsample draws that flipped 02-14 and 02-16 |
+| **M1** | mean probability of 5 models, each trained on its own host bootstrap of the training data | bagging over the source *population*: the perturbation that flipped 02-16 in 3 of 3 |
+| **M3** | one model with `min_child_samples` 200 and `reg_lambda` 5 (nothing else changed) | a smoother decision boundary, so dense attack clusters are less likely to cross the benign tail |
+
+**Seeds.** Member m of replicate r uses LightGBM seed 1000 + 10r + m. M2's members also use
+subsample seed 1000 + 10r + m; M1's inner host bootstrap is drawn with seed (18, r, m, source
+domain).
+
+**Feature bagging is not run.** Experiment A showed that removing `new_dst_frac` or `log_flows` is
+catastrophic, so random-subspace members would carry that failure into the average.
+
+**Two training regimes,** each with replicates r ∈ {0, 1, 2}, so each model has 6 fits:
+- **base:** the Phase 8j training data with subsample seed r (for M0 exactly P_ref);
+- **stress:** the source hosts first resampled with replacement, with seed (8, r, source domain),
+  exactly as `A5_host_bootstrap`, and then the model is built on that data. For M0, stress =
+  `A5_host_bootstrap`.
+
+**Calibration and evaluation are unchanged:** P1x hold-out, T0 at α = 1 %, the evaluation windows
+of Phase 8j. No threshold uses evaluation labels, and nothing is tuned on the evaluation.
+
+**Measures.** All of Experiment A's measures, plus false alerts per hour.
+
+The entity measures cover the 75 entities (sources with ≥ 5 attack windows):
+- **R:** the number of entities detected in all 6 fits;
+- **U:** the number detected in some but not all;
+- **N:** never detected.
+
+**Development GO rule for a candidate. All must hold:**
+- **G1, detection (non-inferiority).**
+  - On every network, its mean window recall over the 6 fits is ≥ M0's − 0.05.
+  - Its pooled entity recall (mean over fits) is ≥ M0's − 0.02.
+- **G2, workload.** Mean false alerts ≤ 1.25 × M0's on every network.
+- **G3, robustness (primary).** U ≤ U(M0) − 3, and R ≥ R(M0).
+  - Attainability: on Experiment A's fits, M0 has R = 46, U = 9, N = 20.
+
+**Selection:**
+- If several candidates pass, choose the one with the largest R; ties go to the simpler model
+  (M3, then M2, then M1).
+- If none passes: development NO-GO, and B0 stays.
+- A development GO is a candidate for an independent test. It is not deployment.
+
+**Units and limits:**
+- The 75 entities are not independent: NF-CIC contributes 52, from 6 days of one network, and
+  entities on one day share an attack campaign.
+- G3 is a count over correlated units with no interval. It is a development screen, not a test.
+- The 4 networks enter G1 and G2 one by one. With 4 units, no cross-network p-value is
+  claimed.
+- Q1 (Phase 8m) and Experiment A are not reused for selection.
+
+**Resources:**
+- 288 LightGBM fits (M0 24, M1 120, M2 120, M3 24) and member scoring;
+- estimate 75–110 min, peak ≈ 2 GiB under `run_capped`, sequential;
+- run only after the user authorizes it.

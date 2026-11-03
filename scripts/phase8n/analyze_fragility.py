@@ -111,8 +111,8 @@ def main() -> None:
                         "domain": name, "rep": int(r), "recall_drop": drop, "entities_lost": len(lost),
                         "mechanism": ("ranking" if rank_drop >= CAT_DROP else "threshold") if drop >= CAT_DROP
                         else "entity only"})  # fmt: skip
-            m.pop("detected")
-            res["per"].setdefault(pname, {}).setdefault(name, {})[f"r{r}"] = m
+            kept = {k: v for k, v in m.items() if k != "detected"}  # P_ref keeps its map in `ref`
+            res["per"].setdefault(pname, {}).setdefault(name, {})[f"r{r}"] = kept
     summary = {}
     for pname, doms in res["per"].items():
         row = {}
