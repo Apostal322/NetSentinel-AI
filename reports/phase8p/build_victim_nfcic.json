@@ -1,0 +1,105 @@
+{
+ "domains": {
+  "2018-02-14": {
+   "schema_version": "victim-1.0.0",
+   "mid_ms": 1518628186474,
+   "flows": 2137465,
+   "vw_rows": 295307,
+   "sx_rows": 234410,
+   "hosts_in_history": 7685,
+   "seconds": 4.1
+  },
+  "2018-02-15": {
+   "schema_version": "victim-1.0.0",
+   "mid_ms": 1518713681531,
+   "flows": 1653077,
+   "vw_rows": 293558,
+   "sx_rows": 213034,
+   "hosts_in_history": 7200,
+   "seconds": 3.2
+  },
+  "2018-02-16": {
+   "schema_version": "victim-1.0.0",
+   "mid_ms": 1518797904454,
+   "flows": 1551863,
+   "vw_rows": 246861,
+   "sx_rows": 170949,
+   "hosts_in_history": 6489,
+   "seconds": 2.9
+  },
+  "2018-02-20": {
+   "schema_version": "victim-1.0.0",
+   "mid_ms": 1519146045844,
+   "flows": 1827843,
+   "vw_rows": 299136,
+   "sx_rows": 234504,
+   "hosts_in_history": 8131,
+   "seconds": 3.8
+  },
+  "2018-02-21": {
+   "schema_version": "victim-1.0.0",
+   "mid_ms": 1519233147784,
+   "flows": 2711059,
+   "vw_rows": 324239,
+   "sx_rows": 244447,
+   "hosts_in_history": 9098,
+   "seconds": 4.9
+  },
+  "2018-02-22": {
+   "schema_version": "victim-1.0.0",
+   "mid_ms": 1519318027117,
+   "flows": 1989174,
+   "vw_rows": 345887,
+   "sx_rows": 266246,
+   "hosts_in_history": 10027,
+   "seconds": 4.4
+  },
+  "2018-02-23": {
+   "schema_version": "victim-1.0.0",
+   "mid_ms": 1519403066647,
+   "flows": 1751857,
+   "vw_rows": 309222,
+   "sx_rows": 230730,
+   "hosts_in_history": 9670,
+   "seconds": 3.3
+  },
+  "2018-02-27": {
+   "schema_version": "victim-1.0.0",
+   "mid_ms": 1519755990649,
+   "flows": 922,
+   "vw_rows": 368,
+   "sx_rows": 533,
+   "hosts_in_history": 56,
+   "seconds": 0.0
+  },
+  "2018-02-28": {
+   "schema_version": "victim-1.0.0",
+   "mid_ms": 1519819183974,
+   "flows": 1739309,
+   "vw_rows": 291640,
+   "sx_rows": 229263,
+   "hosts_in_history": 11612,
+   "seconds": 3.4
+  },
+  "2018-03-01": {
+   "schema_version": "victim-1.0.0",
+   "mid_ms": 1519922365110,
+   "flows": 2076801,
+   "vw_rows": 325266,
+   "sx_rows": 270536,
+   "hosts_in_history": 9025,
+   "seconds": 5.0
+  },
+  "2018-03-02": {
+   "schema_version": "victim-1.0.0",
+   "mid_ms": 1520005082631,
+   "flows": 1406244,
+   "vw_rows": 211084,
+   "sx_rows": 193553,
+   "hosts_in_history": 7175,
+   "seconds": 3.0
+  }
+ },
+ "seconds": 38.1,
+ "peak_rss_mb": 985.890625
+}

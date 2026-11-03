@@ -1,0 +1,15 @@
+{
+ "domains": {
+  "all": {
+   "schema_version": "victim-1.0.0",
+   "mid_ms": 1424221013826,
+   "flows": 1829313,
+   "vw_rows": 37302,
+   "sx_rows": 31008,
+   "hosts_in_history": 40,
+   "seconds": 3.4
+  }
+ },
+ "seconds": 3.4,
+ "peak_rss_mb": 894.26171875
+}

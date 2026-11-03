@@ -1,0 +1,1300 @@
+{
+ "status": "EXPLORATORY (label audit and in-domain, label-using observability diagnostics)",
+ "roles": {
+  "nfbot/all|192.168.100.147": "documented_attacker",
+  "nfbot/all|192.168.100.148": "documented_attacker",
+  "nfbot/all|192.168.100.149": "documented_attacker",
+  "nfbot/all|192.168.100.150": "documented_attacker",
+  "nfbot/all|192.168.100.3": "attacked_host_traffic",
+  "nfbot/all|192.168.100.5": "attacked_host_traffic",
+  "nfbot/all|192.168.100.6": "attacked_host_traffic",
+  "nfbot/all|192.168.100.7": "attacked_host_traffic",
+  "nfcic/2018-02-14|13.58.98.64": "documented_attacker",
+  "nfcic/2018-02-16|18.219.193.20": "documented_attacker",
+  "nfcic/2018-02-20|18.216.200.189": "documented_attacker",
+  "nfcic/2018-02-20|18.216.24.42": "documented_attacker",
+  "nfcic/2018-02-20|18.218.11.51": "documented_attacker",
+  "nfcic/2018-02-20|18.218.115.60": "documented_attacker",
+  "nfcic/2018-02-20|18.218.229.235": "documented_attacker",
+  "nfcic/2018-02-20|18.218.55.126": "documented_attacker",
+  "nfcic/2018-02-20|18.219.32.43": "documented_attacker",
+  "nfcic/2018-02-20|18.219.5.43": "documented_attacker",
+  "nfcic/2018-02-20|18.219.9.1": "documented_attacker",
+  "nfcic/2018-02-20|52.14.136.135": "documented_attacker",
+  "nfcic/2018-02-21|18.216.200.189": "documented_attacker",
+  "nfcic/2018-02-21|18.216.24.42": "documented_attacker",
+  "nfcic/2018-02-21|18.218.11.51": "documented_attacker",
+  "nfcic/2018-02-21|18.218.115.60": "documented_attacker",
+  "nfcic/2018-02-21|18.218.229.235": "documented_attacker",
+  "nfcic/2018-02-21|18.218.55.126": "documented_attacker",
+  "nfcic/2018-02-21|18.219.32.43": "documented_attacker",
+  "nfcic/2018-02-21|18.219.5.43": "documented_attacker",
+  "nfcic/2018-02-21|18.219.9.1": "documented_attacker",
+  "nfcic/2018-02-21|52.14.136.135": "documented_attacker",
+  "nfcic/2018-02-22|13.58.42.57": "undocumented_source",
+  "nfcic/2018-02-22|13.58.82.37": "undocumented_source",
+  "nfcic/2018-02-22|131.202.242.193": "undocumented_source",
+  "nfcic/2018-02-22|172.31.69.28": "undocumented_source",
+  "nfcic/2018-02-22|18.218.115.60": "documented_attacker",
+  "nfcic/2018-02-22|18.219.139.116": "undocumented_source",
+  "nfcic/2018-02-22|181.214.87.12": "undocumented_source",
+  "nfcic/2018-02-22|191.101.167.167": "undocumented_source",
+  "nfcic/2018-02-22|191.101.167.235": "undocumented_source",
+  "nfcic/2018-02-22|199.195.249.132": "undocumented_source",
+  "nfcic/2018-02-22|20.190.41.227": "undocumented_source",
+  "nfcic/2018-02-22|203.24.188.224": "undocumented_source",
+  "nfcic/2018-02-22|5.188.11.188": "undocumented_source",
+  "nfcic/2018-02-22|5.188.11.25": "undocumented_source",
+  "nfcic/2018-02-22|5.188.9.25": "undocumented_source",
+  "nfcic/2018-02-22|52.14.77.172": "undocumented_source",
+  "nfcic/2018-02-22|54.37.201.53": "undocumented_source",
+  "nfcic/2018-02-22|77.72.82.135": "undocumented_source",
+  "nfcic/2018-02-22|77.72.82.145": "undocumented_source",
+  "nfcic/2018-02-22|77.72.82.57": "undocumented_source",
+  "nfcic/2018-02-22|77.72.82.80": "undocumented_source",
+  "nfcic/2018-02-22|77.72.82.96": "undocumented_source",
+  "nfcic/2018-02-22|88.247.117.206": "undocumented_source",
+  "nfcic/2018-03-02|172.31.69.10": "documented_attacker",
+  "nfcic/2018-03-02|172.31.69.14": "documented_attacker",
+  "nfcic/2018-03-02|172.31.69.17": "documented_attacker",
+  "nfcic/2018-03-02|172.31.69.23": "documented_attacker",
+  "nfcic/2018-03-02|172.31.69.26": "documented_attacker",
+  "nfcic/2018-03-02|172.31.69.29": "documented_attacker",
+  "nfcic/2018-03-02|172.31.69.8": "documented_attacker",
+  "nfton/all|192.168.1.193": "attacked_host_traffic",
+  "nfton/all|192.168.1.30": "documented_attacker",
+  "nfton/all|192.168.1.31": "documented_attacker",
+  "nfton/all|192.168.1.32": "documented_attacker",
+  "nfton/all|192.168.1.33": "documented_attacker",
+  "nfton/all|192.168.1.34": "documented_attacker",
+  "nfton/all|192.168.1.35": "documented_attacker",
+  "nfton/all|192.168.1.36": "documented_attacker",
+  "nfton/all|192.168.1.37": "documented_attacker",
+  "nfton/all|192.168.1.38": "documented_attacker",
+  "nfton/all|192.168.1.39": "documented_attacker",
+  "nfunsw/all|175.45.176.0": "documented_attacker",
+  "nfunsw/all|175.45.176.1": "documented_attacker",
+  "nfunsw/all|175.45.176.2": "documented_attacker",
+  "nfunsw/all|175.45.176.3": "documented_attacker"
+ },
+ "role_outcomes": {
+  "documented_attacker": {
+   "entities": 48,
+   "detected_ge20_in_all_fits": 37,
+   "never_ge20": 11,
+   "never_alerted": 1
+  },
+  "attacked_host_traffic": {
+   "entities": 5,
+   "detected_ge20_in_all_fits": 2,
+   "never_ge20": 0,
+   "never_alerted": 0
+  },
+  "undocumented_source": {
+   "entities": 22,
+   "detected_ge20_in_all_fits": 1,
+   "never_ge20": 19,
+   "never_alerted": 19
+  }
+ },
+ "groups": {
+  "nfcic/2018-02-20|loic_http_documented": {
+   "entities": [
+    "18.216.200.189",
+    "18.216.24.42",
+    "18.218.11.51",
+    "18.218.115.60",
+    "18.218.229.235",
+    "18.218.55.126",
+    "18.219.32.43",
+    "18.219.5.43",
+    "18.219.9.1",
+    "52.14.136.135"
+   ],
+   "source_attack_windows_in_documented_interval": 0.0,
+   "source": {
+    "attack_windows": 106,
+    "benign_windows": 113849,
+    "univariate": {
+     "log_flows": {
+      "auc": 0.8141,
+      "benign_share_beyond_attack_median": 0.1343
+     },
+     "log_up_bytes": {
+      "auc": 0.9795,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "log_down_bytes": {
+      "auc": 0.1225,
+      "benign_share_beyond_attack_median": 0.24508
+     },
+     "log_pkts": {
+      "auc": 0.9832,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "log_dst_hosts": {
+      "auc": 0.3181,
+      "benign_share_beyond_attack_median": 0.63626
+     },
+     "log_dst_ports": {
+      "auc": 0.3883,
+      "benign_share_beyond_attack_median": 0.77662
+     },
+     "no_reply_frac": {
+      "auc": 0.8775,
+      "benign_share_beyond_attack_median": 0.24508
+     },
+     "rst_frac": {
+      "auc": 0.3075,
+      "benign_share_beyond_attack_median": 0.51046
+     },
+     "udp_share": {
+      "auc": 0.9111,
+      "benign_share_beyond_attack_median": 0.07033
+     },
+     "med_log_dur": {
+      "auc": 0.9106,
+      "benign_share_beyond_attack_median": 0.00041
+     },
+     "upload_share": {
+      "auc": 0.9995,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "new_dst_frac": {
+      "auc": 0.4785,
+      "benign_share_beyond_attack_median": 0.95698
+     }
+    },
+    "ceiling": {
+     "auc": 0.9476,
+     "recall_at_1pct_benign_fpr": 0.9057,
+     "positives_scored": 106,
+     "positive_blocks": 2
+    },
+    "verdict": "observable"
+   },
+   "victim": {
+    "attack_windows": 24,
+    "benign_windows": 150992,
+    "victims": 1,
+    "positive_mixed_share": 0.5,
+    "univariate": {
+     "v_log_flows": {
+      "auc": 0.9927,
+      "benign_share_beyond_attack_median": 0.00573
+     },
+     "v_log_srcs": {
+      "auc": 0.8894,
+      "benign_share_beyond_attack_median": 0.16468
+     },
+     "v_log_ports": {
+      "auc": 0.6108,
+      "benign_share_beyond_attack_median": 0.25823
+     },
+     "v_log_up": {
+      "auc": 0.9966,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "v_log_down": {
+      "auc": 0.115,
+      "benign_share_beyond_attack_median": 0.04807
+     },
+     "v_log_pkts": {
+      "auc": 0.9982,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "v_no_reply_frac": {
+      "auc": 0.9639,
+      "benign_share_beyond_attack_median": 0.04807
+     },
+     "v_rst_frac": {
+      "auc": 0.3571,
+      "benign_share_beyond_attack_median": 0.44503
+     },
+     "v_udp_share": {
+      "auc": 0.92,
+      "benign_share_beyond_attack_median": 0.02201
+     },
+     "v_short_frac": {
+      "auc": 0.4272,
+      "benign_share_beyond_attack_median": 0.51999
+     },
+     "v_med_log_dur": {
+      "auc": 0.8651,
+      "benign_share_beyond_attack_median": 0.00103
+     },
+     "v_resp_share": {
+      "auc": 0.0361,
+      "benign_share_beyond_attack_median": 0.04807
+     },
+     "v_top_src_share": {
+      "auc": 0.1687,
+      "benign_share_beyond_attack_median": 0.09285
+     },
+     "v_web_share": {
+      "auc": 0.5674,
+      "benign_share_beyond_attack_median": 0.57682
+     },
+     "v_hist_dev": {
+      "auc": 0.7442,
+      "benign_share_beyond_attack_median": 0.09015
+     },
+     "v_hist_n": {
+      "auc": 0.5359,
+      "benign_share_beyond_attack_median": 0.46411
+     }
+    },
+    "ceiling": {
+     "auc": 0.8694,
+     "recall_at_1pct_benign_fpr": 0.7917,
+     "positives_scored": 24,
+     "positive_blocks": 2
+    },
+    "verdict": "observable"
+   }
+  },
+  "nfcic/2018-02-22|documented_attacker": {
+   "entities": [
+    "18.218.115.60"
+   ],
+   "source_attack_windows_in_documented_interval": 0.9811,
+   "source": {
+    "attack_windows": 53,
+    "benign_windows": 114337,
+    "univariate": {
+     "log_flows": {
+      "auc": 0.411,
+      "benign_share_beyond_attack_median": 0.49001
+     },
+     "log_up_bytes": {
+      "auc": 0.8792,
+      "benign_share_beyond_attack_median": 0.0017
+     },
+     "log_down_bytes": {
+      "auc": 0.8999,
+      "benign_share_beyond_attack_median": 0.00953
+     },
+     "log_pkts": {
+      "auc": 0.8293,
+      "benign_share_beyond_attack_median": 0.02689
+     },
+     "log_dst_hosts": {
+      "auc": 0.3118,
+      "benign_share_beyond_attack_median": 0.62364
+     },
+     "log_dst_ports": {
+      "auc": 0.3648,
+      "benign_share_beyond_attack_median": 0.72955
+     },
+     "no_reply_frac": {
+      "auc": 0.3619,
+      "benign_share_beyond_attack_median": 0.72376
+     },
+     "rst_frac": {
+      "auc": 0.2467,
+      "benign_share_beyond_attack_median": 0.46941
+     },
+     "udp_share": {
+      "auc": 0.3858,
+      "benign_share_beyond_attack_median": 0.77153
+     },
+     "med_log_dur": {
+      "auc": 0.8575,
+      "benign_share_beyond_attack_median": 0.13294
+     },
+     "upload_share": {
+      "auc": 0.1145,
+      "benign_share_beyond_attack_median": 0.08255
+     },
+     "new_dst_frac": {
+      "auc": 0.9991,
+      "benign_share_beyond_attack_median": 0.00177
+     }
+    },
+    "ceiling": {
+     "auc": 1.0,
+     "recall_at_1pct_benign_fpr": 1.0,
+     "positives_scored": 53,
+     "positive_blocks": 7
+    },
+    "verdict": "observable"
+   },
+   "victim": {
+    "attack_windows": 53,
+    "benign_windows": 163221,
+    "victims": 1,
+    "positive_mixed_share": 0.0,
+    "univariate": {
+     "v_log_flows": {
+      "auc": 0.7243,
+      "benign_share_beyond_attack_median": 0.26948
+     },
+     "v_log_srcs": {
+      "auc": 0.691,
+      "benign_share_beyond_attack_median": 0.41003
+     },
+     "v_log_ports": {
+      "auc": 0.7782,
+      "benign_share_beyond_attack_median": 0.27027
+     },
+     "v_log_up": {
+      "auc": 0.933,
+      "benign_share_beyond_attack_median": 0.00052
+     },
+     "v_log_down": {
+      "auc": 0.8573,
+      "benign_share_beyond_attack_median": 0.0044
+     },
+     "v_log_pkts": {
+      "auc": 0.8565,
+      "benign_share_beyond_attack_median": 0.00736
+     },
+     "v_no_reply_frac": {
+      "auc": 0.6715,
+      "benign_share_beyond_attack_median": 0.18446
+     },
+     "v_rst_frac": {
+      "auc": 0.4024,
+      "benign_share_beyond_attack_median": 0.51639
+     },
+     "v_udp_share": {
+      "auc": 0.7973,
+      "benign_share_beyond_attack_median": 0.02782
+     },
+     "v_short_frac": {
+      "auc": 0.4389,
+      "benign_share_beyond_attack_median": 0.5377
+     },
+     "v_med_log_dur": {
+      "auc": 0.6504,
+      "benign_share_beyond_attack_median": 0.30073
+     },
+     "v_resp_share": {
+      "auc": 0.618,
+      "benign_share_beyond_attack_median": 0.28594
+     },
+     "v_top_src_share": {
+      "auc": 0.3079,
+      "benign_share_beyond_attack_median": 0.31161
+     },
+     "v_web_share": {
+      "auc": 0.4492,
+      "benign_share_beyond_attack_median": 0.39874
+     },
+     "v_hist_dev": {
+      "auc": 0.7451,
+      "benign_share_beyond_attack_median": 0.15645
+     },
+     "v_hist_n": {
+      "auc": 0.7269,
+      "benign_share_beyond_attack_median": 0.30453
+     }
+    },
+    "ceiling": {
+     "auc": 0.9248,
+     "recall_at_1pct_benign_fpr": 0.8868,
+     "positives_scored": 53,
+     "positive_blocks": 7
+    },
+    "verdict": "observable"
+   }
+  },
+  "nfcic/2018-02-22|undocumented_sources": {
+   "entities": [
+    "13.58.42.57",
+    "13.58.82.37",
+    "131.202.242.193",
+    "172.31.69.28",
+    "18.219.139.116",
+    "181.214.87.12",
+    "191.101.167.167",
+    "191.101.167.235",
+    "199.195.249.132",
+    "20.190.41.227",
+    "203.24.188.224",
+    "5.188.11.188",
+    "5.188.11.25",
+    "5.188.9.25",
+    "52.14.77.172",
+    "54.37.201.53",
+    "77.72.82.135",
+    "77.72.82.145",
+    "77.72.82.57",
+    "77.72.82.80",
+    "77.72.82.96",
+    "88.247.117.206"
+   ],
+   "source_attack_windows_in_documented_interval": 0.2106,
+   "source": {
+    "attack_windows": 470,
+    "benign_windows": 114337,
+    "univariate": {
+     "log_flows": {
+      "auc": 0.392,
+      "benign_share_beyond_attack_median": 0.49001
+     },
+     "log_up_bytes": {
+      "auc": 0.5901,
+      "benign_share_beyond_attack_median": 0.26506
+     },
+     "log_down_bytes": {
+      "auc": 0.1611,
+      "benign_share_beyond_attack_median": 0.18143
+     },
+     "log_pkts": {
+      "auc": 0.2909,
+      "benign_share_beyond_attack_median": 0.29739
+     },
+     "log_dst_hosts": {
+      "auc": 0.4229,
+      "benign_share_beyond_attack_median": 0.62364
+     },
+     "log_dst_ports": {
+      "auc": 0.4709,
+      "benign_share_beyond_attack_median": 0.72955
+     },
+     "no_reply_frac": {
+      "auc": 0.795,
+      "benign_share_beyond_attack_median": 0.18143
+     },
+     "rst_frac": {
+      "auc": 0.3674,
+      "benign_share_beyond_attack_median": 0.46941
+     },
+     "udp_share": {
+      "auc": 0.7564,
+      "benign_share_beyond_attack_median": 0.06444
+     },
+     "med_log_dur": {
+      "auc": 0.6865,
+      "benign_share_beyond_attack_median": 0.0629
+     },
+     "upload_share": {
+      "auc": 0.8763,
+      "benign_share_beyond_attack_median": 0.00177
+     },
+     "new_dst_frac": {
+      "auc": 0.9894,
+      "benign_share_beyond_attack_median": 0.00177
+     }
+    },
+    "ceiling": {
+     "auc": 0.9983,
+     "recall_at_1pct_benign_fpr": 0.9936,
+     "positives_scored": 470,
+     "positive_blocks": 28
+    },
+    "verdict": "observable"
+   },
+   "victim": {
+    "attack_windows": 365,
+    "benign_windows": 163221,
+    "victims": 2,
+    "positive_mixed_share": 0.0027,
+    "univariate": {
+     "v_log_flows": {
+      "auc": 0.6014,
+      "benign_share_beyond_attack_median": 0.36333
+     },
+     "v_log_srcs": {
+      "auc": 0.5758,
+      "benign_share_beyond_attack_median": 0.41003
+     },
+     "v_log_ports": {
+      "auc": 0.6685,
+      "benign_share_beyond_attack_median": 0.27027
+     },
+     "v_log_up": {
+      "auc": 0.7221,
+      "benign_share_beyond_attack_median": 0.11736
+     },
+     "v_log_down": {
+      "auc": 0.2086,
+      "benign_share_beyond_attack_median": 0.11124
+     },
+     "v_log_pkts": {
+      "auc": 0.2831,
+      "benign_share_beyond_attack_median": 0.20803
+     },
+     "v_no_reply_frac": {
+      "auc": 0.8131,
+      "benign_share_beyond_attack_median": 0.15105
+     },
+     "v_rst_frac": {
+      "auc": 0.4725,
+      "benign_share_beyond_attack_median": 0.5521
+     },
+     "v_udp_share": {
+      "auc": 0.898,
+      "benign_share_beyond_attack_median": 0.02432
+     },
+     "v_short_frac": {
+      "auc": 0.5391,
+      "benign_share_beyond_attack_median": 0.43835
+     },
+     "v_med_log_dur": {
+      "auc": 0.5303,
+      "benign_share_beyond_attack_median": 0.30503
+     },
+     "v_resp_share": {
+      "auc": 0.175,
+      "benign_share_beyond_attack_median": 0.0952
+     },
+     "v_top_src_share": {
+      "auc": 0.421,
+      "benign_share_beyond_attack_median": 0.3622
+     },
+     "v_web_share": {
+      "auc": 0.2195,
+      "benign_share_beyond_attack_median": 0.39138
+     },
+     "v_hist_dev": {
+      "auc": 0.5407,
+      "benign_share_beyond_attack_median": 0.2784
+     },
+     "v_hist_n": {
+      "auc": 0.7395,
+      "benign_share_beyond_attack_median": 0.24646
+     }
+    },
+    "ceiling": {
+     "auc": 0.9988,
+     "recall_at_1pct_benign_fpr": 0.989,
+     "positives_scored": 365,
+     "positive_blocks": 28
+    },
+    "verdict": "observable"
+   }
+  },
+  "nfton/all|192.168.1.37": {
+   "entities": [
+    "192.168.1.37"
+   ],
+   "source": {
+    "attack_windows": 168,
+    "benign_windows": 7447,
+    "univariate": {
+     "log_flows": {
+      "auc": 0.5488,
+      "benign_share_beyond_attack_median": 0.4344
+     },
+     "log_up_bytes": {
+      "auc": 0.7131,
+      "benign_share_beyond_attack_median": 0.26467
+     },
+     "log_down_bytes": {
+      "auc": 0.6606,
+      "benign_share_beyond_attack_median": 0.25191
+     },
+     "log_pkts": {
+      "auc": 0.6795,
+      "benign_share_beyond_attack_median": 0.32228
+     },
+     "log_dst_hosts": {
+      "auc": 0.4803,
+      "benign_share_beyond_attack_median": 0.67732
+     },
+     "log_dst_ports": {
+      "auc": 0.4913,
+      "benign_share_beyond_attack_median": 0.63019
+     },
+     "no_reply_frac": {
+      "auc": 0.4418,
+      "benign_share_beyond_attack_median": 0.67074
+     },
+     "rst_frac": {
+      "auc": 0.6621,
+      "benign_share_beyond_attack_median": 1.0
+     },
+     "udp_share": {
+      "auc": 0.3617,
+      "benign_share_beyond_attack_median": 0.49282
+     },
+     "med_log_dur": {
+      "auc": 0.6668,
+      "benign_share_beyond_attack_median": 0.22895
+     },
+     "upload_share": {
+      "auc": 0.6797,
+      "benign_share_beyond_attack_median": 0.27756
+     },
+     "new_dst_frac": {
+      "auc": 0.3728,
+      "benign_share_beyond_attack_median": 0.72083
+     }
+    },
+    "ceiling": {
+     "auc": 0.9929,
+     "recall_at_1pct_benign_fpr": 0.875,
+     "positives_scored": 168,
+     "positive_blocks": 62
+    },
+    "verdict": "observable"
+   },
+   "victim": {
+    "attack_windows": 179,
+    "benign_windows": 62095,
+    "victims": 7,
+    "positive_mixed_share": 0.4637,
+    "univariate": {
+     "v_log_flows": {
+      "auc": 0.6512,
+      "benign_share_beyond_attack_median": 0.21172
+     },
+     "v_log_srcs": {
+      "auc": 0.6816,
+      "benign_share_beyond_attack_median": 0.23338
+     },
+     "v_log_ports": {
+      "auc": 0.6499,
+      "benign_share_beyond_attack_median": 0.31204
+     },
+     "v_log_up": {
+      "auc": 0.6473,
+      "benign_share_beyond_attack_median": 0.12858
+     },
+     "v_log_down": {
+      "auc": 0.6744,
+      "benign_share_beyond_attack_median": 0.25083
+     },
+     "v_log_pkts": {
+      "auc": 0.6559,
+      "benign_share_beyond_attack_median": 0.20135
+     },
+     "v_no_reply_frac": {
+      "auc": 0.3907,
+      "benign_share_beyond_attack_median": 0.57504
+     },
+     "v_rst_frac": {
+      "auc": 0.7131,
+      "benign_share_beyond_attack_median": 1.0
+     },
+     "v_udp_share": {
+      "auc": 0.405,
+      "benign_share_beyond_attack_median": 0.39644
+     },
+     "v_short_frac": {
+      "auc": 0.4237,
+      "benign_share_beyond_attack_median": 1.0
+     },
+     "v_med_log_dur": {
+      "auc": 0.5214,
+      "benign_share_beyond_attack_median": 0.46936
+     },
+     "v_resp_share": {
+      "auc": 0.4918,
+      "benign_share_beyond_attack_median": 0.4741
+     },
+     "v_top_src_share": {
+      "auc": 0.3388,
+      "benign_share_beyond_attack_median": 0.22575
+     },
+     "v_web_share": {
+      "auc": 0.4711,
+      "benign_share_beyond_attack_median": 0.89727
+     },
+     "v_hist_dev": {
+      "auc": 0.7137,
+      "benign_share_beyond_attack_median": 0.19715
+     },
+     "v_hist_n": {
+      "auc": 0.5173,
+      "benign_share_beyond_attack_median": 0.27318
+     }
+    },
+    "ceiling": {
+     "auc": 0.9862,
+     "recall_at_1pct_benign_fpr": 0.9609,
+     "positives_scored": 179,
+     "positive_blocks": 62
+    },
+    "verdict": "observable"
+   }
+  },
+  "nfton/all|192.168.1.193": {
+   "entities": [
+    "192.168.1.193"
+   ],
+   "source": {
+    "attack_windows": 3185,
+    "benign_windows": 7447,
+    "univariate": {
+     "log_flows": {
+      "auc": 0.959,
+      "benign_share_beyond_attack_median": 0.02229
+     },
+     "log_up_bytes": {
+      "auc": 0.945,
+      "benign_share_beyond_attack_median": 0.04807
+     },
+     "log_down_bytes": {
+      "auc": 0.9543,
+      "benign_share_beyond_attack_median": 0.05076
+     },
+     "log_pkts": {
+      "auc": 0.9851,
+      "benign_share_beyond_attack_median": 0.01168
+     },
+     "log_dst_hosts": {
+      "auc": 0.8082,
+      "benign_share_beyond_attack_median": 0.05506
+     },
+     "log_dst_ports": {
+      "auc": 0.6392,
+      "benign_share_beyond_attack_median": 0.36981
+     },
+     "no_reply_frac": {
+      "auc": 0.4708,
+      "benign_share_beyond_attack_median": 0.67074
+     },
+     "rst_frac": {
+      "auc": 0.9625,
+      "benign_share_beyond_attack_median": 0.02806
+     },
+     "udp_share": {
+      "auc": 0.3308,
+      "benign_share_beyond_attack_median": 0.49282
+     },
+     "med_log_dur": {
+      "auc": 0.9829,
+      "benign_share_beyond_attack_median": 0.01168
+     },
+     "upload_share": {
+      "auc": 0.4487,
+      "benign_share_beyond_attack_median": 0.6843
+     },
+     "new_dst_frac": {
+      "auc": 0.5377,
+      "benign_share_beyond_attack_median": 1.0
+     }
+    },
+    "ceiling": {
+     "auc": 0.9997,
+     "recall_at_1pct_benign_fpr": 0.9991,
+     "positives_scored": 3185,
+     "positive_blocks": 167
+    },
+    "verdict": "observable"
+   },
+   "victim": {
+    "attack_windows": 4525,
+    "benign_windows": 62095,
+    "victims": 5,
+    "positive_mixed_share": 0.0018,
+    "univariate": {
+     "v_log_flows": {
+      "auc": 0.9358,
+      "benign_share_beyond_attack_median": 0.06377
+     },
+     "v_log_srcs": {
+      "auc": 0.384,
+      "benign_share_beyond_attack_median": 0.76662
+     },
+     "v_log_ports": {
+      "auc": 0.5101,
+      "benign_share_beyond_attack_median": 1.0
+     },
+     "v_log_up": {
+      "auc": 0.834,
+      "benign_share_beyond_attack_median": 0.18902
+     },
+     "v_log_down": {
+      "auc": 0.836,
+      "benign_share_beyond_attack_median": 0.17233
+     },
+     "v_log_pkts": {
+      "auc": 0.9477,
+      "benign_share_beyond_attack_median": 0.06649
+     },
+     "v_no_reply_frac": {
+      "auc": 0.2915,
+      "benign_share_beyond_attack_median": 0.57504
+     },
+     "v_rst_frac": {
+      "auc": 0.9807,
+      "benign_share_beyond_attack_median": 0.01353
+     },
+     "v_udp_share": {
+      "auc": 0.2016,
+      "benign_share_beyond_attack_median": 0.39644
+     },
+     "v_short_frac": {
+      "auc": 0.106,
+      "benign_share_beyond_attack_median": 0.10407
+     },
+     "v_med_log_dur": {
+      "auc": 0.8961,
+      "benign_share_beyond_attack_median": 0.1018
+     },
+     "v_resp_share": {
+      "auc": 0.4927,
+      "benign_share_beyond_attack_median": 0.4841
+     },
+     "v_top_src_share": {
+      "auc": 0.6162,
+      "benign_share_beyond_attack_median": 0.76662
+     },
+     "v_web_share": {
+      "auc": 0.9378,
+      "benign_share_beyond_attack_median": 0.09965
+     },
+     "v_hist_dev": {
+      "auc": 0.8597,
+      "benign_share_beyond_attack_median": 0.07342
+     },
+     "v_hist_n": {
+      "auc": 0.399,
+      "benign_share_beyond_attack_median": 0.40849
+     }
+    },
+    "ceiling": {
+     "auc": 0.9999,
+     "recall_at_1pct_benign_fpr": 0.9991,
+     "positives_scored": 4525,
+     "positive_blocks": 167
+    },
+    "verdict": "observable"
+   }
+  },
+  "nfbot/all|attacked_host_traffic": {
+   "entities": [
+    "192.168.100.3",
+    "192.168.100.5",
+    "192.168.100.6",
+    "192.168.100.7"
+   ],
+   "source": {
+    "attack_windows": 235,
+    "benign_windows": 620,
+    "univariate": {
+     "log_flows": {
+      "auc": 0.7914,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "log_up_bytes": {
+      "auc": 0.1448,
+      "benign_share_beyond_attack_median": 0.08548
+     },
+     "log_down_bytes": {
+      "auc": 0.1751,
+      "benign_share_beyond_attack_median": 0.15161
+     },
+     "log_pkts": {
+      "auc": 0.1715,
+      "benign_share_beyond_attack_median": 0.1129
+     },
+     "log_dst_hosts": {
+      "auc": 0.917,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "log_dst_ports": {
+      "auc": 0.9,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "no_reply_frac": {
+      "auc": 0.463,
+      "benign_share_beyond_attack_median": 0.41774
+     },
+     "rst_frac": {
+      "auc": 0.7861,
+      "benign_share_beyond_attack_median": 0.00161
+     },
+     "udp_share": {
+      "auc": 0.2694,
+      "benign_share_beyond_attack_median": 0.43065
+     },
+     "med_log_dur": {
+      "auc": 0.2936,
+      "benign_share_beyond_attack_median": 0.23871
+     },
+     "upload_share": {
+      "auc": 0.5949,
+      "benign_share_beyond_attack_median": 0.12742
+     },
+     "new_dst_frac": {
+      "auc": 0.9842,
+      "benign_share_beyond_attack_median": 0.02258
+     }
+    },
+    "ceiling": {
+     "auc": 0.9989,
+     "recall_at_1pct_benign_fpr": 0.9957,
+     "positives_scored": 235,
+     "positive_blocks": 31
+    },
+    "verdict": "observable"
+   },
+   "victim": {
+    "attack_windows": 309,
+    "benign_windows": 1247,
+    "victims": 4,
+    "positive_mixed_share": 0.0227,
+    "univariate": {
+     "v_log_flows": {
+      "auc": 0.7217,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "v_log_srcs": {
+      "auc": 0.4464,
+      "benign_share_beyond_attack_median": 0.8757
+     },
+     "v_log_ports": {
+      "auc": 0.664,
+      "benign_share_beyond_attack_median": 1.0
+     },
+     "v_log_up": {
+      "auc": 0.393,
+      "benign_share_beyond_attack_median": 0.34964
+     },
+     "v_log_down": {
+      "auc": 0.3931,
+      "benign_share_beyond_attack_median": 0.34804
+     },
+     "v_log_pkts": {
+      "auc": 0.5101,
+      "benign_share_beyond_attack_median": 0.51564
+     },
+     "v_no_reply_frac": {
+      "auc": 0.5327,
+      "benign_share_beyond_attack_median": 1.0
+     },
+     "v_rst_frac": {
+      "auc": 0.7979,
+      "benign_share_beyond_attack_median": 0.02486
+     },
+     "v_udp_share": {
+      "auc": 0.2129,
+      "benign_share_beyond_attack_median": 0.42582
+     },
+     "v_short_frac": {
+      "auc": 0.4696,
+      "benign_share_beyond_attack_median": 0.69126
+     },
+     "v_med_log_dur": {
+      "auc": 0.3924,
+      "benign_share_beyond_attack_median": 0.40096
+     },
+     "v_resp_share": {
+      "auc": 0.5401,
+      "benign_share_beyond_attack_median": 0.36969
+     },
+     "v_top_src_share": {
+      "auc": 0.5536,
+      "benign_share_beyond_attack_median": 0.8757
+     },
+     "v_web_share": {
+      "auc": 0.3132,
+      "benign_share_beyond_attack_median": 0.62229
+     },
+     "v_hist_dev": {
+      "auc": 0.7372,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "v_hist_n": {
+      "auc": 0.7252,
+      "benign_share_beyond_attack_median": 0.27025
+     }
+    },
+    "ceiling": {
+     "auc": 0.9986,
+     "recall_at_1pct_benign_fpr": 0.9838,
+     "positives_scored": 309,
+     "positive_blocks": 31
+    },
+    "verdict": "observable"
+   }
+  },
+  "nfcic/2018-02-16|dos_hulk": {
+   "entities": [
+    "18.219.193.20"
+   ],
+   "source_attack_windows_in_documented_interval": 1.0,
+   "source": {
+    "attack_windows": 27,
+    "benign_windows": 79527,
+    "univariate": {
+     "log_flows": {
+      "auc": 0.9993,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "log_up_bytes": {
+      "auc": 0.9992,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "log_down_bytes": {
+      "auc": 0.9984,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "log_pkts": {
+      "auc": 0.9992,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "log_dst_hosts": {
+      "auc": 0.3188,
+      "benign_share_beyond_attack_median": 0.63761
+     },
+     "log_dst_ports": {
+      "auc": 0.3687,
+      "benign_share_beyond_attack_median": 0.73747
+     },
+     "no_reply_frac": {
+      "auc": 0.3763,
+      "benign_share_beyond_attack_median": 0.67728
+     },
+     "rst_frac": {
+      "auc": 0.5783,
+      "benign_share_beyond_attack_median": 0.41055
+     },
+     "udp_share": {
+      "auc": 0.3802,
+      "benign_share_beyond_attack_median": 0.76031
+     },
+     "med_log_dur": {
+      "auc": 0.8983,
+      "benign_share_beyond_attack_median": 0.07507
+     },
+     "upload_share": {
+      "auc": 0.1933,
+      "benign_share_beyond_attack_median": 0.19304
+     },
+     "new_dst_frac": {
+      "auc": 0.4804,
+      "benign_share_beyond_attack_median": 0.96088
+     }
+    },
+    "ceiling": {
+     "auc": 0.9828,
+     "recall_at_1pct_benign_fpr": 0.9259,
+     "positives_scored": 27,
+     "positive_blocks": 2
+    },
+    "verdict": "observable"
+   },
+   "victim": {
+    "attack_windows": 27,
+    "benign_windows": 110379,
+    "victims": 1,
+    "positive_mixed_share": 0.0741,
+    "univariate": {
+     "v_log_flows": {
+      "auc": 0.9998,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "v_log_srcs": {
+      "auc": 0.3024,
+      "benign_share_beyond_attack_median": 0.53431
+     },
+     "v_log_ports": {
+      "auc": 0.4106,
+      "benign_share_beyond_attack_median": 0.74306
+     },
+     "v_log_up": {
+      "auc": 0.9999,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "v_log_down": {
+      "auc": 0.9992,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "v_log_pkts": {
+      "auc": 0.9998,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "v_no_reply_frac": {
+      "auc": 0.4334,
+      "benign_share_beyond_attack_median": 0.78004
+     },
+     "v_rst_frac": {
+      "auc": 0.4551,
+      "benign_share_beyond_attack_median": 0.46398
+     },
+     "v_udp_share": {
+      "auc": 0.4785,
+      "benign_share_beyond_attack_median": 0.95698
+     },
+     "v_short_frac": {
+      "auc": 0.5262,
+      "benign_share_beyond_attack_median": 0.47864
+     },
+     "v_med_log_dur": {
+      "auc": 0.7674,
+      "benign_share_beyond_attack_median": 0.21744
+     },
+     "v_resp_share": {
+      "auc": 0.62,
+      "benign_share_beyond_attack_median": 0.37975
+     },
+     "v_top_src_share": {
+      "auc": 0.7131,
+      "benign_share_beyond_attack_median": 0.53431
+     },
+     "v_web_share": {
+      "auc": 0.6746,
+      "benign_share_beyond_attack_median": 0.60589
+     },
+     "v_hist_dev": {
+      "auc": 0.9184,
+      "benign_share_beyond_attack_median": 0.00289
+     },
+     "v_hist_n": {
+      "auc": 0.3142,
+      "benign_share_beyond_attack_median": 0.31511
+     }
+    },
+    "ceiling": {
+     "auc": 0.9752,
+     "recall_at_1pct_benign_fpr": 0.8889,
+     "positives_scored": 27,
+     "positive_blocks": 2
+    },
+    "verdict": "observable"
+   }
+  },
+  "nfcic/2018-02-14|ssh_bruteforce": {
+   "entities": [
+    "13.58.98.64"
+   ],
+   "source_attack_windows_in_documented_interval": 0.9837,
+   "source": {
+    "attack_windows": 184,
+    "benign_windows": 108297,
+    "univariate": {
+     "log_flows": {
+      "auc": 0.9997,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "log_up_bytes": {
+      "auc": 0.9988,
+      "benign_share_beyond_attack_median": 0.00013
+     },
+     "log_down_bytes": {
+      "auc": 0.9965,
+      "benign_share_beyond_attack_median": 0.00186
+     },
+     "log_pkts": {
+      "auc": 0.9994,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "log_dst_hosts": {
+      "auc": 0.3337,
+      "benign_share_beyond_attack_median": 0.6674
+     },
+     "log_dst_ports": {
+      "auc": 0.3824,
+      "benign_share_beyond_attack_median": 0.76472
+     },
+     "no_reply_frac": {
+      "auc": 0.3463,
+      "benign_share_beyond_attack_median": 0.69261
+     },
+     "rst_frac": {
+      "auc": 0.2719,
+      "benign_share_beyond_attack_median": 0.53781
+     },
+     "udp_share": {
+      "auc": 0.3859,
+      "benign_share_beyond_attack_median": 0.77176
+     },
+     "med_log_dur": {
+      "auc": 0.5528,
+      "benign_share_beyond_attack_median": 0.44512
+     },
+     "upload_share": {
+      "auc": 0.4211,
+      "benign_share_beyond_attack_median": 0.41913
+     },
+     "new_dst_frac": {
+      "auc": 0.9992,
+      "benign_share_beyond_attack_median": 0.00157
+     }
+    },
+    "ceiling": {
+     "auc": 0.9956,
+     "recall_at_1pct_benign_fpr": 0.9946,
+     "positives_scored": 184,
+     "positive_blocks": 10
+    },
+    "verdict": "observable"
+   },
+   "victim": {
+    "attack_windows": 184,
+    "benign_windows": 139347,
+    "victims": 1,
+    "positive_mixed_share": 0.0,
+    "univariate": {
+     "v_log_flows": {
+      "auc": 0.9996,
+      "benign_share_beyond_attack_median": 0.00036
+     },
+     "v_log_srcs": {
+      "auc": 0.285,
+      "benign_share_beyond_attack_median": 0.5699
+     },
+     "v_log_ports": {
+      "auc": 0.3792,
+      "benign_share_beyond_attack_median": 0.75831
+     },
+     "v_log_up": {
+      "auc": 0.9987,
+      "benign_share_beyond_attack_median": 0.0001
+     },
+     "v_log_down": {
+      "auc": 0.9952,
+      "benign_share_beyond_attack_median": 0.00133
+     },
+     "v_log_pkts": {
+      "auc": 0.9996,
+      "benign_share_beyond_attack_median": 0.0
+     },
+     "v_no_reply_frac": {
+      "auc": 0.3829,
+      "benign_share_beyond_attack_median": 0.76571
+     },
+     "v_rst_frac": {
+      "auc": 0.246,
+      "benign_share_beyond_attack_median": 0.48539
+     },
+     "v_udp_share": {
+      "auc": 0.4786,
+      "benign_share_beyond_attack_median": 0.95724
+     },
+     "v_short_frac": {
+      "auc": 0.8874,
+      "benign_share_beyond_attack_median": 0.22521
+     },
+     "v_med_log_dur": {
+      "auc": 0.288,
+      "benign_share_beyond_attack_median": 0.28943
+     },
+     "v_resp_share": {
+      "auc": 0.4104,
+      "benign_share_beyond_attack_median": 0.41313
+     },
+     "v_top_src_share": {
+      "auc": 0.715,
+      "benign_share_beyond_attack_median": 0.5699
+     },
+     "v_web_share": {
+      "auc": 0.1934,
+      "benign_share_beyond_attack_median": 0.38675
+     },
+     "v_hist_dev": {
+      "auc": 0.1325,
+      "benign_share_beyond_attack_median": 0.13463
+     },
+     "v_hist_n": {
+      "auc": 0.4425,
+      "benign_share_beyond_attack_median": 0.44426
+     }
+    },
+    "ceiling": {
+     "auc": 0.9924,
+     "recall_at_1pct_benign_fpr": 0.9891,
+     "positives_scored": 184,
+     "positive_blocks": 10
+    },
+    "verdict": "observable"
+   }
+  }
+ }
+}

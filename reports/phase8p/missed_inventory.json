@@ -1,0 +1,3158 @@
+{
+ "status": "EXPLORATORY (Stage 1; consumed development networks; no model fitted)",
+ "entities": {
+  "nfbot/all|192.168.100.147": {
+   "K5": {
+    "windows": 316,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9620253164556962,
+    "recall_median": 0.9699367088607596,
+    "margin_min": 0.26153476559739974,
+    "margin_median": 0.3385461029279363,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 1.0,
+    "recall_min": 0.4873417721518987,
+    "margin_median": 0.3256039217510329
+   },
+   "labels": {
+    "dos": 1953148,
+    "ddos": 1743637
+   },
+   "attack_flows": 3696785,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 4,
+   "top_victim": "192.168.100.3",
+   "top_victim_share": 0.3293,
+   "top_ports": {
+    "80": 3696785
+   },
+   "attack_windows_flow_level": 316,
+   "flows_per_attack_window_median": 11184.0,
+   "tcp_share": 0.5077,
+   "up_bytes_per_flow_median": 364.0,
+   "down_bytes_per_flow_median": 0.0,
+   "pkts_per_flow_median": 6.0,
+   "dur_ms_median": 26318.0,
+   "no_reply_share": 0.7976
+  },
+  "nfbot/all|192.168.100.148": {
+   "K5": {
+    "windows": 330,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9696969696969697,
+    "recall_median": 0.9787878787878788,
+    "margin_min": 0.3152934145141776,
+    "margin_median": 0.3594149707506762,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 1.0,
+    "recall_min": 0.5333333333333333,
+    "margin_median": 0.3466941188393325
+   },
+   "labels": {
+    "ddos": 1794281,
+    "dos": 2006638
+   },
+   "attack_flows": 3800919,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 4,
+   "top_victim": "192.168.100.3",
+   "top_victim_share": 0.3127,
+   "top_ports": {
+    "80": 3800919
+   },
+   "attack_windows_flow_level": 330,
+   "flows_per_attack_window_median": 10968.5,
+   "tcp_share": 0.5336,
+   "up_bytes_per_flow_median": 360.0,
+   "down_bytes_per_flow_median": 0.0,
+   "pkts_per_flow_median": 6.0,
+   "dur_ms_median": 26543.0,
+   "no_reply_share": 0.796
+  },
+  "nfbot/all|192.168.100.149": {
+   "K5": {
+    "windows": 368,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9293478260869565,
+    "recall_median": 0.9470108695652174,
+    "margin_min": 0.26161281113856194,
+    "margin_median": 0.3430013729312691,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 1.0,
+    "recall_min": 0.5190217391304348,
+    "margin_median": 0.33256061734371306
+   },
+   "labels": {
+    "theft": 272,
+    "dos": 2022921,
+    "ddos": 1824367
+   },
+   "attack_flows": 3847560,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 4,
+   "top_victim": "192.168.100.3",
+   "top_victim_share": 0.3277,
+   "top_ports": {
+    "80": 3847288,
+    "445": 148,
+    "22": 104,
+    "49160": 9,
+    "135": 8
+   },
+   "attack_windows_flow_level": 368,
+   "flows_per_attack_window_median": 9487.5,
+   "tcp_share": 0.5425,
+   "up_bytes_per_flow_median": 420.0,
+   "down_bytes_per_flow_median": 0.0,
+   "pkts_per_flow_median": 6.0,
+   "dur_ms_median": 25779.0,
+   "no_reply_share": 0.7928
+  },
+  "nfbot/all|192.168.100.150": {
+   "K5": {
+    "windows": 330,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9030303030303031,
+    "recall_median": 0.9075757575757575,
+    "margin_min": 0.2599909865992057,
+    "margin_median": 0.33737618373024103,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 1.0,
+    "recall_min": 0.4636363636363636,
+    "margin_median": 0.32270550146316407
+   },
+   "labels": {
+    "theft": 233,
+    "ddos": 1776760,
+    "dos": 2047744
+   },
+   "attack_flows": 3824737,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 4,
+   "top_victim": "192.168.100.3",
+   "top_victim_share": 0.3395,
+   "top_ports": {
+    "80": 3824504,
+    "22": 217,
+    "50032": 10,
+    "43058": 5,
+    "43172": 1
+   },
+   "attack_windows_flow_level": 330,
+   "flows_per_attack_window_median": 10974.0,
+   "tcp_share": 0.5233,
+   "up_bytes_per_flow_median": 360.0,
+   "down_bytes_per_flow_median": 0.0,
+   "pkts_per_flow_median": 6.0,
+   "dur_ms_median": 26169.0,
+   "no_reply_share": 0.7844
+  },
+  "nfbot/all|192.168.100.3": {
+   "K5": {
+    "windows": 108,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.5185185185185185,
+    "recall_median": 0.5509259259259259,
+    "margin_min": 0.033687870225520666,
+    "margin_median": 0.10257596558542914,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 0.9666666666666667,
+    "recall_min": 0.17592592592592593,
+    "margin_median": 0.06772831917938721
+   },
+   "labels": {
+    "ddos": 10863,
+    "dos": 1853,
+    "theft": 1100
+   },
+   "attack_flows": 13816,
+   "attack_share_of_source_flows": 0.9404,
+   "victims": 4,
+   "top_victim": "192.168.100.150",
+   "top_victim_share": 0.2914,
+   "top_ports": {
+    "4433": 1100,
+    "0": 48,
+    "34733": 3,
+    "34735": 3,
+    "34734": 3
+   },
+   "attack_windows_flow_level": 108,
+   "flows_per_attack_window_median": 30.0,
+   "tcp_share": 0.9965,
+   "up_bytes_per_flow_median": 52.0,
+   "down_bytes_per_flow_median": 600.0,
+   "pkts_per_flow_median": 6.0,
+   "dur_ms_median": 22571.0,
+   "no_reply_share": 0.0035
+  },
+  "nfbot/all|192.168.100.5": {
+   "K5": {
+    "windows": 29,
+    "det_ge1": 1.0,
+    "det_ge20": 0.5,
+    "det_ge50": 0.0,
+    "recall_min": 0.13793103448275862,
+    "recall_median": 0.22413793103448276,
+    "margin_min": -0.3991876667850218,
+    "margin_median": -0.3442659967282079,
+    "failures_threshold": 0,
+    "failures_ranking": 3
+   },
+   "single": {
+    "det_ge20": 0.5333333333333333,
+    "recall_min": 0.10344827586206896,
+    "margin_median": -0.3536892326095662
+   },
+   "labels": {
+    "ddos": 247,
+    "dos": 547
+   },
+   "attack_flows": 794,
+   "attack_share_of_source_flows": 0.6644,
+   "victims": 4,
+   "top_victim": "192.168.100.149",
+   "top_victim_share": 0.4194,
+   "top_ports": {
+    "0": 20,
+    "5333": 1,
+    "5498": 1,
+    "5690": 1,
+    "9018": 1
+   },
+   "attack_windows_flow_level": 29,
+   "flows_per_attack_window_median": 1.0,
+   "tcp_share": 0.9748,
+   "up_bytes_per_flow_median": 40.0,
+   "down_bytes_per_flow_median": 560.0,
+   "pkts_per_flow_median": 6.0,
+   "dur_ms_median": 42182.0,
+   "no_reply_share": 0.0252
+  },
+  "nfbot/all|192.168.100.6": {
+   "K5": {
+    "windows": 41,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 0.3333333333333333,
+    "recall_min": 0.21951219512195122,
+    "recall_median": 0.36585365853658536,
+    "margin_min": -0.19986720262908625,
+    "margin_median": -0.03766361109392019,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 0.8,
+    "recall_min": 0.024390243902439025,
+    "margin_median": -0.05019786497738532
+   },
+   "labels": {
+    "theft": 10,
+    "dos": 651,
+    "ddos": 254
+   },
+   "attack_flows": 915,
+   "attack_share_of_source_flows": 0.6621,
+   "victims": 4,
+   "top_victim": "192.168.100.149",
+   "top_victim_share": 0.3639,
+   "top_ports": {
+    "0": 17,
+    "4444": 10,
+    "31044": 1,
+    "5932": 1,
+    "5981": 1
+   },
+   "attack_windows_flow_level": 41,
+   "flows_per_attack_window_median": 1.0,
+   "tcp_share": 0.9814,
+   "up_bytes_per_flow_median": 40.0,
+   "down_bytes_per_flow_median": 280.0,
+   "pkts_per_flow_median": 3.0,
+   "dur_ms_median": 39875.0,
+   "no_reply_share": 0.1825
+  },
+  "nfbot/all|192.168.100.7": {
+   "K5": {
+    "windows": 57,
+    "det_ge1": 1.0,
+    "det_ge20": 0.3333333333333333,
+    "det_ge50": 0.0,
+    "recall_min": 0.19298245614035087,
+    "recall_median": 0.19298245614035087,
+    "margin_min": -0.2569942864227485,
+    "margin_median": -0.19606494570387742,
+    "failures_threshold": 0,
+    "failures_ranking": 4
+   },
+   "single": {
+    "det_ge20": 0.5,
+    "recall_min": 0.03508771929824561,
+    "margin_median": -0.20461567755795645
+   },
+   "labels": {
+    "dos": 688,
+    "ddos": 473
+   },
+   "attack_flows": 1161,
+   "attack_share_of_source_flows": 0.7316,
+   "victims": 4,
+   "top_victim": "192.168.100.148",
+   "top_victim_share": 0.4203,
+   "top_ports": {
+    "0": 26,
+    "55086": 2,
+    "54986": 2,
+    "46900": 2,
+    "46624": 2
+   },
+   "attack_windows_flow_level": 57,
+   "flows_per_attack_window_median": 2.0,
+   "tcp_share": 0.9776,
+   "up_bytes_per_flow_median": 52.0,
+   "down_bytes_per_flow_median": 156.0,
+   "pkts_per_flow_median": 5.0,
+   "dur_ms_median": 53920.0,
+   "no_reply_share": 0.0224
+  },
+  "nfcic/2018-02-14|13.58.98.64": {
+   "K5": {
+    "windows": 184,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 1.0,
+    "recall_median": 1.0,
+    "margin_min": 0.053958956788977996,
+    "margin_median": 0.09944449722595511,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 0.7666666666666667,
+    "recall_min": 0.010869565217391304,
+    "margin_median": 0.06260013087223087
+   },
+   "labels": {
+    "ssh_bruteforce": 188474
+   },
+   "attack_flows": 188474,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.25",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "22": 188414,
+    "21": 60
+   },
+   "attack_windows_flow_level": 184,
+   "flows_per_attack_window_median": 1040.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 3148.0,
+   "down_bytes_per_flow_median": 3869.0,
+   "pkts_per_flow_median": 46.0,
+   "dur_ms_median": 375.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-16|18.219.193.20": {
+   "K5": {
+    "windows": 27,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9629629629629629,
+    "recall_median": 0.9629629629629629,
+    "margin_min": 0.03371664405639585,
+    "margin_median": 0.06414473046671054,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 0.8,
+    "recall_min": 0.0,
+    "margin_median": 0.04533838444610594
+   },
+   "labels": {
+    "dos_hulk": 100076
+   },
+   "attack_flows": 100076,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.25",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 100076
+   },
+   "attack_windows_flow_level": 27,
+   "flows_per_attack_window_median": 3443.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 13783.5,
+   "down_bytes_per_flow_median": 24060.0,
+   "pkts_per_flow_median": 208.0,
+   "dur_ms_median": 85995.5,
+   "no_reply_share": 0.0001
+  },
+  "nfcic/2018-02-20|18.216.200.189": {
+   "K5": {
+    "windows": 8,
+    "det_ge1": 0.6666666666666666,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.125,
+    "margin_min": -0.8385626009196767,
+    "margin_median": -0.8229334526018055,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.8508345553221524
+   },
+   "labels": {
+    "ddos_loic_http": 211
+   },
+   "attack_flows": 211,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.25",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 211
+   },
+   "attack_windows_flow_level": 8,
+   "flows_per_attack_window_median": 10.0,
+   "tcp_share": 0.654,
+   "up_bytes_per_flow_median": 40.0,
+   "down_bytes_per_flow_median": 0.0,
+   "pkts_per_flow_median": 1.0,
+   "dur_ms_median": 1.0,
+   "no_reply_share": 1.0
+  },
+  "nfcic/2018-02-20|18.216.24.42": {
+   "K5": {
+    "windows": 9,
+    "det_ge1": 0.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0,
+    "margin_min": -0.8385626009196767,
+    "margin_median": -0.8229334526018055,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.8508345553221524
+   },
+   "labels": {
+    "ddos_loic_http": 85
+   },
+   "attack_flows": 85,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.25",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 85
+   },
+   "attack_windows_flow_level": 9,
+   "flows_per_attack_window_median": 10.0,
+   "tcp_share": 0.0588,
+   "up_bytes_per_flow_median": 8015400.0,
+   "down_bytes_per_flow_median": 0.0,
+   "pkts_per_flow_median": 133590.0,
+   "dur_ms_median": 120545.0,
+   "no_reply_share": 1.0
+  },
+  "nfcic/2018-02-20|18.218.11.51": {
+   "K5": {
+    "windows": 9,
+    "det_ge1": 0.6666666666666666,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.1111111111111111,
+    "margin_min": -0.8385626009196767,
+    "margin_median": -0.8229334526018055,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.8508345553221524
+   },
+   "labels": {
+    "ddos_loic_http": 188
+   },
+   "attack_flows": 188,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.25",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 188
+   },
+   "attack_windows_flow_level": 9,
+   "flows_per_attack_window_median": 10.0,
+   "tcp_share": 0.5745,
+   "up_bytes_per_flow_median": 40.0,
+   "down_bytes_per_flow_median": 0.0,
+   "pkts_per_flow_median": 1.0,
+   "dur_ms_median": 1.0,
+   "no_reply_share": 1.0
+  },
+  "nfcic/2018-02-20|18.218.115.60": {
+   "K5": {
+    "windows": 13,
+    "det_ge1": 0.8333333333333334,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.07692307692307693,
+    "margin_min": -0.8357457033645028,
+    "margin_median": -0.819653703228401,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.8456044735754534
+   },
+   "labels": {
+    "ddos_loic_http": 177
+   },
+   "attack_flows": 177,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.25",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 177
+   },
+   "attack_windows_flow_level": 13,
+   "flows_per_attack_window_median": 6.0,
+   "tcp_share": 0.548,
+   "up_bytes_per_flow_median": 40.0,
+   "down_bytes_per_flow_median": 0.0,
+   "pkts_per_flow_median": 1.0,
+   "dur_ms_median": 1.0,
+   "no_reply_share": 1.0
+  },
+  "nfcic/2018-02-20|18.218.229.235": {
+   "K5": {
+    "windows": 8,
+    "det_ge1": 0.5,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0625,
+    "margin_min": -0.8385626009196767,
+    "margin_median": -0.8229334526018055,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.8508345553221524
+   },
+   "labels": {
+    "ddos_loic_http": 194
+   },
+   "attack_flows": 194,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.25",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 194
+   },
+   "attack_windows_flow_level": 8,
+   "flows_per_attack_window_median": 10.0,
+   "tcp_share": 0.5876,
+   "up_bytes_per_flow_median": 40.0,
+   "down_bytes_per_flow_median": 0.0,
+   "pkts_per_flow_median": 1.0,
+   "dur_ms_median": 1.0,
+   "no_reply_share": 1.0
+  },
+  "nfcic/2018-02-20|18.218.55.126": {
+   "K5": {
+    "windows": 12,
+    "det_ge1": 0.6666666666666666,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.08333333333333333,
+    "margin_min": -0.8385626009196767,
+    "margin_median": -0.8229334526018055,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.8508345553221524
+   },
+   "labels": {
+    "ddos_loic_http": 218
+   },
+   "attack_flows": 218,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.25",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 218
+   },
+   "attack_windows_flow_level": 12,
+   "flows_per_attack_window_median": 9.5,
+   "tcp_share": 0.633,
+   "up_bytes_per_flow_median": 40.0,
+   "down_bytes_per_flow_median": 0.0,
+   "pkts_per_flow_median": 1.0,
+   "dur_ms_median": 1.0,
+   "no_reply_share": 1.0
+  },
+  "nfcic/2018-02-20|18.219.32.43": {
+   "K5": {
+    "windows": 16,
+    "det_ge1": 0.8333333333333334,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0625,
+    "margin_min": -0.8385258739532174,
+    "margin_median": -0.8229573457758148,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.8508345553221524
+   },
+   "labels": {
+    "ddos_loic_http": 250
+   },
+   "attack_flows": 250,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.25",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 250
+   },
+   "attack_windows_flow_level": 16,
+   "flows_per_attack_window_median": 5.5,
+   "tcp_share": 0.68,
+   "up_bytes_per_flow_median": 40.0,
+   "down_bytes_per_flow_median": 0.0,
+   "pkts_per_flow_median": 1.0,
+   "dur_ms_median": 1.0,
+   "no_reply_share": 1.0
+  },
+  "nfcic/2018-02-20|18.219.5.43": {
+   "K5": {
+    "windows": 10,
+    "det_ge1": 0.6666666666666666,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.1,
+    "margin_min": -0.8385626009196767,
+    "margin_median": -0.8229334526018055,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.8508345553221524
+   },
+   "labels": {
+    "ddos_loic_http": 221
+   },
+   "attack_flows": 221,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.25",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 221
+   },
+   "attack_windows_flow_level": 10,
+   "flows_per_attack_window_median": 10.0,
+   "tcp_share": 0.638,
+   "up_bytes_per_flow_median": 40.0,
+   "down_bytes_per_flow_median": 0.0,
+   "pkts_per_flow_median": 1.0,
+   "dur_ms_median": 1.0,
+   "no_reply_share": 1.0
+  },
+  "nfcic/2018-02-20|18.219.9.1": {
+   "K5": {
+    "windows": 8,
+    "det_ge1": 1.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.125,
+    "recall_median": 0.125,
+    "margin_min": -0.8385626009196767,
+    "margin_median": -0.8229334526018055,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.8508345553221524
+   },
+   "labels": {
+    "ddos_loic_http": 268
+   },
+   "attack_flows": 268,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.25",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 268
+   },
+   "attack_windows_flow_level": 8,
+   "flows_per_attack_window_median": 10.0,
+   "tcp_share": 0.7127,
+   "up_bytes_per_flow_median": 40.0,
+   "down_bytes_per_flow_median": 0.0,
+   "pkts_per_flow_median": 1.0,
+   "dur_ms_median": 1.0,
+   "no_reply_share": 1.0
+  },
+  "nfcic/2018-02-20|52.14.136.135": {
+   "K5": {
+    "windows": 13,
+    "det_ge1": 1.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.07692307692307693,
+    "recall_median": 0.07692307692307693,
+    "margin_min": -0.8385626009196767,
+    "margin_median": -0.8229334526018055,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.8508345553221524
+   },
+   "labels": {
+    "ddos_loic_http": 341
+   },
+   "attack_flows": 341,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.25",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 341
+   },
+   "attack_windows_flow_level": 13,
+   "flows_per_attack_window_median": 8.0,
+   "tcp_share": 0.7654,
+   "up_bytes_per_flow_median": 40.0,
+   "down_bytes_per_flow_median": 0.0,
+   "pkts_per_flow_median": 1.0,
+   "dur_ms_median": 1.0,
+   "no_reply_share": 1.0
+  },
+  "nfcic/2018-02-21|18.216.200.189": {
+   "K5": {
+    "windows": 109,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.981651376146789,
+    "recall_median": 1.0,
+    "margin_min": 0.13005271317694544,
+    "margin_median": 0.17642652585063556,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 1.0,
+    "recall_min": 0.6605504587155964,
+    "margin_median": 0.14434864273899922
+   },
+   "labels": {
+    "ddos_hoic": 104329
+   },
+   "attack_flows": 104329,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 104329
+   },
+   "attack_windows_flow_level": 109,
+   "flows_per_attack_window_median": 1031.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 522.0,
+   "down_bytes_per_flow_median": 1147.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 20.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-21|18.216.24.42": {
+   "K5": {
+    "windows": 108,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9907407407407407,
+    "recall_median": 1.0,
+    "margin_min": 0.13000235877162858,
+    "margin_median": 0.1764644274420103,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 1.0,
+    "recall_min": 0.6388888888888888,
+    "margin_median": 0.14426350757789896
+   },
+   "labels": {
+    "ddos_hoic": 103094
+   },
+   "attack_flows": 103094,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 103094
+   },
+   "attack_windows_flow_level": 108,
+   "flows_per_attack_window_median": 1024.5,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 521.0,
+   "down_bytes_per_flow_median": 1147.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 19.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-21|18.218.11.51": {
+   "K5": {
+    "windows": 108,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9814814814814815,
+    "recall_median": 1.0,
+    "margin_min": 0.13003929229140554,
+    "margin_median": 0.1766662680295482,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 1.0,
+    "recall_min": 0.6574074074074074,
+    "margin_median": 0.14423844068407426
+   },
+   "labels": {
+    "ddos_hoic": 103357
+   },
+   "attack_flows": 103357,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 103357
+   },
+   "attack_windows_flow_level": 108,
+   "flows_per_attack_window_median": 1023.5,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 521.0,
+   "down_bytes_per_flow_median": 1147.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 18.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-21|18.218.115.60": {
+   "K5": {
+    "windows": 108,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9814814814814815,
+    "recall_median": 1.0,
+    "margin_min": 0.1301262674024637,
+    "margin_median": 0.17658418508208767,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 1.0,
+    "recall_min": 0.6574074074074074,
+    "margin_median": 0.14469244731663888
+   },
+   "labels": {
+    "ddos_hoic": 103588
+   },
+   "attack_flows": 103588,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 103588
+   },
+   "attack_windows_flow_level": 108,
+   "flows_per_attack_window_median": 1025.5,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 521.0,
+   "down_bytes_per_flow_median": 1147.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 24.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-21|18.218.229.235": {
+   "K5": {
+    "windows": 109,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9724770642201835,
+    "recall_median": 1.0,
+    "margin_min": 0.13013821575074014,
+    "margin_median": 0.17665729493735516,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 1.0,
+    "recall_min": 0.6605504587155964,
+    "margin_median": 0.1449122804330369
+   },
+   "labels": {
+    "ddos_hoic": 104120
+   },
+   "attack_flows": 104120,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 104120
+   },
+   "attack_windows_flow_level": 109,
+   "flows_per_attack_window_median": 1042.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 521.0,
+   "down_bytes_per_flow_median": 1147.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 19.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-21|18.218.55.126": {
+   "K5": {
+    "windows": 109,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.981651376146789,
+    "recall_median": 1.0,
+    "margin_min": 0.13005271317694544,
+    "margin_median": 0.1762983434916119,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 1.0,
+    "recall_min": 0.6146788990825688,
+    "margin_median": 0.1440835644438312
+   },
+   "labels": {
+    "ddos_hoic": 102893
+   },
+   "attack_flows": 102893,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 102893
+   },
+   "attack_windows_flow_level": 109,
+   "flows_per_attack_window_median": 982.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 521.0,
+   "down_bytes_per_flow_median": 1147.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 21.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-21|18.219.32.43": {
+   "K5": {
+    "windows": 109,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.981651376146789,
+    "recall_median": 0.9908256880733946,
+    "margin_min": 0.13000235877162858,
+    "margin_median": 0.17647551409375095,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 1.0,
+    "recall_min": 0.6330275229357798,
+    "margin_median": 0.14407301826091828
+   },
+   "labels": {
+    "ddos_hoic": 103060
+   },
+   "attack_flows": 103060,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 103060
+   },
+   "attack_windows_flow_level": 109,
+   "flows_per_attack_window_median": 992.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 521.0,
+   "down_bytes_per_flow_median": 1147.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 19.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-21|18.219.5.43": {
+   "K5": {
+    "windows": 108,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9814814814814815,
+    "recall_median": 1.0,
+    "margin_min": 0.1300818765060786,
+    "margin_median": 0.17653939912547228,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 1.0,
+    "recall_min": 0.6296296296296297,
+    "margin_median": 0.14410923913172652
+   },
+   "labels": {
+    "ddos_hoic": 102273
+   },
+   "attack_flows": 102273,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 102273
+   },
+   "attack_windows_flow_level": 108,
+   "flows_per_attack_window_median": 1009.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 521.0,
+   "down_bytes_per_flow_median": 1147.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 17.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-21|18.219.9.1": {
+   "K5": {
+    "windows": 109,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9724770642201835,
+    "recall_median": 0.9908256880733946,
+    "margin_min": 0.12981223159313982,
+    "margin_median": 0.17647551409375095,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 1.0,
+    "recall_min": 0.6422018348623854,
+    "margin_median": 0.14407301826091828
+   },
+   "labels": {
+    "ddos_hoic": 103077
+   },
+   "attack_flows": 103077,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 103077
+   },
+   "attack_windows_flow_level": 109,
+   "flows_per_attack_window_median": 986.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 521.0,
+   "down_bytes_per_flow_median": 1147.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 21.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-21|52.14.136.135": {
+   "K5": {
+    "windows": 109,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9724770642201835,
+    "recall_median": 0.9908256880733946,
+    "margin_min": 0.13003929229140554,
+    "margin_median": 0.1753556600481499,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 1.0,
+    "recall_min": 0.6330275229357798,
+    "margin_median": 0.14386482175553506
+   },
+   "labels": {
+    "ddos_hoic": 102520
+   },
+   "attack_flows": 102520,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 102520
+   },
+   "attack_windows_flow_level": 109,
+   "flows_per_attack_window_median": 980.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 521.0,
+   "down_bytes_per_flow_median": 1147.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 19.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-22|13.58.42.57": {
+   "K5": {
+    "windows": 96,
+    "det_ge1": 0.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0,
+    "margin_min": -0.7628007113103439,
+    "margin_median": -0.7413475438351952,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.7716391557712354
+   },
+   "labels": {
+    "web_sql_injection": 81,
+    "web_xss": 96,
+    "web_bruteforce": 15
+   },
+   "attack_flows": 192,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "500": 192
+   },
+   "attack_windows_flow_level": 96,
+   "flows_per_attack_window_median": 2.0,
+   "tcp_share": 0.0,
+   "up_bytes_per_flow_median": 3168.0,
+   "down_bytes_per_flow_median": 0.0,
+   "pkts_per_flow_median": 6.0,
+   "dur_ms_median": 89479.0,
+   "no_reply_share": 1.0
+  },
+  "nfcic/2018-02-22|13.58.82.37": {
+   "K5": {
+    "windows": 97,
+    "det_ge1": 0.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0,
+    "margin_min": -0.7525700253517085,
+    "margin_median": -0.7334617487394518,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.7591049452625902
+   },
+   "labels": {
+    "web_sql_injection": 81,
+    "web_bruteforce": 16
+   },
+   "attack_flows": 97,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "500": 97
+   },
+   "attack_windows_flow_level": 97,
+   "flows_per_attack_window_median": 1.0,
+   "tcp_share": 0.0,
+   "up_bytes_per_flow_median": 3168.0,
+   "down_bytes_per_flow_median": 0.0,
+   "pkts_per_flow_median": 6.0,
+   "dur_ms_median": 89479.0,
+   "no_reply_share": 1.0
+  },
+  "nfcic/2018-02-22|131.202.242.193": {
+   "K5": {
+    "windows": 8,
+    "det_ge1": 0.8333333333333334,
+    "det_ge20": 0.8333333333333334,
+    "det_ge50": 0.3333333333333333,
+    "recall_min": 0.0,
+    "recall_median": 0.375,
+    "margin_min": -0.3593098048470839,
+    "margin_median": -0.16117554828872166,
+    "failures_threshold": 0,
+    "failures_ranking": 1
+   },
+   "single": {
+    "det_ge20": 0.6,
+    "recall_min": 0.0,
+    "margin_median": -0.21782422750568559
+   },
+   "labels": {
+    "web_bruteforce": 8
+   },
+   "attack_flows": 8,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "22": 8
+   },
+   "attack_windows_flow_level": 8,
+   "flows_per_attack_window_median": 1.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 1648.0,
+   "down_bytes_per_flow_median": 2616.0,
+   "pkts_per_flow_median": 15.0,
+   "dur_ms_median": 694.5,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-22|172.31.69.28": {
+   "K5": {
+    "windows": 11,
+    "det_ge1": 0.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0,
+    "margin_min": -0.833968474703237,
+    "margin_median": -0.8131689874023376,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.8382930100278789
+   },
+   "labels": {
+    "web_xss": 22
+   },
+   "attack_flows": 22,
+   "attack_share_of_source_flows": 0.0627,
+   "victims": 1,
+   "top_victim": "172.31.69.1",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "67": 22
+   },
+   "attack_windows_flow_level": 11,
+   "flows_per_attack_window_median": 2.0,
+   "tcp_share": 0.0,
+   "up_bytes_per_flow_median": 328.0,
+   "down_bytes_per_flow_median": 357.0,
+   "pkts_per_flow_median": 2.0,
+   "dur_ms_median": 1.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-22|18.218.115.60": {
+   "K5": {
+    "windows": 53,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.7547169811320755,
+    "recall_median": 0.8867924528301887,
+    "margin_min": 0.06154176392516575,
+    "margin_median": 0.105726811281869,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 0.8,
+    "recall_min": 0.0,
+    "margin_median": 0.0644963357297994
+   },
+   "labels": {
+    "web_sql_injection": 63,
+    "web_xss": 41
+   },
+   "attack_flows": 104,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "80": 104
+   },
+   "attack_windows_flow_level": 53,
+   "flows_per_attack_window_median": 2.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 64335.0,
+   "down_bytes_per_flow_median": 194114.0,
+   "pkts_per_flow_median": 310.5,
+   "dur_ms_median": 57026.5,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-22|18.219.139.116": {
+   "K5": {
+    "windows": 6,
+    "det_ge1": 0.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0,
+    "margin_min": -0.4812954707485634,
+    "margin_median": -0.42279244145042527,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.46503339579311803
+   },
+   "labels": {
+    "web_bruteforce": 6
+   },
+   "attack_flows": 6,
+   "attack_share_of_source_flows": 0.5455,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "22": 6
+   },
+   "attack_windows_flow_level": 6,
+   "flows_per_attack_window_median": 1.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 340.0,
+   "down_bytes_per_flow_median": 1233.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 5538.5,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-22|181.214.87.12": {
+   "K5": {
+    "windows": 16,
+    "det_ge1": 0.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0,
+    "margin_min": -0.7571338232015664,
+    "margin_median": -0.7100971733047092,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.7481743361303754
+   },
+   "labels": {
+    "web_bruteforce": 16
+   },
+   "attack_flows": 16,
+   "attack_share_of_source_flows": 0.0144,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "3973": 1,
+    "2959": 1,
+    "5978": 1,
+    "2967": 1,
+    "5965": 1
+   },
+   "attack_windows_flow_level": 16,
+   "flows_per_attack_window_median": 1.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 80.0,
+   "down_bytes_per_flow_median": 40.0,
+   "pkts_per_flow_median": 3.0,
+   "dur_ms_median": 145.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-22|191.101.167.167": {
+   "K5": {
+    "windows": 5,
+    "det_ge1": 0.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0,
+    "margin_min": -0.7395892604739288,
+    "margin_median": -0.6940341091352271,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.7175914100288676
+   },
+   "labels": {
+    "web_bruteforce": 5
+   },
+   "attack_flows": 5,
+   "attack_share_of_source_flows": 0.0114,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "4002": 1,
+    "4389": 1,
+    "3396": 1,
+    "3394": 1,
+    "3399": 1
+   },
+   "attack_windows_flow_level": 5,
+   "flows_per_attack_window_median": 1.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 80.0,
+   "down_bytes_per_flow_median": 40.0,
+   "pkts_per_flow_median": 3.0,
+   "dur_ms_median": 130.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-22|191.101.167.235": {
+   "K5": {
+    "windows": 6,
+    "det_ge1": 0.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0,
+    "margin_min": -0.7792956931214715,
+    "margin_median": -0.7552021302695406,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.7819715498333388
+   },
+   "labels": {
+    "web_bruteforce": 6
+   },
+   "attack_flows": 6,
+   "attack_share_of_source_flows": 0.0103,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "8545": 6
+   },
+   "attack_windows_flow_level": 6,
+   "flows_per_attack_window_median": 1.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 40.0,
+   "down_bytes_per_flow_median": 40.0,
+   "pkts_per_flow_median": 2.0,
+   "dur_ms_median": 1.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-22|199.195.249.132": {
+   "K5": {
+    "windows": 8,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.875,
+    "recall_median": 0.875,
+    "margin_min": 0.11203818886632488,
+    "margin_median": 0.13451786919037018,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 1.0,
+    "recall_min": 0.25,
+    "margin_median": 0.10612772082251343
+   },
+   "labels": {
+    "web_bruteforce": 68
+   },
+   "attack_flows": 68,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "22": 68
+   },
+   "attack_windows_flow_level": 8,
+   "flows_per_attack_window_median": 10.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 2955.0,
+   "down_bytes_per_flow_median": 2709.0,
+   "pkts_per_flow_median": 30.0,
+   "dur_ms_median": 2877.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-22|20.190.41.227": {
+   "K5": {
+    "windows": 8,
+    "det_ge1": 0.8333333333333334,
+    "det_ge20": 0.8333333333333334,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.375,
+    "margin_min": -0.46171214447710274,
+    "margin_median": -0.26245969155068466,
+    "failures_threshold": 0,
+    "failures_ranking": 1
+   },
+   "single": {
+    "det_ge20": 0.7333333333333333,
+    "recall_min": 0.0,
+    "margin_median": -0.2708095754300551
+   },
+   "labels": {
+    "web_bruteforce": 11
+   },
+   "attack_flows": 11,
+   "attack_share_of_source_flows": 0.3548,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "22": 11
+   },
+   "attack_windows_flow_level": 8,
+   "flows_per_attack_window_median": 1.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 340.0,
+   "down_bytes_per_flow_median": 1285.0,
+   "pkts_per_flow_median": 11.0,
+   "dur_ms_median": 431.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-22|203.24.188.224": {
+   "K5": {
+    "windows": 6,
+    "det_ge1": 0.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0,
+    "margin_min": -0.7792956931214715,
+    "margin_median": -0.7521548838618576,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.7752074616573223
+   },
+   "labels": {
+    "web_bruteforce": 6
+   },
+   "attack_flows": 6,
+   "attack_share_of_source_flows": 0.0141,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "8545": 3,
+    "65000": 2,
+    "65001": 1
+   },
+   "attack_windows_flow_level": 6,
+   "flows_per_attack_window_median": 1.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 40.0,
+   "down_bytes_per_flow_median": 40.0,
+   "pkts_per_flow_median": 2.0,
+   "dur_ms_median": 1.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-22|5.188.11.188": {
+   "K5": {
+    "windows": 21,
+    "det_ge1": 0.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0,
+    "margin_min": -0.7990487298411416,
+    "margin_median": -0.7805379242817944,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.8111659662866486
+   },
+   "labels": {
+    "web_bruteforce": 42
+   },
+   "attack_flows": 42,
+   "attack_share_of_source_flows": 0.0152,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "0": 20,
+    "3547": 1,
+    "3611": 1,
+    "3885": 1,
+    "3342": 1
+   },
+   "attack_windows_flow_level": 21,
+   "flows_per_attack_window_median": 2.0,
+   "tcp_share": 0.5238,
+   "up_bytes_per_flow_median": 80.0,
+   "down_bytes_per_flow_median": 40.0,
+   "pkts_per_flow_median": 3.0,
+   "dur_ms_median": 99.0,
+   "no_reply_share": 0.4762
+  },
+  "nfcic/2018-02-22|5.188.11.25": {
+   "K5": {
+    "windows": 6,
+    "det_ge1": 0.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0,
+    "margin_min": -0.7537953771059513,
+    "margin_median": -0.722890018706112,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.760429434189031
+   },
+   "labels": {
+    "web_bruteforce": 12
+   },
+   "attack_flows": 12,
+   "attack_share_of_source_flows": 0.0195,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "0": 6,
+    "21005": 1,
+    "21069": 1,
+    "21004": 1,
+    "21016": 1
+   },
+   "attack_windows_flow_level": 6,
+   "flows_per_attack_window_median": 2.0,
+   "tcp_share": 0.5,
+   "up_bytes_per_flow_median": 68.0,
+   "down_bytes_per_flow_median": 20.0,
+   "pkts_per_flow_median": 1.5,
+   "dur_ms_median": 1.0,
+   "no_reply_share": 0.5
+  },
+  "nfcic/2018-02-22|5.188.9.25": {
+   "K5": {
+    "windows": 12,
+    "det_ge1": 0.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0,
+    "margin_min": -0.7395892604739288,
+    "margin_median": -0.6940341091352271,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.7291118777459822
+   },
+   "labels": {
+    "web_bruteforce": 12
+   },
+   "attack_flows": 12,
+   "attack_share_of_source_flows": 0.0078,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "8989": 1,
+    "33893": 1,
+    "9995": 1,
+    "23390": 1,
+    "33923": 1
+   },
+   "attack_windows_flow_level": 12,
+   "flows_per_attack_window_median": 1.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 80.0,
+   "down_bytes_per_flow_median": 40.0,
+   "pkts_per_flow_median": 3.0,
+   "dur_ms_median": 130.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-22|52.14.77.172": {
+   "K5": {
+    "windows": 96,
+    "det_ge1": 0.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0,
+    "margin_min": -0.7628007113103439,
+    "margin_median": -0.7413475438351952,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.7716391557712354
+   },
+   "labels": {
+    "web_xss": 96,
+    "web_bruteforce": 16,
+    "web_sql_injection": 80
+   },
+   "attack_flows": 192,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "500": 192
+   },
+   "attack_windows_flow_level": 96,
+   "flows_per_attack_window_median": 2.0,
+   "tcp_share": 0.0,
+   "up_bytes_per_flow_median": 3168.0,
+   "down_bytes_per_flow_median": 0.0,
+   "pkts_per_flow_median": 6.0,
+   "dur_ms_median": 89479.0,
+   "no_reply_share": 1.0
+  },
+  "nfcic/2018-02-22|54.37.201.53": {
+   "K5": {
+    "windows": 5,
+    "det_ge1": 0.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0,
+    "margin_min": -0.7890314683018127,
+    "margin_median": -0.7769656058543212,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.801537424252315
+   },
+   "labels": {
+    "web_bruteforce": 5
+   },
+   "attack_flows": 5,
+   "attack_share_of_source_flows": 0.0219,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "54768": 1,
+    "39049": 1,
+    "10866": 1,
+    "47539": 1,
+    "64320": 1
+   },
+   "attack_windows_flow_level": 5,
+   "flows_per_attack_window_median": 1.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 40.0,
+   "down_bytes_per_flow_median": 40.0,
+   "pkts_per_flow_median": 2.0,
+   "dur_ms_median": 1.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-22|77.72.82.135": {
+   "K5": {
+    "windows": 8,
+    "det_ge1": 0.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0,
+    "margin_min": -0.7571338232015664,
+    "margin_median": -0.7133397631091466,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.7517811873289195
+   },
+   "labels": {
+    "web_bruteforce": 8
+   },
+   "attack_flows": 8,
+   "attack_share_of_source_flows": 0.0063,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "2512": 1,
+    "2539": 1,
+    "3205": 1,
+    "5832": 1,
+    "5795": 1
+   },
+   "attack_windows_flow_level": 8,
+   "flows_per_attack_window_median": 1.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 80.0,
+   "down_bytes_per_flow_median": 40.0,
+   "pkts_per_flow_median": 3.0,
+   "dur_ms_median": 109.5,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-22|77.72.82.145": {
+   "K5": {
+    "windows": 9,
+    "det_ge1": 0.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0,
+    "margin_min": -0.7383318400459418,
+    "margin_median": -0.6896799110882357,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.7177758022648351
+   },
+   "labels": {
+    "web_bruteforce": 9
+   },
+   "attack_flows": 9,
+   "attack_share_of_source_flows": 0.0103,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "30221": 1,
+    "11256": 1,
+    "52615": 1,
+    "52168": 1,
+    "23773": 1
+   },
+   "attack_windows_flow_level": 9,
+   "flows_per_attack_window_median": 1.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 80.0,
+   "down_bytes_per_flow_median": 40.0,
+   "pkts_per_flow_median": 3.0,
+   "dur_ms_median": 214.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-22|77.72.82.57": {
+   "K5": {
+    "windows": 8,
+    "det_ge1": 0.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0,
+    "margin_min": -0.7337524439847841,
+    "margin_median": -0.6929767830389417,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.7274863220825247
+   },
+   "labels": {
+    "web_bruteforce": 8
+   },
+   "attack_flows": 8,
+   "attack_share_of_source_flows": 0.0101,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "7944": 1,
+    "8950": 1,
+    "9948": 1,
+    "9941": 1,
+    "7957": 1
+   },
+   "attack_windows_flow_level": 8,
+   "flows_per_attack_window_median": 1.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 80.0,
+   "down_bytes_per_flow_median": 40.0,
+   "pkts_per_flow_median": 3.0,
+   "dur_ms_median": 105.5,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-22|77.72.82.80": {
+   "K5": {
+    "windows": 6,
+    "det_ge1": 0.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0,
+    "margin_min": -0.7571338232015664,
+    "margin_median": -0.7133064315026096,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.7459092515273776
+   },
+   "labels": {
+    "web_bruteforce": 6
+   },
+   "attack_flows": 6,
+   "attack_share_of_source_flows": 0.0101,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "7858": 1,
+    "7862": 1,
+    "7855": 1,
+    "7878": 1,
+    "7871": 1
+   },
+   "attack_windows_flow_level": 6,
+   "flows_per_attack_window_median": 1.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 80.0,
+   "down_bytes_per_flow_median": 40.0,
+   "pkts_per_flow_median": 3.0,
+   "dur_ms_median": 104.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-22|77.72.82.96": {
+   "K5": {
+    "windows": 16,
+    "det_ge1": 0.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0,
+    "margin_min": -0.7279156274956394,
+    "margin_median": -0.6919194569426561,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.7293589754528853
+   },
+   "labels": {
+    "web_bruteforce": 17
+   },
+   "attack_flows": 17,
+   "attack_share_of_source_flows": 0.0153,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "6932": 1,
+    "6919": 1,
+    "8031": 1,
+    "8033": 1,
+    "9185": 1
+   },
+   "attack_windows_flow_level": 16,
+   "flows_per_attack_window_median": 1.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 80.0,
+   "down_bytes_per_flow_median": 40.0,
+   "pkts_per_flow_median": 3.0,
+   "dur_ms_median": 111.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-02-22|88.247.117.206": {
+   "K5": {
+    "windows": 16,
+    "det_ge1": 0.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.0,
+    "recall_median": 0.0,
+    "margin_min": -0.7213392114514526,
+    "margin_median": -0.7135954707360224,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.0,
+    "recall_min": 0.0,
+    "margin_median": -0.7514670721627766
+   },
+   "labels": {
+    "web_bruteforce": 16
+   },
+   "attack_flows": 16,
+   "attack_share_of_source_flows": 0.5333,
+   "victims": 1,
+   "top_victim": "172.31.69.28",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "5555": 14,
+    "2323": 2
+   },
+   "attack_windows_flow_level": 16,
+   "flows_per_attack_window_median": 1.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 44.0,
+   "down_bytes_per_flow_median": 40.0,
+   "pkts_per_flow_median": 2.0,
+   "dur_ms_median": 1.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-03-02|172.31.69.10": {
+   "K5": {
+    "windows": 344,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9941860465116279,
+    "recall_median": 0.9941860465116279,
+    "margin_min": 0.028320085181777754,
+    "margin_median": 0.04519399058572943,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 0.6,
+    "recall_min": 0.0,
+    "margin_median": 0.0054770069547415146
+   },
+   "labels": {
+    "bot": 11226
+   },
+   "attack_flows": 11226,
+   "attack_share_of_source_flows": 0.9968,
+   "victims": 1,
+   "top_victim": "18.219.211.138",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "8080": 11226
+   },
+   "attack_windows_flow_level": 344,
+   "flows_per_attack_window_median": 30.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 538.0,
+   "down_bytes_per_flow_median": 341.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 11.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-03-02|172.31.69.14": {
+   "K5": {
+    "windows": 344,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9912790697674418,
+    "recall_median": 0.997093023255814,
+    "margin_min": 0.028849777557642176,
+    "margin_median": 0.05008160778408799,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 0.6,
+    "recall_min": 0.0,
+    "margin_median": 0.009643127628754133
+   },
+   "labels": {
+    "bot": 11226
+   },
+   "attack_flows": 11226,
+   "attack_share_of_source_flows": 0.998,
+   "victims": 1,
+   "top_victim": "18.219.211.138",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "8080": 11226
+   },
+   "attack_windows_flow_level": 344,
+   "flows_per_attack_window_median": 30.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 538.0,
+   "down_bytes_per_flow_median": 341.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 11.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-03-02|172.31.69.17": {
+   "K5": {
+    "windows": 344,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9883720930232558,
+    "recall_median": 0.997093023255814,
+    "margin_min": 0.021745010308518053,
+    "margin_median": 0.04519399058572943,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 0.6,
+    "recall_min": 0.0,
+    "margin_median": -0.001415843170926634
+   },
+   "labels": {
+    "bot": 11226
+   },
+   "attack_flows": 11226,
+   "attack_share_of_source_flows": 0.9961,
+   "victims": 1,
+   "top_victim": "18.219.211.138",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "8080": 11226
+   },
+   "attack_windows_flow_level": 344,
+   "flows_per_attack_window_median": 30.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 538.0,
+   "down_bytes_per_flow_median": 341.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 12.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-03-02|172.31.69.23": {
+   "K5": {
+    "windows": 344,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 0.8333333333333334,
+    "recall_min": 0.2819767441860465,
+    "recall_median": 0.9941860465116279,
+    "margin_min": -0.001347330675563141,
+    "margin_median": 0.048104866879999764,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 0.5666666666666667,
+    "recall_min": 0.03197674418604651,
+    "margin_median": 0.003020565142215881
+   },
+   "labels": {
+    "bot": 5612
+   },
+   "attack_flows": 5612,
+   "attack_share_of_source_flows": 0.9959,
+   "victims": 1,
+   "top_victim": "18.219.211.138",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "8080": 5612
+   },
+   "attack_windows_flow_level": 344,
+   "flows_per_attack_window_median": 15.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 538.0,
+   "down_bytes_per_flow_median": 341.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 11.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-03-02|172.31.69.26": {
+   "K5": {
+    "windows": 344,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9912790697674418,
+    "recall_median": 0.9941860465116279,
+    "margin_min": 0.03198695646001681,
+    "margin_median": 0.05418409797709367,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 0.6,
+    "recall_min": 0.0,
+    "margin_median": 0.009643127628754133
+   },
+   "labels": {
+    "bot": 11226
+   },
+   "attack_flows": 11226,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "18.219.211.138",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "8080": 11226
+   },
+   "attack_windows_flow_level": 344,
+   "flows_per_attack_window_median": 30.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 538.0,
+   "down_bytes_per_flow_median": 341.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 11.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-03-02|172.31.69.29": {
+   "K5": {
+    "windows": 344,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9883720930232558,
+    "recall_median": 0.997093023255814,
+    "margin_min": 0.03198695646001681,
+    "margin_median": 0.05418409797709367,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 0.6,
+    "recall_min": 0.0,
+    "margin_median": 0.009643127628754133
+   },
+   "labels": {
+    "bot": 11226
+   },
+   "attack_flows": 11226,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 1,
+   "top_victim": "18.219.211.138",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "8080": 11226
+   },
+   "attack_windows_flow_level": 344,
+   "flows_per_attack_window_median": 30.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 538.0,
+   "down_bytes_per_flow_median": 341.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 11.0,
+   "no_reply_share": 0.0
+  },
+  "nfcic/2018-03-02|172.31.69.8": {
+   "K5": {
+    "windows": 344,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9912790697674418,
+    "recall_median": 0.997093023255814,
+    "margin_min": 0.03168606679373076,
+    "margin_median": 0.05418409797709367,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 0.6,
+    "recall_min": 0.0,
+    "margin_median": 0.009643127628754133
+   },
+   "labels": {
+    "bot": 11228
+   },
+   "attack_flows": 11228,
+   "attack_share_of_source_flows": 0.9986,
+   "victims": 1,
+   "top_victim": "18.219.211.138",
+   "top_victim_share": 1.0,
+   "top_ports": {
+    "8080": 11228
+   },
+   "attack_windows_flow_level": 344,
+   "flows_per_attack_window_median": 30.0,
+   "tcp_share": 1.0,
+   "up_bytes_per_flow_median": 538.0,
+   "down_bytes_per_flow_median": 341.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 11.0,
+   "no_reply_share": 0.0
+  },
+  "nfton/all|192.168.1.193": {
+   "K5": {
+    "windows": 3185,
+    "det_ge1": 1.0,
+    "det_ge20": 0.6666666666666666,
+    "det_ge50": 0.0,
+    "recall_min": 0.09481946624803768,
+    "recall_median": 0.27032967032967037,
+    "margin_min": -0.20466790953368347,
+    "margin_median": -0.15187929230981845,
+    "failures_threshold": 0,
+    "failures_ranking": 2
+   },
+   "single": {
+    "det_ge20": 0.5666666666666667,
+    "recall_min": 0.015698587127158554,
+    "margin_median": -0.1802966627821967
+   },
+   "labels": {
+    "backdoor": 202998,
+    "ransomware": 228
+   },
+   "attack_flows": 203226,
+   "attack_share_of_source_flows": 0.8502,
+   "victims": 2,
+   "top_victim": "192.168.1.33",
+   "top_victim_share": 0.842,
+   "top_ports": {
+    "8080": 120174,
+    "80": 82814,
+    "4444": 103,
+    "137": 73,
+    "7870": 43
+   },
+   "attack_windows_flow_level": 3185,
+   "flows_per_attack_window_median": 76.0,
+   "tcp_share": 0.9996,
+   "up_bytes_per_flow_median": 288.0,
+   "down_bytes_per_flow_median": 240.0,
+   "pkts_per_flow_median": 12.0,
+   "dur_ms_median": 1500.0,
+   "no_reply_share": 0.0004
+  },
+  "nfton/all|192.168.1.30": {
+   "K5": {
+    "windows": 213,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.7136150234741784,
+    "recall_median": 0.812206572769953,
+    "margin_min": 0.2084017887357707,
+    "margin_median": 0.26074227027468777,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 0.9333333333333333,
+    "recall_min": 0.009389671361502348,
+    "margin_median": 0.25879328083610814
+   },
+   "labels": {
+    "password": 62415
+   },
+   "attack_flows": 62415,
+   "attack_share_of_source_flows": 0.9927,
+   "victims": 29,
+   "top_victim": "192.168.1.190",
+   "top_victim_share": 0.4495,
+   "top_ports": {
+    "80": 46743,
+    "21": 15549,
+    "53": 89,
+    "443": 34
+   },
+   "attack_windows_flow_level": 213,
+   "flows_per_attack_window_median": 315.0,
+   "tcp_share": 0.9986,
+   "up_bytes_per_flow_median": 415.0,
+   "down_bytes_per_flow_median": 919.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 2.0,
+   "no_reply_share": 0.0086
+  },
+  "nfton/all|192.168.1.31": {
+   "K5": {
+    "windows": 386,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.5569948186528497,
+    "recall_median": 0.6839378238341969,
+    "margin_min": 0.0578771501856134,
+    "margin_median": 0.19421903882126137,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 0.9333333333333333,
+    "recall_min": 0.05958549222797927,
+    "margin_median": 0.19223924044707527
+   },
+   "labels": {
+    "mitm": 4269,
+    "password": 73451
+   },
+   "attack_flows": 77720,
+   "attack_share_of_source_flows": 0.9423,
+   "victims": 92,
+   "top_victim": "192.168.1.190",
+   "top_victim_share": 0.397,
+   "top_ports": {
+    "80": 49941,
+    "21": 23752,
+    "53": 3495,
+    "443": 527,
+    "8610": 1
+   },
+   "attack_windows_flow_level": 386,
+   "flows_per_attack_window_median": 238.0,
+   "tcp_share": 0.955,
+   "up_bytes_per_flow_median": 381.0,
+   "down_bytes_per_flow_median": 919.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 3.0,
+   "no_reply_share": 0.0058
+  },
+  "nfton/all|192.168.1.32": {
+   "K5": {
+    "windows": 1512,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9768518518518519,
+    "recall_median": 0.9890873015873016,
+    "margin_min": 0.5056749259144702,
+    "margin_median": 0.6675933591437464,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 1.0,
+    "recall_min": 0.8690476190476191,
+    "margin_median": 0.6218669143094225
+   },
+   "labels": {
+    "password": 1032749,
+    "xss": 313965
+   },
+   "attack_flows": 1346714,
+   "attack_share_of_source_flows": 0.9299,
+   "victims": 29,
+   "top_victim": "192.168.1.195",
+   "top_victim_share": 0.6632,
+   "top_ports": {
+    "80": 1192378,
+    "53": 142958,
+    "21": 11328,
+    "443": 50
+   },
+   "attack_windows_flow_level": 1512,
+   "flows_per_attack_window_median": 845.0,
+   "tcp_share": 0.8938,
+   "up_bytes_per_flow_median": 421.0,
+   "down_bytes_per_flow_median": 769.0,
+   "pkts_per_flow_median": 11.0,
+   "dur_ms_median": 337.0,
+   "no_reply_share": 0.0167
+  },
+  "nfton/all|192.168.1.33": {
+   "K5": {
+    "windows": 1454,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.7558459422283357,
+    "recall_median": 0.828748280605227,
+    "margin_min": 0.13920464204898308,
+    "margin_median": 0.2569966577008757,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 0.8666666666666667,
+    "recall_min": 0.007565337001375516,
+    "margin_median": 0.2524149246751315
+   },
+   "labels": {
+    "ransomware": 2261,
+    "password": 255565,
+    "backdoor": 198
+   },
+   "attack_flows": 258024,
+   "attack_share_of_source_flows": 0.7199,
+   "victims": 14,
+   "top_victim": "192.168.1.190",
+   "top_victim_share": 0.5183,
+   "top_ports": {
+    "80": 217037,
+    "21": 38481,
+    "445": 2115,
+    "123": 96,
+    "53": 82
+   },
+   "attack_windows_flow_level": 1454,
+   "flows_per_attack_window_median": 167.0,
+   "tcp_share": 0.9993,
+   "up_bytes_per_flow_median": 421.0,
+   "down_bytes_per_flow_median": 1150.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 3.0,
+   "no_reply_share": 0.0164
+  },
+  "nfton/all|192.168.1.34": {
+   "K5": {
+    "windows": 52,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.5192307692307693,
+    "recall_median": 0.5384615384615384,
+    "margin_min": 0.0441914449522241,
+    "margin_median": 0.1224081426360436,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 1.0,
+    "recall_min": 0.34615384615384615,
+    "margin_median": 0.10203122255337538
+   },
+   "labels": {
+    "mitm": 1744
+   },
+   "attack_flows": 1744,
+   "attack_share_of_source_flows": 0.9727,
+   "victims": 80,
+   "top_victim": "192.168.1.1",
+   "top_victim_share": 0.7397,
+   "top_ports": {
+    "53": 1290,
+    "443": 380,
+    "80": 73,
+    "49788": 1
+   },
+   "attack_windows_flow_level": 52,
+   "flows_per_attack_window_median": 4.0,
+   "tcp_share": 0.2603,
+   "up_bytes_per_flow_median": 140.0,
+   "down_bytes_per_flow_median": 258.0,
+   "pkts_per_flow_median": 3.0,
+   "dur_ms_median": 28.0,
+   "no_reply_share": 0.0057
+  },
+  "nfton/all|192.168.1.35": {
+   "K5": {
+    "windows": 801,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9837702871410736,
+    "recall_median": 0.9925093632958801,
+    "margin_min": 0.4763529531553508,
+    "margin_median": 0.6404805854859685,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 1.0,
+    "recall_min": 0.8227215980024969,
+    "margin_median": 0.588697229955055
+   },
+   "labels": {
+    "xss": 1265383,
+    "password": 90045
+   },
+   "attack_flows": 1355428,
+   "attack_share_of_source_flows": 0.9912,
+   "victims": 30,
+   "top_victim": "192.168.1.1",
+   "top_victim_share": 0.4185,
+   "top_ports": {
+    "80": 776591,
+    "53": 567210,
+    "21": 11537,
+    "443": 90
+   },
+   "attack_windows_flow_level": 801,
+   "flows_per_attack_window_median": 1739.0,
+   "tcp_share": 0.5815,
+   "up_bytes_per_flow_median": 523.0,
+   "down_bytes_per_flow_median": 334.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 30.0,
+   "no_reply_share": 0.0033
+  },
+  "nfton/all|192.168.1.36": {
+   "K5": {
+    "windows": 218,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.9128440366972477,
+    "recall_median": 0.9541284403669725,
+    "margin_min": 0.39623741000020046,
+    "margin_median": 0.5424847950745366,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 1.0,
+    "recall_min": 0.518348623853211,
+    "margin_median": 0.5275230362098031
+   },
+   "labels": {
+    "xss": 242712
+   },
+   "attack_flows": 242712,
+   "attack_share_of_source_flows": 0.8218,
+   "victims": 22,
+   "top_victim": "192.168.1.1",
+   "top_victim_share": 0.4396,
+   "top_ports": {
+    "80": 135974,
+    "53": 106691,
+    "443": 41,
+    "8612": 3,
+    "8610": 3
+   },
+   "attack_windows_flow_level": 218,
+   "flows_per_attack_window_median": 1058.0,
+   "tcp_share": 0.5604,
+   "up_bytes_per_flow_median": 538.0,
+   "down_bytes_per_flow_median": 334.0,
+   "pkts_per_flow_median": 7.0,
+   "dur_ms_median": 21.0,
+   "no_reply_share": 0.0126
+  },
+  "nfton/all|192.168.1.37": {
+   "K5": {
+    "windows": 168,
+    "det_ge1": 1.0,
+    "det_ge20": 0.0,
+    "det_ge50": 0.0,
+    "recall_min": 0.023809523809523808,
+    "recall_median": 0.02976190476190476,
+    "margin_min": -0.47558506168366965,
+    "margin_median": -0.30388185716638855,
+    "failures_threshold": 0,
+    "failures_ranking": 6
+   },
+   "single": {
+    "det_ge20": 0.03333333333333333,
+    "recall_min": 0.011904761904761904,
+    "margin_median": -0.35635578676437063
+   },
+   "labels": {
+    "ransomware": 1482,
+    "backdoor": 176
+   },
+   "attack_flows": 1658,
+   "attack_share_of_source_flows": 0.0733,
+   "victims": 7,
+   "top_victim": "192.168.1.193",
+   "top_victim_share": 0.9065,
+   "top_ports": {
+    "445": 1328,
+    "123": 107,
+    "135": 50,
+    "49236": 35,
+    "53": 32
+   },
+   "attack_windows_flow_level": 168,
+   "flows_per_attack_window_median": 2.0,
+   "tcp_share": 0.9162,
+   "up_bytes_per_flow_median": 4518.0,
+   "down_bytes_per_flow_median": 204.0,
+   "pkts_per_flow_median": 11.0,
+   "dur_ms_median": 30.0,
+   "no_reply_share": 0.1466
+  },
+  "nfton/all|192.168.1.38": {
+   "K5": {
+    "windows": 91,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 0.8791208791208791,
+    "recall_median": 0.945054945054945,
+    "margin_min": 0.15692766619180326,
+    "margin_median": 0.2719742513706157,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 0.9333333333333333,
+    "recall_min": 0.01098901098901099,
+    "margin_median": 0.2722506561940629
+   },
+   "labels": {
+    "password": 30742
+   },
+   "attack_flows": 30742,
+   "attack_share_of_source_flows": 0.9945,
+   "victims": 9,
+   "top_victim": "192.168.1.190",
+   "top_victim_share": 0.3772,
+   "top_ports": {
+    "80": 16776,
+    "21": 13951,
+    "53": 15
+   },
+   "attack_windows_flow_level": 91,
+   "flows_per_attack_window_median": 200.0,
+   "tcp_share": 0.9995,
+   "up_bytes_per_flow_median": 375.0,
+   "down_bytes_per_flow_median": 731.0,
+   "pkts_per_flow_median": 9.0,
+   "dur_ms_median": 3.0,
+   "no_reply_share": 0.0263
+  },
+  "nfton/all|192.168.1.39": {
+   "K5": {
+    "windows": 703,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 1.0,
+    "recall_min": 1.0,
+    "recall_median": 1.0,
+    "margin_min": 0.49316783044025364,
+    "margin_median": 0.6486730615252413,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 1.0,
+    "recall_min": 0.9004267425320057,
+    "margin_median": 0.5917713694931984
+   },
+   "labels": {
+    "xss": 1012363
+   },
+   "attack_flows": 1012363,
+   "attack_share_of_source_flows": 0.9997,
+   "victims": 23,
+   "top_victim": "192.168.1.1",
+   "top_victim_share": 0.4233,
+   "top_ports": {
+    "80": 583774,
+    "53": 428528,
+    "443": 61
+   },
+   "attack_windows_flow_level": 703,
+   "flows_per_attack_window_median": 1314.0,
+   "tcp_share": 0.5767,
+   "up_bytes_per_flow_median": 581.0,
+   "down_bytes_per_flow_median": 486.0,
+   "pkts_per_flow_median": 10.0,
+   "dur_ms_median": 33.0,
+   "no_reply_share": 0.0032
+  },
+  "nfunsw/all|175.45.176.0": {
+   "K5": {
+    "windows": 1025,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 0.8333333333333334,
+    "recall_min": 0.25951219512195123,
+    "recall_median": 0.9917073170731707,
+    "margin_min": -0.09446916561159927,
+    "margin_median": 0.253342562165818,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 0.8333333333333334,
+    "recall_min": 0.005853658536585366,
+    "margin_median": 0.252925125327419
+   },
+   "labels": {
+    "reconnaissance": 2618,
+    "worms": 25,
+    "analysis": 2,
+    "fuzzers": 5776,
+    "shellcode": 245,
+    "generic": 2970,
+    "backdoor": 519,
+    "exploits": 6871,
+    "dos": 1248
+   },
+   "attack_flows": 20274,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 10,
+   "top_victim": "149.171.126.12",
+   "top_victim_share": 0.2084,
+   "top_ports": {
+    "179": 3004,
+    "80": 2876,
+    "53": 2025,
+    "21": 2017,
+    "520": 1704
+   },
+   "attack_windows_flow_level": 1025,
+   "flows_per_attack_window_median": 11.0,
+   "tcp_share": 0.7005,
+   "up_bytes_per_flow_median": 576.0,
+   "down_bytes_per_flow_median": 256.0,
+   "pkts_per_flow_median": 16.0,
+   "dur_ms_median": 462.0,
+   "no_reply_share": 0.2955
+  },
+  "nfunsw/all|175.45.176.1": {
+   "K5": {
+    "windows": 1020,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 0.8333333333333334,
+    "recall_min": 0.2725490196078431,
+    "recall_median": 0.9754901960784313,
+    "margin_min": -0.09155328509451699,
+    "margin_median": 0.2763386116823362,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 0.8333333333333334,
+    "recall_min": 0.0029411764705882353,
+    "margin_median": 0.2714190800694075
+   },
+   "labels": {
+    "generic": 3837,
+    "fuzzers": 5269,
+    "backdoor": 582,
+    "worms": 17,
+    "analysis": 248,
+    "dos": 939,
+    "shellcode": 427,
+    "exploits": 7420,
+    "reconnaissance": 3062
+   },
+   "attack_flows": 21801,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 10,
+   "top_victim": "149.171.126.18",
+   "top_victim_share": 0.1495,
+   "top_ports": {
+    "80": 3746,
+    "179": 2753,
+    "21": 2751,
+    "53": 2668,
+    "520": 1630
+   },
+   "attack_windows_flow_level": 1020,
+   "flows_per_attack_window_median": 14.0,
+   "tcp_share": 0.7007,
+   "up_bytes_per_flow_median": 628.0,
+   "down_bytes_per_flow_median": 256.0,
+   "pkts_per_flow_median": 16.0,
+   "dur_ms_median": 501.0,
+   "no_reply_share": 0.3107
+  },
+  "nfunsw/all|175.45.176.2": {
+   "K5": {
+    "windows": 1025,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 0.8333333333333334,
+    "recall_min": 0.27902439024390246,
+    "recall_median": 0.9668292682926829,
+    "margin_min": -0.07974834319685092,
+    "margin_median": 0.277213378140523,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 0.8666666666666667,
+    "recall_min": 0.006829268292682927,
+    "margin_median": 0.2764533690318344
+   },
+   "labels": {
+    "generic": 829,
+    "backdoor": 537,
+    "dos": 992,
+    "fuzzers": 5317,
+    "shellcode": 307,
+    "exploits": 6795,
+    "worms": 32,
+    "analysis": 149,
+    "reconnaissance": 2804
+   },
+   "attack_flows": 17762,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 10,
+   "top_victim": "149.171.126.16",
+   "top_victim_share": 0.1432,
+   "top_ports": {
+    "179": 3533,
+    "80": 3422,
+    "21": 1872,
+    "520": 1870,
+    "111": 1471
+   },
+   "attack_windows_flow_level": 1025,
+   "flows_per_attack_window_median": 11.0,
+   "tcp_share": 0.7922,
+   "up_bytes_per_flow_median": 792.0,
+   "down_bytes_per_flow_median": 336.0,
+   "pkts_per_flow_median": 18.0,
+   "dur_ms_median": 630.0,
+   "no_reply_share": 0.2183
+  },
+  "nfunsw/all|175.45.176.3": {
+   "K5": {
+    "windows": 1021,
+    "det_ge1": 1.0,
+    "det_ge20": 1.0,
+    "det_ge50": 0.8333333333333334,
+    "recall_min": 0.2948090107737512,
+    "recall_median": 0.964250734573947,
+    "margin_min": -0.08210357560716094,
+    "margin_median": 0.292151257096555,
+    "failures_threshold": 0,
+    "failures_ranking": 0
+   },
+   "single": {
+    "det_ge20": 0.8666666666666667,
+    "recall_min": 0.0068560235063663075,
+    "margin_median": 0.29178627478406227
+   },
+   "labels": {
+    "reconnaissance": 2679,
+    "fuzzers": 4721,
+    "generic": 5609,
+    "shellcode": 715,
+    "analysis": 267,
+    "dos": 1038,
+    "exploits": 7149,
+    "backdoor": 460,
+    "worms": 35
+   },
+   "attack_flows": 22673,
+   "attack_share_of_source_flows": 1.0,
+   "victims": 10,
+   "top_victim": "149.171.126.15",
+   "top_victim_share": 0.1941,
+   "top_ports": {
+    "80": 4014,
+    "53": 3864,
+    "179": 3494,
+    "21": 1676,
+    "111": 1516
+   },
+   "attack_windows_flow_level": 1021,
+   "flows_per_attack_window_median": 16.0,
+   "tcp_share": 0.7109,
+   "up_bytes_per_flow_median": 650.0,
+   "down_bytes_per_flow_median": 256.0,
+   "pkts_per_flow_median": 16.0,
+   "dur_ms_median": 481.0,
+   "no_reply_share": 0.3169
+  }
+ },
+ "domains": {
+  "nfbot/all": {
+   "ddos": {
+    "flows": 7150882,
+    "sources": 8
+   },
+   "theft": {
+    "flows": 1615,
+    "sources": 4
+   },
+   "dos": {
+    "flows": 8034190,
+    "sources": 8
+   }
+  },
+  "nfcic/2018-02-14": {
+   "ssh_bruteforce": {
+    "flows": 188474,
+    "sources": 1
+   }
+  },
+  "nfcic/2018-02-16": {
+   "dos_hulk": {
+    "flows": 100076,
+    "sources": 1
+   }
+  },
+  "nfcic/2018-02-20": {
+   "ddos_loic_http": {
+    "flows": 2153,
+    "sources": 10
+   }
+  },
+  "nfcic/2018-02-21": {
+   "ddos_hoic": {
+    "flows": 1032311,
+    "sources": 10
+   }
+  },
+  "nfcic/2018-02-22": {
+   "web_sql_injection": {
+    "flows": 305,
+    "sources": 4
+   },
+   "web_xss": {
+    "flows": 255,
+    "sources": 4
+   },
+   "web_bruteforce": {
+    "flows": 681,
+    "sources": 289
+   }
+  },
+  "nfcic/2018-03-02": {
+   "bot": {
+    "flows": 72970,
+    "sources": 7
+   }
+  },
+  "nfton/all": {
+   "ransomware": {
+    "flows": 3971,
+    "sources": 3
+   },
+   "xss": {
+    "flows": 2834435,
+    "sources": 5
+   },
+   "password": {
+    "flows": 1544967,
+    "sources": 6
+   },
+   "mitm": {
+    "flows": 6013,
+    "sources": 2
+   },
+   "backdoor": {
+    "flows": 203384,
+    "sources": 4
+   }
+  },
+  "nfunsw/all": {
+   "worms": {
+    "flows": 109,
+    "sources": 4
+   },
+   "shellcode": {
+    "flows": 1694,
+    "sources": 4
+   },
+   "analysis": {
+    "flows": 666,
+    "sources": 4
+   },
+   "backdoor": {
+    "flows": 2098,
+    "sources": 4
+   },
+   "fuzzers": {
+    "flows": 21083,
+    "sources": 4
+   },
+   "generic": {
+    "flows": 13245,
+    "sources": 4
+   },
+   "reconnaissance": {
+    "flows": 11163,
+    "sources": 4
+   },
+   "dos": {
+    "flows": 4217,
+    "sources": 4
+   },
+   "exploits": {
+    "flows": 28235,
+    "sources": 4
+   }
+  }
+ },
+ "seconds": 36.5,
+ "peak_rss_mb": 2276.7890625
+}
