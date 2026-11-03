@@ -43,6 +43,17 @@ REPS = (6, 7, 8)
 ARMS = {"F0": ("base", "stress"), "F1": ("base", "stress"), "F4": ("base", "stress"),
         "F2": ("base",), "F5": ("base",)}  # fmt: skip
 KS = (1, 2, 3, 5)
+FAMILY = {
+    "nfcic/2018-02-14": "ssh_bruteforce",
+    "nfcic/2018-02-16": "dos_hulk",
+    "nfcic/2018-02-20": "ddos_loic_http",
+    "nfcic/2018-02-21": "ddos_hoic",
+    "nfcic/2018-02-22": "web_bruteforce/xss/sql_injection",
+    "nfcic/2018-03-02": "bot",
+    "nfunsw/all": "9 families",
+    "nfton/all": "password/xss/backdoor/ransomware/mitm",
+    "nfbot/all": "dos/ddos/theft",
+}  # fmt: skip (Phase 8n compare_candidates.FAMILY)
 HOUR_MS = 3_600_000
 C4_MARGIN = 0.10  # exploratory
 
@@ -120,6 +131,17 @@ def summarise(per_fit: dict[tuple, dict[str, dict]]) -> dict:
     out["collapses"] = sum(1 for per in per_fit.values() for n in STRONG
                            if n in per and (per[n]["window_recall"] or 0) < 0.2)  # fmt: skip
     out["fits"] = len(per_fit)
+    out["per_domain"] = {}
+    for name in domains:
+        rec = [per[name]["window_recall"] for per in per_fit.values()]
+        out["per_domain"][name] = {
+            "family": FAMILY.get(name),
+            "mean": float(np.mean(rec)),
+            "min": float(np.min(rec)),
+            "max": float(np.max(rec)),
+            "fa_mean": float(np.mean([per[name]["false_alerts"] for per in per_fit.values()])),
+            "fpr_mean": float(np.mean([per[name]["fpr"] for per in per_fit.values()])),
+        }
     return out
 
 

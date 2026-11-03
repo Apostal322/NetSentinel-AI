@@ -1,0 +1,1172 @@
+{
+ "runs": {
+  "F0/base": {
+   "nfcic/2018-02-14 r6": {
+    "members": 5,
+    "fit_seconds": 5.9,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r6": {
+    "members": 5,
+    "fit_seconds": 5.9,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r6": {
+    "members": 5,
+    "fit_seconds": 5.9,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r6": {
+    "members": 5,
+    "fit_seconds": 5.9,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r6": {
+    "members": 5,
+    "fit_seconds": 5.9,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r6": {
+    "members": 5,
+    "fit_seconds": 5.9,
+    "sources": 2
+   },
+   "nfunsw/all r6": {
+    "members": 5,
+    "fit_seconds": 44.5,
+    "sources": 12
+   },
+   "nfton/all r6": {
+    "members": 5,
+    "fit_seconds": 42.4,
+    "sources": 12
+   },
+   "nfbot/all r6": {
+    "members": 5,
+    "fit_seconds": 45.2,
+    "sources": 13
+   },
+   "nfcic/2018-02-14 r7": {
+    "members": 5,
+    "fit_seconds": 6.6,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r7": {
+    "members": 5,
+    "fit_seconds": 6.6,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r7": {
+    "members": 5,
+    "fit_seconds": 6.6,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r7": {
+    "members": 5,
+    "fit_seconds": 6.6,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r7": {
+    "members": 5,
+    "fit_seconds": 6.6,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r7": {
+    "members": 5,
+    "fit_seconds": 6.6,
+    "sources": 2
+   },
+   "nfunsw/all r7": {
+    "members": 5,
+    "fit_seconds": 40.6,
+    "sources": 12
+   },
+   "nfton/all r7": {
+    "members": 5,
+    "fit_seconds": 37.2,
+    "sources": 12
+   },
+   "nfbot/all r7": {
+    "members": 5,
+    "fit_seconds": 39.6,
+    "sources": 13
+   },
+   "nfcic/2018-02-14 r8": {
+    "members": 5,
+    "fit_seconds": 5.0,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r8": {
+    "members": 5,
+    "fit_seconds": 5.0,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r8": {
+    "members": 5,
+    "fit_seconds": 5.0,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r8": {
+    "members": 5,
+    "fit_seconds": 5.0,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r8": {
+    "members": 5,
+    "fit_seconds": 5.0,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r8": {
+    "members": 5,
+    "fit_seconds": 5.0,
+    "sources": 2
+   },
+   "nfunsw/all r8": {
+    "members": 5,
+    "fit_seconds": 50.4,
+    "sources": 12
+   },
+   "nfton/all r8": {
+    "members": 5,
+    "fit_seconds": 43.6,
+    "sources": 12
+   },
+   "nfbot/all r8": {
+    "members": 5,
+    "fit_seconds": 48.6,
+    "sources": 13
+   }
+  },
+  "F0/stress": {
+   "nfcic/2018-02-14 r6": {
+    "members": 5,
+    "fit_seconds": 7.6,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r6": {
+    "members": 5,
+    "fit_seconds": 7.6,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r6": {
+    "members": 5,
+    "fit_seconds": 7.6,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r6": {
+    "members": 5,
+    "fit_seconds": 7.6,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r6": {
+    "members": 5,
+    "fit_seconds": 7.6,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r6": {
+    "members": 5,
+    "fit_seconds": 7.6,
+    "sources": 2
+   },
+   "nfunsw/all r6": {
+    "members": 5,
+    "fit_seconds": 44.8,
+    "sources": 12
+   },
+   "nfton/all r6": {
+    "members": 5,
+    "fit_seconds": 40.6,
+    "sources": 12
+   },
+   "nfbot/all r6": {
+    "members": 5,
+    "fit_seconds": 45.2,
+    "sources": 13
+   },
+   "nfcic/2018-02-14 r7": {
+    "members": 5,
+    "fit_seconds": 7.9,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r7": {
+    "members": 5,
+    "fit_seconds": 7.9,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r7": {
+    "members": 5,
+    "fit_seconds": 7.9,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r7": {
+    "members": 5,
+    "fit_seconds": 7.9,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r7": {
+    "members": 5,
+    "fit_seconds": 7.9,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r7": {
+    "members": 5,
+    "fit_seconds": 7.9,
+    "sources": 2
+   },
+   "nfunsw/all r7": {
+    "members": 5,
+    "fit_seconds": 45.3,
+    "sources": 12
+   },
+   "nfton/all r7": {
+    "members": 5,
+    "fit_seconds": 39.7,
+    "sources": 12
+   },
+   "nfbot/all r7": {
+    "members": 5,
+    "fit_seconds": 45.6,
+    "sources": 13
+   },
+   "nfcic/2018-02-14 r8": {
+    "members": 5,
+    "fit_seconds": 6.8,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r8": {
+    "members": 5,
+    "fit_seconds": 6.8,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r8": {
+    "members": 5,
+    "fit_seconds": 6.8,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r8": {
+    "members": 5,
+    "fit_seconds": 6.8,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r8": {
+    "members": 5,
+    "fit_seconds": 6.8,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r8": {
+    "members": 5,
+    "fit_seconds": 6.8,
+    "sources": 2
+   },
+   "nfunsw/all r8": {
+    "members": 5,
+    "fit_seconds": 43.7,
+    "sources": 12
+   },
+   "nfton/all r8": {
+    "members": 5,
+    "fit_seconds": 38.5,
+    "sources": 12
+   },
+   "nfbot/all r8": {
+    "members": 5,
+    "fit_seconds": 40.2,
+    "sources": 13
+   }
+  },
+  "F1/base": {
+   "nfcic/2018-02-14 r6": {
+    "members": 5,
+    "fit_seconds": 5.8,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r6": {
+    "members": 5,
+    "fit_seconds": 5.8,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r6": {
+    "members": 5,
+    "fit_seconds": 5.8,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r6": {
+    "members": 5,
+    "fit_seconds": 5.8,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r6": {
+    "members": 5,
+    "fit_seconds": 5.8,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r6": {
+    "members": 5,
+    "fit_seconds": 5.8,
+    "sources": 2
+   },
+   "nfunsw/all r6": {
+    "members": 5,
+    "fit_seconds": 38.7,
+    "sources": 12
+   },
+   "nfton/all r6": {
+    "members": 5,
+    "fit_seconds": 37.4,
+    "sources": 12
+   },
+   "nfbot/all r6": {
+    "members": 5,
+    "fit_seconds": 47.0,
+    "sources": 13
+   },
+   "nfcic/2018-02-14 r7": {
+    "members": 5,
+    "fit_seconds": 6.8,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r7": {
+    "members": 5,
+    "fit_seconds": 6.8,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r7": {
+    "members": 5,
+    "fit_seconds": 6.8,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r7": {
+    "members": 5,
+    "fit_seconds": 6.8,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r7": {
+    "members": 5,
+    "fit_seconds": 6.8,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r7": {
+    "members": 5,
+    "fit_seconds": 6.8,
+    "sources": 2
+   },
+   "nfunsw/all r7": {
+    "members": 5,
+    "fit_seconds": 43.2,
+    "sources": 12
+   },
+   "nfton/all r7": {
+    "members": 5,
+    "fit_seconds": 38.5,
+    "sources": 12
+   },
+   "nfbot/all r7": {
+    "members": 5,
+    "fit_seconds": 53.4,
+    "sources": 13
+   },
+   "nfcic/2018-02-14 r8": {
+    "members": 5,
+    "fit_seconds": 28.7,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r8": {
+    "members": 5,
+    "fit_seconds": 28.7,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r8": {
+    "members": 5,
+    "fit_seconds": 28.7,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r8": {
+    "members": 5,
+    "fit_seconds": 28.7,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r8": {
+    "members": 5,
+    "fit_seconds": 28.7,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r8": {
+    "members": 5,
+    "fit_seconds": 28.7,
+    "sources": 2
+   },
+   "nfunsw/all r8": {
+    "members": 5,
+    "fit_seconds": 45.9,
+    "sources": 12
+   },
+   "nfton/all r8": {
+    "members": 5,
+    "fit_seconds": 43.3,
+    "sources": 12
+   },
+   "nfbot/all r8": {
+    "members": 5,
+    "fit_seconds": 49.8,
+    "sources": 13
+   }
+  },
+  "F1/stress": {
+   "nfcic/2018-02-14 r6": {
+    "members": 5,
+    "fit_seconds": 5.7,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r6": {
+    "members": 5,
+    "fit_seconds": 5.7,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r6": {
+    "members": 5,
+    "fit_seconds": 5.7,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r6": {
+    "members": 5,
+    "fit_seconds": 5.7,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r6": {
+    "members": 5,
+    "fit_seconds": 5.7,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r6": {
+    "members": 5,
+    "fit_seconds": 5.7,
+    "sources": 2
+   },
+   "nfunsw/all r6": {
+    "members": 5,
+    "fit_seconds": 44.3,
+    "sources": 12
+   },
+   "nfton/all r6": {
+    "members": 5,
+    "fit_seconds": 41.4,
+    "sources": 12
+   },
+   "nfbot/all r6": {
+    "members": 5,
+    "fit_seconds": 51.1,
+    "sources": 13
+   },
+   "nfcic/2018-02-14 r7": {
+    "members": 5,
+    "fit_seconds": 9.2,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r7": {
+    "members": 5,
+    "fit_seconds": 9.2,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r7": {
+    "members": 5,
+    "fit_seconds": 9.2,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r7": {
+    "members": 5,
+    "fit_seconds": 9.2,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r7": {
+    "members": 5,
+    "fit_seconds": 9.2,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r7": {
+    "members": 5,
+    "fit_seconds": 9.2,
+    "sources": 2
+   },
+   "nfunsw/all r7": {
+    "members": 5,
+    "fit_seconds": 50.3,
+    "sources": 12
+   },
+   "nfton/all r7": {
+    "members": 5,
+    "fit_seconds": 44.6,
+    "sources": 12
+   },
+   "nfbot/all r7": {
+    "members": 5,
+    "fit_seconds": 49.4,
+    "sources": 13
+   },
+   "nfcic/2018-02-14 r8": {
+    "members": 5,
+    "fit_seconds": 6.3,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r8": {
+    "members": 5,
+    "fit_seconds": 6.3,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r8": {
+    "members": 5,
+    "fit_seconds": 6.3,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r8": {
+    "members": 5,
+    "fit_seconds": 6.3,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r8": {
+    "members": 5,
+    "fit_seconds": 6.3,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r8": {
+    "members": 5,
+    "fit_seconds": 6.3,
+    "sources": 2
+   },
+   "nfunsw/all r8": {
+    "members": 5,
+    "fit_seconds": 46.9,
+    "sources": 12
+   },
+   "nfton/all r8": {
+    "members": 5,
+    "fit_seconds": 43.2,
+    "sources": 12
+   },
+   "nfbot/all r8": {
+    "members": 5,
+    "fit_seconds": 48.0,
+    "sources": 13
+   }
+  },
+  "F4/base": {
+   "nfcic/2018-02-14 r6": {
+    "members": 5,
+    "fit_seconds": 7.2,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r6": {
+    "members": 5,
+    "fit_seconds": 7.2,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r6": {
+    "members": 5,
+    "fit_seconds": 7.2,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r6": {
+    "members": 5,
+    "fit_seconds": 7.2,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r6": {
+    "members": 5,
+    "fit_seconds": 7.2,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r6": {
+    "members": 5,
+    "fit_seconds": 7.2,
+    "sources": 2
+   },
+   "nfunsw/all r6": {
+    "members": 5,
+    "fit_seconds": 44.9,
+    "sources": 12
+   },
+   "nfton/all r6": {
+    "members": 5,
+    "fit_seconds": 43.4,
+    "sources": 12
+   },
+   "nfbot/all r6": {
+    "members": 5,
+    "fit_seconds": 48.9,
+    "sources": 13
+   },
+   "nfcic/2018-02-14 r7": {
+    "members": 5,
+    "fit_seconds": 6.6,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r7": {
+    "members": 5,
+    "fit_seconds": 6.6,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r7": {
+    "members": 5,
+    "fit_seconds": 6.6,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r7": {
+    "members": 5,
+    "fit_seconds": 6.6,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r7": {
+    "members": 5,
+    "fit_seconds": 6.6,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r7": {
+    "members": 5,
+    "fit_seconds": 6.6,
+    "sources": 2
+   },
+   "nfunsw/all r7": {
+    "members": 5,
+    "fit_seconds": 48.5,
+    "sources": 12
+   },
+   "nfton/all r7": {
+    "members": 5,
+    "fit_seconds": 42.6,
+    "sources": 12
+   },
+   "nfbot/all r7": {
+    "members": 5,
+    "fit_seconds": 47.4,
+    "sources": 13
+   },
+   "nfcic/2018-02-14 r8": {
+    "members": 5,
+    "fit_seconds": 6.3,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r8": {
+    "members": 5,
+    "fit_seconds": 6.3,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r8": {
+    "members": 5,
+    "fit_seconds": 6.3,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r8": {
+    "members": 5,
+    "fit_seconds": 6.3,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r8": {
+    "members": 5,
+    "fit_seconds": 6.3,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r8": {
+    "members": 5,
+    "fit_seconds": 6.3,
+    "sources": 2
+   },
+   "nfunsw/all r8": {
+    "members": 5,
+    "fit_seconds": 46.2,
+    "sources": 12
+   },
+   "nfton/all r8": {
+    "members": 5,
+    "fit_seconds": 43.5,
+    "sources": 12
+   },
+   "nfbot/all r8": {
+    "members": 5,
+    "fit_seconds": 49.6,
+    "sources": 13
+   }
+  },
+  "F4/stress": {
+   "nfcic/2018-02-14 r6": {
+    "members": 5,
+    "fit_seconds": 8.0,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r6": {
+    "members": 5,
+    "fit_seconds": 8.0,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r6": {
+    "members": 5,
+    "fit_seconds": 8.0,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r6": {
+    "members": 5,
+    "fit_seconds": 8.0,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r6": {
+    "members": 5,
+    "fit_seconds": 8.0,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r6": {
+    "members": 5,
+    "fit_seconds": 8.0,
+    "sources": 2
+   },
+   "nfunsw/all r6": {
+    "members": 5,
+    "fit_seconds": 45.3,
+    "sources": 12
+   },
+   "nfton/all r6": {
+    "members": 5,
+    "fit_seconds": 42.6,
+    "sources": 12
+   },
+   "nfbot/all r6": {
+    "members": 5,
+    "fit_seconds": 47.8,
+    "sources": 13
+   },
+   "nfcic/2018-02-14 r7": {
+    "members": 5,
+    "fit_seconds": 8.6,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r7": {
+    "members": 5,
+    "fit_seconds": 8.6,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r7": {
+    "members": 5,
+    "fit_seconds": 8.6,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r7": {
+    "members": 5,
+    "fit_seconds": 8.6,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r7": {
+    "members": 5,
+    "fit_seconds": 8.6,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r7": {
+    "members": 5,
+    "fit_seconds": 8.6,
+    "sources": 2
+   },
+   "nfunsw/all r7": {
+    "members": 5,
+    "fit_seconds": 46.6,
+    "sources": 12
+   },
+   "nfton/all r7": {
+    "members": 5,
+    "fit_seconds": 42.1,
+    "sources": 12
+   },
+   "nfbot/all r7": {
+    "members": 5,
+    "fit_seconds": 51.0,
+    "sources": 13
+   },
+   "nfcic/2018-02-14 r8": {
+    "members": 5,
+    "fit_seconds": 6.5,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r8": {
+    "members": 5,
+    "fit_seconds": 6.5,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r8": {
+    "members": 5,
+    "fit_seconds": 6.5,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r8": {
+    "members": 5,
+    "fit_seconds": 6.5,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r8": {
+    "members": 5,
+    "fit_seconds": 6.5,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r8": {
+    "members": 5,
+    "fit_seconds": 6.5,
+    "sources": 2
+   },
+   "nfunsw/all r8": {
+    "members": 5,
+    "fit_seconds": 41.8,
+    "sources": 12
+   },
+   "nfton/all r8": {
+    "members": 5,
+    "fit_seconds": 39.3,
+    "sources": 12
+   },
+   "nfbot/all r8": {
+    "members": 5,
+    "fit_seconds": 46.9,
+    "sources": 13
+   }
+  },
+  "F2/base": {
+   "nfcic/2018-02-14 r6": {
+    "members": 5,
+    "fit_seconds": 17.2,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r6": {
+    "members": 5,
+    "fit_seconds": 17.2,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r6": {
+    "members": 5,
+    "fit_seconds": 17.2,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r6": {
+    "members": 5,
+    "fit_seconds": 17.2,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r6": {
+    "members": 5,
+    "fit_seconds": 17.2,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r6": {
+    "members": 5,
+    "fit_seconds": 17.2,
+    "sources": 2
+   },
+   "nfunsw/all r6": {
+    "members": 5,
+    "fit_seconds": 47.4,
+    "sources": 12
+   },
+   "nfton/all r6": {
+    "members": 5,
+    "fit_seconds": 48.4,
+    "sources": 12
+   },
+   "nfbot/all r6": {
+    "members": 5,
+    "fit_seconds": 49.8,
+    "sources": 13
+   },
+   "nfcic/2018-02-14 r7": {
+    "members": 5,
+    "fit_seconds": 7.6,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r7": {
+    "members": 5,
+    "fit_seconds": 7.6,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r7": {
+    "members": 5,
+    "fit_seconds": 7.6,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r7": {
+    "members": 5,
+    "fit_seconds": 7.6,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r7": {
+    "members": 5,
+    "fit_seconds": 7.6,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r7": {
+    "members": 5,
+    "fit_seconds": 7.6,
+    "sources": 2
+   },
+   "nfunsw/all r7": {
+    "members": 5,
+    "fit_seconds": 43.6,
+    "sources": 12
+   },
+   "nfton/all r7": {
+    "members": 5,
+    "fit_seconds": 52.5,
+    "sources": 12
+   },
+   "nfbot/all r7": {
+    "members": 5,
+    "fit_seconds": 56.1,
+    "sources": 13
+   },
+   "nfcic/2018-02-14 r8": {
+    "members": 5,
+    "fit_seconds": 6.4,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r8": {
+    "members": 5,
+    "fit_seconds": 6.4,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r8": {
+    "members": 5,
+    "fit_seconds": 6.4,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r8": {
+    "members": 5,
+    "fit_seconds": 6.4,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r8": {
+    "members": 5,
+    "fit_seconds": 6.4,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r8": {
+    "members": 5,
+    "fit_seconds": 6.4,
+    "sources": 2
+   },
+   "nfunsw/all r8": {
+    "members": 5,
+    "fit_seconds": 51.5,
+    "sources": 12
+   },
+   "nfton/all r8": {
+    "members": 5,
+    "fit_seconds": 45.7,
+    "sources": 12
+   },
+   "nfbot/all r8": {
+    "members": 5,
+    "fit_seconds": 50.5,
+    "sources": 13
+   }
+  },
+  "F5/base": {
+   "nfcic/2018-02-14 r6": {
+    "members": 5,
+    "fit_seconds": 5.9,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r6": {
+    "members": 5,
+    "fit_seconds": 5.9,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r6": {
+    "members": 5,
+    "fit_seconds": 5.9,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r6": {
+    "members": 5,
+    "fit_seconds": 5.9,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r6": {
+    "members": 5,
+    "fit_seconds": 5.9,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r6": {
+    "members": 5,
+    "fit_seconds": 5.9,
+    "sources": 2
+   },
+   "nfunsw/all r6": {
+    "members": 5,
+    "fit_seconds": 46.5,
+    "sources": 10
+   },
+   "nfton/all r6": {
+    "members": 5,
+    "fit_seconds": 45.9,
+    "sources": 10
+   },
+   "nfbot/all r6": {
+    "members": 5,
+    "fit_seconds": 42.1,
+    "sources": 11
+   },
+   "nfcic/2018-02-14 r7": {
+    "members": 5,
+    "fit_seconds": 6.0,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r7": {
+    "members": 5,
+    "fit_seconds": 6.0,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r7": {
+    "members": 5,
+    "fit_seconds": 6.0,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r7": {
+    "members": 5,
+    "fit_seconds": 6.0,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r7": {
+    "members": 5,
+    "fit_seconds": 6.0,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r7": {
+    "members": 5,
+    "fit_seconds": 6.0,
+    "sources": 2
+   },
+   "nfunsw/all r7": {
+    "members": 5,
+    "fit_seconds": 41.8,
+    "sources": 10
+   },
+   "nfton/all r7": {
+    "members": 5,
+    "fit_seconds": 30.5,
+    "sources": 10
+   },
+   "nfbot/all r7": {
+    "members": 5,
+    "fit_seconds": 33.5,
+    "sources": 11
+   },
+   "nfcic/2018-02-14 r8": {
+    "members": 5,
+    "fit_seconds": 4.5,
+    "sources": 2
+   },
+   "nfcic/2018-02-16 r8": {
+    "members": 5,
+    "fit_seconds": 4.5,
+    "sources": 2
+   },
+   "nfcic/2018-02-20 r8": {
+    "members": 5,
+    "fit_seconds": 4.5,
+    "sources": 2
+   },
+   "nfcic/2018-02-21 r8": {
+    "members": 5,
+    "fit_seconds": 4.5,
+    "sources": 2
+   },
+   "nfcic/2018-02-22 r8": {
+    "members": 5,
+    "fit_seconds": 4.5,
+    "sources": 2
+   },
+   "nfcic/2018-03-02 r8": {
+    "members": 5,
+    "fit_seconds": 4.5,
+    "sources": 2
+   },
+   "nfunsw/all r8": {
+    "members": 5,
+    "fit_seconds": 42.2,
+    "sources": 10
+   },
+   "nfton/all r8": {
+    "members": 5,
+    "fit_seconds": 38.9,
+    "sources": 10
+   },
+   "nfbot/all r8": {
+    "members": 5,
+    "fit_seconds": 44.8,
+    "sources": 11
+   }
+  }
+ },
+ "provenance": [
+  {
+   "git_head": "1872b1fadab39c28e5635eb5e7d867e5bc96c1cc",
+   "code_sha256_16": {
+    "scripts/phase8o/experiment_d.py": "67ca2f8b286923bb",
+    "scripts/phase8n/candidates.py": "3d3ce299a28096e9",
+    "scripts/phase8n/fragility.py": "4d378b41cac0b292",
+    "scripts/phase8i/common.py": "90aa27d49167f3ea"
+   },
+   "lightgbm": "4.7.0",
+   "numpy": "2.5.4",
+   "polars": "2.0.0",
+   "args": {
+    "arms": "F0,F1,F4,F2,F5",
+    "regimes": "base,stress",
+    "reps": "6,7,8",
+    "checks_only": false
+   },
+   "lgb_params": {
+    "n_estimators": 200,
+    "learning_rate": 0.05,
+    "num_leaves": 15,
+    "min_child_samples": 20,
+    "subsample": 0.8,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.8,
+    "n_jobs": 2,
+    "verbose": -1
+   },
+   "members": 5
+  }
+ ],
+ "checks": {
+  "nfcic/2018-02-14": {
+   "R1_m2_r0_max_abs_diff": 0.0,
+   "R2_m0_r0_max_abs_diff": 0.0
+  },
+  "nfcic/2018-02-16": {
+   "R1_m2_r0_max_abs_diff": 0.0,
+   "R2_m0_r0_max_abs_diff": 0.0
+  },
+  "nfcic/2018-02-20": {
+   "R1_m2_r0_max_abs_diff": 0.0,
+   "R2_m0_r0_max_abs_diff": 0.0
+  },
+  "nfcic/2018-02-21": {
+   "R1_m2_r0_max_abs_diff": 0.0,
+   "R2_m0_r0_max_abs_diff": 0.0
+  },
+  "nfcic/2018-02-22": {
+   "R1_m2_r0_max_abs_diff": 0.0,
+   "R2_m0_r0_max_abs_diff": 0.0
+  },
+  "nfcic/2018-03-02": {
+   "R1_m2_r0_max_abs_diff": 0.0,
+   "R2_m0_r0_max_abs_diff": 0.0
+  },
+  "nfunsw/all": {
+   "R1_m2_r0_max_abs_diff": 0.0,
+   "R2_m0_r0_max_abs_diff": 0.0
+  },
+  "nfton/all": {
+   "R1_m2_r0_max_abs_diff": 0.0,
+   "R2_m0_r0_max_abs_diff": 0.0
+  },
+  "nfbot/all": {
+   "R1_m2_r0_max_abs_diff": 0.0,
+   "R2_m0_r0_max_abs_diff": 0.0
+  }
+ },
+ "peak_rss_mb": 1081.453125,
+ "seconds_last_call": 5354.3
+}

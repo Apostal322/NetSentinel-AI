@@ -20,6 +20,23 @@ Written 2026-11-03 at the start of Phase 8o.
 - **closed:** resolved, with evidence.
 - **documented limit:** cannot be resolved with the data at hand.
 
+## Status after Experiment D and the review (2026-11-03)
+
+The tables below keep the start-of-phase wording.
+
+| ID | outcome | evidence |
+|---|---|---|
+| G0.1 | **tested; partial alignment has no detectable effect.** H1 NOT SUPPORTED. The confound itself remains: F2 shows that F0's NF-CIC detection rests on the frozen-novelty attack association | MODEL_COMPARISON § 2–3 |
+| G0.2 | **tested; harm not established.** H1b NOT SUPPORTED: dropping the cold-start days cuts NF-ToN recall by 0.20 | MODEL_COMPARISON § 2 |
+| G0.3 | **tested; open.** C1 NOT SUPPORTED: it moves FPR toward α on 3 networks but halves NF-UNSW recall; NF-ToN is unchanged | CALIBRATION_ANALYSIS |
+| G1.1 | **documented; open.** No tested method controls FPR without removing detection somewhere. Without calibration labels (C3) detection collapses through both the threshold and the memory | CALIBRATION_ANALYSIS |
+| G1.2 | **closed.** No prefix K < 5 meets the rule; K = 5 is retained; cost is linear in K and small in absolute terms | ENSEMBLE_EFFICIENCY |
+| G1.3 | **explained.** The flips are near-threshold clusters (margins +0.00–0.06) that ensembling stabilises. The 20 never-detected entities are representation failures far below T0 | ENTITY_ROBUSTNESS |
+| G1.5 | **documented limit;** desk check found no eligible network | INDEPENDENT_DATA |
+| G2.1, G2.2 | **documented;** tests pin the behaviour | `tests/unit/test_phase8o.py` |
+| G2.3 | **measured** | ENSEMBLE_EFFICIENCY § 3 |
+| G2.4 | **closed** (addendum) | — |
+
 ## P0: correctness and validity
 
 | ID | gap | evidence | impact | investigation | acceptance | status |

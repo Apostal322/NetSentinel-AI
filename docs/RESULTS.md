@@ -167,6 +167,19 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 | Do seed ensembling, bagging or regularisation make it robust? | same, base and host-bootstrap stress regimes | M2 (5-seed ensemble) passes the registered rule; M3 passes once but not on fresh fits; M1 fails | registered development |
 | Does M2's gain replicate with fresh randomness? | same, replicates never seen before | **yes**: unstable entities 11 → 1 (≥ 1 window) and 14 → 10 (≥ 20 % of windows), collapses 1 → 0; recall +0.09 NF-CIC, +0.05 NF-UNSW, −0.02 NF-ToN, −0.03 NF-BoT | registered development |
 
+## Phase 8o (feature semantics, ensemble size, calibration; development data)
+
+- Documents: [`docs/phase8o/`](phase8o/FINAL_RESEARCH_REPORT.md). Development NO-GO: no new candidate; frozen M2 and the deployed detector unchanged.
+
+| Question | Data | Result | Role |
+|---|---|---|---|
+| Does aligning training rows with the deployed frozen memory help? (H1) | 4 development networks, 6 fresh K = 5 fits per arm | **no detectable effect** (macro recall −0.006); the registered matched-information control turned out degenerate (bit-identical scores) | registered development |
+| Does dropping the cold-start source days help? (H1b) | same, base fits | **no**: NF-ToN recall −0.20 | registered development |
+| What does training without the frozen-novelty attack association do? (F2) | same | NF-CIC AUC 0.78 → 0.48 (chance); NF-ToN ranking improves but recall collapses at T0 | registered, descriptive |
+| Can a smaller ensemble keep M2's stability? (H2) | same, nested prefixes K = 1, 2, 3, 5 | **no**: K = 3 keeps stability but loses recall on 3 networks; K = 5 retained; cost linear in K (about 20k windows/s at K = 5) | registered development |
+| Does an aligned (frozen-memory) hold-out fix FPR? (C1) | same | **no**: closer to α on 3 networks, NF-UNSW recall 0.84 → 0.52 | registered development |
+| What happens without confirmed calibration labels? (C3) | same | recall NF-UNSW 0.05, NF-ToN 0.001; collapse via the threshold and the destination memory | registered, descriptive |
+
 ## Telemetry
 
 | Check | Result | Source |
