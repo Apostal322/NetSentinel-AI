@@ -205,7 +205,11 @@ it non-transferable.
 - the live streaming path computes no victim features;
 - the D3 fusion needs a tie-aware rank.
 
-**Tests:** 15 new. Full-suite results are in the closing commit message.
+**Tests:** 15 new.
+- **Full suite:** 399 passed, 2 deselected (`slow`/`gpu`/`data` markers), 0 failed, 0 skipped.
+  It took 14 min only because other projects' test runs shared the CPU (Phase 8o: 4 min).
+- **ruff check and format:** clean (440 files).
+- **Dependencies:** none added.
 
 ## I. Final verdict
 
