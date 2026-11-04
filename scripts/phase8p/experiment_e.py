@@ -113,9 +113,8 @@ def sx_join(frame: pl.DataFrame, sx: pl.DataFrame) -> pl.DataFrame:
 
 def load_sx(network: str, domain: str) -> pl.DataFrame:
     sx = pl.read_parquet(VICTIM / network / domain / "sx" / "*.parquet")
-    return sx.unique(
-        subset=["key", "win"], keep="first"
-    )  # the straddle window can appear in two slices
+    # defensive only: slices hold whole windows, so (key, win) is unique (checked in the review)
+    return sx.unique(subset=["key", "win"], keep="first")
 
 
 def train_rows(

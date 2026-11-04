@@ -180,6 +180,18 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 | Does an aligned (frozen-memory) hold-out fix FPR? (C1) | same | **no**: closer to α on 3 networks, NF-UNSW recall 0.84 → 0.52 | registered development |
 | What happens without confirmed calibration labels? (C3) | same | recall NF-UNSW 0.05, NF-ToN 0.001; collapse via the threshold and the destination memory | registered, descriptive |
 
+## Phase 8p (victim-side and service-aware detection, realistic calibration; development data)
+
+- Documents: [`docs/phase8p/`](phase8p/FINAL_RESEARCH_REPORT.md). Development NO-GO: no new candidate; frozen M2 and the deployed detector unchanged.
+
+| Question | Data | Result | Role |
+|---|---|---|---|
+| Which evaluation attackers are really missed? | 75 Phase 8n/8o entities, official CSE-CIC-IDS2018 attacker table | 19 of 20 never-alerted entities are undocumented sources (label artifacts); documented misses = 10 LOIC attackers (LOIC-UDP onset labelled HTTP) and one low-rate SMB host | exploratory (label audit) |
+| Is the missing evidence present in flow metadata? | same, in-domain diagnostics | every documented miss is separable within its own network on source and victim windows (in-domain only; not established as transferable) | exploratory |
+| Does victim context (D2) / service context (S1) / late fusion (D3) improve detection under the shared 1% budget? | 4 development networks, 6 paired K = 5 fits per arm | **no**: documented-attacker R₂₀ change −19 / −7 / −5 (entity bootstrap intervals below 0); victim context collapses NF-CIC (0.81 → 0.18); service-only control weak (0.13) | registered development |
+| Does a victim-only model transfer? (D1) | same, victim windows | NF-CIC victim-window AUC 0.30–0.69 (4 of 6 days below 0.5); NF-ToN 0.77, NF-BoT 0.89 | registered, descriptive |
+| Can calibration work without confirmed labels? (C1–C3) | same | unlabelled 0.37, 60-min delayed labels 0.39, host-balanced 0.61 macro recall vs 0.87 with labels; host-balanced FPR on NF-ToN 34% | registered development (C3: not supported) |
+
 ## Telemetry
 
 | Check | Result | Source |

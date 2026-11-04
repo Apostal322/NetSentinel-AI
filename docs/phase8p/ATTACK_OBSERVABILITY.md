@@ -83,8 +83,8 @@ intervals and the univariate evidence.
 
 | group | role / label reading | source-side evidence | victim-side evidence | primary cause (Part 12 taxonomy) |
 |---|---|---|---|---|
-| NF-CIC 02-22, 22 undocumented sources | label artifacts: 79 % of windows outside documented intervals; flows unlike a web attack | `new_dst_frac` AUC 0.99 (external hosts first seen after the freeze) | separable in-domain | **6. weak or ambiguous labels.** These are not missed attacks in any established sense |
-| NF-CIC 02-20 LOIC-HTTP, 10 documented attackers, never ≥ 20 % | **post-attack residue.** 99.3 % of the day's LOIC-HTTP flows (286,436) are in the calibration half and purged by P1x. The 2,153 evaluation flows lie *after* the documented interval (0 % inside): SYN-only (40 bytes up, 0 down, 1 ms, no reply), about 10 per window, all to 172.31.69.25 | **strong in-domain:** `upload_share` AUC 1.00 and `log_pkts` 0.98, with no benign window at or beyond the attack median | **strong:** the victim's inbound packets and bytes exceed every benign victim window (`v_log_pkts`, `v_log_up` AUC 1.00, benign share beyond the median 0.000) | **5./8. training shift and insufficient training support.** The evidence is present on both sides in-domain; the cross-network M2 does not score it high (margin −0.82). Label status: documented attacker, outside the documented interval |
+| NF-CIC 02-22, 22 undocumented sources | label artifacts: none is named by any documented attack; only 21 % of their windows fall inside any documented interval of the day; flows unlike a web attack | `new_dst_frac` AUC 0.99 (external hosts first seen after the freeze) | separable in-domain | **6. weak or ambiguous labels.** These are not missed attacks in any established sense |
+| NF-CIC 02-20 "LOIC-HTTP", 10 documented attackers, never ≥ 20 % | **the onset of the documented DDoS-LOIC-UDP attack (13:13–13:32), carrying the LOIC-HTTP class label.** 99.3 % of the day's LOIC-HTTP-labelled flows (286,436, the 10:12–11:17 HTTP flood) are in the calibration half and purged by P1x. The 2,153 evaluation flows run 13:14–13:29 local, 100 % inside the LOIC-UDP interval: 1,363 TCP SYN-only flows to port 80 (40 bytes up, 0 down, no reply) and 790 UDP flows, all to 172.31.69.25, about 10 per source window. The family label does not match the documented attack (a likely label/family mismatch) | **strong in-domain:** `upload_share` AUC 1.00 and `log_pkts` 0.98, with no benign window at or beyond the attack median | **strong:** the victim's inbound packets and bytes exceed every benign victim window (`v_log_pkts`, `v_log_up` AUC 1.00, benign share beyond the median 0.000) | **5./8. training shift and insufficient training support.** The evidence is present on both sides in-domain; the cross-network M2 does not score it high (margin −0.82). Label status: documented attacker, inside a documented interval, under the wrong family label |
 | NF-ToN 192.168.1.37 (documented attacker; 7 % of its flows attack) | SMB/445 ransomware and backdoor, about 2 flows per window, mixed with its normal traffic | weak (best single AUC 0.71, `log_up_bytes`) | weak (best single AUC 0.71, `v_hist_dev` / `v_rst_frac`) | **normal-looking service behaviour on a mixed host**: weakly observable |
 | NF-BoT .3/.5/.6/.7 | attacked hosts' traffic (responses to the attackers) labelled attack | `new_dst_frac` 0.98 | separable | **6. label semantics** (target-side traffic); two of the five are detected anyway |
 | NF-ToN 192.168.1.193 | infected host's backdoor traffic to an attacker | strong (`log_pkts`, `med_log_dur` AUC 0.98) | strong | detected in 4 of 6 fits at ≥ 20 %: **refit instability**, not observability |
@@ -94,17 +94,25 @@ intervals and the univariate evidence.
 - every group is "observable" in-domain;
 - for the reason given above, that is read only as "separable within its own network";
 - the decision-relevant reading:
-  - **LOIC residue:** observable on the victim side, not on the source side;
+  - **02-20 LOIC (UDP onset):** separable in-domain on both sides;
   - **NF-ToN .37:** weakly observable;
   - **the undocumented sources:** not established as attacks at all.
+
+**Correction after the independent review (2026-11-03).** A first version of this file called the
+02-20 evaluation positives "post-attack residue" outside the documented interval. The official
+table has a second 02-20 row that the interval list had missed: DDoS-LOIC-UDP, 13:13–13:32.
+The intervals of 02-14 and 02-16 had also been pooled across attackers. Both errors are fixed in
+`observability.py`: intervals are now per attack and per host. Roles, and so the Experiment E
+entity sets, are unchanged; they are IP-based.
 
 ## 4. What this changes for Phase 8p
 
 1. **The headline "missed web attacks" were mostly label artifacts.** The documented web
    attacker is detected. No test of "web exploits observable in flow metadata" is possible on
    02-22 beyond one attacker, and none is claimed.
-2. **The remaining documented misses are a transfer problem, not an evidence problem.**
-   - The LOIC residue is separable from benign traffic on both sides *within* NF-CIC.
+2. **The remaining documented misses are separable *in-domain*; whether that evidence transfers is the open question.**
+   - The 02-20 LOIC windows are separable from benign traffic on both sides *within* NF-CIC. The ceiling can leak host identity, so this is separability, not established transferable evidence.
+   - Experiment E later showed that the victim-only model does **not** transfer (MODEL_COMPARISON § 3).
    - Whether victim-side context helps the **cross-network** model is the open, testable
      question (H1).
    - Its victim-side view is extreme (every benign victim window lies below it), which a fan-in

@@ -11,6 +11,9 @@ semantics. Each VW row is tagged:
   source-side builder, which splits it.
 - `noisy`: holds an NF-CIC `infiltration` flow (as Phase 8h).
 
+The straddle window's SX row is computed from all of its flows and joins to both its
+calibration and its evaluation source rows (one window per domain; noted in the Phase 8p review).
+
 `attack_flows` / `attack_srcs` are evaluation-only counts and never features.
 
 Output: data/derived/phase8p/victim/<network>/<domain>/

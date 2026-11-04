@@ -280,3 +280,10 @@ Phase 8p is not started.
 - cross-network generalisation;
 - FPR control;
 - that "alignment does not matter".
+
+## Editorial addendum (2026-11-04, Phase 8p)
+
+Section A says that nothing had been pushed. That was true when the report was written.
+The user then authorized a push, and `1ea3243..8e5d079` has been on `origin/main` since
+2026-11-03. No tag or release exists. No result, verdict or number in this report is changed by
+this note.

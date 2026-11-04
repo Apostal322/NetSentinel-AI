@@ -111,7 +111,8 @@
     "18.219.9.1",
     "52.14.136.135"
    ],
-   "source_attack_windows_in_documented_interval": 0.0,
+   "source_attack_windows_in_documented_interval": 1.0,
+   "source_attack_windows_in_any_documented_interval_time_only": 1.0,
    "source": {
     "attack_windows": 106,
     "benign_windows": 113849,
@@ -258,6 +259,7 @@
     "18.218.115.60"
    ],
    "source_attack_windows_in_documented_interval": 0.9811,
+   "source_attack_windows_in_any_documented_interval_time_only": 0.9811,
    "source": {
     "attack_windows": 53,
     "benign_windows": 114337,
@@ -424,7 +426,8 @@
     "77.72.82.96",
     "88.247.117.206"
    ],
-   "source_attack_windows_in_documented_interval": 0.2106,
+   "source_attack_windows_in_documented_interval": 0.0,
+   "source_attack_windows_in_any_documented_interval_time_only": 0.2106,
    "source": {
     "attack_windows": 470,
     "benign_windows": 114337,
@@ -1009,6 +1012,7 @@
     "18.219.193.20"
    ],
    "source_attack_windows_in_documented_interval": 1.0,
+   "source_attack_windows_in_any_documented_interval_time_only": 1.0,
    "source": {
     "attack_windows": 27,
     "benign_windows": 79527,
@@ -1155,6 +1159,7 @@
     "13.58.98.64"
    ],
    "source_attack_windows_in_documented_interval": 0.9837,
+   "source_attack_windows_in_any_documented_interval_time_only": 0.9837,
    "source": {
     "attack_windows": 184,
     "benign_windows": 108297,

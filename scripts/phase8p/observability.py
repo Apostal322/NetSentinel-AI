@@ -61,15 +61,29 @@ HOUR_UTC = 3_600_000
 # 10:12 start, which fixes the offset from the data itself.
 LOIC = ["18.218.115.60", "18.219.9.1", "18.219.32.43", "18.218.55.126", "52.14.136.135",
         "18.219.5.43", "18.216.200.189", "18.218.229.235", "18.218.11.51", "18.216.24.42"]  # fmt: skip
+# One row per documented attack: (attacking or infected hosts, local-time intervals). Intervals
+# are applied per row, so a host is in-interval only during ITS attack (corrected after the Phase 8p
+# review: 02-14 and 02-16 had been pooled across attackers, and 02-20's DDoS-LOIC-UDP row, 13:13-13:32,
+# was missing).
+BOTS = [
+    "172.31.69.23",
+    "172.31.69.17",
+    "172.31.69.14",
+    "172.31.69.12",
+    "172.31.69.10",
+    "172.31.69.8",
+    "172.31.69.6",
+    "172.31.69.26",
+    "172.31.69.29",
+    "172.31.69.30",
+]
 CIC_DOC = {
-    "2018-02-14": (["13.58.98.64", "18.221.219.4"], [("10:32", "12:09"), ("14:01", "15:31")]),
-    "2018-02-16": (["18.219.193.20", "13.59.126.31"], [("10:12", "11:08"), ("13:45", "14:19")]),
-    "2018-02-20": (LOIC, [("10:12", "11:17")]),
-    "2018-02-21": (LOIC, [("10:09", "10:43"), ("14:05", "15:05")]),
-    "2018-02-22": (["18.218.115.60"], [("10:17", "11:24"), ("13:50", "14:29"), ("16:15", "16:29")]),
-    "2018-03-02": (["172.31.69.23", "172.31.69.17", "172.31.69.14", "172.31.69.12", "172.31.69.10",
-                    "172.31.69.8", "172.31.69.6", "172.31.69.26", "172.31.69.29", "172.31.69.30",
-                    "18.219.211.138"], [("10:11", "11:34"), ("14:24", "15:55")]),
+    "2018-02-14": [(["18.221.219.4"], [("10:32", "12:09")]), (["13.58.98.64"], [("14:01", "15:31")])],
+    "2018-02-16": [(["13.59.126.31"], [("10:12", "11:08")]), (["18.219.193.20"], [("13:45", "14:19")])],
+    "2018-02-20": [(LOIC, [("10:12", "11:17")]), (LOIC, [("13:13", "13:32")])],
+    "2018-02-21": [(LOIC, [("10:09", "10:43")]), (LOIC, [("14:05", "15:05")])],
+    "2018-02-22": [(["18.218.115.60"], [("10:17", "11:24"), ("13:50", "14:29"), ("16:15", "16:29")])],
+    "2018-03-02": [(BOTS + ["18.219.211.138"], [("10:11", "11:34"), ("14:24", "15:55")])],
 }  # fmt: skip
 UTC_OFFSET_H = 4
 
@@ -78,7 +92,9 @@ def role(domain: str, src: str, inv: dict) -> str:
     net, day = domain.split("/")
     if net == "nfcic":
         return (
-            "documented_attacker" if src in CIC_DOC.get(day, ([], []))[0] else "undocumented_source"
+            "documented_attacker"
+            if any(src in hosts for hosts, _ in CIC_DOC.get(day, []))
+            else "undocumented_source"
         )
     if net == "nfton":
         last = int(src.split(".")[-1])
@@ -104,14 +120,19 @@ def role(domain: str, src: str, inv: dict) -> str:
     )
 
 
-def in_documented_interval(day: str, end_ms: np.ndarray) -> np.ndarray:
-    iv = CIC_DOC[day][1]
+def in_documented_interval(day: str, end_ms: np.ndarray, src: np.ndarray | None) -> np.ndarray:
+    """Whether each window (end time, source host) falls in a documented interval of an attack
+    that names that host; with `src` None, of any documented attack that day (time only)."""
     t = (end_ms // 60_000 - UTC_OFFSET_H * 60) % (24 * 60)  # local minutes of the day
     ok = np.zeros(end_ms.size, bool)
-    for a, b in iv:
-        ha, ma = map(int, a.split(":"))
-        hb, mb = map(int, b.split(":"))
-        ok |= (t >= ha * 60 + ma) & (t <= hb * 60 + mb)
+    for hosts, iv in CIC_DOC[day]:
+        mine = (
+            np.ones(end_ms.size, bool) if src is None else np.isin(src, np.array(hosts, dtype=str))
+        )
+        for a, b in iv:
+            ha, ma = map(int, a.split(":"))
+            hb, mb = map(int, b.split(":"))
+            ok |= mine & (t >= ha * 60 + ma) & (t <= hb * 60 + mb)
     return ok
 
 
@@ -226,8 +247,12 @@ def main() -> None:
         )
         end = ev["window_end_ms"].to_numpy()
         if dom.startswith("nfcic") and dom.split("/")[1] in CIC_DOC and y.any():
+            day = dom.split("/")[1]
             g["source_attack_windows_in_documented_interval"] = round(
-                float(in_documented_interval(dom.split("/")[1], end[y]).mean()), 4
+                float(in_documented_interval(day, end[y], key[y]).mean()), 4
+            )
+            g["source_attack_windows_in_any_documented_interval_time_only"] = round(
+                float(in_documented_interval(day, end[y], None).mean()), 4
             )
         g["source"] = {"attack_windows": int(y.sum()), "benign_windows": int(ben.sum()),
                        "univariate": univariate(xs[keep], y[keep], WINDOW_FEATURES),

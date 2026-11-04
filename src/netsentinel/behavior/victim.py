@@ -133,7 +133,8 @@ def victim_windows(
     # history: mean of the host's v_log_flows over strictly earlier windows (prior calls + this one)
     prior = history.frame() if history is not None else pl.DataFrame(
         schema={"dst": pl.Utf8, "h_sum": pl.Float64, "h_n": pl.Int64})  # fmt: skip
-    g = g.join(prior, on="dst", how="left").with_columns(
+    # the cumulative history below needs the (dst, win) order kept through the join
+    g = g.join(prior, on="dst", how="left", maintain_order="left").with_columns(
         pl.col("h_sum").fill_null(0.0), pl.col("h_n").fill_null(0)
     )
     g = g.with_columns(
