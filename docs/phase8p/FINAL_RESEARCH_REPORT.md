@@ -260,3 +260,9 @@ Phase 8q is not started.
   - cross-network generalisation;
   - FPR control;
   - that web exploits are or are not observable in flows.
+
+## Editorial addendum (2026-11-04, Phase 8q)
+
+Section A says that nothing had been pushed. That was true when the report was written. The user
+then authorized a push, and `8e5d079..f112a1c` has been on `origin/main` since 2026-11-04. No tag or
+release exists. No result, verdict or number in this report is changed by this note.

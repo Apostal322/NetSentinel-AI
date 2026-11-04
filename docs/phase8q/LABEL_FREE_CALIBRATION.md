@@ -23,20 +23,43 @@
 | **L4** leave-one-host-out trim | 0.376 | 0.503 / 1.31 % | 0.054 / 1.80 % | 0.015 / 1.73 % | 0.931 / **14.1 %** | 16 | NOT SUPPORTED |
 | **L5** = L4 + abstention | 0.126 | 0.503 | abstains | abstains | abstains | 12 | NOT SUPPORTED |
 
-**Calibration research verdict: NOT SUPPORTED.** No candidate gains the registered +0.10. The
-best, L1, gains +0.015, which recovers 5 % of the T − U gap.
+**Calibration research verdict: NOT SUPPORTED.**
+- No candidate gains the registered +0.10. The best, L1, gains +0.015 (per fit +0.002 to +0.047),
+  recovering 5 % of the T − U gap.
+- **Documented-entity R₂₀ change vs U:** 0 for L1, L2 and L4; −4 for L5, all on NF-BoT
+  (domain-cluster bootstrap interval [−12, 0]).
+- **False alerts per hour:**
 
-**Why no label-free threshold can work here.**
-- On NF-ToN and NF-BoT, calibration attackers make up 76 % and 92 % of the hold-out windows; on
-  NF-UNSW, 29 % (CALIBRATION_DECOMPOSITION § 3).
-- A quantile estimator without labels cannot recover the benign tail of a population that is
-  mostly attack, or whose contamination exceeds its breakdown point:
-  - the median-based L2: 50 %;
-  - the per-host cap L1 against several hosts: k · α/2 ≥ α already at k = 2.
-- This is a property of these testbeds, whose attacks run through the calibration period, not
-  evidence about deployments with sparse contamination.
-- **L5 abstains** exactly on those three networks, where evidence (host-hour blocks, effective
-  hosts) is insufficient. It correctly reports "unknown", but fails the coverage requirement.
+  | method | NF-CIC | NF-UNSW | NF-ToN | NF-BoT |
+  |---|---|---|---|---|
+  | U | 295 | 24 | 0.4 | 0.1 |
+  | P | 295 | 49 | 16.9 | 0.1 |
+  | L1 | 297 | 28 | 1.6 | 0.1 |
+  | L4 | 330 | 24 | 1.8 | 0.2 |
+
+**Why the registered candidates did not recover the gap** (corrected after the independent
+review; the first draft said no label-free threshold *can* work):
+- **NF-ToN and NF-BoT are attack-dominated.** Calibration attackers hold 76 % and 92 % of their
+  hold-out windows. That is above the 50 % breakdown point of L2's median, and above what a
+  per-host cap of α/2 can absorb once two or more attacker hosts are present.
+- **NF-UNSW is contaminated at 29 %, not dominated.** There the failure has more specific causes:
+  - L2 never ran: its hold-out has 1 qualifying hour block, under the 5 required, so L2 fell back
+    to U;
+  - L1 caps all 21 small hosts, which turns it into equal-host weighting.
+- **L2 falls back to U on every NF-CIC day as well** (2–3 blocks). It was a real test only on
+  NF-ToN (15 blocks) and NF-BoT (17).
+- **Criterion (iii) on NF-BoT is failed by U itself** (FPR 9.60 % > P's 7.96 % + 1 pp). Any
+  candidate that leaves NF-BoT at U's threshold fails it automatically; L1 and L2 did.
+  - NF-BoT's FPR rests on about 2 benign hosts (620 benign windows).
+  - The verdicts do not depend on this: criterion (i) fails by a wide margin for every candidate.
+- **The decision unit.** Window recall averaged over 6 correlated fits and over the domains
+  (equally weighted, from 27 to 2,408 positives), then over 4 networks. No sampling interval
+  enters the rule.
+- **What is not shown:** that no label-free method could work. Only four threshold estimators were
+  tested. A different estimator, or a deployment with sparse contamination, is untested.
+- **L5 abstains** exactly on NF-UNSW, NF-ToN and NF-BoT, where evidence (host-hour blocks,
+  effective hosts) is insufficient. It reports "unknown", as designed, and fails the coverage
+  requirement.
 
 ## 2. Experiment G: controlled contamination of the clean P1x hold-out (threshold only)
 
@@ -63,14 +86,26 @@ scores, so the memory is clean. Means are over 6 fits.
 | NF-BoT | 8.0 % | 10.1 % | 8.0 % | **55.6 %** |
 
 **Readings:**
+- **Breakdown** (registered: the smallest injected fraction at which recall falls by more than 0.10):
+
+  | network / mode | U | L1 | L2 | L4 |
+  |---|---|---|---|---|
+  | NF-ToN persistent | 10 % | never | 10 % | 10 % |
+  | NF-ToN spread | 2 % | 2 % | 2 % | 5 % |
+  | NF-UNSW persistent | 1 % | never (already low) | 1 % | 5 % |
+  | NF-UNSW spread | 2 % | never (already low) | 2 % | 5 % |
+
 - **The host cap (L1) does what it was built for.** It holds NF-ToN recall against one persistent
   host (0.93 at 10 %). But it lowers the clean threshold: NF-ToN FPR doubles.
   - On NF-UNSW, with 17 small hosts, every host is capped. L1 becomes equal-host weighting, the
     Phase 8p C3 failure, and recall halves even without contamination.
-- **The trim (L4) resists spread contamination best.** It also trims NF-BoT's two genuine
-  high-scoring benign hosts (FPR 56 %), exactly the failure the brief warned against.
-- **Every estimator buys contamination robustness with false alerts** on networks with small or
-  heterogeneous benign populations.
+- **The trim (L4) resists spread contamination best** (breakdown at 5 %). It also trims a genuine
+  high-scoring benign host on NF-BoT (base r6: 192.168.100.46, 503 of 781 hold-out windows),
+  giving FPR 56 %. That is exactly the failure the brief warned against.
+- **Where robustness was gained, it was paid for in false alerts** (NF-ToN L1 and L4; NF-BoT L4).
+  The opposite also occurs:
+  - on NF-UNSW, L1 *lowers* FPR (2.2 % vs 3.7 %) while halving clean recall;
+  - L2 changes nothing where it falls back to U.
 - **Host sparsity** (SD of the threshold over 20 draws keeping 10 % of hosts):
 
   | domain | U | L1 | L4 |
@@ -83,6 +118,9 @@ scores, so the memory is clean. Means are over 6 fits.
   Calibration reliability tracks host diversity.
 
 **Limits:**
+- **G does not reach F's regime.** G tops out at 10 % of the clean hold-out. The real unlabelled
+  contamination is 11.4 × the clean size on NF-BoT (8,886 vs 781 windows), 3.2 × on NF-ToN and
+  41 % on NF-UNSW. G characterises bounded contamination (≤ 10 %) only, and cannot explain F.
 - **Mixed semantics:** injected windows are scored under the unlabelled memory.
 - **"Gradual" contamination** cannot be distinguished from its total amount for an order-free
   quantile, so it was not run separately.
@@ -106,17 +144,21 @@ contacted it.
 | NF-BoT | 0.48 / 2.3 % | 0.01 / 2.1 % | 0.01 / 6.5 % |
 
 - **It restores attack novelty only on 02-14,** where one attacker is the only calibration-period
-  contact of its target.
+  contact of its target. Recall on 02-14 needed no restoring: 0.99 even without labels.
+- **It fails on 02-22 and 03-02,** the two days that carry the whole NF-CIC memory effect
+  (CALIBRATION_DECOMPOSITION § 3).
 - **Wherever several attackers share targets** (DDoS, bots, multi-host campaigns) it fails, as the
   Phase 8m guarded memory did.
 - **It makes benign windows more novel everywhere.** A scored test is not justified.
 
 ## 4. Conclusion
 
-- **The calibration-label dependency is identified** (CALIBRATION_DECOMPOSITION). On these data it
-  is **not removable without labels**:
-  - the threshold part, because the hold-outs are attack-dominated;
-  - the memory part, because the attack signal is the absence of a shared victim from memory.
-- **The robust estimators help against bounded contamination** of a clean hold-out, at a
-  false-alert cost.
+- **The calibration-label dependency is attributed** (CALIBRATION_DECOMPOSITION), as a
+  path-dependent decomposition.
+- **On these data, none of the registered label-free candidates removed it:**
+  - the threshold part fails mainly because NF-ToN and NF-BoT hold-outs are attack-dominated;
+  - the memory part fails because the NF-CIC detections on 02-22 and 03-02 rest on destinations
+    shared by several labelled sources being absent from memory.
+- **The robust estimators help against bounded contamination** (≤ 10 %) of a clean hold-out, at a
+  false-alert cost on NF-ToN and NF-BoT.
 - **Operation still requires vetted calibration periods.**

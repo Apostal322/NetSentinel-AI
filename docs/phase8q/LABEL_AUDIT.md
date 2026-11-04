@@ -40,7 +40,9 @@ The rules are given in full in the docstring of `label_audit.py`.
 | NF-BoT | 1,344 | — | — | 235 | 0 | 1,250 | 620 / 0 |
 
 **Sources by role:**
-- documented attackers: 48 (NF-CIC 30, NF-UNSW 4, NF-ToN 10, NF-BoT 4);
+- documented attackers: 48 (NF-CIC 30, NF-UNSW 4, NF-ToN 10, NF-BoT 4). On 03-02 these are the
+  **documented infected hosts**: Table 2 lists them as Bot victims, and they are the sources of the
+  bot traffic;
 - attacked hosts: 7 (NF-ToN 3, NF-BoT 4);
 - undocumented: 290, all on NF-CIC 02-22.
 
@@ -89,5 +91,7 @@ as missed attackers.
   counts and the conflicts above.
 - **Not established:**
   - that the undocumented sources are benign (undocumented is not benign);
-  - that NF-BoT's data-derived roles match the testbed;
+  - that NF-BoT's data-derived roles match the testbed. The four heavy senders, 192.168.100.147–150,
+    appear to be the BoT-IoT paper's attacking machines (Koroniotis et al. 2019); this is recalled,
+    not verified here;
   - any per-host attack interval outside NF-CIC.

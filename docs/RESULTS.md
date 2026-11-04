@@ -192,6 +192,18 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 | Does a victim-only model transfer? (D1) | same, victim windows | NF-CIC victim-window AUC 0.30–0.69 (4 of 6 days below 0.5); NF-ToN 0.77, NF-BoT 0.89 | registered, descriptive |
 | Can calibration work without confirmed labels? (C1–C3) | same | unlabelled 0.37, 60-min delayed labels 0.39, host-balanced 0.61 macro recall vs 0.87 with labels; host-balanced FPR on NF-ToN 34% | registered development (C3: not supported) |
 
+## Phase 8q (ground-truth audit and label-free calibration; development data)
+
+- Documents: [`docs/phase8q/`](phase8q/FINAL_RESEARCH_REPORT.md). Calibration research NOT SUPPORTED; no model trained; deployment unchanged.
+
+| Question | Data | Result | Role |
+|---|---|---|---|
+| What do the evaluation labels actually mark? | 9 target domains, about 710k windows, official CSE-CIC-IDS2018 table and documented attacker ranges | versioned categories (label-audit-1.0.0): 48 documented attackers / 5 attacked hosts / 22 undocumented sources; 02-20 LOIC-UDP onset labelled LOIC-HTTP; 03-02 bots mostly outside documented operator intervals; no verified benign | exploratory audit |
+| How does frozen M2 score on the audited views? | saved scores | historical 0.788 vs documented-attacker 0.904 macro recall (same detector; different population) | audit |
+| Where does the calibration-label dependency come from? | saved scores, counterfactual cells | threshold contamination 0.29-0.35 + evaluation-memory contamination 0.15-0.21 of the 0.50 loss; hold-out memory 0 | exploratory decomposition |
+| Can a label-free threshold recover it? | same, 6 fits | **no**: host cap 0.387, block median 0.372, trim 0.376, abstention 0.126 vs 0.372 without labels (+0.10 required) | registered development |
+| How do robust thresholds behave under controlled contamination? | clean hold-out + 0.5-10% attacker windows | host cap resists one persistent host but doubles clean FPR on NF-ToN; trim breaks at 5% vs 2% but trims a benign NF-BoT host (FPR 56%) | registered, descriptive |
+
 ## Telemetry
 
 | Check | Result | Source |

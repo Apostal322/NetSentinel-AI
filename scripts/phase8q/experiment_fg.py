@@ -144,8 +144,8 @@ def experiment_f(names: list[str], data: dict) -> dict:
         boot[m] = {"diff": sum(by.values()), "by_domain": {d: v for d, v in by.items() if v},
                    "ci95_domain_cluster": [float(np.quantile(bs, 0.025)), float(np.quantile(bs, 0.975))]}  # fmt: skip
     out["R20_diff_vs_U_bootstrap"] = boot
-    out["L2_qualifying_blocks"] = {n: int(sum((np.bincount((data[n]["hu_end"] // CM.HOUR_MS
-                                                            - data[n]["hu_end"].min() // CM.HOUR_MS)) >= 100)))
+    out["L2_qualifying_blocks"] = {n: int(sum(np.bincount(data[n]["hu_end"] // CM.HOUR_MS
+                                                            - data[n]["hu_end"].min() // CM.HOUR_MS) >= 100))
                                    for n in names}  # fmt: skip
     return out
 
