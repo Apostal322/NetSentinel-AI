@@ -1,0 +1,457 @@
+{
+ "audit_version": "label-audit-1.0.0",
+ "role_rules": {
+  "nfcic": "documented attacker: named in an official Table 2 row of that day",
+  "nfunsw": "documented attacker: 175.45.176.0-3 (UNSW-NB15 attack hosts)",
+  "nfton": "documented attacker: last octet 30-39 (ToN-IoT attacker range); attacked host: its attack-labelled flows go mainly to one",
+  "nfbot": "data-derived (no published addresses): documented attacker = > 100,000 evaluation attack flows; attacked host: its attack-labelled flows go mainly to one"
+ },
+ "utc_offset_h": 4,
+ "views": {
+  "V0_historical": [
+   "documented_attack",
+   "documented_family_mismatch",
+   "documented_outside_interval",
+   "attacked_host_traffic",
+   "undocumented_source"
+  ],
+  "V2_documented_attackers": [
+   "documented_attack",
+   "documented_family_mismatch",
+   "documented_outside_interval"
+  ],
+  "V1_strict": [
+   "documented_attack"
+  ],
+  "attacked_host_traffic": [
+   "attacked_host_traffic"
+  ],
+  "undocumented_source": [
+   "undocumented_source"
+  ]
+ },
+ "status": "EXPLORATORY audit (official documentation + raw labels; raw labels unchanged)",
+ "domains": {
+  "nfbot/all": {
+   "windows": 3449,
+   "categories": {
+    "documented_attack": 1344,
+    "documented_family_mismatch": 0,
+    "documented_outside_interval": 0,
+    "attacked_host_traffic": 235,
+    "undocumented_source": 0,
+    "ambiguous_noisy": 0,
+    "attacker_host_other_window": 1250,
+    "benign_uninvolved": 620,
+    "benign_involved_host": 0
+   },
+   "attack_windows_mixed": 198,
+   "attack_label_sets": {
+    "ddos": 670,
+    "dos": 813,
+    "theft": 96
+   },
+   "sources_by_role": {
+    "documented": [
+     "192.168.100.147",
+     "192.168.100.148",
+     "192.168.100.149",
+     "192.168.100.150"
+    ],
+    "attacked_host": [
+     "192.168.100.3",
+     "192.168.100.5",
+     "192.168.100.6",
+     "192.168.100.7"
+    ],
+    "undocumented": []
+   }
+  },
+  "nfcic/2018-02-14": {
+   "windows": 108481,
+   "categories": {
+    "documented_attack": 181,
+    "documented_family_mismatch": 0,
+    "documented_outside_interval": 3,
+    "attacked_host_traffic": 0,
+    "undocumented_source": 0,
+    "ambiguous_noisy": 0,
+    "attacker_host_other_window": 0,
+    "benign_uninvolved": 108297,
+    "benign_involved_host": 0
+   },
+   "attack_windows_mixed": 0,
+   "attack_label_sets": {
+    "ssh_bruteforce": 184
+   },
+   "sources_by_role": {
+    "documented": [
+     "13.58.98.64"
+    ],
+    "attacked_host": [],
+    "undocumented": []
+   }
+  },
+  "nfcic/2018-02-16": {
+   "windows": 79554,
+   "categories": {
+    "documented_attack": 27,
+    "documented_family_mismatch": 0,
+    "documented_outside_interval": 0,
+    "attacked_host_traffic": 0,
+    "undocumented_source": 0,
+    "ambiguous_noisy": 0,
+    "attacker_host_other_window": 0,
+    "benign_uninvolved": 79524,
+    "benign_involved_host": 3
+   },
+   "attack_windows_mixed": 0,
+   "attack_label_sets": {
+    "dos_hulk": 27
+   },
+   "sources_by_role": {
+    "documented": [
+     "18.219.193.20"
+    ],
+    "attacked_host": [],
+    "undocumented": []
+   }
+  },
+  "nfcic/2018-02-20": {
+   "windows": 113955,
+   "categories": {
+    "documented_attack": 0,
+    "documented_family_mismatch": 106,
+    "documented_outside_interval": 0,
+    "attacked_host_traffic": 0,
+    "undocumented_source": 0,
+    "ambiguous_noisy": 0,
+    "attacker_host_other_window": 0,
+    "benign_uninvolved": 113827,
+    "benign_involved_host": 22
+   },
+   "attack_windows_mixed": 0,
+   "attack_label_sets": {
+    "ddos_loic_http": 106
+   },
+   "sources_by_role": {
+    "documented": [
+     "18.216.200.189",
+     "18.216.24.42",
+     "18.218.11.51",
+     "18.218.115.60",
+     "18.218.229.235",
+     "18.218.55.126",
+     "18.219.32.43",
+     "18.219.5.43",
+     "18.219.9.1",
+     "52.14.136.135"
+    ],
+    "attacked_host": [],
+    "undocumented": []
+   }
+  },
+  "nfcic/2018-02-21": {
+   "windows": 117126,
+   "categories": {
+    "documented_attack": 1080,
+    "documented_family_mismatch": 0,
+    "documented_outside_interval": 6,
+    "attacked_host_traffic": 0,
+    "undocumented_source": 0,
+    "ambiguous_noisy": 0,
+    "attacker_host_other_window": 0,
+    "benign_uninvolved": 115797,
+    "benign_involved_host": 243
+   },
+   "attack_windows_mixed": 0,
+   "attack_label_sets": {
+    "ddos_hoic": 1086
+   },
+   "sources_by_role": {
+    "documented": [
+     "18.216.200.189",
+     "18.216.24.42",
+     "18.218.11.51",
+     "18.218.115.60",
+     "18.218.229.235",
+     "18.218.55.126",
+     "18.219.32.43",
+     "18.219.5.43",
+     "18.219.9.1",
+     "52.14.136.135"
+    ],
+    "attacked_host": [],
+    "undocumented": []
+   }
+  },
+  "nfcic/2018-02-22": {
+   "windows": 128221,
+   "categories": {
+    "documented_attack": 52,
+    "documented_family_mismatch": 0,
+    "documented_outside_interval": 1,
+    "attacked_host_traffic": 0,
+    "undocumented_source": 796,
+    "ambiguous_noisy": 0,
+    "attacker_host_other_window": 13035,
+    "benign_uninvolved": 114337,
+    "benign_involved_host": 0
+   },
+   "attack_windows_mixed": 192,
+   "attack_label_sets": {
+    "web_sql_injection+web_xss": 202,
+    "web_sql_injection": 93,
+    "web_bruteforce": 512,
+    "web_bruteforce+web_xss": 31,
+    "web_xss": 11
+   },
+   "sources_by_role": {
+    "documented": [
+     "18.218.115.60"
+    ],
+    "attacked_host": [],
+    "undocumented": 290
+   }
+  },
+  "nfcic/2018-03-02": {
+   "windows": 94351,
+   "categories": {
+    "documented_attack": 91,
+    "documented_family_mismatch": 0,
+    "documented_outside_interval": 2317,
+    "attacked_host_traffic": 0,
+    "undocumented_source": 0,
+    "ambiguous_noisy": 0,
+    "attacker_host_other_window": 8,
+    "benign_uninvolved": 91935,
+    "benign_involved_host": 0
+   },
+   "attack_windows_mixed": 69,
+   "attack_label_sets": {
+    "bot": 2408
+   },
+   "sources_by_role": {
+    "documented": [
+     "172.31.69.10",
+     "172.31.69.14",
+     "172.31.69.17",
+     "172.31.69.23",
+     "172.31.69.26",
+     "172.31.69.29",
+     "172.31.69.8"
+    ],
+    "attacked_host": [],
+    "undocumented": []
+   }
+  },
+  "nfton/all": {
+   "windows": 49156,
+   "categories": {
+    "documented_attack": 5598,
+    "documented_family_mismatch": 0,
+    "documented_outside_interval": 0,
+    "attacked_host_traffic": 3187,
+    "undocumented_source": 0,
+    "ambiguous_noisy": 0,
+    "attacker_host_other_window": 32924,
+    "benign_uninvolved": 7447,
+    "benign_involved_host": 0
+   },
+   "attack_windows_mixed": 5979,
+   "attack_label_sets": {
+    "password": 3203,
+    "xss": 1848,
+    "ransomware": 304,
+    "mitm": 207,
+    "backdoor": 3223
+   },
+   "sources_by_role": {
+    "documented": [
+     "192.168.1.30",
+     "192.168.1.31",
+     "192.168.1.32",
+     "192.168.1.33",
+     "192.168.1.34",
+     "192.168.1.35",
+     "192.168.1.36",
+     "192.168.1.37",
+     "192.168.1.38",
+     "192.168.1.39"
+    ],
+    "attacked_host": [
+     "192.168.1.133",
+     "192.168.1.193",
+     "192.168.1.6"
+    ],
+    "undocumented": []
+   }
+  },
+  "nfunsw/all": {
+   "windows": 16028,
+   "categories": {
+    "documented_attack": 4091,
+    "documented_family_mismatch": 0,
+    "documented_outside_interval": 0,
+    "attacked_host_traffic": 0,
+    "undocumented_source": 0,
+    "ambiguous_noisy": 0,
+    "attacker_host_other_window": 0,
+    "benign_uninvolved": 11937,
+    "benign_involved_host": 0
+   },
+   "attack_windows_mixed": 0,
+   "attack_label_sets": {
+    "backdoor+exploits+reconnaissance": 24,
+    "exploits+reconnaissance": 436,
+    "exploits+generic+reconnaissance": 450,
+    "exploits+fuzzers+generic+reconnaissance+shellcode": 84,
+    "dos+exploits": 72,
+    "dos+exploits+reconnaissance+shellcode": 81,
+    "dos+exploits+fuzzers+generic": 33,
+    "exploits+fuzzers+reconnaissance+shellcode": 51,
+    "backdoor+dos+exploits+generic+reconnaissance": 15,
+    "dos+exploits+fuzzers+generic+shellcode": 9,
+    "exploits+reconnaissance+shellcode+worms": 4,
+    "exploits+fuzzers+shellcode": 13,
+    "backdoor+exploits+fuzzers+generic+reconnaissance+worms": 1,
+    "dos+exploits+generic+worms": 3,
+    "analysis+dos+exploits+fuzzers+generic+reconnaissance+shellcode": 4,
+    "backdoor+dos+exploits": 3,
+    "analysis+exploits+fuzzers+generic+reconnaissance": 8,
+    "analysis+exploits+fuzzers+generic+reconnaissance+shellcode": 1,
+    "analysis+dos+exploits+reconnaissance+shellcode": 1,
+    "backdoor+exploits+reconnaissance+shellcode": 7,
+    "dos+fuzzers+generic": 1,
+    "fuzzers+reconnaissance": 6,
+    "backdoor+exploits+fuzzers+reconnaissance": 19,
+    "fuzzers": 6,
+    "reconnaissance": 13,
+    "dos+fuzzers+generic+reconnaissance+shellcode": 1,
+    "analysis+dos+generic+reconnaissance": 1,
+    "backdoor+dos+exploits+fuzzers+generic+reconnaissance": 9,
+    "dos+reconnaissance": 3,
+    "exploits+fuzzers+worms": 3,
+    "fuzzers+generic+reconnaissance+shellcode": 2,
+    "analysis+dos+exploits+generic+reconnaissance+worms": 1,
+    "analysis+dos+exploits+fuzzers+worms": 1,
+    "analysis+exploits+fuzzers+generic": 2,
+    "exploits+fuzzers+shellcode+worms": 1,
+    "analysis+exploits+fuzzers": 1,
+    "analysis+exploits+fuzzers+generic+reconnaissance+worms": 1,
+    "exploits": 107,
+    "exploits+generic+reconnaissance+shellcode": 145,
+    "dos+exploits+generic+reconnaissance": 324,
+    "dos+exploits+fuzzers+generic+reconnaissance+shellcode": 51,
+    "exploits+generic+reconnaissance+shellcode+worms": 4,
+    "dos+exploits+shellcode": 26,
+    "dos+exploits+generic": 76,
+    "dos+exploits+fuzzers+reconnaissance": 177,
+    "exploits+reconnaissance+worms": 16,
+    "dos+exploits+fuzzers+generic+reconnaissance+worms": 4,
+    "exploits+shellcode": 12,
+    "dos+fuzzers+generic+reconnaissance": 4,
+    "exploits+fuzzers": 28,
+    "dos+exploits+fuzzers": 32,
+    "analysis+backdoor+exploits+generic+reconnaissance": 1,
+    "analysis+exploits+fuzzers+reconnaissance": 6,
+    "analysis+exploits+reconnaissance+worms": 1,
+    "analysis+dos+exploits+reconnaissance": 4,
+    "backdoor+dos+exploits+generic+reconnaissance+shellcode": 8,
+    "exploits+fuzzers+reconnaissance+worms": 6,
+    "backdoor+exploits+fuzzers+generic+reconnaissance": 10,
+    "dos+exploits+fuzzers+reconnaissance+shellcode+worms": 4,
+    "backdoor+exploits+fuzzers+generic+reconnaissance+shellcode": 6,
+    "dos+exploits+reconnaissance+worms": 6,
+    "dos+exploits+fuzzers+reconnaissance+worms": 5,
+    "dos+exploits+fuzzers+shellcode+worms": 2,
+    "exploits+generic+reconnaissance+worms": 9,
+    "exploits+generic+worms": 1,
+    "analysis+exploits+fuzzers+reconnaissance+shellcode": 1,
+    "analysis+exploits+generic+shellcode": 1,
+    "backdoor+fuzzers+generic+reconnaissance": 1,
+    "dos+exploits+generic+reconnaissance+shellcode+worms": 2,
+    "backdoor+dos+exploits+fuzzers": 2,
+    "backdoor": 69,
+    "backdoor+exploits": 3,
+    "dos+exploits+reconnaissance": 326,
+    "backdoor+dos+exploits+reconnaissance": 13,
+    "exploits+fuzzers+generic+reconnaissance": 231,
+    "dos+exploits+fuzzers+reconnaissance+shellcode": 49,
+    "exploits+fuzzers+reconnaissance": 172,
+    "dos+exploits+fuzzers+generic+reconnaissance": 169,
+    "exploits+fuzzers+reconnaissance+shellcode+worms": 2,
+    "backdoor+exploits+generic+reconnaissance": 27,
+    "analysis+dos+exploits+generic+reconnaissance": 15,
+    "exploits+generic+shellcode": 12,
+    "backdoor+exploits+generic+shellcode": 3,
+    "dos+exploits+generic+shellcode": 14,
+    "generic+reconnaissance+shellcode": 3,
+    "exploits+fuzzers+generic+reconnaissance+worms": 8,
+    "analysis+dos+exploits+fuzzers+generic": 1,
+    "analysis+dos+exploits+fuzzers+reconnaissance+shellcode": 1,
+    "backdoor+exploits+generic+reconnaissance+shellcode": 8,
+    "backdoor+dos+exploits+shellcode": 2,
+    "backdoor+dos+exploits+fuzzers+reconnaissance+shellcode": 7,
+    "dos+exploits+worms": 1,
+    "dos": 1,
+    "exploits+shellcode+worms": 1,
+    "dos+reconnaissance+shellcode": 3,
+    "exploits+fuzzers+generic+worms": 2,
+    "dos+fuzzers+reconnaissance": 2,
+    "backdoor+dos+exploits+fuzzers+generic+reconnaissance+shellcode": 4,
+    "analysis+backdoor+exploits+fuzzers+generic+reconnaissance": 1,
+    "backdoor+dos+exploits+fuzzers+generic": 2,
+    "analysis+exploits+reconnaissance": 5,
+    "analysis+dos+exploits+fuzzers+reconnaissance": 8,
+    "analysis+backdoor+dos+exploits+fuzzers+reconnaissance": 1,
+    "backdoor+exploits+fuzzers+generic+shellcode": 1,
+    "dos+exploits+fuzzers+worms": 1,
+    "exploits+generic": 99,
+    "exploits+fuzzers+generic": 34,
+    "exploits+reconnaissance+shellcode": 112,
+    "backdoor+dos+exploits+reconnaissance+shellcode": 9,
+    "dos+exploits+generic+reconnaissance+shellcode": 88,
+    "backdoor+exploits+generic": 3,
+    "backdoor+exploits+fuzzers+reconnaissance+shellcode": 4,
+    "dos+exploits+fuzzers+generic+worms": 2,
+    "exploits+fuzzers+generic+reconnaissance+shellcode+worms": 5,
+    "dos+exploits+fuzzers+shellcode": 6,
+    "backdoor+dos+exploits+fuzzers+reconnaissance": 15,
+    "analysis+exploits+generic+reconnaissance": 12,
+    "analysis+exploits+generic+reconnaissance+shellcode": 3,
+    "analysis+dos+exploits+fuzzers+generic+reconnaissance": 8,
+    "generic+reconnaissance": 9,
+    "backdoor+fuzzers+reconnaissance": 1,
+    "dos+generic+reconnaissance": 10,
+    "dos+exploits+generic+reconnaissance+worms": 6,
+    "fuzzers+generic+reconnaissance": 4,
+    "generic": 5,
+    "exploits+fuzzers+generic+shellcode": 19,
+    "exploits+worms": 3,
+    "analysis+exploits+generic": 1,
+    "analysis+dos+exploits+generic+reconnaissance+shellcode": 1,
+    "fuzzers+reconnaissance+shellcode+worms": 1,
+    "backdoor+exploits+fuzzers+reconnaissance+shellcode+worms": 1,
+    "backdoor+dos+exploits+generic": 4,
+    "backdoor+reconnaissance": 1,
+    "backdoor+exploits+fuzzers": 1,
+    "dos+generic+reconnaissance+shellcode": 1,
+    "backdoor+dos+exploits+fuzzers+generic+shellcode": 1,
+    "analysis+backdoor+dos+exploits+fuzzers+generic+reconnaissance": 1
+   },
+   "sources_by_role": {
+    "documented": [
+     "175.45.176.0",
+     "175.45.176.1",
+     "175.45.176.2",
+     "175.45.176.3"
+    ],
+    "attacked_host": [],
+    "undocumented": []
+   }
+  }
+ },
+ "seconds": 23.8,
+ "peak_rss_mb": 2139.62109375
+}
