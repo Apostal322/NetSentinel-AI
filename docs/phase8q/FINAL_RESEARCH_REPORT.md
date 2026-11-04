@@ -41,7 +41,12 @@ without verified attacker identities while keeping useful detection?
 **Unchanged:** raw data, frozen M2, every Phase 8h–8p artifact, and the deployed code (`src/`
 untouched).
 
-**Tests:** see the closing commit.
+**Tests:**
+- **pytest:** 407 passed, 2 deselected (`slow`/`gpu`/`data` markers), 0 failed, 0 skipped
+  (`python -m pytest -p no:warnings --junitxml=...`; 11.6 min, with other projects' test runs
+  sharing the CPU).
+- **ruff check and format:** clean (455 files).
+- **Dependencies:** none added.
 
 ## Ground-truth findings (LABEL_AUDIT.md)
 
