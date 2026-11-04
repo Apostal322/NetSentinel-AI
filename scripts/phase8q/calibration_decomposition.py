@@ -97,6 +97,9 @@ def main() -> None:
         hp = hold_frame(P1X / net / dom / "cal_p1x.parquet")
         att = calibration_attackers(name)
         is_att = np.isin(hu["key"].to_numpy().astype(str), np.array(sorted(att), dtype=str))
+        # the P1x hold-out must be exactly the non-attacker rows of the unlabelled hold-out
+        if not hu.filter(pl.Series(~is_att)).select("key", "win").equals(hp.select("key", "win")):
+            raise RuntimeError(f"{name}: P1x hold-out is not the non-attacker unlabelled hold-out")
         d = {"calibration_attackers": len(att), "hold_u_windows": hu.height, "hold_p1x_windows": hp.height,
              "attacker_hold_windows": int(is_att.sum()), "attacker_hold_share": round(float(is_att.mean()), 4),
              "fits": {}}  # fmt: skip
@@ -145,6 +148,12 @@ def main() -> None:
                       "path2": {"eval_memory": g["UE"] - g["U"], "threshold": g["TE"] - g["UE"], "hold_memory": g["P"] - g["TE"]},
                       "total": g["P"] - g["U"]}  # fmt: skip
     res["per_network"] = per_net
+    per_dom = {}
+    for name in names:
+        rec = {c: float(np.mean([per_cell[c][k][name]["recall"] for k in per_cell[c]
+                                 if per_cell[c][k][name]["recall"] is not None] or [np.nan])) for c in cells}  # fmt: skip
+        per_dom[name] = {c: round(v, 4) for c, v in rec.items()}
+    res["per_domain_recall"] = per_dom
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_bytes(json.dumps(res, indent=1).encode())
     for c in cells:

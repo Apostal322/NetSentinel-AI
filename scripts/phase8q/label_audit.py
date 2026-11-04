@@ -87,9 +87,9 @@ CIC_TABLE = {
 CIC_VICTIMS = {"2018-02-14": ["172.31.69.25"], "2018-02-16": ["172.31.69.25"], "2018-02-20": ["172.31.69.25"],
                "2018-02-21": ["172.31.69.28"], "2018-02-22": ["172.31.69.28"], "2018-03-02": []}  # fmt: skip
 ROLE_RULES = {
-    "nfcic": "documented attacker: named in an official Table 2 row of that day",
+    "nfcic": "documented attacker or documented infected host (03-02 Bot victims): named in an official Table 2 row of that day",
     "nfunsw": "documented attacker: 175.45.176.0-3 (UNSW-NB15 attack hosts)",
-    "nfton": "documented attacker: last octet 30-39 (ToN-IoT attacker range); attacked host: its attack-labelled flows go mainly to one",
+    "nfton": "documented attacker: 192.168.1.30-39 (ToN-IoT attacker range); attacked host: its attack-labelled flows go mainly to one",
     "nfbot": "data-derived (no published addresses): documented attacker = > 100,000 evaluation attack flows; attacked host: its attack-labelled flows go mainly to one",
 }  # fmt: skip
 CATEGORIES = ("documented_attack", "documented_family_mismatch", "documented_outside_interval",
@@ -138,11 +138,14 @@ def source_role(
             else "undocumented"
         )
     if net == "nfton":
-        if 30 <= int(src.split(".")[-1]) <= 39:
+        ton = ipaddress.ip_network("192.168.1.0/24")
+        if ipaddress.ip_address(src) in ton and 30 <= int(src.split(".")[-1]) <= 39:
             return "documented"
         return (
             "attacked_host"
-            if top_dst and 30 <= int(top_dst.split(".")[-1]) <= 39
+            if top_dst
+            and ipaddress.ip_address(top_dst) in ton
+            and 30 <= int(top_dst.split(".")[-1]) <= 39
             else "undocumented"
         )
     if src in heavy:

@@ -121,6 +121,32 @@ def experiment_f(names: list[str], data: dict) -> dict:
     )
     out["paired_macro_diff_vs_U"] = {m: [BM.summarise({k: v})["macro_recall"] - BM.summarise({k: per["U"][k]})["macro_recall"]
                                          for k, v in per[m].items()] for m in CANDIDATES}  # fmt: skip
+    # registered extras: false alerts per hour per network; domain-cluster bootstrap of R20 vs U
+    out["false_alerts_per_h"] = {m: {n: float(np.mean([v[d]["false_alerts_per_h"] for v in per[m].values()
+                                                        for d in v if d.startswith(n + "/")]))
+                                     for n in BM.NETWORKS} for m in per}  # fmt: skip
+    rng = np.random.default_rng(8)
+
+    def det_all(m: str) -> dict[str, bool]:
+        first = next(iter(per[m].values()))
+        return {f"{d}|{e}": all(BM.detected(v[d]["entity_frac"][e], v[d]["entity_windows"][e], 20) for v in per[m].values())
+                for d in first for e in first[d]["entity_frac"]}  # fmt: skip
+
+    base = det_all("U")
+    boot = {}
+    for m in CANDIDATES:
+        x = det_all(m)
+        by: dict[str, int] = {}
+        for k in base:
+            by[k.split("|")[0]] = by.get(k.split("|")[0], 0) + int(x[k]) - int(base[k])
+        doms = sorted(by)
+        bs = [sum(by[doms[i]] for i in rng.integers(0, len(doms), len(doms))) for _ in range(2000)]
+        boot[m] = {"diff": sum(by.values()), "by_domain": {d: v for d, v in by.items() if v},
+                   "ci95_domain_cluster": [float(np.quantile(bs, 0.025)), float(np.quantile(bs, 0.975))]}  # fmt: skip
+    out["R20_diff_vs_U_bootstrap"] = boot
+    out["L2_qualifying_blocks"] = {n: int(sum((np.bincount((data[n]["hu_end"] // CM.HOUR_MS
+                                                            - data[n]["hu_end"].min() // CM.HOUR_MS)) >= 100)))
+                                   for n in names}  # fmt: skip
     return out
 
 
@@ -182,6 +208,16 @@ def experiment_g(names: list[str], data: dict) -> dict:
                                       "p10": float(np.quantile(v, 0.1)), "p90": float(np.quantile(v, 0.9))}
                                   for m, v in ts.items() if v}  # fmt: skip
         res["sparse"][name] = out
+    # registered: the smallest injected fraction at which recall falls by more than 0.10 (None: never)
+    brk = {}
+    for name, v in res["injection"].items():
+        for mode in ("persistent", "spread"):
+            for m in CM.METHODS:
+                r0 = v[f"{mode}|0.0|{m}"]["recall_mean"]
+                hit = [f for f in FRACTIONS if r0 is not None and v[f"{mode}|{f}|{m}"]["recall_mean"] is not None
+                       and v[f"{mode}|{f}|{m}"]["recall_mean"] < r0 - 0.10]  # fmt: skip
+                brk[f"{name}|{mode}|{m}"] = min(hit) if hit else None
+    res["breakdown_fraction"] = brk
     return res
 
 
