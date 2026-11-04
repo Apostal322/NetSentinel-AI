@@ -1,0 +1,330 @@
+{
+ "status": "REGISTERED DEVELOPMENT (Experiment F); saved scores; label-free candidates",
+ "abstained_domains_L5": {
+  "nfbot/all": true,
+  "nfcic/2018-02-14": false,
+  "nfcic/2018-02-16": false,
+  "nfcic/2018-02-20": false,
+  "nfcic/2018-02-21": false,
+  "nfcic/2018-02-22": false,
+  "nfcic/2018-03-02": false,
+  "nfton/all": true,
+  "nfunsw/all": true
+ },
+ "methods": {
+  "U": {
+   "macro_recall": 0.37181694954847194,
+   "R20": 16,
+   "U20": 0,
+   "N20": 32,
+   "networks": {
+    "nfcic": {
+     "recall": 0.502583279708946,
+     "fpr": 0.011646425078613203,
+     "false_alerts": 1214.2777777777778
+    },
+    "nfunsw": {
+     "recall": 0.054346940438360636,
+     "fpr": 0.01799726341068387,
+     "false_alerts": 214.83333333333334
+    },
+    "nfton": {
+     "recall": 0.0007740859830891985,
+     "fpr": 0.003894185578085135,
+     "false_alerts": 29.0
+    },
+    "nfbot": {
+     "recall": 0.929563492063492,
+     "fpr": 0.09596774193548387,
+     "false_alerts": 59.5
+    }
+   }
+  },
+  "T": {
+   "macro_recall": 0.6563700976541321,
+   "R20": 24,
+   "U20": 4,
+   "N20": 20,
+   "networks": {
+    "nfcic": {
+     "recall": 0.502583279708946,
+     "fpr": 0.01166680876506102,
+     "false_alerts": 1216.0
+    },
+    "nfunsw": {
+     "recall": 0.5494989000244439,
+     "fpr": 0.036301695009913156,
+     "false_alerts": 433.3333333333333
+    },
+    "nfton": {
+     "recall": 0.6399904727879006,
+     "fpr": 0.15986303209346048,
+     "false_alerts": 1190.5
+    },
+    "nfbot": {
+     "recall": 0.933407738095238,
+     "fpr": 0.07795698924731181,
+     "false_alerts": 48.333333333333336
+    }
+   }
+  },
+  "P": {
+   "macro_recall": 0.8688913462252624,
+   "R20": 37,
+   "U20": 0,
+   "N20": 11,
+   "networks": {
+    "nfcic": {
+     "recall": 0.8071216754069369,
+     "fpr": 0.011667715202580281,
+     "false_alerts": 1216.0833333333333
+    },
+    "nfunsw": {
+     "recall": 0.8345962682310764,
+     "fpr": 0.036497165675351155,
+     "false_alerts": 435.6666666666667
+    },
+    "nfton": {
+     "recall": 0.8839466476122424,
+     "fpr": 0.16445100935499754,
+     "false_alerts": 1224.6666666666667
+    },
+    "nfbot": {
+     "recall": 0.9499007936507938,
+     "fpr": 0.07956989247311828,
+     "false_alerts": 49.333333333333336
+    }
+   }
+  },
+  "L1": {
+   "macro_recall": 0.3868209058537103,
+   "R20": 16,
+   "U20": 1,
+   "N20": 31,
+   "networks": {
+    "nfcic": {
+     "recall": 0.502583279708946,
+     "fpr": 0.011742005503614183,
+     "false_alerts": 1225.3055555555557
+    },
+    "nfunsw": {
+     "recall": 0.0785464026725332,
+     "fpr": 0.020482533299824076,
+     "false_alerts": 244.5
+    },
+    "nfton": {
+     "recall": 0.03659044896987019,
+     "fpr": 0.015464840427912805,
+     "false_alerts": 115.16666666666667
+    },
+    "nfbot": {
+     "recall": 0.929563492063492,
+     "fpr": 0.09596774193548387,
+     "false_alerts": 59.5
+    }
+   }
+  },
+  "L2": {
+   "macro_recall": 0.37181694954847194,
+   "R20": 16,
+   "U20": 0,
+   "N20": 32,
+   "networks": {
+    "nfcic": {
+     "recall": 0.502583279708946,
+     "fpr": 0.011646425078613203,
+     "false_alerts": 1214.2777777777778
+    },
+    "nfunsw": {
+     "recall": 0.054346940438360636,
+     "fpr": 0.01799726341068387,
+     "false_alerts": 214.83333333333334
+    },
+    "nfton": {
+     "recall": 0.0007740859830891985,
+     "fpr": 0.0034689584172597466,
+     "false_alerts": 25.833333333333332
+    },
+    "nfbot": {
+     "recall": 0.929563492063492,
+     "fpr": 0.09596774193548387,
+     "false_alerts": 59.5
+    }
+   }
+  },
+  "L4": {
+   "macro_recall": 0.3757122821312765,
+   "R20": 16,
+   "U20": 0,
+   "N20": 32,
+   "networks": {
+    "nfcic": {
+     "recall": 0.5026088577731982,
+     "fpr": 0.013056707198785595,
+     "false_alerts": 1355.0
+    },
+    "nfunsw": {
+     "recall": 0.054346940438360636,
+     "fpr": 0.01799726341068387,
+     "false_alerts": 214.83333333333334
+    },
+    "nfton": {
+     "recall": 0.015213766821483864,
+     "fpr": 0.01730003133252764,
+     "false_alerts": 128.83333333333334
+    },
+    "nfbot": {
+     "recall": 0.9306795634920634,
+     "fpr": 0.14059139784946237,
+     "false_alerts": 87.16666666666667
+    }
+   }
+  },
+  "L5": {
+   "macro_recall": 0.12565221444329955,
+   "R20": 12,
+   "U20": 0,
+   "N20": 36,
+   "networks": {
+    "nfcic": {
+     "recall": 0.5026088577731982,
+     "fpr": 0.013056707198785595,
+     "false_alerts": 1355.0
+    },
+    "nfunsw": {
+     "recall": 0.0,
+     "fpr": 0.0,
+     "false_alerts": 0.0
+    },
+    "nfton": {
+     "recall": 0.0,
+     "fpr": 0.0,
+     "false_alerts": 0.0
+    },
+    "nfbot": {
+     "recall": 0.0,
+     "fpr": 0.0,
+     "false_alerts": 0.0
+    }
+   }
+  }
+ },
+ "decisions": {
+  "L1": {
+   "macro_gain_vs_U": 0.015003956305238375,
+   "gap_recovered": 0.05272813323318817,
+   "i_macro": false,
+   "ii_recall_by_network": {
+    "nfcic": true,
+    "nfunsw": true,
+    "nfton": true,
+    "nfbot": true
+   },
+   "iii_fpr_by_network": {
+    "nfcic": true,
+    "nfunsw": true,
+    "nfton": true,
+    "nfbot": false
+   },
+   "iv_coverage": null,
+   "verdict": "NOT SUPPORTED"
+  },
+  "L2": {
+   "macro_gain_vs_U": 0.0,
+   "gap_recovered": 0.0,
+   "i_macro": false,
+   "ii_recall_by_network": {
+    "nfcic": true,
+    "nfunsw": true,
+    "nfton": true,
+    "nfbot": true
+   },
+   "iii_fpr_by_network": {
+    "nfcic": true,
+    "nfunsw": true,
+    "nfton": true,
+    "nfbot": false
+   },
+   "iv_coverage": null,
+   "verdict": "NOT SUPPORTED"
+  },
+  "L4": {
+   "macro_gain_vs_U": 0.003895332582804556,
+   "gap_recovered": 0.01368929709172693,
+   "i_macro": false,
+   "ii_recall_by_network": {
+    "nfcic": true,
+    "nfunsw": true,
+    "nfton": true,
+    "nfbot": true
+   },
+   "iii_fpr_by_network": {
+    "nfcic": true,
+    "nfunsw": true,
+    "nfton": true,
+    "nfbot": false
+   },
+   "iv_coverage": null,
+   "verdict": "NOT SUPPORTED"
+  },
+  "L5": {
+   "macro_gain_vs_U": -0.2461647351051724,
+   "gap_recovered": -0.8650922920514188,
+   "i_macro": false,
+   "ii_recall_by_network": {
+    "nfcic": true,
+    "nfunsw": false,
+    "nfton": true,
+    "nfbot": false
+   },
+   "iii_fpr_by_network": {
+    "nfcic": true,
+    "nfunsw": true,
+    "nfton": true,
+    "nfbot": true
+   },
+   "iv_coverage": {
+    "nfcic": 1.0,
+    "nfunsw": 0.0,
+    "nfton": 0.0,
+    "nfbot": 0.0
+   },
+   "verdict": "NOT SUPPORTED"
+  }
+ },
+ "calibration_research": "NOT SUPPORTED",
+ "paired_macro_diff_vs_U": {
+  "L1": [
+   0.007037140669630182,
+   0.003408064077080275,
+   0.0023292334998645248,
+   0.013648838250976403,
+   0.016621852847714502,
+   0.04697860848616453
+  ],
+  "L2": [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "L4": [
+   0.0033047516970347024,
+   0.0037513397642015,
+   0.004287245444801746,
+   0.006073597713469048,
+   0.004242586638085022,
+   0.0017124742392353176
+  ],
+  "L5": [
+   -0.24993285818122077,
+   -0.2508558548235965,
+   -0.24970688150222523,
+   -0.2473343317123264,
+   -0.23885956469485864,
+   -0.24029891971680706
+  ]
+ }
+}

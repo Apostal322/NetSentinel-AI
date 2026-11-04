@@ -1,0 +1,203 @@
+{
+ "status": "EXPLORATORY (feature level; no model scored)",
+ "domains": {
+  "nfbot/all": {
+   "memory_sizes": {
+    "P1x": 8,
+    "U": 243,
+    "F": 18
+   },
+   "P1x": {
+    "doc_attack_novel_share": 0.4784,
+    "benign_novel_share": 0.0226,
+    "doc_attack_mean_novelty": 0.4689
+   },
+   "U": {
+    "doc_attack_novel_share": 0.0141,
+    "benign_novel_share": 0.021,
+    "doc_attack_mean_novelty": 0.0069
+   },
+   "F": {
+    "doc_attack_novel_share": 0.0141,
+    "benign_novel_share": 0.0645,
+    "doc_attack_mean_novelty": 0.0069
+   }
+  },
+  "nfcic/2018-02-14": {
+   "memory_sizes": {
+    "P1x": 5847,
+    "U": 5848,
+    "F": 3584
+   },
+   "P1x": {
+    "doc_attack_novel_share": 1.0,
+    "benign_novel_share": 0.0329,
+    "doc_attack_mean_novelty": 1.0
+   },
+   "U": {
+    "doc_attack_novel_share": 0.0,
+    "benign_novel_share": 0.0329,
+    "doc_attack_mean_novelty": 0.0
+   },
+   "F": {
+    "doc_attack_novel_share": 1.0,
+    "benign_novel_share": 0.0529,
+    "doc_attack_mean_novelty": 1.0
+   }
+  },
+  "nfcic/2018-02-16": {
+   "memory_sizes": {
+    "P1x": 5245,
+    "U": 5245,
+    "F": 3324
+   },
+   "P1x": {
+    "doc_attack_novel_share": 0.0,
+    "benign_novel_share": 0.0391,
+    "doc_attack_mean_novelty": 0.0
+   },
+   "U": {
+    "doc_attack_novel_share": 0.0,
+    "benign_novel_share": 0.0391,
+    "doc_attack_mean_novelty": 0.0
+   },
+   "F": {
+    "doc_attack_novel_share": 0.0,
+    "benign_novel_share": 0.0571,
+    "doc_attack_mean_novelty": 0.0
+   }
+  },
+  "nfcic/2018-02-20": {
+   "memory_sizes": {
+    "P1x": 5797,
+    "U": 5797,
+    "F": 3562
+   },
+   "P1x": {
+    "doc_attack_novel_share": 0.0,
+    "benign_novel_share": 0.043,
+    "doc_attack_mean_novelty": 0.0
+   },
+   "U": {
+    "doc_attack_novel_share": 0.0,
+    "benign_novel_share": 0.043,
+    "doc_attack_mean_novelty": 0.0
+   },
+   "F": {
+    "doc_attack_novel_share": 0.0,
+    "benign_novel_share": 0.0619,
+    "doc_attack_mean_novelty": 0.0
+   }
+  },
+  "nfcic/2018-02-21": {
+   "memory_sizes": {
+    "P1x": 6973,
+    "U": 6973,
+    "F": 4088
+   },
+   "P1x": {
+    "doc_attack_novel_share": 0.0,
+    "benign_novel_share": 0.0668,
+    "doc_attack_mean_novelty": 0.0
+   },
+   "U": {
+    "doc_attack_novel_share": 0.0,
+    "benign_novel_share": 0.0668,
+    "doc_attack_mean_novelty": 0.0
+   },
+   "F": {
+    "doc_attack_novel_share": 0.0,
+    "benign_novel_share": 0.0886,
+    "doc_attack_mean_novelty": 0.0
+   }
+  },
+  "nfcic/2018-02-22": {
+   "memory_sizes": {
+    "P1x": 7851,
+    "U": 7875,
+    "F": 4819
+   },
+   "P1x": {
+    "doc_attack_novel_share": 1.0,
+    "benign_novel_share": 0.0382,
+    "doc_attack_mean_novelty": 1.0
+   },
+   "U": {
+    "doc_attack_novel_share": 0.0,
+    "benign_novel_share": 0.0382,
+    "doc_attack_mean_novelty": 0.0
+   },
+   "F": {
+    "doc_attack_novel_share": 0.0,
+    "benign_novel_share": 0.0553,
+    "doc_attack_mean_novelty": 0.0
+   }
+  },
+  "nfcic/2018-03-02": {
+   "memory_sizes": {
+    "P1x": 5582,
+    "U": 5591,
+    "F": 3377
+   },
+   "P1x": {
+    "doc_attack_novel_share": 1.0,
+    "benign_novel_share": 0.0383,
+    "doc_attack_mean_novelty": 0.9876
+   },
+   "U": {
+    "doc_attack_novel_share": 0.0004,
+    "benign_novel_share": 0.0383,
+    "doc_attack_mean_novelty": 0.0002
+   },
+   "F": {
+    "doc_attack_novel_share": 0.0046,
+    "benign_novel_share": 0.0674,
+    "doc_attack_mean_novelty": 0.0023
+   }
+  },
+  "nfton/all": {
+   "memory_sizes": {
+    "P1x": 210,
+    "U": 8166,
+    "F": 380
+   },
+   "P1x": {
+    "doc_attack_novel_share": 0.9278,
+    "benign_novel_share": 0.2792,
+    "doc_attack_mean_novelty": 0.3994
+   },
+   "U": {
+    "doc_attack_novel_share": 0.3574,
+    "benign_novel_share": 0.2503,
+    "doc_attack_mean_novelty": 0.1058
+   },
+   "F": {
+    "doc_attack_novel_share": 0.376,
+    "benign_novel_share": 0.3785,
+    "doc_attack_mean_novelty": 0.118
+   }
+  },
+  "nfunsw/all": {
+   "memory_sizes": {
+    "P1x": 31,
+    "U": 40,
+    "F": 36
+   },
+   "P1x": {
+    "doc_attack_novel_share": 0.9988,
+    "benign_novel_share": 0.0003,
+    "doc_attack_mean_novelty": 0.9008
+   },
+   "U": {
+    "doc_attack_novel_share": 0.0,
+    "benign_novel_share": 0.0,
+    "doc_attack_mean_novelty": 0.0
+   },
+   "F": {
+    "doc_attack_novel_share": 0.0,
+    "benign_novel_share": 0.0182,
+    "doc_attack_mean_novelty": 0.0
+   }
+  }
+ }
+}

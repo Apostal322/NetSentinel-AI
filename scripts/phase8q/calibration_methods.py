@@ -67,13 +67,16 @@ def block_median_t0(scores: np.ndarray, end_ms: np.ndarray, alpha: float = ALPHA
 def persistent_trim_t0(scores: np.ndarray, hosts: np.ndarray, alpha: float = ALPHA) -> float:
     s = _check(scores)
     h = np.asarray(hosts)
-    pooled = np.quantile(s, 1 - alpha)
-    keep = np.ones(s.size, bool)
-    for host in np.unique(h):
-        m = h == host
-        ref = np.quantile(s[~m], 1 - alpha) if m.mean() >= alpha / 2 and (~m).any() else pooled
-        if np.median(s[m]) > ref:
-            keep &= ~m
+    uniq, inv, cnt = np.unique(h, return_inverse=True, return_counts=True)
+    o = np.lexsort((s, inv))  # windows grouped by host, sorted by score within the host
+    starts = np.r_[0, np.cumsum(cnt)[:-1]]
+    ss = s[o]
+    med = 0.5 * (ss[starts + (cnt - 1) // 2] + ss[starts + cnt // 2])  # per-host median
+    ref = np.full(uniq.size, np.quantile(s, 1 - alpha))
+    for j in np.flatnonzero(cnt >= alpha / 2 * s.size):  # large hosts: leave-one-host-out reference
+        if cnt[j] < s.size:
+            ref[j] = np.quantile(s[inv != j], 1 - alpha)
+    keep = ~(med > ref)[inv]
     return t0(s[keep] if keep.any() else s, alpha)
 
 
