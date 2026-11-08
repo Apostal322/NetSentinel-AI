@@ -101,3 +101,33 @@ class Calibrator:
             m = u == k
             out[m] = dk.cdf(s[m])
         return out
+
+
+def matched_budget_alert(
+    cdf_value: np.ndarray, score: np.ndarray, benign: np.ndarray, budget: int
+) -> np.ndarray:
+    """Alert the highest-ranked windows, ranked by calibration-CDF value with ties (notably the
+    saturation at 1.0 above the calibration maximum) broken by the raw score, keeping benign false
+    alerts ≤ budget. For one global CDF this reproduces the global oracle threshold exactly.
+    Amendment A-2: the first implementation thresholded the CDF value alone, so every evaluation
+    window above the calibration maximum tied at 1.0 and nothing could alert."""
+    v = np.asarray(cdf_value, dtype=float)
+    s = np.asarray(score, dtype=float)
+    o = np.lexsort((s, v))[::-1]  # descending by (v, s)
+    ben_sorted = np.asarray(benign)[o]
+    cum = np.cumsum(ben_sorted)
+    # the alert set must be a prefix closed under exact (v, s) ties
+    keys_v, keys_s = v[o], s[o]
+    n_ok = int(
+        np.searchsorted(cum, budget, side="right")
+    )  # longest prefix with benign count <= budget
+    while (
+        n_ok > 0
+        and n_ok < o.size
+        and keys_v[n_ok] == keys_v[n_ok - 1]
+        and keys_s[n_ok] == keys_s[n_ok - 1]
+    ):
+        n_ok -= 1
+    alert = np.zeros(v.size, bool)
+    alert[o[:n_ok]] = True
+    return alert

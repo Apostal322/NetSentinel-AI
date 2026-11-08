@@ -190,3 +190,14 @@ Otherwise **DEVELOPMENT NO-GO**.
 **Stress cases** (EXPLORATORY; development data; labelled):
 - removing the noisiest benign host from calibration;
 - calibration on the hold-out's first half only (calibration age).
+
+## 9. Amendment A-2: matched-budget defect (found after the first deployable run)
+
+| item | content |
+|---|---|
+| timestamp | 2026-11-09, after `deployable.json` (first run) was written and read |
+| registered rule (unchanged) | matched budget: one global cut on each method's calibration-CDF value; **"for D0 it equals O0"** |
+| defect | the CDF value saturates at 1.0 for every evaluation score above the calibration maximum. When more than B benign windows exceed it (NF-UNSW, NF-ToN, NF-BoT: drift), the cut was 1.0 and nothing could alert. The first run's D0 matched recall was 0.121, against O0's 0.275 |
+| fix | rank by (CDF value, raw score) and alert the longest tie-closed prefix whose benign count is ≤ B (`matched_budget_alert`). A unit test asserts D0 = O0 under saturation |
+| outcomes visible? | **yes:** all first-run results had been read |
+| effect | H1 and the gate's H1 criterion are recomputed (`deployable_r2.json`). As-calibrated results, H2, H3 and H4 are unaffected; they are identical in both files. The first file is kept, marked defective |

@@ -76,8 +76,9 @@ def evaluate(d: dict, s_cal: np.ndarray, s_ev: np.ndarray, cal_mask: np.ndarray,
         v = c.cdf_for(s_ev, d["svc"], d["key"])
         neg = d["neg"] & m
         budget = int(math.floor(ALPHA * neg.sum()))
-        cut = TO.global_threshold(v[neg], budget)
-        out["matched_budget"] = OF.metrics(d, s_ev, (v > cut) & m, sub)
+        alert_mb = np.zeros(s_ev.size, bool)
+        alert_mb[m] = CC.matched_budget_alert(v[m], s_ev[m], neg[m], budget)  # A-2
+        out["matched_budget"] = OF.metrics(d, s_ev, alert_mb, sub)
     # group transfer error (H2): calibration vs evaluation exceedance per service group
     te, w = [], []
     cal_g, cal_s = d["cal_grp"][cal_mask], s_cal[cal_mask]

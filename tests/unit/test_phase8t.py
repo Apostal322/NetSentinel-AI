@@ -154,3 +154,17 @@ def test_cdf_consistency_and_errors():
     with pytest.raises(ValueError):
         CC.Calibrator("D0", np.array([np.inf]), np.array([0]), np.array(["a"]))
     assert CC.service_group(np.array([0.9, 0.1]), np.array([1, 7])).tolist() == [3, 2]
+
+
+def test_matched_budget_reproduces_global_oracle_and_handles_saturation():
+    rng = np.random.default_rng(9)
+    cal = rng.normal(0, 1, 2000)
+    ev = np.r_[rng.normal(2, 1, 3000), rng.normal(5, 1, 100)]  # shifted: many scores above cal max
+    benign = np.r_[np.ones(3000, bool), np.zeros(100, bool)]
+    c = CC.Calibrator("D0", cal, np.zeros(cal.size, int), np.zeros(cal.size).astype(str))
+    v = c.cdf_for(ev, np.zeros(ev.size, int), np.zeros(ev.size).astype(str))
+    assert (v[benign] == 1.0).sum() > 30  # saturation present
+    budget = 30
+    a = CC.matched_budget_alert(v, ev, benign, budget)
+    t0 = TO.global_threshold(ev[benign], budget)
+    assert (a == (ev > t0)).all() and (a & benign).sum() <= budget and (a & ~benign).sum() > 0
