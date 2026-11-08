@@ -117,3 +117,76 @@ Per network, both score states:
 - **No window-level bootstrap.** An entity-cluster bootstrap over domains is reported for the O2g
   and O3g gains.
 - **Every oracle number is retrospective,** chosen with the evaluation labels it is scored on.
+
+## 8. Amendment A-1: deployable candidates
+
+**When:** 2026-11-09, after G1 passed (`oracle_feasibility.json`, results visible) and **before any
+deployable candidate was computed.**
+
+**Design evidence used (EXPLORATORY):**
+- the best constrained oracle was the window **service-profile** grouping (O3g);
+- the activity grouping (O2g) gained less and did not survive the temporal holdout;
+- **only service groups are carried forward.**
+
+**Grouping:**
+- the six window service profiles of § 4, computed from the window's own UDP share and
+  destination-port count;
+- they are observable at alert time, from both calibration and evaluation windows, with no host
+  state. **New hosts therefore need no special policy;** the per-host baseline uses global for
+  them.
+
+**Calibration information sources** (hold-out = last 30 % of calibration slots):
+
+| source | windows | role |
+|---|---|---|
+| **CAL_T** | the benign hold-out windows (calibration labels; identical to Phase 8r/8s reference T) | **the best case of trusted review.** Phase 8s showed traffic-proportional review approaches it only at about 100 reviews under perfect review |
+| CAL_U | the whole unlabelled hold-out | fully deployable, but attack-contaminated (Phase 8q) |
+
+**Methods** (α = 1 %; "threshold" = the inverted-CDF (1 − α) quantile of the stated calibration
+distribution):
+
+| id | rule |
+|---|---|
+| D0 | global: one threshold from all calibration windows (CAL_T → T; CAL_U → U) |
+| D1 | service group, unpooled: each group's own calibration windows; a group with < 100 calibration windows uses D0 |
+| **D2 (primary)** | **hierarchical partial pooling:** group distribution F*_g = (n_g F_g + κ F_global) / (n_g + κ), with κ = 500 pseudo-windows. Implemented as a weighted quantile: the group's windows weigh 1 each, and the global calibration windows carry total weight κ. Large groups keep their own tail; sparse groups shrink to the global one |
+| D3 | reliability-aware: D1's group threshold only if n_g ≥ 500 **and** ≥ 5 distinct hosts have calibration windows above it; otherwise D0 |
+| D_host | per-host baseline (M1): the host's own calibration windows if ≥ 100, otherwise D0 (new hosts included) |
+
+**Evaluation (all on S_U, the deployable memory):**
+- **As-calibrated:** thresholds are applied as estimated. We report the realised FPR, recall,
+  R₂₀, R₅₀, missed entities, delay, false alerts per hour and the top host's share.
+- **Matched budget (shared B):**
+  - each window's score is mapped to its method-specific calibration CDF value F̂(s), using the
+    window's group or host distribution;
+  - one global cut on F̂ is chosen so that evaluation benign false alerts are ≤ B;
+  - this same retrospective offset is applied to every method, so only the conditional *shape*
+    differs. For D0 it equals O0.
+
+**Hypotheses (CAL_T unless stated):**
+
+| id | rule | verdict |
+|---|---|---|
+| **H1** conditional calibration helps at a shared budget | matched budget, D2 vs D0: macro recall gain ≥ 0.05 **and** R₂₀ gain ≥ 3 | SUPPORTED / NOT SUPPORTED |
+| **H2** pooling improves reliability | as calibrated: the evaluation-weighted mean over groups of \|FPR_eval,g − FPR_cal,g\| (group transfer error) is lower for D2 than D1 on ≥ 3 of 4 networks | SUPPORTED / NOT SUPPORTED |
+| **H3** less alert concentration without losing detection | as calibrated, D2 vs D0: top-host false-alert share ≤ D0's **and** recall ≥ D0 − 0.02, on ≥ 3 of 4 networks | SUPPORTED / NOT SUPPORTED |
+| **H4** temporal | as calibrated, evaluation second half, D2 vs D0: macro recall gain ≥ 0.03 **and** every network FPR_D2 ≤ FPR_D0 + 0.01 | SUPPORTED / NOT SUPPORTED |
+
+**Operational detection gate:** **DEVELOPMENT GO** if H1 is SUPPORTED **and**, as calibrated on
+the full evaluation, D2 vs D0 shows all of:
+- a macro recall gain ≥ 0.05;
+- every network FPR_D2 ≤ FPR_D0 + 0.01;
+- no network recall loss > 0.05;
+- an R₂₀ gain ≥ 3.
+
+Otherwise **DEVELOPMENT NO-GO**.
+- The GO is conditional on trusted benign calibration data (CAL_T).
+- CAL_U results are reported beside it.
+- **As-calibrated FPR is reported against α = 1 %. The hold-out-based thresholds are not expected
+  to reach it** (Phase 8s E).
+
+**Sensitivity (EXPLORATORY):** κ ∈ {100, 2000}.
+
+**Stress cases** (EXPLORATORY; development data; labelled):
+- removing the noisiest benign host from calibration;
+- calibration on the hold-out's first half only (calibration age).
