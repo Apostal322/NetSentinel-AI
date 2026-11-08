@@ -192,3 +192,22 @@ Phase 8s is not started.
   - robustness to contamination;
   - production readiness;
   - independent generalisation.
+
+## Addendum (2026-11-09): publication and closure status
+
+Added in Phase 8s. The findings above are unchanged.
+
+**Publication.** The report's "Not pushed. CI: NOT VERIFIED" line describes the state when it was
+written.
+- `fd7affa`, `a8a6980` and `bb9c9f2` were pushed to `origin/main` on 2026-11-08 (`84a3d0e..bb9c9f2`).
+
+**CI.** GitHub Actions run 42521466177 (workflow `ci`, push event, head `bb9c9f2`) **succeeded**.
+- Its jobs: `test` (uv sync, dependency gate, ruff check, ruff format --check, pytest), `docker`
+  and `security`.
+- It was read through the public GitHub REST API, since `gh` is not installed.
+
+**Full local regression on `bb9c9f2`:** 419 passed, 0 failed, 0 errors, 0 skipped, 2 deselected
+(1,750 s, with other projects' training and tests sharing the machine).
+- This includes `test_quarantine_promotion_needs_two_sources_and_two_hours`.
+- JUnit file: `reports/phase8s/junit_phase8r_closure_bb9c9f2.xml`.
+- It replaces the "full suite was not re-run after the fix" caveat above.
