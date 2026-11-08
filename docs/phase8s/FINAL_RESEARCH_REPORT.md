@@ -175,8 +175,16 @@ where errors cost most.**
 
 ## Validation
 
-Full suite after the review fixes: see the closing commit (the JUnit file is kept in
-`reports/phase8s/`).
+**Full suite on the final code** (the code of `29c5ae4`; started after the review's code fixes):
+437 passed, 0 failed, 0 errors, 0 skipped, 2 deselected, in 773 s.
+- That is the 419 earlier tests plus 18 Phase 8s tests.
+- JUnit file: `reports/phase8s/junit_phase8s_final.xml`.
+
+**Other checks:**
+- `ruff check` and `ruff format --check`: clean (485 files);
+- dependency gate: OK;
+- `uv lock --check`: current;
+- dependencies added: none.
 
 ## Top three unresolved problems
 
