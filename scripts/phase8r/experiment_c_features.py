@@ -85,9 +85,12 @@ def promotion(c: pl.DataFrame) -> pl.DataFrame:
         pl.col("t").sort().get(1, null_on_oob=True).alias("t_src2"), pl.col("t").min().alias("t_first"))  # fmt: skip
     by_hr = c.group_by("dst", "hour").agg(pl.col("t").min()).group_by("dst").agg(
         pl.col("t").sort().get(1, null_on_oob=True).alias("t_hr2"))  # fmt: skip
+    # Amendment R-1 (after review): `max_horizontal` ignores nulls, which made the rule "OR".
+    # Promotion needs BOTH conditions; a missing one leaves the destination unpromoted (null).
+    both = pl.col("t_src2").is_not_null() & pl.col("t_hr2").is_not_null()
     return by_src.join(by_hr, on="dst").with_columns(
-        pl.max_horizontal("t_src2", "t_hr2").alias("t_promo")
-    )  # null when either is missing
+        pl.when(both).then(pl.max_horizontal("t_src2", "t_hr2")).otherwise(None).alias("t_promo")
+    )
 
 
 def novelty(name: str, mem: set[str], ev: pl.DataFrame, audit: pl.DataFrame) -> dict:

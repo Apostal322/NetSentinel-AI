@@ -89,6 +89,10 @@ q_b ∈ [Q_F((1 − α)(1 − ε̄)), Q_F(1 − α(1 − ε̄))].
 2. **With a known bound, the threshold is only partially identified.**
    - Only NF-CIC has contamination small enough for a useful bound: at ε̄ ≤ 5 % its FPR range
      is about 1–7 %.
+     - *Corrected after review:* the bound holds on 02-14, 02-16, 02-20 and 02-21 only.
+     - On 02-22 (ε = 9.8 %) the 5 % bound is false.
+     - On 03-02 (ε = 2.7 %) the 1 % bound is false.
+     - The bound must exceed each day's real contamination, which no deployment knows.
    - On NF-UNSW, NF-ToN and NF-BoT, any bound narrow enough to be useful is false. At
      ε̄ ≤ 10 % the interval excludes q_b.
    - On NF-ToN and NF-BoT the honest bound (the true ε) spans almost the whole FPR range.
@@ -98,6 +102,13 @@ q_b ∈ [Q_F((1 − α)(1 − ε̄)), Q_F(1 − α(1 − ε̄))].
    budgets and selection policies achieve.
 4. **Distribution-free FPR control at the host level needs ≥ 99 exchangeable benign hosts**
    (⌈1/α⌉ − 1).
+   - *Clarified after review:*
+     - this counts the hold-out population, not a trusted set. No Phase 8r budget (at most 30
+       hosts) reaches 99, so **no registered cell carries a host-level guarantee on any network**;
+     - NF-ToN has 92.8 effective hosts;
+     - a host-level guarantee bounds the share of hosts exceeding the threshold, not the window
+       FPR.
+   - The original statement follows.
    - Feasible on NF-CIC (≥ 4,700) and NF-ToN (3,635).
    - Infeasible on NF-UNSW (17) and NF-BoT (7, of which 2.2 are effective).
    - On those two networks, an FPR guarantee is **NOT IDENTIFIABLE** whatever the trusted
@@ -105,8 +116,8 @@ q_b ∈ [Q_F((1 − α)(1 − ε̄)), Q_F(1 − α(1 − ε̄))].
 5. **Recall is not identifiable without positive evidence (T4).** It is evaluated here with
    dataset labels, never estimated by a deployment method.
 6. **The memory is a separate problem.**
-   - With the unlabelled memory, even the oracle threshold gives 02-22 recall 0.003–0.016 and
-     03-02 recall 0.0004.
+   - With the unlabelled memory, the oracle threshold (A1T) gives 02-22 recall 0.003 and 03-02
+     recall 0.0004. Across the whole identified set, 02-22 reaches at most 0.016.
    - So no threshold, trusted or not, can recover those days. Only the feature state can
      (Experiment C).
    - The threshold problem is confined to NF-UNSW, NF-ToN and NF-BoT. On NF-CIC, U ≈ q_b

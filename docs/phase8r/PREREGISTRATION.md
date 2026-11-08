@@ -223,3 +223,11 @@ have trusted inputs to build on.
   - entities and domains are clustered;
   - NF-CIC averages 6 days, and its draws are matched by index only.
 - **Multiplicity:** one primary cell per hypothesis. Everything else is descriptive.
+
+## 10. Amendments
+
+| id | timestamp | original rule | new rule | reason | outcomes inspected? | effect on confirmatory status |
+|---|---|---|---|---|---|---|
+| R-1 | 2026-11-08, after the results commit `a8a6980` | M3 promotion "≥ 2 sources in ≥ 2 distinct 1-h blocks" (text) | unchanged; the **code** is corrected to match it. `max_horizontal` ignored nulls and implemented OR | implementation bug found by the independent review | yes | the corrected M3 rerun implements the registered rule; the gate verdict is unchanged (M3 fails under both); M3 numbers replace the first run's |
+| R-2 | same | A2/A3 "conformal T0 over the trusted windows" | unchanged; **disclosed**: below 99 windows the capped rank is the sample maximum (the Phase 8j/8q `t0` convention) | review finding | yes | none; reported as a limitation (TRUSTED_CALIBRATION) |
+| R-3 | same | B fractions c of the trusted windows | unchanged; **disclosed**: rounding makes NF-ToN's "5 %" about 9 %, and NF-ToN drops out at 1 %; a sensitivity without NF-ToN is reported, but it does not replace the verdict | review finding | yes | H-B1 stays NOT SUPPORTED as registered; the sensitivity is exploratory |

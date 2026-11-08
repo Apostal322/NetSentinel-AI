@@ -112,3 +112,27 @@ def test_contamination_hits_requested_fraction(mech):
     assert abs(share - 0.05) < 0.005
     if mech == "persistent":
         assert np.unique(hosts[idx]).size == 1
+
+
+def test_quarantine_promotion_needs_two_sources_and_two_hours():
+    import polars as pl
+
+    spec = importlib.util.spec_from_file_location(
+        "phase8r_c_test", ROOT / "scripts/phase8r/experiment_c_features.py"
+    )
+    c_mod = importlib.util.module_from_spec(spec)
+    sys.modules["phase8r_c_test"] = c_mod
+    spec.loader.exec_module(c_mod)
+    h = 3_600_000
+    c = pl.DataFrame({
+        "dst": ["two_src_one_hour", "two_src_one_hour", "one_src_two_hours", "one_src_two_hours",
+                "both", "both"],
+        "src": ["a", "b", "a", "a", "a", "b"],
+        "hour": [0, 0, 0, 1, 0, 1],
+        "t": [10, 20, 10, h + 10, 10, h + 20],
+    })  # fmt: skip
+    pr = c_mod.promotion(c).sort("dst")
+    got = dict(zip(pr["dst"].to_list(), pr["t_promo"].to_list(), strict=True))
+    assert got["two_src_one_hour"] is None
+    assert got["one_src_two_hours"] is None
+    assert got["both"] == h + 20
