@@ -22,7 +22,7 @@ import numpy as np  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 OR = json.loads((ROOT / "reports/phase8t/oracle_feasibility.json").read_text("utf-8"))
-DP = json.loads((ROOT / "reports/phase8t/deployable_r2.json").read_text("utf-8"))
+DP = json.loads((ROOT / "reports/phase8t/deployable_r3.json").read_text("utf-8"))
 OUT = ROOT / "docs/phase8t/figures"
 NETS = {"nfcic": "NF-CIC", "nfunsw": "NF-UNSW", "nfton": "NF-ToN", "nfbot": "NF-BoT"}
 SVC = ["TCP 1 port", "TCP 2-5", "TCP >5", "UDP 1 port", "UDP 2-5", "UDP >5"]
