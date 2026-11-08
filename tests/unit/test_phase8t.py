@@ -88,3 +88,69 @@ def test_partial_auc_bounds_and_perfect_separation():
     assert TO.partial_auc(np.full(10, -1.0), b) == pytest.approx(0.0)
     same = TO.partial_auc(rng.random(10_000), b)
     assert 0.0 <= same < 0.03  # a random score has TPR ≈ FPR ≤ 1 %
+
+
+_spec2 = importlib.util.spec_from_file_location(
+    "phase8t_cc_test", ROOT / "scripts/phase8t/conditional_calibration.py"
+)
+CC = importlib.util.module_from_spec(_spec2)
+sys.modules["phase8t_cc_test"] = CC
+_spec2.loader.exec_module(CC)
+
+
+def _cal(seed=5):
+    rng = np.random.default_rng(seed)
+    g = np.r_[np.zeros(3000, int), np.ones(3000, int), np.full(40, 2)]
+    s = np.r_[rng.normal(0, 1, 3000), rng.normal(3, 1, 3000), rng.normal(10, 1, 40)]
+    h = rng.integers(0, 300, s.size).astype(str)
+    return s, g, h
+
+
+def test_global_and_group_thresholds():
+    s, g, h = _cal()
+    d0 = CC.Calibrator("D0", s, g, h)
+    assert d0.t_glob == float(np.quantile(s, 0.99, method="inverted_cdf"))
+    d1 = CC.Calibrator("D1", s, g, h)
+    t = d1.group_thresholds()
+    assert (
+        t[0] == float(np.quantile(s[g == 0], 0.99, method="inverted_cdf")) and 2 not in t
+    )  # sparse → global
+    assert (d1.threshold_for(np.array([2]), np.array(["x"])) == d0.t_glob).all()
+
+
+def test_partial_pooling_limits():
+    s, g, h = _cal()
+    d1 = CC.Calibrator("D1", s, g, h).group_thresholds()
+    d0 = CC.Calibrator("D0", s, g, h).t_glob
+    tiny = CC.Calibrator("D2", s, g, h, kappa=1e-6).group_thresholds()
+    huge = CC.Calibrator("D2", s, g, h, kappa=1e9).group_thresholds()
+    # κ → 0: the group's own quantile, up to one adjacent order statistic (inverted-CDF boundary)
+    for k in (0, 1):
+        own = np.sort(s[g == k])
+        i = int(np.searchsorted(own, d1[k]))
+        assert own[max(i - 1, 0)] <= tiny[k] <= own[min(i + 1, own.size - 1)]
+    assert all(v == pytest.approx(d0, abs=1e-6) for v in huge.values())
+    mid = CC.Calibrator("D2", s, g, h, kappa=500).group_thresholds()
+    assert (
+        min(d1[0], d0) - 1e-9 <= mid[0] <= max(d1[0], d0) + 1e-9
+    )  # shrinks between local and global
+
+
+def test_reliability_rule_and_host_fallback():
+    s, g, h = _cal()
+    d3 = CC.Calibrator("D3", s, g, h, d3_tail_hosts=10_000)  # impossible tail support → all global
+    assert d3.group_thresholds() == {}
+    dh = CC.Calibrator("D_host", s, g, np.where(np.arange(s.size) < 200, "big", h))
+    t = dh.threshold_for(np.array([0, 0]), np.array(["big", "never_seen"]))
+    assert t[1] == dh.t_glob and "big" in dh.dist
+
+
+def test_cdf_consistency_and_errors():
+    s, g, h = _cal()
+    c = CC.Calibrator("D2", s, g, h)
+    t = c.threshold_for(g, h)
+    v = c.cdf_for(t, g, h)
+    assert (v >= 0.99 - 1e-9).all() and (np.diff(c.glob.cdf(np.sort(s))) >= 0).all()
+    with pytest.raises(ValueError):
+        CC.Calibrator("D0", np.array([np.inf]), np.array([0]), np.array(["a"]))
+    assert CC.service_group(np.array([0.9, 0.1]), np.array([1, 7])).tolist() == [3, 2]
