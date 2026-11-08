@@ -1,0 +1,924 @@
+{
+ "status": "Stage 1 identifiability audit (saved scores; oracle labels describe only)",
+ "alpha": 0.01,
+ "domains": {
+  "nfbot/all": {
+   "composition": {
+    "windows": 9667,
+    "hosts": 15,
+    "host_hour_blocks": 221,
+    "attacker_hosts": 8,
+    "attacker_window_share": 0.9192,
+    "benign_hosts": 7,
+    "benign_windows": 781,
+    "benign_host_hour_blocks": 80,
+    "effective_benign_hosts": 2.18,
+    "largest_benign_host_share": 0.644,
+    "host_conformal_feasible": false
+   },
+   "reference_thresholds": {
+    "U": 0.641967337520415,
+    "T_benign_q": 0.5867586740868682,
+    "P": 0.5867586740868682
+   },
+   "identified_sets": {
+    "true": {
+     "eps_bar": 0.919209682424744,
+     "threshold_interval": [
+      0.007605905581912313,
+      0.9087806104585945
+     ],
+     "fpr_range": [
+      0.0148,
+      0.9694
+     ],
+     "recall_range": [
+      0.6174,
+      0.9928
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.01": {
+     "eps_bar": 0.01,
+     "threshold_interval": [
+      0.641967337520415,
+      0.641967337520415
+     ],
+     "fpr_range": [
+      0.096,
+      0.096
+     ],
+     "recall_range": [
+      0.9296,
+      0.9296
+     ],
+     "contains_benign_quantile_all_fits": false
+    },
+    "0.05": {
+     "eps_bar": 0.05,
+     "threshold_interval": [
+      0.5625528032327743,
+      0.641967337520415
+     ],
+     "fpr_range": [
+      0.096,
+      0.1441
+     ],
+     "recall_range": [
+      0.9296,
+      0.9348
+     ],
+     "contains_benign_quantile_all_fits": false
+    },
+    "0.10": {
+     "eps_bar": 0.1,
+     "threshold_interval": [
+      0.3931834157777916,
+      0.641967337520415
+     ],
+     "fpr_range": [
+      0.096,
+      0.4575
+     ],
+     "recall_range": [
+      0.9296,
+      0.9401
+     ],
+     "contains_benign_quantile_all_fits": false
+    },
+    "0.30": {
+     "eps_bar": 0.3,
+     "threshold_interval": [
+      0.12503070276897557,
+      0.6445750072440423
+     ],
+     "fpr_range": [
+      0.0871,
+      0.7487
+     ],
+     "recall_range": [
+      0.9296,
+      0.9511
+     ],
+     "contains_benign_quantile_all_fits": true
+    }
+   }
+  },
+  "nfcic/2018-02-14": {
+   "composition": {
+    "windows": 35273,
+    "hosts": 6558,
+    "host_hour_blocks": 8305,
+    "attacker_hosts": 1,
+    "attacker_window_share": 0.0015,
+    "benign_hosts": 6557,
+    "benign_windows": 35221,
+    "benign_host_hour_blocks": 8303,
+    "effective_benign_hosts": 554.62,
+    "largest_benign_host_share": 0.0048,
+    "host_conformal_feasible": true
+   },
+   "reference_thresholds": {
+    "U": 0.8060829663290394,
+    "T_benign_q": 0.8013011089979608,
+    "P": 0.8013011089979608
+   },
+   "identified_sets": {
+    "true": {
+     "eps_bar": 0.001474215405550988,
+     "threshold_interval": [
+      0.8010701080478336,
+      0.8059834576108672
+     ],
+     "fpr_range": [
+      0.0101,
+      0.0111
+     ],
+     "recall_range": [
+      0.99,
+      0.99
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.01": {
+     "eps_bar": 0.01,
+     "threshold_interval": [
+      0.7826641494296264,
+      0.8063235727864199
+     ],
+     "fpr_range": [
+      0.0101,
+      0.0197
+     ],
+     "recall_range": [
+      0.99,
+      0.9909
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.05": {
+     "eps_bar": 0.05,
+     "threshold_interval": [
+      0.7126763982589487,
+      0.8071328926715412
+     ],
+     "fpr_range": [
+      0.0096,
+      0.0632
+     ],
+     "recall_range": [
+      0.99,
+      0.9946
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.10": {
+     "eps_bar": 0.1,
+     "threshold_interval": [
+      0.6689301388398582,
+      0.8087641307983189
+     ],
+     "fpr_range": [
+      0.0093,
+      0.1171
+     ],
+     "recall_range": [
+      0.99,
+      0.9946
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.30": {
+     "eps_bar": 0.3,
+     "threshold_interval": [
+      0.475432027016939,
+      0.8163046083995162
+     ],
+     "fpr_range": [
+      0.0075,
+      0.3104
+     ],
+     "recall_range": [
+      0.99,
+      0.9946
+     ],
+     "contains_benign_quantile_all_fits": true
+    }
+   }
+  },
+  "nfcic/2018-02-16": {
+   "composition": {
+    "windows": 25919,
+    "hosts": 5053,
+    "host_hour_blocks": 5968,
+    "attacker_hosts": 0,
+    "attacker_window_share": 0.0,
+    "benign_hosts": 5053,
+    "benign_windows": 25919,
+    "benign_host_hour_blocks": 5968,
+    "effective_benign_hosts": 476.69,
+    "largest_benign_host_share": 0.0051,
+    "host_conformal_feasible": true
+   },
+   "reference_thresholds": {
+    "U": 0.8074307152885919,
+    "T_benign_q": 0.8074307152885919,
+    "P": 0.8074307152885919
+   },
+   "identified_sets": {
+    "true": {
+     "eps_bar": 0.0,
+     "threshold_interval": [
+      0.8074246569083617,
+      0.8074246569083617
+     ],
+     "fpr_range": [
+      0.0121,
+      0.0121
+     ],
+     "recall_range": [
+      0.963,
+      0.963
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.01": {
+     "eps_bar": 0.01,
+     "threshold_interval": [
+      0.7804705598642913,
+      0.8076643774755877
+     ],
+     "fpr_range": [
+      0.0121,
+      0.0204
+     ],
+     "recall_range": [
+      0.963,
+      0.963
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.05": {
+     "eps_bar": 0.05,
+     "threshold_interval": [
+      0.7085912381526116,
+      0.8088708776674061
+     ],
+     "fpr_range": [
+      0.0117,
+      0.0578
+     ],
+     "recall_range": [
+      0.963,
+      0.963
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.10": {
+     "eps_bar": 0.1,
+     "threshold_interval": [
+      0.658666754620949,
+      0.8114340101995875
+     ],
+     "fpr_range": [
+      0.0111,
+      0.1087
+     ],
+     "recall_range": [
+      0.963,
+      0.963
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.30": {
+     "eps_bar": 0.3,
+     "threshold_interval": [
+      0.3692794084292988,
+      0.8181879368499633
+     ],
+     "fpr_range": [
+      0.0094,
+      0.3197
+     ],
+     "recall_range": [
+      0.963,
+      0.963
+     ],
+     "contains_benign_quantile_all_fits": true
+    }
+   }
+  },
+  "nfcic/2018-02-20": {
+   "composition": {
+    "windows": 34742,
+    "hosts": 6535,
+    "host_hour_blocks": 8038,
+    "attacker_hosts": 1,
+    "attacker_window_share": 0.0,
+    "benign_hosts": 6534,
+    "benign_windows": 34741,
+    "benign_host_hour_blocks": 8037,
+    "effective_benign_hosts": 651.02,
+    "largest_benign_host_share": 0.0047,
+    "host_conformal_feasible": true
+   },
+   "reference_thresholds": {
+    "U": 0.8073591283086171,
+    "T_benign_q": 0.8072689708345054,
+    "P": 0.8072689708345054
+   },
+   "identified_sets": {
+    "true": {
+     "eps_bar": 2.87836048586725e-05,
+     "threshold_interval": [
+      0.8071392856117363,
+      0.8072402185909914
+     ],
+     "fpr_range": [
+      0.0118,
+      0.0118
+     ],
+     "recall_range": [
+      0.0645,
+      0.0645
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.01": {
+     "eps_bar": 0.01,
+     "threshold_interval": [
+      0.7848688399776353,
+      0.8076257907289165
+     ],
+     "fpr_range": [
+      0.0117,
+      0.0212
+     ],
+     "recall_range": [
+      0.0645,
+      0.0786
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.05": {
+     "eps_bar": 0.05,
+     "threshold_interval": [
+      0.7186338079483597,
+      0.8089612433537571
+     ],
+     "fpr_range": [
+      0.0115,
+      0.0609
+     ],
+     "recall_range": [
+      0.0613,
+      0.0849
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.10": {
+     "eps_bar": 0.1,
+     "threshold_interval": [
+      0.6787190744564481,
+      0.810701448107315
+     ],
+     "fpr_range": [
+      0.011,
+      0.1098
+     ],
+     "recall_range": [
+      0.0613,
+      0.0849
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.30": {
+     "eps_bar": 0.3,
+     "threshold_interval": [
+      0.501293743251729,
+      0.81969449284883
+     ],
+     "fpr_range": [
+      0.0088,
+      0.2973
+     ],
+     "recall_range": [
+      0.055,
+      0.0865
+     ],
+     "contains_benign_quantile_all_fits": true
+    }
+   }
+  },
+  "nfcic/2018-02-21": {
+   "composition": {
+    "windows": 36144,
+    "hosts": 6505,
+    "host_hour_blocks": 8494,
+    "attacker_hosts": 0,
+    "attacker_window_share": 0.0,
+    "benign_hosts": 6505,
+    "benign_windows": 36144,
+    "benign_host_hour_blocks": 8494,
+    "effective_benign_hosts": 598.46,
+    "largest_benign_host_share": 0.0047,
+    "host_conformal_feasible": true
+   },
+   "reference_thresholds": {
+    "U": 0.7991872568815693,
+    "T_benign_q": 0.7991872568815693,
+    "P": 0.7991872568815693
+   },
+   "identified_sets": {
+    "true": {
+     "eps_bar": 0.0,
+     "threshold_interval": [
+      0.7991445839929541,
+      0.7991445839929541
+     ],
+     "fpr_range": [
+      0.0141,
+      0.0141
+     ],
+     "recall_range": [
+      0.9945,
+      0.9945
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.01": {
+     "eps_bar": 0.01,
+     "threshold_interval": [
+      0.7778041292941071,
+      0.7993330999773987
+     ],
+     "fpr_range": [
+      0.0135,
+      0.0236
+     ],
+     "recall_range": [
+      0.9945,
+      0.9979
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.05": {
+     "eps_bar": 0.05,
+     "threshold_interval": [
+      0.7066957978042567,
+      0.8008801644987887
+     ],
+     "fpr_range": [
+      0.0129,
+      0.0692
+     ],
+     "recall_range": [
+      0.9945,
+      0.9982
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.10": {
+     "eps_bar": 0.1,
+     "threshold_interval": [
+      0.6693803202096681,
+      0.8025817547515054
+     ],
+     "fpr_range": [
+      0.0125,
+      0.1198
+     ],
+     "recall_range": [
+      0.9943,
+      0.9982
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.30": {
+     "eps_bar": 0.3,
+     "threshold_interval": [
+      0.48014420151753906,
+      0.8085246936889613
+     ],
+     "fpr_range": [
+      0.0104,
+      0.3207
+     ],
+     "recall_range": [
+      0.9934,
+      0.9982
+     ],
+     "contains_benign_quantile_all_fits": true
+    }
+   }
+  },
+  "nfcic/2018-02-22": {
+   "composition": {
+    "windows": 40262,
+    "hosts": 6193,
+    "host_hour_blocks": 7617,
+    "attacker_hosts": 191,
+    "attacker_window_share": 0.0983,
+    "benign_hosts": 6002,
+    "benign_windows": 36303,
+    "benign_host_hour_blocks": 7335,
+    "effective_benign_hosts": 506.39,
+    "largest_benign_host_share": 0.0044,
+    "host_conformal_feasible": true
+   },
+   "reference_thresholds": {
+    "U": 0.7968850445215679,
+    "T_benign_q": 0.7998888057509289,
+    "P": 0.7998888057509289
+   },
+   "identified_sets": {
+    "true": {
+     "eps_bar": 0.09833093239282699,
+     "threshold_interval": [
+      0.6730185683067328,
+      0.8002175616358085
+     ],
+     "fpr_range": [
+      0.0108,
+      0.1189
+     ],
+     "recall_range": [
+      0.0031,
+      0.0157
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.01": {
+     "eps_bar": 0.01,
+     "threshold_interval": [
+      0.7784470922032448,
+      0.7970513007845496
+     ],
+     "fpr_range": [
+      0.0116,
+      0.0219
+     ],
+     "recall_range": [
+      0.0031,
+      0.0063
+     ],
+     "contains_benign_quantile_all_fits": false
+    },
+    "0.05": {
+     "eps_bar": 0.05,
+     "threshold_interval": [
+      0.7160803894389872,
+      0.7982453208749803
+     ],
+     "fpr_range": [
+      0.0113,
+      0.0649
+     ],
+     "recall_range": [
+      0.0031,
+      0.0126
+     ],
+     "contains_benign_quantile_all_fits": false
+    },
+    "0.10": {
+     "eps_bar": 0.1,
+     "threshold_interval": [
+      0.6707956504515228,
+      0.8003479033086117
+     ],
+     "fpr_range": [
+      0.0108,
+      0.121
+     ],
+     "recall_range": [
+      0.0031,
+      0.0157
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.30": {
+     "eps_bar": 0.3,
+     "threshold_interval": [
+      0.40426726910759575,
+      0.8058995091414046
+     ],
+     "fpr_range": [
+      0.0089,
+      0.343
+     ],
+     "recall_range": [
+      0.0031,
+      0.1321
+     ],
+     "contains_benign_quantile_all_fits": true
+    }
+   }
+  },
+  "nfcic/2018-03-02": {
+   "composition": {
+    "windows": 29953,
+    "hosts": 4744,
+    "host_hour_blocks": 5739,
+    "attacker_hosts": 8,
+    "attacker_window_share": 0.0274,
+    "benign_hosts": 4736,
+    "benign_windows": 29131,
+    "benign_host_hour_blocks": 5723,
+    "effective_benign_hosts": 609.02,
+    "largest_benign_host_share": 0.0036,
+    "host_conformal_feasible": true
+   },
+   "reference_thresholds": {
+    "U": 0.8074088435383722,
+    "T_benign_q": 0.8078428939788731,
+    "P": 0.8078428939788731
+   },
+   "identified_sets": {
+    "true": {
+     "eps_bar": 0.027442994023970886,
+     "threshold_interval": [
+      0.7642077774418389,
+      0.8077853292212347
+     ],
+     "fpr_range": [
+      0.0106,
+      0.0394
+     ],
+     "recall_range": [
+      0.0004,
+      0.0004
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.01": {
+     "eps_bar": 0.01,
+     "threshold_interval": [
+      0.7880664746335458,
+      0.8075208417601969
+     ],
+     "fpr_range": [
+      0.0107,
+      0.0203
+     ],
+     "recall_range": [
+      0.0004,
+      0.0004
+     ],
+     "contains_benign_quantile_all_fits": false
+    },
+    "0.05": {
+     "eps_bar": 0.05,
+     "threshold_interval": [
+      0.7386431217916779,
+      0.8084130477684469
+     ],
+     "fpr_range": [
+      0.0105,
+      0.0625
+     ],
+     "recall_range": [
+      0.0004,
+      0.0005
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.10": {
+     "eps_bar": 0.1,
+     "threshold_interval": [
+      0.6976475562777074,
+      0.809430349519599
+     ],
+     "fpr_range": [
+      0.0101,
+      0.1131
+     ],
+     "recall_range": [
+      0.0004,
+      0.0005
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.30": {
+     "eps_bar": 0.3,
+     "threshold_interval": [
+      0.5403041118517798,
+      0.8163376884054953
+     ],
+     "fpr_range": [
+      0.0082,
+      0.3267
+     ],
+     "recall_range": [
+      0.0004,
+      0.0008
+     ],
+     "contains_benign_quantile_all_fits": true
+    }
+   }
+  },
+  "nfton/all": {
+   "composition": {
+    "windows": 19298,
+    "hosts": 3652,
+    "host_hour_blocks": 3895,
+    "attacker_hosts": 17,
+    "attacker_window_share": 0.7631,
+    "benign_hosts": 3635,
+    "benign_windows": 4572,
+    "benign_host_hour_blocks": 3706,
+    "effective_benign_hosts": 92.75,
+    "largest_benign_host_share": 0.0925,
+    "host_conformal_feasible": true
+   },
+   "reference_thresholds": {
+    "U": 0.9931232704207306,
+    "T_benign_q": 0.32051259911316915,
+    "P": 0.32051259911316915
+   },
+   "identified_sets": {
+    "true": {
+     "eps_bar": 0.7630842574360037,
+     "threshold_interval": [
+      0.0009730538815042325,
+      0.9971338645119379
+     ],
+     "fpr_range": [
+      0.0011,
+      0.6423
+     ],
+     "recall_range": [
+      0.0001,
+      0.9574
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.01": {
+     "eps_bar": 0.01,
+     "threshold_interval": [
+      0.986388398210047,
+      0.9931232704207306
+     ],
+     "fpr_range": [
+      0.0039,
+      0.0097
+     ],
+     "recall_range": [
+      0.0008,
+      0.0233
+     ],
+     "contains_benign_quantile_all_fits": false
+    },
+    "0.05": {
+     "eps_bar": 0.05,
+     "threshold_interval": [
+      0.9459301667673916,
+      0.9931447167588713
+     ],
+     "fpr_range": [
+      0.0039,
+      0.0227
+     ],
+     "recall_range": [
+      0.0008,
+      0.0513
+     ],
+     "contains_benign_quantile_all_fits": false
+    },
+    "0.10": {
+     "eps_bar": 0.1,
+     "threshold_interval": [
+      0.8570176243960336,
+      0.9932252015830371
+     ],
+     "fpr_range": [
+      0.0037,
+      0.0489
+     ],
+     "recall_range": [
+      0.0008,
+      0.2135
+     ],
+     "contains_benign_quantile_all_fits": false
+    },
+    "0.30": {
+     "eps_bar": 0.3,
+     "threshold_interval": [
+      0.5702680306825356,
+      0.9936590190699666
+     ],
+     "fpr_range": [
+      0.0034,
+      0.1076
+     ],
+     "recall_range": [
+      0.0008,
+      0.4765
+     ],
+     "contains_benign_quantile_all_fits": false
+    }
+   }
+  },
+  "nfunsw/all": {
+   "composition": {
+    "windows": 623,
+    "hosts": 21,
+    "host_hour_blocks": 21,
+    "attacker_hosts": 4,
+    "attacker_window_share": 0.2889,
+    "benign_hosts": 17,
+    "benign_windows": 443,
+    "benign_host_hour_blocks": 17,
+    "effective_benign_hosts": 12.27,
+    "largest_benign_host_share": 0.088,
+    "host_conformal_feasible": false
+   },
+   "reference_thresholds": {
+    "U": 0.4331165904577064,
+    "T_benign_q": 0.08021809763510247,
+    "P": 0.08021809763510247
+   },
+   "identified_sets": {
+    "true": {
+     "eps_bar": 0.28892455858747995,
+     "threshold_interval": [
+      0.030841129190633112,
+      0.45252741228979215
+     ],
+     "fpr_range": [
+      0.0169,
+      0.1902
+     ],
+     "recall_range": [
+      0.0487,
+      0.7968
+     ],
+     "contains_benign_quantile_all_fits": true
+    },
+    "0.01": {
+     "eps_bar": 0.01,
+     "threshold_interval": [
+      0.31873897730979295,
+      0.41295070796479644
+     ],
+     "fpr_range": [
+      0.0188,
+      0.0232
+     ],
+     "recall_range": [
+      0.0621,
+      0.1049
+     ],
+     "contains_benign_quantile_all_fits": false
+    },
+    "0.05": {
+     "eps_bar": 0.05,
+     "threshold_interval": [
+      0.13746655693020834,
+      0.4331165904577064
+     ],
+     "fpr_range": [
+      0.018,
+      0.0326
+     ],
+     "recall_range": [
+      0.0543,
+      0.2898
+     ],
+     "contains_benign_quantile_all_fits": false
+    },
+    "0.10": {
+     "eps_bar": 0.1,
+     "threshold_interval": [
+      0.08844583896124016,
+      0.4331165904577064
+     ],
+     "fpr_range": [
+      0.018,
+      0.0505
+     ],
+     "recall_range": [
+      0.0543,
+      0.4442
+     ],
+     "contains_benign_quantile_all_fits": false
+    },
+    "0.30": {
+     "eps_bar": 0.3,
+     "threshold_interval": [
+      0.028807126220159362,
+      0.45252741228979215
+     ],
+     "fpr_range": [
+      0.0169,
+      0.2056
+     ],
+     "recall_range": [
+      0.0487,
+      0.8106
+     ],
+     "contains_benign_quantile_all_fits": true
+    }
+   }
+  }
+ }
+}
