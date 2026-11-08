@@ -394,8 +394,11 @@ def net_of(name: str) -> str:
 def summarise(df: pl.DataFrame, by: list[str]) -> dict:
     """Per network: means over domains within a fit-draw, then over fit-draws; abstention rate;
     p10/p90 over draws. Abstained rows count as no alerts (recall 0, FPR 0)."""
-    df = df.with_columns(pl.col("domain").map_elements(net_of, return_dtype=pl.Utf8).alias("net"),
-                         pl.col("recall").fill_null(0.0), pl.col("fpr").fill_null(0.0))  # fmt: skip
+    df = df.with_columns(
+        pl.col("domain").map_elements(net_of, return_dtype=pl.Utf8).alias("net"),
+        pl.col("recall").fill_null(0.0).fill_nan(None),
+        pl.col("fpr").fill_null(0.0),
+    )  # fmt: skip  (S-1: NaN = no positives, excluded)
     out: dict = {}
     for keyv, g in df.group_by(by, maintain_order=True):
         nets = {}
@@ -525,8 +528,12 @@ def provenance(names: list[str], data: dict, args: argparse.Namespace) -> dict:
                 f"data/derived/phase8o/experiment_d/F0/{regime}/{name.replace('/', '__')}__r{r}.npz"
             )
             h = sha256(ROOT / rel)
-            if reg.get(rel) not in (None, h):
-                raise RuntimeError(f"{rel}: frozen score hash differs from Phase 8o")
+            # Amendment S-2 (after review): fail closed; a score file missing from the Phase 8o
+            # registry is an error, not a pass (none was missing in the registered run).
+            if reg.get(rel) != h:
+                raise RuntimeError(
+                    f"{rel}: frozen score hash missing from, or differs from, Phase 8o"
+                )
             scores[rel] = h
     inputs = {
         str(p.relative_to(ROOT)): sha256(p) for n in names for p in data[n]["inputs"] if p.exists()

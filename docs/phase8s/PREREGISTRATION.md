@@ -210,5 +210,11 @@ n_eff is stronger in absolute value than its correlation with the verified-benig
 
 ## 10. Amendments
 
-None yet. The format is Phase 8r's: timestamp, original rule, new rule, reason, whether outcomes
-were visible, and the effect on confirmatory status.
+All three were made after the results commit `a5161d9`, with outcomes visible. None changes a
+registered verdict or a saved result.
+
+| id | original | new | reason | outcomes visible? | effect |
+|---|---|---|---|---|---|
+| S-1 | `summarise` averaged recall with NaN for domains without documented attacks in a period | NaN recall excluded from means (abstention still counts as 0) | NF-CIC temporal recall printed as NaN | yes | reporting only. Gates A–D have no NaN. H5 uses FPR. The corrected temporal table is in `posthoc.json` (EXPLORATORY); the registered JSON is kept |
+| S-2 | the frozen-score hash check passed files missing from the Phase 8o registry | fail closed | review finding D2 | yes | none: all 54 files were present and matched |
+| S-3 | H1 and H3 count NF-UNSW and NF-BoT among "networks" | unchanged; **disclosed**: at k = 30 they are census-limited, so every design reviews the same hosts and the comparison reflects only the estimator's quantile definition | review findings C1 and C2 | yes | the verdicts stand as registered; their substantive support is 2 of 2 non-census networks (NF-CIC, NF-ToN) |

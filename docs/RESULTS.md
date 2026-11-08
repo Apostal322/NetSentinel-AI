@@ -204,6 +204,28 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 | Can a label-free threshold recover it? | same, 6 fits | **no**: host cap 0.387, block median 0.372, trim 0.376, abstention 0.126 vs 0.372 without labels (+0.10 required) | registered development |
 | How do robust thresholds behave under controlled contamination? | clean hold-out + 0.5-10% attacker windows | host cap resists one persistent host but doubles clean FPR on NF-ToN; trim breaks at 5% vs 2% but trims a benign NF-BoT host (FPR 56%) | registered, descriptive |
 
+## Phase 8r (trusted calibration with simulated vetting; development data)
+
+- Documents: [`docs/phase8r/`](phase8r/FINAL_RESEARCH_REPORT.md). Trusted calibration NOT SUPPORTED; no model trained; deployment unchanged.
+
+| Question | Data | Result | Role |
+|---|---|---|---|
+| Is the benign threshold identifiable without labels? | saved scores, Horowitz-Manski bounds | not without a contamination bound or trusted data; any useful bound is false on NF-UNSW/NF-ToN/NF-BoT | analysis |
+| Do 10 randomly vetted hosts replace the oracle threshold? | 6 fits x 20 draws, ORACLE-SIMULATED vetting | **no**: +0.34 recall but NF-ToN FPR 68.9%, NF-BoT 25.7% (host sampling is not window-representative) | registered development |
+| How much trusted-set contamination is tolerated? | real attacker windows injected | breakdown 2-5%; the verdict hinges on NF-ToN (about 10 trusted windows) | registered |
+| Can a memory policy undo memory contamination? | feature level | no variant restores 02-22/03-02 novelty without +67-84 pt benign novelty; refits not run | registered gate |
+
+## Phase 8s (active, representative trusted calibration; development data)
+
+- Documents: [`docs/phase8s/`](phase8s/FINAL_RESEARCH_REPORT.md). Calibration quality NOT SUPPORTED (NF-ToN only); detection NO-GO; no model trained; deployment unchanged.
+
+| Question | Data | Result | Role |
+|---|---|---|---|
+| Do window-proportional (PPS) designs give more representative trusted samples than random hosts? | 6 Poisson designs x 3 budgets x 20 draws x 6 fits, ORACLE-SIMULATED review | **yes on NF-CIC and NF-ToN** (median calibration error 0.37 vs 6.36 pp on NF-ToN); NF-UNSW/NF-BoT are census-limited | registered (H1 supported) |
+| Does PPS + Hajek weighting calibrate within the registered false-alert limits at 30 reviews? | same | **no, on NF-ToN only** (FPR 20.1% vs 18.0% allowed); at 100 reviews three designs reach the oracle threshold everywhere (exploratory) | registered development |
+| Does it survive reviewer error? | 10-25% false-benign, missing-not-at-random review | **no**: accepted heavy attackers make the trusted set about 20% attack windows on NF-ToN/NF-BoT | registered |
+| Does fresh review help? | review of the first half of the evaluation period | FPR reaches about alpha, but recall collapses (macro 0.45 to 0.20): the evaluation-period benign 1% tail sits at attack level on NF-UNSW/NF-ToN/NF-BoT | registered (FPR-only metric supported) |
+
 ## Telemetry
 
 | Check | Result | Source |
