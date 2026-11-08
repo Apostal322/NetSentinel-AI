@@ -33,7 +33,10 @@ class WeightedDist:
         if s.size == 0 or not np.isfinite(s).all() or (w < 0).any() or w.sum() <= 0:
             raise ValueError("invalid calibration distribution")
         o = np.argsort(s, kind="stable")
-        self.s, self.cw = s[o], np.cumsum(w[o]) / w.sum()
+        cw = np.cumsum(w[o])
+        cw = cw / cw[-1]
+        cw[-1] = 1.0  # Amendment A-3: exact saturation (non-integer weights gave 1 ± 1e-14)
+        self.s, self.cw = s[o], cw
 
     def quantile(self, q: float) -> float:
         return float(

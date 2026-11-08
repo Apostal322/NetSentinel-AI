@@ -201,3 +201,14 @@ Otherwise **DEVELOPMENT NO-GO**.
 | fix | rank by (CDF value, raw score) and alert the longest tie-closed prefix whose benign count is ≤ B (`matched_budget_alert`). A unit test asserts D0 = O0 under saturation |
 | outcomes visible? | **yes:** all first-run results had been read |
 | effect | H1 and the gate's H1 criterion are recomputed (`deployable_r2.json`). As-calibrated results, H2, H3 and H4 are unaffected; they are identical in both files. The first file is kept, marked defective |
+
+## 10. Amendment A-3: inexact CDF saturation (found by the independent review)
+
+| item | content |
+|---|---|
+| timestamp | 2026-11-09, after `deployable_r2.json` had been read |
+| defect | `WeightedDist` normalised cumulative weights by their sum. With D2's non-integer κ weights, the CDF above a group's calibration maximum was 1 ± 1e-14 instead of 1.0, so `matched_budget_alert` ordered saturated windows by group, effectively at random. D2's matched-budget recall on NF-UNSW, NF-ToN and NF-BoT was an artefact in both earlier files. D1 and D3 (integer weights) were unaffected |
+| fix | the last cumulative weight is exactly 1.0; unit test `test_pooled_cdf_saturates_exactly_at_one` |
+| outcomes visible? | yes |
+| effect | H1 is recomputed in `deployable_r3.json`. As-calibrated results, H2, H3, H4 and the gate's as-calibrated criteria do not depend on the saturated tie order and are expected to be unchanged; r3 checks this |
+| design limitation disclosed with it | when more than B benign evaluation windows score above the calibration maximum (NF-UNSW 151–318 vs B = 119; NF-BoT 9–12 vs B = 6; NF-ToN as well), every CDF-based method reduces to raw-score ranking there. **H1 is therefore informative only on NF-CIC.** On the drift networks it is uninformative, not evidence against |

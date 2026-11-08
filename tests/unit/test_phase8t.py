@@ -168,3 +168,12 @@ def test_matched_budget_reproduces_global_oracle_and_handles_saturation():
     a = CC.matched_budget_alert(v, ev, benign, budget)
     t0 = TO.global_threshold(ev[benign], budget)
     assert (a == (ev > t0)).all() and (a & benign).sum() <= budget and (a & ~benign).sum() > 0
+
+
+def test_pooled_cdf_saturates_exactly_at_one():
+    s, g, h = _cal()
+    c = CC.Calibrator("D2", s, g, h, kappa=500.0)
+    v = c.cdf_for(np.array([1e9, 1e9, 1e9]), np.array([0, 1, 2]), np.array(["a", "b", "c"]))
+    assert (
+        v == 1.0
+    ).all()  # ties above every calibration maximum are exact, so raw scores rank them
