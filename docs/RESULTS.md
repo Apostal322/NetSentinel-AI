@@ -226,6 +226,16 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 | Does it survive reviewer error? | 10-25% false-benign, missing-not-at-random review | **no**: accepted heavy attackers make the trusted set about 20% attack windows on NF-ToN/NF-BoT | registered |
 | Does fresh review help? | review of the first half of the evaluation period | FPR reaches about alpha, but recall collapses (macro 0.45 to 0.20): the evaluation-period benign 1% tail sits at attack level on NF-UNSW/NF-ToN/NF-BoT | registered (FPR-only metric supported) |
 
+## Phase 8t (host-conditional and hierarchical calibration; development data)
+
+- Documents: [`docs/phase8t/`](phase8t/FINAL_RESEARCH_REPORT.md). Conditional calibration NOT SUPPORTED; detection NO-GO; recommendation: target the scoring model. No model trained; deployment unchanged.
+
+| Question | Data | Result | Role |
+|---|---|---|---|
+| How well do the frozen scores separate attacks at a true 1% FPR? | saved scores, 9 domains x 6 fits | macro recall 0.275 (NF-UNSW 0.02, NF-ToN 0.007); partial AUC (FPR <= 1%) 0.003-0.012 on NF-UNSW/NF-ToN | retrospective |
+| Could conditional thresholds help (oracle)? | same, thresholds chosen with labels | service-profile groups 0.491 (G1 pass, fragile: NF-ToN gain not temporally stable); per-host = host-identity memorisation (no host has both classes) | retrospective, registered gate |
+| Do deployable group/hierarchical/per-host thresholds help at the shared budget? | hold-out benign calibration | **no**: hierarchical pooling 0.270, per-host 0.241 vs global 0.275; pooling improves threshold transfer but not recall | registered development |
+
 ## Telemetry
 
 | Check | Result | Source |
