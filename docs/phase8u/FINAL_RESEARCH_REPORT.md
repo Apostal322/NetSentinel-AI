@@ -63,6 +63,19 @@ privileged identities or dataset shortcuts?
 
 **Unchanged:** the frozen M2, every Phase 8h–8t artifact, `src/`, the deployed defaults.
 
+**Tests (full suite on `5fb9775`):** 456 passed, **1 failed**, 0 errors, 0 skipped, 2 deselected,
+in 2,993 s. JUnit file: `reports/phase8u/junit_phase8u_final.xml`.
+- **The failure:** `tests/integration/test_dashboard.py::test_all_pages_render`, a Streamlit
+  AppTest timeout (60 s) after 194 s.
+- **Cause:** machine load. The suite ran about 3× slower than the Phase 8t run.
+- **Evidence:**
+  - the test **passes when re-run alone** on the same commit;
+  - `src/` and `tests/integration/` are unchanged since `ceb6c8e`, whose full suite passed
+    (449 / 449).
+- **Not fixed.** The test's 60 s timeout is a load sensitivity, recorded here rather than weakened.
+
+**Other checks:** `ruff check` and `ruff format --check` clean (506 files); no dependencies added.
+
 ## Methods
 
 **Recipe:** the frozen M2 member.
