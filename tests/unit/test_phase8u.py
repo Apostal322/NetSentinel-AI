@@ -121,3 +121,23 @@ def test_tail_objective_improves_synthetic_low_fpr_ranking():
     r_base = pauc(base.predict(xt, raw_score=True))
     r_tail = pauc(tail.predict(xt, raw_score=True))
     assert np.isfinite(r_tail) and r_tail >= r_base - 0.02  # never materially worse here
+
+
+def test_exact_partial_auc_toy_cases_and_sklearn_agreement():
+    assert (
+        LF.partial_auc_exact(np.array([0.5]), np.array([1.0, 0.0]), 0.5) == 0.0
+    )  # review's toy case
+    assert LF.partial_auc_exact(np.array([2.0]), np.array([1.0, 0.0]), 0.5) == 1.0
+    assert LF.partial_auc_exact(np.array([1.0]), np.array([1.0, 0.0]), 0.5) == pytest.approx(
+        0.5
+    )  # tie: diagonal
+    skm = pytest.importorskip("sklearn.metrics")
+    rng = np.random.default_rng(11)
+    p, b = rng.normal(1, 1, 300).round(1), rng.normal(0, 1, 2000).round(1)
+    y = np.r_[np.ones(p.size), np.zeros(b.size)]
+    fpr, tpr, _ = skm.roc_curve(y, np.r_[p, b], drop_intermediate=False)
+    m = 0.05
+    k = np.searchsorted(fpr, m, side="right")
+    xs, ys = np.r_[fpr[:k], m], np.r_[tpr[:k], np.interp(m, fpr, tpr)]
+    assert LF.partial_auc_exact(p, b, m) == pytest.approx(np.trapezoid(ys, xs) / m)
+    assert LF.partial_auc_exact(rng.random(5000), rng.random(5000), 0.01) < 0.03

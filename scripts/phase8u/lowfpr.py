@@ -147,3 +147,31 @@ class PairwiseTailObjective:
         if not (np.isfinite(grad).all() and np.isfinite(hess).all()):
             raise FloatingPointError("non-finite gradient or Hessian")
         return grad, hess
+
+
+def partial_auc_exact(pos: np.ndarray, neg: np.ndarray, max_fpr: float = 0.01) -> float:
+    """Normalised partial ROC-AUC over FPR ∈ [0, max_fpr] on the exact empirical ROC (Amendment U-1).
+
+    ROC points are taken at every distinct score of either class; tied positive/benign scores form
+    the usual diagonal segment. The curve is linearly interpolated at max_fpr. The registered
+    `threshold_oracles.partial_auc` placed points only at benign scores and so credited positives
+    lying strictly between two benign scores (optimistic)."""
+    p = np.sort(np.asarray(pos, dtype=float))
+    b = np.sort(np.asarray(neg, dtype=float))
+    if p.size == 0 or b.size == 0:
+        return float("nan")
+    if not (np.isfinite(p).all() and np.isfinite(b).all()):
+        raise ValueError("non-finite scores")
+    t = np.unique(np.r_[p, b])[::-1]
+    tpr = np.r_[0.0, (p.size - np.searchsorted(p, t, side="left")) / p.size]
+    fpr = np.r_[0.0, (b.size - np.searchsorted(b, t, side="left")) / b.size]
+    area = 0.0
+    for i in range(1, fpr.size):
+        f0, f1, t0, t1 = fpr[i - 1], fpr[i], tpr[i - 1], tpr[i]
+        if f0 >= max_fpr:
+            break
+        if f1 > max_fpr:  # interpolate the segment at max_fpr
+            t1 = t0 + (t1 - t0) * (max_fpr - f0) / (f1 - f0)
+            f1 = max_fpr
+        area += (f1 - f0) * (t0 + t1) / 2
+    return area / max_fpr

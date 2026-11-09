@@ -236,6 +236,16 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 | Could conditional thresholds help (oracle)? | same, thresholds chosen with labels | service-profile groups 0.491 (G1 pass, fragile: NF-ToN gain not temporally stable); per-host = host-identity memorisation (no host has both classes) | retrospective, registered gate |
 | Do deployable group/hierarchical/per-host thresholds help at the shared budget? | hold-out benign calibration | **no**: hierarchical pooling 0.270, per-host 0.241 vs global 0.275; pooling improves threshold transfer but not recall | registered development |
 
+## Phase 8u (low-FPR-aware training; development data)
+
+- Documents: [`docs/phase8u/`](phase8u/FINAL_RESEARCH_REPORT.md). Registered single-member DEVELOPMENT GO for the pairwise partial-AUC objective, qualified (not separable from seed noise); no signal on NF-UNSW/NF-ToN. 30 fits; deployment unchanged.
+
+| Question | Data | Result | Role |
+|---|---|---|---|
+| Does the frozen M2 recipe reproduce exactly? | refit seed 1060 vs saved member | yes, max difference 0.0 | registered gate |
+| Do hard negatives / a pairwise pAUC surrogate / service-relative features improve pAUC (FPR <= 1%)? | 4 LONO targets, seed 1060 screening | all three pass screening (+0.065 to +0.098 macro); class-weighting control fails (-0.031) | registered screening |
+| Does the best (pairwise objective) replicate? | 3 paired seeds | +0.056 macro pAUC (exact ROC +0.058), every seed positive; p ~ 0.14; gain is NF-BoT (+0.16) and NF-CIC (+0.06); NF-UNSW/NF-ToN ~0; lower as-calibrated recall | registered development (qualified) |
+
 ## Telemetry
 
 | Check | Result | Source |

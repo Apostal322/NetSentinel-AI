@@ -183,5 +183,6 @@ with benign false alerts ≤ ⌊0.01 · N_benign⌋. It is not a deployable resu
 
 ## 8. Amendments
 
-Recorded with timestamp, the original and new rule, the reason, whether outcomes were visible, and
-the effect.
+| id | when | original | new | reason | outcomes visible? | effect |
+|---|---|---|---|---|---|---|
+| U-1 | 2026-11-09, after `evaluation_final.json` | `pauc_1pct` = `threshold_oracles.partial_auc`: ROC points only at benign scores, with a trapezoid across each jump | `lowfpr.partial_auc_exact`: the exact empirical ROC at every distinct score, interpolated at FPR = 1 % (tested against sklearn) | the independent review showed the registered version credits positives lying strictly between benign scores (optimistic; toy case 0.5 instead of 0) | yes | every gate recomputed (`evaluation_pauc_exact.json`); **all verdicts unchanged** (B screening +0.108, replication mean +0.058; A2/C1 pass, A1 fails). The registered file is kept |

@@ -202,3 +202,13 @@ same frozen data and features.
 - per-host calibration works;
 - production readiness;
 - independent generalisation.
+
+## Addendum (2026-11-09, Phase 8u)
+
+The normalised partial-AUC values quoted above (model limit: NF-CIC 0.44, NF-UNSW 0.012, NF-ToN
+0.003, NF-BoT 0.58) were computed with `threshold_oracles.partial_auc`.
+- Phase 8u's independent review found that function slightly optimistic: it places ROC points only
+  at benign scores.
+- The exact values are a little lower (Phase 8u amendment U-1).
+- No Phase 8t gate used partial AUC, so no verdict changes. The recall-at-1 % numbers are
+  unaffected.
