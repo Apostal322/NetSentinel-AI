@@ -131,8 +131,52 @@
    "dirty_tree": false,
    "utc": "2026-11-09T21:08:39Z",
    "peak_rss_mb": 1346.88671875
+  },
+  {
+   "variant": "INV",
+   "target": "nfcic",
+   "seed": 1060,
+   "seconds": 12.45,
+   "model_sha256": "72d5981b1f6e3a942ff33130018887d878ffcc83000bf354ceaf2ae9a53dfdd4",
+   "git_sha": "bc32c961bcb0195ba61a387e7897f0ff83a9892b",
+   "dirty_tree": false,
+   "utc": "2026-11-09T21:09:21Z",
+   "peak_rss_mb": 1198.4609375
+  },
+  {
+   "variant": "INV",
+   "target": "nfunsw",
+   "seed": 1060,
+   "seconds": 27.1,
+   "model_sha256": "474ee54f9535e4ce8f188fc0abf94581f5c457f53eef91e9e287f92c32474c40",
+   "git_sha": "bc32c961bcb0195ba61a387e7897f0ff83a9892b",
+   "dirty_tree": false,
+   "utc": "2026-11-09T21:09:49Z",
+   "peak_rss_mb": 1465.2421875
+  },
+  {
+   "variant": "INV",
+   "target": "nfton",
+   "seed": 1060,
+   "seconds": 27.22,
+   "model_sha256": "9b20c0a850125d3a55811d4ae572edfeefaf5c52f9c1e565a6f1eb96de4a29a8",
+   "git_sha": "bc32c961bcb0195ba61a387e7897f0ff83a9892b",
+   "dirty_tree": false,
+   "utc": "2026-11-09T21:10:18Z",
+   "peak_rss_mb": 1465.2421875
+  },
+  {
+   "variant": "INV",
+   "target": "nfbot",
+   "seed": 1060,
+   "seconds": 26.99,
+   "model_sha256": "5a087b7d2063cca868434e8c06815e4ec4f83198fbe8849ca813f732aa552861",
+   "git_sha": "bc32c961bcb0195ba61a387e7897f0ff83a9892b",
+   "dirty_tree": false,
+   "utc": "2026-11-09T21:10:45Z",
+   "peak_rss_mb": 1465.2421875
   }
  ],
- "total_fits": 12,
- "total_seconds": 543.6
+ "total_fits": 16,
+ "total_seconds": 637.4
 }
