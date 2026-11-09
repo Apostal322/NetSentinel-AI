@@ -220,7 +220,9 @@ def stage_train(variant: str, seed: int, targets: list[str]) -> None:
         msha = hashlib.sha256(txt.encode()).hexdigest()
         mp = DER / "models" / f"{safe}__{tnet}__s{seed}.txt"
         mp.parent.mkdir(parents=True, exist_ok=True)
-        mp.write_text(txt, encoding="utf-8")
+        mp.write_bytes(
+            txt.encode("utf-8")
+        )  # bytes: text mode wrote CRLF, unreadable by LightGBM (V-1)
         t1 = time.perf_counter()
         sc = score_targets(model, items, variant, keep)
         n_scored = sum(v["s_hold_u"].size + v["s_ev_u"].size for v in sc.values())

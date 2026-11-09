@@ -137,3 +137,12 @@ not separate effects from seed noise.
 
 None yet. Any amendment records the time, the original and new rule, the reason, whether outcomes
 were visible, and the effect.
+
+### Amendment V-1 (2026-11-10, after the screening evaluation; outcomes visible)
+
+| item | content |
+|---|---|
+| defect | the driver wrote each saved booster with a text-mode write, so the 16 model files have CRLF line endings, which LightGBM cannot parse |
+| effect on results | **none.** Scores were computed from the in-memory models before saving. Each file, with CRLF normalised to LF, matches the SHA-256 recorded in its manifest (checked for all 16 in `posthoc.py`) |
+| fix | the driver now writes bytes; `posthoc.py` loads the saved files through the normalised text. The saved files are kept as written |
+| registered verdicts | unchanged |

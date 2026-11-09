@@ -1,0 +1,1118 @@
+{
+ "status": "EXPLORATORY failure analysis (outcomes visible)",
+ "per_domain_d_pauc": {
+  "FLOW": {
+   "nfbot/all": 0.26711309523809534,
+   "nfcic/2018-02-14": -0.8987037860055481,
+   "nfcic/2018-02-16": -0.03450074491356065,
+   "nfcic/2018-02-20": -0.056719782923326745,
+   "nfcic/2018-02-21": -0.034959368173669514,
+   "nfcic/2018-02-22": 0.0,
+   "nfcic/2018-03-02": 0.00016638850177080493,
+   "nfton/all": 0.009238729921047888,
+   "nfunsw/all": -0.0006407795575184934
+  },
+  "TIME": {
+   "nfbot/all": 0.02911386328725052,
+   "nfcic/2018-02-14": 0.04983823671699705,
+   "nfcic/2018-02-16": 0.6869253349316652,
+   "nfcic/2018-02-20": -0.0638462365824851,
+   "nfcic/2018-02-21": 0.00646233628716697,
+   "nfcic/2018-02-22": 0.0,
+   "nfcic/2018-03-02": -1.8520235028104948e-05,
+   "nfton/all": 0.23911691206641977,
+   "nfunsw/all": -0.005175279891065017
+  },
+  "BIDIR": {
+   "nfbot/all": 0.21205357142857162,
+   "nfcic/2018-02-14": -0.02195552408011736,
+   "nfcic/2018-02-16": -0.011761204789987365,
+   "nfcic/2018-02-20": -0.07554204949057904,
+   "nfcic/2018-02-21": -0.1377617612012756,
+   "nfcic/2018-02-22": 0.0,
+   "nfcic/2018-03-02": -0.00017571637624227824,
+   "nfton/all": 0.07426168863757623,
+   "nfunsw/all": -0.004154070747084213
+  },
+  "INV": {
+   "nfbot/all": -0.3191964285714285,
+   "nfcic/2018-02-14": -0.8987037860055481,
+   "nfcic/2018-02-16": 0.04052106226210591,
+   "nfcic/2018-02-20": -0.07554204949057904,
+   "nfcic/2018-02-21": -0.9737277042335661,
+   "nfcic/2018-02-22": 0.0,
+   "nfcic/2018-03-02": -0.00040805498323512134,
+   "nfton/all": -0.006902823060260592,
+   "nfunsw/all": -0.005989441799136658
+  }
+ },
+ "guardrail_detail": {
+  "FLOW": {
+   "calT_fpr": {
+    "nfcic": [
+     0.011442218134358135,
+     0.013822985476120944
+    ],
+    "nfunsw": [
+     0.03979224260702019,
+     0.036776409483119714
+    ],
+    "nfton": [
+     0.15899019739492412,
+     0.2363367799113737
+    ],
+    "nfbot": [
+     0.18548387096774194,
+     0.10806451612903226
+    ]
+   },
+   "calT_recall": {
+    "nfcic": [
+     0.3638000096206464,
+     0.17121513849172584
+    ],
+    "nfunsw": [
+     0.7061843070153997,
+     0.32681495966756297
+    ],
+    "nfton": [
+     0.43604858878170777,
+     0.8504823151125402
+    ],
+    "nfbot": [
+     0.9375,
+     0.9434523809523809
+    ]
+   },
+   "missed_calT": [
+    8,
+    17
+   ],
+   "missed_oracle": [
+    14,
+    22
+   ],
+   "R20_oracle": [
+    15,
+    15
+   ],
+   "R20_calT": [
+    25,
+    26
+   ]
+  },
+  "TIME": {
+   "calT_fpr": {
+    "nfcic": [
+     0.011442218134358135,
+     0.014898562396084667
+    ],
+    "nfunsw": [
+     0.03979224260702019,
+     0.0335930300745581
+    ],
+    "nfton": [
+     0.15899019739492412,
+     0.24251376393178461
+    ],
+    "nfbot": [
+     0.18548387096774194,
+     0.3096774193548387
+    ]
+   },
+   "calT_recall": {
+    "nfcic": [
+     0.3638000096206464,
+     0.4734961194159944
+    ],
+    "nfunsw": [
+     0.7061843070153997,
+     0.46345636763627474
+    ],
+    "nfton": [
+     0.43604858878170777,
+     0.8988924615934262
+    ],
+    "nfbot": [
+     0.9375,
+     0.9352678571428571
+    ]
+   },
+   "missed_calT": [
+    8,
+    11
+   ],
+   "missed_oracle": [
+    14,
+    15
+   ],
+   "R20_oracle": [
+    15,
+    20
+   ],
+   "R20_calT": [
+    25,
+    28
+   ]
+  },
+  "BIDIR": {
+   "calT_fpr": {
+    "nfcic": [
+     0.011442218134358135,
+     0.012808996378860543
+    ],
+    "nfunsw": [
+     0.03979224260702019,
+     0.03292284493591355
+    ],
+    "nfton": [
+     0.15899019739492412,
+     0.2357996508661206
+    ],
+    "nfbot": [
+     0.18548387096774194,
+     0.06935483870967742
+    ]
+   },
+   "calT_recall": {
+    "nfcic": [
+     0.3638000096206464,
+     0.3320854621046464
+    ],
+    "nfunsw": [
+     0.7061843070153997,
+     0.22488389146907847
+    ],
+    "nfton": [
+     0.43604858878170777,
+     0.8817434798142194
+    ],
+    "nfbot": [
+     0.9375,
+     0.9248511904761905
+    ]
+   },
+   "missed_calT": [
+    8,
+    17
+   ],
+   "missed_oracle": [
+    14,
+    23
+   ],
+   "R20_oracle": [
+    15,
+    16
+   ],
+   "R20_calT": [
+    25,
+    26
+   ]
+  },
+  "INV": {
+   "calT_fpr": {
+    "nfcic": [
+     0.011442218134358135,
+     0.013594158427735344
+    ],
+    "nfunsw": [
+     0.03979224260702019,
+     0.03376057635921923
+    ],
+    "nfton": [
+     0.15899019739492412,
+     0.24412515106754398
+    ],
+    "nfbot": [
+     0.18548387096774194,
+     0.07419354838709677
+    ]
+   },
+   "calT_recall": {
+    "nfcic": [
+     0.3638000096206464,
+     0.06172839506172839
+    ],
+    "nfunsw": [
+     0.7061843070153997,
+     0.0007333170373991689
+    ],
+    "nfton": [
+     0.43604858878170777,
+     0.5010718113612004
+    ],
+    "nfbot": [
+     0.9375,
+     0.7574404761904762
+    ]
+   },
+   "missed_calT": [
+    8,
+    31
+   ],
+   "missed_oracle": [
+    14,
+    40
+   ],
+   "R20_oracle": [
+    15,
+    5
+   ],
+   "R20_calT": [
+    25,
+    10
+   ]
+  }
+ },
+ "by_attack_label": {
+  "nfton/all": {
+   "backdoor": {
+    "windows": 115,
+    "M2member": 0.0,
+    "FLOW": 0.0,
+    "TIME": 0.0,
+    "BIDIR": 0.0,
+    "INV": 0.0
+   },
+   "mitm": {
+    "windows": 207,
+    "M2member": 0.0,
+    "FLOW": 0.004830917874396135,
+    "TIME": 0.0,
+    "BIDIR": 0.004830917874396135,
+    "INV": 0.0
+   },
+   "password": {
+    "windows": 3203,
+    "M2member": 0.020293474867311895,
+    "FLOW": 0.20886668748048703,
+    "TIME": 0.4464564470808617,
+    "BIDIR": 0.2413362472681861,
+    "INV": 0.0
+   },
+   "ransomware": {
+    "windows": 226,
+    "M2member": 0.0,
+    "FLOW": 0.0,
+    "TIME": 0.0,
+    "BIDIR": 0.0,
+    "INV": 0.0
+   },
+   "xss": {
+    "windows": 1847,
+    "M2member": 0.004331348132106118,
+    "FLOW": 0.002165674066053059,
+    "TIME": 0.2707092582566324,
+    "BIDIR": 0.027612344342176503,
+    "INV": 0.006497022198159177
+   }
+  },
+  "nfunsw/all": {
+   "dos+exploits+fuzzers+generic+reconnaissance": {
+    "windows": 169,
+    "M2member": 0.029585798816568046,
+    "FLOW": 0.04142011834319527,
+    "TIME": 0.0,
+    "BIDIR": 0.005917159763313609,
+    "INV": 0.0
+   },
+   "dos+exploits+fuzzers+reconnaissance": {
+    "windows": 177,
+    "M2member": 0.03389830508474576,
+    "FLOW": 0.03954802259887006,
+    "TIME": 0.005649717514124294,
+    "BIDIR": 0.005649717514124294,
+    "INV": 0.0
+   },
+   "dos+exploits+generic+reconnaissance": {
+    "windows": 324,
+    "M2member": 0.009259259259259259,
+    "FLOW": 0.0,
+    "TIME": 0.0,
+    "BIDIR": 0.0,
+    "INV": 0.0
+   },
+   "dos+exploits+reconnaissance": {
+    "windows": 326,
+    "M2member": 0.012269938650306749,
+    "FLOW": 0.009202453987730062,
+    "TIME": 0.003067484662576687,
+    "BIDIR": 0.006134969325153374,
+    "INV": 0.0
+   },
+   "exploits": {
+    "windows": 107,
+    "M2member": 0.018691588785046728,
+    "FLOW": 0.009345794392523364,
+    "TIME": 0.0,
+    "BIDIR": 0.0,
+    "INV": 0.0
+   },
+   "exploits+fuzzers+generic+reconnaissance": {
+    "windows": 231,
+    "M2member": 0.03896103896103896,
+    "FLOW": 0.030303030303030304,
+    "TIME": 0.008658008658008658,
+    "BIDIR": 0.012987012987012988,
+    "INV": 0.0
+   },
+   "exploits+fuzzers+reconnaissance": {
+    "windows": 172,
+    "M2member": 0.046511627906976744,
+    "FLOW": 0.05232558139534884,
+    "TIME": 0.0,
+    "BIDIR": 0.011627906976744186,
+    "INV": 0.0
+   },
+   "exploits+generic+reconnaissance": {
+    "windows": 450,
+    "M2member": 0.006666666666666667,
+    "FLOW": 0.0044444444444444444,
+    "TIME": 0.0,
+    "BIDIR": 0.0,
+    "INV": 0.0
+   },
+   "exploits+generic+reconnaissance+shellcode": {
+    "windows": 145,
+    "M2member": 0.006896551724137931,
+    "FLOW": 0.006896551724137931,
+    "TIME": 0.006896551724137931,
+    "BIDIR": 0.0,
+    "INV": 0.0
+   },
+   "exploits+reconnaissance": {
+    "windows": 436,
+    "M2member": 0.009174311926605505,
+    "FLOW": 0.0022935779816513763,
+    "TIME": 0.0022935779816513763,
+    "BIDIR": 0.0,
+    "INV": 0.0
+   },
+   "exploits+reconnaissance+shellcode": {
+    "windows": 112,
+    "M2member": 0.0,
+    "FLOW": 0.0,
+    "TIME": 0.0,
+    "BIDIR": 0.0,
+    "INV": 0.0
+   }
+  }
+ },
+ "entities": {
+  "nfbot/all": {
+   "M2member": {
+    "entities": 4,
+    "detected_20pct": 4,
+    "missed": 0
+   },
+   "FLOW": {
+    "entities": 4,
+    "detected_20pct": 4,
+    "missed": 0
+   },
+   "TIME": {
+    "entities": 4,
+    "detected_20pct": 4,
+    "missed": 0
+   },
+   "BIDIR": {
+    "entities": 4,
+    "detected_20pct": 4,
+    "missed": 0
+   },
+   "INV": {
+    "entities": 4,
+    "detected_20pct": 4,
+    "missed": 0
+   }
+  },
+  "nfcic/2018-02-14": {
+   "M2member": {
+    "entities": 1,
+    "detected_20pct": 1,
+    "missed": 0
+   },
+   "FLOW": {
+    "entities": 1,
+    "detected_20pct": 0,
+    "missed": 1
+   },
+   "TIME": {
+    "entities": 1,
+    "detected_20pct": 1,
+    "missed": 0
+   },
+   "BIDIR": {
+    "entities": 1,
+    "detected_20pct": 1,
+    "missed": 0
+   },
+   "INV": {
+    "entities": 1,
+    "detected_20pct": 0,
+    "missed": 1
+   }
+  },
+  "nfcic/2018-02-16": {
+   "M2member": {
+    "entities": 1,
+    "detected_20pct": 0,
+    "missed": 0
+   },
+   "FLOW": {
+    "entities": 1,
+    "detected_20pct": 0,
+    "missed": 1
+   },
+   "TIME": {
+    "entities": 1,
+    "detected_20pct": 1,
+    "missed": 0
+   },
+   "BIDIR": {
+    "entities": 1,
+    "detected_20pct": 0,
+    "missed": 0
+   },
+   "INV": {
+    "entities": 1,
+    "detected_20pct": 1,
+    "missed": 0
+   }
+  },
+  "nfcic/2018-02-20": {
+   "M2member": {
+    "entities": 10,
+    "detected_20pct": 0,
+    "missed": 1
+   },
+   "FLOW": {
+    "entities": 10,
+    "detected_20pct": 0,
+    "missed": 7
+   },
+   "TIME": {
+    "entities": 10,
+    "detected_20pct": 0,
+    "missed": 5
+   },
+   "BIDIR": {
+    "entities": 10,
+    "detected_20pct": 0,
+    "missed": 10
+   },
+   "INV": {
+    "entities": 10,
+    "detected_20pct": 0,
+    "missed": 10
+   }
+  },
+  "nfcic/2018-02-21": {
+   "M2member": {
+    "entities": 10,
+    "detected_20pct": 10,
+    "missed": 0
+   },
+   "FLOW": {
+    "entities": 10,
+    "detected_20pct": 10,
+    "missed": 0
+   },
+   "TIME": {
+    "entities": 10,
+    "detected_20pct": 10,
+    "missed": 0
+   },
+   "BIDIR": {
+    "entities": 10,
+    "detected_20pct": 10,
+    "missed": 0
+   },
+   "INV": {
+    "entities": 10,
+    "detected_20pct": 0,
+    "missed": 10
+   }
+  },
+  "nfcic/2018-02-22": {
+   "M2member": {
+    "entities": 1,
+    "detected_20pct": 0,
+    "missed": 1
+   },
+   "FLOW": {
+    "entities": 1,
+    "detected_20pct": 0,
+    "missed": 1
+   },
+   "TIME": {
+    "entities": 1,
+    "detected_20pct": 0,
+    "missed": 1
+   },
+   "BIDIR": {
+    "entities": 1,
+    "detected_20pct": 0,
+    "missed": 1
+   },
+   "INV": {
+    "entities": 1,
+    "detected_20pct": 0,
+    "missed": 1
+   }
+  },
+  "nfcic/2018-03-02": {
+   "M2member": {
+    "entities": 7,
+    "detected_20pct": 0,
+    "missed": 6
+   },
+   "FLOW": {
+    "entities": 7,
+    "detected_20pct": 0,
+    "missed": 6
+   },
+   "TIME": {
+    "entities": 7,
+    "detected_20pct": 0,
+    "missed": 6
+   },
+   "BIDIR": {
+    "entities": 7,
+    "detected_20pct": 0,
+    "missed": 6
+   },
+   "INV": {
+    "entities": 7,
+    "detected_20pct": 0,
+    "missed": 7
+   }
+  },
+  "nfton/all": {
+   "M2member": {
+    "entities": 10,
+    "detected_20pct": 0,
+    "missed": 6
+   },
+   "FLOW": {
+    "entities": 10,
+    "detected_20pct": 1,
+    "missed": 6
+   },
+   "TIME": {
+    "entities": 10,
+    "detected_20pct": 4,
+    "missed": 3
+   },
+   "BIDIR": {
+    "entities": 10,
+    "detected_20pct": 1,
+    "missed": 5
+   },
+   "INV": {
+    "entities": 10,
+    "detected_20pct": 0,
+    "missed": 8
+   }
+  },
+  "nfunsw/all": {
+   "M2member": {
+    "entities": 4,
+    "detected_20pct": 0,
+    "missed": 0
+   },
+   "FLOW": {
+    "entities": 4,
+    "detected_20pct": 0,
+    "missed": 0
+   },
+   "TIME": {
+    "entities": 4,
+    "detected_20pct": 0,
+    "missed": 0
+   },
+   "BIDIR": {
+    "entities": 4,
+    "detected_20pct": 0,
+    "missed": 1
+   },
+   "INV": {
+    "entities": 4,
+    "detected_20pct": 0,
+    "missed": 3
+   }
+  }
+ },
+ "added_column_gain_share": {
+  "FLOW": {
+   "nfcic": {
+    "added_gain_share": 0.05613144437821234,
+    "top5": [
+     [
+      "new_dst_frac",
+      0.336
+     ],
+     [
+      "rst_frac",
+      0.194
+     ],
+     [
+      "med_log_dur",
+      0.131
+     ],
+     [
+      "log_flows",
+      0.118
+     ],
+     [
+      "log_dst_ports",
+      0.073
+     ]
+    ],
+    "dropped": []
+   },
+   "nfunsw": {
+    "added_gain_share": 0.1331508150995957,
+    "top5": [
+     [
+      "log_pkts",
+      0.581
+     ],
+     [
+      "log_flows",
+      0.079
+     ],
+     [
+      "small_pkt_share",
+      0.069
+     ],
+     [
+      "new_dst_frac",
+      0.048
+     ],
+     [
+      "log_down_bytes",
+      0.035
+     ]
+    ],
+    "dropped": []
+   },
+   "nfton": {
+    "added_gain_share": 0.06390476057895765,
+    "top5": [
+     [
+      "new_dst_frac",
+      0.432
+     ],
+     [
+      "log_pkts",
+      0.142
+     ],
+     [
+      "log_up_bytes",
+      0.103
+     ],
+     [
+      "log_flows",
+      0.063
+     ],
+     [
+      "log_dst_hosts",
+      0.059
+     ]
+    ],
+    "dropped": []
+   },
+   "nfbot": {
+    "added_gain_share": 0.06954645026037583,
+    "top5": [
+     [
+      "new_dst_frac",
+      0.287
+     ],
+     [
+      "log_pkts",
+      0.163
+     ],
+     [
+      "log_flows",
+      0.149
+     ],
+     [
+      "log_dst_ports",
+      0.097
+     ],
+     [
+      "log_dst_hosts",
+      0.068
+     ]
+    ],
+    "dropped": []
+   }
+  },
+  "TIME": {
+   "nfcic": {
+    "added_gain_share": 0.12540024126895383,
+    "top5": [
+     [
+      "new_dst_frac",
+      0.392
+     ],
+     [
+      "rst_frac",
+      0.232
+     ],
+     [
+      "prev4_mean_log_flows",
+      0.081
+     ],
+     [
+      "med_log_dur",
+      0.079
+     ],
+     [
+      "log_dst_ports",
+      0.036
+     ]
+    ],
+    "dropped": []
+   },
+   "nfunsw": {
+    "added_gain_share": 0.18565782752578142,
+    "top5": [
+     [
+      "log_pkts",
+      0.569
+     ],
+     [
+      "prev4_mean_log_flows",
+      0.14
+     ],
+     [
+      "new_dst_frac",
+      0.05
+     ],
+     [
+      "upload_share",
+      0.032
+     ],
+     [
+      "med_log_dur",
+      0.026
+     ]
+    ],
+    "dropped": []
+   },
+   "nfton": {
+    "added_gain_share": 0.0794202177795232,
+    "top5": [
+     [
+      "new_dst_frac",
+      0.499
+     ],
+     [
+      "log_up_bytes",
+      0.145
+     ],
+     [
+      "log_flows",
+      0.067
+     ],
+     [
+      "log_pkts",
+      0.049
+     ],
+     [
+      "gap_cv",
+      0.031
+     ]
+    ],
+    "dropped": []
+   },
+   "nfbot": {
+    "added_gain_share": 0.17654961223996182,
+    "top5": [
+     [
+      "new_dst_frac",
+      0.325
+     ],
+     [
+      "log_flows",
+      0.147
+     ],
+     [
+      "log_pkts",
+      0.085
+     ],
+     [
+      "prev4_mean_log_flows",
+      0.08
+     ],
+     [
+      "peak_sec_share",
+      0.066
+     ]
+    ],
+    "dropped": []
+   }
+  },
+  "BIDIR": {
+   "nfcic": {
+    "added_gain_share": 0.3059327468559791,
+    "top5": [
+     [
+      "new_dst_frac",
+      0.408
+     ],
+     [
+      "srv_rst_frac",
+      0.281
+     ],
+     [
+      "log_flows",
+      0.063
+     ],
+     [
+      "med_log_dur",
+      0.063
+     ],
+     [
+      "log_dst_ports",
+      0.045
+     ]
+    ],
+    "dropped": []
+   },
+   "nfunsw": {
+    "added_gain_share": 0.07191792585484982,
+    "top5": [
+     [
+      "log_pkts",
+      0.587
+     ],
+     [
+      "log_flows",
+      0.081
+     ],
+     [
+      "new_dst_frac",
+      0.054
+     ],
+     [
+      "log_dst_ports",
+      0.042
+     ],
+     [
+      "udp_share",
+      0.032
+     ]
+    ],
+    "dropped": []
+   },
+   "nfton": {
+    "added_gain_share": 0.045770366124587125,
+    "top5": [
+     [
+      "new_dst_frac",
+      0.518
+     ],
+     [
+      "log_up_bytes",
+      0.11
+     ],
+     [
+      "log_flows",
+      0.102
+     ],
+     [
+      "log_pkts",
+      0.065
+     ],
+     [
+      "upload_share",
+      0.034
+     ]
+    ],
+    "dropped": []
+   },
+   "nfbot": {
+    "added_gain_share": 0.12826078434478627,
+    "top5": [
+     [
+      "new_dst_frac",
+      0.338
+     ],
+     [
+      "log_flows",
+      0.201
+     ],
+     [
+      "log_pkts",
+      0.09
+     ],
+     [
+      "srv_rst_frac",
+      0.081
+     ],
+     [
+      "log_dst_ports",
+      0.059
+     ]
+    ],
+    "dropped": []
+   }
+  },
+  "INV": {
+   "nfcic": {
+    "added_gain_share": 0.4226318812443582,
+    "top5": [
+     [
+      "new_dst_frac",
+      0.437
+     ],
+     [
+      "srv_rst_frac",
+      0.273
+     ],
+     [
+      "rst_frac",
+      0.046
+     ],
+     [
+      "no_reply_frac",
+      0.039
+     ],
+     [
+      "med_log_dur",
+      0.034
+     ]
+    ],
+    "dropped": [
+     "log_flows",
+     "log_up_bytes",
+     "log_down_bytes",
+     "log_pkts",
+     "log_dst_hosts",
+     "log_dst_ports",
+     "upload_share",
+     "tiny_flow_frac",
+     "mean_log_pkts",
+     "active_sec_frac",
+     "gap_cv",
+     "prev4_mean_log_flows",
+     "mean_log_ratio"
+    ]
+   },
+   "nfunsw": {
+    "added_gain_share": 0.3523554041136125,
+    "top5": [
+     [
+      "log_pkts",
+      0.512
+     ],
+     [
+      "prev4_mean_log_flows",
+      0.14
+     ],
+     [
+      "small_pkt_share",
+      0.069
+     ],
+     [
+      "new_dst_frac",
+      0.042
+     ],
+     [
+      "mean_log_ratio",
+      0.029
+     ]
+    ],
+    "dropped": [
+     "log_dst_hosts",
+     "log_dst_ports",
+     "rst_frac",
+     "sd_log_up",
+     "p90_log_dur"
+    ]
+   },
+   "nfton": {
+    "added_gain_share": 0.3353192541228347,
+    "top5": [
+     [
+      "new_dst_frac",
+      0.526
+     ],
+     [
+      "peak_sec_share",
+      0.091
+     ],
+     [
+      "gap_cv",
+      0.06
+     ],
+     [
+      "p90_log_dur",
+      0.043
+     ],
+     [
+      "small_pkt_share",
+      0.043
+     ]
+    ],
+    "dropped": [
+     "log_flows",
+     "log_up_bytes",
+     "log_down_bytes",
+     "log_pkts",
+     "tiny_flow_frac",
+     "mean_log_pkts",
+     "active_sec_frac",
+     "prev4_mean_log_flows"
+    ]
+   },
+   "nfbot": {
+    "added_gain_share": 0.49748993596968605,
+    "top5": [
+     [
+      "new_dst_frac",
+      0.354
+     ],
+     [
+      "peak_sec_share",
+      0.195
+     ],
+     [
+      "srv_rst_frac",
+      0.129
+     ],
+     [
+      "med_log_dur",
+      0.074
+     ],
+     [
+      "small_pkt_share",
+      0.059
+     ]
+    ],
+    "dropped": [
+     "log_flows",
+     "log_up_bytes",
+     "log_down_bytes",
+     "log_pkts",
+     "log_dst_hosts",
+     "log_dst_ports",
+     "rst_frac",
+     "upload_share",
+     "tiny_flow_frac",
+     "mean_log_pkts",
+     "sd_log_up",
+     "p90_log_dur",
+     "active_sec_frac",
+     "gap_cv",
+     "prev4_mean_log_flows",
+     "mean_log_ratio"
+    ]
+   }
+  }
+ }
+}
