@@ -87,8 +87,52 @@
    "dirty_tree": false,
    "utc": "2026-11-09T21:06:29Z",
    "peak_rss_mb": 1472.54296875
+  },
+  {
+   "variant": "BIDIR",
+   "target": "nfcic",
+   "seed": 1060,
+   "seconds": 18.58,
+   "model_sha256": "672cd615a05763503b8e099a4433ea569183d5737a620e5580c94668e2fa217a",
+   "git_sha": "e4fcb3e5ac673d33c5c70dc19168bf2f696ae122",
+   "dirty_tree": false,
+   "utc": "2026-11-09T21:07:27Z",
+   "peak_rss_mb": 1068.55078125
+  },
+  {
+   "variant": "BIDIR",
+   "target": "nfunsw",
+   "seed": 1060,
+   "seconds": 20.73,
+   "model_sha256": "17443fbfea0966bdde82b0ec121bcbd62e12f5f80a94777b1e41233abe625b53",
+   "git_sha": "e4fcb3e5ac673d33c5c70dc19168bf2f696ae122",
+   "dirty_tree": false,
+   "utc": "2026-11-09T21:07:48Z",
+   "peak_rss_mb": 1300.5078125
+  },
+  {
+   "variant": "BIDIR",
+   "target": "nfton",
+   "seed": 1060,
+   "seconds": 26.18,
+   "model_sha256": "4050e9086468fe03ecf9eef4e5454cfa4f8d49b21e3f0986abdf77403cb638ad",
+   "git_sha": "e4fcb3e5ac673d33c5c70dc19168bf2f696ae122",
+   "dirty_tree": false,
+   "utc": "2026-11-09T21:08:16Z",
+   "peak_rss_mb": 1346.88671875
+  },
+  {
+   "variant": "BIDIR",
+   "target": "nfbot",
+   "seed": 1060,
+   "seconds": 23.04,
+   "model_sha256": "e9790740d260b4dbb926d3aeca633b5993e5a50e35c16141b09ae540ed65292e",
+   "git_sha": "e4fcb3e5ac673d33c5c70dc19168bf2f696ae122",
+   "dirty_tree": false,
+   "utc": "2026-11-09T21:08:39Z",
+   "peak_rss_mb": 1346.88671875
   }
  ],
- "total_fits": 8,
- "total_seconds": 455.1
+ "total_fits": 12,
+ "total_seconds": 543.6
 }
