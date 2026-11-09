@@ -1,0 +1,50 @@
+{
+ "fits": [
+  {
+   "variant": "FLOW",
+   "target": "nfcic",
+   "seed": 1060,
+   "seconds": 157.77,
+   "model_sha256": "e83a57646c8a0bb08d6cd269a98affb944074ee76f5bcc48ad3c64783ff59a76",
+   "git_sha": "e5c08a66e06c92ea001ea15ab1a757b2521461db",
+   "dirty_tree": false,
+   "utc": "2026-11-09T21:00:12Z",
+   "peak_rss_mb": 1036.69921875
+  },
+  {
+   "variant": "FLOW",
+   "target": "nfunsw",
+   "seed": 1060,
+   "seconds": 45.3,
+   "model_sha256": "98feff66db21effef1b163f9f524bb3a67813d4ff48200b42b0f786a3835cd6b",
+   "git_sha": "e5c08a66e06c92ea001ea15ab1a757b2521461db",
+   "dirty_tree": false,
+   "utc": "2026-11-09T21:01:02Z",
+   "peak_rss_mb": 1036.69921875
+  },
+  {
+   "variant": "FLOW",
+   "target": "nfton",
+   "seed": 1060,
+   "seconds": 57.24,
+   "model_sha256": "11bc28d0b88ccd4da67d2aa26fcee47776b6b4af4302cfa03d6c5c6273084099",
+   "git_sha": "e5c08a66e06c92ea001ea15ab1a757b2521461db",
+   "dirty_tree": false,
+   "utc": "2026-11-09T21:02:00Z",
+   "peak_rss_mb": 1036.69921875
+  },
+  {
+   "variant": "FLOW",
+   "target": "nfbot",
+   "seed": 1060,
+   "seconds": 42.39,
+   "model_sha256": "f076db729dfbc5bda3ac1232f3601c5a666d138aca7b2c7839cf40ee5f8f76ed",
+   "git_sha": "e5c08a66e06c92ea001ea15ab1a757b2521461db",
+   "dirty_tree": false,
+   "utc": "2026-11-09T21:02:44Z",
+   "peak_rss_mb": 1036.69921875
+  }
+ ],
+ "total_fits": 4,
+ "total_seconds": 302.7
+}
