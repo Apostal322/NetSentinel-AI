@@ -1,0 +1,3145 @@
+{
+ "status": "Stage 1 telemetry audit (sampled slices under the development cut)",
+ "networks": {
+  "nfcic": {
+   "flows_sampled": 574853,
+   "slices": 6,
+   "dev_cut": true,
+   "files": [
+    "2018-02-14.parquet",
+    "2018-02-15.parquet",
+    "2018-02-16.parquet",
+    "2018-02-20.parquet",
+    "2018-02-21.parquet",
+    "2018-02-22.parquet",
+    "2018-02-23.parquet",
+    "2018-02-27.parquet",
+    "2018-02-28.parquet",
+    "2018-03-01.parquet",
+    "2018-03-02.parquet"
+   ],
+   "columns": 78,
+   "fields": {
+    "row_id": {
+     "dtype": "UInt32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 5.218725482862576e-06,
+     "min": 0.0,
+     "q50": 701722.0,
+     "q99": 1015250.0,
+     "max": 1020999.0
+    },
+    "flow_start_milliseconds": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1518611287705.0,
+     "q50": 1519312474664.0,
+     "q99": 1520009134366.0,
+     "max": 1520009214287.0
+    },
+    "flow_end_milliseconds": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1518611287705.0,
+     "q50": 1519312488941.0,
+     "q99": 1520009137490.0,
+     "max": 1520009322721.0
+    },
+    "ipv4_src_addr": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 15310
+    },
+    "l4_src_port": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.00346523372062075,
+     "min": 0.0,
+     "q50": 52177.0,
+     "q99": 65255.0,
+     "max": 65535.0
+    },
+    "ipv4_dst_addr": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 7282
+    },
+    "l4_dst_port": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.00346523372062075,
+     "min": 0.0,
+     "q50": 443.0,
+     "q99": 51571.0,
+     "max": 65535.0
+    },
+    "protocol": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1.0,
+     "q50": 6.0,
+     "q99": 17.0,
+     "max": 58.0
+    },
+    "l7_proto": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.025387359898965473,
+     "min": 0.0,
+     "q50": 7.0,
+     "q99": 103.0,
+     "max": 394.0
+    },
+    "in_bytes": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 28.0,
+     "q50": 132.0,
+     "q99": 3916.0,
+     "max": 17795721.0
+    },
+    "in_pkts": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1.0,
+     "q50": 2.0,
+     "q99": 31.0,
+     "max": 31077.0
+    },
+    "out_bytes": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.11203385909093282,
+     "min": 0.0,
+     "q50": 176.0,
+     "q99": 37424.0,
+     "max": 113725621.0
+    },
+    "out_pkts": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.11203385909093282,
+     "min": 0.0,
+     "q50": 2.0,
+     "q99": 48.0,
+     "max": 75881.0
+    },
+    "tcp_flags": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.41444334464637045,
+     "min": 0.0,
+     "q50": 20.0,
+     "q99": 223.0,
+     "max": 223.0
+    },
+    "client_tcp_flags": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.41444334464637045,
+     "min": 0.0,
+     "q50": 20.0,
+     "q99": 223.0,
+     "max": 223.0
+    },
+    "server_tcp_flags": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.5056631869364864,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 91.0,
+     "max": 223.0
+    },
+    "flow_duration_milliseconds": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1.0,
+     "q50": 38.0,
+     "q99": 119317.0,
+     "max": 120995.0
+    },
+    "duration_in": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.4545475104070084,
+     "min": 0.0,
+     "q50": 20.0,
+     "q99": 119303.0,
+     "max": 120995.0
+    },
+    "duration_out": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.5591307690835744,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 119116.0,
+     "max": 120973.0
+    },
+    "min_ttl": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.4150574146781873,
+     "min": 0.0,
+     "q50": 99.0,
+     "q99": 128.0,
+     "max": 240.0
+    },
+    "max_ttl": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.4150574146781873,
+     "min": 0.0,
+     "q50": 99.0,
+     "q99": 128.0,
+     "max": 240.0
+    },
+    "longest_flow_pkt": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 28.0,
+     "q50": 164.0,
+     "q99": 1500.0,
+     "max": 5844.0
+    },
+    "shortest_flow_pkt": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 28.0,
+     "q50": 40.0,
+     "q99": 143.0,
+     "max": 1500.0
+    },
+    "min_ip_pkt_len": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.11203385909093282,
+     "min": 0.0,
+     "q50": 40.0,
+     "q99": 96.0,
+     "max": 330.0
+    },
+    "max_ip_pkt_len": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 28.0,
+     "q50": 164.0,
+     "q99": 1500.0,
+     "max": 5844.0
+    },
+    "src_to_dst_second_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.5509860781799869,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 700.0,
+     "max": 21259.0
+    },
+    "dst_to_src_second_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.668706608472079,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 373.0,
+     "max": 772.0
+    },
+    "retransmitted_in_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9220861681160227,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 451.0,
+     "max": 55500.0
+    },
+    "retransmitted_in_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9220861681160227,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 11.0,
+     "max": 115.0
+    },
+    "retransmitted_out_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9687450530831361,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 828.0,
+     "max": 2662500.0
+    },
+    "retransmitted_out_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9687450530831361,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 2.0,
+     "max": 1775.0
+    },
+    "src_to_dst_avg_throughput": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 5.0,
+     "q50": 24333.0,
+     "q99": 1856000.0,
+     "max": 12000000.0
+    },
+    "dst_to_src_avg_throughput": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.11203385909093282,
+     "min": 0.0,
+     "q50": 9774.0,
+     "q99": 2800000.0,
+     "max": 169961776.0
+    },
+    "num_pkts_up_to_128_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.010948886063045683,
+     "min": 0.0,
+     "q50": 4.0,
+     "q99": 42.0,
+     "max": 30957.0
+    },
+    "num_pkts_128_to_256_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.4413702285627804,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 6.0,
+     "max": 687.0
+    },
+    "num_pkts_256_to_512_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.672885068008691,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 5.0,
+     "max": 1693.0
+    },
+    "num_pkts_512_to_1024_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.7106512447530065,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 4.0,
+     "max": 685.0
+    },
+    "num_pkts_1024_to_1514_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.7350974944898957,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 25.0,
+     "max": 75793.0
+    },
+    "tcp_win_max_in": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.46012806752334945,
+     "min": 0.0,
+     "q50": 258.0,
+     "q99": 65280.0,
+     "max": 65535.0
+    },
+    "tcp_win_max_out": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.5096920430092563,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 65160.0,
+     "max": 65535.0
+    },
+    "icmp_type": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9194976802765229,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 52480.0,
+     "max": 65280.0
+    },
+    "icmp_ipv4_type": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9194976802765229,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 205.0,
+     "max": 255.0
+    },
+    "dns_query_id": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.6080789349625034,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 63863.0,
+     "max": 65535.0
+    },
+    "dns_query_type": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.6080789349625034,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 28.0,
+     "max": 255.0
+    },
+    "dns_ttl_answer": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.6166602592314905,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 60.0,
+     "max": 60.0
+    },
+    "ftp_command_ret_code": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 1.0,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 0.0
+    },
+    "src_to_dst_iat_min": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.7833550490299259,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1011.0,
+     "max": 60704.0
+    },
+    "src_to_dst_iat_max": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.43795718209698825,
+     "min": 0.0,
+     "q50": 25.0,
+     "q99": 58936.0,
+     "max": 60950.0
+    },
+    "src_to_dst_iat_avg": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.4389678752655027,
+     "min": 0.0,
+     "q50": 20.0,
+     "q99": 12002.0,
+     "max": 60704.0
+    },
+    "src_to_dst_iat_stddev": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.5322821660494074,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 21703.0,
+     "max": 30380.0
+    },
+    "dst_to_src_iat_min": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.7338902293281935,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 5966.0,
+     "max": 60816.0
+    },
+    "dst_to_src_iat_max": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.5392822164970871,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 59050.0,
+     "max": 60830.0
+    },
+    "dst_to_src_iat_avg": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.5410670206122261,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 15003.0,
+     "max": 60816.0
+    },
+    "dst_to_src_iat_stddev": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.5853913957133389,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 22819.0,
+     "max": 30042.0
+    },
+    "label": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 6
+    },
+    "attack": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 6
+    },
+    "timestamp": {
+     "dtype": "Datetime(time_unit='us', time_zone=None)",
+     "null_frac": 0.0
+    },
+    "flow_duration": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1000.0,
+     "q50": 38000.0,
+     "q99": 119317000.0,
+     "max": 120995000.0
+    },
+    "dst_port": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.00346523372062075,
+     "min": 0.0,
+     "q50": 443.0,
+     "q99": 51571.0,
+     "max": 65535.0
+    },
+    "tot_fwd_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1.0,
+     "q50": 2.0,
+     "q99": 31.0,
+     "max": 31077.0
+    },
+    "tot_bwd_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.11203385909093282,
+     "min": 0.0,
+     "q50": 2.0,
+     "q99": 48.0,
+     "max": 75881.0
+    },
+    "totlen_fwd_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 28.0,
+     "q50": 132.0,
+     "q99": 3916.0,
+     "max": 17795720.0
+    },
+    "totlen_bwd_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.11203385909093282,
+     "min": 0.0,
+     "q50": 176.0,
+     "q99": 37424.0,
+     "max": 113725624.0
+    },
+    "syn_flag_cnt": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.5145158849305822,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_fin": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.736757049193446,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_syn": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.5145158849305822,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_rst": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.7750711921134621,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_psh": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.5495683244238092,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_ack": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.4627461281405855,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_urg": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 1.0,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 0.0
+    },
+    "srv_fin": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.8199070023118954,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "srv_syn": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.560703345029077,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "srv_rst": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9197360020735736,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "srv_psh": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.5700466032185619,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "srv_ack": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.5062546424912108,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "srv_urg": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 1.0,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 0.0
+    },
+    "day": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 6
+    },
+    "family": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 4
+    }
+   },
+   "checks": {
+    "start_has_ms_precision": 0.9989005884982769,
+    "end_has_ms_precision": 0.9989823485308418,
+    "end_minus_start_equals_duration": 0.4696609394053784,
+    "end_minus_start_within_1ms": 1.0,
+    "duration_over_30s": 0.11482761679942524,
+    "duration_over_120s": 0.0071026853821759646,
+    "max_duration_ms": 120995.0,
+    "tcp_share": 0.5855566553536296,
+    "udp_share": 0.4109781109257497,
+    "tcp_client_syn": 0.8290984495364058,
+    "tcp_server_synack_when_replied": 0.8886585893704847,
+    "tcp_server_syn_without_client_syn": 0.0,
+    "tcp_src_port_gt_dst_port": 0.903208173281166,
+    "no_reverse_packets": 0.11203385909093282,
+    "size_bins_equal_total_pkts": 0.9532628341506437,
+    "size_bins_populated": 1.0,
+    "fwd_iat_positive_when_2plus_pkts": 0.9555776042609303,
+    "fwd_iat_positive_when_1_pkt": 0.10111627241115595,
+    "any_retransmission": 0.09499298081422555,
+    "dns_fields_populated": 0.3919210650374965,
+    "l7_proto_populated": 0.9746126401010345,
+    "attack_flow_share_in_sample": 0.023004141928458233
+   }
+  },
+  "nfunsw": {
+   "flows_sampled": 232496,
+   "slices": 3,
+   "dev_cut": true,
+   "files": [
+    "2015-01-22.parquet",
+    "2015-01-23.parquet",
+    "2015-02-18.parquet"
+   ],
+   "columns": 78,
+   "fields": {
+    "row_id": {
+     "dtype": "UInt32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 4.301149267084165e-06,
+     "min": 0.0,
+     "q50": 116247.5,
+     "q99": 404702.0,
+     "max": 407027.0
+    },
+    "flow_start_milliseconds": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1421931600080.0,
+     "q50": 1421935862596.5,
+     "q99": 1421947646723.0,
+     "max": 1421947734545.0
+    },
+    "flow_end_milliseconds": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1421931600081.0,
+     "q50": 1421935863298.0,
+     "q99": 1421947647088.0,
+     "max": 1421947739412.0
+    },
+    "ipv4_src_addr": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 37
+    },
+    "l4_src_port": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0006408712407955406,
+     "min": 0.0,
+     "q50": 32706.0,
+     "q99": 64890.0,
+     "max": 65535.0
+    },
+    "ipv4_dst_addr": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 37
+    },
+    "l4_dst_port": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0006408712407955406,
+     "min": 0.0,
+     "q50": 80.0,
+     "q99": 63766.0,
+     "max": 65535.0
+    },
+    "protocol": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1.0,
+     "q50": 6.0,
+     "q99": 17.0,
+     "max": 132.0
+    },
+    "l7_proto": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.060788142591700504,
+     "min": 0.0,
+     "q50": 36.0,
+     "q99": 92.0,
+     "max": 380.0
+    },
+    "in_bytes": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1.0,
+     "q50": 1684.0,
+     "q99": 37408.0,
+     "max": 26292126.0
+    },
+    "in_pkts": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1.0,
+     "q50": 19.0,
+     "q99": 358.0,
+     "max": 19676.0
+    },
+    "out_bytes": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.022658454338999382,
+     "min": 0.0,
+     "q50": 2478.0,
+     "q99": 1087890.0,
+     "max": 10810106.0
+    },
+    "out_pkts": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.022658454338999382,
+     "min": 0.0,
+     "q50": 18.0,
+     "q99": 746.0,
+     "max": 8096.0
+    },
+    "tcp_flags": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.2373976326474434,
+     "min": 0.0,
+     "q50": 27.0,
+     "q99": 27.0,
+     "max": 27.0
+    },
+    "client_tcp_flags": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.23740193379671048,
+     "min": 0.0,
+     "q50": 25.0,
+     "q99": 27.0,
+     "max": 27.0
+    },
+    "server_tcp_flags": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.23849012456128277,
+     "min": 0.0,
+     "q50": 27.0,
+     "q99": 27.0,
+     "max": 27.0
+    },
+    "flow_duration_milliseconds": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.044069575390544354,
+     "min": 0.0,
+     "q50": 30.0,
+     "q99": 7650.0,
+     "max": 120293.0
+    },
+    "duration_in": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.18906131718395155,
+     "min": 0.0,
+     "q50": 26.0,
+     "q99": 7612.0,
+     "max": 120250.0
+    },
+    "duration_out": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.2081412153327369,
+     "min": 0.0,
+     "q50": 27.0,
+     "q99": 7260.0,
+     "max": 120279.0
+    },
+    "min_ttl": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.011363636363636364,
+     "min": 0.0,
+     "q50": 31.0,
+     "q99": 254.0,
+     "max": 255.0
+    },
+    "max_ttl": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.011363636363636364,
+     "min": 0.0,
+     "q50": 32.0,
+     "q99": 255.0,
+     "max": 255.0
+    },
+    "longest_flow_pkt": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 29.0,
+     "q50": 485.0,
+     "q99": 1500.0,
+     "max": 1508.0
+    },
+    "shortest_flow_pkt": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 29.0,
+     "q50": 52.0,
+     "q99": 132.0,
+     "max": 1508.0
+    },
+    "min_ip_pkt_len": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.022658454338999382,
+     "min": 0.0,
+     "q50": 52.0,
+     "q99": 76.0,
+     "max": 674.0
+    },
+    "max_ip_pkt_len": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 29.0,
+     "q50": 485.0,
+     "q99": 1500.0,
+     "max": 1508.0
+    },
+    "src_to_dst_second_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.021875645172390063,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0008003166087683039,
+     "min": 0.0,
+     "q50": 164.0,
+     "q99": Infinity,
+     "max": Infinity
+    },
+    "dst_to_src_second_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 0.0024093203246593475,
+     "q50": 91.30232238769531,
+     "q99": Infinity,
+     "max": Infinity
+    },
+    "retransmitted_in_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.2579872341889753,
+     "min": 0.0,
+     "q50": 562.0,
+     "q99": 18252.0,
+     "max": 13146015.0
+    },
+    "retransmitted_in_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.2579872341889753,
+     "min": 0.0,
+     "q50": 4.0,
+     "q99": 35.0,
+     "max": 9837.0
+    },
+    "retransmitted_out_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.28700708829399213,
+     "min": 0.0,
+     "q50": 885.0,
+     "q99": 543733.0,
+     "max": 5404885.0
+    },
+    "retransmitted_out_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.28700708829399213,
+     "min": 0.0,
+     "q50": 5.0,
+     "q99": 369.0,
+     "max": 4044.0
+    },
+    "src_to_dst_avg_throughput": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 19.0,
+     "q50": 565333.0,
+     "q99": 11472000.0,
+     "max": 32448000.0
+    },
+    "dst_to_src_avg_throughput": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.022658454338999382,
+     "min": 0.0,
+     "q50": 712000.0,
+     "q99": 15868800.0,
+     "max": 23530666.0
+    },
+    "num_pkts_up_to_128_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.012748606427637465,
+     "min": 0.0,
+     "q50": 36.0,
+     "q99": 398.0,
+     "max": 3762.0
+    },
+    "num_pkts_128_to_256_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.7441117266533618,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 18.0,
+     "max": 298.0
+    },
+    "num_pkts_256_to_512_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.7022959534787695,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 18.0,
+     "max": 1276.0
+    },
+    "num_pkts_512_to_1024_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.8081730438373134,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 32.0,
+     "max": 498.0
+    },
+    "num_pkts_1024_to_1514_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.5762636776546693,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 704.0,
+     "max": 17030.0
+    },
+    "tcp_win_max_in": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.2566624802147134,
+     "min": 0.0,
+     "q50": 14480.0,
+     "q99": 65160.0,
+     "max": 65505.0
+    },
+    "tcp_win_max_out": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.2382406579037919,
+     "min": 0.0,
+     "q50": 13032.0,
+     "q99": 59368.0,
+     "max": 65470.0
+    },
+    "icmp_type": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.25905391920721216,
+     "min": 0.0,
+     "q50": 21248.0,
+     "q99": 65280.0,
+     "max": 65280.0
+    },
+    "icmp_ipv4_type": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.25905391920721216,
+     "min": 0.0,
+     "q50": 83.0,
+     "q99": 255.0,
+     "max": 255.0
+    },
+    "dns_query_id": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.8363326680889134,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 60999.0,
+     "max": 65535.0
+    },
+    "dns_query_type": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.8363455715367146,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 255.0,
+     "max": 255.0
+    },
+    "dns_ttl_answer": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.8420747023604708,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 10705.0,
+     "max": 1734192768.0
+    },
+    "ftp_command_ret_code": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.8084096070470029,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 331.0,
+     "max": 501.0
+    },
+    "src_to_dst_iat_min": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.999286009221664,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 60598.0
+    },
+    "src_to_dst_iat_max": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.18166764159383386,
+     "min": 0.0,
+     "q50": 5.0,
+     "q99": 2857.0,
+     "max": 60598.0
+    },
+    "src_to_dst_iat_avg": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.5293123322551786,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 139.0,
+     "max": 30299.0
+    },
+    "src_to_dst_iat_stddev": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.4593068267841167,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 324.0,
+     "max": 30299.0
+    },
+    "dst_to_src_iat_min": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9997720390888445,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 440.0
+    },
+    "dst_to_src_iat_max": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.20211530520955198,
+     "min": 0.0,
+     "q50": 5.0,
+     "q99": 2669.0,
+     "max": 31007.0
+    },
+    "dst_to_src_iat_avg": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.5403877916179203,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 145.0,
+     "max": 9375.0
+    },
+    "dst_to_src_iat_stddev": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.45881219461840206,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 296.0,
+     "max": 13258.0
+    },
+    "label": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 10
+    },
+    "attack": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 10
+    },
+    "timestamp": {
+     "dtype": "Datetime(time_unit='us', time_zone=None)",
+     "null_frac": 0.0
+    },
+    "flow_duration": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.044069575390544354,
+     "min": 0.0,
+     "q50": 30000.0,
+     "q99": 7650000.0,
+     "max": 120293000.0
+    },
+    "dst_port": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0006408712407955406,
+     "min": 0.0,
+     "q50": 80.0,
+     "q99": 63766.0,
+     "max": 65535.0
+    },
+    "tot_fwd_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1.0,
+     "q50": 19.0,
+     "q99": 358.0,
+     "max": 19676.0
+    },
+    "tot_bwd_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.022658454338999382,
+     "min": 0.0,
+     "q50": 18.0,
+     "q99": 746.0,
+     "max": 8096.0
+    },
+    "totlen_fwd_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1.0,
+     "q50": 1684.0,
+     "q99": 37408.0,
+     "max": 26292126.0
+    },
+    "totlen_bwd_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.022658454338999382,
+     "min": 0.0,
+     "q50": 2478.0,
+     "q99": 1087890.0,
+     "max": 10810106.0
+    },
+    "syn_flag_cnt": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.45239918106117954,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_fin": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.43871722524258483,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_syn": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.45239918106117954,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_rst": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9999913977014658,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 1.0
+    },
+    "cli_psh": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.28806086986442775,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_ack": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.23801269699263644,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_urg": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 1.0,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 0.0
+    },
+    "srv_fin": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.4386312022572431,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "srv_syn": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.4543562039777028,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "srv_rst": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9999956988507329,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 1.0
+    },
+    "srv_psh": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.2969341408024224,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "srv_ack": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.23849012456128277,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "srv_urg": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 1.0,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 0.0
+    },
+    "day": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 1
+    },
+    "family": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 6
+    }
+   },
+   "checks": {
+    "start_has_ms_precision": 0.9988300873993531,
+    "end_has_ms_precision": 0.9988085816530177,
+    "end_minus_start_equals_duration": 0.5451147546624459,
+    "end_minus_start_within_1ms": 1.0,
+    "duration_over_30s": 0.001247333287454408,
+    "duration_over_120s": 0.0005505471061867731,
+    "max_duration_ms": 120293.0,
+    "tcp_share": 0.7626023673525566,
+    "udp_share": 0.23673095451104534,
+    "tcp_client_syn": 0.7180686061070941,
+    "tcp_server_synack_when_replied": 0.7162011867057343,
+    "tcp_server_syn_without_client_syn": 0.0,
+    "tcp_src_port_gt_dst_port": 0.808236793719191,
+    "no_reverse_packets": 0.022658454338999382,
+    "size_bins_equal_total_pkts": 0.7907490881563554,
+    "size_bins_populated": 1.0,
+    "fwd_iat_positive_when_2plus_pkts": 0.47650128231295535,
+    "fwd_iat_positive_when_1_pkt": 0.2867172142656557,
+    "any_retransmission": 0.7424471818870002,
+    "dns_fields_populated": 0.16366733191108665,
+    "l7_proto_populated": 0.9392118574082995,
+    "attack_flow_share_in_sample": 0.030009118436446217
+   }
+  },
+  "nfton": {
+   "flows_sampled": 506745,
+   "slices": 6,
+   "dev_cut": false,
+   "files": [
+    "2019-04-24.parquet",
+    "2019-04-25.parquet",
+    "2019-04-26.parquet",
+    "2019-04-27.parquet",
+    "2019-04-28.parquet",
+    "2019-04-29.parquet",
+    "2019-04-30.parquet"
+   ],
+   "columns": 78,
+   "fields": {
+    "row_id": {
+     "dtype": "UInt32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 1.9733791157288182e-06,
+     "min": 0.0,
+     "q50": 2541501.0,
+     "q99": 6686712.0,
+     "max": 6691779.0
+    },
+    "flow_start_milliseconds": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1556028590618.0,
+     "q50": 1556212969065.0,
+     "q99": 1556548050220.0,
+     "max": 1556549155177.0
+    },
+    "flow_end_milliseconds": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1556028590618.0,
+     "q50": 1556212969078.0,
+     "q99": 1556548050220.0,
+     "max": 1556549155861.0
+    },
+    "ipv4_src_addr": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 156
+    },
+    "l4_src_port": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.028696879100928475,
+     "min": 0.0,
+     "q50": 41869.0,
+     "q99": 63956.0,
+     "max": 65522.0
+    },
+    "ipv4_dst_addr": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 533
+    },
+    "l4_dst_port": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.02919022387986068,
+     "min": 0.0,
+     "q50": 443.0,
+     "q99": 60240.0,
+     "max": 65389.0
+    },
+    "protocol": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1.0,
+     "q50": 6.0,
+     "q99": 17.0,
+     "max": 58.0
+    },
+    "l7_proto": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.25936713731758576,
+     "min": 0.0,
+     "q50": 7.0,
+     "q99": 131.0,
+     "max": 391.0
+    },
+    "in_bytes": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 28.0,
+     "q50": 65.0,
+     "q99": 4247.0,
+     "max": 79846944.0
+    },
+    "in_pkts": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1.0,
+     "q50": 1.0,
+     "q99": 9.0,
+     "max": 1220131.0
+    },
+    "out_bytes": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.4399155393738468,
+     "min": 0.0,
+     "q50": 40.0,
+     "q99": 3642.0,
+     "max": 70221306.0
+    },
+    "out_pkts": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.4399155393738468,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 9.0,
+     "max": 1350048.0
+    },
+    "tcp_flags": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.16053439106453937,
+     "min": 0.0,
+     "q50": 17.0,
+     "q99": 27.0,
+     "max": 31.0
+    },
+    "client_tcp_flags": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.16053439106453937,
+     "min": 0.0,
+     "q50": 16.0,
+     "q99": 27.0,
+     "max": 31.0
+    },
+    "server_tcp_flags": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.5539965860541298,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 27.0,
+     "max": 31.0
+    },
+    "flow_duration_milliseconds": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1.0,
+     "q50": 1.0,
+     "q99": 1711.0,
+     "max": 120996.0
+    },
+    "duration_in": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.7963887162182163,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1665.0,
+     "max": 120996.0
+    },
+    "duration_out": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.8517893615131871,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1450.0,
+     "max": 120985.0
+    },
+    "min_ttl": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.691420734294369,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 101.0,
+     "max": 255.0
+    },
+    "max_ttl": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.691420734294369,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 127.0,
+     "max": 255.0
+    },
+    "longest_flow_pkt": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 28.0,
+     "q50": 60.0,
+     "q99": 1500.0,
+     "max": 3044.0
+    },
+    "shortest_flow_pkt": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 28.0,
+     "q50": 52.0,
+     "q99": 393.0,
+     "max": 2125.0
+    },
+    "min_ip_pkt_len": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.43991159261561535,
+     "min": 0.0,
+     "q50": 40.0,
+     "q99": 71.0,
+     "max": 395.0
+    },
+    "max_ip_pkt_len": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 28.0,
+     "q50": 60.0,
+     "q99": 1500.0,
+     "max": 3044.0
+    },
+    "src_to_dst_second_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.7248221492071949,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 81.0,
+     "max": 3621.0
+    },
+    "dst_to_src_second_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.5522402786411311,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 90.0,
+     "max": 5559.0
+    },
+    "retransmitted_in_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9885484809914257,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 60.0,
+     "max": 27436158.0
+    },
+    "retransmitted_in_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9885484809914257,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 19121.0
+    },
+    "retransmitted_out_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9849253569349475,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 987.0,
+     "max": 21150508.0
+    },
+    "retransmitted_out_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9849253569349475,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 3.0,
+     "max": 15163.0
+    },
+    "src_to_dst_avg_throughput": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 11.0,
+     "q50": 352000.0,
+     "q99": 3144000.0,
+     "max": 112352000.0
+    },
+    "dst_to_src_avg_throughput": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.4399155393738468,
+     "min": 0.0,
+     "q50": 7754.0,
+     "q99": 716210.0,
+     "max": 34800000.0
+    },
+    "num_pkts_up_to_128_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.06511361730258809,
+     "min": 0.0,
+     "q50": 2.0,
+     "q99": 10.0,
+     "max": 1361532.0
+    },
+    "num_pkts_128_to_256_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9486862228537035,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 2.0,
+     "max": 3981.0
+    },
+    "num_pkts_256_to_512_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.8401345844556927,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 4.0,
+     "max": 4550.0
+    },
+    "num_pkts_512_to_1024_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9248793772015511,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 2.0,
+     "max": 667.0
+    },
+    "num_pkts_1024_to_1514_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9251221028327857,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 4.0,
+     "max": 46229.0
+    },
+    "tcp_win_max_in": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.17346002427256313,
+     "min": 0.0,
+     "q50": 1024.0,
+     "q99": 29200.0,
+     "max": 65535.0
+    },
+    "tcp_win_max_out": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.6348696089749282,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 65535.0,
+     "max": 65535.0
+    },
+    "icmp_type": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9601633957907824,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 15360.0,
+     "max": 65280.0
+    },
+    "icmp_ipv4_type": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9601633957907824,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 60.0,
+     "max": 255.0
+    },
+    "dns_query_id": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.870360832371311,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 60414.0,
+     "max": 65534.0
+    },
+    "dns_query_type": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.870360832371311,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 28.0,
+     "max": 255.0
+    },
+    "dns_ttl_answer": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.955304936407858,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 2962.0,
+     "max": 604800.0
+    },
+    "ftp_command_ret_code": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 1.0,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 0.0
+    },
+    "src_to_dst_iat_min": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9134949530829115,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 760.0,
+     "max": 42805.0
+    },
+    "src_to_dst_iat_max": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.7973004173696829,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1133.0,
+     "max": 60017.0
+    },
+    "src_to_dst_iat_avg": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.8005860935973714,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 837.0,
+     "max": 42805.0
+    },
+    "src_to_dst_iat_stddev": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.836748265893102,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 318.0,
+     "max": 29885.0
+    },
+    "dst_to_src_iat_min": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9479679128555782,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 149.0,
+     "max": 10227.0
+    },
+    "dst_to_src_iat_max": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.8525885800550573,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 800.0,
+     "max": 59859.0
+    },
+    "dst_to_src_iat_avg": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.8558999102112502,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 298.0,
+     "max": 30026.0
+    },
+    "dst_to_src_iat_stddev": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.8593256963561554,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 258.0,
+     "max": 29823.0
+    },
+    "label": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 5
+    },
+    "attack": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 5
+    },
+    "timestamp": {
+     "dtype": "Datetime(time_unit='us', time_zone=None)",
+     "null_frac": 0.0
+    },
+    "flow_duration": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1000.0,
+     "q50": 1000.0,
+     "q99": 1711000.0,
+     "max": 120996000.0
+    },
+    "dst_port": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.02919022387986068,
+     "min": 0.0,
+     "q50": 443.0,
+     "q99": 60240.0,
+     "max": 65389.0
+    },
+    "tot_fwd_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1.0,
+     "q50": 1.0,
+     "q99": 9.0,
+     "max": 1220131.0
+    },
+    "tot_bwd_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.4399155393738468,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 9.0,
+     "max": 1350048.0
+    },
+    "totlen_fwd_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 28.0,
+     "q50": 65.0,
+     "q99": 4247.0,
+     "max": 79846944.0
+    },
+    "totlen_bwd_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.4399155393738468,
+     "min": 0.0,
+     "q50": 40.0,
+     "q99": 3642.0,
+     "max": 70221304.0
+    },
+    "syn_flag_cnt": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.39023769351448956,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_fin": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.7919861074110253,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_syn": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.39023769351448956,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_rst": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.981742296421277,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_psh": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.7706795330985012,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_ack": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.4795982200120376,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_urg": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 1.0,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 0.0
+    },
+    "srv_fin": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.8857413491993015,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "srv_syn": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.7468174328311084,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "srv_rst": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9189296391676287,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "srv_psh": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.8608965061322756,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "srv_ack": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.5549970892658043,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "srv_urg": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 1.0,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 0.0
+    },
+    "day": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 4
+    },
+    "family": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 5
+    }
+   },
+   "checks": {
+    "start_has_ms_precision": 0.9988475465964144,
+    "end_has_ms_precision": 0.9992047282163613,
+    "end_minus_start_equals_duration": 0.2136597302390749,
+    "end_minus_start_within_1ms": 1.0,
+    "duration_over_30s": 0.00046571747131200113,
+    "duration_over_120s": 8.288192286061037e-05,
+    "max_duration_ms": 120996.0,
+    "tcp_share": 0.8394656089354606,
+    "udp_share": 0.13184343210095809,
+    "tcp_client_syn": 0.7263696094218315,
+    "tcp_server_synack_when_replied": 0.5676474492279102,
+    "tcp_server_syn_without_client_syn": 9.450090634960181e-05,
+    "tcp_src_port_gt_dst_port": 0.7247687443434925,
+    "no_reverse_packets": 0.4399155393738468,
+    "size_bins_equal_total_pkts": 0.9973596187431548,
+    "size_bins_populated": 0.9999861863461899,
+    "fwd_iat_positive_when_2plus_pkts": 0.6461061182716602,
+    "fwd_iat_positive_when_1_pkt": 0.0001227133928826232,
+    "any_retransmission": 0.02605057770673613,
+    "dns_fields_populated": 0.129639167628689,
+    "l7_proto_populated": 0.7406328626824142,
+    "attack_flow_share_in_sample": 0.4458337033419175
+   }
+  },
+  "nfbot": {
+   "flows_sampled": 417017,
+   "slices": 6,
+   "dev_cut": false,
+   "files": [
+    "2018-05-15.parquet",
+    "2018-05-21.parquet",
+    "2018-05-22.parquet",
+    "2018-06-04.parquet",
+    "2018-06-18.parquet",
+    "2018-06-19.parquet"
+   ],
+   "columns": 78,
+   "fields": {
+    "row_id": {
+     "dtype": "UInt32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 4.795967550483553e-06,
+     "min": 0.0,
+     "q50": 3012606.0,
+     "q99": 11217096.0,
+     "max": 11221266.0
+    },
+    "flow_start_milliseconds": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1526344598048.0,
+     "q50": 1528082875695.0,
+     "q99": 1528100019929.0,
+     "max": 1529381833932.0
+    },
+    "flow_end_milliseconds": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1526344610060.0,
+     "q50": 1528082912964.0,
+     "q99": 1528100055552.0,
+     "max": 1529381834508.0
+    },
+    "ipv4_src_addr": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 15
+    },
+    "l4_src_port": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0007649568243021268,
+     "min": 0.0,
+     "q50": 42640.0,
+     "q99": 63897.0,
+     "max": 65535.0
+    },
+    "ipv4_dst_addr": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 154
+    },
+    "l4_dst_port": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0007577628729764015,
+     "min": 0.0,
+     "q50": 80.0,
+     "q99": 61804.0,
+     "max": 65535.0
+    },
+    "protocol": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1.0,
+     "q50": 6.0,
+     "q99": 17.0,
+     "max": 58.0
+    },
+    "l7_proto": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.35647947205989206,
+     "min": 0.0,
+     "q50": 7.0,
+     "q99": 10.15999984741211,
+     "max": 397.0
+    },
+    "in_bytes": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 4.0,
+     "q50": 360.0,
+     "q99": 1120.0,
+     "max": 9600364.0
+    },
+    "in_pkts": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1.0,
+     "q50": 4.0,
+     "q99": 17.0,
+     "max": 9679.0
+    },
+    "out_bytes": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.42833265790123665,
+     "min": 0.0,
+     "q50": 40.0,
+     "q99": 1340.0,
+     "max": 9598446.0
+    },
+    "out_pkts": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.42833265790123665,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 4.0,
+     "max": 9679.0
+    },
+    "tcp_flags": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.11134558063580142,
+     "min": 0.0,
+     "q50": 22.0,
+     "q99": 31.0,
+     "max": 214.0
+    },
+    "client_tcp_flags": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.11539817321596002,
+     "min": 0.0,
+     "q50": 2.0,
+     "q99": 30.0,
+     "max": 198.0
+    },
+    "server_tcp_flags": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.4306826820009736,
+     "min": 0.0,
+     "q50": 18.0,
+     "q99": 27.0,
+     "max": 82.0
+    },
+    "flow_duration_milliseconds": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.1681130505471,
+     "min": 0.0,
+     "q50": 20820.0,
+     "q99": 55945.0,
+     "max": 120995.0
+    },
+    "duration_in": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.34077267833205843,
+     "min": 0.0,
+     "q50": 20600.0,
+     "q99": 55313.0,
+     "max": 120995.0
+    },
+    "duration_out": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.8364670984636118,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 52793.0,
+     "max": 120995.0
+    },
+    "min_ttl": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.3362932446399068,
+     "min": 0.0,
+     "q50": 64.0,
+     "q99": 64.0,
+     "max": 241.0
+    },
+    "max_ttl": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.3362932446399068,
+     "min": 0.0,
+     "q50": 64.0,
+     "q99": 64.0,
+     "max": 241.0
+    },
+    "longest_flow_pkt": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 28.0,
+     "q50": 140.0,
+     "q99": 1176.0,
+     "max": 65212.0
+    },
+    "shortest_flow_pkt": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 28.0,
+     "q50": 40.0,
+     "q99": 140.0,
+     "max": 552.0
+    },
+    "min_ip_pkt_len": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.42833265790123665,
+     "min": 0.0,
+     "q50": 40.0,
+     "q99": 52.0,
+     "max": 455.0
+    },
+    "max_ip_pkt_len": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 28.0,
+     "q50": 140.0,
+     "q99": 1176.0,
+     "max": 65212.0
+    },
+    "src_to_dst_second_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.07972816455923859,
+     "nan_frac": 0.0,
+     "zero_frac": 0.37880600048466656,
+     "min": 0.0,
+     "q50": 0.0020764118526130915,
+     "q99": Infinity,
+     "max": Infinity
+    },
+    "dst_to_src_second_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 0.000874302233569324,
+     "q50": 0.029628530144691467,
+     "q99": Infinity,
+     "max": Infinity
+    },
+    "retransmitted_in_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9942999925662503,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 921012.0
+    },
+    "retransmitted_in_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9942999925662503,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 3266.0
+    },
+    "retransmitted_out_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9999664282271467,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 1500.0
+    },
+    "retransmitted_out_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9999664282271467,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 4.0
+    },
+    "src_to_dst_avg_throughput": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 6.0,
+     "q50": 237.0,
+     "q99": 1120000.0,
+     "max": 7848000.0
+    },
+    "dst_to_src_avg_throughput": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.42833265790123665,
+     "min": 0.0,
+     "q50": 8.0,
+     "q99": 320000.0,
+     "max": 29000400.0
+    },
+    "num_pkts_up_to_128_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.30738555022936714,
+     "min": 0.0,
+     "q50": 2.0,
+     "q99": 17.0,
+     "max": 5202.0
+    },
+    "num_pkts_128_to_256_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.4524731605665956,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 7.0,
+     "max": 605.0
+    },
+    "num_pkts_256_to_512_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9511914382387289,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 3267.0
+    },
+    "num_pkts_512_to_1024_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9437193207950755,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 2.0,
+     "max": 9921.0
+    },
+    "num_pkts_1024_to_1514_bytes": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.970097142322735,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 8954.0
+    },
+    "tcp_win_max_in": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.10975092142526564,
+     "min": 0.0,
+     "q50": 512.0,
+     "q99": 29200.0,
+     "max": 65535.0
+    },
+    "tcp_win_max_out": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.8041542670922288,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 29200.0,
+     "max": 42408.0
+    },
+    "icmp_type": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9940601941887262,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 65280.0
+    },
+    "icmp_ipv4_type": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9940625921725014,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 255.0
+    },
+    "dns_query_id": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9977914569430023,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 65388.0
+    },
+    "dns_query_type": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9977914569430023,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 255.0
+    },
+    "dns_ttl_answer": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9990527964087795,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 4294915584.0
+    },
+    "ftp_command_ret_code": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9999520403244951,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 530.0
+    },
+    "src_to_dst_iat_min": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.34871959656320967,
+     "min": 0.0,
+     "q50": 1190.0,
+     "q99": 20259.0,
+     "max": 59757.0
+    },
+    "src_to_dst_iat_max": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.34093334324499963,
+     "min": 0.0,
+     "q50": 6700.0,
+     "q99": 34230.0,
+     "max": 60842.0
+    },
+    "src_to_dst_iat_avg": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.3414441137891261,
+     "min": 0.0,
+     "q50": 4285.0,
+     "q99": 23539.0,
+     "max": 59757.0
+    },
+    "src_to_dst_iat_stddev": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.3941038374934355,
+     "min": 0.0,
+     "q50": 224.0,
+     "q99": 13171.0,
+     "max": 23547.0
+    },
+    "dst_to_src_iat_min": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.8412510760952191,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 28240.0,
+     "max": 59434.0
+    },
+    "dst_to_src_iat_max": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.8365845996685987,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 30914.0,
+     "max": 59709.0
+    },
+    "dst_to_src_iat_avg": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.8374190980223828,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 28244.0,
+     "max": 59434.0
+    },
+    "dst_to_src_iat_stddev": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9125934913924373,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 8086.0,
+     "max": 26511.0
+    },
+    "label": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 5
+    },
+    "attack": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 5
+    },
+    "timestamp": {
+     "dtype": "Datetime(time_unit='us', time_zone=None)",
+     "null_frac": 0.0
+    },
+    "flow_duration": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.1681130505471,
+     "min": 0.0,
+     "q50": 20820000.0,
+     "q99": 55945000.0,
+     "max": 120995000.0
+    },
+    "dst_port": {
+     "dtype": "Int64",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0007577628729764015,
+     "min": 0.0,
+     "q50": 80.0,
+     "q99": 61804.0,
+     "max": 65535.0
+    },
+    "tot_fwd_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 1.0,
+     "q50": 4.0,
+     "q99": 17.0,
+     "max": 9679.0
+    },
+    "tot_bwd_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.42833265790123665,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 4.0,
+     "max": 9679.0
+    },
+    "totlen_fwd_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.0,
+     "min": 4.0,
+     "q50": 360.0,
+     "q99": 1120.0,
+     "max": 9600364.0
+    },
+    "totlen_bwd_pkts": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.42833265790123665,
+     "min": 0.0,
+     "q50": 40.0,
+     "q99": 1340.0,
+     "max": 9598446.0
+    },
+    "syn_flag_cnt": {
+     "dtype": "Float32",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.13175242256310893,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_fin": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.990736588676241,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 1.0
+    },
+    "cli_syn": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.13175242256310893,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_rst": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.814024368311124,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_psh": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9240414659354415,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_ack": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.911500010790927,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "cli_urg": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.999841733070834,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 1.0
+    },
+    "srv_fin": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.9384437564895436,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "srv_syn": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.8080581846783225,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "srv_rst": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.6220537771841436,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "srv_psh": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.930453674550438,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "srv_ack": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 0.43150279245210627,
+     "min": 0.0,
+     "q50": 1.0,
+     "q99": 1.0,
+     "max": 1.0
+    },
+    "srv_urg": {
+     "dtype": "Int8",
+     "null_frac": 0.0,
+     "nan_frac": 0.0,
+     "zero_frac": 1.0,
+     "min": 0.0,
+     "q50": 0.0,
+     "q99": 0.0,
+     "max": 0.0
+    },
+    "day": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 4
+    },
+    "family": {
+     "dtype": "String",
+     "null_frac": 0.0,
+     "n_unique_in_sample": 5
+    }
+   },
+   "checks": {
+    "start_has_ms_precision": 0.9984892702215977,
+    "end_has_ms_precision": 0.9989736629441965,
+    "end_minus_start_equals_duration": 0.5545960956028172,
+    "end_minus_start_within_1ms": 1.0,
+    "duration_over_30s": 0.36959644331046454,
+    "duration_over_120s": 0.0013644527681125709,
+    "max_duration_ms": 120995.0,
+    "tcp_share": 0.8908102067781409,
+    "udp_share": 0.10891882105525674,
+    "tcp_client_syn": 0.9746717884802265,
+    "tcp_server_synack_when_replied": 0.33634508153603365,
+    "tcp_server_syn_without_client_syn": 0.013072590073334042,
+    "tcp_src_port_gt_dst_port": 0.9364412368802879,
+    "no_reverse_packets": 0.42833265790123665,
+    "size_bins_equal_total_pkts": 0.9996019346933098,
+    "size_bins_populated": 1.0,
+    "fwd_iat_positive_when_2plus_pkts": 0.9922390993308572,
+    "fwd_iat_positive_when_1_pkt": 3.565189489821384e-05,
+    "any_retransmission": 0.005733579206603088,
+    "dns_fields_populated": 0.0022085430569976764,
+    "l7_proto_populated": 0.643520527940108,
+    "attack_flow_share_in_sample": 0.9895280048535192
+   }
+  }
+ },
+ "peak_rss_mb": 617.5078125
+}

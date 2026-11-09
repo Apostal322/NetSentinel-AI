@@ -1,0 +1,2498 @@
+{
+ "status": "EXPLORATORY (development labels used descriptively; diagnostic fits are not registered fits)",
+ "features": {
+  "F0": [
+   "log_flows",
+   "log_up_bytes",
+   "log_down_bytes",
+   "log_pkts",
+   "log_dst_hosts",
+   "log_dst_ports",
+   "no_reply_frac",
+   "rst_frac",
+   "udp_share",
+   "med_log_dur",
+   "upload_share",
+   "new_dst_frac"
+  ],
+  "FLOW": [
+   "tiny_flow_frac",
+   "mean_log_pkts",
+   "sd_log_up",
+   "p90_log_dur",
+   "small_pkt_share"
+  ],
+  "TIME": [
+   "active_sec_frac",
+   "peak_sec_share",
+   "gap_cv",
+   "long_flow_frac",
+   "mean_log_fwd_iat",
+   "prev4_mean_log_flows",
+   "d_log_flows",
+   "active_prev4"
+  ],
+  "BIDIR": [
+   "syn_only_frac",
+   "srv_rst_frac",
+   "cli_fin_frac",
+   "mean_log_ratio",
+   "retrans_frac"
+  ]
+ },
+ "univariate": {
+  "nfbot/all": {
+   "positives": 1344,
+   "benign": 620,
+   "features": {
+    "log_flows": {
+     "auc": 0.9711879560291858,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_up_bytes": {
+     "auc": 0.35400225614439323,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_down_bytes": {
+     "auc": 0.13326372887864824,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_pkts": {
+     "auc": 0.8068224366359447,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_dst_hosts": {
+     "auc": 0.5167410714285714,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_dst_ports": {
+     "auc": 0.5085565476190477,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "no_reply_frac": {
+     "auc": 0.6931361607142857,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "rst_frac": {
+     "auc": 0.7351406490015361,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "udp_share": {
+     "auc": 0.54353758640553,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "med_log_dur": {
+     "auc": 0.32583705357142856,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "upload_share": {
+     "auc": 0.813308851766513,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "new_dst_frac": {
+     "auc": 0.4964363719278034,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "tiny_flow_frac": {
+     "auc": 0.5344302035330261,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_pkts": {
+     "auc": 0.08681415610599079,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "sd_log_up": {
+     "auc": 0.8198186683947772,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "p90_log_dur": {
+     "auc": 0.36190416186635943,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "small_pkt_share": {
+     "auc": 0.9431091589861751,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "active_sec_frac": {
+     "auc": 0.9056583621351767,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "peak_sec_share": {
+     "auc": 0.11805275537634409,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "gap_cv": {
+     "auc": 0.9937455708093677,
+     "missing_pos": 0.03943452380952381,
+     "missing_neg": 0.5451612903225806
+    },
+    "long_flow_frac": {
+     "auc": 0.36745811731950845,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_fwd_iat": {
+     "auc": 0.9862197246048178,
+     "missing_pos": 0.015625,
+     "missing_neg": 0.07258064516129033
+    },
+    "prev4_mean_log_flows": {
+     "auc": 0.9578209005376344,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "d_log_flows": {
+     "auc": 0.43895209293394777,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "active_prev4": {
+     "auc": 0.7385200652841782,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "syn_only_frac": {
+     "auc": 0.7161458333333334,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "srv_rst_frac": {
+     "auc": 0.6054219470046083,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "cli_fin_frac": {
+     "auc": 0.5064822148617512,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_ratio": {
+     "auc": 0.5779569892473119,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "retrans_frac": {
+     "auc": 0.6017221102150537,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    }
+   }
+  },
+  "nfcic/2018-02-14": {
+   "positives": 184,
+   "benign": 108297,
+   "features": {
+    "log_flows": {
+     "auc": 0.9997210519300587,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_up_bytes": {
+     "auc": 0.998793625500887,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_down_bytes": {
+     "auc": 0.9964600920335422,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_pkts": {
+     "auc": 0.9993516721929349,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_dst_hosts": {
+     "auc": 0.333698071045366,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_dst_ports": {
+     "auc": 0.3823605455368108,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "no_reply_frac": {
+     "auc": 0.3463069152423428,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "rst_frac": {
+     "auc": 0.27189224198671047,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "udp_share": {
+     "auc": 0.3858786485313536,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "med_log_dur": {
+     "auc": 0.5528133231439628,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "upload_share": {
+     "auc": 0.42110007664108884,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "new_dst_frac": {
+     "auc": 0.4835683352262759,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "tiny_flow_frac": {
+     "auc": 0.27322339913868104,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_pkts": {
+     "auc": 0.9851608509368962,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "sd_log_up": {
+     "auc": 0.5835896483944515,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "p90_log_dur": {
+     "auc": 0.4645095853552489,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "small_pkt_share": {
+     "auc": 0.4647301693691784,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "active_sec_frac": {
+     "auc": 0.9915696558698683,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "peak_sec_share": {
+     "auc": 0.008267220859223287,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "gap_cv": {
+     "auc": 0.9653444136177373,
+     "missing_pos": 0.0,
+     "missing_neg": 0.5752883274698284
+    },
+    "long_flow_frac": {
+     "auc": 0.38498296351699496,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_fwd_iat": {
+     "auc": 0.07047874698005803,
+     "missing_pos": 0.005434782608695652,
+     "missing_neg": 0.2970165378542342
+    },
+    "prev4_mean_log_flows": {
+     "auc": 0.9934159774388548,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "d_log_flows": {
+     "auc": 0.25723112085886196,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "active_prev4": {
+     "auc": 0.8685392043860061,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "syn_only_frac": {
+     "auc": 0.383066861019475,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "srv_rst_frac": {
+     "auc": 0.38381342411428154,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "cli_fin_frac": {
+     "auc": 0.919100417691927,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_ratio": {
+     "auc": 0.5987519325879596,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "retrans_frac": {
+     "auc": 0.3976610617099273,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    }
+   }
+  },
+  "nfcic/2018-02-16": {
+   "positives": 27,
+   "benign": 79527,
+   "features": {
+    "log_flows": {
+     "auc": 0.9993391482697002,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_up_bytes": {
+     "auc": 0.9991570531135711,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_down_bytes": {
+     "auc": 0.9984221524578888,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_pkts": {
+     "auc": 0.999186160395561,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_dst_hosts": {
+     "auc": 0.3188036767387177,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_dst_ports": {
+     "auc": 0.3687364039885825,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "no_reply_frac": {
+     "auc": 0.3762663414102548,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "rst_frac": {
+     "auc": 0.5783046428676215,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "udp_share": {
+     "auc": 0.3801539099928326,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "med_log_dur": {
+     "auc": 0.898278898058847,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "upload_share": {
+     "auc": 0.19334267560656082,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "new_dst_frac": {
+     "auc": 0.48044060507752084,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "tiny_flow_frac": {
+     "auc": 0.28795950501786255,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_pkts": {
+     "auc": 0.9876925097416251,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "sd_log_up": {
+     "auc": 0.8552688138992162,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "p90_log_dur": {
+     "auc": 0.9121595786942147,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "small_pkt_share": {
+     "auc": 0.47419208663817414,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "active_sec_frac": {
+     "auc": 0.9859118426586079,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "peak_sec_share": {
+     "auc": 0.036206664496427725,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "gap_cv": {
+     "auc": 0.9469241016258205,
+     "missing_pos": 0.0,
+     "missing_neg": 0.564739019452513
+    },
+    "long_flow_frac": {
+     "auc": 0.8425270429935512,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_fwd_iat": {
+     "auc": 0.6358973646812667,
+     "missing_pos": 0.0,
+     "missing_neg": 0.2957486136783734
+    },
+    "prev4_mean_log_flows": {
+     "auc": 0.9568122449911025,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "d_log_flows": {
+     "auc": 0.36230648896787443,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "active_prev4": {
+     "auc": 0.8136842879823252,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "syn_only_frac": {
+     "auc": 0.39268191701956334,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "srv_rst_frac": {
+     "auc": 0.7479190621959745,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "cli_fin_frac": {
+     "auc": 0.9066773967750994,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_ratio": {
+     "auc": 0.8553349456438973,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "retrans_frac": {
+     "auc": 0.9210314782447517,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    }
+   }
+  },
+  "nfcic/2018-02-20": {
+   "positives": 106,
+   "benign": 113849,
+   "features": {
+    "log_flows": {
+     "auc": 0.8141091220297259,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_up_bytes": {
+     "auc": 0.9794929463836326,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_down_bytes": {
+     "auc": 0.12253950407996557,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_pkts": {
+     "auc": 0.9832387221935974,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_dst_hosts": {
+     "auc": 0.31812751978497833,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_dst_ports": {
+     "auc": 0.3883081977004629,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "no_reply_frac": {
+     "auc": 0.8774604959200344,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "rst_frac": {
+     "auc": 0.3074802655685775,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "udp_share": {
+     "auc": 0.9110961606377994,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "med_log_dur": {
+     "auc": 0.9105977762335646,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "upload_share": {
+     "auc": 0.9994875287475283,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "new_dst_frac": {
+     "auc": 0.47848905128723135,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "tiny_flow_frac": {
+     "auc": 0.3392491743035338,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_pkts": {
+     "auc": 0.9163261102052255,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "sd_log_up": {
+     "auc": 0.5962992689588675,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "p90_log_dur": {
+     "auc": 0.9083435076285254,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "small_pkt_share": {
+     "auc": 0.8268583825944892,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "active_sec_frac": {
+     "auc": 0.7997113687660103,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "peak_sec_share": {
+     "auc": 0.17258278384957765,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "gap_cv": {
+     "auc": 0.19282924542403837,
+     "missing_pos": 0.08490566037735849,
+     "missing_neg": 0.5553584133369639
+    },
+    "long_flow_frac": {
+     "auc": 0.8776014886981217,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_fwd_iat": {
+     "auc": 0.04047933028120589,
+     "missing_pos": 0.09433962264150944,
+     "missing_neg": 0.2719040132104805
+    },
+    "prev4_mean_log_flows": {
+     "auc": 0.5712303138367487,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "d_log_flows": {
+     "auc": 0.7910370605089794,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "active_prev4": {
+     "auc": 0.44147908923388596,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "syn_only_frac": {
+     "auc": 0.38691161099350896,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "srv_rst_frac": {
+     "auc": 0.3648868237753516,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "cli_fin_frac": {
+     "auc": 0.27949301267468313,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_ratio": {
+     "auc": 0.015062735364303297,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "retrans_frac": {
+     "auc": 0.40195785645899396,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    }
+   }
+  },
+  "nfcic/2018-02-21": {
+   "positives": 1086,
+   "benign": 116040,
+   "features": {
+    "log_flows": {
+     "auc": 0.9999120611867502,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_up_bytes": {
+     "auc": 0.9998446549199076,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_down_bytes": {
+     "auc": 0.997347159295423,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_pkts": {
+     "auc": 0.9995301716941449,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_dst_hosts": {
+     "auc": 0.3137926577042399,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_dst_ports": {
+     "auc": 0.3819889693209238,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "no_reply_frac": {
+     "auc": 0.3531196139262323,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "rst_frac": {
+     "auc": 0.24591306309566208,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "udp_share": {
+     "auc": 0.40060324026197863,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "med_log_dur": {
+     "auc": 0.3837561411160056,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "upload_share": {
+     "auc": 0.12183873376996437,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "new_dst_frac": {
+     "auc": 0.4666063426404688,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "tiny_flow_frac": {
+     "auc": 0.28976215098241986,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_pkts": {
+     "auc": 0.6479064579242695,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "sd_log_up": {
+     "auc": 0.6416363102391187,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "p90_log_dur": {
+     "auc": 0.335903147165231,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "small_pkt_share": {
+     "auc": 0.5145434863065571,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "active_sec_frac": {
+     "auc": 0.9970562557649836,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "peak_sec_share": {
+     "auc": 0.0015815258344268155,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "gap_cv": {
+     "auc": 0.7082468105656764,
+     "missing_pos": 0.0,
+     "missing_neg": 0.5438641847638745
+    },
+    "long_flow_frac": {
+     "auc": 0.3732936918304033,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_fwd_iat": {
+     "auc": 0.04458338474994901,
+     "missing_pos": 0.0,
+     "missing_neg": 0.255342985177525
+    },
+    "prev4_mean_log_flows": {
+     "auc": 0.9902152160015947,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "d_log_flows": {
+     "auc": 0.2698636377054207,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "active_prev4": {
+     "auc": 0.8447738380681584,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "syn_only_frac": {
+     "auc": 0.395367976559807,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "srv_rst_frac": {
+     "auc": 0.36661182988910285,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "cli_fin_frac": {
+     "auc": 0.9031196139262323,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_ratio": {
+     "auc": 0.9386957758263328,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "retrans_frac": {
+     "auc": 0.4691393407239391,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    }
+   }
+  },
+  "nfcic/2018-02-22": {
+   "positives": 53,
+   "benign": 114337,
+   "features": {
+    "log_flows": {
+     "auc": 0.41096140654051305,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_up_bytes": {
+     "auc": 0.8791582843236834,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_down_bytes": {
+     "auc": 0.8999250972918356,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_pkts": {
+     "auc": 0.8292780973028919,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_dst_hosts": {
+     "auc": 0.3118194460235969,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_dst_ports": {
+     "auc": 0.36477693135205574,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "no_reply_frac": {
+     "auc": 0.361881980461268,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "rst_frac": {
+     "auc": 0.2466874240184717,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "udp_share": {
+     "auc": 0.38576313879146734,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "med_log_dur": {
+     "auc": 0.8575020120098464,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "upload_share": {
+     "auc": 0.11447902847936611,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "new_dst_frac": {
+     "auc": 0.4808898256907213,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "tiny_flow_frac": {
+     "auc": 0.2962645512826119,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_pkts": {
+     "auc": 0.9054395802147938,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "sd_log_up": {
+     "auc": 0.29264252100832017,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "p90_log_dur": {
+     "auc": 0.7687817426835368,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "small_pkt_share": {
+     "auc": 0.18846975202896568,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "active_sec_frac": {
+     "auc": 0.2554429053735721,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "peak_sec_share": {
+     "auc": 0.7393598632047831,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "gap_cv": {
+     "auc": 0.5116083676268861,
+     "missing_pos": 0.9245283018867925,
+     "missing_neg": 0.48992889440863413
+    },
+    "long_flow_frac": {
+     "auc": 0.7733346523954923,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_fwd_iat": {
+     "auc": 0.5391286310331196,
+     "missing_pos": 0.0,
+     "missing_neg": 0.20604878560745865
+    },
+    "prev4_mean_log_flows": {
+     "auc": 0.45228017606344434,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "d_log_flows": {
+     "auc": 0.6719724264302432,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "active_prev4": {
+     "auc": 0.4676646873583404,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "syn_only_frac": {
+     "auc": 0.4362017544626849,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "srv_rst_frac": {
+     "auc": 0.36465011326167385,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "cli_fin_frac": {
+     "auc": 0.8791330362198077,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_ratio": {
+     "auc": 0.9234266264523229,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "retrans_frac": {
+     "auc": 0.39826128025048757,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    }
+   }
+  },
+  "nfcic/2018-03-02": {
+   "positives": 2408,
+   "benign": 91935,
+   "features": {
+    "log_flows": {
+     "auc": 0.9602518648069821,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_up_bytes": {
+     "auc": 0.9231261452055086,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_down_bytes": {
+     "auc": 0.8390356075459207,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_pkts": {
+     "auc": 0.9380093606688389,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_dst_hosts": {
+     "auc": 0.3289092647611242,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_dst_ports": {
+     "auc": 0.4088282617702418,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "no_reply_frac": {
+     "auc": 0.35669278607032595,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "rst_frac": {
+     "auc": 0.21255850361560158,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "udp_share": {
+     "auc": 0.4316299573022757,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "med_log_dur": {
+     "auc": 0.31779533947771493,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "upload_share": {
+     "auc": 0.7104276918529215,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "new_dst_frac": {
+     "auc": 0.4810634639669404,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "tiny_flow_frac": {
+     "auc": 0.3261614875055267,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_pkts": {
+     "auc": 0.576872637427823,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "sd_log_up": {
+     "auc": 0.2811821899662968,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "p90_log_dur": {
+     "auc": 0.24878878792198808,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "small_pkt_share": {
+     "auc": 0.5591137286075476,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "active_sec_frac": {
+     "auc": 0.9816516553386068,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "peak_sec_share": {
+     "auc": 0.004234976972572164,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "gap_cv": {
+     "auc": 0.6016389569185008,
+     "missing_pos": 0.0,
+     "missing_neg": 0.5269701419481155
+    },
+    "long_flow_frac": {
+     "auc": 0.39637239865230506,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_fwd_iat": {
+     "auc": 0.027416347374546974,
+     "missing_pos": 0.0,
+     "missing_neg": 0.22424539076521455
+    },
+    "prev4_mean_log_flows": {
+     "auc": 0.9860491767348988,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "d_log_flows": {
+     "auc": 0.2850065733282958,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "active_prev4": {
+     "auc": 0.8309620927829444,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "syn_only_frac": {
+     "auc": 0.41404253004840375,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "srv_rst_frac": {
+     "auc": 0.38170990373633545,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "cli_fin_frac": {
+     "auc": 0.9078905416165943,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_ratio": {
+     "auc": 0.33117037315292275,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "retrans_frac": {
+     "auc": 0.3914318210522493,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    }
+   }
+  },
+  "nfton/all": {
+   "positives": 5598,
+   "benign": 7447,
+   "features": {
+    "log_flows": {
+     "auc": 0.954596643960539,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_up_bytes": {
+     "auc": 0.9598458498169726,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_down_bytes": {
+     "auc": 0.9654926491856014,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_pkts": {
+     "auc": 0.9658537816336312,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_dst_hosts": {
+     "auc": 0.938509662637767,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_dst_ports": {
+     "auc": 0.5781165346464305,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "no_reply_frac": {
+     "auc": 0.6341836605210104,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "rst_frac": {
+     "auc": 0.7850875494916968,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "udp_share": {
+     "auc": 0.3816004181124558,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "med_log_dur": {
+     "auc": 0.6131476534450693,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "upload_share": {
+     "auc": 0.3321636048248159,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "new_dst_frac": {
+     "auc": 0.5149128630940293,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "tiny_flow_frac": {
+     "auc": 0.13843276577369204,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_pkts": {
+     "auc": 0.9252243902642626,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "sd_log_up": {
+     "auc": 0.8131051187352156,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "p90_log_dur": {
+     "auc": 0.7256591932519397,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "small_pkt_share": {
+     "auc": 0.4129705536406128,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0001342822613132805
+    },
+    "active_sec_frac": {
+     "auc": 0.9500768872690581,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "peak_sec_share": {
+     "auc": 0.08168756005581038,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "gap_cv": {
+     "auc": 0.8977764615388365,
+     "missing_pos": 0.01929260450160772,
+     "missing_neg": 0.2975694910702296
+    },
+    "long_flow_frac": {
+     "auc": 0.7807395795837806,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_fwd_iat": {
+     "auc": 0.18954704216345014,
+     "missing_pos": 0.011432654519471239,
+     "missing_neg": 0.5525715053041493
+    },
+    "prev4_mean_log_flows": {
+     "auc": 0.9562393828139718,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "d_log_flows": {
+     "auc": 0.2993184707481278,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "active_prev4": {
+     "auc": 0.82235377949874,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "syn_only_frac": {
+     "auc": 0.8453334731327293,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "srv_rst_frac": {
+     "auc": 0.7898354516971737,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "cli_fin_frac": {
+     "auc": 0.6709335826694421,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_ratio": {
+     "auc": 0.7071151919677428,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "retrans_frac": {
+     "auc": 0.8553407159312254,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    }
+   }
+  },
+  "nfunsw/all": {
+   "positives": 4091,
+   "benign": 11937,
+   "features": {
+    "log_flows": {
+     "auc": 0.12759676519768384,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_up_bytes": {
+     "auc": 0.251040196835554,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_down_bytes": {
+     "auc": 0.15294765251621367,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_pkts": {
+     "auc": 0.13616831803782373,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_dst_hosts": {
+     "auc": 0.14808839047384492,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "log_dst_ports": {
+     "auc": 0.15085883238505454,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "no_reply_frac": {
+     "auc": 0.7766693723487239,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "rst_frac": {
+     "auc": 0.5026888291371303,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "udp_share": {
+     "auc": 0.3579051775262645,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "med_log_dur": {
+     "auc": 0.7904607537162378,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "upload_share": {
+     "auc": 0.7134473729277025,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "new_dst_frac": {
+     "auc": 0.5,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "tiny_flow_frac": {
+     "auc": 0.8416177722090106,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_pkts": {
+     "auc": 0.16902406869340333,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "sd_log_up": {
+     "auc": 0.4072777830370629,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "p90_log_dur": {
+     "auc": 0.5854406496978853,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "small_pkt_share": {
+     "auc": 0.45586089169721744,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "active_sec_frac": {
+     "auc": 0.266026179936314,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "peak_sec_share": {
+     "auc": 0.4483262951402547,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "gap_cv": {
+     "auc": 0.0707614989404563,
+     "missing_pos": 0.014177462723050599,
+     "missing_neg": 0.0768199715171316
+    },
+    "long_flow_frac": {
+     "auc": 0.49025068810800415,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_fwd_iat": {
+     "auc": 0.8564283278268777,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0427243025885901
+    },
+    "prev4_mean_log_flows": {
+     "auc": 0.12721410357198562,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "d_log_flows": {
+     "auc": 0.4777762610832267,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "active_prev4": {
+     "auc": 0.5270222444415926,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "syn_only_frac": {
+     "auc": 0.5043039142985396,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "srv_rst_frac": {
+     "auc": 0.5004888780249328,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "cli_fin_frac": {
+     "auc": 0.7060270506363903,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "mean_log_ratio": {
+     "auc": 0.14702249959029792,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    },
+    "retrans_frac": {
+     "auc": 0.6676958005738061,
+     "missing_pos": 0.0,
+     "missing_neg": 0.0
+    }
+   }
+  }
+ },
+ "direction": {
+  "log_flows": {
+   "network_auc": {
+    "nfcic": 0.8640491091272883,
+    "nfunsw": 0.12759676519768384,
+    "nfton": 0.954596643960539,
+    "nfbot": 0.9711879560291858
+   },
+   "networks_up": 3,
+   "networks_down": 1,
+   "consistent_direction": false,
+   "conflicting_direction": true
+  },
+  "log_up_bytes": {
+   "network_auc": {
+    "nfcic": 0.9632621182411985,
+    "nfunsw": 0.251040196835554,
+    "nfton": 0.9598458498169726,
+    "nfbot": 0.35400225614439323
+   },
+   "networks_up": 2,
+   "networks_down": 2,
+   "consistent_direction": false,
+   "conflicting_direction": true
+  },
+  "log_down_bytes": {
+   "network_auc": {
+    "nfcic": 0.8089549354507627,
+    "nfunsw": 0.15294765251621367,
+    "nfton": 0.9654926491856014,
+    "nfbot": 0.13326372887864824
+   },
+   "networks_up": 2,
+   "networks_down": 2,
+   "consistent_direction": false,
+   "conflicting_direction": true
+  },
+  "log_pkts": {
+   "network_auc": {
+    "nfcic": 0.9580990307413283,
+    "nfunsw": 0.13616831803782373,
+    "nfton": 0.9658537816336312,
+    "nfbot": 0.8068224366359447
+   },
+   "networks_up": 3,
+   "networks_down": 1,
+   "consistent_direction": false,
+   "conflicting_direction": true
+  },
+  "log_dst_hosts": {
+   "network_auc": {
+    "nfcic": 0.3208584393430039,
+    "nfunsw": 0.14808839047384492,
+    "nfton": 0.938509662637767,
+    "nfbot": 0.5167410714285714
+   },
+   "networks_up": 1,
+   "networks_down": 2,
+   "consistent_direction": false,
+   "conflicting_direction": true
+  },
+  "log_dst_ports": {
+   "network_auc": {
+    "nfcic": 0.3824998849448462,
+    "nfunsw": 0.15085883238505454,
+    "nfton": 0.5781165346464305,
+    "nfbot": 0.5085565476190477
+   },
+   "networks_up": 0,
+   "networks_down": 2,
+   "consistent_direction": false,
+   "conflicting_direction": false
+  },
+  "no_reply_frac": {
+   "network_auc": {
+    "nfcic": 0.445288022171743,
+    "nfunsw": 0.7766693723487239,
+    "nfton": 0.6341836605210104,
+    "nfbot": 0.6931361607142857
+   },
+   "networks_up": 3,
+   "networks_down": 0,
+   "consistent_direction": true,
+   "conflicting_direction": false
+  },
+  "rst_frac": {
+   "network_auc": {
+    "nfcic": 0.3104726901921075,
+    "nfunsw": 0.5026888291371303,
+    "nfton": 0.7850875494916968,
+    "nfbot": 0.7351406490015361
+   },
+   "networks_up": 2,
+   "networks_down": 1,
+   "consistent_direction": false,
+   "conflicting_direction": true
+  },
+  "udp_share": {
+   "network_auc": {
+    "nfcic": 0.4825208425862846,
+    "nfunsw": 0.3579051775262645,
+    "nfton": 0.3816004181124558,
+    "nfbot": 0.54353758640553
+   },
+   "networks_up": 0,
+   "networks_down": 2,
+   "consistent_direction": false,
+   "conflicting_direction": false
+  },
+  "med_log_dur": {
+   "network_auc": {
+    "nfcic": 0.6534572483399902,
+    "nfunsw": 0.7904607537162378,
+    "nfton": 0.6131476534450693,
+    "nfbot": 0.32583705357142856
+   },
+   "networks_up": 3,
+   "networks_down": 1,
+   "consistent_direction": false,
+   "conflicting_direction": true
+  },
+  "upload_share": {
+   "network_auc": {
+    "nfcic": 0.42677928918290503,
+    "nfunsw": 0.7134473729277025,
+    "nfton": 0.3321636048248159,
+    "nfbot": 0.813308851766513
+   },
+   "networks_up": 2,
+   "networks_down": 1,
+   "consistent_direction": false,
+   "conflicting_direction": true
+  },
+  "new_dst_frac": {
+   "network_auc": {
+    "nfcic": 0.4785096039815264,
+    "nfunsw": 0.5,
+    "nfton": 0.5149128630940293,
+    "nfbot": 0.4964363719278034
+   },
+   "networks_up": 0,
+   "networks_down": 0,
+   "consistent_direction": false,
+   "conflicting_direction": false
+  },
+  "tiny_flow_frac": {
+   "network_auc": {
+    "nfcic": 0.30210337803843934,
+    "nfunsw": 0.8416177722090106,
+    "nfton": 0.13843276577369204,
+    "nfbot": 0.5344302035330261
+   },
+   "networks_up": 1,
+   "networks_down": 2,
+   "consistent_direction": false,
+   "conflicting_direction": true
+  },
+  "mean_log_pkts": {
+   "network_auc": {
+    "nfcic": 0.8365663577417722,
+    "nfunsw": 0.16902406869340333,
+    "nfton": 0.9252243902642626,
+    "nfbot": 0.08681415610599079
+   },
+   "networks_up": 2,
+   "networks_down": 2,
+   "consistent_direction": false,
+   "conflicting_direction": true
+  },
+  "sd_log_up": {
+   "network_auc": {
+    "nfcic": 0.5417697920777118,
+    "nfunsw": 0.4072777830370629,
+    "nfton": 0.8131051187352156,
+    "nfbot": 0.8198186683947772
+   },
+   "networks_up": 2,
+   "networks_down": 0,
+   "consistent_direction": false,
+   "conflicting_direction": false
+  },
+  "p90_log_dur": {
+   "network_auc": {
+    "nfcic": 0.6064143915747907,
+    "nfunsw": 0.5854406496978853,
+    "nfton": 0.7256591932519397,
+    "nfbot": 0.36190416186635943
+   },
+   "networks_up": 2,
+   "networks_down": 1,
+   "consistent_direction": false,
+   "conflicting_direction": true
+  },
+  "small_pkt_share": {
+   "network_auc": {
+    "nfcic": 0.5046512675908187,
+    "nfunsw": 0.45586089169721744,
+    "nfton": 0.4129705536406128,
+    "nfbot": 0.9431091589861751
+   },
+   "networks_up": 1,
+   "networks_down": 0,
+   "consistent_direction": false,
+   "conflicting_direction": false
+  },
+  "active_sec_frac": {
+   "network_auc": {
+    "nfcic": 0.8352239472952748,
+    "nfunsw": 0.266026179936314,
+    "nfton": 0.9500768872690581,
+    "nfbot": 0.9056583621351767
+   },
+   "networks_up": 3,
+   "networks_down": 1,
+   "consistent_direction": false,
+   "conflicting_direction": true
+  },
+  "peak_sec_share": {
+   "network_auc": {
+    "nfcic": 0.16037217253616845,
+    "nfunsw": 0.4483262951402547,
+    "nfton": 0.08168756005581038,
+    "nfbot": 0.11805275537634409
+   },
+   "networks_up": 0,
+   "networks_down": 3,
+   "consistent_direction": true,
+   "conflicting_direction": false
+  },
+  "gap_cv": {
+   "network_auc": {
+    "nfcic": 0.6544319826297765,
+    "nfunsw": 0.0707614989404563,
+    "nfton": 0.8977764615388365,
+    "nfbot": 0.9937455708093677
+   },
+   "networks_up": 3,
+   "networks_down": 1,
+   "consistent_direction": false,
+   "conflicting_direction": true
+  },
+  "long_flow_frac": {
+   "network_auc": {
+    "nfcic": 0.6080187063478114,
+    "nfunsw": 0.49025068810800415,
+    "nfton": 0.7807395795837806,
+    "nfbot": 0.36745811731950845
+   },
+   "networks_up": 2,
+   "networks_down": 1,
+   "consistent_direction": false,
+   "conflicting_direction": true
+  },
+  "mean_log_fwd_iat": {
+   "network_auc": {
+    "nfcic": 0.22633063418335772,
+    "nfunsw": 0.8564283278268777,
+    "nfton": 0.18954704216345014,
+    "nfbot": 0.9862197246048178
+   },
+   "networks_up": 2,
+   "networks_down": 2,
+   "consistent_direction": false,
+   "conflicting_direction": true
+  },
+  "prev4_mean_log_flows": {
+   "network_auc": {
+    "nfcic": 0.8250005175111071,
+    "nfunsw": 0.12721410357198562,
+    "nfton": 0.9562393828139718,
+    "nfbot": 0.9578209005376344
+   },
+   "networks_up": 3,
+   "networks_down": 1,
+   "consistent_direction": false,
+   "conflicting_direction": true
+  },
+  "d_log_flows": {
+   "network_auc": {
+    "nfcic": 0.43956955129994596,
+    "nfunsw": 0.4777762610832267,
+    "nfton": 0.2993184707481278,
+    "nfbot": 0.43895209293394777
+   },
+   "networks_up": 0,
+   "networks_down": 1,
+   "consistent_direction": false,
+   "conflicting_direction": false
+  },
+  "active_prev4": {
+   "network_auc": {
+    "nfcic": 0.7111838666352769,
+    "nfunsw": 0.5270222444415926,
+    "nfton": 0.82235377949874,
+    "nfbot": 0.7385200652841782
+   },
+   "networks_up": 3,
+   "networks_down": 0,
+   "consistent_direction": true,
+   "conflicting_direction": false
+  },
+  "syn_only_frac": {
+   "network_auc": {
+    "nfcic": 0.40137877501724045,
+    "nfunsw": 0.5043039142985396,
+    "nfton": 0.8453334731327293,
+    "nfbot": 0.7161458333333334
+   },
+   "networks_up": 2,
+   "networks_down": 0,
+   "consistent_direction": false,
+   "conflicting_direction": false
+  },
+  "srv_rst_frac": {
+   "network_auc": {
+    "nfcic": 0.43493185949545327,
+    "nfunsw": 0.5004888780249328,
+    "nfton": 0.7898354516971737,
+    "nfbot": 0.6054219470046083
+   },
+   "networks_up": 2,
+   "networks_down": 0,
+   "consistent_direction": false,
+   "conflicting_direction": false
+  },
+  "cli_fin_frac": {
+   "network_auc": {
+    "nfcic": 0.7992356698173907,
+    "nfunsw": 0.7060270506363903,
+    "nfton": 0.6709335826694421,
+    "nfbot": 0.5064822148617512
+   },
+   "networks_up": 3,
+   "networks_down": 0,
+   "consistent_direction": true,
+   "conflicting_direction": false
+  },
+  "mean_log_ratio": {
+   "network_auc": {
+    "nfcic": 0.6104070648379564,
+    "nfunsw": 0.14702249959029792,
+    "nfton": 0.7071151919677428,
+    "nfbot": 0.5779569892473119
+   },
+   "networks_up": 2,
+   "networks_down": 1,
+   "consistent_direction": false,
+   "conflicting_direction": true
+  },
+  "retrans_frac": {
+   "network_auc": {
+    "nfcic": 0.4965804730733914,
+    "nfunsw": 0.6676958005738061,
+    "nfton": 0.8553407159312254,
+    "nfbot": 0.6017221102150537
+   },
+   "networks_up": 3,
+   "networks_down": 0,
+   "consistent_direction": true,
+   "conflicting_direction": false
+  }
+ },
+ "family_best_single_feature": {
+  "nfbot/all|ddos": {
+   "windows": 611,
+   "F0": {
+    "feature": "log_flows",
+    "auc": 0.9941106594160816
+   },
+   "new": {
+    "feature": "mean_log_fwd_iat",
+    "auc": 0.9956768527255571
+   }
+  },
+  "nfbot/all|dos": {
+   "windows": 688,
+   "F0": {
+    "feature": "log_flows",
+    "auc": 0.9894528319579895
+   },
+   "new": {
+    "feature": "mean_log_fwd_iat",
+    "auc": 0.9966393861892583
+   }
+  },
+  "nfbot/all|theft": {
+   "windows": 45,
+   "F0": {
+    "feature": "log_up_bytes",
+    "auc": 0.08476702508960574
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.9676910953506698
+   }
+  },
+  "nfcic/2018-02-14|ssh_bruteforce": {
+   "windows": 184,
+   "F0": {
+    "feature": "log_flows",
+    "auc": 0.9997210519300587
+   },
+   "new": {
+    "feature": "prev4_mean_log_flows",
+    "auc": 0.9934159774388548
+   }
+  },
+  "nfcic/2018-02-16|dos_hulk": {
+   "windows": 27,
+   "F0": {
+    "feature": "log_flows",
+    "auc": 0.9993391482697002
+   },
+   "new": {
+    "feature": "mean_log_pkts",
+    "auc": 0.9876925097416251
+   }
+  },
+  "nfcic/2018-02-20|ddos_loic_http": {
+   "windows": 106,
+   "F0": {
+    "feature": "upload_share",
+    "auc": 0.9994875287475283
+   },
+   "new": {
+    "feature": "mean_log_ratio",
+    "auc": 0.015062735364303297
+   }
+  },
+  "nfcic/2018-02-21|ddos_hoic": {
+   "windows": 1086,
+   "F0": {
+    "feature": "log_flows",
+    "auc": 0.9999120611867502
+   },
+   "new": {
+    "feature": "peak_sec_share",
+    "auc": 0.0015815258344268155
+   }
+  },
+  "nfcic/2018-02-22|web_sql_injection+web_xss": {
+   "windows": 41,
+   "F0": {
+    "feature": "log_up_bytes",
+    "auc": 0.9710429182709137
+   },
+   "new": {
+    "feature": "mean_log_pkts",
+    "auc": 0.9754448605822283
+   }
+  },
+  "nfcic/2018-03-02|bot": {
+   "windows": 2408,
+   "F0": {
+    "feature": "log_flows",
+    "auc": 0.9602518648069821
+   },
+   "new": {
+    "feature": "peak_sec_share",
+    "auc": 0.004234976972572164
+   }
+  },
+  "nfton/all|backdoor": {
+   "windows": 115,
+   "F0": {
+    "feature": "med_log_dur",
+    "auc": 0.7587630852225291
+   },
+   "new": {
+    "feature": "tiny_flow_frac",
+    "auc": 0.16225325634483684
+   }
+  },
+  "nfton/all|mitm": {
+   "windows": 207,
+   "F0": {
+    "feature": "log_down_bytes",
+    "auc": 0.6965240355517152
+   },
+   "new": {
+    "feature": "mean_log_pkts",
+    "auc": 0.7770009516525476
+   }
+  },
+  "nfton/all|password": {
+   "windows": 3203,
+   "F0": {
+    "feature": "log_flows",
+    "auc": 0.9967654031878349
+   },
+   "new": {
+    "feature": "prev4_mean_log_flows",
+    "auc": 0.9967277135990367
+   }
+  },
+  "nfton/all|ransomware": {
+   "windows": 226,
+   "F0": {
+    "feature": "log_up_bytes",
+    "auc": 0.7895125553914328
+   },
+   "new": {
+    "feature": "mean_log_fwd_iat",
+    "auc": 0.13300056864851204
+   }
+  },
+  "nfton/all|xss": {
+   "windows": 1847,
+   "F0": {
+    "feature": "log_flows",
+    "auc": 0.9960768059637318
+   },
+   "new": {
+    "feature": "prev4_mean_log_flows",
+    "auc": 0.9923839347232626
+   }
+  },
+  "nfunsw/all|backdoor": {
+   "windows": 69,
+   "F0": {
+    "feature": "log_flows",
+    "auc": 0.13649133797849336
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.040491886409736305
+   }
+  },
+  "nfunsw/all|backdoor+exploits+generic+reconnaissance": {
+   "windows": 27,
+   "F0": {
+    "feature": "log_flows",
+    "auc": 0.11791224918476322
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.014935806950326007
+   }
+  },
+  "nfunsw/all|backdoor+exploits+reconnaissance": {
+   "windows": 24,
+   "F0": {
+    "feature": "med_log_dur",
+    "auc": 0.9303792829019016
+   },
+   "new": {
+    "feature": "mean_log_fwd_iat",
+    "auc": 0.9344425483503982
+   }
+  },
+  "nfunsw/all|dos+exploits": {
+   "windows": 72,
+   "F0": {
+    "feature": "med_log_dur",
+    "auc": 0.9267223525359992
+   },
+   "new": {
+    "feature": "retrans_frac",
+    "auc": 0.9495831122653189
+   }
+  },
+  "nfunsw/all|dos+exploits+fuzzers": {
+   "windows": 32,
+   "F0": {
+    "feature": "log_pkts",
+    "auc": 0.13711045488816284
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.05395303992740472
+   }
+  },
+  "nfunsw/all|dos+exploits+fuzzers+generic": {
+   "windows": 33,
+   "F0": {
+    "feature": "log_dst_hosts",
+    "auc": 0.14853231993216914
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.08868173568718034
+   }
+  },
+  "nfunsw/all|dos+exploits+fuzzers+generic+reconnaissance": {
+   "windows": 169,
+   "F0": {
+    "feature": "log_pkts",
+    "auc": 0.14107570663141256
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.07423780324101419
+   }
+  },
+  "nfunsw/all|dos+exploits+fuzzers+generic+reconnaissance+shellcode": {
+   "windows": 51,
+   "F0": {
+    "feature": "no_reply_frac",
+    "auc": 0.8617578890482221
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.06493185295896943
+   }
+  },
+  "nfunsw/all|dos+exploits+fuzzers+reconnaissance": {
+   "windows": 177,
+   "F0": {
+    "feature": "log_dst_hosts",
+    "auc": 0.15199335115760756
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.11407353860982088
+   }
+  },
+  "nfunsw/all|dos+exploits+fuzzers+reconnaissance+shellcode": {
+   "windows": 49,
+   "F0": {
+    "feature": "log_dst_ports",
+    "auc": 0.1488717125452845
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.024856476165783917
+   }
+  },
+  "nfunsw/all|dos+exploits+generic": {
+   "windows": 76,
+   "F0": {
+    "feature": "log_flows",
+    "auc": 0.11245717649237444
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.10092535103639316
+   }
+  },
+  "nfunsw/all|dos+exploits+generic+reconnaissance": {
+   "windows": 324,
+   "F0": {
+    "feature": "log_flows",
+    "auc": 0.11312153724750412
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.05906964889874751
+   }
+  },
+  "nfunsw/all|dos+exploits+generic+reconnaissance+shellcode": {
+   "windows": 88,
+   "F0": {
+    "feature": "log_flows",
+    "auc": 0.11010170821052952
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.02757486388384755
+   }
+  },
+  "nfunsw/all|dos+exploits+reconnaissance": {
+   "windows": 326,
+   "F0": {
+    "feature": "log_flows",
+    "auc": 0.09730391816751648
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.07069466558293343
+   }
+  },
+  "nfunsw/all|dos+exploits+reconnaissance+shellcode": {
+   "windows": 81,
+   "F0": {
+    "feature": "med_log_dur",
+    "auc": 0.9172285155502603
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.04702112881181242
+   }
+  },
+  "nfunsw/all|dos+exploits+shellcode": {
+   "windows": 26,
+   "F0": {
+    "feature": "med_log_dur",
+    "auc": 0.9297755524194328
+   },
+   "new": {
+    "feature": "mean_log_fwd_iat",
+    "auc": 0.9366278247874468
+   }
+  },
+  "nfunsw/all|exploits": {
+   "windows": 107,
+   "F0": {
+    "feature": "log_flows",
+    "auc": 0.08299139015657749
+   },
+   "new": {
+    "feature": "mean_log_fwd_iat",
+    "auc": 0.9160546958384348
+   }
+  },
+  "nfunsw/all|exploits+fuzzers": {
+   "windows": 28,
+   "F0": {
+    "feature": "log_flows",
+    "auc": 0.12126311947246855
+   },
+   "new": {
+    "feature": "mean_log_pkts",
+    "auc": 0.13632582965329887
+   }
+  },
+  "nfunsw/all|exploits+fuzzers+generic": {
+   "windows": 34,
+   "F0": {
+    "feature": "log_pkts",
+    "auc": 0.12961429859704626
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.09725365645350699
+   }
+  },
+  "nfunsw/all|exploits+fuzzers+generic+reconnaissance": {
+   "windows": 231,
+   "F0": {
+    "feature": "log_pkts",
+    "auc": 0.14722350057861494
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.08809995207454373
+   }
+  },
+  "nfunsw/all|exploits+fuzzers+generic+reconnaissance+shellcode": {
+   "windows": 84,
+   "F0": {
+    "feature": "no_reply_frac",
+    "auc": 0.8667219170486323
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.06115612306628641
+   }
+  },
+  "nfunsw/all|exploits+fuzzers+reconnaissance": {
+   "windows": 172,
+   "F0": {
+    "feature": "log_pkts",
+    "auc": 0.13419580705681572
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.07899748870974549
+   }
+  },
+  "nfunsw/all|exploits+fuzzers+reconnaissance+shellcode": {
+   "windows": 51,
+   "F0": {
+    "feature": "log_down_bytes",
+    "auc": 0.13502423671990368
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.06649229564784172
+   }
+  },
+  "nfunsw/all|exploits+generic": {
+   "windows": 99,
+   "F0": {
+    "feature": "log_flows",
+    "auc": 0.09288410620403584
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.07295825771324864
+   }
+  },
+  "nfunsw/all|exploits+generic+reconnaissance": {
+   "windows": 450,
+   "F0": {
+    "feature": "log_flows",
+    "auc": 0.10179386222110524
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.06928533978624722
+   }
+  },
+  "nfunsw/all|exploits+generic+reconnaissance+shellcode": {
+   "windows": 145,
+   "F0": {
+    "feature": "log_flows",
+    "auc": 0.11491393031807795
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.06129545027849052
+   }
+  },
+  "nfunsw/all|exploits+reconnaissance": {
+   "windows": 436,
+   "F0": {
+    "feature": "log_flows",
+    "auc": 0.08944272030607171
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.06742436918905235
+   }
+  },
+  "nfunsw/all|exploits+reconnaissance+shellcode": {
+   "windows": 112,
+   "F0": {
+    "feature": "med_log_dur",
+    "auc": 0.9112251522876051
+   },
+   "new": {
+    "feature": "gap_cv",
+    "auc": 0.055316632097485094
+   }
+  }
+ },
+ "benign_shift": {
+  "log_flows": 0.5960296470331748,
+  "log_up_bytes": 0.7179742609189689,
+  "log_down_bytes": 0.5522962735117193,
+  "log_pkts": 0.6431092853911361,
+  "log_dst_hosts": 0.5300304837606115,
+  "log_dst_ports": 0.5580239176365458,
+  "no_reply_frac": 0.21619509548543095,
+  "rst_frac": 0.262877868278126,
+  "udp_share": 0.25736041829252837,
+  "med_log_dur": 0.5465522474141734,
+  "upload_share": 0.5449121737862167,
+  "new_dst_frac": 0.12969035581189509,
+  "tiny_flow_frac": 0.4694550655779491,
+  "mean_log_pkts": 0.7784487076591357,
+  "sd_log_up": 0.44269312330020805,
+  "p90_log_dur": 0.5529509755567471,
+  "small_pkt_share": 0.5359217400547882,
+  "active_sec_frac": 0.6124008472381596,
+  "peak_sec_share": 0.559918049589008,
+  "gap_cv": 0.5568089752524933,
+  "long_flow_frac": 0.3793056410224454,
+  "mean_log_fwd_iat": 0.7303003783176071,
+  "prev4_mean_log_flows": 0.5611251860591416,
+  "d_log_flows": 0.24010523905800496,
+  "active_prev4": 0.37313627645903064,
+  "syn_only_frac": 0.09994893165807599,
+  "srv_rst_frac": 0.13385906943295342,
+  "cli_fin_frac": 0.38489900738695537,
+  "mean_log_ratio": 0.5838266345475831,
+  "retrans_frac": 0.4841823624340497
+ },
+ "lightgbm_warmup_seconds": 23.5,
+ "within_network": {
+  "nfbot/all": {
+   "chronological": {
+    "F0": {
+     "pauc": 0.9571635452034124,
+     "recall_1pct": 0.9821109123434705
+    },
+    "F0+FLOW": {
+     "pauc": 0.9541576916992198,
+     "recall_1pct": 0.9803220035778175
+    },
+    "F0+TIME": {
+     "pauc": 0.9391771019677997,
+     "recall_1pct": 0.9391771019677997
+    },
+    "F0+BIDIR": {
+     "pauc": 0.953914302751512,
+     "recall_1pct": 0.962432915921288
+    },
+    "F0+ALL": {
+     "pauc": 0.9427549194991055,
+     "recall_1pct": 0.9427549194991055
+    }
+   },
+   "host_grouped": {
+    "F0": {
+     "pauc": 0.9423462986872818,
+     "recall_1pct": 0.9428153858436754,
+     "folds": 2
+    },
+    "F0+ALL": {
+     "pauc": 0.9607530636498851,
+     "recall_1pct": 0.9609876072280821,
+     "folds": 2
+    }
+   }
+  },
+  "nfcic/2018-02-14": {
+   "chronological": {},
+   "host_grouped": {}
+  },
+  "nfcic/2018-02-16": {
+   "chronological": {},
+   "host_grouped": {}
+  },
+  "nfcic/2018-02-20": {
+   "chronological": {},
+   "host_grouped": {
+    "F0": {
+     "pauc": 0.971995252266356,
+     "recall_1pct": 0.9722222222222222,
+     "folds": 2
+    },
+    "F0+ALL": {
+     "pauc": 0.97492591222809,
+     "recall_1pct": 0.9791666666666667,
+     "folds": 2
+    }
+   }
+  },
+  "nfcic/2018-02-21": {
+   "chronological": {},
+   "host_grouped": {
+    "F0": {
+     "pauc": 0.9991496958432018,
+     "recall_1pct": 0.9993421052631579,
+     "folds": 2
+    },
+    "F0+ALL": {
+     "pauc": 0.9999939193661648,
+     "recall_1pct": 1.0,
+     "folds": 2
+    }
+   }
+  },
+  "nfcic/2018-02-22": {
+   "chronological": {},
+   "host_grouped": {}
+  },
+  "nfcic/2018-03-02": {
+   "chronological": {
+    "F0": {
+     "pauc": 1.0,
+     "recall_1pct": 1.0
+    },
+    "F0+FLOW": {
+     "pauc": 1.0,
+     "recall_1pct": 1.0
+    },
+    "F0+TIME": {
+     "pauc": 1.0,
+     "recall_1pct": 1.0
+    },
+    "F0+BIDIR": {
+     "pauc": 1.0,
+     "recall_1pct": 1.0
+    },
+    "F0+ALL": {
+     "pauc": 1.0,
+     "recall_1pct": 1.0
+    }
+   },
+   "host_grouped": {
+    "F0": {
+     "pauc": 0.9026544759095325,
+     "recall_1pct": 0.9043604651162791,
+     "folds": 2
+    },
+    "F0+ALL": {
+     "pauc": 0.9482484960625233,
+     "recall_1pct": 0.9994186046511628,
+     "folds": 2
+    }
+   }
+  },
+  "nfton/all": {
+   "chronological": {
+    "F0": {
+     "pauc": 0.12651997125258654,
+     "recall_1pct": 0.18874172185430463
+    },
+    "F0+FLOW": {
+     "pauc": 0.14871721902538548,
+     "recall_1pct": 0.18211920529801323
+    },
+    "F0+TIME": {
+     "pauc": 0.10200508385466156,
+     "recall_1pct": 0.17218543046357615
+    },
+    "F0+BIDIR": {
+     "pauc": 0.1739073812360423,
+     "recall_1pct": 0.23178807947019867
+    },
+    "F0+ALL": {
+     "pauc": 0.2376460884706473,
+     "recall_1pct": 0.3079470198675497
+    }
+   },
+   "host_grouped": {
+    "F0": {
+     "pauc": 0.7854707155202634,
+     "recall_1pct": 0.8961745674391632,
+     "folds": 2
+    },
+    "F0+ALL": {
+     "pauc": 0.8937242492297159,
+     "recall_1pct": 0.9028869051090755,
+     "folds": 2
+    }
+   }
+  },
+  "nfunsw/all": {
+   "chronological": {
+    "F0": {
+     "pauc": 0.9912753330821804,
+     "recall_1pct": 0.995609756097561
+    },
+    "F0+FLOW": {
+     "pauc": 0.9924956959584545,
+     "recall_1pct": 0.9970731707317073
+    },
+    "F0+TIME": {
+     "pauc": 0.9944746233710472,
+     "recall_1pct": 1.0
+    },
+    "F0+BIDIR": {
+     "pauc": 0.9896924990176659,
+     "recall_1pct": 0.9970731707317073
+    },
+    "F0+ALL": {
+     "pauc": 0.9961516805003626,
+     "recall_1pct": 1.0
+    }
+   },
+   "host_grouped": {}
+  }
+ },
+ "domain_origin_accuracy": {
+  "F0": 0.9612035851472471,
+  "F0+FLOW": 0.9685019206145967,
+  "F0+TIME": 0.963764404609475,
+  "F0+BIDIR": 0.9700384122919334,
+  "F0+ALL": 0.9773367477592829,
+  "FLOW only": 0.941741357234315,
+  "TIME only": 0.8873239436619719,
+  "BIDIR only": 0.9090909090909091
+ },
+ "diagnostic_fits": 48,
+ "diagnostic_fit_seconds": 39.0,
+ "peak_rss_mb": 895.93359375
+}

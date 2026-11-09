@@ -1,0 +1,231 @@
+{
+ "schema": "flowwin-1.0.0",
+ "domains": {
+  "nfcic/2018-02-14": {
+   "flows": 2137465,
+   "windows": 234410,
+   "seconds": 13.6,
+   "consistency": {
+    "reference_windows": 234474,
+    "built_windows": 234410,
+    "missing_in_build": 0,
+    "n_flows_mismatch": 128
+   },
+   "missing_share": {
+    "gap_cv": 0.5803122733671772,
+    "mean_log_fwd_iat": 0.2954268162621049
+   },
+   "sha256": "d943d834236ab8479dec0268683282c97c18a21e5c199d64ae4308a352a47146"
+  },
+  "nfcic/2018-02-15": {
+   "flows": 1653077,
+   "windows": 213034,
+   "seconds": 7.1,
+   "consistency": {
+    "reference_windows": 213078,
+    "built_windows": 213034,
+    "missing_in_build": 0,
+    "n_flows_mismatch": 88
+   },
+   "missing_share": {
+    "gap_cv": 0.563628341015988,
+    "mean_log_fwd_iat": 0.2929203789066534
+   },
+   "sha256": "1379371f307b32067c10553b718216ecdc58a30b90a6a87b9f79e2302b86ddc4"
+  },
+  "nfcic/2018-02-16": {
+   "flows": 1551863,
+   "windows": 170949,
+   "seconds": 5.2,
+   "consistency": {
+    "reference_windows": 170989,
+    "built_windows": 170949,
+    "missing_in_build": 0,
+    "n_flows_mismatch": 80
+   },
+   "missing_share": {
+    "gap_cv": 0.5504039216374474,
+    "mean_log_fwd_iat": 0.28755359785667073
+   },
+   "sha256": "582e8dd32efd1b20d7527cad16d294467aa8e32873b7e2af25e4d150b2947fd7"
+  },
+  "nfcic/2018-02-20": {
+   "flows": 1827843,
+   "windows": 234504,
+   "seconds": 6.1,
+   "consistency": {
+    "reference_windows": 234549,
+    "built_windows": 234504,
+    "missing_in_build": 0,
+    "n_flows_mismatch": 90
+   },
+   "missing_share": {
+    "gap_cv": 0.5621055504383721,
+    "mean_log_fwd_iat": 0.2687800634530754
+   },
+   "sha256": "ca6a5ebe1a4413454374a2469b3c2b2d29df5ce1097fa93dc0fd0f31ed05bee2"
+  },
+  "nfcic/2018-02-21": {
+   "flows": 2711059,
+   "windows": 244447,
+   "seconds": 10.5,
+   "consistency": {
+    "reference_windows": 244462,
+    "built_windows": 244447,
+    "missing_in_build": 0,
+    "n_flows_mismatch": 30
+   },
+   "missing_share": {
+    "gap_cv": 0.5508269686271462,
+    "mean_log_fwd_iat": 0.2635949715071161
+   },
+   "sha256": "8afd869643072294bc49da4033e194a1ba9d1454dd5f176ced7f3273e28730e0"
+  },
+  "nfcic/2018-02-22": {
+   "flows": 1989174,
+   "windows": 266246,
+   "seconds": 9.2,
+   "consistency": {
+    "reference_windows": 266301,
+    "built_windows": 266246,
+    "missing_in_build": 0,
+    "n_flows_mismatch": 110
+   },
+   "missing_share": {
+    "gap_cv": 0.5148021003132441,
+    "mean_log_fwd_iat": 0.2709186241295644
+   },
+   "sha256": "fc2efb7cb16d061f232d864001bbea2bbd912a6d57bd4d90a45f79cfa91a2a9a"
+  },
+  "nfcic/2018-02-23": {
+   "flows": 1751857,
+   "windows": 230730,
+   "seconds": 14.6,
+   "consistency": {
+    "reference_windows": 230765,
+    "built_windows": 230730,
+    "missing_in_build": 0,
+    "n_flows_mismatch": 70
+   },
+   "missing_share": {
+    "gap_cv": 0.519659342088155,
+    "mean_log_fwd_iat": 0.2617518311446279
+   },
+   "sha256": "a8bbbf73f5f3833258f0e4a1c3067f32ca9a2d062e60334e800a4219e92a142a"
+  },
+  "nfcic/2018-02-27": {
+   "flows": 922,
+   "windows": 533,
+   "seconds": 2.2,
+   "consistency": {
+    "reference_windows": 533,
+    "built_windows": 533,
+    "missing_in_build": 0,
+    "n_flows_mismatch": 0
+   },
+   "missing_share": {
+    "gap_cv": 0.8836772983114447,
+    "mean_log_fwd_iat": 0.20825515947467166
+   },
+   "sha256": "3c05ed4a8e1db9a2a5764d56a561dd8f3917846aff7693fd30f9cfd4b9453bb4"
+  },
+  "nfcic/2018-02-28": {
+   "flows": 1739309,
+   "windows": 229263,
+   "seconds": 8.0,
+   "consistency": {
+    "reference_windows": 229263,
+    "built_windows": 229263,
+    "missing_in_build": 0,
+    "n_flows_mismatch": 0
+   },
+   "missing_share": {
+    "gap_cv": 0.516925975844336,
+    "mean_log_fwd_iat": 0.27201947108779
+   },
+   "sha256": "51d7d10d3247ec0b7972788ae976a4ca770c123bc6b51fa57c5462496406d30f"
+  },
+  "nfcic/2018-03-01": {
+   "flows": 2076801,
+   "windows": 270536,
+   "seconds": 6.3,
+   "consistency": {
+    "reference_windows": 270596,
+    "built_windows": 270536,
+    "missing_in_build": 0,
+    "n_flows_mismatch": 120
+   },
+   "missing_share": {
+    "gap_cv": 0.49649214891918264,
+    "mean_log_fwd_iat": 0.22246207528757725
+   },
+   "sha256": "dd2ba6dd5d217c4ddedc0d545dc2386a7d9144af16e034bc729c42bb23687b46"
+  },
+  "nfcic/2018-03-02": {
+   "flows": 1406244,
+   "windows": 193553,
+   "seconds": 4.6,
+   "consistency": {
+    "reference_windows": 193603,
+    "built_windows": 193553,
+    "missing_in_build": 0,
+    "n_flows_mismatch": 100
+   },
+   "missing_share": {
+    "gap_cv": 0.5158018733886842,
+    "mean_log_fwd_iat": 0.2241918234282083
+   },
+   "sha256": "c83e3c71952e9d2309a0ad5bb155573e2777008e928350a01426e56d28cc0ea5"
+  },
+  "nfunsw/all": {
+   "flows": 1829313,
+   "windows": 31008,
+   "seconds": 13.6,
+   "consistency": {
+    "reference_windows": 31022,
+    "built_windows": 31008,
+    "missing_in_build": 0,
+    "n_flows_mismatch": 28
+   },
+   "missing_share": {
+    "gap_cv": 0.09781346749226007,
+    "mean_log_fwd_iat": 0.020736584107327143
+   },
+   "sha256": "f7f2e9bd748d1d6dfe78c40ee89c4e9dda6a484fc808f36b6b1ec6b6d8f819fd"
+  },
+  "nfton/all": {
+   "flows": 27520260,
+   "windows": 118350,
+   "seconds": 65.2,
+   "consistency": {
+    "reference_windows": 118355,
+    "built_windows": 118350,
+    "missing_in_build": 0,
+    "n_flows_mismatch": 10
+   },
+   "missing_share": {
+    "small_pkt_share": 5.9146599070553444e-05,
+    "gap_cv": 0.2826362484157161,
+    "mean_log_fwd_iat": 0.34509505703422055
+   },
+   "sha256": "a439b496ee6e9ec54b139116f34aab6291e25f4ae83a0d5090b982672efe9190"
+  },
+  "nfbot/all": {
+   "flows": 16933808,
+   "windows": 15423,
+   "seconds": 104.3,
+   "consistency": {
+    "reference_windows": 15423,
+    "built_windows": 15423,
+    "missing_in_build": 0,
+    "n_flows_mismatch": 0
+   },
+   "missing_share": {
+    "gap_cv": 0.31699409972119563,
+    "mean_log_fwd_iat": 0.462944952343902
+   },
+   "sha256": "a38d61b59807600dab103049b6b81a67944cabf136633bffb089548e467d4842"
+  }
+ },
+ "peak_rss_mb": 1393.04296875
+}
