@@ -64,7 +64,7 @@ next phase should target the scoring model** (§ Recommendation).
 
 **New code:**
 - `scripts/phase8t/{threshold_oracles, oracle_feasibility, conditional_calibration, deployable_eval, figures}.py`;
-- `tests/unit/test_phase8t.py` (13 tests).
+- `tests/unit/test_phase8t.py` (12 tests).
 
 **Unchanged:** `src/`, the frozen M2, every Phase 8h–8s artifact.
 
@@ -147,7 +147,14 @@ All three are recorded, and the earlier outputs are kept.
 
 ## Validation
 
-Full suite after the fixes: see the closing commit. The JUnit file is kept in `reports/phase8t/`.
+**Full suite on `0aaa806`** (the final code): 449 passed, 0 failed, 0 errors, 0 skipped,
+2 deselected, in 1,035 s.
+- JUnit file: `reports/phase8t/junit_phase8t_final.xml`.
+
+**Other checks:**
+- `ruff check` and `ruff format --check`: clean (496 files);
+- dependency gate: OK;
+- dependencies added: none.
 
 ## Recommendation: target the scoring model
 
