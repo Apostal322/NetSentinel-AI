@@ -1,0 +1,5121 @@
+{
+ "status": "Phase 8u evaluation (development data; consumed networks)",
+ "git_sha": "a8ad978587c2f6a81d92da0588faa831e056d1d5",
+ "summary": {
+  "A0|1060": {
+   "networks": {
+    "nfcic": {
+     "roc_auc": 0.6972882523785962,
+     "pr_auc": 0.2700266782290485,
+     "pauc_1pct": 0.330646212079665,
+     "recall_1pct": 0.3638000096206464,
+     "calT_recall": 0.3638000096206464,
+     "calT_fpr": 0.011442218134358135,
+     "calT_fa_per_h": 288.83061293327245,
+     "calT_top_host": 0.026242271467500976
+    },
+    "nfunsw": {
+     "roc_auc": 0.9341667194472276,
+     "pr_auc": 0.7358906157174814,
+     "pauc_1pct": 0.006305551796241765,
+     "recall_1pct": 0.017355169885113663,
+     "calT_recall": 0.7061843070153997,
+     "calT_fpr": 0.03979224260702019,
+     "calT_fa_per_h": 53.48998704979262,
+     "calT_top_host": 0.08421052631578947
+    },
+    "nfton": {
+     "roc_auc": 0.8197006134046321,
+     "pr_auc": 0.7168921651548527,
+     "pauc_1pct": 0.008112925840642219,
+     "recall_1pct": 0.013040371561271883,
+     "calT_recall": 0.43604858878170777,
+     "calT_fpr": 0.15899019739492412,
+     "calT_fa_per_h": 16.376045266671703,
+     "calT_top_host": 0.37415540540540543
+    },
+    "nfbot": {
+     "roc_auc": 0.9381576420890938,
+     "pr_auc": 0.9774788408710979,
+     "pauc_1pct": 0.710111607142857,
+     "recall_1pct": 0.6711309523809523,
+     "calT_recall": 0.9375,
+     "calT_fpr": 0.18548387096774194,
+     "calT_fa_per_h": 0.27257620876579697,
+     "calT_top_host": 1.0
+    }
+   },
+   "macro_roc_auc": 0.8473283068298875,
+   "macro_pr_auc": 0.67507207499312,
+   "macro_pauc_1pct": 0.2637940742148515,
+   "macro_recall_1pct": 0.26633162586199605,
+   "macro_calT_recall": 0.6108832263544385,
+   "R20_oracle": 15,
+   "missed_oracle": 14,
+   "R20_calT": 25,
+   "missed_calT": 8
+  },
+  "A1|1060": {
+   "networks": {
+    "nfcic": {
+     "roc_auc": 0.7034534982529029,
+     "pr_auc": 0.2845277610742773,
+     "pauc_1pct": 0.4168954617308225,
+     "recall_1pct": 0.4996024787564488,
+     "calT_recall": 0.4996024787564488,
+     "calT_fpr": 0.010651426186358457,
+     "calT_fa_per_h": 269.66489837206865,
+     "calT_top_host": 0.029387721278734884
+    },
+    "nfunsw": {
+     "roc_auc": 0.942842696911986,
+     "pr_auc": 0.7445129717646548,
+     "pauc_1pct": 0.008735576137551116,
+     "recall_1pct": 0.022243950134441456,
+     "calT_recall": 0.5468100708873136,
+     "calT_fpr": 0.03526849292116947,
+     "calT_fa_per_h": 47.40902010097408,
+     "calT_top_host": 0.0855106888361045
+    },
+    "nfton": {
+     "roc_auc": 0.8292370766996385,
+     "pr_auc": 0.7346294854238364,
+     "pauc_1pct": 0.0064592454296415885,
+     "recall_1pct": 0.01339764201500536,
+     "calT_recall": 0.4303322615219721,
+     "calT_fpr": 0.1413992211628844,
+     "calT_fa_per_h": 14.564168636659883,
+     "calT_top_host": 0.3912630579297246
+    },
+    "nfbot": {
+     "roc_auc": 0.9249819988479261,
+     "pr_auc": 0.9693269914474855,
+     "pauc_1pct": 0.5003571428571428,
+     "recall_1pct": 0.49851190476190477,
+     "calT_recall": 0.9337797619047619,
+     "calT_fpr": 0.06935483870967742,
+     "calT_fa_per_h": 0.10191979979938495,
+     "calT_top_host": 1.0
+    }
+   },
+   "macro_roc_auc": 0.8501288176781133,
+   "macro_pr_auc": 0.6832493024275635,
+   "macro_pauc_1pct": 0.23311185653878952,
+   "macro_recall_1pct": 0.25843899391695013,
+   "macro_calT_recall": 0.6026311432676241,
+   "R20_oracle": 16,
+   "missed_oracle": 13,
+   "R20_calT": 27,
+   "missed_calT": 9
+  },
+  "A2|1060": {
+   "networks": {
+    "nfcic": {
+     "roc_auc": 0.65858641493995,
+     "pr_auc": 0.2840416537927961,
+     "pauc_1pct": 0.37743860062558904,
+     "recall_1pct": 0.4905137399255369,
+     "calT_recall": 0.4991420735999111,
+     "calT_fpr": 0.012978291979609929,
+     "calT_fa_per_h": 330.71964257523047,
+     "calT_top_host": 0.1140436560351721
+    },
+    "nfunsw": {
+     "roc_auc": 0.9486098153167735,
+     "pr_auc": 0.7672603644203236,
+     "pauc_1pct": 0.016684288514046908,
+     "recall_1pct": 0.0354436568076265,
+     "calT_recall": 0.789782449278905,
+     "calT_fpr": 0.0531959453799112,
+     "calT_fa_per_h": 71.50766689814381,
+     "calT_top_host": 0.13543307086614173
+    },
+    "nfton": {
+     "roc_auc": 0.8419715471288279,
+     "pr_auc": 0.760253860188586,
+     "pauc_1pct": 0.05768790413311589,
+     "recall_1pct": 0.154162200785995,
+     "calT_recall": 0.6382636655948553,
+     "calT_fpr": 0.16785282664160064,
+     "calT_fa_per_h": 17.288899141334145,
+     "calT_top_host": 0.3776
+    },
+    "nfbot": {
+     "roc_auc": 0.9537826420890938,
+     "pr_auc": 0.9842688310440837,
+     "pauc_1pct": 0.924413029100529,
+     "recall_1pct": 0.9226190476190477,
+     "calT_recall": 0.9404761904761905,
+     "calT_fpr": 0.06774193548387097,
+     "calT_fa_per_h": 0.09954957189707368,
+     "calT_top_host": 1.0
+    }
+   },
+   "macro_roc_auc": 0.8507376048686613,
+   "macro_pr_auc": 0.6989561773614473,
+   "macro_pauc_1pct": 0.34405595559332025,
+   "macro_recall_1pct": 0.4006846612845515,
+   "macro_calT_recall": 0.7169160947374654,
+   "R20_oracle": 17,
+   "missed_oracle": 14,
+   "R20_calT": 28,
+   "missed_calT": 8
+  },
+  "B|1060": {
+   "networks": {
+    "nfcic": {
+     "roc_auc": 0.7297649541082304,
+     "pr_auc": 0.47032560842196314,
+     "pauc_1pct": 0.5011069098631293,
+     "recall_1pct": 0.506765370017579,
+     "calT_recall": 0.5114026900618759,
+     "calT_fpr": 0.011249080631968625,
+     "calT_fa_per_h": 291.60669694305625,
+     "calT_top_host": 0.16290572230906342
+    },
+    "nfunsw": {
+     "roc_auc": 0.9273016834674718,
+     "pr_auc": 0.7107241945822291,
+     "pauc_1pct": 0.00806370248170204,
+     "recall_1pct": 0.01344414568565143,
+     "calT_recall": 0.6536299193351259,
+     "calT_fpr": 0.04113261288430929,
+     "calT_fa_per_h": 55.291755034627734,
+     "calT_top_host": 0.0814663951120163
+    },
+    "nfton": {
+     "roc_auc": 0.8648872899752751,
+     "pr_auc": 0.7473474613298531,
+     "pauc_1pct": 0.0008591388913715993,
+     "recall_1pct": 0.0026795284030010718,
+     "calT_recall": 0.2840300107181136,
+     "calT_fpr": 0.04538740432388881,
+     "calT_fa_per_h": 4.674918327816752,
+     "calT_top_host": 0.636094674556213
+    },
+    "nfbot": {
+     "roc_auc": 0.9553727438556068,
+     "pr_auc": 0.9848779355365074,
+     "pauc_1pct": 0.9386532738095239,
+     "recall_1pct": 0.9375,
+     "calT_recall": 0.9412202380952381,
+     "calT_fpr": 0.016129032258064516,
+     "calT_fa_per_h": 0.023702279023112782,
+     "calT_top_host": 1.0
+    }
+   },
+   "macro_roc_auc": 0.8693316678516461,
+   "macro_pr_auc": 0.7283187999676382,
+   "macro_pauc_1pct": 0.3621707562614317,
+   "macro_recall_1pct": 0.36509726102655793,
+   "macro_calT_recall": 0.5975707145525884,
+   "R20_oracle": 16,
+   "missed_oracle": 16,
+   "R20_calT": 24,
+   "missed_calT": 4
+  },
+  "C1|1060": {
+   "networks": {
+    "nfcic": {
+     "roc_auc": 0.6737345534889917,
+     "pr_auc": 0.18804589334509833,
+     "pauc_1pct": 0.34170516454646954,
+     "recall_1pct": 0.49572748245642045,
+     "calT_recall": 0.49791368304249595,
+     "calT_fpr": 0.013719727075508129,
+     "calT_fa_per_h": 346.7165884436977,
+     "calT_top_host": 0.07415865146447516
+    },
+    "nfunsw": {
+     "roc_auc": 0.8901517657672634,
+     "pr_auc": 0.6569688332959887,
+     "pauc_1pct": 0.03336194234265869,
+     "recall_1pct": 0.04595453434368125,
+     "calT_recall": 0.49865558543143484,
+     "calT_fpr": 0.05889251905838988,
+     "calT_fa_per_h": 79.16518083369307,
+     "calT_top_host": 0.2233285917496444
+    },
+    "nfton": {
+     "roc_auc": 0.7358954691034939,
+     "pr_auc": 0.5404371273929336,
+     "pauc_1pct": 0.00010532929786113164,
+     "recall_1pct": 0.0005359056806002144,
+     "calT_recall": 0.43229724901750627,
+     "calT_fpr": 0.25406203840472674,
+     "calT_fa_per_h": 26.16847774032336,
+     "calT_top_host": 0.2769556025369979
+    },
+    "nfbot": {
+     "roc_auc": 0.953153801843318,
+     "pr_auc": 0.9843630778833827,
+     "pauc_1pct": 0.9397321428571428,
+     "recall_1pct": 0.9397321428571429,
+     "calT_recall": 0.9471726190476191,
+     "calT_fpr": 0.08870967741935484,
+     "calT_fa_per_h": 0.1303625346271203,
+     "calT_top_host": 0.8181818181818182
+    }
+   },
+   "macro_roc_auc": 0.8132338975507667,
+   "macro_pr_auc": 0.5924537329793509,
+   "macro_pauc_1pct": 0.328726144761033,
+   "macro_recall_1pct": 0.3704875163344612,
+   "macro_calT_recall": 0.594009784134764,
+   "R20_oracle": 16,
+   "missed_oracle": 23,
+   "R20_calT": 26,
+   "missed_calT": 14
+  },
+  "M2member|1060": {
+   "networks": {
+    "nfcic": {
+     "roc_auc": 0.6972882523785962,
+     "pr_auc": 0.2700266782290485,
+     "pauc_1pct": 0.330646212079665,
+     "recall_1pct": 0.3638000096206464,
+     "calT_recall": 0.3638000096206464,
+     "calT_fpr": 0.011442218134358135,
+     "calT_fa_per_h": 288.83061293327245,
+     "calT_top_host": 0.026242271467500976
+    },
+    "nfunsw": {
+     "roc_auc": 0.9341667194472276,
+     "pr_auc": 0.7358906157174814,
+     "pauc_1pct": 0.006305551796241765,
+     "recall_1pct": 0.017355169885113663,
+     "calT_recall": 0.7061843070153997,
+     "calT_fpr": 0.03979224260702019,
+     "calT_fa_per_h": 53.48998704979262,
+     "calT_top_host": 0.08421052631578947
+    },
+    "nfton": {
+     "roc_auc": 0.8197006134046321,
+     "pr_auc": 0.7168921651548527,
+     "pauc_1pct": 0.008112925840642219,
+     "recall_1pct": 0.013040371561271883,
+     "calT_recall": 0.43604858878170777,
+     "calT_fpr": 0.15899019739492412,
+     "calT_fa_per_h": 16.376045266671703,
+     "calT_top_host": 0.37415540540540543
+    },
+    "nfbot": {
+     "roc_auc": 0.9381576420890938,
+     "pr_auc": 0.9774788408710979,
+     "pauc_1pct": 0.710111607142857,
+     "recall_1pct": 0.6711309523809523,
+     "calT_recall": 0.9375,
+     "calT_fpr": 0.18548387096774194,
+     "calT_fa_per_h": 0.27257620876579697,
+     "calT_top_host": 1.0
+    }
+   },
+   "macro_roc_auc": 0.8473283068298875,
+   "macro_pr_auc": 0.67507207499312,
+   "macro_pauc_1pct": 0.2637940742148515,
+   "macro_recall_1pct": 0.26633162586199605,
+   "macro_calT_recall": 0.6108832263544385,
+   "R20_oracle": 15,
+   "missed_oracle": 14,
+   "R20_calT": 25,
+   "missed_calT": 8
+  },
+  "M2member|1061": {
+   "networks": {
+    "nfcic": {
+     "roc_auc": 0.7153833593365279,
+     "pr_auc": 0.28403232078994284,
+     "pauc_1pct": 0.44612684105155037,
+     "recall_1pct": 0.5066811153640709,
+     "calT_recall": 0.5068345837495835,
+     "calT_fpr": 0.013889364705123997,
+     "calT_fa_per_h": 347.27093464795297,
+     "calT_top_host": 0.04191736564043629
+    },
+    "nfunsw": {
+     "roc_auc": 0.9153610107427229,
+     "pr_auc": 0.7063852443368236,
+     "pauc_1pct": 0.010621776917425626,
+     "recall_1pct": 0.021755072109508677,
+     "calT_recall": 0.5120997311170863,
+     "calT_fpr": 0.03510094663650833,
+     "calT_fa_per_h": 47.18379910286969,
+     "calT_top_host": 0.08591885441527446
+    },
+    "nfton": {
+     "roc_auc": 0.8454002544502527,
+     "pr_auc": 0.7271114819269484,
+     "pauc_1pct": 0.0033303834653295823,
+     "recall_1pct": 0.01625580564487317,
+     "calT_recall": 0.6291532690246516,
+     "calT_fpr": 0.14354773734389686,
+     "calT_fa_per_h": 14.78546654566896,
+     "calT_top_host": 0.37511693171188026
+    },
+    "nfbot": {
+     "roc_auc": 0.9373667914746544,
+     "pr_auc": 0.9757906548309754,
+     "pauc_1pct": 0.48960813492063493,
+     "recall_1pct": 0.4888392857142857,
+     "calT_recall": 0.9389880952380952,
+     "calT_fpr": 0.07096774193548387,
+     "calT_fa_per_h": 0.10429002770169624,
+     "calT_top_host": 1.0
+    }
+   },
+   "macro_roc_auc": 0.8533778540010395,
+   "macro_pr_auc": 0.6733299254711725,
+   "macro_pauc_1pct": 0.23742178408873513,
+   "macro_recall_1pct": 0.2583828197081846,
+   "macro_calT_recall": 0.6467689197823542,
+   "R20_oracle": 16,
+   "missed_oracle": 13,
+   "R20_calT": 28,
+   "missed_calT": 8
+  },
+  "M2member|1062": {
+   "networks": {
+    "nfcic": {
+     "roc_auc": 0.7142883119572848,
+     "pr_auc": 0.3169506836092506,
+     "pauc_1pct": 0.4814116681309579,
+     "recall_1pct": 0.5066811153640709,
+     "calT_recall": 0.5099792378376339,
+     "calT_fpr": 0.013905541936061916,
+     "calT_fa_per_h": 347.5195442882329,
+     "calT_top_host": 0.06109930902164645
+    },
+    "nfunsw": {
+     "roc_auc": 0.9132291675433564,
+     "pr_auc": 0.7164325360378592,
+     "pauc_1pct": 0.010689174468411694,
+     "recall_1pct": 0.025421657296504523,
+     "calT_recall": 0.5299437790271327,
+     "calT_fpr": 0.0335930300745581,
+     "calT_fa_per_h": 45.156810119930185,
+     "calT_top_host": 0.08728179551122195
+    },
+    "nfton": {
+     "roc_auc": 0.8459509004755436,
+     "pr_auc": 0.7585881221623322,
+     "pauc_1pct": 0.00663543398401511,
+     "recall_1pct": 0.013754912468738835,
+     "calT_recall": 0.4667738478027867,
+     "calT_fpr": 0.10004028467839399,
+     "calT_fa_per_h": 10.30418388823515,
+     "calT_top_host": 0.36778523489932885
+    },
+    "nfbot": {
+     "roc_auc": 0.9215497791858679,
+     "pr_auc": 0.9671941307746057,
+     "pauc_1pct": 0.5057246663786483,
+     "recall_1pct": 0.5059523809523809,
+     "calT_recall": 0.9315476190476191,
+     "calT_fpr": 0.18870967741935485,
+     "calT_fa_per_h": 0.27731666457041954,
+     "calT_top_host": 1.0
+    }
+   },
+   "macro_roc_auc": 0.8487545397905132,
+   "macro_pr_auc": 0.6897913681460119,
+   "macro_pauc_1pct": 0.25111523574050826,
+   "macro_recall_1pct": 0.2629525165204238,
+   "macro_calT_recall": 0.6095611209287931,
+   "R20_oracle": 16,
+   "missed_oracle": 13,
+   "R20_calT": 28,
+   "missed_calT": 8
+  }
+ },
+ "per_domain": {
+  "A0|1060": {
+   "nfbot/all": {
+    "roc_auc": 0.9381576420890938,
+    "pr_auc": 0.9774788408710979,
+    "pauc_1pct": 0.710111607142857,
+    "oracle_1pct": {
+     "recall": 0.6711309523809523,
+     "fa": 0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9375,
+     "fa": 115,
+     "fpr": 0.18548387096774194,
+     "fa_per_h": 0.27257620876579697,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 1.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9337797619047619,
+     "fa": 43,
+     "fpr": 0.06935483870967742,
+     "fa_per_h": 0.10191979979938495,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 1.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-14": {
+    "roc_auc": 0.9955596646259822,
+    "pr_auc": 0.6186480623876097,
+    "pauc_1pct": 0.8991604609064144,
+    "oracle_1pct": {
+     "recall": 0.9891304347826086,
+     "fa": 1077,
+     "fpr": 0.00994487381921937,
+     "fa_per_h": 229.436816999107,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.025069637883008356,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9891304347826086,
+     "fa": 1300,
+     "fpr": 0.01200402596563155,
+     "fa_per_h": 276.9432331465544,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.02076923076923077,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9891304347826086,
+     "fa": 1274,
+     "fpr": 0.011763945446318919,
+     "fa_per_h": 271.40436848362333,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.02119309262166405,
+     "entity_det20": [
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-16": {
+    "roc_auc": 0.9297839215100019,
+    "pr_auc": 0.003669543852714377,
+    "pauc_1pct": 0.03457060239033653,
+    "oracle_1pct": {
+     "recall": 0.1111111111111111,
+     "fa": 793,
+     "fpr": 0.009971456234989375,
+     "fa_per_h": 215.41495146372455,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 8.5,
+     "top_host_fa_share": 0.031525851197982346,
+     "entity_det20": [
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.1111111111111111,
+     "fa": 891,
+     "fpr": 0.01120374212531593,
+     "fa_per_h": 242.03621910993513,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 8.5,
+     "top_host_fa_share": 0.029180695847362513,
+     "entity_det20": [
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.1111111111111111,
+     "fa": 891,
+     "fpr": 0.01120374212531593,
+     "fa_per_h": 242.03621910993513,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 8.5,
+     "top_host_fa_share": 0.029180695847362513,
+     "entity_det20": [
+      false
+     ]
+    }
+   },
+   "nfcic/2018-02-20": {
+    "roc_auc": 0.2175891867364203,
+    "pr_auc": 0.004827902742435009,
+    "pauc_1pct": 0.07557933820649984,
+    "oracle_1pct": {
+     "recall": 0.08490566037735849,
+     "fa": 1130,
+     "fpr": 0.009925427539987175,
+     "fa_per_h": 248.65185219957868,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.02566371681415929,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.08490566037735849,
+     "fa": 1355,
+     "fpr": 0.011901729483789932,
+     "fa_per_h": 298.16217675259213,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.024354243542435424,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.08490566037735849,
+     "fa": 1355,
+     "fpr": 0.011901729483789932,
+     "fa_per_h": 298.16217675259213,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.024354243542435424,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfcic/2018-02-21": {
+    "roc_auc": 0.9986751726559013,
+    "pr_auc": 0.9660559578502012,
+    "pauc_1pct": 0.9741585901349794,
+    "oracle_1pct": {
+     "recall": 0.9972375690607734,
+     "fa": 1159,
+     "fpr": 0.009987935194760428,
+     "fa_per_h": 244.81994638300006,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.01898188093183779,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9972375690607734,
+     "fa": 1366,
+     "fpr": 0.011771802826611513,
+     "fa_per_h": 288.5453380148215,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.01683748169838946,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9972375690607734,
+     "fa": 1366,
+     "fpr": 0.011771802826611513,
+     "fa_per_h": 288.5453380148215,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.01683748169838946,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-22": {
+    "roc_auc": 0.6032735734367504,
+    "pr_auc": 0.0007739034180447805,
+    "pauc_1pct": 0.0,
+    "oracle_1pct": {
+     "recall": 0.0,
+     "fa": 1143,
+     "fpr": 0.009996763952176461,
+     "fa_per_h": 258.90249453195264,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 1,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.02974628171478565,
+     "entity_det20": [
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.0,
+     "fa": 1329,
+     "fpr": 0.011623533939144809,
+     "fa_per_h": 301.03360912770347,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 1,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.025583145221971408,
+     "entity_det20": [
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.0,
+     "fa": 1329,
+     "fpr": 0.011623533939144809,
+     "fa_per_h": 301.03360912770347,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 1,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.025583145221971408,
+     "entity_det20": [
+      false
+     ]
+    }
+   },
+   "nfcic/2018-03-02": {
+    "roc_auc": 0.43884799530652074,
+    "pr_auc": 0.026184699123285866,
+    "pauc_1pct": 0.0004082808397598543,
+    "oracle_1pct": {
+     "recall": 0.0004152823920265781,
+     "fa": 914,
+     "fpr": 0.009941806711263393,
+     "fa_per_h": 319.61894396945087,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.04157549234135667,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.0004152823920265781,
+     "fa": 933,
+     "fpr": 0.010148474465655082,
+     "fa_per_h": 326.26310144802807,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.04072883172561629,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.0004152823920265781,
+     "fa": 945,
+     "fpr": 0.010279001468428781,
+     "fa_per_h": 330.4594114344979,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.04126984126984127,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfton/all": {
+    "roc_auc": 0.8197006134046321,
+    "pr_auc": 0.7168921651548527,
+    "pauc_1pct": 0.008112925840642219,
+    "oracle_1pct": {
+     "recall": 0.013040371561271883,
+     "fa": 74,
+     "fpr": 0.009936887337182758,
+     "fa_per_h": 1.0235028291669814,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 10,
+     "delay_median_min": 33.75,
+     "top_host_fa_share": 0.7297297297297297,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.43604858878170777,
+     "fa": 1184,
+     "fpr": 0.15899019739492412,
+     "fa_per_h": 16.376045266671703,
+     "r20": 6,
+     "r50": 2,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 9.25,
+     "top_host_fa_share": 0.37415540540540543,
+     "entity_det20": [
+      false,
+      false,
+      true,
+      true,
+      false,
+      true,
+      true,
+      false,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.0,
+     "fa": 19,
+     "fpr": 0.00255136296495233,
+     "fa_per_h": 0.262791266948279,
+     "r20": 0,
+     "r50": 0,
+     "missed": 10,
+     "entities": 10,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.8421052631578947,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfunsw/all": {
+    "roc_auc": 0.9341667194472276,
+    "pr_auc": 0.7358906157174814,
+    "pauc_1pct": 0.006305551796241765,
+    "oracle_1pct": {
+     "recall": 0.017355169885113663,
+     "fa": 119,
+     "fpr": 0.009969003937337689,
+     "fa_per_h": 13.400649387211201,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 56.0,
+     "top_host_fa_share": 0.11764705882352941,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.7061843070153997,
+     "fa": 475,
+     "fpr": 0.03979224260702019,
+     "fa_per_h": 53.48998704979262,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.25,
+     "top_host_fa_share": 0.08421052631578947,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.06404302126619409,
+     "fa": 251,
+     "fpr": 0.021027058724972774,
+     "fa_per_h": 28.26523526210094,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 18.0,
+     "top_host_fa_share": 0.10358565737051793,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   }
+  },
+  "A1|1060": {
+   "nfbot/all": {
+    "roc_auc": 0.9249819988479261,
+    "pr_auc": 0.9693269914474855,
+    "pauc_1pct": 0.5003571428571428,
+    "oracle_1pct": {
+     "recall": 0.49851190476190477,
+     "fa": 0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "r20": 4,
+     "r50": 3,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9337797619047619,
+     "fa": 43,
+     "fpr": 0.06935483870967742,
+     "fa_per_h": 0.10191979979938495,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 1.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9337797619047619,
+     "fa": 43,
+     "fpr": 0.06935483870967742,
+     "fa_per_h": 0.10191979979938495,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 1.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-14": {
+    "roc_auc": 0.9956459310165965,
+    "pr_auc": 0.676679450282789,
+    "pauc_1pct": 0.9215576046708891,
+    "oracle_1pct": {
+     "recall": 0.9891304347826086,
+     "fa": 1081,
+     "fpr": 0.009981809283729005,
+     "fa_per_h": 230.28895002417335,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.024051803885291396,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9891304347826086,
+     "fa": 1121,
+     "fpr": 0.01035116392882536,
+     "fa_per_h": 238.81028027483654,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.02408563782337199,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9891304347826086,
+     "fa": 1121,
+     "fpr": 0.01035116392882536,
+     "fa_per_h": 238.81028027483654,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.02408563782337199,
+     "entity_det20": [
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-16": {
+    "roc_auc": 0.979151268914494,
+    "pr_auc": 0.042500729573255215,
+    "pauc_1pct": 0.5285533121991169,
+    "oracle_1pct": {
+     "recall": 0.9259259259259259,
+     "fa": 793,
+     "fpr": 0.009971456234989375,
+     "fa_per_h": 215.41495146372455,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.5,
+     "top_host_fa_share": 0.03783102143757881,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9259259259259259,
+     "fa": 853,
+     "fpr": 0.0107259169841689,
+     "fa_per_h": 231.71368675732285,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.5,
+     "top_host_fa_share": 0.03634232121922626,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9259259259259259,
+     "fa": 853,
+     "fpr": 0.0107259169841689,
+     "fa_per_h": 231.71368675732285,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.5,
+     "top_host_fa_share": 0.03634232121922626,
+     "entity_det20": [
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-20": {
+    "roc_auc": 0.21594359427092855,
+    "pr_auc": 0.004757220897471628,
+    "pauc_1pct": 0.07523959657255458,
+    "oracle_1pct": {
+     "recall": 0.08490566037735849,
+     "fa": 1138,
+     "fpr": 0.009995696053544608,
+     "fa_per_h": 250.41221929479693,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.020210896309314587,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.08490566037735849,
+     "fa": 1317,
+     "fpr": 0.011567954044392134,
+     "fa_per_h": 289.8004330503054,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.02050113895216401,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.08490566037735849,
+     "fa": 1317,
+     "fpr": 0.011567954044392134,
+     "fa_per_h": 289.8004330503054,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.02050113895216401,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfcic/2018-02-21": {
+    "roc_auc": 0.998646740534635,
+    "pr_auc": 0.9547720132504856,
+    "pauc_1pct": 0.9756135243895647,
+    "oracle_1pct": {
+     "recall": 0.9972375690607734,
+     "fa": 1160,
+     "fpr": 0.009996552912788694,
+     "fa_per_h": 245.0311801589992,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.015517241379310345,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9972375690607734,
+     "fa": 1264,
+     "fpr": 0.01089279558772837,
+     "fa_per_h": 266.9994928629095,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.01819620253164557,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9972375690607734,
+     "fa": 1264,
+     "fpr": 0.01089279558772837,
+     "fa_per_h": 266.9994928629095,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.01819620253164557,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-22": {
+    "roc_auc": 0.5685321825038562,
+    "pr_auc": 0.0007061579966066057,
+    "pauc_1pct": 0.0,
+    "oracle_1pct": {
+     "recall": 0.0,
+     "fa": 1141,
+     "fpr": 0.009979271801778952,
+     "fa_per_h": 258.4494717943639,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 1,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.03067484662576687,
+     "entity_det20": [
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.0,
+     "fa": 1175,
+     "fpr": 0.010276638358536606,
+     "fa_per_h": 266.1508583333721,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 1,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.029787234042553193,
+     "entity_det20": [
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.0,
+     "fa": 1175,
+     "fpr": 0.010276638358536606,
+     "fa_per_h": 266.1508583333721,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 1,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.029787234042553193,
+     "entity_det20": [
+      false
+     ]
+    }
+   },
+   "nfcic/2018-03-02": {
+    "roc_auc": 0.4628012722769066,
+    "pr_auc": 0.027750994445055986,
+    "pauc_1pct": 0.0004087325528093208,
+    "oracle_1pct": {
+     "recall": 0.0004152823920265781,
+     "fa": 905,
+     "fpr": 0.009843911459183119,
+     "fa_per_h": 316.4717114795985,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.04861878453038674,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.0004152823920265781,
+     "fa": 928,
+     "fpr": 0.010094088214499374,
+     "fa_per_h": 324.51463895366567,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.04741379310344827,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.0004152823920265781,
+     "fa": 965,
+     "fpr": 0.010496546473051612,
+     "fa_per_h": 337.4532614119476,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.04559585492227979,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfton/all": {
+    "roc_auc": 0.8292370766996385,
+    "pr_auc": 0.7346294854238364,
+    "pauc_1pct": 0.0064592454296415885,
+    "oracle_1pct": {
+     "recall": 0.01339764201500536,
+     "fa": 64,
+     "fpr": 0.008594064724049952,
+     "fa_per_h": 0.8851916360363082,
+     "r20": 0,
+     "r50": 0,
+     "missed": 5,
+     "entities": 10,
+     "delay_median_min": 57.0,
+     "top_host_fa_share": 0.671875,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.4303322615219721,
+     "fa": 1053,
+     "fpr": 0.1413992211628844,
+     "fa_per_h": 14.564168636659883,
+     "r20": 7,
+     "r50": 2,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 1.5,
+     "top_host_fa_share": 0.3912630579297246,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.011075384065737763,
+     "fa": 39,
+     "fpr": 0.00523700819121794,
+     "fa_per_h": 0.5394136532096253,
+     "r20": 0,
+     "r50": 0,
+     "missed": 7,
+     "entities": 10,
+     "delay_median_min": 44.5,
+     "top_host_fa_share": 0.6410256410256411,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfunsw/all": {
+    "roc_auc": 0.942842696911986,
+    "pr_auc": 0.7445129717646548,
+    "pauc_1pct": 0.008735576137551116,
+    "oracle_1pct": {
+     "recall": 0.022243950134441456,
+     "fa": 118,
+     "fpr": 0.009885230795007121,
+     "fa_per_h": 13.288038888159008,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 38.25,
+     "top_host_fa_share": 0.11864406779661017,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.5468100708873136,
+     "fa": 421,
+     "fpr": 0.03526849292116947,
+     "fa_per_h": 47.40902010097408,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 1.0,
+     "top_host_fa_share": 0.0855106888361045,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.07724272793937913,
+     "fa": 253,
+     "fpr": 0.02119460500963391,
+     "fa_per_h": 28.490456260205328,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 18.0,
+     "top_host_fa_share": 0.10276679841897234,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   }
+  },
+  "A2|1060": {
+   "nfbot/all": {
+    "roc_auc": 0.9537826420890938,
+    "pr_auc": 0.9842688310440837,
+    "pauc_1pct": 0.924413029100529,
+    "oracle_1pct": {
+     "recall": 0.9226190476190477,
+     "fa": 0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9404761904761905,
+     "fa": 42,
+     "fpr": 0.06774193548387097,
+     "fa_per_h": 0.09954957189707368,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 1.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9315476190476191,
+     "fa": 10,
+     "fpr": 0.016129032258064516,
+     "fa_per_h": 0.023702279023112782,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 1.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-14": {
+    "roc_auc": 0.9953718758920216,
+    "pr_auc": 0.6671378019085993,
+    "pauc_1pct": 0.9205137763260512,
+    "oracle_1pct": {
+     "recall": 0.9891304347826086,
+     "fa": 1080,
+     "fpr": 0.009972575417601595,
+     "fa_per_h": 230.07591676790676,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.09444444444444444,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9891304347826086,
+     "fa": 1209,
+     "fpr": 0.011163744148037343,
+     "fa_per_h": 257.5572068262956,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.08436724565756824,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9891304347826086,
+     "fa": 1040,
+     "fpr": 0.00960322077250524,
+     "fa_per_h": 221.55458651724354,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.09807692307692308,
+     "entity_det20": [
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-16": {
+    "roc_auc": 0.9723178105362772,
+    "pr_auc": 0.028595723690810846,
+    "pauc_1pct": 0.2991520699468945,
+    "oracle_1pct": {
+     "recall": 0.8888888888888888,
+     "fa": 768,
+     "fpr": 0.009657097589497907,
+     "fa_per_h": 208.62381175805857,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 1.0,
+     "top_host_fa_share": 0.23697916666666666,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9259259259259259,
+     "fa": 1101,
+     "fpr": 0.013844354747444264,
+     "fa_per_h": 299.08179263752925,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.5,
+     "top_host_fa_share": 0.24250681198910082,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9259259259259259,
+     "fa": 1101,
+     "fpr": 0.013844354747444264,
+     "fa_per_h": 299.08179263752925,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.5,
+     "top_host_fa_share": 0.24250681198910082,
+     "entity_det20": [
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-20": {
+    "roc_auc": 0.21011719097639595,
+    "pr_auc": 0.020863491815964398,
+    "pauc_1pct": 0.08288792652697811,
+    "oracle_1pct": {
+     "recall": 0.08490566037735849,
+     "fa": 1137,
+     "fpr": 0.00998691248934993,
+     "fa_per_h": 250.19217340789464,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.036939313984168866,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.08490566037735849,
+     "fa": 1472,
+     "fpr": 0.012929406494567365,
+     "fa_per_h": 323.90754552015915,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.028532608695652172,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.08490566037735849,
+     "fa": 1472,
+     "fpr": 0.012929406494567365,
+     "fa_per_h": 323.90754552015915,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.028532608695652172,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfcic/2018-02-21": {
+    "roc_auc": 0.9984495169951557,
+    "pr_auc": 0.9647224312583675,
+    "pauc_1pct": 0.9617544721671499,
+    "oracle_1pct": {
+     "recall": 0.9797421731123389,
+     "fa": 1160,
+     "fpr": 0.009996552912788694,
+     "fa_per_h": 245.0311801589992,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.21293103448275863,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.994475138121547,
+     "fa": 1681,
+     "fpr": 0.01448638400551534,
+     "fa_per_h": 355.0839774545497,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.14931588340273647,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.994475138121547,
+     "fa": 1681,
+     "fpr": 0.01448638400551534,
+     "fa_per_h": 355.0839774545497,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.14931588340273647,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-22": {
+    "roc_auc": 0.4420609647647034,
+    "pr_auc": 0.0005524173799380137,
+    "pauc_1pct": 0.0,
+    "oracle_1pct": {
+     "recall": 0.0,
+     "fa": 1141,
+     "fpr": 0.009979271801778952,
+     "fa_per_h": 258.4494717943639,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 1,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.03943908851884312,
+     "entity_det20": [
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.0,
+     "fa": 1269,
+     "fpr": 0.011098769427219535,
+     "fa_per_h": 287.4429270000419,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 1,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.036249014972419225,
+     "entity_det20": [
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.0,
+     "fa": 1360,
+     "fpr": 0.0118946622703062,
+     "fa_per_h": 308.0554615603286,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 1,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.03676470588235294,
+     "entity_det20": [
+      false
+     ]
+    }
+   },
+   "nfcic/2018-03-02": {
+    "roc_auc": 0.3332011304751461,
+    "pr_auc": 0.022378056703096685,
+    "pauc_1pct": 0.0003233587864602449,
+    "oracle_1pct": {
+     "recall": 0.0004152823920265781,
+     "fa": 919,
+     "fpr": 0.0099961929624191,
+     "fa_per_h": 321.36740646381327,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.16539717083786726,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.0004152823920265781,
+     "fa": 1319,
+     "fpr": 0.014347093054875727,
+     "fa_per_h": 461.24440601280713,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.14329037149355572,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.0004152823920265781,
+     "fa": 1328,
+     "fpr": 0.014444988306956001,
+     "fa_per_h": 464.3916385026595,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.14231927710843373,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfton/all": {
+    "roc_auc": 0.8419715471288279,
+    "pr_auc": 0.760253860188586,
+    "pauc_1pct": 0.05768790413311589,
+    "oracle_1pct": {
+     "recall": 0.154162200785995,
+     "fa": 71,
+     "fpr": 0.009534040553242917,
+     "fa_per_h": 0.9820094712277794,
+     "r20": 1,
+     "r50": 1,
+     "missed": 6,
+     "entities": 10,
+     "delay_median_min": 33.75,
+     "top_host_fa_share": 0.49295774647887325,
+     "entity_det20": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.6382636655948553,
+     "fa": 1250,
+     "fpr": 0.16785282664160064,
+     "fa_per_h": 17.288899141334145,
+     "r20": 8,
+     "r50": 4,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 1.0,
+     "top_host_fa_share": 0.3776,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      false,
+      true,
+      true,
+      false,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.001250446588067167,
+     "fa": 14,
+     "fpr": 0.0018799516583859273,
+     "fa_per_h": 0.1936356703829424,
+     "r20": 0,
+     "r50": 0,
+     "missed": 8,
+     "entities": 10,
+     "delay_median_min": 62.5,
+     "top_host_fa_share": 0.35714285714285715,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfunsw/all": {
+    "roc_auc": 0.9486098153167735,
+    "pr_auc": 0.7672603644203236,
+    "pauc_1pct": 0.016684288514046908,
+    "oracle_1pct": {
+     "recall": 0.0354436568076265,
+     "fa": 119,
+     "fpr": 0.009969003937337689,
+     "fa_per_h": 13.400649387211201,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 22.75,
+     "top_host_fa_share": 0.11764705882352941,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.789782449278905,
+     "fa": 635,
+     "fpr": 0.0531959453799112,
+     "fa_per_h": 71.50766689814381,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.13543307086614173,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.08213150818870692,
+     "fa": 250,
+     "fpr": 0.020943285582642204,
+     "fa_per_h": 28.152624763048745,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 9.25,
+     "top_host_fa_share": 0.104,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   }
+  },
+  "B|1060": {
+   "nfbot/all": {
+    "roc_auc": 0.9553727438556068,
+    "pr_auc": 0.9848779355365074,
+    "pauc_1pct": 0.9386532738095239,
+    "oracle_1pct": {
+     "recall": 0.9375,
+     "fa": 0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9412202380952381,
+     "fa": 10,
+     "fpr": 0.016129032258064516,
+     "fa_per_h": 0.023702279023112782,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 1.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.8348214285714286,
+     "fa": 0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-14": {
+    "roc_auc": 0.9972600509629117,
+    "pr_auc": 0.9198867461758499,
+    "pauc_1pct": 0.987413989548069,
+    "oracle_1pct": {
+     "recall": 0.9945652173913043,
+     "fa": 1070,
+     "fpr": 0.009880236756327506,
+     "fa_per_h": 227.94558420524095,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.09719626168224299,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9945652173913043,
+     "fa": 857,
+     "fpr": 0.007913423271189414,
+     "fa_per_h": 182.56950062045934,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.11668611435239207,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9945652173913043,
+     "fa": 787,
+     "fpr": 0.0072670526422707925,
+     "fa_per_h": 167.65717268179873,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.10419313850063533,
+     "entity_det20": [
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-16": {
+    "roc_auc": 0.9990089552628061,
+    "pr_auc": 0.8735348977412594,
+    "pauc_1pct": 0.947012172432469,
+    "oracle_1pct": {
+     "recall": 0.9629629629629629,
+     "fa": 782,
+     "fpr": 0.009833138430973129,
+     "fa_per_h": 212.4268499932315,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.5,
+     "top_host_fa_share": 0.3350383631713555,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9629629629629629,
+     "fa": 955,
+     "fpr": 0.012008500257774089,
+     "fa_per_h": 259.42153675644,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.5,
+     "top_host_fa_share": 0.33403141361256544,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9629629629629629,
+     "fa": 955,
+     "fpr": 0.012008500257774089,
+     "fa_per_h": 259.42153675644,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.5,
+     "top_host_fa_share": 0.33403141361256544,
+     "entity_det20": [
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-20": {
+    "roc_auc": 0.2315388124985809,
+    "pr_auc": 0.007080840682214744,
+    "pauc_1pct": 0.08015756388344265,
+    "oracle_1pct": {
+     "recall": 0.08490566037735849,
+     "fa": 1138,
+     "fpr": 0.009995696053544608,
+     "fa_per_h": 250.41221929479693,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.07644991212653779,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.08490566037735849,
+     "fa": 1157,
+     "fpr": 0.010162583773243507,
+     "fa_per_h": 254.5930911459403,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.07519446845289542,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.08490566037735849,
+     "fa": 1157,
+     "fpr": 0.010162583773243507,
+     "fa_per_h": 254.5930911459403,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.07519446845289542,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfcic/2018-02-21": {
+    "roc_auc": 0.9994097974090346,
+    "pr_auc": 0.9855437092210008,
+    "pauc_1pct": 0.9920577333147953,
+    "oracle_1pct": {
+     "recall": 0.998158379373849,
+     "fa": 1160,
+     "fpr": 0.009996552912788694,
+     "fa_per_h": 245.0311801589992,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.21293103448275863,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.998158379373849,
+     "fa": 1477,
+     "fpr": 0.012728369527749053,
+     "fa_per_h": 311.9922871507257,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.16723087339201084,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.998158379373849,
+     "fa": 1477,
+     "fpr": 0.012728369527749053,
+     "fa_per_h": 311.9922871507257,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.16723087339201084,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-22": {
+    "roc_auc": 0.5782505572322534,
+    "pr_auc": 0.0007712926062529084,
+    "pauc_1pct": 0.0,
+    "oracle_1pct": {
+     "recall": 0.0,
+     "fa": 1140,
+     "fpr": 0.009970525726580198,
+     "fa_per_h": 258.22296042556957,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 1,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.1324561403508772,
+     "entity_det20": [
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.0,
+     "fa": 959,
+     "fpr": 0.008387486115605622,
+     "fa_per_h": 217.22440267379054,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 1,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.15745568300312826,
+     "entity_det20": [
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.0,
+     "fa": 1078,
+     "fpr": 0.009428269064257415,
+     "fa_per_h": 244.17925556031926,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 1,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.14007421150278293,
+     "entity_det20": [
+      false
+     ]
+    }
+   },
+   "nfcic/2018-03-02": {
+    "roc_auc": 0.5731215512837956,
+    "pr_auc": 0.03513616410520083,
+    "pauc_1pct": 0.0,
+    "oracle_1pct": {
+     "recall": 0.0,
+     "fa": 919,
+     "fpr": 0.0099961929624191,
+     "fa_per_h": 321.36740646381327,
+     "r20": 0,
+     "r50": 0,
+     "missed": 7,
+     "entities": 7,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.20674646354733406,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.02782392026578073,
+     "fa": 1498,
+     "fpr": 0.01629412084625007,
+     "fa_per_h": 523.8393633109819,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 7,
+     "delay_median_min": 166.0,
+     "top_host_fa_share": 0.1268357810413885,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.0012458471760797341,
+     "fa": 935,
+     "fpr": 0.010170228966117365,
+     "fa_per_h": 326.96248644577304,
+     "r20": 0,
+     "r50": 0,
+     "missed": 4,
+     "entities": 7,
+     "delay_median_min": 166.0,
+     "top_host_fa_share": 0.20320855614973263,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfton/all": {
+    "roc_auc": 0.8648872899752751,
+    "pr_auc": 0.7473474613298531,
+    "pauc_1pct": 0.0008591388913715993,
+    "oracle_1pct": {
+     "recall": 0.0026795284030010718,
+     "fa": 74,
+     "fpr": 0.009936887337182758,
+     "fa_per_h": 1.0235028291669814,
+     "r20": 0,
+     "r50": 0,
+     "missed": 7,
+     "entities": 10,
+     "delay_median_min": 65.0,
+     "top_host_fa_share": 0.7567567567567568,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.2840300107181136,
+     "fa": 338,
+     "fpr": 0.04538740432388881,
+     "fa_per_h": 4.674918327816752,
+     "r20": 4,
+     "r50": 1,
+     "missed": 2,
+     "entities": 10,
+     "delay_median_min": 4.75,
+     "top_host_fa_share": 0.636094674556213,
+     "entity_det20": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false,
+      false,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.0007145409074669524,
+     "fa": 26,
+     "fpr": 0.0034913387941452934,
+     "fa_per_h": 0.3596091021397502,
+     "r20": 0,
+     "r50": 0,
+     "missed": 7,
+     "entities": 10,
+     "delay_median_min": 328.0,
+     "top_host_fa_share": 0.6538461538461539,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfunsw/all": {
+    "roc_auc": 0.9273016834674718,
+    "pr_auc": 0.7107241945822291,
+    "pauc_1pct": 0.00806370248170204,
+    "oracle_1pct": {
+     "recall": 0.01344414568565143,
+     "fa": 117,
+     "fpr": 0.009801457652676551,
+     "fa_per_h": 13.175428389106813,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 39.25,
+     "top_host_fa_share": 0.11965811965811966,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.6536299193351259,
+     "fa": 491,
+     "fpr": 0.04113261288430929,
+     "fa_per_h": 55.291755034627734,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.0814663951120163,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.05328770471767294,
+     "fa": 311,
+     "fpr": 0.026053447264806903,
+     "fa_per_h": 35.021865205232636,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 19.75,
+     "top_host_fa_share": 0.09646302250803858,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   }
+  },
+  "C1|1060": {
+   "nfbot/all": {
+    "roc_auc": 0.953153801843318,
+    "pr_auc": 0.9843630778833827,
+    "pauc_1pct": 0.9397321428571428,
+    "oracle_1pct": {
+     "recall": 0.9397321428571429,
+     "fa": 0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9471726190476191,
+     "fa": 55,
+     "fpr": 0.08870967741935484,
+     "fa_per_h": 0.1303625346271203,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.8181818181818182,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9456845238095238,
+     "fa": 41,
+     "fpr": 0.06612903225806452,
+     "fa_per_h": 0.0971793439947624,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.7560975609756098,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-14": {
+    "roc_auc": 0.9925091766563047,
+    "pr_auc": 0.32062291668173576,
+    "pauc_1pct": 0.6919956632946971,
+    "oracle_1pct": {
+     "recall": 0.9891304347826086,
+     "fa": 1075,
+     "fpr": 0.00992640608696455,
+     "fa_per_h": 229.01075048657387,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.5,
+     "top_host_fa_share": 0.08837209302325581,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9891304347826086,
+     "fa": 1632,
+     "fpr": 0.0150696695199313,
+     "fa_per_h": 347.6702742270591,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.5,
+     "top_host_fa_share": 0.09620098039215687,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9891304347826086,
+     "fa": 1450,
+     "fpr": 0.013389105884742883,
+     "fa_per_h": 308.89822158654147,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.5,
+     "top_host_fa_share": 0.10827586206896551,
+     "entity_det20": [
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-16": {
+    "roc_auc": 0.9843211879124211,
+    "pr_auc": 0.03866334116399657,
+    "pauc_1pct": 0.5023460469283887,
+    "oracle_1pct": {
+     "recall": 0.9629629629629629,
+     "fa": 795,
+     "fpr": 0.009996604926628691,
+     "fa_per_h": 215.95824264017782,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.5,
+     "top_host_fa_share": 0.09433962264150944,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9629629629629629,
+     "fa": 879,
+     "fpr": 0.011052849975480025,
+     "fa_per_h": 238.77647205121548,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.5,
+     "top_host_fa_share": 0.08646188850967008,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9629629629629629,
+     "fa": 879,
+     "fpr": 0.011052849975480025,
+     "fa_per_h": 238.77647205121548,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.5,
+     "top_host_fa_share": 0.08646188850967008,
+     "entity_det20": [
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-20": {
+    "roc_auc": 0.20943356451784778,
+    "pr_auc": 0.0007301447619172688,
+    "pauc_1pct": 0.006479867325091459,
+    "oracle_1pct": {
+     "recall": 0.009433962264150943,
+     "fa": 1138,
+     "fpr": 0.009995696053544608,
+     "fa_per_h": 250.41221929479693,
+     "r20": 0,
+     "r50": 0,
+     "missed": 9,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.033391915641476276,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.018867924528301886,
+     "fa": 1514,
+     "fpr": 0.01329831619074388,
+     "fa_per_h": 333.14947277005496,
+     "r20": 0,
+     "r50": 0,
+     "missed": 8,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.10039630118890357,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.018867924528301886,
+     "fa": 1514,
+     "fpr": 0.01329831619074388,
+     "fa_per_h": 333.14947277005496,
+     "r20": 0,
+     "r50": 0,
+     "missed": 8,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.10039630118890357,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfcic/2018-02-21": {
+    "roc_auc": 0.9974175174877781,
+    "pr_auc": 0.7469374352880318,
+    "pauc_1pct": 0.8415242124548362,
+    "oracle_1pct": {
+     "recall": 0.9935543278084714,
+     "fa": 1160,
+     "fpr": 0.009996552912788694,
+     "fa_per_h": 245.0311801589992,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.04655172413793104,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9972375690607734,
+     "fa": 1938,
+     "fpr": 0.01670113753877973,
+     "fa_per_h": 409.371057886328,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.05056759545923633,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9972375690607734,
+     "fa": 1938,
+     "fpr": 0.01670113753877973,
+     "fa_per_h": 409.371057886328,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.05056759545923633,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-22": {
+    "roc_auc": 0.5947260176429789,
+    "pr_auc": 0.0008570214320850914,
+    "pauc_1pct": 0.007506277784259401,
+    "oracle_1pct": {
+     "recall": 0.018867924528301886,
+     "fa": 1143,
+     "fpr": 0.009996763952176461,
+     "fa_per_h": 258.90249453195264,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 1.0,
+     "top_host_fa_share": 0.06386701662292213,
+     "entity_det20": [
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.018867924528301886,
+     "fa": 1662,
+     "fpr": 0.014535976980330077,
+     "fa_per_h": 376.46189493622506,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 1.0,
+     "top_host_fa_share": 0.05535499398315283,
+     "entity_det20": [
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.018867924528301886,
+     "fa": 1732,
+     "fpr": 0.015148202244242896,
+     "fa_per_h": 392.31769075183024,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 1.0,
+     "top_host_fa_share": 0.053117782909930716,
+     "entity_det20": [
+      false
+     ]
+    }
+   },
+   "nfcic/2018-03-02": {
+    "roc_auc": 0.26399985671662074,
+    "pr_auc": 0.02046450074282356,
+    "pauc_1pct": 0.00037891949154456397,
+    "oracle_1pct": {
+     "recall": 0.0004152823920265781,
+     "fa": 918,
+     "fpr": 0.00998531571218796,
+     "fa_per_h": 321.0177139649408,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.06535947712418301,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.0004152823920265781,
+     "fa": 1072,
+     "fpr": 0.01166041224778376,
+     "fa_per_h": 374.87035879130343,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.055970149253731345,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.0004152823920265781,
+     "fa": 1085,
+     "fpr": 0.011801816500788601,
+     "fa_per_h": 379.4163612766457,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.055299539170506916,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfton/all": {
+    "roc_auc": 0.7358954691034939,
+    "pr_auc": 0.5404371273929336,
+    "pauc_1pct": 0.00010532929786113164,
+    "oracle_1pct": {
+     "recall": 0.0005359056806002144,
+     "fa": 74,
+     "fpr": 0.009936887337182758,
+     "fa_per_h": 1.0235028291669814,
+     "r20": 0,
+     "r50": 0,
+     "missed": 8,
+     "entities": 10,
+     "delay_median_min": 543.25,
+     "top_host_fa_share": 0.2702702702702703,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.43229724901750627,
+     "fa": 1892,
+     "fpr": 0.25406203840472674,
+     "fa_per_h": 26.16847774032336,
+     "r20": 6,
+     "r50": 4,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 5.25,
+     "top_host_fa_share": 0.2769556025369979,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      false,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.0,
+     "fa": 10,
+     "fpr": 0.0013428226131328052,
+     "fa_per_h": 0.13831119313067317,
+     "r20": 0,
+     "r50": 0,
+     "missed": 10,
+     "entities": 10,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.4,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfunsw/all": {
+    "roc_auc": 0.8901517657672634,
+    "pr_auc": 0.6569688332959887,
+    "pauc_1pct": 0.03336194234265869,
+    "oracle_1pct": {
+     "recall": 0.04595453434368125,
+     "fa": 92,
+     "fpr": 0.007707129094412331,
+     "fa_per_h": 10.360165912801937,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 15.0,
+     "top_host_fa_share": 0.25,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.49865558543143484,
+     "fa": 703,
+     "fpr": 0.05889251905838988,
+     "fa_per_h": 79.16518083369307,
+     "r20": 4,
+     "r50": 1,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 1.25,
+     "top_host_fa_share": 0.2233285917496444,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.08457589831337081,
+     "fa": 264,
+     "fpr": 0.022116109575270167,
+     "fa_per_h": 29.729171749779475,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 8.25,
+     "top_host_fa_share": 0.24242424242424243,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   }
+  },
+  "M2member|1060": {
+   "nfbot/all": {
+    "roc_auc": 0.9381576420890938,
+    "pr_auc": 0.9774788408710979,
+    "pauc_1pct": 0.710111607142857,
+    "oracle_1pct": {
+     "recall": 0.6711309523809523,
+     "fa": 0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9375,
+     "fa": 115,
+     "fpr": 0.18548387096774194,
+     "fa_per_h": 0.27257620876579697,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 1.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9337797619047619,
+     "fa": 43,
+     "fpr": 0.06935483870967742,
+     "fa_per_h": 0.10191979979938495,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 1.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-14": {
+    "roc_auc": 0.9955596646259822,
+    "pr_auc": 0.6186480623876097,
+    "pauc_1pct": 0.8991604609064144,
+    "oracle_1pct": {
+     "recall": 0.9891304347826086,
+     "fa": 1077,
+     "fpr": 0.00994487381921937,
+     "fa_per_h": 229.436816999107,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.025069637883008356,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9891304347826086,
+     "fa": 1300,
+     "fpr": 0.01200402596563155,
+     "fa_per_h": 276.9432331465544,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.02076923076923077,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9891304347826086,
+     "fa": 1274,
+     "fpr": 0.011763945446318919,
+     "fa_per_h": 271.40436848362333,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.02119309262166405,
+     "entity_det20": [
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-16": {
+    "roc_auc": 0.9297839215100019,
+    "pr_auc": 0.003669543852714377,
+    "pauc_1pct": 0.03457060239033653,
+    "oracle_1pct": {
+     "recall": 0.1111111111111111,
+     "fa": 793,
+     "fpr": 0.009971456234989375,
+     "fa_per_h": 215.41495146372455,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 8.5,
+     "top_host_fa_share": 0.031525851197982346,
+     "entity_det20": [
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.1111111111111111,
+     "fa": 891,
+     "fpr": 0.01120374212531593,
+     "fa_per_h": 242.03621910993513,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 8.5,
+     "top_host_fa_share": 0.029180695847362513,
+     "entity_det20": [
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.1111111111111111,
+     "fa": 891,
+     "fpr": 0.01120374212531593,
+     "fa_per_h": 242.03621910993513,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 8.5,
+     "top_host_fa_share": 0.029180695847362513,
+     "entity_det20": [
+      false
+     ]
+    }
+   },
+   "nfcic/2018-02-20": {
+    "roc_auc": 0.2175891867364203,
+    "pr_auc": 0.004827902742435009,
+    "pauc_1pct": 0.07557933820649984,
+    "oracle_1pct": {
+     "recall": 0.08490566037735849,
+     "fa": 1130,
+     "fpr": 0.009925427539987175,
+     "fa_per_h": 248.65185219957868,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.02566371681415929,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.08490566037735849,
+     "fa": 1355,
+     "fpr": 0.011901729483789932,
+     "fa_per_h": 298.16217675259213,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.024354243542435424,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.08490566037735849,
+     "fa": 1355,
+     "fpr": 0.011901729483789932,
+     "fa_per_h": 298.16217675259213,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.024354243542435424,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfcic/2018-02-21": {
+    "roc_auc": 0.9986751726559013,
+    "pr_auc": 0.9660559578502012,
+    "pauc_1pct": 0.9741585901349794,
+    "oracle_1pct": {
+     "recall": 0.9972375690607734,
+     "fa": 1159,
+     "fpr": 0.009987935194760428,
+     "fa_per_h": 244.81994638300006,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.01898188093183779,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9972375690607734,
+     "fa": 1366,
+     "fpr": 0.011771802826611513,
+     "fa_per_h": 288.5453380148215,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.01683748169838946,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9972375690607734,
+     "fa": 1366,
+     "fpr": 0.011771802826611513,
+     "fa_per_h": 288.5453380148215,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.01683748169838946,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-22": {
+    "roc_auc": 0.6032735734367504,
+    "pr_auc": 0.0007739034180447805,
+    "pauc_1pct": 0.0,
+    "oracle_1pct": {
+     "recall": 0.0,
+     "fa": 1143,
+     "fpr": 0.009996763952176461,
+     "fa_per_h": 258.90249453195264,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 1,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.02974628171478565,
+     "entity_det20": [
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.0,
+     "fa": 1329,
+     "fpr": 0.011623533939144809,
+     "fa_per_h": 301.03360912770347,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 1,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.025583145221971408,
+     "entity_det20": [
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.0,
+     "fa": 1329,
+     "fpr": 0.011623533939144809,
+     "fa_per_h": 301.03360912770347,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 1,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.025583145221971408,
+     "entity_det20": [
+      false
+     ]
+    }
+   },
+   "nfcic/2018-03-02": {
+    "roc_auc": 0.43884799530652074,
+    "pr_auc": 0.026184699123285866,
+    "pauc_1pct": 0.0004082808397598543,
+    "oracle_1pct": {
+     "recall": 0.0004152823920265781,
+     "fa": 914,
+     "fpr": 0.009941806711263393,
+     "fa_per_h": 319.61894396945087,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.04157549234135667,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.0004152823920265781,
+     "fa": 933,
+     "fpr": 0.010148474465655082,
+     "fa_per_h": 326.26310144802807,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.04072883172561629,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.0004152823920265781,
+     "fa": 945,
+     "fpr": 0.010279001468428781,
+     "fa_per_h": 330.4594114344979,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.04126984126984127,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfton/all": {
+    "roc_auc": 0.8197006134046321,
+    "pr_auc": 0.7168921651548527,
+    "pauc_1pct": 0.008112925840642219,
+    "oracle_1pct": {
+     "recall": 0.013040371561271883,
+     "fa": 74,
+     "fpr": 0.009936887337182758,
+     "fa_per_h": 1.0235028291669814,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 10,
+     "delay_median_min": 33.75,
+     "top_host_fa_share": 0.7297297297297297,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.43604858878170777,
+     "fa": 1184,
+     "fpr": 0.15899019739492412,
+     "fa_per_h": 16.376045266671703,
+     "r20": 6,
+     "r50": 2,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 9.25,
+     "top_host_fa_share": 0.37415540540540543,
+     "entity_det20": [
+      false,
+      false,
+      true,
+      true,
+      false,
+      true,
+      true,
+      false,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.0,
+     "fa": 19,
+     "fpr": 0.00255136296495233,
+     "fa_per_h": 0.262791266948279,
+     "r20": 0,
+     "r50": 0,
+     "missed": 10,
+     "entities": 10,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.8421052631578947,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfunsw/all": {
+    "roc_auc": 0.9341667194472276,
+    "pr_auc": 0.7358906157174814,
+    "pauc_1pct": 0.006305551796241765,
+    "oracle_1pct": {
+     "recall": 0.017355169885113663,
+     "fa": 119,
+     "fpr": 0.009969003937337689,
+     "fa_per_h": 13.400649387211201,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 56.0,
+     "top_host_fa_share": 0.11764705882352941,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.7061843070153997,
+     "fa": 475,
+     "fpr": 0.03979224260702019,
+     "fa_per_h": 53.48998704979262,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.25,
+     "top_host_fa_share": 0.08421052631578947,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.06404302126619409,
+     "fa": 251,
+     "fpr": 0.021027058724972774,
+     "fa_per_h": 28.26523526210094,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 18.0,
+     "top_host_fa_share": 0.10358565737051793,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   }
+  },
+  "M2member|1061": {
+   "nfbot/all": {
+    "roc_auc": 0.9373667914746544,
+    "pr_auc": 0.9757906548309754,
+    "pauc_1pct": 0.48960813492063493,
+    "oracle_1pct": {
+     "recall": 0.4888392857142857,
+     "fa": 0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "r20": 4,
+     "r50": 1,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9389880952380952,
+     "fa": 44,
+     "fpr": 0.07096774193548387,
+     "fa_per_h": 0.10429002770169624,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 1.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9315476190476191,
+     "fa": 43,
+     "fpr": 0.06935483870967742,
+     "fa_per_h": 0.10191979979938495,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 1.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-14": {
+    "roc_auc": 0.9957965333657723,
+    "pr_auc": 0.6291477473319805,
+    "pauc_1pct": 0.9064319799295849,
+    "oracle_1pct": {
+     "recall": 0.9945652173913043,
+     "fa": 1078,
+     "fpr": 0.009954107685346778,
+     "fa_per_h": 229.6498502553736,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.027829313543599257,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9945652173913043,
+     "fa": 1679,
+     "fpr": 0.015503661227919517,
+     "fa_per_h": 357.68283727158837,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.023823704586063133,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9945652173913043,
+     "fa": 1449,
+     "fpr": 0.013379872018615475,
+     "fa_per_h": 308.6851883302749,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.022084195997239476,
+     "entity_det20": [
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-16": {
+    "roc_auc": 0.982647402768871,
+    "pr_auc": 0.07481036961881964,
+    "pauc_1pct": 0.7541356790542574,
+    "oracle_1pct": {
+     "recall": 0.9629629629629629,
+     "fa": 795,
+     "fpr": 0.009996604926628691,
+     "fa_per_h": 215.95824264017782,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.5,
+     "top_host_fa_share": 0.0389937106918239,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9629629629629629,
+     "fa": 1122,
+     "fpr": 0.014108416009657098,
+     "fa_per_h": 304.78634999028867,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.5,
+     "top_host_fa_share": 0.06327985739750445,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9629629629629629,
+     "fa": 1122,
+     "fpr": 0.014108416009657098,
+     "fa_per_h": 304.78634999028867,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.5,
+     "top_host_fa_share": 0.06327985739750445,
+     "entity_det20": [
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-20": {
+    "roc_auc": 0.22724306956069087,
+    "pr_auc": 0.0016538352673276771,
+    "pauc_1pct": 0.037155388045436666,
+    "oracle_1pct": {
+     "recall": 0.08490566037735849,
+     "fa": 1138,
+     "fpr": 0.009995696053544608,
+     "fa_per_h": 250.41221929479693,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.04130052724077329,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.08490566037735849,
+     "fa": 1585,
+     "fpr": 0.013921949248566084,
+     "fa_per_h": 348.77273074011697,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.04290220820189274,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.08490566037735849,
+     "fa": 1582,
+     "fpr": 0.013895598555982047,
+     "fa_per_h": 348.11259307941015,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.04298356510745891,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfcic/2018-02-21": {
+    "roc_auc": 0.9988240544474725,
+    "pr_auc": 0.9687379875828622,
+    "pauc_1pct": 0.9786721794669128,
+    "oracle_1pct": {
+     "recall": 0.9972375690607734,
+     "fa": 1160,
+     "fpr": 0.009996552912788694,
+     "fa_per_h": 245.0311801589992,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.03793103448275862,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.998158379373849,
+     "fa": 1949,
+     "fpr": 0.01679593243709066,
+     "fa_per_h": 411.6946294223185,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.04002052334530529,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.998158379373849,
+     "fa": 1949,
+     "fpr": 0.01679593243709066,
+     "fa_per_h": 411.6946294223185,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.04002052334530529,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-22": {
+    "roc_auc": 0.6052699888660813,
+    "pr_auc": 0.0007619002639328853,
+    "pauc_1pct": 0.0,
+    "oracle_1pct": {
+     "recall": 0.0,
+     "fa": 1142,
+     "fpr": 0.009988017876977706,
+     "fa_per_h": 258.67598316315826,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 1,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.02714535901926445,
+     "entity_det20": [
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.0,
+     "fa": 1444,
+     "fpr": 0.012629332587001583,
+     "fa_per_h": 327.08241653905475,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 1,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.031163434903047092,
+     "entity_det20": [
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.018867924528301886,
+     "fa": 1548,
+     "fpr": 0.013538924407672057,
+     "fa_per_h": 350.6395988936681,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 2.5,
+     "top_host_fa_share": 0.030361757105943153,
+     "entity_det20": [
+      false
+     ]
+    }
+   },
+   "nfcic/2018-03-02": {
+    "roc_auc": 0.48251910701027945,
+    "pr_auc": 0.02908208467473414,
+    "pauc_1pct": 0.00036581981311005,
+    "oracle_1pct": {
+     "recall": 0.0004152823920265781,
+     "fa": 919,
+     "fpr": 0.0099961929624191,
+     "fa_per_h": 321.36740646381327,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.05223068552774755,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.0004152823920265781,
+     "fa": 954,
+     "fpr": 0.010376896720509055,
+     "fa_per_h": 333.60664392435024,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.050314465408805034,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.0004152823920265781,
+     "fa": 1013,
+     "fpr": 0.011018654484146408,
+     "fa_per_h": 354.23850135782686,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.05231984205330701,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfton/all": {
+    "roc_auc": 0.8454002544502527,
+    "pr_auc": 0.7271114819269484,
+    "pauc_1pct": 0.0033303834653295823,
+    "oracle_1pct": {
+     "recall": 0.01625580564487317,
+     "fa": 74,
+     "fpr": 0.009936887337182758,
+     "fa_per_h": 1.0235028291669814,
+     "r20": 0,
+     "r50": 0,
+     "missed": 5,
+     "entities": 10,
+     "delay_median_min": 57.0,
+     "top_host_fa_share": 0.6486486486486487,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.6291532690246516,
+     "fa": 1069,
+     "fpr": 0.14354773734389686,
+     "fa_per_h": 14.78546654566896,
+     "r20": 8,
+     "r50": 5,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 1.75,
+     "top_host_fa_share": 0.37511693171188026,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      false,
+      true,
+      true,
+      false,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.0,
+     "fa": 0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "r20": 0,
+     "r50": 0,
+     "missed": 10,
+     "entities": 10,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.0,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfunsw/all": {
+    "roc_auc": 0.9153610107427229,
+    "pr_auc": 0.7063852443368236,
+    "pauc_1pct": 0.010621776917425626,
+    "oracle_1pct": {
+     "recall": 0.021755072109508677,
+     "fa": 119,
+     "fpr": 0.009969003937337689,
+     "fa_per_h": 13.400649387211201,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 37.25,
+     "top_host_fa_share": 0.11764705882352941,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.5120997311170863,
+     "fa": 419,
+     "fpr": 0.03510094663650833,
+     "fa_per_h": 47.18379910286969,
+     "r20": 4,
+     "r50": 3,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 1.5,
+     "top_host_fa_share": 0.08591885441527446,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.057443167929601566,
+     "fa": 270,
+     "fpr": 0.02261874842925358,
+     "fa_per_h": 30.404834744092643,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 18.0,
+     "top_host_fa_share": 0.1037037037037037,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   }
+  },
+  "M2member|1062": {
+   "nfbot/all": {
+    "roc_auc": 0.9215497791858679,
+    "pr_auc": 0.9671941307746057,
+    "pauc_1pct": 0.5057246663786483,
+    "oracle_1pct": {
+     "recall": 0.5059523809523809,
+     "fa": 2,
+     "fpr": 0.0032258064516129032,
+     "fa_per_h": 0.004740455804622556,
+     "r20": 4,
+     "r50": 3,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 1.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9315476190476191,
+     "fa": 117,
+     "fpr": 0.18870967741935485,
+     "fa_per_h": 0.27731666457041954,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 1.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9136904761904762,
+     "fa": 41,
+     "fpr": 0.06612903225806452,
+     "fa_per_h": 0.0971793439947624,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 1.0,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-14": {
+    "roc_auc": 0.996086597203905,
+    "pr_auc": 0.6965823557453792,
+    "pauc_1pct": 0.9355462594612028,
+    "oracle_1pct": {
+     "recall": 0.9945652173913043,
+     "fa": 1081,
+     "fpr": 0.009981809283729005,
+     "fa_per_h": 230.28895002417335,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.034227567067530065,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9945652173913043,
+     "fa": 1758,
+     "fpr": 0.01623313665198482,
+     "fa_per_h": 374.5124645166482,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.14448236632536973,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9945652173913043,
+     "fa": 1556,
+     "fpr": 0.014367895694248225,
+     "fa_per_h": 331.479746750799,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.08033419023136247,
+     "entity_det20": [
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-16": {
+    "roc_auc": 0.9848553647515007,
+    "pr_auc": 0.20853245690982286,
+    "pauc_1pct": 0.894782065629699,
+    "oracle_1pct": {
+     "recall": 0.9629629629629629,
+     "fa": 795,
+     "fpr": 0.009996604926628691,
+     "fa_per_h": 215.95824264017782,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.5,
+     "top_host_fa_share": 0.025157232704402517,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.9629629629629629,
+     "fa": 1127,
+     "fpr": 0.014171287738755391,
+     "fa_per_h": 306.1445779314219,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.5,
+     "top_host_fa_share": 0.04614019520851819,
+     "entity_det20": [
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.9629629629629629,
+     "fa": 1127,
+     "fpr": 0.014171287738755391,
+     "fa_per_h": 306.1445779314219,
+     "r20": 1,
+     "r50": 1,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 0.5,
+     "top_host_fa_share": 0.04614019520851819,
+     "entity_det20": [
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-20": {
+    "roc_auc": 0.22497516985838745,
+    "pr_auc": 0.01234493183087293,
+    "pauc_1pct": 0.08214215220856197,
+    "oracle_1pct": {
+     "recall": 0.08490566037735849,
+     "fa": 1138,
+     "fpr": 0.009995696053544608,
+     "fa_per_h": 250.41221929479693,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.05975395430579965,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.08490566037735849,
+     "fa": 1398,
+     "fpr": 0.012279422744161125,
+     "fa_per_h": 307.62414988939025,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.060801144492131615,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.08490566037735849,
+     "fa": 1398,
+     "fpr": 0.012279422744161125,
+     "fa_per_h": 307.62414988939025,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.060801144492131615,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfcic/2018-02-21": {
+    "roc_auc": 0.9987869411259089,
+    "pr_auc": 0.9556375990722729,
+    "pauc_1pct": 0.9755917023595734,
+    "oracle_1pct": {
+     "recall": 0.9972375690607734,
+     "fa": 1156,
+     "fpr": 0.009962082040675628,
+     "fa_per_h": 244.18624505500264,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.056228373702422146,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_T": {
+     "recall": 0.998158379373849,
+     "fa": 2041,
+     "fpr": 0.017588762495691142,
+     "fa_per_h": 431.1281368142391,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.06271435570798628,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.998158379373849,
+     "fa": 2041,
+     "fpr": 0.017588762495691142,
+     "fa_per_h": 431.1281368142391,
+     "r20": 10,
+     "r50": 10,
+     "missed": 0,
+     "entities": 10,
+     "delay_median_min": 0.0,
+     "top_host_fa_share": 0.06271435570798628,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+     ]
+    }
+   },
+   "nfcic/2018-02-22": {
+    "roc_auc": 0.6205424513862612,
+    "pr_auc": 0.0008503456365597762,
+    "pauc_1pct": 0.0,
+    "oracle_1pct": {
+     "recall": 0.0,
+     "fa": 1143,
+     "fpr": 0.009996763952176461,
+     "fa_per_h": 258.90249453195264,
+     "r20": 0,
+     "r50": 0,
+     "missed": 1,
+     "entities": 1,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.026246719160104987,
+     "entity_det20": [
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.018867924528301886,
+     "fa": 1443,
+     "fpr": 0.012620586511802829,
+     "fa_per_h": 326.8559051702604,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 2.5,
+     "top_host_fa_share": 0.02356202356202356,
+     "entity_det20": [
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.018867924528301886,
+     "fa": 1562,
+     "fpr": 0.01366136946045462,
+     "fa_per_h": 353.81075805678915,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 1,
+     "delay_median_min": 2.5,
+     "top_host_fa_share": 0.023687580025608196,
+     "entity_det20": [
+      false
+     ]
+    }
+   },
+   "nfcic/2018-03-02": {
+    "roc_auc": 0.4604833474177462,
+    "pr_auc": 0.02775641246059601,
+    "pauc_1pct": 0.0004078291267103888,
+    "oracle_1pct": {
+     "recall": 0.0004152823920265781,
+     "fa": 919,
+     "fpr": 0.0099961929624191,
+     "fa_per_h": 321.36740646381327,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.025027203482045703,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.0004152823920265781,
+     "fa": 969,
+     "fpr": 0.010540055473976179,
+     "fa_per_h": 338.8520314074375,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.02889576883384933,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_U": {
+     "recall": 0.0004152823920265781,
+     "fa": 978,
+     "fpr": 0.010637950726056453,
+     "fa_per_h": 341.9992638972899,
+     "r20": 0,
+     "r50": 0,
+     "missed": 6,
+     "entities": 7,
+     "delay_median_min": 73.5,
+     "top_host_fa_share": 0.028629856850715747,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfton/all": {
+    "roc_auc": 0.8459509004755436,
+    "pr_auc": 0.7585881221623322,
+    "pauc_1pct": 0.00663543398401511,
+    "oracle_1pct": {
+     "recall": 0.013754912468738835,
+     "fa": 60,
+     "fpr": 0.00805693567879683,
+     "fa_per_h": 0.8298671587840389,
+     "r20": 0,
+     "r50": 0,
+     "missed": 5,
+     "entities": 10,
+     "delay_median_min": 57.0,
+     "top_host_fa_share": 0.5833333333333334,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.4667738478027867,
+     "fa": 745,
+     "fpr": 0.10004028467839399,
+     "fa_per_h": 10.30418388823515,
+     "r20": 8,
+     "r50": 1,
+     "missed": 1,
+     "entities": 10,
+     "delay_median_min": 2.0,
+     "top_host_fa_share": 0.36778523489932885,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true,
+      false,
+      true,
+      true,
+      false,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.0,
+     "fa": 0,
+     "fpr": 0.0,
+     "fa_per_h": 0.0,
+     "r20": 0,
+     "r50": 0,
+     "missed": 10,
+     "entities": 10,
+     "delay_median_min": null,
+     "top_host_fa_share": 0.0,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   },
+   "nfunsw/all": {
+    "roc_auc": 0.9132291675433564,
+    "pr_auc": 0.7164325360378592,
+    "pauc_1pct": 0.010689174468411694,
+    "oracle_1pct": {
+     "recall": 0.025421657296504523,
+     "fa": 115,
+     "fpr": 0.009633911368015413,
+     "fa_per_h": 12.950207391002422,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 38.25,
+     "top_host_fa_share": 0.13043478260869565,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false
+     ]
+    },
+    "cal_T": {
+     "recall": 0.5299437790271327,
+     "fa": 401,
+     "fpr": 0.0335930300745581,
+     "fa_per_h": 45.156810119930185,
+     "r20": 4,
+     "r50": 4,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 1.25,
+     "top_host_fa_share": 0.08728179551122195,
+     "entity_det20": [
+      true,
+      true,
+      true,
+      true
+     ]
+    },
+    "cal_U": {
+     "recall": 0.07528721583964801,
+     "fa": 282,
+     "fpr": 0.023624026137220408,
+     "fa_per_h": 31.756160732718982,
+     "r20": 0,
+     "r50": 0,
+     "missed": 0,
+     "entities": 4,
+     "delay_median_min": 18.0,
+     "top_host_fa_share": 0.10283687943262411,
+     "entity_det20": [
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   }
+  }
+ },
+ "decisions": {
+  "screening": {
+   "A1": {
+    "d_macro_pauc": -0.030682217676061996,
+    "d_macro_recall_1pct": -0.007892631945045914,
+    "worst_net_d_pauc": -0.2097544642857142,
+    "worst_net_d_recall": -0.17261904761904756,
+    "passes": false,
+    "guardrails": {
+     "per_network": {
+      "nfcic": {
+       "fpr": true,
+       "fa_h": true,
+       "recall_1pct": true
+      },
+      "nfunsw": {
+       "fpr": true,
+       "fa_h": true,
+       "recall_1pct": true
+      },
+      "nfton": {
+       "fpr": true,
+       "fa_h": true,
+       "recall_1pct": true
+      },
+      "nfbot": {
+       "fpr": true,
+       "fa_h": true,
+       "recall_1pct": false
+      }
+     },
+     "missed_calT": true,
+     "all": false
+    }
+   },
+   "A2": {
+    "d_macro_pauc": 0.08026188137846874,
+    "d_macro_recall_1pct": 0.13435303542255544,
+    "worst_net_d_pauc": 0.010378736717805143,
+    "worst_net_d_recall": 0.018088486922512834,
+    "passes": true,
+    "guardrails": {
+     "per_network": {
+      "nfcic": {
+       "fpr": true,
+       "fa_h": true,
+       "recall_1pct": true
+      },
+      "nfunsw": {
+       "fpr": false,
+       "fa_h": false,
+       "recall_1pct": true
+      },
+      "nfton": {
+       "fpr": true,
+       "fa_h": true,
+       "recall_1pct": true
+      },
+      "nfbot": {
+       "fpr": true,
+       "fa_h": true,
+       "recall_1pct": true
+      }
+     },
+     "missed_calT": true,
+     "all": false
+    }
+   },
+   "B": {
+    "d_macro_pauc": 0.09837668204658018,
+    "d_macro_recall_1pct": 0.09876563516456188,
+    "worst_net_d_pauc": -0.0072537869492706195,
+    "worst_net_d_recall": -0.010360843158270811,
+    "passes": true,
+    "guardrails": {
+     "per_network": {
+      "nfcic": {
+       "fpr": true,
+       "fa_h": true,
+       "recall_1pct": true
+      },
+      "nfunsw": {
+       "fpr": true,
+       "fa_h": true,
+       "recall_1pct": true
+      },
+      "nfton": {
+       "fpr": true,
+       "fa_h": true,
+       "recall_1pct": true
+      },
+      "nfbot": {
+       "fpr": true,
+       "fa_h": true,
+       "recall_1pct": true
+      }
+     },
+     "missed_calT": true,
+     "all": true
+    }
+   },
+   "C1": {
+    "d_macro_pauc": 0.0649320705461815,
+    "d_macro_recall_1pct": 0.10415589047246515,
+    "worst_net_d_pauc": -0.008007596542781088,
+    "worst_net_d_recall": -0.012504465880671669,
+    "passes": true,
+    "guardrails": {
+     "per_network": {
+      "nfcic": {
+       "fpr": true,
+       "fa_h": true,
+       "recall_1pct": true
+      },
+      "nfunsw": {
+       "fpr": false,
+       "fa_h": false,
+       "recall_1pct": true
+      },
+      "nfton": {
+       "fpr": false,
+       "fa_h": false,
+       "recall_1pct": true
+      },
+      "nfbot": {
+       "fpr": true,
+       "fa_h": true,
+       "recall_1pct": true
+      }
+     },
+     "missed_calT": false,
+     "all": false
+    }
+   }
+  },
+  "replication": {}
+ }
+}
