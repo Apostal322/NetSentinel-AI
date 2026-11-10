@@ -174,7 +174,15 @@ are not detected by any model).
 
 ## Validation
 
-Full suite, lint, format and dependency checks: see the closing commit.
+**Full suite on `f72d468`** (the final code): 470 passed, 0 failed, 0 errors, 0 skipped,
+2 deselected, in 856 s.
+- That includes the 13 Phase 8v tests and the dashboard test that timed out under load in Phase 8u.
+- JUnit file: `reports/phase8v/junit_phase8v_final.xml`.
+
+**Other checks:**
+- `ruff check` and `ruff format --check`: clean (524 files);
+- dependency gate: OK;
+- dependencies added: none.
 
 ## Three highest-priority gaps
 
