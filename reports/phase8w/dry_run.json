@@ -1,0 +1,226 @@
+{
+ "seed": 1060,
+ "folds": {
+  "nfcic": {
+   "train_rows": 80085,
+   "columns": 12,
+   "positives": 12876,
+   "source_domains": 2,
+   "arms_same_shape_and_finite": true,
+   "abs_equals_abs_of_signed": true,
+   "build_seconds": 12.2,
+   "targets": {
+    "nfcic/2018-02-14": {
+     "holdout_windows": 35273,
+     "evaluation_windows": 108481,
+     "reference_status": {
+      "T": "ok",
+      "Z1": "ok",
+      "Z2": "ok",
+      "Z3": "ok",
+      "Z0": "ok"
+     },
+     "reference_n": {
+      "T": 125797,
+      "Z1": 90720,
+      "Z2": 800,
+      "Z3": 90576,
+      "Z0": 40253
+     },
+     "finite": true
+    },
+    "nfcic/2018-02-16": {
+     "holdout_windows": 25919,
+     "evaluation_windows": 79554,
+     "reference_status": {
+      "T": "ok",
+      "Z1": "ok",
+      "Z2": "ok",
+      "Z3": "ok",
+      "Z0": "ok"
+     },
+     "reference_n": {
+      "T": 91328,
+      "Z1": 65516,
+      "Z2": 800,
+      "Z3": 65409,
+      "Z0": 40253
+     },
+     "finite": true
+    },
+    "nfcic/2018-02-20": {
+     "holdout_windows": 34742,
+     "evaluation_windows": 113955,
+     "reference_status": {
+      "T": "ok",
+      "Z1": "ok",
+      "Z2": "ok",
+      "Z3": "ok",
+      "Z0": "ok"
+     },
+     "reference_n": {
+      "T": 119688,
+      "Z1": 85852,
+      "Z2": 791,
+      "Z3": 84947,
+      "Z0": 40253
+     },
+     "finite": true
+    },
+    "nfcic/2018-02-21": {
+     "holdout_windows": 36144,
+     "evaluation_windows": 117126,
+     "reference_status": {
+      "T": "ok",
+      "Z1": "ok",
+      "Z2": "ok",
+      "Z3": "ok",
+      "Z0": "ok"
+     },
+     "reference_n": {
+      "T": 127124,
+      "Z1": 91192,
+      "Z2": 800,
+      "Z3": 90980,
+      "Z0": 40253
+     },
+     "finite": true
+    },
+    "nfcic/2018-02-22": {
+     "holdout_windows": 40262,
+     "evaluation_windows": 128221,
+     "reference_status": {
+      "T": "ok",
+      "Z1": "ok",
+      "Z2": "ok",
+      "Z3": "ok",
+      "Z0": "ok"
+     },
+     "reference_n": {
+      "T": 123763,
+      "Z1": 97818,
+      "Z2": 793,
+      "Z3": 97193,
+      "Z0": 40253
+     },
+     "finite": true
+    },
+    "nfcic/2018-03-02": {
+     "holdout_windows": 29953,
+     "evaluation_windows": 94351,
+     "reference_status": {
+      "T": "ok",
+      "Z1": "ok",
+      "Z2": "ok",
+      "Z3": "ok",
+      "Z0": "ok"
+     },
+     "reference_n": {
+      "T": 97737,
+      "Z1": 69299,
+      "Z2": 797,
+      "Z3": 69103,
+      "Z0": 40253
+     },
+     "finite": true
+    }
+   }
+  },
+  "nfunsw": {
+   "train_rows": 550533,
+   "columns": 12,
+   "positives": 13445,
+   "source_domains": 12,
+   "arms_same_shape_and_finite": true,
+   "abs_equals_abs_of_signed": true,
+   "build_seconds": 6.12,
+   "targets": {
+    "nfunsw/all": {
+     "holdout_windows": 623,
+     "evaluation_windows": 16028,
+     "reference_status": {
+      "T": "ok",
+      "Z1": "ok",
+      "Z2": "ok",
+      "Z3": "ok",
+      "Z0": "ok"
+     },
+     "reference_n": {
+      "T": 14057,
+      "Z1": 14371,
+      "Z2": 764,
+      "Z3": 13614,
+      "Z0": 1071929
+     },
+     "finite": true
+    }
+   }
+  },
+  "nfton": {
+   "train_rows": 530618,
+   "columns": 12,
+   "positives": 8751,
+   "source_domains": 12,
+   "arms_same_shape_and_finite": true,
+   "abs_equals_abs_of_signed": true,
+   "build_seconds": 7.0,
+   "targets": {
+    "nfton/all": {
+     "holdout_windows": 19298,
+     "evaluation_windows": 49156,
+     "reference_status": {
+      "T": "ok",
+      "Z1": "ok",
+      "Z2": "ok",
+      "Z3": "ok",
+      "Z0": "ok"
+     },
+     "reference_n": {
+      "T": 26196,
+      "Z1": 49901,
+      "Z2": 693,
+      "Z3": 43122,
+      "Z0": 1059790
+     },
+     "finite": true
+    }
+   }
+  },
+  "nfbot": {
+   "train_rows": 580618,
+   "columns": 12,
+   "positives": 17536,
+   "source_domains": 13,
+   "arms_same_shape_and_finite": true,
+   "abs_equals_abs_of_signed": true,
+   "build_seconds": 9.83,
+   "targets": {
+    "nfbot/all": {
+     "holdout_windows": 9667,
+     "evaluation_windows": 3449,
+     "reference_status": {
+      "T": "ok",
+      "Z1": "ok",
+      "Z2": "ok",
+      "Z3": "ok",
+      "Z0": "ok"
+     },
+     "reference_n": {
+      "T": 959,
+      "Z1": 2307,
+      "Z2": 308,
+      "Z3": 876,
+      "Z0": 1085986
+     },
+     "finite": true
+    }
+   }
+  }
+ },
+ "synthetic_fit": {
+  "rows": 580618,
+  "seconds": 8.5,
+  "note": "random features and labels of the largest fold's shape; timing only"
+ },
+ "peak_rss_mb": 1065.19140625
+}
