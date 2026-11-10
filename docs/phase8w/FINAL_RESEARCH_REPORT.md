@@ -39,7 +39,8 @@ scales and directions?
   - `608b76b`: fit ledger after the 24 screening fits;
   - `b966013`: registered screening evaluation;
   - `479a360`: no-refit analyses;
-  - review corrections, write-ups and closure follow.
+  - `0dbc915`: review corrections, write-ups, root documents;
+  - closure (test record) follows.
 - **Push:** not pushed (needs authorisation). CI has not run on these commits.
 - **Unchanged:** `src/`, the deployed detector and its defaults, the frozen M2, every Phase 8h–8v
   artifact. No dependency added.
@@ -156,7 +157,12 @@ with outcomes visible. No rule changed.
 designed after a no-fit look at these networks' evaluation labels. Other sessions' jobs ran on
 the machine during the fits; this affects timing only.
 
-**Validation.** TESTS_PLACEHOLDER
+**Validation.**
+- Full suite on the final code (the tree committed as `0dbc915`): **489 passed, 0 failed, 0 errors,
+  0 skipped** in 668 s, including the 19 Phase 8w tests. JUnit file:
+  `reports/phase8w/junit_phase8w_final.xml`.
+- `ruff check` and `ruff format --check`: clean (540 files).
+- Dependency gate: OK. Dependencies added: none.
 
 ## G. Three most important unresolved problems
 
