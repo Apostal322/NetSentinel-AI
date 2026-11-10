@@ -1,0 +1,27 @@
+{
+ "status": "domain-shortcut diagnostics on benign evaluation windows (Z1 reference); three small diagnostic fits; lower accuracy is not by itself an improvement",
+ "windows": {
+  "nfcic": 12000,
+  "nfunsw": 2000,
+  "nfton": 2000,
+  "nfbot": 620
+ },
+ "majority_share": 0.7220216606498195,
+ "representations": {
+  "R0": {
+   "network_classifier_accuracy": 0.9771359807460891,
+   "mean_pairwise_ks": 0.5207566830943846,
+   "max_pairwise_ks": 0.9205
+  },
+  "S": {
+   "network_classifier_accuracy": 1.0,
+   "mean_pairwise_ks": 0.48816976553166075,
+   "max_pairwise_ks": 1.0
+  },
+  "A": {
+   "network_classifier_accuracy": 0.9995988768551946,
+   "mean_pairwise_ks": 0.5058487529868578,
+   "max_pairwise_ks": 1.0
+  }
+ }
+}
