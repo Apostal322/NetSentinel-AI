@@ -246,6 +246,16 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 | Do hard negatives / a pairwise pAUC surrogate / service-relative features improve pAUC (FPR <= 1%)? | 4 LONO targets, seed 1060 screening | all three pass screening (+0.065 to +0.098 macro); class-weighting control fails (-0.031) | registered screening |
 | Does the best (pairwise objective) replicate? | 3 paired seeds | +0.056 macro pAUC (exact ROC +0.058), every seed positive; p ~ 0.14; gain is NF-BoT (+0.16) and NF-CIC (+0.06); NF-UNSW/NF-ToN ~0; lower as-calibrated recall | registered development (qualified) |
 
+## Phase 8v (flow-level representations; development data)
+
+- Documents: [`docs/phase8v/`](phase8v/FINAL_RESEARCH_REPORT.md). No candidate passed screening; development NO-GO; 16 fits; deployment unchanged.
+
+| Question | Data | Result | Role |
+|---|---|---|---|
+| What do the raw flow records contain, and what is comparable across networks? | 78-column NetFlow v3 in all four networks | flow records only (no PCAP); ms times; retransmission, inter-arrival, TTL and TCP-window fields not cross-network safe | telemetry audit |
+| Is attack information lost in the 12-feature window? | in-network diagnostic fits | NF-UNSW: no (recall 0.996 at 1% FPR in-network with the 12 features); NF-ToN: partly | exploratory |
+| Do flow, timing or bidirectional features, or source-invariant selection, improve transfer at FPR <= 1%? | leave-one-network-out, seed 1060 | **no candidate passes**: TIME +0.117 on the hard networks but fails FPR and entity guardrails; its NF-ToN gain is volume in three hosts; INV collapses | registered development |
+
 ## Telemetry
 
 | Check | Result | Source |

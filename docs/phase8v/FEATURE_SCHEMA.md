@@ -14,10 +14,17 @@
 
 - **Telemetry:** completed NetFlow v3 records (level B). No packet data, payload or label.
 - **Unit:** the existing window, keyed by source host and flow **end** time.
-- **Availability:** when the window closes, for flows that finished in it (TELEMETRY_AUDIT § 3).
-  The three context features use only strictly earlier windows of the same host.
-- **Missing values stay missing** (NaN). They are never replaced by 0; LightGBM handles them
-  natively.
+- **Availability:** at window close **plus the exporter's delay**, for flows that finished in the
+  window (TELEMETRY_AUDIT § 3).
+  - A flow closed by an idle timeout is exported only after that timeout, which these datasets do
+    not record. It can be a window or more later.
+  - The three context features use only strictly earlier windows of the same host.
+- **Missing values of the new features stay missing** (NaN). They are never replaced by 0;
+  LightGBM handles them natively.
+  - The 12 original features keep their historical handling (`nan_to_num`), so the policy is
+    mixed.
+  - Missingness differs by network and is itself a fingerprint: `gap_cv` is missing for 50–58 % of
+    NF-CIC windows and 10 % of NF-UNSW's.
 - **No identity fields:** no address, port number, TTL or TCP window.
 - **Cost:** one grouped pass over the flows. The quantile and gap statistics need the window's
   flows in memory (bounded by the window), so they are computable in streaming with a per-window
@@ -25,7 +32,7 @@
 
 **Consistency with the frozen windows:** the flow count equals the Phase 8i window's on every
 (host, window), except the one 30 s slot at each domain's calibration/evaluation midpoint.
-- That slot is split between the two frames (14–64 windows per domain; 0 on NF-BoT).
+- That slot is split between the two frames (5–64 windows per domain; 0 on NF-BoT).
 - The enriched features of those windows cover the whole slot.
 
 ## Features

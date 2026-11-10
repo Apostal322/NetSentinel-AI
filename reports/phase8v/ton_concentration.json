@@ -1,0 +1,46 @@
+{
+ "M2member": {
+  "oracle_tp": 73,
+  "tp_top1_share": 0.4794520547945205,
+  "tp_top3_share": 0.9863013698630136,
+  "calT_false_alerts": 1184,
+  "fa_top3_host_share": 0.7474662162162162
+ },
+ "FLOW": {
+  "oracle_tp": 674,
+  "tp_top1_share": 0.973293768545994,
+  "tp_top3_share": 0.9985163204747775,
+  "calT_false_alerts": 1760,
+  "fa_top3_host_share": 0.8244318181818182,
+  "fa_shared_with_TIME": 1713
+ },
+ "TIME": {
+  "oracle_tp": 1930,
+  "tp_top1_share": 0.633160621761658,
+  "tp_top3_share": 0.9036269430051813,
+  "calT_false_alerts": 1806,
+  "fa_top3_host_share": 0.8089700996677741,
+  "fa_also_in_baseline": 1180
+ },
+ "BIDIR": {
+  "oracle_tp": 825,
+  "tp_top1_share": 0.9006060606060606,
+  "tp_top3_share": 0.9963636363636363,
+  "calT_false_alerts": 1756,
+  "fa_top3_host_share": 0.8001138952164009,
+  "fa_shared_with_TIME": 1717
+ },
+ "INV": {
+  "oracle_tp": 12,
+  "tp_top1_share": 0.8333333333333334,
+  "tp_top3_share": 1.0,
+  "calT_false_alerts": 1818,
+  "fa_top3_host_share": 0.8278327832783279,
+  "fa_shared_with_TIME": 1724
+ },
+ "new_fa_TIME_vs_baseline": 626,
+ "new_fa_shared_by_all_four": 511,
+ "univariate_pauc_log_flows": 0.7930405962046049,
+ "univariate_pauc_prev4_mean_log_flows": 0.8549727350398936,
+ "TIME_pauc": 0.24700955706859376
+}

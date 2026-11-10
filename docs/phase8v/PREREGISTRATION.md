@@ -135,8 +135,8 @@ not separate effects from seed noise.
 
 ## 8. Amendments
 
-None yet. Any amendment records the time, the original and new rule, the reason, whether outcomes
-were visible, and the effect.
+Each amendment records the time, the original and new rule, the reason, whether outcomes were
+visible, and the effect.
 
 ### Amendment V-1 (2026-11-10, after the screening evaluation; outcomes visible)
 
@@ -146,3 +146,15 @@ were visible, and the effect.
 | effect on results | **none.** Scores were computed from the in-memory models before saving. Each file, with CRLF normalised to LF, matches the SHA-256 recorded in its manifest (checked for all 16 in `posthoc.py`) |
 | fix | the driver now writes bytes; `posthoc.py` loads the saved files through the normalised text. The saved files are kept as written |
 | registered verdicts | unchanged |
+
+### Clarifications recorded after the independent review (2026-11-10; outcomes visible; no rule changed)
+
+- **Entities missed (§ 6 guardrail):** the text did not say at which threshold. The registered code
+  counts them **as calibrated** (CAL_T), and that is what was applied (`TIME` 8 → 11). At the
+  retrospective 1 % threshold the count is 14 → 15. `TIME` fails on as-calibrated FPR either way.
+- **"Clean tree":** the driver checks once per variant process. Fits 2–4 of each variant ran after
+  that process had written the ledger, so their recorded `dirty_tree: false` describes the tree
+  at the variant's start. No code or protocol file changed between a variant's fits.
+- **Context features across file boundaries:** NF-UNSW's three files each keep their last 22 %
+  withheld. The first two minutes after a file boundary therefore see the withheld windows as
+  silent history. The effect is at most 4 windows per host per boundary.
