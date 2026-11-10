@@ -8,6 +8,7 @@ Re-scores the saved boosters; never refits a registered model.
   with one that passes 10 % of attack windows as benign.
 - `entities`: documented attacker entities gained and lost against the null control.
 - `scale`: exploratory mechanism view (size of |z| per reference; booster feature use);
+- `review`: sensitivity checks requested by the independent review (exploratory);
 - `shortcut`: benign-only network classifier (three small diagnostic fits), between-network
   feature divergence and benign score levels.
 
@@ -50,6 +51,8 @@ NOISE = 0.10
 def save(stage: str, res: dict) -> None:
     body = json.dumps(res, indent=1, default=float).encode()
     p = REP / f"posthoc_{stage}.json"
+    if p.exists():  # write-once (review F2): saved outputs are never overwritten
+        raise FileExistsError(p)
     tmp = p.with_suffix(".partial")
     tmp.write_bytes(body)
     os.replace(tmp, p)
@@ -315,9 +318,62 @@ def stage_scale(arms: list[str]) -> None:
     save("scale", res)
 
 
+def stage_review(arms: list[str]) -> None:
+    """Sensitivity checks requested by the independent review (exploratory; outcomes were visible).
+    From the saved score arrays only, under the unlabelled reference `Z1`:
+    - partial AUC without the benign host that holds most of the top benign scores (review B1);
+    - realised false alerts at the retrospective 1 % threshold (B6);
+    - a label-free threshold `cal_U` from every hold-out window (A2);
+    - alerts per hour over every evaluation window, not only the audited benign ones (E2)."""
+    names = sorted(p.stem.replace("__", "/") for p in OF.BM.AUDIT.glob("*.parquet"))
+    dom = {n: OF.load(n) for n in names}
+    is_att = {n: OF.FG.domain_data(n)["is_att"] for n in names}
+
+    def rank_threshold(v: np.ndarray) -> float:
+        return float(np.sort(v)[min(v.size, math.ceil((v.size + 1) * 0.99)) - 1])
+
+    res = {"status": "review sensitivity checks (exploratory; Z1 reference; saved scores only)",
+           "git": dict(zip(("sha", "dirty"), E.git_state(), strict=True)), "runs": {}}  # fmt: skip
+    for arm in ("R0", *arms):
+        for s in available(arm):
+            per = {}
+            for n in names:
+                z = np.load(DER / "scores" / arm / f"{n.replace('/', '__')}__s{s}.npz")
+                k = "NA" if arm == "R0" else "Z1"
+                sh, se = z[f"s_hold_{k}"], z[f"s_ev_{k}"]
+                d = dom[n]
+                pos, neg, key = d["pos"], d["neg"], d["key"].astype(str)
+                budget = int(math.floor(0.01 * neg.sum()))
+                t_or = OF.TO.global_threshold(se[neg], budget)
+                sb, kb = se[neg], key[neg]
+                tail = sb >= np.sort(sb)[::-1][min(budget, sb.size - 1)]
+                hosts, cnt = np.unique(kb[tail], return_counts=True)
+                top = hosts[cnt.argmax()]
+                keep = neg & (key != top)
+                t_cal, t_u = rank_threshold(sh[~is_att[n]]), rank_threshold(sh)
+                row = {"pauc": LF.partial_auc_exact(se[pos], se[neg]),
+                       "pauc_without_top_benign_host": LF.partial_auc_exact(se[pos], se[keep]),
+                       "top_benign_host": str(top), "top_host_share_of_benign_tail": float(cnt.max() / tail.sum()),
+                       "benign_tail_windows": int(tail.sum()), "benign_hosts": int(np.unique(kb).size),
+                       "benign_windows": int(neg.sum()), "budget": budget,
+                       "false_alerts_at_retrospective_threshold": int((sb > t_or).sum()),
+                       "holdout_windows": int(sh.size), "holdout_label_benign_windows": int((~is_att[n]).sum()),
+                       "windows_outside_audited_population": int((~pos & ~neg).sum())}  # fmt: skip
+                for tag, t in (("cal_T", t_cal), ("cal_U", t_u)):
+                    a = se > t
+                    row[tag] = {"fpr": float(a[neg].mean()), "recall": float(a[pos].mean()) if pos.any() else float("nan"),
+                                "benign_false_alerts_per_h": float(a[neg].sum() / d["hours"]),
+                                "all_alerts_per_h": float(a.sum() / d["hours"]),
+                                "alerts_outside_audited_per_h": float(a[~pos & ~neg].sum() / d["hours"])}  # fmt: skip
+                per[n] = row
+            res["runs"].setdefault(arm, {})[str(s)] = per
+        print("review", arm, flush=True)
+    save("review", res)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("stage", choices=("stress", "z2", "entities", "shortcut", "scale"))
+    ap.add_argument("stage", choices=("stress", "z2", "entities", "shortcut", "scale", "review"))
     ap.add_argument("--arms", default="S,A")
     ap.add_argument("--seeds", default="1060,1061")
     a = ap.parse_args()
@@ -326,6 +382,8 @@ def main() -> None:
         stage_stress(arms)
     elif a.stage == "z2":
         stage_z2(arms, [int(s) for s in a.seeds.split(",")])
+    elif a.stage == "review":
+        stage_review(arms)
     elif a.stage == "scale":
         stage_scale(arms)
     elif a.stage == "entities":

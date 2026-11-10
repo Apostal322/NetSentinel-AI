@@ -69,16 +69,16 @@ paired comparison. Here:
 - all three arms have the same shape and are finite in the four folds (80,085 to 580,618 rows × 12);
 - `A` equals |`S`| exactly;
 - every scenario's reference is usable for all nine evaluated domains;
-- peak memory 1.7 GiB.
+- peak memory 1.7 GiB for the process tree (1.07 GiB resident in the Python process).
 
 ## 5. Causality
 
 | check | how |
 |---|---|
-| a reference uses only windows before the hold-out cut | `calibration_parts` masks by the cut; hold-out and evaluation frames are separate objects |
+| a `Z1`, `Z2` or `Z3` reference uses only windows before the hold-out cut | `calibration_parts` masks by the cut; hold-out and evaluation frames are separate objects. **Not `T`:** it uses the whole calibration period (review finding A1) |
 | scoring cannot update a reference | references are not modified by scoring (unit test) |
 | source references use training labels only | label-benign calibration windows of the source domain |
-| evaluation labels never reach a reference | only `Z2`, `Z3` and `T` read labels, and only calibration-period labels |
+| evaluation labels never reach a deployable reference | `Z0` and `Z1` read no label. `Z2` and `Z3` read calibration-period labels only. **`T` also depends on evaluation labels:** hosts that attack in the evaluation period are removed from it (1,085 windows on NF-CIC 02-22, 912 on NF-ToN) |
 | audited population = scored windows | row-for-row key and window check (`references.aligned`) |
 
 ## 6. Known limits
@@ -87,5 +87,9 @@ paired comparison. Here:
   target reference is unlabelled. `T` is the train-consistent oracle variant.
 - **`Z2` is a simulation:** a uniform draw of 800 windows and a perfect reviewer. It keeps 308
   windows on NF-BoT and 693 on NF-ToN.
+- **`Z0` is dominated by NF-CIC:** it is a median over source *domains*, and 11 of 12 sources are
+  NF-CIC days when NF-UNSW or NF-ToN is the target.
+- **The missing-value rule is untested on real data:** the window tables contain no missing
+  values, and the loader fills them before the reference is fitted.
 - **The hold-out threshold still uses calibration labels** (the best case of trusted review), as
   in Phases 8s–8v.

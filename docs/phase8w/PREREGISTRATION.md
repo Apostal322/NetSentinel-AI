@@ -159,5 +159,15 @@ Ties go to the larger hard-network gain.
 
 ## 8. Amendments
 
-None at registration. Each amendment will record the time, the original and new rule, the
-reason, whether outcomes were visible, and the effect.
+None at registration. Each amendment records the time, the original and new rule, the reason,
+whether outcomes were visible, and the effect.
+
+### Corrections after the independent review (2026-11-10; outcomes visible; no rule changed)
+
+| id | original text | correction | effect on verdicts |
+|---|---|---|---|
+| W-1 | § 6: baseline seed SD "about 0.009 on the macro mean" | 0.009 is the SD of the first three saved members. The five members give **0.0145**. Two seeds cannot resolve a ±0.02 macro effect; screening fixes the sign per network only | none: no arm met the macro criterion in either direction of that noise (`A`: −0.047 and +0.000) |
+| W-2 | § 2: `T` "label-benign calibration (Phase 8h); train-consistent" | `T` covers the whole calibration period including the hold-out, and its host cleaning uses evaluation labels (IDENTIFIABILITY § 1). It is not a causal reference | none: `T` is diagnostic only |
+| W-3 | § 5: "Operational (as calibrated, CAL_T)" under the deployable scenario | the `Z1` reference is label-free, but the CAL_T threshold is label-assisted. A label-free threshold (`cal_U`) was added to the review checks | none |
+| W-4 | § 7 lists the registered no-refit analyses | two further stages were added with outcomes visible and are exploratory: `scale` (mechanism view) and `review` (checks requested by the reviewer). `posthoc.py` was written while the fits ran and committed after them; it is not part of the registration commit | none |
+| W-5 | — | code changes after the registered evaluation: `stage_eval` now checks key and window alignment of audited and scored rows (the reviewer verified it for all nine domains); post-hoc outputs are write-once. No saved output was regenerated | none |

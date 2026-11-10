@@ -1,0 +1,1539 @@
+{
+ "status": "review sensitivity checks (exploratory; Z1 reference; saved scores only)",
+ "git": {
+  "sha": "479a3608547f84cde005668aff97a1c0e4e38905",
+  "dirty": true
+ },
+ "runs": {
+  "R0": {
+   "1060": {
+    "nfbot/all": {
+     "pauc": 0.6711309523809523,
+     "pauc_without_top_benign_host": 0.9441964285714286,
+     "top_benign_host": "192.168.100.46",
+     "top_host_share_of_benign_tail": 1.0,
+     "benign_tail_windows": 10,
+     "benign_hosts": 8,
+     "benign_windows": 620,
+     "budget": 6,
+     "false_alerts_at_retrospective_threshold": 0,
+     "holdout_windows": 9667,
+     "holdout_label_benign_windows": 781,
+     "windows_outside_audited_population": 1485,
+     "cal_T": {
+      "fpr": 0.18548387096774194,
+      "recall": 0.9375,
+      "benign_false_alerts_per_h": 0.27257620876579697,
+      "all_alerts_per_h": 4.3612193402527515,
+      "alerts_outside_audited_per_h": 1.1021559745747442
+     },
+     "cal_U": {
+      "fpr": 0.06935483870967742,
+      "recall": 0.9337797619047619,
+      "benign_false_alerts_per_h": 0.10191979979938495,
+      "all_alerts_per_h": 3.9393187736413444,
+      "alerts_outside_audited_per_h": 0.8627629564413052
+     }
+    },
+    "nfcic/2018-02-14": {
+     "pauc": 0.8987037860055481,
+     "pauc_without_top_benign_host": 0.898894074450469,
+     "top_benign_host": "23.218.62.30",
+     "top_host_share_of_benign_tail": 0.024478694469628286,
+     "benign_tail_windows": 1103,
+     "benign_hosts": 14228,
+     "benign_windows": 108297,
+     "budget": 1082,
+     "false_alerts_at_retrospective_threshold": 1077,
+     "holdout_windows": 35273,
+     "holdout_label_benign_windows": 35221,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.01200402596563155,
+      "recall": 0.9891304347826086,
+      "benign_false_alerts_per_h": 276.9432331465544,
+      "all_alerts_per_h": 315.71528578707205,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.011763945446318919,
+      "recall": 0.9891304347826086,
+      "benign_false_alerts_per_h": 271.40436848362333,
+      "all_alerts_per_h": 310.176421124141,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-16": {
+     "pauc": 0.03450074491356065,
+     "pauc_without_top_benign_host": 0.03691173500302967,
+     "top_benign_host": "23.218.62.30",
+     "top_host_share_of_benign_tail": 0.031407035175879394,
+     "benign_tail_windows": 796,
+     "benign_hosts": 11019,
+     "benign_windows": 79527,
+     "budget": 795,
+     "false_alerts_at_retrospective_threshold": 793,
+     "holdout_windows": 25919,
+     "holdout_label_benign_windows": 25919,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.01120374212531593,
+      "recall": 0.1111111111111111,
+      "benign_false_alerts_per_h": 242.03621910993513,
+      "all_alerts_per_h": 242.85115587461505,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.01120374212531593,
+      "recall": 0.1111111111111111,
+      "benign_false_alerts_per_h": 242.03621910993513,
+      "all_alerts_per_h": 242.85115587461505,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-20": {
+     "pauc": 0.07554204949057904,
+     "pauc_without_top_benign_host": 0.07559675794428916,
+     "top_benign_host": "5.39.216.253",
+     "top_host_share_of_benign_tail": 0.025460930640913083,
+     "benign_tail_windows": 1139,
+     "benign_hosts": 14616,
+     "benign_windows": 113849,
+     "budget": 1138,
+     "false_alerts_at_retrospective_threshold": 1130,
+     "holdout_windows": 34742,
+     "holdout_label_benign_windows": 34741,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.011901729483789932,
+      "recall": 0.08490566037735849,
+      "benign_false_alerts_per_h": 298.16217675259213,
+      "all_alerts_per_h": 300.14258973471266,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.011901729483789932,
+      "recall": 0.08490566037735849,
+      "benign_false_alerts_per_h": 298.16217675259213,
+      "all_alerts_per_h": 300.14258973471266,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-21": {
+     "pauc": 0.9737277042335661,
+     "pauc_without_top_benign_host": 0.9738922191791196,
+     "top_benign_host": "23.218.62.30",
+     "top_host_share_of_benign_tail": 0.018900343642611683,
+     "benign_tail_windows": 1164,
+     "benign_hosts": 13729,
+     "benign_windows": 116040,
+     "budget": 1160,
+     "false_alerts_at_retrospective_threshold": 1159,
+     "holdout_windows": 36144,
+     "holdout_label_benign_windows": 36144,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.011771802826611513,
+      "recall": 0.9972375690607734,
+      "benign_false_alerts_per_h": 288.5453380148215,
+      "all_alerts_per_h": 517.3115174218871,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.011771802826611513,
+      "recall": 0.9972375690607734,
+      "benign_false_alerts_per_h": 288.5453380148215,
+      "all_alerts_per_h": 517.3115174218871,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-22": {
+     "pauc": 0.0,
+     "pauc_without_top_benign_host": 0.0,
+     "top_benign_host": "24.234.124.9",
+     "top_host_share_of_benign_tail": 0.028764805414551606,
+     "benign_tail_windows": 1182,
+     "benign_hosts": 13181,
+     "benign_windows": 114337,
+     "budget": 1143,
+     "false_alerts_at_retrospective_threshold": 1143,
+     "holdout_windows": 40262,
+     "holdout_label_benign_windows": 36303,
+     "windows_outside_audited_population": 13831,
+     "cal_T": {
+      "fpr": 0.011623533939144809,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 301.03360912770347,
+      "all_alerts_per_h": 304.88430239720753,
+      "alerts_outside_audited_per_h": 3.850693269504107
+     },
+     "cal_U": {
+      "fpr": 0.011623533939144809,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 301.03360912770347,
+      "all_alerts_per_h": 304.88430239720753,
+      "alerts_outside_audited_per_h": 3.850693269504107
+     }
+    },
+    "nfcic/2018-03-02": {
+     "pauc": 0.00040805498323512134,
+     "pauc_without_top_benign_host": 0.0004098476478155299,
+     "top_benign_host": "172.31.67.80",
+     "top_host_share_of_benign_tail": 0.040948275862068964,
+     "benign_tail_windows": 928,
+     "benign_hosts": 10969,
+     "benign_windows": 91935,
+     "budget": 919,
+     "false_alerts_at_retrospective_threshold": 914,
+     "holdout_windows": 29953,
+     "holdout_label_benign_windows": 29131,
+     "windows_outside_audited_population": 8,
+     "cal_T": {
+      "fpr": 0.010148474465655082,
+      "recall": 0.0004152823920265781,
+      "benign_false_alerts_per_h": 326.26310144802807,
+      "all_alerts_per_h": 326.6127939469006,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.010279001468428781,
+      "recall": 0.0004152823920265781,
+      "benign_false_alerts_per_h": 330.4594114344979,
+      "all_alerts_per_h": 330.80910393337035,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfton/all": {
+     "pauc": 0.00789264500217399,
+     "pauc_without_top_benign_host": 0.08485945538755384,
+     "top_benign_host": "0.0.0.0",
+     "top_host_share_of_benign_tail": 0.7333333333333333,
+     "benign_tail_windows": 75,
+     "benign_hosts": 287,
+     "benign_windows": 7447,
+     "budget": 74,
+     "false_alerts_at_retrospective_threshold": 74,
+     "holdout_windows": 19298,
+     "holdout_label_benign_windows": 4572,
+     "windows_outside_audited_population": 36111,
+     "cal_T": {
+      "fpr": 0.15899019739492412,
+      "recall": 0.43604858878170777,
+      "benign_false_alerts_per_h": 16.376045266671703,
+      "all_alerts_per_h": 72.14311833695912,
+      "alerts_outside_audited_per_h": 22.0053108270901
+     },
+     "cal_U": {
+      "fpr": 0.00255136296495233,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 0.262791266948279,
+      "all_alerts_per_h": 0.4564269373312214,
+      "alerts_outside_audited_per_h": 0.1936356703829424
+     }
+    },
+    "nfunsw/all": {
+     "pauc": 0.0061417324027818404,
+     "pauc_without_top_benign_host": 0.006780533458959301,
+     "top_benign_host": "59.166.0.3",
+     "top_host_share_of_benign_tail": 0.11666666666666667,
+     "benign_tail_windows": 120,
+     "benign_hosts": 34,
+     "benign_windows": 11937,
+     "budget": 119,
+     "false_alerts_at_retrospective_threshold": 119,
+     "holdout_windows": 623,
+     "holdout_label_benign_windows": 443,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.03979224260702019,
+      "recall": 0.7061843070153997,
+      "benign_false_alerts_per_h": 53.48998704979262,
+      "all_alerts_per_h": 378.8217188115839,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.021027058724972774,
+      "recall": 0.06404302126619409,
+      "benign_false_alerts_per_h": 28.26523526210094,
+      "all_alerts_per_h": 57.76918601377602,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    }
+   },
+   "1061": {
+    "nfbot/all": {
+     "pauc": 0.48883928571428564,
+     "pauc_without_top_benign_host": 0.9456845238095238,
+     "top_benign_host": "192.168.100.46",
+     "top_host_share_of_benign_tail": 1.0,
+     "benign_tail_windows": 9,
+     "benign_hosts": 8,
+     "benign_windows": 620,
+     "budget": 6,
+     "false_alerts_at_retrospective_threshold": 0,
+     "holdout_windows": 9667,
+     "holdout_label_benign_windows": 781,
+     "windows_outside_audited_population": 1485,
+     "cal_T": {
+      "fpr": 0.07096774193548387,
+      "recall": 0.9389880952380952,
+      "benign_false_alerts_per_h": 0.10429002770169624,
+      "all_alerts_per_h": 3.9938340153945036,
+      "alerts_outside_audited_per_h": 0.8983163749759744
+     },
+     "cal_U": {
+      "fpr": 0.06935483870967742,
+      "recall": 0.9315476190476191,
+      "benign_false_alerts_per_h": 0.10191979979938495,
+      "all_alerts_per_h": 3.4036472677189953,
+      "alerts_outside_audited_per_h": 0.33420213422589023
+     }
+    },
+    "nfcic/2018-02-14": {
+     "pauc": 0.9059702866232145,
+     "pauc_without_top_benign_host": 0.9116744785809184,
+     "top_benign_host": "172.31.64.78",
+     "top_host_share_of_benign_tail": 0.026881720430107527,
+     "benign_tail_windows": 1116,
+     "benign_hosts": 14228,
+     "benign_windows": 108297,
+     "budget": 1082,
+     "false_alerts_at_retrospective_threshold": 1078,
+     "holdout_windows": 35273,
+     "holdout_label_benign_windows": 35221,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.015503661227919517,
+      "recall": 0.9945652173913043,
+      "benign_false_alerts_per_h": 357.68283727158837,
+      "all_alerts_per_h": 396.66792316837257,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.013379872018615475,
+      "recall": 0.9945652173913043,
+      "benign_false_alerts_per_h": 308.6851883302749,
+      "all_alerts_per_h": 347.6702742270591,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-16": {
+     "pauc": 0.7535302475888664,
+     "pauc_without_top_benign_host": 0.7531239049009548,
+     "top_benign_host": "69.16.250.107",
+     "top_host_share_of_benign_tail": 0.038944723618090454,
+     "benign_tail_windows": 796,
+     "benign_hosts": 11019,
+     "benign_windows": 79527,
+     "budget": 795,
+     "false_alerts_at_retrospective_threshold": 795,
+     "holdout_windows": 25919,
+     "holdout_label_benign_windows": 25919,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.014108416009657098,
+      "recall": 0.9629629629629629,
+      "benign_false_alerts_per_h": 304.78634999028867,
+      "all_alerts_per_h": 311.8491352841813,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.014108416009657098,
+      "recall": 0.9629629629629629,
+      "benign_false_alerts_per_h": 304.78634999028867,
+      "all_alerts_per_h": 311.8491352841813,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-20": {
+     "pauc": 0.03709324018556866,
+     "pauc_without_top_benign_host": 0.03848682731878971,
+     "top_benign_host": "185.129.148.159",
+     "top_host_share_of_benign_tail": 0.041264266900790166,
+     "benign_tail_windows": 1139,
+     "benign_hosts": 14616,
+     "benign_windows": 113849,
+     "budget": 1138,
+     "false_alerts_at_retrospective_threshold": 1138,
+     "holdout_windows": 34742,
+     "holdout_label_benign_windows": 34741,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.013921949248566084,
+      "recall": 0.08490566037735849,
+      "benign_false_alerts_per_h": 348.77273074011697,
+      "all_alerts_per_h": 350.75314372223755,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.013895598555982047,
+      "recall": 0.08490566037735849,
+      "benign_false_alerts_per_h": 348.11259307941015,
+      "all_alerts_per_h": 350.0930060615307,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-21": {
+     "pauc": 0.9782420870938628,
+     "pauc_without_top_benign_host": 0.9782586228400524,
+     "top_benign_host": "5.39.216.193",
+     "top_host_share_of_benign_tail": 0.039484978540772535,
+     "benign_tail_windows": 1165,
+     "benign_hosts": 13729,
+     "benign_windows": 116040,
+     "budget": 1160,
+     "false_alerts_at_retrospective_threshold": 1160,
+     "holdout_windows": 36144,
+     "holdout_label_benign_windows": 36144,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.01679593243709066,
+      "recall": 0.998158379373849,
+      "benign_false_alerts_per_h": 411.6946294223185,
+      "all_alerts_per_h": 640.6720426053832,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.01679593243709066,
+      "recall": 0.998158379373849,
+      "benign_false_alerts_per_h": 411.6946294223185,
+      "all_alerts_per_h": 640.6720426053832,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-22": {
+     "pauc": 0.0,
+     "pauc_without_top_benign_host": 0.0,
+     "top_benign_host": "172.31.67.8",
+     "top_host_share_of_benign_tail": 0.026563838903170524,
+     "benign_tail_windows": 1167,
+     "benign_hosts": 13181,
+     "benign_windows": 114337,
+     "budget": 1143,
+     "false_alerts_at_retrospective_threshold": 1142,
+     "holdout_windows": 40262,
+     "holdout_label_benign_windows": 36303,
+     "windows_outside_audited_population": 13831,
+     "cal_T": {
+      "fpr": 0.012629332587001583,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 327.08241653905475,
+      "all_alerts_per_h": 333.42473486529684,
+      "alerts_outside_audited_per_h": 6.342318326242059
+     },
+     "cal_U": {
+      "fpr": 0.013538924407672057,
+      "recall": 0.018867924528301886,
+      "benign_false_alerts_per_h": 350.6395988936681,
+      "all_alerts_per_h": 357.2084285887045,
+      "alerts_outside_audited_per_h": 6.342318326242059
+     }
+    },
+    "nfcic/2018-03-02": {
+     "pauc": 0.00036559395658531703,
+     "pauc_without_top_benign_host": 0.00036547911136314336,
+     "top_benign_host": "5.101.40.105",
+     "top_host_share_of_benign_tail": 0.05217391304347826,
+     "benign_tail_windows": 920,
+     "benign_hosts": 10969,
+     "benign_windows": 91935,
+     "budget": 919,
+     "false_alerts_at_retrospective_threshold": 919,
+     "holdout_windows": 29953,
+     "holdout_label_benign_windows": 29131,
+     "windows_outside_audited_population": 8,
+     "cal_T": {
+      "fpr": 0.010376896720509055,
+      "recall": 0.0004152823920265781,
+      "benign_false_alerts_per_h": 333.60664392435024,
+      "all_alerts_per_h": 333.95633642322275,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.011018654484146408,
+      "recall": 0.0004152823920265781,
+      "benign_false_alerts_per_h": 354.23850135782686,
+      "all_alerts_per_h": 354.5881938566993,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfton/all": {
+     "pauc": 0.003156208841875226,
+     "pauc_without_top_benign_host": 0.017626918261896326,
+     "top_benign_host": "0.0.0.0",
+     "top_host_share_of_benign_tail": 0.6533333333333333,
+     "benign_tail_windows": 75,
+     "benign_hosts": 287,
+     "benign_windows": 7447,
+     "budget": 74,
+     "false_alerts_at_retrospective_threshold": 74,
+     "holdout_windows": 19298,
+     "holdout_label_benign_windows": 4572,
+     "windows_outside_audited_population": 36111,
+     "cal_T": {
+      "fpr": 0.14354773734389686,
+      "recall": 0.6291532690246516,
+      "benign_false_alerts_per_h": 14.78546654566896,
+      "all_alerts_per_h": 77.3574503179855,
+      "alerts_outside_audited_per_h": 13.85878155169345
+     },
+     "cal_U": {
+      "fpr": 0.0,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 0.0,
+      "all_alerts_per_h": 0.0,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfunsw/all": {
+     "pauc": 0.010416722339663667,
+     "pauc_without_top_benign_host": 0.010810818820847487,
+     "top_benign_host": "59.166.0.0",
+     "top_host_share_of_benign_tail": 0.11666666666666667,
+     "benign_tail_windows": 120,
+     "benign_hosts": 34,
+     "benign_windows": 11937,
+     "budget": 119,
+     "false_alerts_at_retrospective_threshold": 119,
+     "holdout_windows": 623,
+     "holdout_label_benign_windows": 443,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.03510094663650833,
+      "recall": 0.5120997311170863,
+      "benign_false_alerts_per_h": 47.18379910286969,
+      "all_alerts_per_h": 283.1027946172182,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.02261874842925358,
+      "recall": 0.057443167929601566,
+      "benign_false_alerts_per_h": 30.404834744092643,
+      "all_alerts_per_h": 56.86830202135846,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    }
+   }
+  },
+  "S": {
+   "1060": {
+    "nfbot/all": {
+     "pauc": 0.25669642857142855,
+     "pauc_without_top_benign_host": 0.3712797619047619,
+     "top_benign_host": "192.168.100.46",
+     "top_host_share_of_benign_tail": 1.0,
+     "benign_tail_windows": 12,
+     "benign_hosts": 8,
+     "benign_windows": 620,
+     "budget": 6,
+     "false_alerts_at_retrospective_threshold": 0,
+     "holdout_windows": 9667,
+     "holdout_label_benign_windows": 781,
+     "windows_outside_audited_population": 1485,
+     "cal_T": {
+      "fpr": 0.14838709677419354,
+      "recall": 0.265625,
+      "benign_false_alerts_per_h": 0.21806096701263758,
+      "all_alerts_per_h": 1.2799230672480901,
+      "alerts_outside_audited_per_h": 0.2156907391103263
+     },
+     "cal_U": {
+      "fpr": 0.27903225806451615,
+      "recall": 0.27306547619047616,
+      "benign_false_alerts_per_h": 0.4100494270998511,
+      "all_alerts_per_h": 1.5216863132838405,
+      "alerts_outside_audited_per_h": 0.24176324603575036
+     }
+    },
+    "nfcic/2018-02-14": {
+     "pauc": 0.9240316785843777,
+     "pauc_without_top_benign_host": 0.924146497030453,
+     "top_benign_host": "212.92.115.177",
+     "top_host_share_of_benign_tail": 0.043000914913083256,
+     "benign_tail_windows": 1093,
+     "benign_hosts": 14228,
+     "benign_windows": 108297,
+     "budget": 1082,
+     "false_alerts_at_retrospective_threshold": 1082,
+     "holdout_windows": 35273,
+     "holdout_label_benign_windows": 35221,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.015392854834390611,
+      "recall": 0.9891304347826086,
+      "benign_false_alerts_per_h": 355.1264381963894,
+      "all_alerts_per_h": 393.89849083690706,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.012936646444499848,
+      "recall": 0.9891304347826086,
+      "benign_false_alerts_per_h": 298.45959202947904,
+      "all_alerts_per_h": 337.2316446699967,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-16": {
+     "pauc": 0.9160187385695694,
+     "pauc_without_top_benign_host": 0.9193239460335487,
+     "top_benign_host": "5.101.40.105",
+     "top_host_share_of_benign_tail": 0.20100502512562815,
+     "benign_tail_windows": 796,
+     "benign_hosts": 11019,
+     "benign_windows": 79527,
+     "budget": 795,
+     "false_alerts_at_retrospective_threshold": 795,
+     "holdout_windows": 25919,
+     "holdout_label_benign_windows": 25919,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.014523369421705836,
+      "recall": 0.9629629629629629,
+      "benign_false_alerts_per_h": 313.75065440176775,
+      "all_alerts_per_h": 320.81343969566035,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.014523369421705836,
+      "recall": 0.9629629629629629,
+      "benign_false_alerts_per_h": 313.75065440176775,
+      "all_alerts_per_h": 320.81343969566035,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-20": {
+     "pauc": 0.031544430665113025,
+     "pauc_without_top_benign_host": 0.03980071478549873,
+     "top_benign_host": "212.92.116.6",
+     "top_host_share_of_benign_tail": 0.0502092050209205,
+     "benign_tail_windows": 1195,
+     "benign_hosts": 14616,
+     "benign_windows": 113849,
+     "budget": 1138,
+     "false_alerts_at_retrospective_threshold": 1055,
+     "holdout_windows": 34742,
+     "holdout_label_benign_windows": 34741,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.014299642508937277,
+      "recall": 0.4528301886792453,
+      "benign_false_alerts_per_h": 358.2347038769151,
+      "all_alerts_per_h": 368.79690644822466,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.014299642508937277,
+      "recall": 0.4528301886792453,
+      "benign_false_alerts_per_h": 358.2347038769151,
+      "all_alerts_per_h": 368.79690644822466,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-21": {
+     "pauc": 0.0,
+     "pauc_without_top_benign_host": 0.0,
+     "top_benign_host": "172.31.69.28",
+     "top_host_share_of_benign_tail": 0.20155038759689922,
+     "benign_tail_windows": 1161,
+     "benign_hosts": 13729,
+     "benign_windows": 116040,
+     "budget": 1160,
+     "false_alerts_at_retrospective_threshold": 1160,
+     "holdout_windows": 36144,
+     "holdout_label_benign_windows": 36144,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.028516028955532575,
+      "recall": 0.2955801104972376,
+      "benign_false_alerts_per_h": 698.9725647811451,
+      "all_alerts_per_h": 766.7786068768683,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.028516028955532575,
+      "recall": 0.2955801104972376,
+      "benign_false_alerts_per_h": 698.9725647811451,
+      "all_alerts_per_h": 766.7786068768683,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-22": {
+     "pauc": 0.0,
+     "pauc_without_top_benign_host": 0.0,
+     "top_benign_host": "62.1.169.9",
+     "top_host_share_of_benign_tail": 0.045454545454545456,
+     "benign_tail_windows": 1144,
+     "benign_hosts": 13181,
+     "benign_windows": 114337,
+     "budget": 1143,
+     "false_alerts_at_retrospective_threshold": 1143,
+     "holdout_windows": 40262,
+     "holdout_label_benign_windows": 36303,
+     "windows_outside_audited_population": 13831,
+     "cal_T": {
+      "fpr": 0.0123756964062377,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 320.51358684401833,
+      "all_alerts_per_h": 324.81730285111115,
+      "alerts_outside_audited_per_h": 4.3037160070928255
+     },
+     "cal_U": {
+      "fpr": 0.013705099836448393,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 354.9433149007609,
+      "all_alerts_per_h": 359.2470309078538,
+      "alerts_outside_audited_per_h": 4.3037160070928255
+     }
+    },
+    "nfcic/2018-03-02": {
+     "pauc": 0.0,
+     "pauc_without_top_benign_host": 0.0,
+     "top_benign_host": "5.101.40.105",
+     "top_host_share_of_benign_tail": 0.11663066954643629,
+     "benign_tail_windows": 926,
+     "benign_hosts": 10969,
+     "benign_windows": 91935,
+     "budget": 919,
+     "false_alerts_at_retrospective_threshold": 877,
+     "holdout_windows": 29953,
+     "holdout_label_benign_windows": 29131,
+     "windows_outside_audited_population": 8,
+     "cal_T": {
+      "fpr": 0.0201229129276119,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 646.9311229140964,
+      "all_alerts_per_h": 646.9311229140964,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.020242562680154456,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 650.7777404016937,
+      "all_alerts_per_h": 650.7777404016937,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfton/all": {
+     "pauc": 0.0004722667311068001,
+     "pauc_without_top_benign_host": 0.0005190000605434066,
+     "top_benign_host": "0.0.0.0",
+     "top_host_share_of_benign_tail": 0.23170731707317074,
+     "benign_tail_windows": 82,
+     "benign_hosts": 287,
+     "benign_windows": 7447,
+     "budget": 74,
+     "false_alerts_at_retrospective_threshold": 63,
+     "holdout_windows": 19298,
+     "holdout_label_benign_windows": 4572,
+     "windows_outside_audited_population": 36111,
+     "cal_T": {
+      "fpr": 0.11736269638780716,
+      "recall": 0.02268667381207574,
+      "benign_false_alerts_per_h": 12.088398279620833,
+      "all_alerts_per_h": 101.40976680340955,
+      "alerts_outside_audited_per_h": 87.56481637102917
+     },
+     "cal_U": {
+      "fpr": 0.11548274472942124,
+      "recall": 0.017327617006073597,
+      "benign_false_alerts_per_h": 11.89476260923789,
+      "all_alerts_per_h": 91.75564552288857,
+      "alerts_outside_audited_per_h": 78.51926434028314
+     }
+    },
+    "nfunsw/all": {
+     "pauc": 0.039474596803101406,
+     "pauc_without_top_benign_host": 0.04394846413813875,
+     "top_benign_host": "59.166.0.1",
+     "top_host_share_of_benign_tail": 0.15833333333333333,
+     "benign_tail_windows": 120,
+     "benign_hosts": 34,
+     "benign_windows": 11937,
+     "budget": 119,
+     "false_alerts_at_retrospective_threshold": 119,
+     "holdout_windows": 623,
+     "holdout_label_benign_windows": 443,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.022786294713914718,
+      "recall": 0.11537521388413591,
+      "benign_false_alerts_per_h": 30.630055742197033,
+      "all_alerts_per_h": 83.78221129483306,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.004607522828181285,
+      "recall": 0.032754827670496214,
+      "benign_false_alerts_per_h": 6.193577447870724,
+      "all_alerts_per_h": 21.28338432086485,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    }
+   },
+   "1061": {
+    "nfbot/all": {
+     "pauc": 0.36909562211981567,
+     "pauc_without_top_benign_host": 0.4255952380952381,
+     "top_benign_host": "192.168.100.55",
+     "top_host_share_of_benign_tail": 1.0,
+     "benign_tail_windows": 34,
+     "benign_hosts": 8,
+     "benign_windows": 620,
+     "budget": 6,
+     "false_alerts_at_retrospective_threshold": 2,
+     "holdout_windows": 9667,
+     "holdout_label_benign_windows": 781,
+     "windows_outside_audited_population": 1485,
+     "cal_T": {
+      "fpr": 0.41451612903225804,
+      "recall": 0.48660714285714285,
+      "benign_false_alerts_per_h": 0.6091485708939984,
+      "all_alerts_per_h": 2.9035291803313155,
+      "alerts_outside_audited_per_h": 0.7442515613257413
+     },
+     "cal_U": {
+      "fpr": 0.0,
+      "recall": 0.36532738095238093,
+      "benign_false_alerts_per_h": 0.0,
+      "all_alerts_per_h": 1.362881043828985,
+      "alerts_outside_audited_per_h": 0.19909914379414737
+     }
+    },
+    "nfcic/2018-02-14": {
+     "pauc": 0.7838627450035703,
+     "pauc_without_top_benign_host": 0.7881136395070913,
+     "top_benign_host": "212.92.116.6",
+     "top_host_share_of_benign_tail": 0.041666666666666664,
+     "benign_tail_windows": 1152,
+     "benign_hosts": 14228,
+     "benign_windows": 108297,
+     "budget": 1082,
+     "false_alerts_at_retrospective_threshold": 996,
+     "holdout_windows": 35273,
+     "holdout_label_benign_windows": 35221,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.015448258031155064,
+      "recall": 0.9836956521739131,
+      "benign_false_alerts_per_h": 356.4046377339889,
+      "all_alerts_per_h": 394.96365711823995,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.013195194696067296,
+      "recall": 0.9836956521739131,
+      "benign_false_alerts_per_h": 304.4245232049433,
+      "all_alerts_per_h": 342.9835425891943,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-16": {
+     "pauc": 0.8906711859796921,
+     "pauc_without_top_benign_host": 0.8905189207645422,
+     "top_benign_host": "5.101.40.105",
+     "top_host_share_of_benign_tail": 0.09157509157509157,
+     "benign_tail_windows": 819,
+     "benign_hosts": 11019,
+     "benign_windows": 79527,
+     "budget": 795,
+     "false_alerts_at_retrospective_threshold": 781,
+     "holdout_windows": 25919,
+     "holdout_label_benign_windows": 25919,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.01576822965785205,
+      "recall": 0.9629629629629629,
+      "benign_false_alerts_per_h": 340.643567636205,
+      "all_alerts_per_h": 347.70635293009764,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.01576822965785205,
+      "recall": 0.9629629629629629,
+      "benign_false_alerts_per_h": 340.643567636205,
+      "all_alerts_per_h": 347.70635293009764,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-20": {
+     "pauc": 0.0002401393305299965,
+     "pauc_without_top_benign_host": 0.0011396889059701021,
+     "top_benign_host": "212.92.116.6",
+     "top_host_share_of_benign_tail": 0.043898156277436345,
+     "benign_tail_windows": 1139,
+     "benign_hosts": 14616,
+     "benign_windows": 113849,
+     "budget": 1138,
+     "false_alerts_at_retrospective_threshold": 1138,
+     "holdout_windows": 34742,
+     "holdout_label_benign_windows": 34741,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.016047571783678383,
+      "recall": 0.8962264150943396,
+      "benign_false_alerts_per_h": 402.0238353704692,
+      "all_alerts_per_h": 422.92819462618604,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.016047571783678383,
+      "recall": 0.8962264150943396,
+      "benign_false_alerts_per_h": 402.0238353704692,
+      "all_alerts_per_h": 422.92819462618604,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-21": {
+     "pauc": 0.0,
+     "pauc_without_top_benign_host": 0.0,
+     "top_benign_host": "172.31.69.28",
+     "top_host_share_of_benign_tail": 0.20085836909871244,
+     "benign_tail_windows": 1165,
+     "benign_hosts": 13729,
+     "benign_windows": 116040,
+     "budget": 1160,
+     "false_alerts_at_retrospective_threshold": 1159,
+     "holdout_windows": 36144,
+     "holdout_label_benign_windows": 36144,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.02681833850396415,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 657.3595109093151,
+      "all_alerts_per_h": 657.3595109093151,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.02681833850396415,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 657.3595109093151,
+      "all_alerts_per_h": 657.3595109093151,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-22": {
+     "pauc": 0.0,
+     "pauc_without_top_benign_host": 0.0,
+     "top_benign_host": "172.31.66.53",
+     "top_host_share_of_benign_tail": 0.033216783216783216,
+     "benign_tail_windows": 1144,
+     "benign_hosts": 13181,
+     "benign_windows": 114337,
+     "budget": 1143,
+     "false_alerts_at_retrospective_threshold": 1143,
+     "holdout_windows": 40262,
+     "holdout_label_benign_windows": 36303,
+     "windows_outside_audited_population": 13831,
+     "cal_T": {
+      "fpr": 0.01387127526522473,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 359.2470309078538,
+      "all_alerts_per_h": 363.5507469149466,
+      "alerts_outside_audited_per_h": 4.3037160070928255
+     },
+     "cal_U": {
+      "fpr": 0.014920804289075277,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 386.4283951631769,
+      "all_alerts_per_h": 390.7321111702697,
+      "alerts_outside_audited_per_h": 4.3037160070928255
+     }
+    },
+    "nfcic/2018-03-02": {
+     "pauc": 0.0,
+     "pauc_without_top_benign_host": 0.0,
+     "top_benign_host": "172.31.67.52",
+     "top_host_share_of_benign_tail": 0.1108695652173913,
+     "benign_tail_windows": 920,
+     "benign_hosts": 10969,
+     "benign_windows": 91935,
+     "budget": 919,
+     "false_alerts_at_retrospective_threshold": 919,
+     "holdout_windows": 29953,
+     "holdout_label_benign_windows": 29131,
+     "windows_outside_audited_population": 8,
+     "cal_T": {
+      "fpr": 0.01763202262468048,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 566.8515406722975,
+      "all_alerts_per_h": 566.8515406722975,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.01875237939848806,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 602.8698680561633,
+      "all_alerts_per_h": 602.8698680561633,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfton/all": {
+     "pauc": 0.0005502262433018987,
+     "pauc_without_top_benign_host": 0.0005376074830034512,
+     "top_benign_host": "18.194.169.124",
+     "top_host_share_of_benign_tail": 0.2857142857142857,
+     "benign_tail_windows": 91,
+     "benign_hosts": 287,
+     "benign_windows": 7447,
+     "budget": 74,
+     "false_alerts_at_retrospective_threshold": 70,
+     "holdout_windows": 19298,
+     "holdout_label_benign_windows": 4572,
+     "windows_outside_audited_population": 36111,
+     "cal_T": {
+      "fpr": 0.1489190277964281,
+      "recall": 0.23633440514469453,
+      "benign_false_alerts_per_h": 15.338711318191653,
+      "all_alerts_per_h": 127.08032424846249,
+      "alerts_outside_audited_per_h": 93.44304207908279
+     },
+     "cal_U": {
+      "fpr": 0.1412649389015711,
+      "recall": 0.21186137906395142,
+      "benign_false_alerts_per_h": 14.550337517346815,
+      "all_alerts_per_h": 101.24379337165274,
+      "alerts_outside_audited_per_h": 70.2897483490081
+     }
+    },
+    "nfunsw/all": {
+     "pauc": 0.05805251464099994,
+     "pauc_without_top_benign_host": 0.05956252241663796,
+     "top_benign_host": "59.166.0.1",
+     "top_host_share_of_benign_tail": 0.14166666666666666,
+     "benign_tail_windows": 120,
+     "benign_hosts": 34,
+     "benign_windows": 11937,
+     "budget": 119,
+     "false_alerts_at_retrospective_threshold": 119,
+     "holdout_windows": 623,
+     "holdout_label_benign_windows": 443,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.02421043813353439,
+      "recall": 0.11146418968467367,
+      "benign_false_alerts_per_h": 32.54443422608435,
+      "all_alerts_per_h": 83.89482179388526,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.0015079165619502387,
+      "recall": 0.03984355903202151,
+      "benign_false_alerts_per_h": 2.0269889829395096,
+      "all_alerts_per_h": 20.38250032844729,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    }
+   }
+  },
+  "A": {
+   "1060": {
+    "nfbot/all": {
+     "pauc": 0.12766417050691245,
+     "pauc_without_top_benign_host": 0.25183846686822875,
+     "top_benign_host": "192.168.100.55",
+     "top_host_share_of_benign_tail": 1.0,
+     "benign_tail_windows": 9,
+     "benign_hosts": 8,
+     "benign_windows": 620,
+     "budget": 6,
+     "false_alerts_at_retrospective_threshold": 1,
+     "holdout_windows": 9667,
+     "holdout_label_benign_windows": 781,
+     "windows_outside_audited_population": 1485,
+     "cal_T": {
+      "fpr": 0.3919354838709677,
+      "recall": 0.27380952380952384,
+      "benign_false_alerts_per_h": 0.5759653802616406,
+      "all_alerts_per_h": 1.6188656572786029,
+      "alerts_outside_audited_per_h": 0.17065640896641202
+     },
+     "cal_U": {
+      "fpr": 0.3903225806451613,
+      "recall": 0.26711309523809523,
+      "benign_false_alerts_per_h": 0.5735951523593293,
+      "all_alerts_per_h": 1.5951633782554901,
+      "alerts_outside_audited_per_h": 0.17065640896641202
+     }
+    },
+    "nfcic/2018-02-14": {
+     "pauc": 0.3442303492288295,
+     "pauc_without_top_benign_host": 0.371747252729533,
+     "top_benign_host": "172.31.64.78",
+     "top_host_share_of_benign_tail": 0.04155124653739612,
+     "benign_tail_windows": 1083,
+     "benign_hosts": 14228,
+     "benign_windows": 108297,
+     "budget": 1082,
+     "false_alerts_at_retrospective_threshold": 1081,
+     "holdout_windows": 35273,
+     "holdout_label_benign_windows": 35221,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.017331966721146477,
+      "recall": 0.9836956521739131,
+      "benign_false_alerts_per_h": 399.8634220123713,
+      "all_alerts_per_h": 438.42244139662233,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.015789911077869194,
+      "recall": 0.9836956521739131,
+      "benign_false_alerts_per_h": 364.28686821585234,
+      "all_alerts_per_h": 402.8458876001034,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-16": {
+     "pauc": 0.8950149238856164,
+     "pauc_without_top_benign_host": 0.8991398857735355,
+     "top_benign_host": "172.31.64.83",
+     "top_host_share_of_benign_tail": 0.06658291457286432,
+     "benign_tail_windows": 796,
+     "benign_hosts": 11019,
+     "benign_windows": 79527,
+     "budget": 795,
+     "false_alerts_at_retrospective_threshold": 795,
+     "holdout_windows": 25919,
+     "holdout_label_benign_windows": 25919,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.016497541715392257,
+      "recall": 0.9629629629629629,
+      "benign_false_alerts_per_h": 356.39901175335007,
+      "all_alerts_per_h": 363.46179704724267,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.016497541715392257,
+      "recall": 0.9629629629629629,
+      "benign_false_alerts_per_h": 356.39901175335007,
+      "all_alerts_per_h": 363.46179704724267,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-20": {
+     "pauc": 0.025897344662252894,
+     "pauc_without_top_benign_host": 0.030058044531582312,
+     "top_benign_host": "172.31.65.14",
+     "top_host_share_of_benign_tail": 0.025460930640913083,
+     "benign_tail_windows": 1139,
+     "benign_hosts": 14616,
+     "benign_windows": 113849,
+     "budget": 1138,
+     "false_alerts_at_retrospective_threshold": 1137,
+     "holdout_windows": 34742,
+     "holdout_label_benign_windows": 34741,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.019991392107089216,
+      "recall": 0.9056603773584906,
+      "benign_false_alerts_per_h": 500.82443858959385,
+      "all_alerts_per_h": 521.9488437322129,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.019991392107089216,
+      "recall": 0.9056603773584906,
+      "benign_false_alerts_per_h": 500.82443858959385,
+      "all_alerts_per_h": 521.9488437322129,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-21": {
+     "pauc": 0.0,
+     "pauc_without_top_benign_host": 0.0,
+     "top_benign_host": "172.31.66.15",
+     "top_host_share_of_benign_tail": 0.1024978466838932,
+     "benign_tail_windows": 1161,
+     "benign_hosts": 13729,
+     "benign_windows": 116040,
+     "budget": 1160,
+     "false_alerts_at_retrospective_threshold": 1160,
+     "holdout_windows": 36144,
+     "holdout_label_benign_windows": 36144,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.03996035849706998,
+      "recall": 0.998158379373849,
+      "benign_false_alerts_per_h": 979.4910193079994,
+      "all_alerts_per_h": 1208.4684324910643,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.03996035849706998,
+      "recall": 0.998158379373849,
+      "benign_false_alerts_per_h": 979.4910193079994,
+      "all_alerts_per_h": 1208.4684324910643,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-22": {
+     "pauc": 0.0,
+     "pauc_without_top_benign_host": 0.0,
+     "top_benign_host": "13.107.21.200",
+     "top_host_share_of_benign_tail": 0.03580786026200873,
+     "benign_tail_windows": 1145,
+     "benign_hosts": 13181,
+     "benign_windows": 114337,
+     "budget": 1143,
+     "false_alerts_at_retrospective_threshold": 1143,
+     "holdout_windows": 40262,
+     "holdout_label_benign_windows": 36303,
+     "windows_outside_audited_population": 13831,
+     "cal_T": {
+      "fpr": 0.014553469130727586,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 376.9149176738138,
+      "all_alerts_per_h": 381.8981677872897,
+      "alerts_outside_audited_per_h": 4.983250113475903
+     },
+     "cal_U": {
+      "fpr": 0.014553469130727586,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 376.9149176738138,
+      "all_alerts_per_h": 381.8981677872897,
+      "alerts_outside_audited_per_h": 4.983250113475903
+     }
+    },
+    "nfcic/2018-03-02": {
+     "pauc": 0.0,
+     "pauc_without_top_benign_host": 0.0,
+     "top_benign_host": "172.31.66.25",
+     "top_host_share_of_benign_tail": 0.15027027027027026,
+     "benign_tail_windows": 925,
+     "benign_hosts": 10969,
+     "benign_windows": 91935,
+     "budget": 919,
+     "false_alerts_at_retrospective_threshold": 911,
+     "holdout_windows": 29953,
+     "holdout_label_benign_windows": 29131,
+     "windows_outside_audited_population": 8,
+     "cal_T": {
+      "fpr": 0.01284603252297819,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 412.9868411684042,
+      "all_alerts_per_h": 412.9868411684042,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.01284603252297819,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 412.9868411684042,
+      "all_alerts_per_h": 412.9868411684042,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfton/all": {
+     "pauc": 0.0,
+     "pauc_without_top_benign_host": 0.037746437777937174,
+     "top_benign_host": "0.0.0.0",
+     "top_host_share_of_benign_tail": 0.9878048780487805,
+     "benign_tail_windows": 82,
+     "benign_hosts": 287,
+     "benign_windows": 7447,
+     "budget": 74,
+     "false_alerts_at_retrospective_threshold": 6,
+     "holdout_windows": 19298,
+     "holdout_label_benign_windows": 4572,
+     "windows_outside_audited_population": 36111,
+     "cal_T": {
+      "fpr": 0.2391567073989526,
+      "recall": 0.3553054662379421,
+      "benign_false_alerts_per_h": 24.63322349657289,
+      "all_alerts_per_h": 91.85246335808004,
+      "alerts_outside_audited_per_h": 39.70914354781626
+     },
+     "cal_U": {
+      "fpr": 0.2391567073989526,
+      "recall": 0.3553054662379421,
+      "benign_false_alerts_per_h": 24.63322349657289,
+      "all_alerts_per_h": 91.85246335808004,
+      "alerts_outside_audited_per_h": 39.70914354781626
+     }
+    },
+    "nfunsw/all": {
+     "pauc": 0.4909446270587003,
+     "pauc_without_top_benign_host": 0.48925825411752777,
+     "top_benign_host": "149.171.126.18",
+     "top_host_share_of_benign_tail": 0.11904761904761904,
+     "benign_tail_windows": 126,
+     "benign_hosts": 34,
+     "benign_windows": 11937,
+     "budget": 119,
+     "false_alerts_at_retrospective_threshold": 87,
+     "holdout_windows": 623,
+     "holdout_label_benign_windows": 443,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.00025131942699170643,
+      "recall": 0.127352725494989,
+      "benign_false_alerts_per_h": 0.33783149715658495,
+      "all_alerts_per_h": 59.00790150335017,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.00016754628466113765,
+      "recall": 0.05597653385480322,
+      "benign_false_alerts_per_h": 0.22522099810438995,
+      "all_alerts_per_h": 26.01302528105704,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    }
+   },
+   "1061": {
+    "nfbot/all": {
+     "pauc": 0.04836309523809524,
+     "pauc_without_top_benign_host": 0.2875094482237339,
+     "top_benign_host": "192.168.100.55",
+     "top_host_share_of_benign_tail": 1.0,
+     "benign_tail_windows": 83,
+     "benign_hosts": 8,
+     "benign_windows": 620,
+     "budget": 6,
+     "false_alerts_at_retrospective_threshold": 0,
+     "holdout_windows": 9667,
+     "holdout_label_benign_windows": 781,
+     "windows_outside_audited_population": 1485,
+     "cal_T": {
+      "fpr": 0.5290322580645161,
+      "recall": 0.3013392857142857,
+      "benign_false_alerts_per_h": 0.7774347519580992,
+      "all_alerts_per_h": 1.9198846008721353,
+      "alerts_outside_audited_per_h": 0.1825075484779684
+     },
+     "cal_U": {
+      "fpr": 0.7112903225806452,
+      "recall": 0.30282738095238093,
+      "benign_false_alerts_per_h": 1.0452705049192736,
+      "all_alerts_per_h": 2.1924608096379323,
+      "alerts_outside_audited_per_h": 0.1825075484779684
+     }
+    },
+    "nfcic/2018-02-14": {
+     "pauc": 0.5240799656821319,
+     "pauc_without_top_benign_host": 0.5523221902704953,
+     "top_benign_host": "172.31.64.78",
+     "top_host_share_of_benign_tail": 0.04549590536851683,
+     "benign_tail_windows": 1099,
+     "benign_hosts": 14228,
+     "benign_windows": 108297,
+     "budget": 1082,
+     "false_alerts_at_retrospective_threshold": 1053,
+     "holdout_windows": 35273,
+     "holdout_label_benign_windows": 35221,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.018689345041875582,
+      "recall": 0.9836956521739131,
+      "benign_false_alerts_per_h": 431.1793106835586,
+      "all_alerts_per_h": 469.7383300678096,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.016676362226100448,
+      "recall": 0.9836956521739131,
+      "benign_false_alerts_per_h": 384.7380608174441,
+      "all_alerts_per_h": 423.2970802016951,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-16": {
+     "pauc": 0.9205827603855901,
+     "pauc_without_top_benign_host": 0.9237052197357428,
+     "top_benign_host": "172.31.64.83",
+     "top_host_share_of_benign_tail": 0.0728643216080402,
+     "benign_tail_windows": 796,
+     "benign_hosts": 11019,
+     "benign_windows": 79527,
+     "budget": 795,
+     "false_alerts_at_retrospective_threshold": 795,
+     "holdout_windows": 25919,
+     "holdout_label_benign_windows": 25919,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.017428043306047004,
+      "recall": 0.9629629629629629,
+      "benign_false_alerts_per_h": 376.50078528212134,
+      "all_alerts_per_h": 383.56357057601394,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.017428043306047004,
+      "recall": 0.9629629629629629,
+      "benign_false_alerts_per_h": 376.50078528212134,
+      "all_alerts_per_h": 383.56357057601394,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-20": {
+     "pauc": 0.5147917706952809,
+     "pauc_without_top_benign_host": 0.523895273312336,
+     "top_benign_host": "172.31.65.14",
+     "top_host_share_of_benign_tail": 0.027216856892010536,
+     "benign_tail_windows": 1139,
+     "benign_hosts": 14616,
+     "benign_windows": 113849,
+     "budget": 1138,
+     "false_alerts_at_retrospective_threshold": 1138,
+     "holdout_windows": 34742,
+     "holdout_label_benign_windows": 34741,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.02094001704011454,
+      "recall": 0.9056603773584906,
+      "benign_false_alerts_per_h": 524.5893943750403,
+      "all_alerts_per_h": 545.7137995176594,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.02094001704011454,
+      "recall": 0.9056603773584906,
+      "benign_false_alerts_per_h": 524.5893943750403,
+      "all_alerts_per_h": 545.7137995176594,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-21": {
+     "pauc": 0.0,
+     "pauc_without_top_benign_host": 0.0,
+     "top_benign_host": "172.31.66.15",
+     "top_host_share_of_benign_tail": 0.10195412064570943,
+     "benign_tail_windows": 1177,
+     "benign_hosts": 13729,
+     "benign_windows": 116040,
+     "budget": 1160,
+     "false_alerts_at_retrospective_threshold": 1102,
+     "holdout_windows": 36144,
+     "holdout_label_benign_windows": 36144,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.040081006549465704,
+      "recall": 0.998158379373849,
+      "benign_false_alerts_per_h": 982.4482921719873,
+      "all_alerts_per_h": 1211.425705355052,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.040081006549465704,
+      "recall": 0.998158379373849,
+      "benign_false_alerts_per_h": 982.4482921719873,
+      "all_alerts_per_h": 1211.425705355052,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfcic/2018-02-22": {
+     "pauc": 0.0,
+     "pauc_without_top_benign_host": 0.0,
+     "top_benign_host": "172.31.66.42",
+     "top_host_share_of_benign_tail": 0.04292929292929293,
+     "benign_tail_windows": 1188,
+     "benign_hosts": 13181,
+     "benign_windows": 114337,
+     "budget": 1143,
+     "false_alerts_at_retrospective_threshold": 1135,
+     "holdout_windows": 40262,
+     "holdout_label_benign_windows": 36303,
+     "windows_outside_audited_population": 13831,
+     "cal_T": {
+      "fpr": 0.01701986233677637,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 440.7911236738231,
+      "all_alerts_per_h": 506.4794206241873,
+      "alerts_outside_audited_per_h": 65.68829695036418
+     },
+     "cal_U": {
+      "fpr": 0.015515537402590587,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 401.8311682411933,
+      "all_alerts_per_h": 411.7976684681451,
+      "alerts_outside_audited_per_h": 9.966500226951807
+     }
+    },
+    "nfcic/2018-03-02": {
+     "pauc": 0.0,
+     "pauc_without_top_benign_host": 0.0,
+     "top_benign_host": "172.31.66.25",
+     "top_host_share_of_benign_tail": 0.15543478260869564,
+     "benign_tail_windows": 920,
+     "benign_hosts": 10969,
+     "benign_windows": 91935,
+     "budget": 919,
+     "false_alerts_at_retrospective_threshold": 919,
+     "holdout_windows": 29953,
+     "holdout_label_benign_windows": 29131,
+     "windows_outside_audited_population": 8,
+     "cal_T": {
+      "fpr": 0.01566324033284386,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 503.55719837637776,
+      "all_alerts_per_h": 503.55719837637776,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 0.01566324033284386,
+      "recall": 0.0,
+      "benign_false_alerts_per_h": 503.55719837637776,
+      "all_alerts_per_h": 503.55719837637776,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    },
+    "nfton/all": {
+     "pauc": 0.0,
+     "pauc_without_top_benign_host": 0.004429693238984625,
+     "top_benign_host": "0.0.0.0",
+     "top_host_share_of_benign_tail": 0.9878048780487805,
+     "benign_tail_windows": 82,
+     "benign_hosts": 287,
+     "benign_windows": 7447,
+     "budget": 74,
+     "false_alerts_at_retrospective_threshold": 6,
+     "holdout_windows": 19298,
+     "holdout_label_benign_windows": 4572,
+     "windows_outside_audited_population": 36111,
+     "cal_T": {
+      "fpr": 0.23459111051430107,
+      "recall": 0.3556627366916756,
+      "benign_false_alerts_per_h": 24.1629654399286,
+      "all_alerts_per_h": 91.32688082418349,
+      "alerts_outside_audited_per_h": 39.626156831937855
+     },
+     "cal_U": {
+      "fpr": 0.23888814287632604,
+      "recall": 0.3558413719185423,
+      "benign_false_alerts_per_h": 24.605561257946754,
+      "all_alerts_per_h": 94.6601805786327,
+      "alerts_outside_audited_per_h": 42.50302964905586
+     }
+    },
+    "nfunsw/all": {
+     "pauc": 0.5735123248599185,
+     "pauc_without_top_benign_host": 0.5864141299758204,
+     "top_benign_host": "59.166.0.1",
+     "top_host_share_of_benign_tail": 0.15833333333333333,
+     "benign_tail_windows": 120,
+     "benign_hosts": 34,
+     "benign_windows": 11937,
+     "budget": 119,
+     "false_alerts_at_retrospective_threshold": 119,
+     "holdout_windows": 623,
+     "holdout_label_benign_windows": 443,
+     "windows_outside_audited_population": 0,
+     "cal_T": {
+      "fpr": 0.00016754628466113765,
+      "recall": 0.08408702028843804,
+      "benign_false_alerts_per_h": 0.22522099810438995,
+      "all_alerts_per_h": 38.96323267205946,
+      "alerts_outside_audited_per_h": 0.0
+     },
+     "cal_U": {
+      "fpr": 8.377314233056883e-05,
+      "recall": 0.044243461256416525,
+      "benign_false_alerts_per_h": 0.11261049905219497,
+      "all_alerts_per_h": 20.495110827499484,
+      "alerts_outside_audited_per_h": 0.0
+     }
+    }
+   }
+  }
+ }
+}

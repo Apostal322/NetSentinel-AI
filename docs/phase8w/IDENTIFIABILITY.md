@@ -13,11 +13,13 @@ reported one block per scenario and are never pooled.
 | `Z1` | unsupervised target-adaptive | every unlabelled calibration window before the hold-out cut | yes, given a history period |
 | `Z2` | weakly supervised target-adaptive | 800 of those windows drawn uniformly, kept if a **perfect simulated reviewer** (the window label) calls them benign | simulated only; not real analyst evidence |
 | `Z3` | oracle-assisted | those windows without any that contain a labelled attack flow | **no**: diagnostic upper reference |
-| `T` | oracle-assisted | the label-benign calibration windows, as in Phase 8h | no |
+| `T` | oracle-assisted | the label-benign calibration windows, as in Phase 8h: the **whole** calibration period including the hold-out, with attacking hosts removed using calibration **and evaluation** labels | no |
 
 **Timeline for every scenario:** reference period → threshold hold-out (last 30 % of calibration
-slots) → evaluation. A reference never sees a hold-out or evaluation window (tested: a fitted
-reference is immutable).
+slots) → evaluation. A `Z0`–`Z3` reference never sees a hold-out or evaluation window (tested: a
+fitted reference is not changed by scoring). **`T` is the exception** (corrected after the
+independent review, finding A1): it covers the hold-out too (81 % of its NF-BoT windows) and its
+host cleaning reads evaluation labels. It is a historical comparison, never a deployable result.
 
 **Source domains** always use their own label-benign calibration windows. Those are training
 labels, legitimately available for a source network.
@@ -84,8 +86,9 @@ Univariate AUC of each feature on the audited evaluation windows, mean per netwo
 `log_flows`, raw vs unsigned (`Z1`): 0.86 / 0.13 / 0.95 / 0.97 → 0.81 / 0.85 / 0.94 / 0.91
 (NF-CIC / NF-UNSW / NF-ToN / NF-BoT).
 
-- **The unsigned deviation removes the volume-direction conflict.** NF-UNSW's quiet attackers and
-  the other networks' loud ones both sit far from their network's normal.
+- **The unsigned deviation removes the volume-direction conflict in this univariate view.**
+  NF-UNSW's quiet attackers and the other networks' loud ones both sit far from their network's
+  normal. Seven of 12 features still conflict under `Z1` (8 raw).
 - **It does not remove every conflict.** Destination counts and the fraction features still
   disagree, and NF-BoT's contaminated reference inverts two features (`log_down_bytes` 0.14,
   `upload_share` 0.18).

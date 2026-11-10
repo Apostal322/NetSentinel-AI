@@ -317,6 +317,13 @@ def stage_eval(tag: str) -> None:
     names = sorted(p.stem.replace("__", "/") for p in OF.BM.AUDIT.glob("*.parquet"))
     dom = {n: OF.load(n) for n in names}
     is_att = {n: FG.domain_data(n)["is_att"] for n in names}
+    for n in names:  # audited rows = scored rows, by key and window (review D2; added after the
+        # registered evaluation, which the reviewer checked independently for all nine domains)
+        net, dm = n.split("/")
+        eu = pl.read_parquet(
+            C.DERIVED / net / dm / "eval_unlabelled.parquet", columns=["key", "win"]
+        )
+        REF.aligned(dom[n], eu.sort("win", "key"), n)
 
     def metrics(name: str, sh: np.ndarray, se: np.ndarray) -> dict:
         d = dom[name]

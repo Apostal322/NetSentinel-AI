@@ -256,6 +256,19 @@ Results: [`docs/phase8b/CONFIRMATORY_RESULTS.md`](phase8b/CONFIRMATORY_RESULTS.m
 | Is attack information lost in the 12-feature window? | in-network diagnostic fits | NF-UNSW: no (recall 0.996 at 1% FPR in-network with the 12 features); NF-ToN: partly | exploratory |
 | Do flow, timing or bidirectional features, or source-invariant selection, improve transfer at FPR <= 1%? | leave-one-network-out, seed 1060 | **no candidate passes**: TIME +0.117 on the hard networks but fails FPR and entity guardrails; its NF-ToN gain is volume in three hosts; INV collapses | registered development |
 
+## Phase 8w (network-relative representations; development data)
+
+- Documents: [`docs/phase8w/`](phase8w/FINAL_RESEARCH_REPORT.md). No arm passed screening; development NO-GO; 24 of 48 approved fits; deployment unchanged.
+
+| Question | Data | Result | Role |
+|---|---|---|---|
+| What exactly failed in Phase 8h's normalisation? | code and protocol audit | signed median/MAD z per network with an oracle-assisted target reference, one seed, no null control | audit |
+| Is a benign reference identifiable from unlabelled target history? | calibration periods, labels as a diagnostic | yes on NF-CIC and NF-UNSW; no on NF-ToN (bimodal benign; 13.6% attack windows move a reference by 17 scale units) or NF-BoT (62% attack windows) | no-fit diagnostic |
+| Does the null control reproduce the frozen member? | 8 refits, seeds 1060-1061 | yes, score difference 0.0 in all 8 | registered gate (G0) |
+| Do signed or unsigned network-relative features improve pAUC (FPR <= 1%) over the matched raw control? | leave-one-network-out, 2 paired seeds, unlabelled target reference | **no arm passes**: unsigned +0.26 on the hard networks (NF-UNSW 0.008 to 0.53) but macro -0.02, NF-BoT -0.49, NF-ToN 0.000; signed macro -0.08 | registered screening |
+| Does an oracle-clean reference rescue it? | same boosters re-scored | no: macro 0.220 vs 0.245 raw | diagnostic |
+| How much reference contamination does it tolerate? | re-scoring with injected attack windows | 20% halves and 30% removes the NF-UNSW gain; below 20% the effect cannot be separated from the noise of estimating the reference (five clean 800-window draws miss 9 to 28 entities) | diagnostic |
+
 ## Telemetry
 
 | Check | Result | Source |
